@@ -9,30 +9,44 @@
   <title>Moonshine</title>
 </head>
 
-<body>
-  <noscript>
-    <strong>We're sorry but Moonshine doesn't work properly without JavaScript enabled. Please enable it to
-      continue.</strong>
-  </noscript>
+<body class="baseline">
   <div id="shine">
-    <div class="contain">
-      <div class="flex around pad">
-        <div>
-          <sh-button>
-            <span slot="precontent">Clicked</span>
-            <span slot="postcontent">times.</span>
-          </sh-button>
+    <div id="nav">
+      <ul id="nav-primary">
+        <li><a href="#" modal-trigger="modal-one">modal</a></li>
+        <li><a href="#">Lorem</a></li>
+      </ul>
+    </div><!-- #nav end -->
+    <div id="page">
+      <header>
+        <div class="contain">
+          shine
         </div>
-        <div>
-          <sh-button></sh-button>
+      </header>
+      <main>
+        <div class="contain">
+          <div class="flex start pad">
+            <div class="margin">
+              <sh-button id="test">
+                <span slot="precontent">Clicked</span>
+                <span slot="postcontent">times.</span>
+              </sh-button>
+            </div>
+            <div class="margin">
+              <sh-button></sh-button>
+            </div>
+            <div class="margin">
+              <button>TEST</button>
+            </div>
+          </div>
         </div>
-        
-        <div>
-          <button>TEST</button>
-        </div>
-      </div>
-    </div>
-  </div>
+        <footer>
+          stuff
+        </footer>
+      </main>
+    </div> <!-- #page end -->
+    <div id="curtain"></div>
+  </div> 
   <!-- built files will be auto injected -->
 </body>
 
