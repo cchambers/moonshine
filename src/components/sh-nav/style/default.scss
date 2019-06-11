@@ -1,0 +1,39 @@
+#nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  width: 40rem;
+  transition: all 300ms ease-in-out;
+  transform: translateX(-100%) translateZ(0);
+  background: #121212;
+  color: #ffffff;
+  z-index: 9;
+  -webkit-overflow-scrolling: touch;
+  will-change: scroll-position;
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    a {
+      display: block;
+      color: white;
+      line-height: 6.5rem;
+      padding: 0 3rem;
+      font-size: 2rem;
+    }
+    li:nth-child(odd) a {
+      background: rgba(255,255,255,.025);
+    }
+  } 
+}
+
+@media (min-width: $breakpoint) {
+  nav {
+    background: red;
+    display: block;
+    position: static;
+  } 
+}

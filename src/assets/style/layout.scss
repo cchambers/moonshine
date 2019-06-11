@@ -38,6 +38,7 @@ body {
   right: 0;
   bottom: 0;
   overflow: hidden;
+  transition: opacity 200ms ease-in;
   > * {
     position: relative;
     transition: all 300ms ease;
@@ -53,37 +54,6 @@ body {
     display: flex;
     flex-direction: column;
     transition: all 300ms ease-in-out;
-  }
-  #nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    overflow-y: auto;
-    overflow-x: hidden;
-    width: 40rem;
-    transition: all 300ms ease-in-out;
-    transform: translateX(-100%) translateZ(0);
-    background: #121212;
-    color: #ffffff;
-    z-index: 9;
-    -webkit-overflow-scrolling: touch;
-    will-change: scroll-position;
-    ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      a {
-        display: block;
-        color: white;
-        line-height: 6.5rem;
-        padding: 0 3rem;
-        font-size: 2rem;
-      }
-      li:nth-child(odd) a {
-        background: #151515;
-      }
-    }
   }
   #modals {
     position: fixed;
@@ -116,8 +86,8 @@ body {
     z-index: 10;
     top: 0;
     right: 0;
-    height: 8rem;
-    width: 8rem;
+    height: 10rem;
+    width: 10rem;
   }
 
   &.modal-shown {
@@ -167,19 +137,6 @@ html {
   }
 }
 
-.modal {
-  .content {
-    background: #fff;
-    height: 100%;
-    max-width: 1020rem;
-    margin: 3rem;
-  }
-  transform: translateY(100%);
-}
-
-input {
-  font-size: 16px;
-}
 
 #page {
   > header {
@@ -214,11 +171,7 @@ input {
   }
 }
 
-.content {
-  padding: 3rem;
-  max-width: 1020px;
-  margin: auto;
-}
+
 
 #search-results {
   display: none;
@@ -246,33 +199,6 @@ i.material-icons {
   line-height: 1em;
 }
 
-#show-nav {
-  position: fixed;
-  top: 3rem;
-  right: 3rem;
-  transition: all 400ms ease-in-out;
-}
-
-#close-curtain {
-  position: fixed;
-  top: 3rem;
-  right: 3rem;
-  z-index: 10;
-  transform: translateY(-10rem) translateZ(0);
-  transition: all 400ms ease-in-out;
-}
-
-#close-modal {
-  position: fixed;
-  top: 3rem;
-  right: 3rem;
-  font-size: 4rem;
-  transform: translateX(10rem) translateZ(0);
-  transition: all 400ms ease-in-out;
-  i {
-    color: #222;
-  }
-}
 
 [modal-trigger] {
   color: #3c7cff;
