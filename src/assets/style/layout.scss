@@ -6,13 +6,12 @@ html {
   font-size: 8px !important;
   -webkit-overflow-scrolling: auto;
   pointer-events: none;
-  background: red;
+  background: tomato;
 }
 
 html * {
   pointer-events: auto;
 }
-
 
 html.iOS {
   height: 100% !important;
@@ -30,14 +29,9 @@ body {
   right: 0;
   bottom: 0;
   overflow: hidden;
-  background: lime;
 }
 
-.iOS #search-results {
-  background: lime
-}
-
-#shine {
+#xxx {
   position: absolute;
   top: 0;
   left: 0;
@@ -204,7 +198,7 @@ header {
   display: block;
   padding: 3rem;
   position: relative;
-  background: #ccc;
+  background: $back-secondary;
   i {
     position: absolute;
     right: 3rem;
@@ -212,17 +206,21 @@ header {
 }
 
 main {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   flex: 1 auto;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   will-change: scroll-position;
-  background: #f2f2f2;
+  background: $back-primary;
 }
 
 footer {
   display: block;
   padding: 3rem;
+  background: $foreground;
+  color: $back-primary;
 }
 
 .content {
@@ -246,7 +244,7 @@ footer {
   position: absolute;
   left: 0;
   top: calc(100% + 2px);
-  background: red;
+  background: $back-primary;
   width: 30rem;
   bottom: -40vh;
   overflow-y: auto;
