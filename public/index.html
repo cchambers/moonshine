@@ -1,17 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-    <title>moonshine</title>
-  </head>
-  <body>
-    <noscript>
-      <strong>We're sorry but moonshine doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
-    </noscript>
-    <div id="app"></div>
-    <!-- built files will be auto injected -->
-  </body>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+  <title>Moonshine</title>
+</head>
+
+<body>
+  <noscript>
+    <strong>We're sorry but Moonshine doesn't work properly without JavaScript enabled. Please enable it to
+      continue.</strong>
+  </noscript>
+  <div id="shine">
+    <div class="contain">
+      <div class="flex around pad">
+        <div>
+          <sh-button>
+            <span slot="precontent">Clicked</span>
+            <span slot="postcontent">times.</span>
+          </sh-button>
+        </div>
+        <div>
+          <sh-button></sh-button>
+        </div>
+        
+        <div>
+          <button>TEST</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- built files will be auto injected -->
+</body>
+
 </html>

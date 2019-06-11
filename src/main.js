@@ -1,8 +1,13 @@
 import Vue from 'vue'
-import App from './App.vue'
 
 Vue.config.productionTip = false
 
-new Vue({
-  render: h => h(App),
-}).$mount('#app')
+// base styles...
+require('./assets/style/base.scss')
+require('./assets/style/material.scss')
+
+// components
+require('./components/sh-button')
+
+// mount to container
+new Vue().$mount('#shine')
