@@ -6,5 +6,5 @@
   </button>
 </template>
 
-<script src="../script/button.js"></script>
+<script src="../script/Button.js"></script>
 <style lang="scss" src="../style/default.scss" scoped></style>

@@ -1,0 +1,8 @@
+#xxx[v-cloak] {
+  opacity: 0;
+}
+
+#xxx:not([v-cloak]) {
+  opacity: 1;
+  transition: all 1s ease;
+}

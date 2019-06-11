@@ -1,0 +1,10 @@
+.nav-icon {
+  cursor: pointer;
+  color: $accent-quaternary;
+  font-size: 4rem;
+  transition: all 250ms ease;
+  &:hover {
+    opacity: 0.8;
+  }
+}
+

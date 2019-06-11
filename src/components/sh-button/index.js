@@ -1,4 +1,3 @@
-//news/index.js
 import Vue from 'vue'
 import Button from './vue/Button';
 

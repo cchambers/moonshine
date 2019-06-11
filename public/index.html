@@ -10,19 +10,15 @@
 </head>
 
 <body class="baseline">
-  <div id="xxx">
-    <div id="nav">
-      <ul id="nav-primary">
+  <div id="xxx" v-cloak>
+    <sh-nav id="nav">
+      <ul slot="primary" id="nav-primary">
         <li><a href="#" modal-trigger="modal-one">modal</a></li>
         <li><a href="#">Lorem</a></li>
       </ul>
-    </div><!-- #nav end -->
+    </sh-nav>
     <div id="page">
-      <header>
-        <div class="contain">
-          moonshine
-        </div>
-      </header>
+      <sh-header id="header">Components</sh-header>
       <main>
         <div class="contain pad-y">
           <div class="flex start">
@@ -46,21 +42,9 @@
         </footer>
       </main>
     </div> <!-- #page end -->
-    <div id="curtain"></div>
-    <div id="modals"></div>
-    <div id="control">
-      <div id="show-nav" nav-toggle>
-        <i class="material-icons nav-icon">
-          menu
-        </i>
-      </div>
-      <div id="close-curtain" nav-toggle>
-        <i class="material-icons nav-icon">close</i>
-      </div>
-      <div id="close-modal" close-modal>
-        <i class="material-icons nav-icon">arrow_back</i>
-      </div>
-    </div>
+    <sh-curtain id="curtain"></sh-curtain>
+    <sh-modals id="modals"></sh-modals>
+    <sh-control-panel id="control"></sh-control-panel>
   </div> 
   <!-- built files will be auto injected -->
 </body>
