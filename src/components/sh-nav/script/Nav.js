@@ -1,6 +1,6 @@
 export default {
   name: 'Nav',
-  data: function () {
+  data() {
     return {
       items: 0
     }

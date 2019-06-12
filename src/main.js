@@ -1,10 +1,15 @@
 import Vue from 'vue'
 Vue.config.productionTip = false
 
+require('./assets/script/core.js')
+
 // base styles...
 require('./assets/style/base.scss')
 require('./assets/style/layout.scss')
-require('./assets/style/material.scss')
+
+// components to skip in prod
+require('./components/demo-toolbar')
+require('./components/component-template')
 
 // components
 require('./components/sh-button')

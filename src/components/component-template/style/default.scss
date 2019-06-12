@@ -1,0 +1,12 @@
+/* default styling */
+
+.component-template {
+  display: block;
+  height: 10rem;
+  width: 10rem;
+  background-size: cover;
+  &.snap-state {
+    color: transparent;
+    background-image: url(../../../assets/img/snap.gif)
+  }
+}

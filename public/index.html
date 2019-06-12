@@ -17,19 +17,25 @@
         <li><a href="#">Lorem</a></li>
       </ul>
     </sh-nav>
+    
     <div id="page">
       <sh-header id="header">Components</sh-header>
       <main>
         <div class="contain pad-y">
           <div class="flex start">
             <div class="margin-r-quarter">
-              <sh-button id="test">
-                <span slot="precontent">Clicked</span>
-                <span slot="postcontent">times.</span>
-              </sh-button>
+              <demo-toolbar>
+                <sh-button id="test">
+                  <span slot="precontent">Clicked</span>
+                  <span slot="postcontent">times.</span>
+                </sh-button>
+              </demo-toolbar>
             </div>
-            <div class="margin-r-quarter">
+            <div class="margin-quarter">
               <sh-button></sh-button>
+            </div>
+            <div>
+              <component-template var="primary">Component Template</component-template>
             </div>
           </div>
         </div>

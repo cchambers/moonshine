@@ -1,16 +1,22 @@
 export default {
   name: 'ControlPanel',
-  data: function () {
+  data() {
     return {
       count: 0
     }
   },
   methods: {
-    navToggle() {
+    openNav() {
+      document.documentElement.classList.add('nav-shown');
+    },
+    toggleNav() {
       document.documentElement.classList.toggle('nav-shown');
     },
-    closeModal() {
+    closeNav() {
       document.documentElement.classList.remove('nav-shown');
+    },
+    closeModal() {
+      document.documentElement.classList.remove('modal-shown');
     },
   }
 }

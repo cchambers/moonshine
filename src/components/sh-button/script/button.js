@@ -3,14 +3,14 @@ export default {
   props: {
     pre: {
       type: String,
-      default: "Bounced"
+      default: 'Bounced'
     },
     post: {
       type: String,
-      default: "balls."
+      default: 'balls.'
     }
   },
-  data: function () {
+  data() {
     return {
       count: 0
     }
