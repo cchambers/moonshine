@@ -7,9 +7,11 @@ require('./assets/script/core.js')
 require('./assets/style/base.scss')
 require('./assets/style/layout.scss')
 
-// components to skip in prod
-require('./components/demo-toolbar')
-require('./components/component-template')
+if (process.env.VUE_APP_DEV) {
+  // components to skip in prod
+  require('./components/demo-toolbar')
+  require('./components/component-template')
+}
 
 // components
 require('./components/sh-button')

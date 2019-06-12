@@ -3,9 +3,16 @@
   color: $accent-tertiary;
   font-size: 4rem;
   transition: all 250ms ease;
-  padding: 10px;
+  padding: 1rem;
   background: $highlight-primary;
   border-radius: 50%;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  @include box-shadow(1);
   &:hover {
     opacity: 0.8;
   }
@@ -13,26 +20,26 @@
 
 .show-nav {
   position: fixed;
-  top: 3rem;
-  right: 3rem;
+  top: 5rem;
+  right: 5rem;
   transition: all 400ms ease-in-out;
 }
 
 .close-curtain {
   position: fixed;
-  top: 3rem;
-  right: 3rem;
+  top: 5rem;
+  right: 5rem;
   z-index: 10;
-  transform: translateY(-10rem) translateZ(0);
+  transform: translateY(-20rem) translateZ(0);
   transition: all 400ms ease-in-out;
 }
 
 .close-modal {
   position: fixed;
-  top: 3rem;
-  right: 3rem;
+  top: 5rem;
+  right: 5rem;
   font-size: 4rem;
-  transform: translateX(10rem) translateZ(0);
+  transform: translateX(20rem) translateZ(0);
   transition: all 400ms ease-in-out;
   i {
     color: $lowlight-primary;

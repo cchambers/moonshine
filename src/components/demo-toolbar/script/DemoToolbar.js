@@ -1,15 +1,32 @@
 export default {
   name: 'DemoToolbar',
-  props: {},
+  props: {
+    baseCode: String
+  },
   data() {
     return {
-      count: 0,
-      code: String
+      code: "none",
+      codeTarget: this.$refs.component,
+      updateTimer: 0
     }
   },
   
   mounted() {
-    // eslint-disable-next-line
-    console.log(this.$el.innerHTML)
+    if (this.baseCode) {
+      this.code = this.baseCode;
+    }
+  },
+
+  updated() {
+    if (this.updateTimer) {
+      clearTimeout(this.updateTimer)
+    }
+    this.updateTimer = setTimeout(this.renderComponent, 200);
+  },
+
+  methods: {
+    renderComponent() {
+      this.$refs.component.innerHTML = this.code;
+    }
   }
 }

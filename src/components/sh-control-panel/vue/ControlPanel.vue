@@ -18,7 +18,7 @@
 html {
   &.nav-shown {
     .show-nav {
-      transform: translateX(10rem) translateZ(0);
+      transform: translateX(30rem) translateZ(0);
     }
     .close-curtain {
       transform: translateY(0) translateZ(0);
