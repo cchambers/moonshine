@@ -2,7 +2,20 @@ export default {
   name: 'Nav',
   data() {
     return {
-      items: 0
+      primaryItems: [{
+        name: 'home',
+        link: '/',
+      },
+      {
+        name: 'components',
+        children: [
+          {
+            name: 'Component Template',
+            link: 'components/component-template'
+          }
+        ]
+      }],
+      secondaryItems: [],
     }
   }
 }

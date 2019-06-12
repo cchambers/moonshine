@@ -1,5 +1,5 @@
 <template>
-  <div class="demo-toolbar">
+  <div class="lib-toolbar">
     <div ref="component" class="component">
       <slot></slot>
     </div>
@@ -9,5 +9,5 @@
   </div>
 </template>
 
-<script src="../script/DemoToolbar.js"></script>
+<script src="../script/LibToolbar.js"></script>
 <style lang="scss" src="../style/default.scss" scoped></style>

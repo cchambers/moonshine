@@ -1,7 +1,9 @@
 <template>
   <header>
     <div class="contain">
-      <slot></slot>
+      <div class="logo">
+        <slot></slot>
+      </div>
     </div>
   </header>
 </template>

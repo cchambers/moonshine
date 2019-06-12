@@ -7,12 +7,6 @@ require('./assets/script/core.js')
 require('./assets/style/base.scss')
 require('./assets/style/layout.scss')
 
-if (process.env.VUE_APP_DEV) {
-  // components to skip in prod
-  require('./components/demo-toolbar')
-  require('./components/component-template')
-}
-
 // components
 require('./components/sh-button')
 require('./components/sh-control-panel')
@@ -20,6 +14,12 @@ require('./components/sh-curtain')
 require('./components/sh-header')
 require('./components/sh-modals')
 require('./components/sh-nav')
+
+if (process.env.VUE_APP_DEV) {
+  require('./components/lib-toolbar')
+  // require('./components/lib-index')
+  require('./components/component-template')
+}
 
 // mount to container
 new Vue().$mount('#xxx')

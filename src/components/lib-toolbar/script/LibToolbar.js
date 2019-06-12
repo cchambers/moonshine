@@ -1,11 +1,11 @@
 export default {
-  name: 'DemoToolbar',
+  name: 'LibToolbar',
   props: {
     baseCode: String
   },
   data() {
     return {
-      code: "none",
+      code: 'none',
       codeTarget: this.$refs.component,
       updateTimer: 0
     }

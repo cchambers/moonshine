@@ -1,6 +1,11 @@
 <template>
   <nav>
-    <slot></slot>
+    <div class="primary">
+      <slot name="primary"></slot>
+    </div>
+    <div class="secondary">
+      <slot name="secondary"></slot>
+    </div>
   </nav>
 </template>
   

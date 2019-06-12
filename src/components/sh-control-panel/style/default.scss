@@ -45,3 +45,9 @@
     color: $lowlight-primary;
   }
 }
+
+@media (min-width: $breakpoint) {
+  .show-nav {
+    display: none
+  } 
+}
