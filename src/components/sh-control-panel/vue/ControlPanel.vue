@@ -24,9 +24,8 @@ html {
       transform: translateY(0) translateZ(0);
     }
     #page {
-      transform: translateX(30rem) translateZ(0);
+      transform: translateX(15rem) translateZ(0);
       transition: all 300ms ease-in-out;
-      transition-delay: 50ms;
     }
     #nav {
       transform: translateX(0) translateZ(0);

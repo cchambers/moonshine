@@ -1,5 +1,8 @@
 nav {
   display: block;
+  a {
+    color: $highlight-primary;
+  }
 }
 
 #nav {
@@ -11,7 +14,7 @@ nav {
   bottom: 0;
   transition: all 300ms ease-in-out;
   transform: translateX(-100%) translateZ(0);
-  color: #ffffff;
+  color: $highlight-primary;
   z-index: 9;
   -webkit-overflow-scrolling: touch;
   will-change: scroll-position;
@@ -35,25 +38,23 @@ nav {
     }
   }
   .primary {
-    width: 40rem;
-    overflow-y: auto;
-    overflow-x: hidden;
+    width: 32rem;
     background: $lowlight-primary; 
     min-height: 100vh;
     // padding-top: 9rem;
+    @include scroll-y;
+    @include no-scroll-bar;
     @include box-shadow(2);
     a {
       display: block;
-      color: white;
       line-height: 6.5rem;
       padding: 0 3rem;
       font-size: 2rem;
       transition: all 100ms linear;
-      &:hover {
-        background: rgba(255,255,255,0.05);
-      }
+      position: relative;
+      &:hover,
       &.active {
-        background: rgba(255,255,255,0.15);
+        background:$lowlight-tertiary;
       }
     }
   }
@@ -70,17 +71,22 @@ nav {
     }
     a {
       color: $highlight-primary;
+      display: block;
+      padding: 0.5rem 1rem;
       &:hover {
-        color: $accent-primary;
+        color: $accent-tertiary;
+        background: rgba(255,255,255,0.02)
       }
     }
     > div { // lol, will fix
       position: absolute;
+      // column-count: 3;
+      flex-direction: column;
       top: 0;
       left: 0;
       right: 0;
       bottom: 0;
-      padding: 3rem;
+      padding: 0 3rem;
       transform: translateX(-100%);
       &.active {
         transform: translateX(0);
@@ -89,12 +95,17 @@ nav {
     }
     h2 {
       font-size: 2rem;
-      ~ h2 {
-        margin-top: 3rem;
-      }
+      break-after: avoid;
+      break-after: avoid;
+      margin-top: 3rem;
     }
     ul {
+      max-width: 30rem;
       line-height: 3rem;
+      break-before: avoid;
+    }
+    li {
+      break-inside: avoid;
     }
   }
   

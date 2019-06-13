@@ -9,7 +9,7 @@
   transform: translateY(-100%) translateZ(0); //skewY(15deg)
   transform-origin: bottom right;
   z-index: 8;
-  transition: all 300ms ease-in-out;
+  transition: all 250ms ease;
   .nav-trigger {
     z-index: 10;
   }
