@@ -42,6 +42,7 @@ export default {
         let link = links[x];
         link.addEventListener('click', (e) => {
           this.clearSecondaries();
+          link.classList.add('active');
           e.preventDefault();
           let target = link.getAttribute('href');
           let targetEl = this.$el.querySelector(target);
@@ -52,7 +53,7 @@ export default {
       EventBus.$on('nav-closed', this.clearSecondaries);
     },
     clearSecondaries() {
-      let others = this.$el.querySelectorAll('.secondary .active');
+      let others = this.$el.querySelectorAll('.active');
       if (others) {
         for (var y = 0, m = others.length; y < m; y++) {
           others[y].classList.remove('active');
