@@ -1,6 +1,9 @@
 <template>
   <header>
-    <div class="contain">
+    <div class="contain flex">
+      <div class="toggle-nav" v-on:click="toggleNav">
+        <i class="material-icons nav-icon">menu</i>
+      </div>
       <div class="logo">
         <slot></slot>
       </div>

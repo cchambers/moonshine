@@ -115,10 +115,6 @@ body {
     line-height: 3rem;
     background: $back-secondary;
     border-bottom: 2px solid $accent-secondary;
-    i {
-      position: absolute;
-      right: 3rem;
-    }
   }
 
   > main {
@@ -126,10 +122,8 @@ body {
     flex-direction: column;
     justify-content: space-between;
     flex: 1 auto;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-    will-change: scroll-position;
     background: $back-primary;
+    @include scroll-y;
   }
 
   main > footer {

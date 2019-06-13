@@ -3,11 +3,11 @@ export default {
   props: {
     pre: {
       type: String,
-      default: 'Bounced'
+      default: 'walked'
     },
     post: {
       type: String,
-      default: 'balls.'
+      default: 'miles'
     }
   },
   data() {

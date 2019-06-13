@@ -1,10 +1,18 @@
-$primary: tomato;
-$secondary: white;
-
 button {
   border: 0;
   display: block;
-  padding: 10px;
-  color: white;
-  background: $primary;
+  padding: 1rem;
+  color: $highlight-primary;
+  background: $accent-quaternary;
+  border-radius: 2px;
+  transition: all 50ms linear;
+  text-transform: uppercase;
+  cursor: pointer;
+  @include box-shadow(2);
+  &:hover {
+    background: $accent-tertiary
+  }
+  &:active {
+    @include box-shadow(1);
+  }
 }

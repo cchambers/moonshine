@@ -1,10 +1,7 @@
+import { EventBus } from '../../event-bus.js';
+
 export default {
   name: 'ControlPanel',
-  data() {
-    return {
-      count: 0
-    }
-  },
   methods: {
     openNav() {
       document.documentElement.classList.add('nav-shown');
@@ -14,6 +11,7 @@ export default {
     },
     closeNav() {
       document.documentElement.classList.remove('nav-shown');
+      EventBus.$emit('nav-closed');
     },
     closeModal() {
       document.documentElement.classList.remove('modal-shown');

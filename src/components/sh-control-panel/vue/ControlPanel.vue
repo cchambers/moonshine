@@ -1,13 +1,13 @@
 <template>
   <div>
     <div class="show-nav" v-on:click="toggleNav">
-        <i class="material-icons nav-icon">menu</i>
-      </div>
-      <div class="close-curtain" v-on:click="closeNav">
-        <i class="material-icons nav-icon">close</i>
-      </div>
-      <div class="close-modal" v-on:click="closeModal">
-        <i class="material-icons nav-icon">arrow_back</i>
+      <i class="material-icons nav-icon">menu</i>
+    </div>
+    <div class="close-curtain" v-on:click="closeNav">
+      <i class="material-icons nav-icon">close</i>
+    </div>
+    <div class="close-modal" v-on:click="closeModal">
+      <i class="material-icons nav-icon">arrow_back</i>
     </div>
   </div>
 </template>

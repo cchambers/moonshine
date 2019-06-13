@@ -1,8 +1,6 @@
 <template>
-  <div class="component-template" v-on:click="snap">
-    <slot>
-      {{ msg }}
-    </slot>
+  <div class="component-template" v-bind:class="{ 'snap-state': snapping }" v-on:click="snap">
+    <slot>{{ msg }}</slot>
   </div>
 </template>
 

@@ -1,12 +1,14 @@
 
 @mixin scroll-y() {
-  max-height: 100vh;
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  will-change: scroll-position;
 }
 
 @mixin scroll-x() {
-  max-width: 100vw;
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  will-change: scroll-position;
 }
 
 @mixin custom-scroll-bar() {

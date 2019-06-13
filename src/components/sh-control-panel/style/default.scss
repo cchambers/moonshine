@@ -1,10 +1,8 @@
 .nav-icon {
   cursor: pointer;
-  color: $accent-tertiary;
+  color: $highlight-primary;
   font-size: 4rem;
   transition: all 250ms ease;
-  padding: 1rem;
-  background: $highlight-primary;
   border-radius: 50%;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -12,7 +10,6 @@
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  @include box-shadow(1);
   &:hover {
     opacity: 0.8;
   }
@@ -27,8 +24,8 @@
 
 .close-curtain {
   position: fixed;
-  top: 5rem;
-  right: 5rem;
+  top: 3rem;
+  right: 3rem;
   z-index: 10;
   transform: translateY(-20rem) translateZ(0);
   transition: all 400ms ease-in-out;

@@ -1,6 +1,7 @@
 /* default styling */
 
 .component-template {
+  cursor: pointer;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -8,14 +9,14 @@
   height: 15rem;
   width: 15rem;
   background-size: cover;
-  transition: all 200ms linear;
-  cursor: pointer;
   border: 1px solid transparent;
+  transition: all 200ms linear;
   &:hover {
     border: 1px solid purple;
   }
   &.snap-state {
     color: transparent;
-    background-image: url(../../../assets/img/snap.gif)
+    background-image: url(../../../assets/img/snap.gif);
+    border: 1px solid purple;
   }
 }

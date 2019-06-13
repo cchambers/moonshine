@@ -3,9 +3,7 @@
     <div class="primary">
       <slot name="primary"></slot>
     </div>
-    <div class="secondary">
-      <slot name="secondary"></slot>
-    </div>
+    <slot name="secondary"></slot>
   </nav>
 </template>
   
