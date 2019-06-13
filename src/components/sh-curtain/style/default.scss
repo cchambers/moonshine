@@ -1,12 +1,12 @@
-.overlay {
+.curtain {
   position: fixed;
   top: 0;
   right: 0;
   left: 0;
   bottom: 0;
   opacity: 0;
-  background: rgba(25,25,25,.99);
-  transform: translateY(-100%) skewY(15deg) translateZ(0);
+  background: rgba(25,25,25,.9);
+  transform: translateY(-100%) translateZ(0); //skewY(15deg)
   transform-origin: bottom right;
   z-index: 8;
   transition: all 300ms ease-in-out;

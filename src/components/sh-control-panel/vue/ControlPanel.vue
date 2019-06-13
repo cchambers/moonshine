@@ -26,11 +26,11 @@ html {
     #page {
       transform: translateX(30rem) translateZ(0);
       transition: all 300ms ease-in-out;
+      transition-delay: 50ms;
     }
     #nav {
       transform: translateX(0) translateZ(0);
       transition: all 300ms ease-in-out;
-      box-shadow: inset 1px 2px 2px rgba(0, 0, 0, 0.5);
     }
     #curtain {
       opacity: 1;

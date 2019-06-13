@@ -5,7 +5,6 @@ html {
   overflow: hidden;
   font-size: 8px !important;
   -webkit-overflow-scrolling: auto;
-  background: tomato;
   &.modal-shown {
     #modals .modal.active .content {
       border: 1px solid #ccc;
@@ -29,6 +28,7 @@ body {
   right: 0;
   bottom: 0;
   overflow: hidden;
+  background: $lowlight-tertiary;
 }
 
 [id="xxx"] {
@@ -110,11 +110,10 @@ body {
 #page {
   > header {
     display: block;
-    padding: 3rem;
-    position: relative;
+    padding: 3rem 0;
     line-height: 3rem;
-    background: $back-secondary;
-    border-bottom: 2px solid $accent-secondary;
+    background: $accent-tertiary;
+    color: $highlight-primary;
   }
 
   > main {

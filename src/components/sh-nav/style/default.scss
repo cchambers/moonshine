@@ -20,12 +20,28 @@ nav {
     padding: 0;
     margin: 0;
   }
+  .go-back {
+    padding: 3rem;
+    line-height: 3rem;
+    width: 40rem;
+    transition: all 100ms linear;
+    cursor: pointer;
+    background: $accent-quinary;
+    position: fixed;
+    top: 0;
+    display: none;
+    &:hover {
+      background: $accent-tertiary;
+    }
+  }
   .primary {
     width: 40rem;
     overflow-y: auto;
     overflow-x: hidden;
     background: $lowlight-primary; 
     min-height: 100vh;
+    // padding-top: 9rem;
+    @include box-shadow(2);
     a {
       display: block;
       color: white;

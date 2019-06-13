@@ -17,8 +17,8 @@
 
 .show-nav {
   position: fixed;
-  top: 5rem;
-  right: 5rem;
+  top: 3rem;
+  right: 3rem;
   transition: all 400ms ease-in-out;
 }
 
@@ -33,18 +33,12 @@
 
 .close-modal {
   position: fixed;
-  top: 5rem;
-  right: 5rem;
+  top: 3rem;
+  right: 3rem;
   font-size: 4rem;
   transform: translateX(20rem) translateZ(0);
   transition: all 400ms ease-in-out;
   i {
     color: $lowlight-primary;
   }
-}
-
-@media (min-width: $breakpoint) {
-  .show-nav {
-    display: none
-  } 
 }

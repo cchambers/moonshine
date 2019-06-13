@@ -41,16 +41,21 @@ export default {
       for (let x = 0, l = links.length; x < l; x++) {
         let link = links[x];
         link.addEventListener('click', (e) => {
+          e.preventDefault();
+        });
+
+        link.addEventListener('mouseover', () => {
           this.clearSecondaries();
           link.classList.add('active');
-          e.preventDefault();
           let target = link.getAttribute('href');
           let targetEl = this.$el.querySelector(target);
           targetEl.classList.add('active');
         });
       }
-
       EventBus.$on('nav-closed', this.clearSecondaries);
+    },
+    closeNav() {
+      EventBus.$emit('close-nav');
     },
     clearSecondaries() {
       let others = this.$el.querySelectorAll('.active');
