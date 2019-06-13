@@ -81,18 +81,26 @@ nav {
     }
     > div { // lol, will fix
       position: absolute;
-      // column-count: 3;
-      flex-direction: column;
       top: 0;
       left: 0;
       right: 0;
       bottom: 0;
-      padding: 6rem;
+      padding: 9rem 6rem;
       transform: translateX(-100%);
       overflow: hidden;
-      column-count: 3;
-      column-rule: 1px solid $highlight-primary;
-      column-gap: 10rem;
+      // column-count: 3;
+      // column-rule: 1px solid $highlight-primary;
+      // column-gap: 10rem;
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      align-items: flex-start;
+      align-content: flex-start;
+      @media (max-width: $breakpoint) {
+        flex-wrap: nowrap;
+        @include scroll-y;
+      }
       &.active {
         transform: translateX(0);
       }
@@ -104,7 +112,16 @@ nav {
       break-before: auto;
     }
     ul {
-      max-width: 30rem;
+      &:before {
+        display: block;
+        content: attr(category);
+        font-weight: bold;
+        color: $highlight-primary;
+        padding-top: 3rem;
+      }
+      flex-grow: 0;
+      flex-shrink: 0;
+      width: 25rem;
       line-height: 3rem;
       break-before: avoid;
       break-inside: avoid;
@@ -115,10 +132,6 @@ nav {
   }
   
 }
-
-@media (min-width: $breakpoint) {
-}
-
 
 //   #nav {
 //     background: $lowlight-secondary;
