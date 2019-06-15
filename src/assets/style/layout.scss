@@ -109,8 +109,8 @@ body {
 #page {
   > header {
     display: block;
-    padding: 3rem 0;
-    line-height: 3rem;
+    padding: $base 0;
+    line-height: $base;
     background: $accent-tertiary;
     color: $highlight-primary;
   }
@@ -126,7 +126,7 @@ body {
 
   main > footer {
     display: block;
-    padding: 3rem;
+    padding: $base;
     background: $foreground;
     color: $back-primary;
   }

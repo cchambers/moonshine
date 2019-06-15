@@ -17,15 +17,15 @@
 
 .show-nav {
   position: fixed;
-  top: 3rem;
-  right: 3rem;
+  top: $base;
+  right: $base;
   transition: all 400ms ease-in-out;
 }
 
 .close-curtain {
   position: fixed;
-  top: 3rem;
-  right: 3rem;
+  top: $base;
+  right: $base;
   z-index: 10;
   transform: translateY(-20rem) translateZ(0);
   transition: all 300ms ease;
@@ -33,8 +33,8 @@
 
 .close-modal {
   position: fixed;
-  top: 3rem;
-  right: 3rem;
+  top: $base;
+  right: $base;
   font-size: 4rem;
   transform: translateX(20rem) translateZ(0);
   transition: all 400ms ease-in-out;

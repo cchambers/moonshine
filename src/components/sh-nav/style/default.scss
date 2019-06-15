@@ -12,11 +12,11 @@ nav {
   width: calc(100% - 42rem);
   right: 9rem;
   top: 0;
-  left: 32rem;
-  padding: 0 3rem;
+  left: 26rem;
+  padding: 0 $base;
   input {
     display: block;
-    font-size: 3rem;
+    font-size: $base;
     width: 100%;
     line-height: 6rem;
     height: 9rem;
@@ -48,8 +48,8 @@ nav {
   .go-back {
     display: flex;
     justify-content: space-between;
-    padding: 3rem;
-    line-height: 3rem;
+    padding: $base;
+    line-height: $base;
     transition: all 100ms linear;
     cursor: pointer;
     background: $accent-quaternary;
@@ -59,7 +59,7 @@ nav {
     }
   }
   .primary {
-    width: 32rem;
+    width: 26rem;
     background: $lowlight-primary; 
     min-height: 100vh;
     // padding-top: 9rem;
@@ -69,7 +69,7 @@ nav {
     a {
       display: block;
       line-height: 6.5rem;
-      padding: 0 3rem;
+      padding: 0 $base;
       font-size: 2rem;
       transition: all 100ms linear;
       position: relative;
@@ -94,8 +94,8 @@ nav {
       align-content: flex-start;
       position: absolute;
       top: 9rem;
-      left: 3rem;
-      right: 3rem;
+      left: $base;
+      right: $base;
       height: calc(100vh - 18rem);
       transform: translateX(-300%);
       overflow: hidden;
@@ -110,7 +110,7 @@ nav {
   }
 
   .secondary > div {
-    width: calc(100vw - 32rem);
+    width: calc(100vw - 26rem);
     position: relative;
     font-size: 1.8rem;
     &.active { // for later
@@ -120,7 +120,7 @@ nav {
     a {
       color: $highlight-primary;
       display: block;
-      line-height:3rem;
+      line-height:$base;
       &:hover {
         color: $accent-tertiary;
         background: rgba(255,255,255,0.02)
@@ -135,8 +135,8 @@ nav {
       align-content: flex-start;
       position: absolute;
       top: 9rem;
-      left: 3rem;
-      right: 3rem;
+      left: $base;
+      right: $base;
       height: calc(100vh - 18rem);
       transform: translateX(-300%);
       overflow: hidden;
@@ -151,7 +151,7 @@ nav {
     h2 {
       font-size: 2rem;
       break-after: avoid;
-      padding-top: 3rem;
+      padding-top: $base;
       break-before: auto;
     }
     ul {
@@ -160,23 +160,30 @@ nav {
         content: attr(category);
         font-weight: bold;
         color: $highlight-primary;
-        padding-top: 3rem;
+        font-size: 6rem;
+        line-height: 6rem;
+        color: $accent-quaternary;
       }
       flex-grow: 0;
       flex-shrink: 0;
-      width: 25rem;
-      line-height: 3rem;
+      width: 32rem;
+      line-height: $base;
+      padding-top: $base;
       break-before: avoid;
       break-inside: avoid;
     }
     li {
       break-inside: avoid;
+      a {
+        padding: 1.5rem 3rem;
+        line-height: 3rem;
+      }
     }
   }
 
   .ad-space {
     display: none;
-    padding: 10rem 3rem;
+    padding: 10rem $base;
     width: 20rem;
   }
 }
