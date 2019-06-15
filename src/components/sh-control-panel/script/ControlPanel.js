@@ -5,6 +5,15 @@ export default {
   methods: {
     events() {
       EventBus.$on('close-nav', this.closeNav);
+      EventBus.$on('toggle-nav', this.toggleNav);
+
+      window.addEventListener('keyup', (e) => {
+        let key = e.keyCode;
+  
+        if (key == 192) {
+          EventBus.$emit('toggle-nav')
+        }
+      });
     },
     openNav() {
       document.documentElement.classList.add('nav-shown');
