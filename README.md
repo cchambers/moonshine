@@ -1,6 +1,3 @@
-# Shine
-
-<!-- PROJECT SHIELDS -->
 [![Build Status][build-shield]]()
 [![Contributors][contributors-shield]]()
 <!-- [![MIT License][license-shield]][license-url] -->
@@ -11,7 +8,7 @@
   <!-- <a href="https://github.com/othneildrew/Best-README-Template">
     <img src="logo.png" alt="Logo" width="80" height="80">
   </a> -->
-  <h3 align="center">Shine</h3>
+  <h1 align="center">Shine</h1>
   <p align="center">
     Re-usable vue components.
   </p>
