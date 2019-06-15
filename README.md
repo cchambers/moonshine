@@ -116,7 +116,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@chrisWritesCode](https://twitter.com/chrisWritesCode)
+Chris - [@chrisWritesCode](https://twitter.com/chrisWritesCode)
 
 Project Link: [https://github.com/cchambers/moonshine](https://github.com/cchambers/moonshine)
 
