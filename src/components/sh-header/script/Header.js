@@ -1,7 +1,7 @@
 export default {
   name: 'Header',
   props: {
-    nav: false
+    nav: Boolean
   },
   methods: {
     toggleNav() {
