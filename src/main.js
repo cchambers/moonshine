@@ -1,8 +1,6 @@
 /* eslint-disable */
 import Vue from 'vue'
-
 Vue.config.productionTip = false
-
 
 /* prod components */
 require('./components/sh-button')
@@ -17,6 +15,7 @@ if (process.env.VUE_APP_DEV) {
 
   /* library stuff */
   require('./assets/script/core.js')
+  require('./assets/script/components.js')
   require('./assets/style/base.scss')
   require('./assets/style/layout.scss')
   require('./components/lib-content')

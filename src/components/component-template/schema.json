@@ -1,0 +1,7 @@
+{
+  "name": "Component Template",
+  "element": "component-template",
+  "description": "Demonstration component.",
+  "tags": ["utilities", "demo"],
+  "requirements": []
+}
