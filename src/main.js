@@ -22,6 +22,7 @@ if (process.env.VUE_APP_DEV) {
   require('./assets/style/prism.css')
   require('./components/lib-content')
   require('./components/lib-toolbar')
+  require('./components/lib-notify')
   require('./components/component-template')
 } 
 

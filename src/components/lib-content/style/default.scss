@@ -2,9 +2,11 @@
   color: $lowlight-tertiary;
   
   h1 {
+    font-family: "Menlo", monospace;
     color: $accent-quaternary;
     font-size: 6rem;
     line-height: 6rem;
+    text-align: right;
   }
 
   h3 {

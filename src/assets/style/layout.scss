@@ -38,7 +38,7 @@ body {
   right: 0;
   bottom: 0;
   overflow: hidden;
-  transition: opacity 200ms ease-in;
+  transition: opacity 200ms $ease;
   > * {
     position: relative;
     overflow: hidden;
@@ -52,7 +52,7 @@ body {
     bottom: 0;
     display: flex;
     flex-direction: column;
-    transition: all 150ms ease-in-out;
+    transition: all 150ms $ease;
   }
   #modals {
     position: fixed;
@@ -74,7 +74,7 @@ body {
     left: 0;
     right: 0;
     transform: translateX(-130%);
-    transition: transform 300ms ease-in-out;
+    transition: transform 300ms $ease;
     transition-delay: 50ms;
     height: 0;
     overflow: hidden;
@@ -117,7 +117,7 @@ body {
 
   > main {
     display: flex;
-    padding-top: 6rem;
+    padding-top: $base;
     flex-direction: column;
     justify-content: space-between;
     flex: 1 auto;
@@ -232,7 +232,7 @@ i.material-icons {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center center;
-  transition: all 250ms ease;
+  transition: all 250ms $ease;
   margin-bottom: 3.9rem;
 }
 

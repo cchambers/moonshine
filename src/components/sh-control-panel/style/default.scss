@@ -2,7 +2,7 @@
   cursor: pointer;
   color: $highlight-primary;
   font-size: 4rem;
-  transition: all 250ms ease;
+  transition: all 250ms $ease;
   border-radius: 50%;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -19,7 +19,7 @@
   position: fixed;
   top: $base;
   right: $base;
-  transition: all 400ms ease-in-out;
+  transition: all 400ms $ease;
 }
 
 .close-curtain {
@@ -28,7 +28,7 @@
   right: $base;
   z-index: 10;
   transform: translateY(-20rem) translateZ(0);
-  transition: all 300ms ease;
+  transition: all 300ms $ease;
 }
 
 .close-modal {
@@ -37,7 +37,7 @@
   right: $base;
   font-size: 4rem;
   transform: translateX(20rem) translateZ(0);
-  transition: all 400ms ease-in-out;
+  transition: all 400ms $ease;
   i {
     color: $lowlight-primary;
   }
