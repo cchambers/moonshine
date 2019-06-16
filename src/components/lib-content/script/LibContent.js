@@ -34,6 +34,7 @@ export default {
             } else {
               let html = response.split("</head>")[1];
               html = html.split("<script")[0];
+              // CAN CAPTURE STUFF INSIDE TOOLBAR HERE?
               var res = Vue.compile(html);
               new Vue({
                 render: res.render,
@@ -42,7 +43,7 @@ export default {
             }
           }
         }
-      };
+      }
     }
   }
 }
