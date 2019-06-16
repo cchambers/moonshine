@@ -1,5 +1,6 @@
 .documentation {
   color: $lowlight-tertiary;
+  padding-bottom: 50vh;
   
   h1 {
     font-family: "Menlo", monospace;
@@ -101,6 +102,8 @@
       td:nth-child(2) {
         font-family: "Menlo", monospace;
         color: $accent-tertiary;
+        text-transform: capitalize;
+        text-align: center;
       }
     }
     &.methods {
@@ -155,6 +158,8 @@
       td:nth-child(2) {
         font-family: "Menlo", monospace;
         color: $accent-tertiary;
+        text-transform: capitalize;
+        text-align: center;
       }
     }
   }

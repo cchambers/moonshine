@@ -97,7 +97,7 @@ nav {
       left: $base;
       right: $base;
       height: calc(100vh - 18rem);
-      transform: translateX(-300%);
+      transform: translateX(-300vw);
       overflow: hidden;
       @media (max-width: $breakpoint) {
         flex-wrap: nowrap;
@@ -138,7 +138,7 @@ nav {
       left: $base;
       right: $base;
       height: calc(100vh - 18rem);
-      transform: translateX(-300%);
+      transform: translateX(-300vw);
       overflow: hidden;
       @media (max-width: $breakpoint) {
         flex-wrap: nowrap;
