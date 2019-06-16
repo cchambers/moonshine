@@ -1816,7 +1816,8 @@ ol.lower-alpha {
 /* Content control: */
 
 .contain {
-  width: 100rem;
+  max-width: 100rem;
+  width: 100%;
   margin-left: auto;
   margin-right: auto
 }

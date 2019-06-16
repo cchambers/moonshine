@@ -29,7 +29,18 @@
   }
 }
 
-#header {
+.sh-header {
   overflow: hidden;
   background: $accent-quaternary;
+  padding: 3rem 0;
+  &[variant="dark"] {
+    background: $lowlight-secondary;
+    .page-name {
+      color: $accent-quinary;
+    }
+  }
+  &[variant="secondary"] {
+    background: $accent-quinary;
+  }
 }
+
