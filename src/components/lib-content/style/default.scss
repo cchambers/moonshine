@@ -10,6 +10,19 @@
     text-align: right;
   }
 
+  h2 {
+    text-align: right;
+    background: $highlight-secondary;
+    color: $accent-quaternary;
+    margin: 0 -3rem;
+    padding: 1.5rem 3rem;
+    margin-bottom: 3rem;
+  }
+
+  pre[class*="language-"] {
+    margin-bottom: 0;
+  }
+
   h2, h3 {
     font-family: "Menlo", monospace;
   }
@@ -21,8 +34,9 @@
   section {
     margin-bottom: 6rem;
     padding-bottom: 6rem;
-    padding: $base;
-    @include box-shadow(2);
+    padding: 0 $base $base $base;
+    border: 1px solid $highlight-secondary;
+    @include box-shadow(1);
     &:last-of-type {
       border-bottom: none;
     }
@@ -118,6 +132,29 @@
           color: $accent-tertiary;
           content: '"';
         }
+      }
+    }
+    &.events {
+      th:nth-child(1),
+      th:nth-child(2) {
+        width: 15rem;
+      }
+
+      td:nth-child(1) {
+        &:before {
+          display: inline-block;
+          color: $accent-tertiary;
+          content: '\'';
+        }
+        &:after {
+          display: inline-block;
+          color: $accent-tertiary;
+          content: '\'';
+        }
+      }
+      td:nth-child(2) {
+        font-family: "Menlo", monospace;
+        color: $accent-tertiary;
       }
     }
   }
