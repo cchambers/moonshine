@@ -36,6 +36,8 @@ export default {
               html = html.split("<script")[0];
               // CAN CAPTURE STUFF INSIDE TOOLBAR HERE?
               var res = Vue.compile(html);
+              // eslint-disable-next-line 
+              console.log("%cdistilling components", "border-radius: 15px; margin: 10px; background: #121212; color: white; font-family: sans-serif; font-size: 14px; padding: 5px 10px;")
               new Vue({
                 render: res.render,
                 staticRenderFns: res.staticRenderFns

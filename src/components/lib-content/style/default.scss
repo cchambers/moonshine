@@ -1,8 +1,21 @@
 .documentation {
+  color: $lowlight-tertiary;
+  
+  h1 {
+    color: $accent-quaternary;
+    font-size: 6rem;
+    line-height: 6rem;
+  }
+
+  h3 {
+    border-bottom: 1px solid $lowlight-secondary;
+  }
+
   section {
     margin-bottom: 6rem;
     padding-bottom: 6rem;
-    border-bottom: 1px solid $lowlight-quinary;
+    padding: $base;
+    @include box-shadow(2);
     &:last-of-type {
       border-bottom: none;
     }
@@ -11,6 +24,11 @@
   table {
     width: 100%;
     vertical-align: top;
+    ul {
+      list-style: none;
+      margin: 0 !important;
+      padding: 0;
+    }
     td,th {
       text-align: left;
       line-height: 3rem;
@@ -20,11 +38,14 @@
 
     thead {
       overflow: hidden;
-      color: $accent-quaternary;
-      background: $highlight-quaternary;
+      color: $highlight-primary;
+      background: $accent-quaternary;
     }
 
     tr {
+      &:nth-child(even) {
+        background: rgba(0,0,0,0.03)
+      }
       &:hover {
         td {
         background: #fadadd;
@@ -35,7 +56,7 @@
     &.attributes {
       th:nth-child(1),
       th:nth-child(2) {
-        width: 12rem;
+        width: 15rem;
       }
 
       td:nth-child(1) {
@@ -67,6 +88,24 @@
           display: inline-block;
           color: $accent-tertiary;
           content: '()';
+        }
+      }
+    }
+    &.slots {
+      td:nth-child(1) {
+        width: 15rem;
+      }
+
+      td:nth-child(1) {
+        &:before {
+          display: inline-block;
+          color: $accent-tertiary;
+          content: '"';
+        }
+        &:after {
+          display: inline-block;
+          color: $accent-tertiary;
+          content: '"';
         }
       }
     }
