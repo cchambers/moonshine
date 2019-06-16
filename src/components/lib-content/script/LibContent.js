@@ -46,6 +46,7 @@ export default {
               }).$mount('#library-content');
               window.Prism.highlightAll();
               self.docEvents();
+              self.sectionLinks();
             }
           }
         }
@@ -83,6 +84,19 @@ export default {
       }
       let pageName = document.querySelector('h1').innerText;
       EventBus.$emit('header-page-name', pageName);
+    },
+
+    sectionLinks() {
+      let links = [];
+      let els = document.querySelectorAll('section[id]');
+      for (let x = 0, l = els.length; x < l; x++) {
+        let href = els[x].id;
+        links.push(`<a href="#${href}">${href}</a>`)
+      }
+
+      links = links.join('');
+
+      EventBus.$emit('section-links', links)
     }
   }
 }

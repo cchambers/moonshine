@@ -1,7 +1,5 @@
 <template>
-  <div class="lib-notify" v-bind:class="{ active: active }">
-    {{ message }}
-  </div>
+  <div class="lib-notify" v-bind:class="{ active: active }">{{ message }}</div>
 </template>
 
 <script src="../script/LibNotify.js"></script>

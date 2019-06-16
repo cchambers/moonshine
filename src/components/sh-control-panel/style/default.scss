@@ -1,6 +1,6 @@
 .nav-icon {
   cursor: pointer;
-  color: $highlight-primary;
+  color: $accent-primary;
   font-size: 4rem;
   transition: all 250ms $ease;
   border-radius: 50%;
@@ -11,13 +11,13 @@
   -ms-user-select: none;
   user-select: none;
   &:hover {
-    opacity: 0.8;
+    color: $highlight-primary;
   }
 }
 
 .show-nav {
   position: fixed;
-  top: $base;
+  top: 2.8rem;
   right: $base;
   transition: all 400ms $ease;
 }

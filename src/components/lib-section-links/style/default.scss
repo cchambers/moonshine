@@ -1,0 +1,15 @@
+.lib-section-links {
+  background: $highlight-secondary;
+  .contain {
+    display: flex;
+    justify-content: flex-end;
+    
+  }
+  a {
+    display: block;
+    text-transform: capitalize;
+    line-height: 3rem;
+    padding: 0 1.5rem;
+  }
+}
+

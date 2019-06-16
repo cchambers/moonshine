@@ -110,14 +110,14 @@ body {
   > header {
     display: block;
     padding: $base 0;
-    line-height: $base;
+    line-height: 3rem;
+    flex-shrink: 0;
     background: $accent-tertiary;
     color: $highlight-primary;
   }
 
   > main {
     display: flex;
-    padding-top: $base;
     flex-direction: column;
     justify-content: space-between;
     flex: 1 auto;
@@ -157,7 +157,7 @@ i.material-icons {
 .baseline30 h1 {
   font-size: 3rem;
   line-height: 3rem;
-  margin-top: 0.4rem;
+  margin-top: 3.4rem;
   margin-bottom: 2.5rem;
 }
 .baseline30 p + h1 {

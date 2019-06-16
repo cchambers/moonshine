@@ -15,7 +15,7 @@
   margin-left: auto;
   font-size: 6rem;
   font-family: "Menlo", monospace;
-  transform: translateY(300%) translateZ(0);
+  transform: translateY(200%) translateZ(0);
   transition: all 250ms $ease;
   opacity: 0;
   &.active {
