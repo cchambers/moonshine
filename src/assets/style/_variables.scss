@@ -22,7 +22,10 @@ $back-secondary: $highlight-secondary;
 $foreground: $lowlight-primary;
 
 $base: 3rem;
+
 $ease: cubic-bezier(0.4, 0.0, 0.2, 1);
+$decel: cubic-bezier(0.0, 0.0, 0.2, 1);
+$accel: cubic-bezier(0.4, 0.0, 1, 1);
 
 
 $just-pink: #E400F7;

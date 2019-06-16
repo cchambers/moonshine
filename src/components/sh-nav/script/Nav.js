@@ -76,7 +76,6 @@ export default {
           let item = this.results[x];
           let name = item.name.toLowerCase()
           let match = name.indexOf(value) >= 0;
-          console.log(name, value, match)
           if (match) {
             item.show = true;
             filteredResults.push(item);

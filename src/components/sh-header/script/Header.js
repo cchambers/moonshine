@@ -2,20 +2,24 @@ import { EventBus } from "../../event-bus";
 
 export default {
   name: 'Header',
+
   props: {
     nav: Boolean
   },
+
   data() {
     return {
-      pageName: 'test',
+      pageName: '',
       pageNameActive: false
     }
   },
+
   methods: {
     toggleNav() {
       document.documentElement.classList.toggle('nav-shown');
     },
   },
+
   mounted() {
     let self = this;
     let lastKnown = 0;
@@ -30,7 +34,7 @@ export default {
       }
     }
   
-    main.addEventListener('scroll', function(e) {
+    main.addEventListener('scroll', function() {
       lastKnown = main.scrollTop;
       if (!ticking) {
         window.requestAnimationFrame(function() {

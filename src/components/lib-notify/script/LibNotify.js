@@ -27,7 +27,7 @@ export default {
       clearTimeout(self.timeout);
       self.timeout = setTimeout(function() {
         self.active = false;
-      }, 2300);
+      }, 1800);
     }
   }
 }
