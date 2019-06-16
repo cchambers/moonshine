@@ -15,7 +15,7 @@ let app = {
       demos[x].setAttribute('base-code', demos[x].innerHTML);
     }
   }
-};
+}
 
 app.init();
 

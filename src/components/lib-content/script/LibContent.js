@@ -39,7 +39,8 @@ export default {
               new Vue({
                 render: res.render,
                 staticRenderFns: res.staticRenderFns
-              }).$mount('#library-content')
+              }).$mount('#library-content');
+              window.Prism.highlightAll();
             }
           }
         }

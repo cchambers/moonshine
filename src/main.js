@@ -16,8 +16,10 @@ if (process.env.VUE_APP_DEV) {
   /* library stuff */
   require('./assets/script/core.js')
   require('./assets/script/components.js')
+  require('./assets/script/prism.js')
   require('./assets/style/base.scss')
   require('./assets/style/layout.scss')
+  require('./assets/style/prism.css')
   require('./components/lib-content')
   require('./components/lib-toolbar')
   require('./components/component-template')

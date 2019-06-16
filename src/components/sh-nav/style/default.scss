@@ -186,4 +186,15 @@ nav {
     padding: 10rem $base;
     width: 20rem;
   }
+
+  a[note] {
+    display: flex;
+    justify-content: space-between;
+    &:after {
+      content: "( " attr(note) " )";
+      display: inline-block;
+      font-size: 1.4rem;
+      color: $lowlight-tertiary;
+    }
+  }
 }

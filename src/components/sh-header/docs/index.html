@@ -1,27 +1,100 @@
 <div class="documentation">
   <section id="usage">
-    <h1>Header</h1>
-    <h2>Usage</h2>
-    <p>
-      <code>&lt;sh-header /&gt;</code>
-    </p>
+    <h1>Header Component</h1>
 
-    <sh-button>
-      Here's the issue...
-    </sh-button>
+    <h2>Usage</h2>
+    <pre>
+      <code class="language-html">
+          &lt;sh-header id="header"&gt;shine&lt;/sh-header&gt;
+      </code>
+    </pre>
 
   </section>
 
   <section id="reference">
     <h2>Reference</h2>
+    <p>Header is a simple responsive container.</p>
 
-    <h3>Attributes</h3>
+    <h3 id="attributes">Attributes</h3>
 
-    <h3>Methods</h3>
+    <table class="attributes">
+      <thead>
+        <tr>
+          <th>Attribute</th>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>nav</td>
+          <td>Boolean</td>
+          <td>Turn on/off the mobile nav button.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3 id="slots">Slots</h3>
+
+    <table class="slots">
+      <thead>
+        <tr>
+          <th>Slot</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr>
+            <td>pre</td>
+            <td>
+              HTML content that comes before the logo.
+            </td>
+          </tr>
+          <tr>
+            <td>logo-url</td>
+            <td>
+              Image tag for logo.
+            </td>
+          </tr>
+          <tr>
+            <td>post</td>
+            <td>
+              HTML content that comes after the logo.
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+    <h3 id="methods">Public Methods</h3>
+
+    <table class="methods">
+      <thead>
+        <tr>
+          <th>Function</th>
+          <th>Params</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>openNav</td>
+          <td>
+            <ul>
+              <li>
+                none
+              </li>
+            </ul>
+          </td>
+          <td>
+            Open the header navigation.
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </section>
 
   <section id="examples">
     <h2>Examples</h2>
-    
+
   </section>
 </div>
