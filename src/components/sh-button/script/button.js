@@ -1,4 +1,4 @@
-export default {
+  export default {
   name: 'Button',
   props: {
     pre: {
