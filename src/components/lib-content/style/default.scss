@@ -176,10 +176,15 @@
   }
 }
 
-#library-content svg {
-    display: block;
-    width: 100%;
-    max-width: 60rem;
-    max-height: 50vh;
-    margin:10rem auto;
+#library-content {
+  height: calc(100vh - 6rem);
+  position: relative;
+    svg {
+      display: block;
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      max-height: 60vh;
+      margin: 0 auto;
+    }
  }
