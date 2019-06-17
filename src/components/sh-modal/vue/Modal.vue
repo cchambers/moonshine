@@ -1,7 +1,17 @@
 <template>
-  <div class="sh-modal">
-    <slot></slot>
-  </div>
+  <article class="sh-modal">
+    <header>
+      <div class="contain">
+        <h1><slot name="header">{{ header }}</slot></h1>
+      </div>
+    </header>
+    <div class="content">
+      <slot name="content"></slot>
+    </div>
+    <footer>
+      <slot name="footer">{{ footer }}</slot>
+    </footer>
+  </article>
 </template>
   
 <script src="../script/Modal.js"></script>
@@ -11,7 +21,7 @@
     color: #3c7cff;
   }
 
-  #modals {
+  #sh-modals {
     position: fixed;
     pointer-events: none;
     top: 0;
@@ -25,15 +35,26 @@
     -webkit-overflow-scrolling: touch;
     will-change: scroll-position;
   }
-  #modals > .modal {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    transform: translateX(-130%);
-    transition: transform 300ms $ease;
-    transition-delay: 50ms;
-    height: 0;
-    overflow: hidden;
+
+  html {
+    &.sh-modal-open  {
+      > * {
+        overflow: hidden !important;
+      }
+      #close-modal {
+        transform: translateZ(0);
+      }
+      #close-curtain {
+        transform: translateY(-10rem) translateZ(0) !important;
+      }
+      #sh-modals {
+        pointer-events: initial;
+        opacity: 1;
+        .sh-modal.active {
+          transform: translateY(0);
+          height: auto;
+        }
+      }
+    }
   }
 </style>

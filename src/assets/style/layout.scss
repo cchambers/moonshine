@@ -4,11 +4,6 @@ html {
   width: 100vw;
   overflow: hidden;
   -webkit-overflow-scrolling: auto;
-  &.modal-shown {
-    #modals .modal.active .content {
-      border: 1px solid #ccc;
-    }
-  }
 }
 
 html.iOS {
@@ -61,23 +56,6 @@ body {
     top: 0;
     right: 0;
     overflow: visible;
-  }
-
-  &.modal-shown {
-    #close-modal {
-      transform: translateZ(0);
-    }
-    #close-curtain {
-      transform: translateY(-10rem) translateZ(0) !important;
-    }
-    #modals {
-      pointer-events: initial;
-      opacity: 1;
-      .modal.active {
-        transform: translateY(0);
-        height: auto;
-      }
-    }
   }
 }
 

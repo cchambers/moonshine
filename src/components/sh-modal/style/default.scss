@@ -1,4 +1,13 @@
 .sh-modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  transform: translateX(-130%);
+  transition: transform 300ms $ease;
+  transition-delay: 50ms;
+  height: 0;
+  overflow: hidden;
   .content {
     background: #fff;
     height: 100%;
@@ -6,5 +15,10 @@
     margin: $base auto;
     padding: $base;
   }
-  transform: translateY(100%);
+  &.active {
+    transform: translateX(0);
+    .content {
+      border: 1px solid #ccc;
+    }
+  }
 }

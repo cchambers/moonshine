@@ -131,7 +131,9 @@
       }
     }
     &.events {
-      th:nth-child(1),
+      th:nth-child(1) {
+        width: 20rem;
+      }
       th:nth-child(2) {
         width: 15rem;
       }
@@ -139,7 +141,6 @@
       td:nth-child(1) {
         &:before,
         &:after {
-          display: inline-block;
           color: $accent-tertiary;
           content: '\'';
         }
