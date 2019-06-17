@@ -70,7 +70,7 @@
       }
       &:hover {
         td {
-        background: $pink;
+        background: rgba(0, 179, 255, 0.1);
         }
       }
     }
@@ -175,3 +175,11 @@
     position: relative;
   }
 }
+
+#library-content svg {
+    display: block;
+    width: 100%;
+    max-width: 60rem;
+    max-height: 50vh;
+    margin:10rem auto;
+ }

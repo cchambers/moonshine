@@ -141,7 +141,6 @@ nav {
       transform: translateX(-300vw);
       overflow: hidden;
       @media (max-width: $breakpoint) {
-        flex-wrap: nowrap;
         @include scroll-y;
       }
       &.active {
