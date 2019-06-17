@@ -10,7 +10,7 @@ if (process.env.VUE_APP_DEV) {
   require('./components/sh-control-panel')
   require('./components/sh-curtain')
   require('./components/sh-header')
-  require('./components/sh-modals')
+  require('./components/sh-modal')
   require('./components/sh-nav')
 
   /* library stuff */

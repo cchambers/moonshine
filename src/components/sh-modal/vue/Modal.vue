@@ -1,10 +1,10 @@
 <template>
-  <div class="sh-modals">
+  <div class="sh-modal">
     <slot></slot>
   </div>
 </template>
   
-<script src="../script/Modals.js"></script>
+<script src="../script/Modal.js"></script>
 <style lang="scss" src="../style/default.scss" scoped></style>
 <style lang="scss">
   [modal-trigger] {
