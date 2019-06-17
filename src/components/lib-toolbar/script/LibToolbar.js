@@ -5,7 +5,7 @@ export default {
   },
   data() {
     return {
-      code: 'none',
+      code: '',
       codeTarget: this.$refs.component,
       updateTimer: 0
     }
@@ -13,6 +13,9 @@ export default {
   
   mounted() {
     if (this.baseCode) {
+      // this.baseCode.replace(/[\u00A0-\u9999<>\&]/gim, function(i) {
+      //   return '&#' + i.charCodeAt(0) + ';';
+      // });
       this.code = this.baseCode;
     }
   },

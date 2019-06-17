@@ -4,7 +4,11 @@
       <slot></slot>
     </div>
     <div class="codeview">
-      <textarea cols="30" rows="10" v-model="code"></textarea>
+    <pre>
+      <code class="language-html">
+        {{ code }}
+      </code>
+    </pre>
     </div>
   </div>
 </template>
