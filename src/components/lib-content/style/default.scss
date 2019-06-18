@@ -92,11 +92,17 @@
         &:before,
         &:after {
           display: inline-block;
-          color: $accent-tertiary;
+          color: $accent-secondary;
+          font-family: "Material Icons";
           content: "[";
         }
         &:after {
           content: "]";
+        }
+        &:hover {
+          &:after {
+            content: "] file_copy";
+          }
         }
       }
       td:nth-child(2) {
@@ -114,8 +120,14 @@
         font-family: "Menlo", monospace;
         &:after {
           display: inline-block;
-          color: $accent-tertiary;
+          color: $accent-secondary;
+          font-family: "Material Icons";
           content: "()";
+        }
+        &:hover {
+          &:after {
+            content: "() file_copy";
+          }
         }
       }
     }
@@ -128,9 +140,16 @@
         &:before,
         &:after {
           display: inline-block;
-          color: $accent-tertiary;
+          color: $accent-secondary;
+          font-family: "Material Icons";
           content: '"';
         }
+        &:hover {
+          &:after {
+            content: '" file_copy';
+          }
+        }
+        
       }
     }
     &.events {
@@ -144,8 +163,14 @@
       td:nth-child(1) {
         &:before,
         &:after {
-          color: $accent-tertiary;
-          content: "'";
+          color: $accent-secondary;
+          font-family: "Material Icons";
+          content: '"';
+        }
+        &:hover {
+          &:after {
+            content: '" file_copy';
+          }
         }
       }
       td:nth-child(2) {

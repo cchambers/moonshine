@@ -5,7 +5,8 @@ export default {
   data() {
     return {
       active: false,
-      html: '',    }
+      html: '',
+    }
   },
   
   mounted() {
