@@ -1,5 +1,18 @@
+
+Shine:
+  ☐ static page rendering for non-component stuff...
+
 Components:
   ☐ Demo Toolbar
     - Can get raw source code but component stops rendering...  
 
-  ☐
+☐ CERTONA
+    
+Modal examples:
+  - pick your gift
+  - Add to bag.
+  - Edit quantity in cart...
+  - quickview style
+  - check utils.ds
+
+

@@ -5,6 +5,9 @@
         <h1>
           <slot name="header">{{ header }}</slot>
         </h1>
+        <div close-trigger>
+          <i class="material-icons">close</i>
+        </div>
       </header>
       <slot name="content"></slot>
       <footer>

@@ -12,7 +12,7 @@
     background: #fff;
     height: 100%;
     max-width: 102rem;
-    margin: $base auto;
+    margin: 12rem auto;
     padding: $base;
     @include box-shadow(1);
   }
@@ -28,15 +28,26 @@
     margin-bottom: 3rem;
     position: sticky;
     top: 0;
+    padding: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    i {
+      color: $accent-tertiary;
+      font-size: $base;
+    }
   }
   footer {
-    background: $highlight-secondary;
     padding: 0.5rem $base;
     margin: -$base;
     margin-top: 0;
   }
   h1 {
     margin: 0 !important;
-    padding: 3rem;
+    padding-left: $base;
+    color: $highlight-primary;
+  }
+  
+  [close-trigger] {
+    cursor: pointer;
   }
 }
