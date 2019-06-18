@@ -4,7 +4,10 @@ export default {
   name: "Modal",
 
   props: {
-    id: String,
+    id: {
+      type: String,
+      required: true
+    },
     header: String,
     footer: String,
   },
