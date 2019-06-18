@@ -25,6 +25,7 @@ nav {
     border: 0;
     outline: 0;
   }
+  
 }
 
 #nav {
@@ -47,9 +48,8 @@ nav {
   }
   .go-back {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     padding: $base;
-    line-height: $base;
     transition: all 100ms linear;
     cursor: pointer;
     background: $accent-quaternary;
@@ -187,10 +187,10 @@ nav {
   }
 
   a[note] {
-    display: flex;
-    justify-content: space-between;
+    display: block;
     &:after {
       content: "( " attr(note) " )";
+      float: right;
       display: inline-block;
       font-size: 1.4rem;
       color: $lowlight-tertiary;

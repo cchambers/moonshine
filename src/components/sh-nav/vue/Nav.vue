@@ -5,8 +5,7 @@
     </div>
     <div class="primary" ref="primary">
       <div v-on:click="closeNav" class="go-back">
-        secret menu
-        <!-- <i class="material-icons nav-icon">arrow_back</i> -->
+        <i class="material-icons nav-icon">arrow_back</i>
       </div>
       <slot name="primary"></slot>
     </div>
@@ -14,7 +13,7 @@
       <div id="nav-search-results" ref="results">
         <ul>
           <li v-for="item in filteredResults" v-bind:key="item.id">
-            <a :href="item.link">{{ item.name }}</a>
+            <a :href="item.link" v-html="item.name" :note="item.category"></a>
           </li>
         </ul>
       </div>
@@ -28,3 +27,16 @@
   
 <script src="../script/Nav.js"></script>
 <style lang="scss" src="../style/default.scss" scoped></style>
+
+<style lang="scss">
+a {
+  .search-highlight {
+    color: $accent-primary;
+  }
+  &:hover {
+    .search-highlight {
+      color: inherit;
+    }
+  }
+}
+</style>

@@ -59,6 +59,8 @@ export default {
         results.push({
           'link': link.href,
           'name': link.innerText,
+          'reset': link.innerText,
+          'category': link.closest('div').id,
           'show': false
         })
       }
@@ -73,11 +75,16 @@ export default {
       } else {
         let filteredResults = [];
         for (let x = 0, l = this.results.length; x < l; x++) {
-          let item = this.results[x];
-          let name = item.name.toLowerCase()
-          let match = name.indexOf(value) >= 0;
-          if (match) {
+          let item = JSON.parse(JSON.stringify(this.results[x]));
+          let name = item.reset.toLowerCase();
+          let match = name.indexOf(value.toLowerCase());
+          if (match >= 0) {
             item.show = true;
+            let actual = item.name.substr(match, value.length);
+            console.log(item.name)
+            let highlighted = item.name.split(actual);
+            highlighted = highlighted.join(`<span class="search-highlight">${actual}</span>`);
+            item.name = highlighted;
             filteredResults.push(item);
           }
         }
