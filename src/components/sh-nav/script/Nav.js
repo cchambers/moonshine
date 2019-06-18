@@ -4,7 +4,7 @@ export default {
   name: 'Nav',
   data() {
     return {
-      search: "",
+      search: '',
       results: [],
       filteredResults: [],
     }

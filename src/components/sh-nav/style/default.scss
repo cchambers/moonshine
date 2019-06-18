@@ -77,6 +77,17 @@ nav {
       &:hover,
       &.active {
         background:$lowlight-secondary;
+        z-index: 2;
+      }
+      &:before {
+        display: block;
+        content: '';
+        position: absolute;
+        height: 20rem;
+        width: 20rem;
+        transform: rotate(45deg) translateY(-50%);
+        right: -4rem;
+        top: 50%;
       }
     }
   }
