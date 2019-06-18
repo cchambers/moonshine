@@ -14,11 +14,29 @@
     max-width: 102rem;
     margin: $base auto;
     padding: $base;
+    @include box-shadow(1);
   }
   &.active {
     transform: translateX(0);
     .content {
       border: 1px solid #ccc;
     }
+  }
+  header {
+    background: $accent-primary;
+    margin: -$base;
+    margin-bottom: 3rem;
+    position: sticky;
+    top: 0;
+  }
+  footer {
+    background: $highlight-secondary;
+    padding: 0.5rem $base;
+    margin: -$base;
+    margin-top: 0;
+  }
+  h1 {
+    margin: 0 !important;
+    padding: 3rem;
   }
 }

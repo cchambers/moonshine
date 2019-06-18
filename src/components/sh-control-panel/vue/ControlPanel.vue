@@ -6,7 +6,7 @@
     <div class="close-curtain" v-on:click="closeNav">
       <i class="material-icons nav-icon">close</i>
     </div>
-    <div class="close-modal" v-on:click="closeModal">
+    <div class="close-modal" close-trigger>
       <i class="material-icons nav-icon">arrow_back</i>
     </div>
   </div>
@@ -36,9 +36,13 @@ html {
       transform: translateY(0%);
     }
   }
-  &.modal-shown {
-    #modals .modal.active .content {
-      border: 1px solid #ccc;
+  &.sh-modal-open {
+    .close-modal {
+      transform: translateX(0rem) translateZ(0);
+      opacity: 1;
+    }
+    .show-nav {
+      transform: translateX(30rem) translateZ(0);
     }
   }
 }

@@ -27,7 +27,7 @@ export default {
     let main = document.querySelector('main');
 
     function updateHeader(scroll_pos) {
-      if (scroll_pos > 75) {
+      if (scroll_pos > 100) {
         if (!self.pageNameActive) self.pageNameActive = true;
       } else {
         if (self.pageNameActive) self.pageNameActive = false;

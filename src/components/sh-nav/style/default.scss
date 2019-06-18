@@ -16,6 +16,7 @@ nav {
   padding: 0 $base;
   input {
     display: block;
+    font-family: "Menlo", monospace;
     font-size: $base;
     width: 100%;
     line-height: 6rem;
@@ -70,7 +71,7 @@ nav {
       display: block;
       line-height: 6.5rem;
       padding: 0 $base;
-      font-size: 2rem;
+      font-size: 1.8rem;
       transition: all 100ms linear;
       position: relative;
       &:hover,
@@ -157,19 +158,21 @@ nav {
       &:before {
         display: block;
         content: attr(category);
+        font-family: "Menlo", monospace;
         font-weight: bold;
-        color: $highlight-primary;
-        font-size: 6rem;
-        line-height: 6rem;
+        text-transform: uppercase;
+        font-size: 3rem;
+        line-height: 3rem;
         color: $accent-quaternary;
       }
       flex-grow: 0;
       flex-shrink: 0;
-      width: 32rem;
+      width: 28rem;
       line-height: $base;
       padding-top: $base;
       break-before: avoid;
       break-inside: avoid;
+      margin-right: 1.5rem;
     }
     li {
       break-inside: avoid;
