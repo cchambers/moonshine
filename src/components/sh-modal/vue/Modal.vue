@@ -9,7 +9,7 @@
           <i class="material-icons">close</i>
         </div>
       </div>
-      <slot></slot>
+      <slot name="content"></slot>
       <div class="footer">
         <slot name="footer">{{ footer }}</slot>
       </div>

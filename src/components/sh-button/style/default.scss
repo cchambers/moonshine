@@ -1,14 +1,18 @@
 button {
   border: 0;
   display: block;
-  padding: 1rem;
+  padding: 0.5em 1em;
   color: $highlight-primary;
   background: $accent-quaternary;
-  border-radius: 2px;
   transition: all 50ms linear;
   text-transform: uppercase;
+  font-size: 1.6rem;
   cursor: pointer;
   @include box-shadow(2);
+  &.min {
+    font-size: 1rem;
+    box-shadow: none !important;
+  }
   &:hover {
     background: $accent-tertiary
   }
