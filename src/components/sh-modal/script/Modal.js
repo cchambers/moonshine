@@ -34,16 +34,6 @@ export default {
     events() {
       EventBus.$on('close-modals', this.close);
       this.configureTriggers();
-
-      if (!window.sh_closeBound) {
-        let closeButtons = document.querySelectorAll('[close-trigger]');
-        window.sh_closeBound = closeButtons.length;
-        closeButtons.forEach(function(el) {
-          el.addEventListener('click', function() {
-            EventBus.$emit('close-modals', el);
-          })
-        });
-      }
     },
 
     open() {

@@ -39,7 +39,7 @@ export default {
     this.code = Pretty(this.code);
     this.editor.setValue(this.code);
     let len = this.editor.getSession().getDocument().getLength();
-    this.$refs.editor.style.height = len*22 + "px";
+    this.$refs.editor.style.height = Math.min(len*19.5, 400) + "px";
     this.editor.getSession().on('change', function() {
       self.editorCode = self.editor.getSession().getValue();
       self.renderDebounce(self.editorCode);
