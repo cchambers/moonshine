@@ -1,20 +1,20 @@
 <template>
-  <article class="sh-modal">
+  <div class="sh-modal">
     <div class="content">
-      <header>
-        <h1>
+      <div class="header">
+        <h3>
           <slot name="header">{{ header }}</slot>
-        </h1>
+        </h3>
         <div close-trigger>
           <i class="material-icons">close</i>
         </div>
-      </header>
-      <slot name="content"></slot>
-      <footer>
+      </div>
+      <slot></slot>
+      <div class="footer">
         <slot name="footer">{{ footer }}</slot>
-      </footer>
+      </div>
     </div>
-  </article>
+  </div>
 </template>
   
 <script src="../script/Modal.js"></script>

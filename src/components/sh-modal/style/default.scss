@@ -22,13 +22,12 @@
       border: 1px solid #ccc;
     }
   }
-  header {
+  .header {
     background: $accent-primary;
     margin: -$base;
     margin-bottom: 3rem;
     position: sticky;
     top: 0;
-    padding: 0.5rem;
     display: flex;
     justify-content: space-between;
     i {
@@ -36,12 +35,12 @@
       font-size: $base;
     }
   }
-  footer {
+  .footer {
     padding: 0.5rem $base;
     margin: -$base;
     margin-top: 0;
   }
-  h1 {
+  h3 {
     margin: 0 !important;
     padding-left: $base;
     color: $highlight-primary;
