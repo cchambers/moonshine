@@ -25,7 +25,6 @@
     "eslint-plugin-vue": "^5.2.2",
     "node-sass": "^4.12.0",
     "pretty": "^2.0.0",
-    "prismjs": "^1.16.0",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
     "vue-template-compiler": "^2.6.10"

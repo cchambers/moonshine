@@ -1,9 +1,9 @@
 .lib-toolbar {
-  padding: 1.5rem;
+  padding: 0.5rem;
   margin: 0;
   border: 1px solid transparent;
-  background: $lowlight-tertiary;
-  border-radius: 0 0 2rem 2rem;
+  background: #272822;
+  border-radius: 0 0 1rem 1rem;
   &:hover {
     border: 1px dashed;
   }

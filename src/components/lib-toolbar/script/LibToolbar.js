@@ -14,7 +14,6 @@ export default {
       code: '',
       editorCode: '',
       html: 'Loading...',
-      codeTarget: this.$refs.component,
       updateTimer: 0,
       uuid: '',
       editor: {}
@@ -42,21 +41,18 @@ export default {
     this.$refs.editor.style.height = len*16 + "px";
     this.editor.getSession().on('change', function() {
       self.editorCode = self.editor.getSession().getValue();
-      self.renderCode(self.editorCode)
+      self.renderDebounce(self.editorCode);
     });
   },
 
-  updated() {
-    // if (this.updateTimer) {
-    //   clearTimeout(this.updateTimer)
-    // }
-    // this.updateTimer = setTimeout(this.renderComponent, 200);
-  },
-
   methods: {
-    // renderComponent() {
-    //   this.$refs.component.innerHTML = this.code;
-    // },
+    renderDebounce(code) {
+      let self = this;
+      clearTimeout(this.updateTimer);
+      this.updateTimer = setTimeout( function () {
+        self.renderCode(code);
+      }, 300);
+    },
 
     renderCode(code) {
       let res = Vue.compile(`<div id="${this.uuid}">${code}</div>`);

@@ -85,6 +85,11 @@ export default {
     },
 
     mountToContainer() {
+      let id = this.id;
+      let exists = document.querySelector(`#sh-modals #${id}`);
+      if (exists) {
+        exists.remove()
+      }
       this.container.appendChild(this.$el);
       this.events();
     }
