@@ -1,15 +1,9 @@
 <template>
   <div class="lib-toolbar">
     <div ref="component" class="component">
-      <slot></slot>
+      <div ref="uuid"></div>
     </div>
-    <div class="codeview">
-    <pre>
-      <code class="language-html">
-        {{ code }}
-      </code>
-    </pre>
-    </div>
+    <div class="codeview" v-html="code"></div>
   </div>
 </template>
 
