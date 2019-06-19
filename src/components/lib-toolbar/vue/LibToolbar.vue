@@ -3,7 +3,9 @@
     <div ref="component" class="component">
       <div ref="uuid"></div>
     </div>
-    <div class="codeview" v-html="code"></div>
+    <pre>
+      <code class="codeview" v-html="code"></code>
+    </pre>
   </div>
 </template>
 

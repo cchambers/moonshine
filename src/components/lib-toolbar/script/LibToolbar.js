@@ -1,4 +1,4 @@
-// import Vue from 'vue'
+import Vue from 'vue'
 import Prism from 'prismjs'
 
 export default {
@@ -24,7 +24,7 @@ export default {
     this.$refs.uuid.id = this.uuid;
     if (this.baseCode) {
       let code = this.baseCode;
-      this.code = Prism.highlight(code, Prism.languages.html, 'html');
+      this.code = Prism.highlight(code, Prism.languages.markup, 'markup');
 
       this.renderCode();
     }
@@ -43,11 +43,11 @@ export default {
     // },
 
     renderCode() {
-      // let res = Vue.compile(`<div id="${this.uuid}">${this.baseCode}</div>`);
-      // new Vue({
-      //   render: res.render,
-      //   staticRenderFns: res.staticRenderFns
-      // }).$mount(`#${this.uuid}`);
+      let res = Vue.compile(`<div id="${this.uuid}">${this.baseCode}</div>`);
+      new Vue({
+        render: res.render,
+        staticRenderFns: res.staticRenderFns
+      }).$mount(`#${this.uuid}`);
       
     }
   }
