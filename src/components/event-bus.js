@@ -19,27 +19,20 @@ var delegations = {
 
 function bindAll() {
 	for (var event in delegations) {
-		handleEvent(event);
+		setupEvent(event);
 	}
 }
 
-function handleEvent(event) {
+function setupEvent(event) {
 // create a new listener... 
 	document.addEventListener(event, function(e) {
-				
 		let arr = delegations[event];
-
 		// for every item that needs to be watched on *event*
 		for (var x = 0, l = arr.length; x < l; x++) {
-
 			if (e.target.matches(arr[x].target)) arr[x].handler(e)
-
 		}
-
 	});
 }
-
-
 
 function listen(event, target, handler, firebinds = false) {
 	if (!event || !target || typeof handler != 'function') {
@@ -57,7 +50,7 @@ function listen(event, target, handler, firebinds = false) {
 		handler: handler
 	})
 
-	if (firebinds) handleEvent(event);
+	if (firebinds) setupEvent(event);
 	
 	return true
 }
