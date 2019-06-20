@@ -38,7 +38,9 @@
   font-size: 4rem;
   transform: translateX(20rem) translateZ(0);
   transition: all 400ms $ease;
+  cursor: pointer;
   i {
     color: $lowlight-primary;
+    pointer-events: none;
   }
 }

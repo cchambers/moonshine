@@ -11,7 +11,8 @@ export default {
         let key = e.keyCode;
   
         if (key == 192) {
-          EventBus.$emit('toggle-nav')
+          EventBus.$emit('close-modals');
+          EventBus.$emit('toggle-nav');
         }
       });
     },

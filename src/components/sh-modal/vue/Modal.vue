@@ -5,8 +5,8 @@
         <h3>
           <slot name="header">{{ header }}</slot>
         </h3>
-        <div close-trigger>
-          <i class="material-icons">close</i>
+        <div>
+          <i close-trigger class="material-icons">close</i>
         </div>
       </div>
       <slot name="content"></slot>

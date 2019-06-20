@@ -38,8 +38,18 @@ export default {
     this.editor.setTheme('ace/theme/monokai');
     this.code = Pretty(this.code);
     this.editor.setValue(this.code);
+    this.editor.setOptions({
+      wrapBehavioursEnabled: true,
+      showLineNumbers: false,
+      showGutter: false,
+      wrap: true,
+      showPrintMargin: false,
+      indentedSoftWrap: false
+    });
     let len = this.editor.getSession().getDocument().getLength();
-    this.$refs.editor.style.height = Math.min(len*19.5, 400) + "px";
+    this.$refs.editor.style.height = Math.min(len*21, 550) + "px";
+    this.$refs.editor.style.width = "100%";
+    this.editor.resize();
     this.editor.getSession().on('change', function() {
       self.editorCode = self.editor.getSession().getValue();
       self.renderDebounce(self.editorCode);

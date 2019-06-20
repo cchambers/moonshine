@@ -5,25 +5,61 @@ export default {
   name: 'EventBus',
 }
 
-var ev = {
+var delegations = {
 	click: [
 		{
 			target: "[close-trigger]",
-			handler: function(e) {
+			handler() {
 				EventBus.$emit('close-modals');
 			}
     }
-  ]
+	],
+	mouseover: []
 };
 
-for (var event in ev) {
+function bindAll() {
+	for (var event in delegations) {
+		handleEvent(event);
+	}
+}
+
+function handleEvent(event) {
+// create a new listener... 
 	document.addEventListener(event, function(e) {
-    let arr = ev[event];
+				
+		let arr = delegations[event];
+
+		// for every item that needs to be watched on *event*
 		for (var x = 0, l = arr.length; x < l; x++) {
-			let item = arr[x];
-			if (e.target.matches(item.target)) {
-				if (typeof item.handler == 'function') arr[x].handler(e)
-			}
+
+			if (e.target.matches(arr[x].target)) arr[x].handler(e)
+
 		}
+
 	});
 }
+
+
+
+function listen(event, target, handler, firebindAlls = false) {
+	if (!event || !target || typeof handler != 'function') {
+		return false;
+	}
+
+	let exists = delegations[event];
+	if (!exists) {
+		delegations[event] = [];
+		firebinds = true;
+	}
+
+	delegations[event].push({
+		target: target,
+		handler: handler
+	})
+
+	if (firebinds) handleEvent(event);
+	
+	return true
+}
+
+bindAll();

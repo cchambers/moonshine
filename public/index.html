@@ -14,8 +14,8 @@
       background: -webkit-linear-gradient(to bottom, rgb(0,131,186), rgb(41, 57, 115));  /* Chrome 10-25, Safari 5.1-6 */
       background: linear-gradient(to bottom, rgb(0,131,186), rgb(41, 57, 115)); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     }
-    #xxx[v-cloak] {
-      opacity: 0;
+    [v-cloak] {
+      opacity: 0 !important;
     }
   </style>
 </head>
@@ -104,7 +104,7 @@
       <lib-section-links></lib-section-links>
       <main>
         <div class="contain">
-          <lib-content />
+          <lib-content v-cloak />
         </div>
         <footer>
           <div class="contain">
