@@ -34,7 +34,7 @@ function setupEvent(event) {
 	});
 }
 
-function listen(event, target, handler, firebinds = false) {
+function listen(event, target, handler, configure = false) {
 	if (!event || !target || typeof handler != 'function') {
 		return false;
 	}
@@ -42,7 +42,7 @@ function listen(event, target, handler, firebinds = false) {
 	let exists = delegations[event];
 	if (!exists) {
 		delegations[event] = [];
-		firebinds = true;
+		configure = true;
 	}
 
 	delegations[event].push({
@@ -50,7 +50,7 @@ function listen(event, target, handler, firebinds = false) {
 		handler: handler
 	})
 
-	if (firebinds) setupEvent(event);
+	if (configure) setupEvent(event);
 	
 	return true
 }

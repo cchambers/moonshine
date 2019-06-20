@@ -13,7 +13,7 @@
     display: none;
   }
   &.active {
-    background: #272822;
+    background: $lowlight-secondary;
     .editor {
       display: block;
     }
@@ -49,7 +49,7 @@
 
 .component {
   padding: 1.5rem;
-  background: #fff;
+  background: $highlight-primary;
 }
 
 .editor {

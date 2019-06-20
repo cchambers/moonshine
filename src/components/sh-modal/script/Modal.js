@@ -61,6 +61,7 @@ export default {
       this.triggers.forEach(function(el) {
         el.addEventListener('click', function(e) {
           e.preventDefault();
+          EventBus.$emit('close-modals')
           self.open();
         });
       });

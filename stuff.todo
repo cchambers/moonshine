@@ -1,6 +1,6 @@
 
-Shine:
-  ☐ static page rendering for non-component stuff...
-  ☐ modals
-  ☐ event delegation model
-  ☐ 
+Stuff to do:
+  ☐ static page rendering for non-component stuff... (utilities, home page, etc)
+  
+  Modals:
+    ☐ state mangement? Modal -> modal <- modal
