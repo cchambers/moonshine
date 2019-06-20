@@ -41,7 +41,7 @@ function handleEvent(event) {
 
 
 
-function listen(event, target, handler, firebindAlls = false) {
+function listen(event, target, handler, firebinds = false) {
 	if (!event || !target || typeof handler != 'function') {
 		return false;
 	}
