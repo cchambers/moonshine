@@ -2,6 +2,7 @@ import { EventBus } from '../../event-bus.js';
 
 export default {
   name: 'Nav',
+  
   data() {
     return {
       search: '',
@@ -9,10 +10,12 @@ export default {
       filteredResults: [],
     }
   },
+
   mounted() {
     this.events();
     this.buildSearchResults();
   },
+
   methods: {
     events() {
       let self = this;
@@ -38,7 +41,7 @@ export default {
               e.preventDefault();
               return;
             }
-            if (document.activeElement != self.$refs.search) self.$refs.search.focus();
+            if (document.activeElement != self.$refs.search && key != 9) self.$refs.search.focus();
           }
         });
       }

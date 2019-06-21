@@ -85,6 +85,10 @@ export default {
               console.info('%cdistilling components', 'border-radius: 15px; margin: 10px; background: #121212; color: white; font-family: sans-serif; font-size: 14px; padding: 5px 10px;');
               setTimeout(window.Prism.highlightAll,20);
             }
+
+            setTimeout( function() {
+              self.$el.setAttribute('content-loaded', true);
+            });
           }
         }
       }
