@@ -1,0 +1,176 @@
+<div class="documentation">
+  <h1>header</h1>
+  <section id="usage">
+    <h2>Usage</h2>
+    <pre>
+      <code class="language-html">
+          &lt;sh-header id="header"&gt;shine&lt;/sh-header&gt;
+      </code>
+    </pre>
+
+  </section>
+
+  <section id="reference">
+    <h2>Reference</h2>
+
+    <h3 id="attributes">Attributes</h3>
+
+    <table class="attributes">
+      <thead>
+        <tr>
+          <th>Attribute</th>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>nav</td>
+          <td>Boolean</td>
+          <td>Turn on/off the mobile nav button.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3 id="slots">Slots</h3>
+
+    <table class="slots">
+      <thead>
+        <tr>
+          <th>Slot</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>pre</td>
+          <td>
+            HTML content that comes before the logo.
+          </td>
+        </tr>
+        <tr>
+          <td>logo-url</td>
+          <td>
+            Image tag for logo.
+          </td>
+        </tr>
+        <tr>
+          <td>post</td>
+          <td>
+            HTML content that comes after the logo.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3 id="methods">Public Methods</h3>
+
+    <table class="methods">
+      <thead>
+        <tr>
+          <th>Function</th>
+          <th>Params</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>openNav</td>
+          <td>
+            <ul>
+              <li>
+                none
+              </li>
+            </ul>
+          </td>
+          <td>
+            Open the header navigation.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3 id="events">Events</h3>
+
+    <table class="events">
+      <thead>
+        <tr>
+          <th>Event</th>
+          <th>Payload Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>logo-clicked</td>
+          <td>
+            String
+          </td>
+          <td>
+            Fires when the logo is clicked.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="examples">
+    <h2>Examples</h2>
+
+    <h3>Default</h3>
+    <lib-toolbar>
+      <sh-header>words</sh-header>
+    </lib-toolbar>
+
+    <h3>variant="dark"</h3>
+    <sh-header variant="dark">words</sh-header>
+    <pre>
+      <code class="language-html">
+        &lt;sh-header id="header" variant="dark"&gt;words&lt;/sh-header&gt;
+      </code>
+    </pre>
+
+    <h3>variant="secondary"</h3>
+    <sh-header variant="secondary">words</sh-header>
+    <pre>
+      <code class="language-html">
+        &lt;sh-header id="header" variant="secondary"&gt;words&lt;/sh-header&gt;
+      </code>
+    </pre>
+
+  </section>
+
+  <section id="changelog">
+    <h2>Changelog</h2>
+    <dl>
+      <dt>1.0.0</dt>
+      <dd>Component was created.</dd>
+      <dt>1.0.1</dt>
+      <dd>Hotfix created for some issue.</dd>
+      <dt>1.2.0</dt>
+      <dd>
+        Minor style or functionality was added or updated.
+        <ul>
+          <li>
+            Change information...
+          </li>
+          <li>
+            Change information...
+          </li>
+        </ul>
+      </dd>
+      <dt>2.0.0</dt>
+      <dd>
+        Major change. Anyone using this component may need to update their code.
+        <ul>
+          <li>
+            Change information...
+          </li>
+          <li>
+            Change information...
+          </li>
+        </ul>
+      </dd>
+    </dl>
+  </section>
+</div>

@@ -20,6 +20,7 @@ if (process.env.VUE_APP_DEV) {
   require('./assets/style/base.scss')
   require('./assets/style/layout.scss')
   require('./assets/style/prism.css')
+  require('./components/lib-header')
   require('./components/lib-content')
   require('./components/lib-section-links')
   require('./components/lib-toolbar')
