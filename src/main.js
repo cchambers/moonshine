@@ -1,5 +1,9 @@
 /* eslint-disable */
 import Vue from 'vue'
+import { VueHammer } from 'vue2-hammer'
+
+Vue.use(VueHammer)
+
 Vue.config.productionTip = false
 
 /* prod components */

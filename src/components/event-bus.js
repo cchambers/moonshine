@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import Vue from 'vue';
 export const EventBus = new Vue();
 
@@ -9,12 +11,21 @@ var delegations = {
 	click: [
 		{
 			target: "[close-trigger]",
+			priority: 1,
 			handler() {
 				EventBus.$emit('close-modals');
 			}
+		},
+		{
+			target: "[nav-trigger]",
+			handler() {
+				EventBus.$emit('show-nav');
+			}
     }
 	],
-	mouseover: []
+	mouseover: [
+
+	]
 };
 
 function bindAll() {
@@ -30,11 +41,13 @@ function setupEvent(event) {
 		// for every item that needs to be watched on *event*
 		for (var x = 0, l = arr.length; x < l; x++) {
 			if (e.target.matches(arr[x].target)) arr[x].handler(e)
+
+			// TODO: if (arr[x].stopProp...) return;
 		}
 	});
 }
 
-function listen(event, target, handler, configure = false) {
+function listen(event, target, handler, priority, configure = false) {
 	if (!event || !target || typeof handler != 'function') {
 		return false;
 	}
@@ -45,10 +58,14 @@ function listen(event, target, handler, configure = false) {
 		configure = true;
 	}
 
-	delegations[event].push({
+	let obj = {
 		target: target,
 		handler: handler
-	})
+	};
+
+	if (priority) obj.priority = priority;
+
+	delegations[event].push(obj);
 
 	if (configure) setupEvent(event);
 	

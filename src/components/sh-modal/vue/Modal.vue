@@ -6,10 +6,12 @@
           <slot name="header">{{ header }}</slot>
         </h3>
         <div>
-          <i close-trigger class="material-icons">close</i>
+          <i v-hammer:tap="close" class="material-icons">close</i>
         </div>
       </div>
-      <slot name="content"></slot>
+      <div class="body" ref="body">
+        <slot name="content"></slot>
+      </div>
       <div class="footer">
         <slot name="footer">{{ footer }}</slot>
       </div>

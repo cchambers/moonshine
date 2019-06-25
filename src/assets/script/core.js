@@ -1,6 +1,27 @@
 let app = {
   init() {
-    app.setup();
+    app.wrap().setup();
+  },
+
+  wrap() {
+    if (document.getElementById('xxx')) return this;
+
+    let parent = document.body;
+    let wrapper = document.createElement('div');
+    wrapper.id = 'xxx';
+
+    // let page = document.createElement('div');
+    // page.id = 'page';
+    // wrapper.appendChild(page);
+
+    parent.appendChild(wrapper);
+    wrapper.setAttribute('v-cloak', true);
+
+    while (parent.firstChild !== wrapper) {
+      wrapper.appendChild(parent.firstChild);
+      // page.appendChild(parent.firstChild);
+    }
+    return this;
   },
 
   setup() {

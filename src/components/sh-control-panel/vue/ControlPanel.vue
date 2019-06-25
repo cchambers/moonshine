@@ -1,12 +1,12 @@
 <template>
   <div>
-    <div class="show-nav" v-on:click="toggleNav">
+    <div class="show-nav" v-hammer:tap="toggleNav">
       <i class="material-icons nav-icon">menu</i>
     </div>
-    <div class="close-curtain" v-on:click="closeNav">
+    <div class="close-curtain" v-hammer:tap="closeNav">
       <i class="material-icons nav-icon">close</i>
     </div>
-    <div class="close-modal" close-trigger>
+    <div class="close-modal" v-hammer:tap="closeModal">
       <i class="material-icons nav-icon">arrow_back</i>
     </div>
   </div>

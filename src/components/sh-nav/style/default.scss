@@ -201,13 +201,18 @@ nav {
   }
 
   a[note] {
-    display: block;
+    display: flex;
+    justify-content: space-between;
     &:after {
       content: "( " attr(note) " )";
-      float: right;
       display: inline-block;
       font-size: 1.4rem;
       color: $lowlight-tertiary;
     }
   }
+}
+
+[disabled] {
+  opacity: 0.2;
+  pointer-events: none;
 }

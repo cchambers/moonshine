@@ -6,12 +6,15 @@ let pages = {
   },
 }
 
-glob.sync('./src/components/**/docs/index.html').forEach(path => {  
-  let name = path.split("/")[3];
+glob.sync('./src/components/**/docs/*').forEach(path => {  
+  let component = path.split('/')[3];
+  let filename = path.split('/');
+  filename = filename[filename.length-1];
+  let name = component+filename;
   pages[name] = {
     entry: 'src/component.js',
     template: path,
-    filename: 'pagedata/'+name+'/index.html'
+    filename: `pagedata/${component}/${filename}`
   }
 })
 

@@ -51,6 +51,20 @@
             Content for modal footer.
           </td>
         </tr>
+        <tr>
+          <td>content-url</td>
+          <td>String</td>
+          <td>
+            URL string for ajax to retrieve for injecting into the modal.
+          </td>
+        </tr>
+        <tr>
+          <td>content-selector</td>
+          <td>String</td>
+          <td>
+            Selector to target specific content in the returned ajax call.
+          </td>
+        </tr>
       </tbody>
     </table>
 
@@ -219,6 +233,31 @@
         </div>
       </sh-modal>
     </lib-toolbar>
+
+    <h3 class="margin-b-quarter">Ajaxed content</h3>
+    <lib-toolbar>
+      <sh-button modal-trigger="demo-3">Trigger Modal</sh-button>
+      <sh-modal id="demo-3" content-url="/pagedata/sh-modal/ajax-test.html">
+        <div slot="footer">
+          <div class="flex center pad">
+            <sh-button close-trigger>Continue</sh-button>
+          </div>
+        </div>
+      </sh-modal>
+    </lib-toolbar>
+
+    <h3 class="margin-b-quarter">Ajaxed and targeted content</h3>
+    <lib-toolbar>
+      <sh-button modal-trigger="demo-4">Trigger Modal</sh-button>
+      <sh-modal id="demo-4" content-url="/pagedata/sh-modal/ajax-test.html" content-selector="#primary">
+        <div slot="footer">
+          <div class="flex center pad">
+            <sh-button close-trigger>Continue</sh-button>
+          </div>
+        </div>
+      </sh-modal>
+    </lib-toolbar>
+
   </section>
 
   <section id="changelog">
@@ -226,6 +265,10 @@
     <dl>
       <dt>1.0.0</dt>
       <dd>Component was created.</dd>
+    </dl>
+    <dl>
+      <dt>1.1.0</dt>
+      <dd>Added ability to pull content from an external URL with <code>content-url</code> and <code>content-selector</code>.</dd>
     </dl>
   </section>
 </div>

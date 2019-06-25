@@ -30,7 +30,7 @@ export default {
     },
     closeModal() {
       document.documentElement.classList.remove('modal-shown');
-      EventBus.$emit('modal-shown');
+      EventBus.$emit('close-modals');
     },
   },
 
