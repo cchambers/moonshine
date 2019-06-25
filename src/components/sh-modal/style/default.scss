@@ -23,12 +23,12 @@
     }
   }
   .header {
+    display: flex;
     background: $accent-primary;
     margin: -$base;
     margin-bottom: 3rem;
     position: sticky;
     top: 0;
-    display: flex;
     justify-content: space-between;
     i {
       color: $accent-tertiary;

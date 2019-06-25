@@ -201,12 +201,13 @@ nav {
   }
 
   a[note] {
-    display: flex;
-    justify-content: space-between;
+    display: flex !important;
+    
     &:after {
       content: "( " attr(note) " )";
       display: inline-block;
       font-size: 1.4rem;
+      margin-left: auto;
       color: $lowlight-tertiary;
     }
   }

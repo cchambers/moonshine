@@ -1,20 +1,22 @@
 <template>
-  <div class="sh-modal">
+  <div class="sh-modal" role="dialog" :id="id" :aria-labelledby="ariaID" :aria-describedby="ariaDescID">
     <div class="content">
+      <div class="tab-lock" tabindex="0"></div>
       <div class="header">
-        <h3>
+        <h3 :id="ariaHeaderID">
           <slot name="header">{{ header }}</slot>
         </h3>
         <div>
           <i v-hammer:tap="close" class="material-icons">close</i>
         </div>
       </div>
-      <div class="body" ref="body">
+      <div class="body" ref="body" :id="ariaDescID">
         <slot name="content"></slot>
       </div>
       <div class="footer">
         <slot name="footer">{{ footer }}</slot>
       </div>
+      <div class="tab-lock" tabindex="0"></div>
     </div>
   </div>
 </template>
@@ -23,7 +25,7 @@
 <style lang="scss" src="../style/default.scss" scoped></style>
 <style lang="scss">
 [modal-trigger] {
-  color: #3c7cff;
+  color: $link-color;
 }
 
 #sh-modals {

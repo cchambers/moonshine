@@ -27,9 +27,8 @@ $ease: cubic-bezier(0.4, 0.0, 0.2, 1);
 $decel: cubic-bezier(0.0, 0.0, 0.2, 1);
 $accel: cubic-bezier(0.4, 0.0, 1, 1);
 
-
 $pink: #fadadd;
-
+$link-color: $accent-tertiary;
 
 .pink {
   color: $pink;
@@ -37,7 +36,6 @@ $pink: #fadadd;
 .white {
   color: $highlight-primary;
 }
-
 
 .back-highlight-secondary {
   background: $highlight-secondary;

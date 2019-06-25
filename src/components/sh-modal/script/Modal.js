@@ -1,7 +1,7 @@
 import { EventBus } from '../../event-bus';
 
 export default {
-  name: "Modal",
+  name: 'Modal',
 
   props: {
     id: {
@@ -20,11 +20,17 @@ export default {
       container: null,
       loaded: false,
       loading: false,
+      ariaID: String,
+      ariaHeaderID: String,
+      ariaDescID: String,
     };
   },
 
   mounted() {
     this.modals = this.$el.querySelectorAll('.modal');
+    this.ariaID = `aria-${this.id}`;
+    this.ariaHeaderID = `aria-header-${this.id}`;
+    this.ariaDescID = `aria-desc-${this.id}`;
     let container = document.querySelector('#sh-modals');
     if (container) {
       this.container = container;
@@ -99,13 +105,15 @@ export default {
       let xhr = new XMLHttpRequest();
       xhr.open('GET', this.contentUrl);
       xhr.send(null);
-      
       xhr.onreadystatechange = function () {
         let DONE = 4; // readyState 4 means the request is done.
         let OK = 200; // status 200 is a successful return.
         if (xhr.readyState === DONE) {
           if (xhr.status === OK) {
             let response = xhr.responseText;
+            var pattern = /<body[^>]*>((.|[\n\r])*)<\/body>/im
+            var arr = pattern.exec(response);
+            if (arr[1].length) response = arr[1];
             let html = document.createElement('div');
             html.innerHTML = response;
 
@@ -117,15 +125,6 @@ export default {
 
             self.$refs.body.appendChild(html);
             self.loaded = true;
-
-            //   let res = Vue.compile(updateCode.innerHTML);
-            //   new Vue({
-            //     render: res.render,
-            //     staticRenderFns: res.staticRenderFns
-            //   }).$mount('#library-content');
-            // }
-
-            
           } else {
             // eslint-disable-next-line
             console.log(`Content isn't available from: ${this.contentUrl}`);

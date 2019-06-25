@@ -8,13 +8,13 @@ Vue.config.productionTip = false
 
 /* prod components */
 require('./components/sh-button')
+require('./components/sh-modal')
 
 if (process.env.VUE_APP_DEV) {
   /* non-deployed in prod */
   require('./components/sh-control-panel')
   require('./components/sh-curtain')
   require('./components/sh-header')
-  require('./components/sh-modal')
   require('./components/sh-nav')
 
   /* library stuff */
