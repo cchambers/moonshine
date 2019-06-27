@@ -6,6 +6,7 @@ let pages = {
   },
 }
 
+
 glob.sync('./src/components/**/docs/*').forEach(path => {  
   let component = path.split('/')[3];
   let filename = path.split('/');
@@ -24,8 +25,8 @@ module.exports = {
     loaderOptions: {
       sass: {
         data: `
-          @import "@/assets/style/_variables.scss";
-          @import "@/assets/style/_mixins.scss";
+          @import "@/assets/style/common/_mixins.scss";
+          @import "@/assets/style/themes/default/_variables.scss";
         `
       }
     }

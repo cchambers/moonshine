@@ -12,6 +12,7 @@ export default {
     contentSelector: String,
     header: String,
     footer: String,
+    reveal: String
   },
 
   data() {
@@ -38,12 +39,38 @@ export default {
     } else {
       this.createContainer();
     }
+
+    this.hashHandler();
   },
 
   methods: {
     events() {
       EventBus.$on('close-modals', this.close);
       this.configureTriggers();
+
+      window.addEventListener('keyup', (e) => {
+        let key = e.keyCode;
+
+        // esc
+        if (key == 27) EventBus.$emit('close-modals');
+      });
+
+      window.removeEventListener('hashchange', this.hashHandler)
+      window.addEventListener('hashchange', this.hashHandler)
+    },
+
+    hashHandler() {
+      let hash = window.location.hash;
+
+      if (hash.length > 2) {
+        hash = hash.substr(1);
+        if (this.id == hash) {
+          EventBus.$emit('close-modals');
+          this.open();
+        }
+      } else {
+        EventBus.$emit('close-modals');
+      }
     },
 
     open() {
@@ -63,6 +90,7 @@ export default {
         document.documentElement.classList.remove('sh-modal-open');
         this.$el.classList.remove('active');
         EventBus.$emit('modal-closed', this.id);
+        window.location.hash = "";
       }
     },
 
@@ -76,10 +104,8 @@ export default {
       let selector = `[modal-trigger="${this.id}"]`;
       this.triggers = document.querySelectorAll(selector);
       this.triggers.forEach(function(el) {
-        el.addEventListener('click', function(e) {
-          e.preventDefault();
-          EventBus.$emit('close-modals')
-          self.open();
+        el.addEventListener('click', function() {
+          window.location.hash = `#${self.id}`;
         });
       });
     },

@@ -16,3 +16,8 @@
 
 <script src="../script/LibToolbar.js"></script>
 <style lang="scss" src="../style/default.scss" scoped></style>
+<style lang="css">
+.ace_text-input {
+  position: absolute !important;
+}
+</style>

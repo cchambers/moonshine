@@ -84,7 +84,6 @@ export default {
           if (match >= 0) {
             item.show = true;
             let actual = item.name.substr(match, value.length);
-            console.log(item.name)
             let highlighted = item.name.split(actual);
             highlighted = highlighted.join(`<span class="search-highlight">${actual}</span>`);
             item.name = highlighted;

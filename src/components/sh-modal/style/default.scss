@@ -3,11 +3,11 @@
   top: 0;
   left: 0;
   right: 0;
-  transform: translateX(-130%);
-  transition: transform 300ms $ease;
+  transition: transform 300ms $ease, opacity 250ms linear;
   transition-delay: 50ms;
   height: 0;
   overflow: hidden;
+  opacity: 0;
   .content {
     background: #fff;
     height: 100%;
@@ -17,7 +17,8 @@
     @include box-shadow(1);
   }
   &.active {
-    transform: translateX(0);
+    transform: translateX(0) translateY(0) translateZ(0);
+    opacity: 1;
     .content {
       border: 1px solid #ccc;
     }
@@ -31,6 +32,7 @@
     top: 0;
     justify-content: space-between;
     i {
+      cursor: pointer;
       color: $accent-tertiary;
       font-size: $base;
     }
@@ -48,5 +50,21 @@
   
   [close-trigger] {
     cursor: pointer;
+  }
+
+  &[reveal='left'] {
+    transform: translateX(-200%);
+  }
+
+  &[reveal='right'] {
+    transform: translateX(200%);
+  }
+
+  &[reveal='top'] {
+    transform: translateY(-200%);
+  }
+
+  &[reveal='bottom'] {
+    transform: translateY(200%);
   }
 }

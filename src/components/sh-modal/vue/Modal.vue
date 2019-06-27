@@ -1,5 +1,5 @@
 <template>
-  <div class="sh-modal" role="dialog" :id="id" :aria-labelledby="ariaID" :aria-describedby="ariaDescID">
+  <div class="sh-modal" :reveal="reveal" role="dialog" :id="id" :aria-labelledby="ariaID" :aria-describedby="ariaDescID">
     <div class="content">
       <div class="tab-lock" tabindex="0"></div>
       <div class="header">
@@ -11,7 +11,7 @@
         </div>
       </div>
       <div class="body" ref="body" :id="ariaDescID">
-        <slot name="content"></slot>
+        <slot></slot>
       </div>
       <div class="footer">
         <slot name="footer">{{ footer }}</slot>

@@ -47,7 +47,7 @@ function setupEvent(event) {
 	});
 }
 
-function listen(event, target, handler, priority, configure = false) {
+function listen(event, target, handler, options) {
 	if (!event || !target || typeof handler != 'function') {
 		return false;
 	}
@@ -55,7 +55,7 @@ function listen(event, target, handler, priority, configure = false) {
 	let exists = delegations[event];
 	if (!exists) {
 		delegations[event] = [];
-		configure = true;
+		options.configure = true;
 	}
 
 	let obj = {
@@ -63,11 +63,11 @@ function listen(event, target, handler, priority, configure = false) {
 		handler: handler
 	};
 
-	if (priority) obj.priority = priority;
+	if (options.priority) obj.priority = options.priority;
 
 	delegations[event].push(obj);
 
-	if (configure) setupEvent(event);
+	if (options.configure) setupEvent(event);
 	
 	return true
 }

@@ -1,180 +1,203 @@
 <div class="documentation">
-  <h1>modal</h1>
-  <section id="usage">
-    <h2>Usage</h2>
-    <pre>
-      <code class="language-html">
+  <div class="contain">
+    <h1>modal</h1>
+    <section id="usage">
+      <h2>Usage</h2>
+      <pre>
+        <code class="language-html">
           &lt;sh-modal header="Modal Header" id="uniqueId"&gt;
             &lt;p&gt;
               Lorem ipsum doler.
             &lt;/p&gt;
           &lt;/sh-modal&gt;
-      </code>
+        </code>
     </pre>
-  </section>
+    </section>
 
-  <section id="reference">
-    <h2>Reference</h2>
+    <section id="reference">
+      <h2>Reference</h2>
 
-    <h3 id="attributes">Attributes</h3>
+      <h3 id="attributes">Attributes</h3>
 
-    <table class="attributes">
-      <thead>
-        <tr>
-          <th>Attribute</th>
-          <th>Type</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>variant</td>
-          <td>String</td>
-          <td>
-            <ul>
-              <li>Change the way the modal is rendered.</li>
-              <li>Options: primary (default), secondary, tertiary</li>
-            </ul>
-          </td>
-        </tr>
-        <tr>
-          <td>header</td>
-          <td>String</td>
-          <td>
-            Content for the modal header.
-          </td>
-        </tr>
-        <tr>
-          <td>footer</td>
-          <td>String</td>
-          <td>
-            Content for modal footer.
-          </td>
-        </tr>
-        <tr>
-          <td>content-url</td>
-          <td>String</td>
-          <td>
-            URL string for ajax to retrieve for injecting into the modal.
-          </td>
-        </tr>
-        <tr>
-          <td>content-selector</td>
-          <td>String</td>
-          <td>
-            Selector to target specific content in the returned ajax call.
-          </td>
-        </tr>
-      </tbody>
-    </table>
+      <table class="attributes">
+        <thead>
+          <tr>
+            <th>Attribute</th>
+            <th>Type</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>id</td>
+            <td>String</td>
+            <td>
+              <ul>
+                <li>Unique ID.</li>
+                <li>This is a <strong>required</strong> attribute.</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>variant</td>
+            <td>String</td>
+            <td>
+              <ul>
+                <li>Change the way the modal is rendered.</li>
+                <li>Options: primary (default), secondary, tertiary</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>header</td>
+            <td>String</td>
+            <td>
+              Content for the modal header.
+            </td>
+          </tr>
+          <tr>
+            <td>footer</td>
+            <td>String</td>
+            <td>
+              Content for modal footer.
+            </td>
+          </tr>
+          <tr>
+            <td>content-url</td>
+            <td>String</td>
+            <td>
+              URL endpoint for ajaxing content into the modal.
+            </td>
+          </tr>
+          <tr>
+            <td>content-selector</td>
+            <td>String</td>
+            <td>
+              Selector to target specific content in the returned ajax call.
+            </td>
+          </tr>
+        </tbody>
+      </table>
 
-    <h3 id="slots">Slots</h3>
+      <h3 id="slots">Slots</h3>
 
-    <table class="slots">
-      <thead>
-        <tr>
-          <th>Slot</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>header</td>
-          <td>
-            HTML content for the header of the modal.
-          </td>
-        </tr>
-        <tr>
-          <td>content</td>
-          <td>
-            HTML content for the main area of the modal.
-          </td>
-        </tr>
-        <tr>
-          <td>footer</td>
-          <td>
-            HTML content for the footer of the modal.
-          </td>
-        </tr>
-      </tbody>
-    </table>
+      <table class="slots">
+        <thead>
+          <tr>
+            <th>Slot</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>header</td>
+            <td>
+              HTML content for the header of the modal.
+            </td>
+          </tr>
+          <tr>
+            <td>content</td>
+            <td>
+              HTML content for the main area of the modal.
+            </td>
+          </tr>
+          <tr>
+            <td>footer</td>
+            <td>
+              HTML content for the footer of the modal.
+            </td>
+          </tr>
+        </tbody>
+      </table>
 
-    <h3 id="methods">Public Methods</h3>
+      <h3 id="methods">Public Methods</h3>
 
-    <table class="methods">
-      <thead>
-        <tr>
-          <th>Function</th>
-          <th>Params</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>open</td>
-          <td>
-            <ul>
-              <li>
-                none
-              </li>
-            </ul>
-          </td>
-          <td>
-            Trigger the modal. This will close other open modals.
-          </td>
-        </tr>
-      </tbody>
-    </table>
+      <table class="methods">
+        <thead>
+          <tr>
+            <th>Function</th>
+            <th>Params</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>open</td>
+            <td>
+              <ul>
+                <li>
+                  none
+                </li>
+              </ul>
+            </td>
+            <td>
+              Trigger the modal. This will close other open modals.
+            </td>
+          </tr>
+          <tr>
+            <td>close</td>
+            <td>
+              <ul>
+                <li>
+                  none
+                </li>
+              </ul>
+            </td>
+            <td>
+              This will close all open modals.
+            </td>
+          </tr>
+        </tbody>
+      </table>
 
-    <h3 id="events">Events</h3>
+      <h3 id="events">Events</h3>
 
-    <table class="events">
-      <thead>
-        <tr>
-          <th>Event</th>
-          <th>Payload Type</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>modal-opening</td>
-          <td>
-            String
-          </td>
-          <td>
-            <ul>
-              <li>Fires before the modal opens.</li>
-              <li>Payload is the ID of the modal that will open.</li>
-            </ul>
-          </td>
-        </tr>
-        <tr>
-          <td>modal-opened</td>
-          <td>
-            String
-          </td>
-          <td>
-            <ul>
-              <li>Fires immediately after the modal opens.</li>
-              <li>Payload is the ID of the modal that has opened.</li>
-            </ul>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </section>
+      <table class="events">
+        <thead>
+          <tr>
+            <th>Event</th>
+            <th>Payload Type</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>modal-opening</td>
+            <td>
+              String
+            </td>
+            <td>
+              <ul>
+                <li>Fires before the modal opens.</li>
+                <li>Payload is the ID of the modal that will open.</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>modal-opened</td>
+            <td>
+              String
+            </td>
+            <td>
+              <ul>
+                <li>Fires immediately after the modal opens.</li>
+                <li>Payload is the ID of the modal that has opened.</li>
+              </ul>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
 
-  <section id="examples">
-    <h2>Examples</h2>
+    <section id="examples">
+      <h2>Examples</h2>
 
-    <h3 class="margin-b-quarter">Default</h3>
-    <lib-toolbar>
-      <sh-button modal-trigger="demo-1">Open modal</sh-button>
-      <sh-modal id="demo-1" header="Modal Header">
-        <div slot="content">
+      <h3 class="margin-b-quarter">Default</h3>
+      <lib-toolbar>
+        <sh-button modal-trigger="demo-default">Open modal</sh-button>
+        <sh-modal id="demo-default" header="Modal Header">
           <p>
-            
+
             Magna <a href="#" modal-trigger="demo-2">demo modal 2</a> commodo ullamco occaecat ut ex ea reprehenderit.
             Deserunt laborum in proident aliquip dolore dolor cupidatat. Ex labore
             nisi magna ut voluptate adipisicing adipisicing elit nostrud enim eu
@@ -207,68 +230,75 @@
             enim enim et elit est ullamco. Ad proident excepteur quis enim
             voluptate aute irure ipsum veniam dolore.
           </p>
-        </div>
-        <div slot="footer">
-          <p class="text-center">I <a href="#" close-trigger>agree</a> to the terms and conditions.</p>
-        </div>
-      </sh-modal>
-    </lib-toolbar>
-    <h3 class="margin-b-quarter">Without header</h3>
-    <lib-toolbar>
-      <sh-button modal-trigger="demo-2">Trigger Modal</sh-button>
-      <sh-modal id="demo-2">
-        <div slot="content">
-          <p>
-            Cupidatat quis officia incididunt adipisicing eiusmod dolore id ut
-            Lorem qui anim et. Nisi consequat minim anim eiusmod aliqua eu
-            deserunt ex. Sunt labore duis nisi laboris Lorem enim labore cillum
-            enim enim et elit est ullamco. Ad proident excepteur quis enim
-            voluptate aute irure ipsum veniam dolore.
-          </p>
-        </div>
-        <div slot="footer">
-          <div class="flex center pad">
-            <sh-button close-trigger>Continue</sh-button>
+          <div slot="footer">
+            <p class="text-center">I <a href="#" close-trigger>agree</a> to the terms and conditions.</p>
           </div>
-        </div>
-      </sh-modal>
-    </lib-toolbar>
+        </sh-modal>
+      </lib-toolbar>
 
-    <h3 class="margin-b-quarter">Ajaxed content</h3>
-    <lib-toolbar>
-      <sh-button modal-trigger="demo-3">Trigger Modal</sh-button>
-      <sh-modal id="demo-3" content-url="/pagedata/sh-modal/ajax-test.html">
-        <div slot="footer">
-          <div class="flex center pad">
-            <sh-button close-trigger>Continue</sh-button>
+      <h3 class="margin-b-quarter">Remote Content (Ajax)</h3>
+      <lib-toolbar>
+        <sh-button modal-trigger="demo-ajax">Basic</sh-button>
+        <sh-modal id="demo-ajax" content-url="/pagedata/sh-modal/ajax-test.html">
+          <div slot="footer">
+            <div class="flex center pad">
+              <sh-button close-trigger>Continue</sh-button>
+            </div>
           </div>
-        </div>
-      </sh-modal>
-    </lib-toolbar>
+        </sh-modal>
+      </lib-toolbar>
 
-    <h3 class="margin-b-quarter">Ajaxed and targeted content</h3>
-    <lib-toolbar>
-      <sh-button modal-trigger="demo-4">Trigger Modal</sh-button>
-      <sh-modal id="demo-4" content-url="/pagedata/sh-modal/ajax-test.html" content-selector="#primary">
-        <div slot="footer">
-          <div class="flex center pad">
-            <sh-button close-trigger>Continue</sh-button>
+      <lib-toolbar>
+        <sh-button modal-trigger="demo-ajax-target">Targeted</sh-button>
+        <sh-modal id="demo-ajax-target" content-url="/pagedata/sh-modal/ajax-test.html" content-selector="#primary">
+          <div slot="footer">
+            <div class="flex center pad">
+              <sh-button close-trigger>Continue</sh-button>
+            </div>
           </div>
-        </div>
-      </sh-modal>
-    </lib-toolbar>
+        </sh-modal>
+      </lib-toolbar>
 
-  </section>
+      <h3 class="margin-b-quarter">Reveal Animations</h3>
+      <lib-toolbar>
+        <sh-button modal-trigger="demo-reveal-default">Default</sh-button>
+        <sh-modal id="demo-reveal-default">
+          <p>The default reveal is a simple opacity fade.</p>
+        </sh-modal>
+        
+        <sh-button modal-trigger="demo-reveal-left">From Left</sh-button>
+        <sh-modal reveal="left" id="demo-reveal-left">
+          <p>From left!</p>
+        </sh-modal>
 
-  <section id="changelog">
-    <h2>Changelog</h2>
-    <dl>
-      <dt>1.0.0</dt>
-      <dd>Component was created.</dd>
-    </dl>
-    <dl>
-      <dt>1.1.0</dt>
-      <dd>Added ability to pull content from an external URL with <code>content-url</code> and <code>content-selector</code>.</dd>
-    </dl>
-  </section>
+        <sh-button modal-trigger="demo-reveal-right">From Right</sh-button>
+        <sh-modal reveal="right" id="demo-reveal-right">
+          <p>From right!</p>
+        </sh-modal>
+
+        <sh-button modal-trigger="demo-reveal-top">From Top</sh-button>
+        <sh-modal reveal="top" id="demo-reveal-top">
+          <p>From top!</p>
+        </sh-modal>
+
+        <sh-button modal-trigger="demo-reveal-bottom">From Bottom</sh-button>
+        <sh-modal reveal="bottom" id="demo-reveal-bottom">
+          <p>From bottom!</p>
+        </sh-modal>
+      </lib-toolbar>
+    </section>
+
+    <section id="changelog">
+      <h2>Changelog</h2>
+      <dl>
+        <dt>1.0.0</dt>
+        <dd>Component was created.</dd>
+      </dl>
+      <dl>
+        <dt>1.1.0</dt>
+        <dd>Added ability to pull content from an external URL with <code>content-url</code> and
+          <code>content-selector</code>.</dd>
+      </dl>
+    </section>
+  </div>
 </div>

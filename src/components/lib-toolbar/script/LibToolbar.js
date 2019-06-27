@@ -50,6 +50,7 @@ export default {
     this.$refs.editor.style.height = Math.min(len*21, 550) + "px";
     this.$refs.editor.style.width = "100%";
     this.editor.resize();
+    this.editor.getSession().selection.clearSelection();
     this.editor.getSession().on('change', function() {
       self.editorCode = self.editor.getSession().getValue();
       self.renderDebounce(self.editorCode);

@@ -1,0 +1,9 @@
+
+@each $name, $hex in $colors {
+  &.#{$name} {
+    color: $hex;
+  }
+  &.back-#{$name} {
+    background: $hex;
+  }
+}
