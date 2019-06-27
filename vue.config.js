@@ -2,10 +2,9 @@ const glob = require('glob')
 let pages = {
   index: {
     entry: 'src/main.js',
-    template: 'public/index.html'
+    template: 'src/index.ejs'
   },
 }
-
 
 glob.sync('./src/components/**/docs/*').forEach(path => {  
   let component = path.split('/')[3];

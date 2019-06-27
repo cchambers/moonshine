@@ -115,6 +115,9 @@ export default {
       container.id = 'sh-modals';
       document.body.appendChild(container);
       this.container = container;
+      this.container.addEventListener('click', (e) => {
+        if (e.target == this.container) EventBus.$emit('close-modals');
+      })
       this.mountToContainer();
     },
 
