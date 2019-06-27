@@ -41,32 +41,9 @@ export default {
               let updateCode = document.createElement('div');
               updateCode.innerHTML = html;
 
-              // let escapeChars = {
-              //   '¢' : 'cent',
-              //   '£' : 'pound',
-              //   '¥' : 'yen',
-              //   '€': 'euro',
-              //   '©' :'copy',
-              //   '®' : 'reg',
-              //   '<' : 'lt',
-              //   '>' : 'gt',
-              //   '"' : 'quot',
-              //   '&' : 'amp',
-              //   '\'' : '#39'
-              // };
-              
-              // let regexString = '[';
-              // for(let key in escapeChars) {
-              //   regexString += key;
-              // }
-              // regexString += ']';
-              // let regex = new RegExp( regexString, 'g');
               let demos = updateCode.querySelectorAll('lib-toolbar');
               for (let x = 0, l = demos.length; x < l; x++) {
                 let code = demos[x].innerHTML;
-                // code = code.replace(regex, function(m) {
-                //   return '&' + escapeChars[m] + ';';
-                // });
                 demos[x].setAttribute('base-code', code);
               }
 
@@ -76,8 +53,6 @@ export default {
                 staticRenderFns: res.staticRenderFns
               }).$mount('#library-content');
               
-              // console.log(content);
-
               self.docEvents();
               self.sectionLinks();
               
