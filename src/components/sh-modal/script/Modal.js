@@ -21,6 +21,7 @@ export default {
       container: null,
       loaded: false,
       loading: false,
+      active: false,
       ariaID: String,
       ariaHeaderID: String,
       ariaDescID: String,
@@ -45,53 +46,51 @@ export default {
 
   methods: {
     events() {
-      EventBus.$on('close-modals', this.close);
+      let self = this;
       this.configureTriggers();
 
+      EventBus.$on('close-modals', this.close);
+      EventBus.$on('modal-opening', function() {
+        self.close(false);
+      });
+      
       window.addEventListener('keyup', (e) => {
         let key = e.keyCode;
-
-        // esc
-        if (key == 27) EventBus.$emit('close-modals');
+        if (key == 27) EventBus.$emit('close-modals'); // esc
       });
 
-      window.removeEventListener('hashchange', this.hashHandler)
       window.addEventListener('hashchange', this.hashHandler)
     },
 
     hashHandler() {
-      let hash = window.location.hash;
-
-      if (hash.length > 2) {
+      let hash = window.location.hash; 
+      if (hash.length > 1) {
         hash = hash.substr(1);
-        if (this.id == hash) {
-          EventBus.$emit('close-modals');
-          this.open();
-        }
+        if (this.id == hash) this.open();
       } else {
-        EventBus.$emit('close-modals');
+        if (this.active) this.close(false)
       }
     },
 
     open() {
       if (!this.loaded && this.contentUrl) this.loadContent()
 
-      if (!this.$el.classList.contains('active')) {
+      if (!this.active) {
         EventBus.$emit('modal-opening', this.id);
         document.documentElement.classList.add('sh-modal-open');
-        this.$el.classList.add('active');
+        this.active = true;
         EventBus.$emit('modal-opened', this.id);
       }
     },
 
-    close() {
-      if (this.$el.classList.contains('active')) {
+    close(clearHash = true) {
+      if (this.active) {
         EventBus.$emit('modal-closing', this.id);
         document.documentElement.classList.remove('sh-modal-open');
-        this.$el.classList.remove('active');
+        this.active = false;
         EventBus.$emit('modal-closed', this.id);
-        window.location.hash = "";
       }
+      if (clearHash) window.location.hash = ''; 
     },
 
     loadContent() {

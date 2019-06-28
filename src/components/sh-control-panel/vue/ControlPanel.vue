@@ -6,7 +6,7 @@
     <div class="close-curtain" v-hammer:tap="closeNav">
       <i class="material-icons nav-icon">close</i>
     </div>
-    <div class="close-modal" v-hammer:tap="closeModal">
+    <div class="close-modal" v-hammer:tap="back">
       <i class="material-icons nav-icon">arrow_back</i>
     </div>
   </div>

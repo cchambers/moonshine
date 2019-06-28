@@ -16,6 +16,9 @@ export default {
         }
       });
     },
+    back() {
+      window.history.back();
+    },
     openNav() {
       document.documentElement.classList.add('nav-shown');
       EventBus.$emit('nav-shown');

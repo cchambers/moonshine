@@ -142,12 +142,19 @@
             <td>
               <ul>
                 <li>
-                  none
+                  clearHash
                 </li>
               </ul>
             </td>
             <td>
-              This will close all open modals.
+              <ul>
+                <li>
+                  This will close all open modals.
+                </li>
+                <li>
+                  <code class="lang-js">clearHash</code> is a boolean that defaults to true.
+                </li>
+              </ul>
             </td>
           </tr>
         </tbody>
@@ -289,6 +296,28 @@
           <p>From bottom!</p>
         </sh-modal>
       </lib-toolbar>
+
+      <h3 class="margin-b-quarter">History State Management</h3>
+      <lib-toolbar>
+          <sh-button modal-trigger="demo-history1">Launch First Modal</sh-button>
+          <sh-modal id="demo-history1" header="First Modal">
+            <p>
+              Click <a href="#demo-history2">here</a> to progress to the second modal.
+            </p>
+          </sh-modal>
+
+          <sh-modal id="demo-history2" header="Second Modal">
+            <p>
+              Click <a href="#demo-history3">here</a> to progress to the third modal.
+            </p>
+          </sh-modal>
+
+          <sh-modal id="demo-history3" header="Third Modal">
+            <p>
+              That's it! Now use the back button on your browser to return through the previous states.
+            </p>
+          </sh-modal>
+        </lib-toolbar>
     </section>
 
     <section id="changelog">
