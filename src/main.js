@@ -9,6 +9,7 @@ Vue.config.productionTip = false
 /* prod components */
 require('./components/sh-button')
 require('./components/sh-modal')
+require('./components/belk-app-banner')
 
 if (process.env.VUE_APP_DEV) {
   /* non-deployed in prod */
@@ -25,12 +26,12 @@ if (process.env.VUE_APP_DEV) {
   require('./assets/style/common/utility.scss')
   require('./assets/style/layout.scss')
   require('./assets/style/prism.css')
+
   require('./components/lib-header')
   require('./components/lib-content')
   require('./components/lib-section-links')
   require('./components/lib-toolbar')
   require('./components/lib-notify')
-  require('./components/component-template')
 } 
 
 // mount to container

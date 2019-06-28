@@ -1,0 +1,111 @@
+<div class="documentation">
+  <div class="contain">
+    <h1>app banner</h1>
+    <section id="usage">
+      <h2>Usage</h2>
+      <pre>
+        <code class="language-html">
+          &lt;app-banner days-after-close="3" days-after-open="30"&gt;&lt;/app-banner&gt;
+        </code>
+      </pre>
+      <p>The App Banner loads when the configured conditions are met.</p>
+    </section>
+
+    <section id="reference">
+      <h2>Reference</h2>
+      <h3 id="attributes">Attributes</h3>
+
+      <table class="attributes">
+        <thead>
+          <tr>
+            <th>Attribute</th>
+            <th>Type</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>days-after-close</td>
+            <td>Number</td>
+            <td>
+              <ul>
+                <li>The amount of time (in days) before the banner will show again after it has been closed.</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>days-after-open</td>
+            <td>Number</td>
+            <td>
+              <ul>
+                <li>The amount of time (in days) before the banner will show again after 'View' has been clicked.</li>
+              </ul>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3 id="slots">Slots</h3>
+
+      <h3 id="methods">Public Methods</h3>
+
+      <table class="methods">
+        <thead>
+          <tr>
+            <th>Function</th>
+            <th>Params</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>open</td>
+            <td>
+              <ul>
+                <li>
+                  none
+                </li>
+              </ul>
+            </td>
+            <td>
+              Trigger the app banner.
+            </td>
+          </tr>
+          <tr>
+            <td>close</td>
+            <td>
+              <ul>
+                <li>
+                  none
+                </li>
+              </ul>
+            </td>
+            <td>
+              Close the app banner.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+    </section>
+
+    <section id="examples">
+      <h2>Examples</h2>
+      <h3>Basic</h3>
+      <p class="note">Implementations would not include the [active] attribute by default.</p>
+      <lib-toolbar>
+        <div style="width:360px">
+          <belk-app-banner active id="demo-default"></belk-app-banner>
+        </div>
+      </lib-toolbar>
+    </section>
+
+    <section id="changelog">
+      <h2>Changelog</h2>
+      <dl>
+        <dt>1.0.0</dt>
+        <dd>Component was created.</dd>
+      </dl>
+    </section>
+  </div>
+</div>

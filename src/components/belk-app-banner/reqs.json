@@ -1,0 +1,14 @@
+{
+  "base": [
+    "Display a banner upon entry to mobile web page in any non-Safari browser",
+    "CTA should read 'View'",
+    "Link to appropriate app store depending on device type",
+    "Display Belk app icon",
+    "Display Belk app name",
+    "Display Price of App (Free)",
+    "Have an X to close banner",
+    "Display frequency after a Close is configurable",
+    "Display frequency after a View is configurable",
+    "Display banner on tablet and phone screen sizes"
+  ]
+}

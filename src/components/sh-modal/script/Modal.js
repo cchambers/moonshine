@@ -1,5 +1,7 @@
 import { EventBus } from '../../event-bus';
 
+// TODO: Make tablock work.
+
 export default {
   name: 'Modal',
 
