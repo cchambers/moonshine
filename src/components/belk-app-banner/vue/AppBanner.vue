@@ -1,14 +1,14 @@
 <template>
   <div class="belk-app-banner" :class="{ active: active }">
-    <div :click="close" class="close">
+    <div v-hammer:tap="close" class="close">
       <i class="material-icons">close</i>
     </div>
-    <div :click="navigate" class="icon"></div>
-    <div :click="navigate" class="data">
+    <div v-hammer:tap="navigate" class="icon"></div>
+    <div v-hammer:tap="navigate" class="data">
       <div class="name">Belk</div>
       <div class="price">free</div>
     </div>
-    <div :click="navigate" class="link">
+    <div v-hammer:tap="navigate" class="link">
       View
     </div>
   </div>
