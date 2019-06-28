@@ -437,3 +437,20 @@ pre .line-highlight {
 	margin-top: 0;
 }
 
+
+.note {
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  background: $accent-primary;
+  font-size: 1.4rem;
+  border-radius: 0.5rem;
+  color: #272822;
+  padding: 0 1.5rem;
+  text-shadow: 1px 1px 1px $highlight-quaternary;
+  border: 1px dashed #272822;
+  &:before { 
+    content: 'Note: ';
+    font-weight: bold;
+  }
+}
