@@ -466,17 +466,16 @@ pre .line-highlight {
 
 
 .note {
-  &:before {
-    content: 'Note: ';
-    font-weight: bold;
-  }
-
   width: max-content;
   background: $accent-primary;
   font-size: 1.4rem;
   border-radius: 0.5rem;
-  color: $accent-tertiary;
+  color: $lowlight-tertiary;
   padding: 0 1.5rem;
   text-shadow: 1px 1px 1px $highlight-quaternary;
-  border: 1px dashed $accent-tertiary;
+  border: 1px dashed $lowlight-tertiary;
+  &:before { 
+    content: 'Note: ';
+    font-weight: bold;
+  }
 }
