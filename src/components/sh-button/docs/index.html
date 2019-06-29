@@ -1,0 +1,157 @@
+<div class="documentation">
+  <div class="contain">
+    <h1>button</h1>
+    <section id="usage">
+      <h2>Usage</h2>
+      <pre>
+        <code class="language-html">
+          &lt;sh-button&gt;
+            &lt;p&gt;
+              Button
+            &lt;/p&gt;
+          &lt;/sh-button&gt;
+        </code>
+      </pre>
+    </section>
+
+    <section id="reference">
+      <h2>Reference</h2>
+      <h3 id="attributes">Attributes</h3>
+
+      <table class="attributes">
+        <thead>
+          <tr>
+            <th>Attribute</th>
+            <th>Type</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>variant</td>
+            <td>String</td>
+            <td>
+              <ul>
+                <li>Style variant.</li>
+                <li>Defaults to 'primary'.</li>
+              </ul>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3 id="slots">Slots</h3>
+      <table class="slots">
+        <thead>
+          <tr>
+            <th>Slot</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><em>default</em></td>
+            <td>
+              The text content of the button.
+            </td>
+          </tr>
+          <tr>
+            <td>before-icon</td>
+            <td>
+              <a href="https://material.io/tools/icons/?style=baseline" target="_icons">Material Icon</a> that comes before the text.
+            </td>
+          </tr>
+          <tr>
+            <td>active-before-icon</td>
+            <td>
+              <a href="https://material.io/tools/icons/?style=baseline" target="_icons">Material Icon</a> that comes before the text when the 'active' prop has been toggled true.
+            </td>
+          </tr>
+          <tr>
+            <td>after-icon</td>
+            <td>
+              <a href="https://material.io/tools/icons/?style=baseline" target="_icons">Material Icon</a> that comes after the text.
+            </td>
+          </tr>
+          <tr>
+            <td>active-after-icon</td>
+            <td>
+              <a href="https://material.io/tools/icons/?style=baseline" target="_icons">Material Icon</a> that comes after the text when the 'active' prop has been toggled true.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3 id="methods">Public Methods</h3>
+
+      <table class="methods">
+        <thead>
+          <tr>
+            <th>Function</th>
+            <th>Params</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- <tr>
+            <td>open</td>
+            <td>
+              <ul>
+                <li>
+                  none
+                </li>
+              </ul>
+            </td>
+            <td>
+              Trigger the modal. This will close other open modals.
+            </td>
+          </tr> -->
+        </tbody>
+      </table>
+
+      <h3 id="events">Events</h3>
+
+      <table class="events">
+        <thead>
+          <tr>
+            <th>Event</th>
+            <th>Payload Type</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>click</td>
+            <td>
+              String
+            </td>
+            <td>
+              <ul>
+                <li>Fires when the button is clicked.</li>
+              </ul>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="examples">
+      <h2>Examples</h2>
+
+      <h3 class="margin-b-quarter">Default</h3>
+      <lib-toolbar>
+          <sh-button toggle>Toggle Button</sh-button>
+          <sh-button toggle>With Icon</sh-button>
+          <sh-button toggle>With Active Icon</sh-button>
+      </lib-toolbar>
+    </section>
+
+    <section id="changelog">
+      <h2>Changelog</h2>
+      <dl>
+        <dt>1.0.0</dt>
+        <dd>Component was created.</dd>
+      </dl>
+    </section>
+  </div>
+</div>
