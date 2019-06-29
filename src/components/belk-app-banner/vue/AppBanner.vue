@@ -5,11 +5,15 @@
     </div>
     <div v-hammer:tap="navigate" class="icon"></div>
     <div v-hammer:tap="navigate" class="data">
-      <div class="name">Belk</div>
-      <div class="price">free</div>
+      <div class="name">
+        <slot name="name">{{ name }}</slot>
+      </div>
+      <div class="price">
+        <slot name="price">{{ price }}</slot>
+      </div>
     </div>
     <div v-hammer:tap="navigate" class="link">
-      View
+      {{ ctaText }}
     </div>
   </div>
 </template>

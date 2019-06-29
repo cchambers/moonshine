@@ -12,6 +12,18 @@ export default {
       type: Number,
       default: 0
     },
+    name: {
+      type: String,
+      default: 'Belk',
+    },
+    price: {
+      type: String,
+      default: 'free'
+    },
+    ctaText: {
+      type: String,
+      default: 'View'
+    }
   },
 
   data() {
