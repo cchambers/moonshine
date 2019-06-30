@@ -32,12 +32,6 @@ body {
   right: 0;
   bottom: 0;
   overflow: hidden;
-  opacity: 1 !important;
-  > * {
-    position: relative;
-    overflow: hidden;
-    transform: translateX(0) translateZ(0);
-  }
   #page {
     position: absolute;
     top: 0;
@@ -47,6 +41,10 @@ body {
     display: flex;
     flex-direction: column;
     transition: all 150ms $ease;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+    transform: translateX(0) translateZ(0);
   }
   
 
@@ -195,4 +193,11 @@ i.material-icons {
 .image + .image {
   margin-top: -0.9rem;
   min-height: 3rem;
+}
+
+[v-cloak] {
+  display: none;
+  &[vce-ready] {
+    display: inherit;
+  }
 }

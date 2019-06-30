@@ -73,6 +73,10 @@ export default {
         staticRenderFns: res.staticRenderFns
       }).$mount(`#${this.uuid}`);
       
+    },
+    
+    toggleActive() {
+      this.active = !this.active;
     }
   }
 }

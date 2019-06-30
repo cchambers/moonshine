@@ -22,9 +22,6 @@ var delegations = {
 				EventBus.$emit('show-nav');
 			}
     }
-	],
-	mouseover: [
-
 	]
 };
 
@@ -37,6 +34,7 @@ function bindAll() {
 function setupEvent(event) {
 // create a new listener... 
 	document.addEventListener(event, function(e) {
+		console.log(event, e)
 		let arr = delegations[event];
 		// for every item that needs to be watched on *event*
 		for (var x = 0, l = arr.length; x < l; x++) {

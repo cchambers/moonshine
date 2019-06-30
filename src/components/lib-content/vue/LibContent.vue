@@ -1,6 +1,6 @@
 <template>
   <div class="lib-content">
-    <div v-html="html" id="library-content"></div>
+    <div v-html="html"></div>
   </div>
 </template>
 

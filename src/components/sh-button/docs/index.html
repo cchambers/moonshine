@@ -140,8 +140,12 @@
 
       <h3 class="margin-b-quarter">Default</h3>
       <lib-toolbar>
-          <sh-button toggle>Toggle Button</sh-button>
-          <sh-button toggle>With Icon</sh-button>
+          <sh-button scale="70" toggle>Toggle Button</sh-button>
+          <sh-button toggle>
+            <i class="material-icons" slot="before-text">close</i>
+            With Icon
+            <i class="material-icons" slot="after-text">check</i>
+          </sh-button>
           <sh-button toggle>With Active Icon</sh-button>
       </lib-toolbar>
     </section>

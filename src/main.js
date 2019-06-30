@@ -9,7 +9,6 @@ Vue.use(vueCustomElement);
 
 Vue.config.productionTip = false
 
-/* prod components */
 
 if (process.env.VUE_APP_DEV) {
   /* non-deployed in prod */
@@ -27,15 +26,14 @@ if (process.env.VUE_APP_DEV) {
   require('./assets/style/layout.scss')
   require('./assets/style/prism.css')
   require('./components/lib-header')
-  // require('./components/lib-content')
+  require('./components/lib-content')
   require('./components/lib-section-links')
   require('./components/lib-toolbar')
   require('./components/lib-notify')
   require('./components/component-template')
 } 
+
+
+/* prod components */
 require('./components/sh-button/index.js')
 require('./components/sh-modal/index.js')
-
-
-// mount to container
-new Vue().$mount('#xxx')

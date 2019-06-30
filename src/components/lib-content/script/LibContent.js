@@ -1,4 +1,4 @@
-import Vue from 'vue'
+// import Vue from 'vue'
 import { EventBus } from '../../event-bus';
 
 export default {
@@ -47,11 +47,13 @@ export default {
                 demos[x].setAttribute('base-code', code);
               }
 
-              let res = Vue.compile(updateCode.innerHTML);
-              new Vue({
-                render: res.render,
-                staticRenderFns: res.staticRenderFns
-              }).$mount('#library-content');
+              self.html = html;
+
+              // let res = Vue.compile(updateCode.innerHTML);
+              // new Vue({
+              //   render: res.render,
+              //   staticRenderFns: res.staticRenderFns
+              // }).$mount('#library-content');
               
               self.docEvents();
               self.sectionLinks();
