@@ -10,6 +10,7 @@ let app = {
     let demos = document.querySelectorAll('lib-toolbar');
     for (let x = 0, l = demos.length; x < l; x++) {
       demos[x].setAttribute('base-code', demos[x].innerHTML);
+      demos[x].innerHTML = '';
     }
   }
 }

@@ -6,9 +6,7 @@
         <!-- <sh-button class="min" v-if="active">copy code</sh-button> -->
         <sh-button class="min" v-if="active" v-hammer:tap="toggleActive">hide code</sh-button>
       </div>
-      <div ref="component" class="component">
-        <div ref="uuid"></div>
-      </div>
+      <div ref="component" class="component" v-html="html"></div>
     </div>
     <div class="editor" ref="editor"></div>
   </div>
@@ -16,8 +14,15 @@
 
 <script src="../script/LibToolbar.js"></script>
 <style lang="scss" src="../style/default.scss" scoped></style>
-<style lang="css">
+<style lang="scss">
 .ace_text-input {
   position: absolute !important;
+}
+
+.control {
+  button  {
+    background: $lowlight-tertiary;
+    font-size: 8px;
+  }
 }
 </style>

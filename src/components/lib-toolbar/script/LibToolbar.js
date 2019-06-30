@@ -1,4 +1,3 @@
-import Vue from 'vue'
 import * as ace from 'brace';
 import 'brace/mode/html';
 import 'brace/theme/monokai';
@@ -27,7 +26,6 @@ export default {
       (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
     )
     this.uuid = 'sh' + this.uuid;
-    this.$refs.uuid.id = this.uuid;
     if (this.baseCode) {
       this.code = this.baseCode;
       this.renderCode(this.baseCode);
@@ -51,9 +49,11 @@ export default {
     this.$refs.editor.style.width = "100%";
     this.editor.resize();
     this.editor.getSession().selection.clearSelection();
+    
     this.editor.getSession().on('change', function() {
-      self.editorCode = self.editor.getSession().getValue();
-      self.renderDebounce(self.editorCode);
+      let value = self.editor.getSession().getValue();
+      self.editorCode = value;
+      self.html = self.editorCode;
     });
   },
 
@@ -67,12 +67,7 @@ export default {
     },
 
     renderCode(code) {
-      let res = Vue.compile(`<div id="${this.uuid}">${code}</div>`);
-      new Vue({
-        render: res.render,
-        staticRenderFns: res.staticRenderFns
-      }).$mount(`#${this.uuid}`);
-      
+      this.html = code;
     },
     
     toggleActive() {
