@@ -1,17 +1,14 @@
 /* eslint-disable */
-import 'document-register-element/build/document-register-element'; // IE9 polyfill
 
 import Vue from 'vue'
 
 import { VueHammer } from 'vue2-hammer'
 Vue.use(VueHammer)
 
-// import vueCustomElement from 'vue-custom-element'
-// Vue.use(vueCustomElement);
+import vueCustomElement from 'vue-custom-element'
+Vue.use(vueCustomElement);
 
 Vue.config.productionTip = false
-
-Vue.customElement('sh-button', require('./components/sh-button'));
 
 if (process.env.VUE_APP_DEV) {
   /* non-deployed in prod */
@@ -20,7 +17,7 @@ if (process.env.VUE_APP_DEV) {
   require('./components/sh-curtain')
   require('./components/sh-header')
   require('./components/sh-modal')
-  // require('./components/sh-button')
+  require('./components/sh-button')
   require('./components/sh-nav')
 
   require('./assets/script/prism.js')
