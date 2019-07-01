@@ -8,8 +8,9 @@ let pages = {
     entry: 'src/main.js',
     nav: nav,
     template: 'src/docs-index.html'
-  },
+  }
 }
+
 if (process.env.VUE_APP_DEV) {
   glob.sync('./src/components/**/docs/data/*').forEach(path => {  
     let component = path.split('/')[3];
@@ -57,7 +58,7 @@ module.exports = {
   configureWebpack: {
     resolve: {
       alias: {
-        'vue$': 'vue/dist/vue.esm.js' // 'vue/dist/vue.common.js' for webpack 1
+        'vue$': 'vue/dist/vue.esm.js'
       }
     }
   },
