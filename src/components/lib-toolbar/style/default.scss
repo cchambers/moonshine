@@ -46,7 +46,6 @@
   bottom: 0;
   display: flex;
   button {
-    background: $lowlight-tertiary;
     transition: all 250ms $ease;
     &:hover {
       background: $accent-secondary;

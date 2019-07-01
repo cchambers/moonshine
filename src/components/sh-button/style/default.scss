@@ -1,22 +1,52 @@
 button {
   border: 0;
-  display: inline-block;
-  padding: 0.5em 1em;
+  display: inline-flex;
+  align-items: center;
+  flex-direction: row;
+  padding: 0 1em;
+  line-height: 3em;
   color: $highlight-primary;
   background: $accent-quaternary;
-  transition: all 50ms linear;
+  transition: all 100ms $ease;
   text-transform: uppercase;
-  font-size: 1.6rem;
+  font-size: 10px;
   cursor: pointer;
+
+  span, i {
+    pointer-events: none;
+  }
+  
+  span {
+    display: flex;
+    font-size: 1.4em;
+  }
+
+  .material-icons {
+    &:first-child {
+      margin-right: 0.5em;
+    }
+
+    &:last-child {
+      margin-left: 0.5em;
+    }
+    font-size: 1em;
+  }
+
   @include box-shadow(2);
+  // &[scale] {
+
+  // }
   &.min {
     font-size: 1rem;
     box-shadow: none !important;
   }
+
   &:hover {
     background: $accent-tertiary
   }
+
   &:active {
     @include box-shadow(1);
   }
+
 }

@@ -18,6 +18,7 @@ export default {
   data() {
     return {
       triggers: [],
+      closeTriggers: [],
       container: null,
       loaded: false,
       loading: false,
@@ -106,6 +107,14 @@ export default {
         el.addEventListener('click', function() {
           window.location.hash = `#${self.id}`;
         });
+      });
+
+      let closeSelector = `[close-trigger]`;
+      this.closeTriggers = this.$el.querySelectorAll(closeSelector);
+      this.closeTriggers.forEach(function(el) {
+        el.addEventListener('click', function() {
+          window.location.hash = `#${self.id}`;
+        }, true);
       });
     },
 

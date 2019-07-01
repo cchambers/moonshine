@@ -26,7 +26,7 @@
 </template>
   
 <script src="../script/Nav.js"></script>
-<style lang="scss" src="../style/default.scss" scoped></style>
+<style lang="scss" src="../style/default.scss"></style>
 
 <style lang="scss">
 a {
