@@ -22,7 +22,7 @@ body {
   right: 0;
   bottom: 0;
   overflow: hidden;
-  background: $lowlight-tertiary;
+  color: $lowlight-tertiary;
 }
 
 [id="xxx"] {
@@ -32,12 +32,6 @@ body {
   right: 0;
   bottom: 0;
   overflow: hidden;
-  opacity: 1 !important;
-  > * {
-    position: relative;
-    overflow: hidden;
-    transform: translateX(0) translateZ(0);
-  }
   #page {
     position: absolute;
     top: 0;
@@ -47,6 +41,10 @@ body {
     display: flex;
     flex-direction: column;
     transition: all 150ms $ease;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+    transform: translateX(0) translateZ(0);
   }
   
 
@@ -86,8 +84,9 @@ body {
 }
 
 i.material-icons {
-  display: block;
+  display: inline-flex;
   line-height: 1em;
+  font-size: inherit;
 }
 
 
@@ -181,7 +180,7 @@ i.material-icons {
 }
 
 .baseline30 .image {
-  height: 21rem;
+  height: 30rem;
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center center;
@@ -195,4 +194,11 @@ i.material-icons {
 .image + .image {
   margin-top: -0.9rem;
   min-height: 3rem;
+}
+
+[v-cloak] {
+  opacity: none !important;
+  &[vce-ready] {
+    display: inherit !important;
+  }
 }

@@ -22,9 +22,6 @@ var delegations = {
 				EventBus.$emit('show-nav');
 			}
     }
-	],
-	mouseover: [
-
 	]
 };
 

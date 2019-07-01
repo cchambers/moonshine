@@ -1,10 +1,4 @@
 
 Stuff to do:
-  ☐ VuePress: static page rendering for non-component stuff... (utilities, home page, etc)
-  ☐ https://medium.com/@DanielSchmitz/how-to-integrate-vuepress-into-your-existing-vue-project-42f8ec0448db
-  ☐ check out Storybook
+  ☐ check out Storybook?
   ☐ Theming. Most important.
-
-
-  Modals:
-    ☐ state mangement? Modal -> modal <- modal

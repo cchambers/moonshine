@@ -1,4 +1,4 @@
 import Vue from 'vue'
 import Nav from './vue/Nav';
 
-Vue.component('sh-nav', Nav);
+Vue.customElement('sh-nav', Nav);
