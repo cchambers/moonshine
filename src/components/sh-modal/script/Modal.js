@@ -61,8 +61,6 @@ export default {
       });
 
       window.addEventListener('hashchange', this.hashHandler)
-
-      
     },
 
     hashHandler() {

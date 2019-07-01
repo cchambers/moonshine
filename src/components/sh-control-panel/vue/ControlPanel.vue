@@ -25,11 +25,11 @@ html {
     }
     #page {
       transform: translateX(15rem) translateZ(0);
-      transition: all 300ms $ease;
+      transition: transform 300ms $ease;
     }
     sh-nav {
       transform: translateX(0) translateZ(0);
-      transition: all 300ms $ease;
+      transition: transform 300ms $ease;
     }
     sh-curtain {
       opacity: 1;

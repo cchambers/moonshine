@@ -29,6 +29,7 @@ export default {
     if (this.baseCode) {
       this.code = this.baseCode;
       this.renderCode(this.baseCode);
+      this.$el.removeAttribute('base-code');
     }
     this.$refs.editor.id = `editor-${this.uuid}`;
     this.editor = ace.edit(this.$refs.editor.id);

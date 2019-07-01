@@ -29,8 +29,7 @@ button {
     &:last-child {
       margin-left: 0.5em;
     }
-
-    font-size: 1.6em;
+    font-size: 1em;
   }
 
   @include box-shadow(2);

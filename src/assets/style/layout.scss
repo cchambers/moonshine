@@ -22,7 +22,7 @@ body {
   right: 0;
   bottom: 0;
   overflow: hidden;
-  background: $lowlight-tertiary;
+  color: $lowlight-tertiary;
 }
 
 [id="xxx"] {
@@ -84,8 +84,9 @@ body {
 }
 
 i.material-icons {
-  display: block;
+  display: inline-flex;
   line-height: 1em;
+  font-size: inherit;
 }
 
 
@@ -179,7 +180,7 @@ i.material-icons {
 }
 
 .baseline30 .image {
-  height: 21rem;
+  height: 30rem;
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center center;
@@ -196,8 +197,8 @@ i.material-icons {
 }
 
 [v-cloak] {
-  display: none;
+  opacity: none !important;
   &[vce-ready] {
-    display: inherit;
+    display: inherit !important;
   }
 }
