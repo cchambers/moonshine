@@ -11,7 +11,7 @@ let pages = {
   }
 }
 
-if (process.env.VUE_APP_DEV) {
+if (process.env.NODE_ENV != "production") {
   glob.sync('./src/components/**/docs/data/*.html').forEach(path => {  
     let component = path.split('/')[3];
     let filename = path.split('/');

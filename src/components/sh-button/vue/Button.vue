@@ -7,9 +7,9 @@
 </template>
 
 <script src="../script/Button.js"></script>
-<style lang="scss" src="../style/default.scss" scoped></style>
+<style lang="scss" src="../style/default.scss"></style>
 <style lang="scss">
 sh-button {
-  display: inline-block;
+  display: inline-flex;
 }
 </style>

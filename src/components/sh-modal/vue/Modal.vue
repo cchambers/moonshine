@@ -28,9 +28,9 @@
 </template>
   
 <script src="../script/Modal.js"></script>
-<style lang="scss" src="../style/default.scss" scoped></style>
-<style lang="scss" src="../style/primary.scss" scoped></style>
-<style lang="scss" src="../style/secondary.scss" scoped></style>
+<style lang="scss" src="../style/default.scss"></style>
+<style lang="scss" src="../style/primary.scss"></style>
+<style lang="scss" src="../style/secondary.scss"></style>
 <style lang="scss">
 [modal-trigger] {
   color: $link-color;
