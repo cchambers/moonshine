@@ -25,15 +25,12 @@
   }
   .header {
     display: flex;
-    background: $accent-primary;
     margin: -$base;
+    color: $accent-tertiary;
     margin-bottom: 3rem;
-    position: sticky;
-    top: 0;
     justify-content: space-between;
     i {
       cursor: pointer;
-      color: $accent-tertiary;
       font-size: $base;
     }
   }
@@ -45,7 +42,6 @@
   h3 {
     margin: 0 !important;
     padding-left: $base;
-    color: $highlight-primary;
   }
   
   [close-trigger] {

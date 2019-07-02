@@ -14,7 +14,8 @@ export default {
     contentSelector: String,
     header: String,
     footer: String,
-    reveal: String
+    reveal: String,
+    variant: String
   },
 
   data() {
@@ -27,7 +28,7 @@ export default {
       active: false,
       ariaID: String,
       ariaHeaderID: String,
-      ariaDescID: String,
+      ariaDescID: String
     };
   },
 

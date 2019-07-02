@@ -12,7 +12,7 @@ let pages = {
 }
 
 if (process.env.VUE_APP_DEV) {
-  glob.sync('./src/components/**/docs/data/*').forEach(path => {  
+  glob.sync('./src/components/**/docs/data/*.html').forEach(path => {  
     let component = path.split('/')[3];
     let filename = path.split('/');
     filename = filename[filename.length-1];
