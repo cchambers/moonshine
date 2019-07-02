@@ -11,7 +11,6 @@ Vue.use(VueHammer)
 import vueCustomElement from 'vue-custom-element'
 Vue.use(vueCustomElement)
 
-// require('./components/belk-header')
 /* non-deployed in prod */
 require('./components/sh-control-panel')
 require('./components/sh-curtain')

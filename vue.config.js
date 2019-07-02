@@ -21,7 +21,7 @@ if (process.env.VUE_APP_DEV) {
     pages[name] = {
       entry: 'src/blank.js',
       template: path,
-      filename: `pagedata/${component}/${filename}`
+      filename: `components/${component}/data/${filename}`
     }
   })
 

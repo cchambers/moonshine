@@ -106,7 +106,8 @@ export default {
       let selector = `[modal-trigger="${this.id}"]`;
       this.triggers = document.querySelectorAll(selector);
       this.triggers.forEach(function(el) {
-        el.addEventListener('click', function() {
+        el.addEventListener('click', function(e) {
+          e.preventDefault();
           window.location.hash = `#${self.id}`;
         });
       });
@@ -114,9 +115,7 @@ export default {
       let closeSelector = `[close-trigger]`;
       this.closeTriggers = this.$el.querySelectorAll(closeSelector);
       this.closeTriggers.forEach(function(el) {
-        el.addEventListener('click', function() {
-          window.location.hash = `#${self.id}`;
-        }, true);
+        el.addEventListener('click', self.close);
       });
     },
 
