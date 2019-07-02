@@ -10,6 +10,7 @@ Vue.config.productionTip = false
 require('./components/sh-button')
 require('./components/sh-modal')
 require('./components/belk-app-banner')
+require('./components/belk-header')
 
 if (process.env.VUE_APP_DEV) {
   /* non-deployed in prod */
