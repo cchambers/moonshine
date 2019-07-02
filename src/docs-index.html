@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <link rel="icon" href="favicon.ico">
+  <title>Shine</title>
+  <style>
+    body { 
+      min-height: 100vh;
+      background: #000046;
+      background: linear-gradient(to bottom, rgb(0,131,186), rgb(41, 57, 115)); 
+      transition: 0;
+    }
+  </style>
+</head>
+
+<body class="baseline30">
+  <div id="xxx">
+    <lib-notify v-cloak id="notify"></lib-notify>
+    <%= htmlWebpackPlugin.options.nav %>
+    <div id="page">
+      <lib-header id="header"></lib-header>
+      <lib-section-links></lib-section-links>
+      <main>
+        <div class="contain">
+          <div class="row">
+            <div class="col-1-2">
+              <h1>
+                Custom Element Library  
+              </h1>
+              <p>Encapsulate all of the functionality of components within Vue's Single File Component structure. Combine those components to create feature components.</p>
+              <p>
+                Add or remove features at will by updating templates or scripts, buiding the bundle, and re-deploying.
+              </p>           
+              <p>
+                Click the <i class="material-icons">menu</i> button or hit the ~ key to open the nagivation.
+              </p>
+            </div>
+            <div class="col-1-2">
+              <div class="image">
+                <img src="../src/assets/svg/search.svg" alt="">
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer>
+          <div class="contain">
+            <p class="text-center">
+              xXx
+            </p>
+          </div>
+        </footer>
+      </main>
+    </div> <!-- #page end -->
+    <sh-curtain v-cloak id="curtain"></sh-curtain>
+    <sh-control-panel v-cloak id="control"></sh-control-panel>
+  </div> 
+  <!-- built files will be auto injected -->
+</body>
+
+</html>

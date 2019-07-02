@@ -28,7 +28,7 @@ export default {
 
   data() {
     return {
-      active: true,
+      active: Boolean,
       mobile: false,
       which: String,
       appLink: String

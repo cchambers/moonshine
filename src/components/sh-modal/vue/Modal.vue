@@ -1,5 +1,11 @@
 <template>
-  <div class="sh-modal" :class="{ active: active }" :reveal="reveal" role="dialog" :id="id" :aria-labelledby="ariaID" :aria-describedby="ariaDescID">
+  <div class="sh-modal" role="dialog" 
+    :variant="variant" 
+    :class="{ active: active }" 
+    :reveal="reveal"
+    :id="id" 
+    :aria-labelledby="ariaID" 
+    :aria-describedby="ariaDescID">
     <div class="content">
       <div class="tab-lock" tabindex="0"></div>
       <div class="header">
@@ -23,6 +29,8 @@
   
 <script src="../script/Modal.js"></script>
 <style lang="scss" src="../style/default.scss" scoped></style>
+<style lang="scss" src="../style/primary.scss" scoped></style>
+<style lang="scss" src="../style/secondary.scss" scoped></style>
 <style lang="scss">
 [modal-trigger] {
   color: $link-color;

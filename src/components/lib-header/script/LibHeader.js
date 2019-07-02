@@ -1,7 +1,5 @@
-import { EventBus } from "../../event-bus";
-
 export default {
-  name: 'Header',
+  name: 'LibHeader',
 
   props: {
     nav: Boolean
@@ -45,8 +43,7 @@ export default {
       }
     });
 
-    EventBus.$on('header-page-name', function(data) {
-      self.pageName = data;
-    });
+    let h1 = document.querySelector('h1');
+    if (h1) self.pageName = h1.innerText;
   }
 }

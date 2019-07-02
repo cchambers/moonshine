@@ -5,13 +5,16 @@
   "scripts": {
     "prestart": "nvm use 10",
     "serve": "vue-cli-service serve",
-    "dev": "vue-cli-service serve --open",
+    "dev": "vue-cli-service serve --open --host localhost",
     "build": "vue-cli-service build",
+    "build:dev": "vue-cli-service build --mode development",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
     "core-js": "^3.1.4",
+    "document-register-element": "^1.13.2",
     "vue": "^2.6.10",
+    "vue-custom-element": "^3.2.7",
     "vue2-hammer": "^2.1.2"
   },
   "devDependencies": {

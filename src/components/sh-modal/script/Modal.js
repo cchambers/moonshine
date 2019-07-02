@@ -14,19 +14,21 @@ export default {
     contentSelector: String,
     header: String,
     footer: String,
-    reveal: String
+    reveal: String,
+    variant: String
   },
 
   data() {
     return {
       triggers: [],
+      closeTriggers: [],
       container: null,
       loaded: false,
       loading: false,
       active: false,
       ariaID: String,
       ariaHeaderID: String,
-      ariaDescID: String,
+      ariaDescID: String
     };
   },
 
@@ -105,9 +107,16 @@ export default {
       let selector = `[modal-trigger="${this.id}"]`;
       this.triggers = document.querySelectorAll(selector);
       this.triggers.forEach(function(el) {
-        el.addEventListener('click', function() {
+        el.addEventListener('click', function(e) {
+          e.preventDefault();
           window.location.hash = `#${self.id}`;
         });
+      });
+
+      let closeSelector = `[close-trigger]`;
+      this.closeTriggers = this.$el.querySelectorAll(closeSelector);
+      this.closeTriggers.forEach(function(el) {
+        el.addEventListener('click', self.close);
       });
     },
 

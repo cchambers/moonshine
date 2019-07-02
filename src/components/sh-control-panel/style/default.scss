@@ -2,7 +2,7 @@
   cursor: pointer;
   color: $accent-primary;
   font-size: 4rem;
-  transition: all 250ms $ease;
+  transition: opacity 250ms $ease;
   border-radius: 50%;
   -webkit-touch-callout: none;
   -webkit-user-select: none;

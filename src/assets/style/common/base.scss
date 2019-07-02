@@ -7,22 +7,6 @@
   $$ |  $$ |$$  __$$ | \____$$\ $$ |   $$ |       \____$$\  \____$$\
   $$$$$$$  |\$$$$$$$ |$$$$$$$  |$$ |$$\\$$$$$$$\ $$$$$$$  |$$$$$$$  |
   \_______/  \_______|\_______/ \__|\__|\_______|\_______/ \_______/
-
-  basi.css actual
-  Author: Chris Chambers
-  Version: 5 [1.15.2018]
-  Description: This is the core file for the Basicss Object-Oriented Scaling CSS framework.
-  Contents:
-  - Setup/Reset
-  - OO Classes
-  - Content Flow Management System (the 'grid')
-  - Scaling CSS Configuration
-  - Two baseline configs for Open Sans
-  - Material Icon Font - ref: https://www.google.com/design/icons/
-  - Material Icon Font - ex: <i class="material-icons">face</i>
-  # CHANGELOG 
-  - Flex rows when in .row, float rows when not. The difference is not noticeable. 
-  - Hey! Bootstrap found OO classes! I am simplifying these to align more with those.
 /*/
 
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700,800,400italic,700italic,800italic);
@@ -2051,4 +2035,44 @@ ol.lower-alpha {
 
 [hidden] {
   display: none !important;
+}
+
+
+[scale] {
+  font-size: 10px;
+}
+[scale="50"] {
+  font-size: 6px;
+}
+[scale="60"] {
+  font-size: 6px;
+}
+[scale="70"] {
+  font-size: 7px;
+}
+[scale="80"] {
+  font-size: 8px;
+}
+[scale="90"] {
+  font-size: 9px;
+}
+[scale="110"] {
+  font-size: 11px;
+}
+[scale="120"] {
+  font-size: 12px;
+}
+[scale="130"] {
+  font-size: 13px;
+}
+[scale="140"] {
+  font-size: 14px;
+}
+[scale="150"] {
+  font-size: 15px;
+}
+
+svg {
+  width: 100%;
+  height: auto;
 }
