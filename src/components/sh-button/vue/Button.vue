@@ -1,6 +1,7 @@
 <template>
   <button :close-trigger="closeTrigger" class="sh-button">
     <slot name="before-text"></slot>
+    <div v-if="toggleActive">{{ activeText }}</div>
     <slot></slot>
     <slot name="after-text"></slot>
   </button>

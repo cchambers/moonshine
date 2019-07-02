@@ -2,9 +2,7 @@
   <div class="lib-toolbar" v-bind:class="{ active: active }">
     <div class="control-wrap">
       <div class="control">
-        <sh-button class="min" v-if="!active" v-hammer:tap="toggleActive">show code</sh-button>
-        <!-- <sh-button class="min" v-if="active">copy code</sh-button> -->
-        <sh-button class="min" v-if="active" v-hammer:tap="toggleActive">hide code</sh-button>
+        <sh-button class="min" toggle active-text="hide code" v-hammer:tap="toggleActive">show code</sh-button>
       </div>
       <div ref="component" class="component" v-html="html"></div>
     </div>
