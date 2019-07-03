@@ -14,7 +14,7 @@ let schema = {
 prompt.start();
 
 prompt.get(schema, function (err, result) {
-  if (result.name) generateComponent(result.name);
+  if (result) generateComponent(result.name);
 });
 
 let replace = {
