@@ -15,8 +15,10 @@
     height: 100%;
     max-width: 102rem;
     margin: 12rem auto;
-    padding: $base;
     @include box-shadow(1);
+  }
+  .body {
+    padding: 0 $base;
   }
   &.active {
     transform: translateX(0) translateY(0) translateZ(0);
@@ -27,9 +29,7 @@
   }
   .header {
     display: flex;
-    margin: -$base;
     color: $accent-tertiary;
-    margin-bottom: 3rem;
     justify-content: space-between;
     i {
       cursor: pointer;
@@ -38,7 +38,6 @@
   }
   .footer {
     padding: 0.5rem $base;
-    margin: -$base;
     margin-top: 0;
   }
   h3 {

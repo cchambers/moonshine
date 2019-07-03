@@ -4,7 +4,7 @@
     <h2>Usage</h2>
     <pre>
       <code class="language-html">
-        &lt;sh-modal header="Modal Header" id="uniqueId"&gt;
+        &lt;sh-modal header="Modal Header" unique-id="string"&gt;
           &lt;p&gt;
             Lorem ipsum doler.
           &lt;/p&gt;
@@ -204,9 +204,8 @@
     <h3 class="margin-b-quarter">Default</h3>
     <lib-toolbar>
       <sh-button modal-trigger="demo-default">Open modal</sh-button>
-      <sh-modal id="demo-default" header="Modal Header">
+      <sh-modal unique-id="demo-default" header="Modal Header">
         <p>
-
           Magna <a href="#" modal-trigger="demo-2">demo modal 2</a> commodo ullamco occaecat ut ex ea reprehenderit.
           Deserunt laborum in proident aliquip dolore dolor cupidatat. Ex labore
           nisi magna ut voluptate adipisicing adipisicing elit nostrud enim eu
@@ -248,7 +247,7 @@
     <h3 class="margin-b-quarter">Remote Content (Ajax)</h3>
     <lib-toolbar>
       <sh-button modal-trigger="demo-ajax">Basic</sh-button>
-      <sh-modal id="demo-ajax" content-url="/component/sh-modal/ajax-test.html">
+      <sh-modal unique-id="demo-ajax" content-url="/component/sh-modal/ajax-test.html">
         <div slot="footer">
           <div class="flex center pad">
             <sh-button close-trigger>Continue</sh-button>
@@ -259,7 +258,7 @@
 
     <lib-toolbar>
       <sh-button modal-trigger="demo-ajax-target">Targeted</sh-button>
-      <sh-modal id="demo-ajax-target" content-url="/component/sh-modal/ajax-test.html" content-selector="#primary">
+      <sh-modal unique-id="demo-ajax-target" content-url="/component/sh-modal/ajax-test.html" content-selector="#primary">
         <div slot="footer">
           <div class="flex center pad">
             <sh-button close-trigger>Continue</sh-button>
@@ -271,27 +270,27 @@
     <h3 class="margin-b-quarter">Reveal Animations</h3>
     <lib-toolbar>
       <sh-button modal-trigger="demo-reveal-default">Default</sh-button>
-      <sh-modal id="demo-reveal-default">
+      <sh-modal unique-id="demo-reveal-default">
         <p>The default reveal is a simple opacity fade.</p>
       </sh-modal>
       
       <sh-button modal-trigger="demo-reveal-left">From Left</sh-button>
-      <sh-modal reveal="left" id="demo-reveal-left">
+      <sh-modal reveal="left" unique-id="demo-reveal-left">
         <p>From left!</p>
       </sh-modal>
 
       <sh-button modal-trigger="demo-reveal-right">From Right</sh-button>
-      <sh-modal reveal="right" id="demo-reveal-right">
+      <sh-modal reveal="right" unique-id="demo-reveal-right">
         <p>From right!</p>
       </sh-modal>
 
       <sh-button modal-trigger="demo-reveal-top">From Top</sh-button>
-      <sh-modal reveal="top" id="demo-reveal-top">
+      <sh-modal reveal="top" unique-id="demo-reveal-top">
         <p>From top!</p>
       </sh-modal>
 
       <sh-button modal-trigger="demo-reveal-bottom">From Bottom</sh-button>
-      <sh-modal reveal="bottom" id="demo-reveal-bottom">
+      <sh-modal reveal="bottom" unique-id="demo-reveal-bottom">
         <p>From bottom!</p>
       </sh-modal>
     </lib-toolbar>
@@ -299,19 +298,19 @@
     <h3 class="margin-b-quarter">History State Management</h3>
     <lib-toolbar>
       <sh-button modal-trigger="demo-history1">Launch First Modal</sh-button>
-      <sh-modal id="demo-history1" header="First Modal">
+      <sh-modal unique-id="demo-history1" header="First Modal">
         <p>
           Click <a href="#demo-history2">here</a> to progress to the second modal.
         </p>
       </sh-modal>
 
-      <sh-modal id="demo-history2" header="Second Modal">
+      <sh-modal unique-id="demo-history2" header="Second Modal">
         <p>
           Click <a href="#demo-history3">here</a> to progress to the third modal.
         </p>
       </sh-modal>
 
-      <sh-modal id="demo-history3" header="Third Modal">
+      <sh-modal unique-id="demo-history3" header="Third Modal">
         <p>
           That's it! Now use the back button on your browser to return through the previous states.
         </p>
@@ -321,17 +320,17 @@
     <h3 class="margin-b-quarter">Variants</h3>
     <lib-toolbar>
       <sh-button modal-trigger="demo-variant-default">Default</sh-button>
-      <sh-modal id="demo-variant-default">
+      <sh-modal unique-id="demo-variant-default">
         <p>Default (no) variant.</p>
       </sh-modal>
       
       <sh-button modal-trigger="demo-variant-primary">Primary</sh-button>
-      <sh-modal variant="primary" id="demo-variant-primary">
+      <sh-modal variant="primary" unique-id="demo-variant-primary">
         <p>"Primary" variant.</p>
       </sh-modal>
       
       <sh-button modal-trigger="demo-variant-secondary">Secondary</sh-button>
-      <sh-modal variant="secondary" id="demo-variant-secondary">
+      <sh-modal variant="secondary" unique-id="demo-variant-secondary">
         <p>"Secondary" variant.</p>
       </sh-modal>
     </lib-toolbar>

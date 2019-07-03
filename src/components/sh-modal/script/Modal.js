@@ -6,7 +6,7 @@ export default {
   name: 'Modal',
 
   props: {
-    id: {
+    uniqueId: {
       type: String,
       required: true
     },
@@ -34,9 +34,9 @@ export default {
 
   mounted() {
     this.modals = this.$el.querySelectorAll('.modal');
-    this.ariaID = `aria-${this.id}`;
-    this.ariaHeaderID = `aria-header-${this.id}`;
-    this.ariaDescID = `aria-desc-${this.id}`;
+    this.ariaID = `aria-${this.uniqueId}`;
+    this.ariaHeaderID = `aria-header-${this.uniqueId}`;
+    this.ariaDescID = `aria-desc-${this.uniqueId}`;
     let container = document.querySelector('#sh-modals');
     if (container) {
       this.container = container;
@@ -44,8 +44,7 @@ export default {
     } else {
       this.createContainer();
     }
-
-    this.hashHandler();
+    if (window.location.hash) this.hashHandler(window.location.hash.substr(1))
   },
 
   methods: {
@@ -63,16 +62,15 @@ export default {
         if (key == 27) EventBus.$emit('close-modals'); // esc
       });
 
-      window.addEventListener('hashchange', this.hashHandler)
+      EventBus.$on('hashchange', this.hashHandler)
     },
 
-    hashHandler() {
-      let hash = window.location.hash; 
-      if (hash.length > 1) {
-        hash = hash.substr(1);
-        if (this.id == hash) this.open();
-      } else {
-        if (this.active) this.close(false)
+    hashHandler(id) {
+      console.log(id)
+      if (id == '') {
+        if (this.active) this.close(false);
+      } else if (id == this.uniqueId) {
+        this.open();
       }
     },
 
@@ -80,19 +78,19 @@ export default {
       if (!this.loaded && this.contentUrl) this.loadContent()
 
       if (!this.active) {
-        EventBus.$emit('modal-opening', this.id);
+        EventBus.$emit('modal-opening', this.uniqueId);
         document.documentElement.classList.add('sh-modal-open');
         this.active = true;
-        EventBus.$emit('modal-opened', this.id);
+        EventBus.$emit('modal-opened', this.uniqueId);
       }
     },
 
     close(clearHash = true) {
       if (this.active) {
-        EventBus.$emit('modal-closing', this.id);
+        EventBus.$emit('modal-closing', this.uniqueId);
         document.documentElement.classList.remove('sh-modal-open');
         this.active = false;
-        EventBus.$emit('modal-closed', this.id);
+        EventBus.$emit('modal-closed', this.uniqueId);
       }
       if (clearHash) window.location.hash = ''; 
     },
@@ -104,12 +102,12 @@ export default {
 
     configureTriggers() {
       let self = this;
-      let selector = `[modal-trigger="${this.id}"]`;
+      let selector = `[modal-trigger="${this.uniqueId}"]`;
       this.triggers = document.querySelectorAll(selector);
       this.triggers.forEach(function(el) {
         el.addEventListener('click', function(e) {
           e.preventDefault();
-          window.location.hash = `#${self.id}`;
+          window.location.hash = `#${self.uniqueId}`;
         });
       });
 
@@ -132,7 +130,7 @@ export default {
     },
 
     mountToContainer() {
-      let id = this.id;
+      let id = this.uniqueId;
       let exists = document.querySelector(`#sh-modals #${id}`);
       if (exists) exists.remove();
       this.container.appendChild(this.$el);

@@ -29,6 +29,10 @@ function bindAll() {
 	for (var event in delegations) {
 		setupEvent(event);
 	}
+
+	window.addEventListener('hashchange', () => {
+		EventBus.$emit('hashchange', window.location.hash.substr(1));
+	})
 }
 
 function setupEvent(event) {

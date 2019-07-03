@@ -3,7 +3,7 @@
     :variant="variant" 
     :class="{ active: active }" 
     :reveal="reveal"
-    :id="id" 
+    :id="uniqueId" 
     :aria-labelledby="ariaID" 
     :aria-describedby="ariaDescID">
     <div class="content">
