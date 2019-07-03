@@ -66,7 +66,6 @@ export default {
     },
 
     hashHandler(id) {
-      console.log(id)
       if (id == '') {
         if (this.active) this.close(false);
       } else if (id == this.uniqueId) {
