@@ -11,8 +11,8 @@ let pages = {
   }
 }
 
-if (process.env.VUE_APP_DEV) {
-  glob.sync('./src/components/**/docs/data/*').forEach(path => {  
+if (process.env.NODE_ENV != "production") {
+  glob.sync('./src/components/**/docs/data/*.html').forEach(path => {  
     let component = path.split('/')[3];
     let filename = path.split('/');
     filename = filename[filename.length-1];
@@ -21,7 +21,7 @@ if (process.env.VUE_APP_DEV) {
     pages[name] = {
       entry: 'src/blank.js',
       template: path,
-      filename: `pagedata/${component}/${filename}`
+      filename: `components/${component}/data/${filename}`
     }
   })
 
