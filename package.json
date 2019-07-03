@@ -6,7 +6,7 @@
     "prestart": "nvm use 10",
     "serve": "vue-cli-service serve",
     "dev": "vue-cli-service serve --open",
-    "build": "vue-cli-service build",
+    "build": "NODE_ENV=production vue-cli-service build",
     "build:dev": "vue-cli-service build --mode development",
     "lint": "vue-cli-service lint"
   },
