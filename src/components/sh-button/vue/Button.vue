@@ -8,8 +8,3 @@
 
 <script src="../script/Button.js"></script>
 <style lang="scss" src="../style/default.scss"></style>
-<style lang="scss">
-sh-button {
-  display: inline-flex;
-}
-</style>
