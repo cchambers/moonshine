@@ -1,5 +1,7 @@
 import { EventBus } from '../../event-bus';
 
+// TODO: Make tablock work.
+
 export default {
   name: 'Modal',
 
@@ -12,7 +14,8 @@ export default {
     contentSelector: String,
     header: String,
     footer: String,
-    reveal: String
+    reveal: String,
+    variant: String
   },
 
   data() {
@@ -25,7 +28,7 @@ export default {
       active: false,
       ariaID: String,
       ariaHeaderID: String,
-      ariaDescID: String,
+      ariaDescID: String
     };
   },
 
@@ -104,7 +107,8 @@ export default {
       let selector = `[modal-trigger="${this.id}"]`;
       this.triggers = document.querySelectorAll(selector);
       this.triggers.forEach(function(el) {
-        el.addEventListener('click', function() {
+        el.addEventListener('click', function(e) {
+          e.preventDefault();
           window.location.hash = `#${self.id}`;
         });
       });
@@ -112,9 +116,7 @@ export default {
       let closeSelector = `[close-trigger]`;
       this.closeTriggers = this.$el.querySelectorAll(closeSelector);
       this.closeTriggers.forEach(function(el) {
-        el.addEventListener('click', function() {
-          window.location.hash = `#${self.id}`;
-        }, true);
+        el.addEventListener('click', self.close);
       });
     },
 
