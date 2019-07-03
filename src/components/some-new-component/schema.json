@@ -1,0 +1,7 @@
+{
+  "name": "Some New Component",
+  "element": "some-new-component",
+  "description": "Demonstration component.",
+  "tags": ["utilities", "demo"],
+  "requirements": []
+}

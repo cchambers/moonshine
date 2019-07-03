@@ -1,5 +1,5 @@
 const glob = require('glob')
-const fs = require('fs')
+const fs = require('fs-extra')
 
 let nav = fs.readFileSync('./src/nav.ejs', 'utf8');
 
