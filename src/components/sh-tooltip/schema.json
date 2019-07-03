@@ -1,0 +1,7 @@
+{
+  "name": "Tooltip",
+  "element": "sh-tooltip",
+  "description": "Demonstration component.",
+  "tags": ["utilities", "demo"],
+  "requirements": []
+}
