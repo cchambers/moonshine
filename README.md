@@ -114,9 +114,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Chris - [@chrisWritesCode](https://twitter.com/chrisWritesCode)
-
-Project Link: [https://github.com/cchambers/moonshine](https://github.com/cchambers/shine)
+Project Link: [https://github.com/cchambers/shine](https://github.com/cchambers/shine)
 
 
 
