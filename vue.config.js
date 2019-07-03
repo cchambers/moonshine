@@ -1,7 +1,7 @@
 const glob = require('glob')
-const fs = require('fs')
+const fs = require('fs-extra')
 
-let nav = fs.readFileSync('./src/nav.ejs', 'utf8');
+let nav = fs.readFileSync('./src/docs-nav.html', 'utf8');
 
 let pages = {
   index: {
