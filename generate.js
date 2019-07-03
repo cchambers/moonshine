@@ -95,6 +95,7 @@ function updateFiles(files) {
   for (let x = 0, l = files.length; x < l; x++)  {
     writeUpdates(`${files[x].dir}/${files[x].filename}`);
   }
+  console.log("Your new component was created! Be sure to add it in the appropriate spot in main.js");
 }
 
 function writeUpdates(filename) {
