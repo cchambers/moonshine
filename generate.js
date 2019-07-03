@@ -80,8 +80,7 @@ var walkSync = function(dir, filelist) {
   files.forEach(function(file) {
     if (fs.statSync(dir + '/' + file).isDirectory()) {
       filelist = walkSync(dir + '/' + file, filelist);
-    }
-    else {
+    } else {
       filelist.push({
         dir: dir,
         filename: file
@@ -95,7 +94,7 @@ function updateFiles(files) {
   for (let x = 0, l = files.length; x < l; x++)  {
     writeUpdates(`${files[x].dir}/${files[x].filename}`);
   }
-  console.log("Your new component was created! Be sure to add it in the appropriate spot in main.js");
+  console.log('Your new component was created! Be sure to add it in the appropriate spot in main.js');
 }
 
 function writeUpdates(filename) {
@@ -108,7 +107,7 @@ function updateContents(data) {
   let str = data;
   for (key in replace) {
     let rep = replace[key];
-    let regex = new RegExp(rep,"g");
+    let regex = new RegExp(rep,'g');
     str = str.replace(regex, names[key]);
   }
   return str
