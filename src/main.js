@@ -17,6 +17,7 @@ Vue.mixin(ComponentPrototype);
 /* non-deployed in prod */
 require('./components/sh-curtain')
 require('./components/sh-header')
+require('./components/sh-accordion')
 require('./components/sh-button')
 require('./components/sh-tooltip')
 require('./components/sh-modal')

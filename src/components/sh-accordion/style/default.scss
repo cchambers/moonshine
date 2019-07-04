@@ -1,0 +1,50 @@
+/* default styling */
+
+sh-accordion {
+  display: block;
+}
+
+.sh-accordion {
+
+  .header,
+  .body {
+    padding: 0.5rem 1.5rem;
+  }
+
+  .header {
+    cursor: pointer;
+    background: $highlight-secondary;
+    transition: all 250ms $ease;
+    margin: 0;
+
+    &:hover {
+      color: $accent-tertiary;
+      background: $highlight-primary;
+    }
+  }
+
+  .body {
+    border: 1px solid transparent;
+  }
+
+  .collapse {
+    max-height: 0;
+    overflow: hidden;
+    transition: none;
+  }
+
+  &.active {
+    .header {
+      background-color: $accent-primary;
+    }
+
+    .body {
+      border-color: $accent-primary;
+    }
+
+    .collapse {
+      max-height: 200vh;
+      transition: all 250ms $ease;
+    }
+  }
+}
