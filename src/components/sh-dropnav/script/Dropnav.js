@@ -1,39 +1,45 @@
 export default {
   name: 'Dropnav',
-  props: {
-    msg: {
-      type: String,
-      default: 'new component'
-    }
-  },
 
   data() {
     return {
-      snapping: false
+      activeItem: 'Choose Something!',
+      list: Object,
+      isOpen: false
     }
+  },
+
+  mounted() {
+    this.list = this.$refs.list;
+    this.events();
   },
   
   methods: {
-    snap() {
-      if (!this.snapping) {
-        this.snapping = true;
-        this.snapTimeout = setTimeout(this.recover, 1500);
-        this.$emit('snapping');
+    events() {
+      this.$bus.$on('selected', (data) => {
+        this.setActive(data.text);
+        this.closeList();
+      })
+    },
+
+    setActive(text) {
+      this.activeItem = text;
+    },
+
+    toggleOpen() {
+      if (this.isOpen) {
+        this.closeList();
+      } else {
+        this.openList();
       }
     },
 
-    recover() {
-      this.halve();
-      this.snapping = false;
-      this.$emit('snapped');
+    openList() {
+      this.isOpen = true;
     },
 
-    halve() {
-      let str = this.$el.innerText;
-      if (!str.length) return;
-      let middle = Math.ceil(str.length / 2);
-      let half = str.slice(0, middle);
-      this.$el.innerText = half.trim();
+    closeList() {
+      this.isOpen = false;
     }
   },
 

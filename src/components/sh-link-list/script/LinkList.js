@@ -45,8 +45,7 @@ export default {
 
     deactivate(key) {
       this.$set(this.items[key], 'active', false);
-    }
-
+    },
   },
 
 }

@@ -1,12 +1,16 @@
 /* default styling */
 
 sh-link-list {
-  display: flex;
+  display: block;
 }
+
 .sh-link-list {
   ul {
+    display: flex;
+    flex-direction: column;
     list-style: none;
     padding: 0;
+    margin: 0 !important;
   }
   a {
     display: block;
