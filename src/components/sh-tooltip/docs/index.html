@@ -24,9 +24,9 @@
       </thead>
       <tbody>
         <tr>
-          <td>hidden</td>
-          <td>Boolean</td>
-          <td>Hide from view.</td>
+          <td>tip</td>
+          <td>String</td>
+          <td>Tooltip content.</td>
         </tr>
       </tbody>
     </table>
@@ -42,59 +42,15 @@
       </thead>
       <tbody>
         <tr>
-          <td>default</td>
+          <td><em>default</em></td>
           <td>
             Text content.
           </td>
         </tr>
-      </tbody>
-    </table>
-
-    <h3 id="methods">Public Methods</h3>
-
-    <table class="methods">
-      <thead>
         <tr>
-          <th>Function</th>
-          <th>Params</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>snap</td>
+          <td>tip</td>
           <td>
-            <ul>
-              <li>
-                none
-              </li>
-            </ul>
-          </td>
-          <td>
-            Perform snap animation and half text.
-          </td>
-        </tr>
-      </tbody>
-    </table>
-
-    <h3 id="events">Events</h3>
-
-    <table class="events">
-      <thead>
-        <tr>
-          <th>Event</th>
-          <th>Payload Type</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>event-name</td>
-          <td>
-            Type
-          </td>
-          <td>
-            Fires when something happens.
+            HTML tooltip content.
           </td>
         </tr>
       </tbody>
@@ -105,7 +61,7 @@
     <h2>Examples</h2>
     <h3>Default</h3>
     <lib-toolbar>
-      <p>Lorem <sh-tooltip tip="This is a tooltip.">ipsum dolor</sh-tooltip> sit amet <sh-tooltip tip="This is another tooltip, but with a link nested inside of it.">consectetur <a href="#">adipisicing</a> elit</sh-tooltip>. Eius nisi neque quam voluptate tempora minus voluptatibus, exercitationem facere veritatis dolores sapiente temporibus aut dolor in doloremque dolorem ad, delectus ullam.</p>
+      <p>Lorem <sh-tooltip tip="This is a tooltip.">ipsum dolor</sh-tooltip> sit amet <sh-tooltip tip="This is another tooltip, but with a link nested inside of it.">consectetur <a href="#">adipisicing</a> elit</sh-tooltip>. Eius nisi neque quam voluptate tempora minus voluptatibus, exercitationem facere veritatis dolores <sh-tooltip>sapiente <span slot="tip"><img src="/img/snap.gif"/></span></sh-tooltip> temporibus aut dolor in doloremque dolorem ad, delectus ullam.</p>
     </lib-toolbar>
   </section>
 

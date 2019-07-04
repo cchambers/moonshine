@@ -45,17 +45,20 @@ export default {
       showPrintMargin: false,
       indentedSoftWrap: false
     });
-    let len = this.editor.getSession().getDocument().getLength();
-    this.$refs.editor.style.height = Math.min(len*21, 550) + "px";
-    this.$refs.editor.style.width = "100%";
-    this.editor.resize();
-    this.editor.getSession().selection.clearSelection();
+    setTimeout( function () {
+      let len = self.editor.getSession().getDocument().getLength();
+      self.$refs.editor.style.height = Math.max(200, Math.min(len*21, 600)) + "px";
+      self.$refs.editor.style.width = "100%";
+      self.editor.resize();
+      self.editor.getSession().selection.clearSelection();
+      
+      self.editor.getSession().on('change', function() {
+        let value = self.editor.getSession().getValue();
+        self.editorCode = value;
+        self.html = self.editorCode;
+      });
+    })
     
-    this.editor.getSession().on('change', function() {
-      let value = self.editor.getSession().getValue();
-      self.editorCode = value;
-      self.html = self.editorCode;
-    });
   },
 
   methods: {

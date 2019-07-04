@@ -1,6 +1,6 @@
 <template>
   <div class="sh-tooltip" >
-    <div class="tip">{{ tip }}</div>
+    <div class="tip"><slot name="tip">{{ tip }}</slot></div>
     <slot></slot>
   </div>
 </template>
