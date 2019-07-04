@@ -1,40 +1,52 @@
 export default {
   name: 'ShLinkList',
   props: {
-    msg: {
-      type: String,
-      default: 'new component'
-    }
+    eventOnly: Boolean
   },
 
   data() {
     return {
-      snapping: false
+      snapping: false,
+      items: [
+        {
+          text: 'test 1',
+          link: '#link1'
+        },
+        {
+          text: 'test 2',
+          link: '#link2',
+        },
+        {
+          text: 'test 3',
+          link: '#link3',
+        }
+      ]
     }
   },
   
   methods: {
-    snap() {
-      if (!this.snapping) {
-        this.snapping = true;
-        this.snapTimeout = setTimeout(this.recover, 1500);
-        this.$emit('snapping');
+    clickHandler(e) {
+      if (this.eventOnly) e.preventDefault();
+      let key = e.target.dataset.key;
+      if (key) {
+        for (let x = 0, l = this.items.length; x < l; x++) {
+          let item = this.items[x];
+          if (item.active) this.deactivate(x);
+        }
       }
+      this.activate(key);
     },
 
-    recover() {
-      this.halve();
-      this.snapping = false;
-      this.$emit('snapped');
+    activate(key) {
+      let item = this.items[key];
+      this.$set(item, 'active', true);
+      this.$bus.$emit('selected', item);
     },
 
-    halve() {
-      let str = this.$el.innerText;
-      if (!str.length) return;
-      let middle = Math.ceil(str.length / 2);
-      let half = str.slice(0, middle);
-      this.$el.innerText = half.trim();
+    deactivate(key) {
+      this.$set(this.items[key], 'active', false);
     }
+
   },
 
 }

@@ -1,6 +1,14 @@
 <template>
-  <div class="sh-link-list" v-bind:class="{ 'snap-state': snapping }" v-on:click="snap">
-    <slot>{{ msg }}</slot>
+  <div class="sh-link-list">
+    <div hidden><slot></slot></div>
+    <ul>
+      <li v-for="(item, index) in items" v-bind:key="item.key">
+        <a v-bind:class="{ 'active': item.active }"
+        :data-key="index"
+        :href="item.link"
+        v-on:click="clickHandler">{{ item.text }} </a>
+      </li>
+    </ul>
   </div>
 </template>
 

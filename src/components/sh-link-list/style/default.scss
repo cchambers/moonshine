@@ -1,25 +1,17 @@
 /* default styling */
 
 sh-link-list {
-  display: inline-block;
+  display: flex;
 }
 .sh-link-list {
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  text-align: center;
-  height: 15rem;
-  width: 15rem;
-  background-size: cover;
-  border: 1px solid transparent;
-  transition: all 200ms linear;
-  &:hover {
-    border: 1px solid purple;
+  ul {
+    list-style: none;
+    padding: 0;
   }
-  &.snap-state {
-    color: transparent;
-    background-image: url(../../../assets/img/snap.gif);
-    border: 1px solid purple;
+  a {
+    display: block;
+    &.active {
+      background: $accent-primary;
+    }
   }
 }
