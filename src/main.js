@@ -20,6 +20,9 @@ Vue.prototype.$prefix = 'sh';
 const ComponentPrototype = {
   mounted() {
     this.$bus.$emit('component-ready', this);
+    this.$bus.$on('page-ready', () => {
+      if (typeof this.onReady == 'function') this.onReady();
+    })
   } 
 };
 
