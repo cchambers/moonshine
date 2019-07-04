@@ -1,5 +1,6 @@
 export default {
   name: 'ControlPanel',
+  
   methods: {
     events() {
       let self = this;

@@ -1,12 +1,12 @@
 
 sh-button {
-  display: inline;
+  display: inline-flex;
 }
 
 button {
   position: relative;
   border: 0;
-  display: inline-flex;
+  display: flex;
   align-items: center;
   flex-direction: row;
   padding: 0 1em;
@@ -18,7 +18,9 @@ button {
   font-size: 10px;
   cursor: pointer;
   overflow: hidden;
-
+  & ~ sh-button {
+    margin-left: 1.5rem;
+  }
   span, i {
     position: relative;
     pointer-events: none;
@@ -53,28 +55,21 @@ button {
     font-size: 1em;
   }
 
-  @include box-shadow(2);
   // &[scale] {
 
   // }
   &.min {
     font-size: 1rem;
-    box-shadow: none !important;
   }
 
   &:hover {
     background: $accent-tertiary
   }
-
-  &:active {
-    @include box-shadow(1);
-  }
-
 }
 
 @keyframes ripple {
   0% {
-    opacity: 0.25;
+    opacity: 0.2;
     transform: scale(0);
   }
   100% {

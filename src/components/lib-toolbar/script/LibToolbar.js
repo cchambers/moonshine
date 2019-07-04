@@ -5,9 +5,11 @@ import Pretty from 'pretty';
 
 export default {
   name: 'LibToolbar',
+
   props: {
     baseCode: String,
   },
+  
   data() {
     return {
       active: false,
@@ -45,6 +47,7 @@ export default {
       showPrintMargin: false,
       indentedSoftWrap: false
     });
+    
     setTimeout( function () {
       let len = self.editor.getSession().getDocument().getLength();
       self.$refs.editor.style.height = Math.max(200, Math.min(len*21, 600)) + "px";
@@ -76,6 +79,18 @@ export default {
     
     toggleActive() {
       this.active = !this.active;
+    },
+
+    fullscreen() {
+      // console.log("FS")
+    },
+
+    copyEditor() {
+      // console.log("COPY")
     }
+  },
+
+  updated() {
+    // console.log(this.active)
   }
 }

@@ -2,8 +2,16 @@ export default {
   name: 'Button',
 
   props: {
-    closeTrigger: Boolean
+    closeTrigger: Boolean,
+    active: Boolean
   },
+
+  data() {
+    return {
+      isActive: Boolean,
+    }
+  },
+
   
   mounted() {
     this.events();
@@ -13,6 +21,7 @@ export default {
     events() {
       this.$el.addEventListener('click', this.ripple)
     },
+    
     ripple(e) {
       let ripple = document.createElement('div');
       ripple.classList.add('ripple');

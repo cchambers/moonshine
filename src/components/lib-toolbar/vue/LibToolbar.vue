@@ -2,9 +2,18 @@
   <div class="lib-toolbar" v-bind:class="{ active: active }">
     <div class="control-wrap">
       <div class="control">
-        <sh-button class="min" v-if="!active" v-hammer:tap="toggleActive">show code</sh-button>
-        <!-- <sh-button class="min" v-if="active">copy code</sh-button> -->
-        <sh-button class="min" v-if="active" v-hammer:tap="toggleActive">hide code</sh-button>
+        <sh-button class="min" v-hammer:tap="toggleActive">
+          <span v-if="active">hide code</span>
+          <span v-else>show code</span>
+        </sh-button>
+
+        <sh-button class="min" v-hammer:tap="copyEditor">
+          <i class="material-icons px20">file_copy</i>
+        </sh-button>
+
+        <sh-button class="min" v-hammer:tap="fullscreen">
+          <i class="material-icons px20">fullscreen</i>
+        </sh-button>
       </div>
       <div ref="component" class="component" v-html="html"></div>
     </div>

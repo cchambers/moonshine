@@ -1,6 +1,3 @@
-// import Vue from 'vue'
-import { EventBus } from '../../event-bus';
-
 export default {
   name: 'Content',
   data() {
@@ -114,7 +111,8 @@ export default {
       let els = document.querySelectorAll('section[id]');
       for (let x = 0, l = els.length; x < l; x++) {
         let href = els[x].id;
-        links.push(`<a href="#${href}">${href}</a>`)
+        let text = href.replace('-', ' ');
+        links.push(`<a href="#${href}">${text}</a>`)
       }
       links = links.join('');
       setTimeout(function() { self.$bus.$emit('section-links', links) });
