@@ -29,6 +29,9 @@
   button {
     background: $lowlight-tertiary;
     font-size: 8px;
+    &:hover {
+      background: $accent-secondary;
+    }
   }
 }
 </style>

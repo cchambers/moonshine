@@ -59,6 +59,11 @@ $z-level: 8;
 
 .control-wrap {
   position: relative;
+  opacity: 0.5;
+  transition: all 250ms $ease;
+  &:hover {
+    opacity: 1;
+  }
   i {
     font-size: 2rem !important;
     margin: 0 !important;
@@ -71,12 +76,6 @@ $z-level: 8;
   bottom: 0;
   display: flex;
   z-index: $z-level;
-  button {
-    transition: all 250ms $ease;
-    &:hover {
-      background: $accent-secondary;
-    }
-  }
 }
 
 .component {
