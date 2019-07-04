@@ -21,6 +21,9 @@ require('./components/sh-accordion')
 require('./components/sh-button')
 require('./components/sh-tooltip')
 require('./components/sh-modal')
+require('./components/sh-link-list')
+require('./components/sh-dropnav')
+require('./components/sh-tabs')
 
 if (process.env.NODE_ENV != 'production') {
   require('./assets/script/prism.js')
