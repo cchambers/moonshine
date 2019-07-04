@@ -20,6 +20,9 @@ export default {
   methods: {
     events() {
       let self = this;
+
+      self.$bus.$on('hashchange', this.closeNav)
+
       let links = this.$el.querySelectorAll('a[href^="#"]');
       for (let x = 0, l = links.length; x < l; x++) {
         let link = links[x];

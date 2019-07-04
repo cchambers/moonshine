@@ -44,7 +44,7 @@ if (process.env.NODE_ENV != 'production') {
   glob.sync('./src/documentation/utilities/*.html').forEach(path => {  
     let filename = path.split('/');
     filename = filename[filename.length-1];
-    let name = filename;
+    let name = filename.split('.')[0];
     let content = fs.readFileSync(path, 'utf8');
 
     pages[name] = {
@@ -52,7 +52,7 @@ if (process.env.NODE_ENV != 'production') {
       template: 'src/documentation/docs-component.html',
       content: content,
       nav: nav,
-      filename: `utilities/${filename}`
+      filename: `utilities/${name}/index.html`
     }
   })
 }
