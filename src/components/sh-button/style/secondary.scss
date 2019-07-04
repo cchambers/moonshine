@@ -1,0 +1,11 @@
+sh-button[variant=secondary] {
+  button {
+    background: $highlight-primary;
+    color: $accent-tertiary;
+    border: 1px solid $accent-tertiary;
+    &:hover {
+      background: $accent-tertiary;
+      color: $highlight-primary;
+    }
+  }
+}

@@ -19,23 +19,20 @@ export default {
       editorCode: '',
       html: 'Loading...',
       updateTimer: 0,
-      uuid: '',
+      uniqueId: '',
       editor: {}
     }
   },
   
   mounted() {
     let self = this;
-    this.uuid = ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
-      (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
-    )
-    this.uuid = 'sh' + this.uuid;
+    this.uniqueId = 'sh' + this.uuid;
     if (this.baseCode) {
       this.code = this.baseCode;
       this.renderCode(this.baseCode);
       this.$el.removeAttribute('base-code');
     }
-    this.$refs.editor.id = `editor-${this.uuid}`;
+    this.$refs.editor.id = `editor-${this.uniqueId}`;
     this.editor = ace.edit(this.$refs.editor.id);
     this.editor.getSession().setMode('ace/mode/html');
     this.editor.setTheme('ace/theme/monokai');
