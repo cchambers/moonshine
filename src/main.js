@@ -11,6 +11,19 @@ Vue.use(VueHammer)
 import vueCustomElement from 'vue-custom-element'
 Vue.use(vueCustomElement)
 
+import { EventBus } from '../src/components/event-bus.js';
+
+Vue.prototype.$bus = EventBus;
+Vue.prototype.$appName = 'Shine';
+Vue.prototype.$prefix = 'sh';
+
+const ComponentPrototype = {
+  mounted() {
+    this.$bus.$emit('component-ready', this);
+  } 
+};
+
+Vue.mixin(ComponentPrototype);
 
 /* non-deployed in prod */
 require('./components/sh-curtain')

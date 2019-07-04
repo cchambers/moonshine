@@ -1,5 +1,3 @@
-import { EventBus } from '../../event-bus';
-
 // TODO: Make tablock work.
 
 export default {
@@ -52,17 +50,17 @@ export default {
       let self = this;
       this.configureTriggers();
 
-      EventBus.$on('close-modals', this.close);
-      EventBus.$on('modal-opening', function() {
+      self.$bus.$on('close-modals', this.close);
+      self.$bus.$on('modal-opening', function() {
         self.close(false);
       });
       
       window.addEventListener('keyup', (e) => {
         let key = e.keyCode;
-        if (key == 27) EventBus.$emit('close-modals'); // esc
+        if (key == 27) self.$bus.$emit('close-modals'); // esc
       });
 
-      EventBus.$on('hashchange', this.hashHandler)
+      self.$bus.$on('hashchange', this.hashHandler)
     },
 
     hashHandler(id) {
@@ -74,22 +72,24 @@ export default {
     },
 
     open() {
+      let self = this;
       if (!this.loaded && this.contentUrl) this.loadContent()
 
       if (!this.active) {
-        EventBus.$emit('modal-opening', this.uniqueId);
+        self.$bus.$emit('modal-opening', this.uniqueId);
         document.documentElement.classList.add('sh-modal-open');
         this.active = true;
-        EventBus.$emit('modal-opened', this.uniqueId);
+        self.$bus.$emit('modal-opened', this.uniqueId);
       }
     },
 
     close(clearHash = true) {
+      let self = this;
       if (this.active) {
-        EventBus.$emit('modal-closing', this.uniqueId);
+        self.$bus.$emit('modal-closing', this.uniqueId);
         document.documentElement.classList.remove('sh-modal-open');
         this.active = false;
-        EventBus.$emit('modal-closed', this.uniqueId);
+        self.$bus.$emit('modal-closed', this.uniqueId);
       }
       if (clearHash) window.location.hash = ''; 
     },
@@ -123,7 +123,7 @@ export default {
       document.body.appendChild(container);
       this.container = container;
       this.container.addEventListener('click', (e) => {
-        if (e.target == this.container) EventBus.$emit('close-modals');
+        if (e.target == this.container) self.$bus.$emit('close-modals');
       })
       this.mountToContainer();
     },

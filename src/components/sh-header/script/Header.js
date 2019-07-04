@@ -1,5 +1,3 @@
-import { EventBus } from "../../event-bus";
-
 export default {
   name: 'Header',
 
@@ -45,7 +43,7 @@ export default {
       }
     });
 
-    EventBus.$on('header-page-name', function(data) {
+    this.$bus.$on('header-page-name', function(data) {
       self.pageName = data;
     })
   }

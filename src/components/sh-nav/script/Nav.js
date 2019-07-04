@@ -1,5 +1,3 @@
-import { EventBus } from '../../event-bus.js';
-
 export default {
   name: 'Nav',
   
@@ -49,12 +47,12 @@ export default {
         });
       }
       
-      EventBus.$on('nav-closed', this.navToggledHandler);
-      EventBus.$on('nav-toggled', this.navToggledHandler);
+      this.$bus.$on('nav-closed', this.navToggledHandler);
+      this.$bus.$on('nav-toggled', this.navToggledHandler);
     },
 
     closeNav() {
-      EventBus.$emit('close-nav');
+      this.$bus.$emit('close-nav');
     },
 
     buildSearchResults() {

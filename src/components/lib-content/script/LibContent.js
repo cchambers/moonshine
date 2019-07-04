@@ -91,7 +91,7 @@ export default {
           range.select();
       }
       document.execCommand("copy");
-      EventBus.$emit('notify', { type: 'default', message: 'Copied to clipboard.' })
+      this.$bus.$emit('notify', { type: 'default', message: 'Copied to clipboard.' })
     },
 
     docEvents() { 
@@ -105,10 +105,11 @@ export default {
       }
       let pageName = document.querySelector('h1')
       if (pageName) pageName = pageName.innerText;
-      EventBus.$emit('header-page-name', pageName);
+      this.$bus.$emit('header-page-name', pageName);
     },
 
     sectionLinks() {
+      let self = this;
       let links = [];
       let els = document.querySelectorAll('section[id]');
       for (let x = 0, l = els.length; x < l; x++) {
@@ -116,7 +117,7 @@ export default {
         links.push(`<a href="#${href}">${href}</a>`)
       }
       links = links.join('');
-      setTimeout(function() { EventBus.$emit('section-links', links) });
+      setTimeout(function() { self.$bus.$emit('section-links', links) });
     }
   }
 }

@@ -15,7 +15,7 @@ export default {
   },
   
   mounted() {
-    EventBus.$on('notify', this.doNotify)
+    this.$bus.$on('notify', this.doNotify)
   },
 
   methods: {
