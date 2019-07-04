@@ -15,8 +15,9 @@ sh-accordion {
     cursor: pointer;
     background: $highlight-secondary;
     transition: all 250ms $ease;
-    margin: 0;
-
+    h1,h2,h3,h4,h5,h6 {
+      margin: 0 !important;
+    }
     &:hover {
       color: $accent-tertiary;
       background: $highlight-primary;
