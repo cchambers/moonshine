@@ -89,6 +89,11 @@ yarn test
 yarn lint
 ```
 
+## Generate a new component
+```
+yarn generate
+```
+
 
 
 <!-- CONTRIBUTING -->

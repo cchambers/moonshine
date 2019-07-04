@@ -1,11 +1,12 @@
 
 sh-button {
-  display: inline;
+  display: inline-flex;
 }
 
 button {
+  position: relative;
   border: 0;
-  display: inline-flex;
+  display: flex;
   align-items: center;
   flex-direction: row;
   padding: 0 1em;
@@ -16,9 +17,14 @@ button {
   text-transform: uppercase;
   font-size: 10px;
   cursor: pointer;
-
+  overflow: hidden;
+  & ~ sh-button {
+    margin-left: 1.5rem;
+  }
   span, i {
+    position: relative;
     pointer-events: none;
+    z-index: 0;
   }
   
   span {
@@ -26,32 +32,48 @@ button {
     font-size: 1.4em;
   }
 
+  .ripple {
+    position: absolute;
+    height: 1rem;
+    width: 1rem;
+    border-radius: 50%;
+    pointer-events: none;
+    background: white;
+    transform: translateX(-50%) translateY(-50%) translateZ(0);
+    z-index: 0;
+    animation: ripple 1s $decel;
+  }
+
   .material-icons {
-    &:first-child {
+    &:first-of-type {
       margin-right: 0.5em;
     }
 
-    &:last-child {
+    &:last-of-type {
       margin-left: 0.5em;
     }
     font-size: 1em;
   }
 
-  @include box-shadow(2);
   // &[scale] {
 
   // }
   &.min {
     font-size: 1rem;
-    box-shadow: none !important;
   }
 
   &:hover {
     background: $accent-tertiary
   }
+}
 
-  &:active {
-    @include box-shadow(1);
+@keyframes ripple {
+  0% {
+    opacity: 0.2;
+    transform: scale(0);
   }
-
+  100% {
+    opacity: 0;
+    transform: scale(50);
+  }
 }

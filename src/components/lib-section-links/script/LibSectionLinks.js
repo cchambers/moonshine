@@ -1,5 +1,3 @@
-import { EventBus } from "../../event-bus";
-
 export default {
   name: 'LibSectionLinks',
   data() {
@@ -10,7 +8,7 @@ export default {
   },
   
   mounted() {
-    EventBus.$on('section-links', this.updateHTML)
+    this.$bus.$on('section-links', this.updateHTML)
   },
 
   methods: {

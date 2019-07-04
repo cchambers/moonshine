@@ -7,6 +7,9 @@ export default {
   name: 'EventBus',
 }
 
+// TODO: Create a mechanism for collecting events during page load and emit them with a hash or something -- maybe only emit as new components load in... 
+
+
 var delegations = {
 	click: [
 		{
@@ -26,9 +29,14 @@ var delegations = {
 };
 
 function bindAll() {
+	let self = this;
 	for (var event in delegations) {
 		setupEvent(event);
 	}
+
+	window.addEventListener('hashchange', () => {
+		EventBus.$emit('hashchange', window.location.hash.substr(1));
+	})
 }
 
 function setupEvent(event) {
