@@ -1,6 +1,7 @@
 <template>
-  <div class="sh-tooltip" v-bind:class="{ 'snap-state': snapping }" v-on:click="snap">
-    <slot>{{ msg }}</slot>
+  <div class="sh-tooltip" >
+    <div class="tip">{{ tip }}</div>
+    <slot></slot>
   </div>
 </template>
 
