@@ -9,10 +9,12 @@ export default {
   props: {
     baseCode: String,
   },
-  
+
   data() {
     return {
       active: false,
+      fullscreen: false,
+      isActive: false,
       code: '',
       editorCode: '',
       html: 'Loading...',
@@ -73,6 +75,12 @@ export default {
       }, 300);
     },
 
+    events() {
+      this.$bus.on('hashchange', () => {
+        // console.log("got it")
+      })
+    },
+
     renderCode(code) {
       this.html = code;
     },
@@ -81,8 +89,13 @@ export default {
       this.active = !this.active;
     },
 
-    fullscreen() {
-      // console.log("FS")
+    toggleFullscreen() {
+      this.fullscreen = !this.fullscreen;
+      if (this.fullscreen) {
+        document.documentElement.classList.add('toolbar-fullscreen');
+      } else {
+        document.documentElement.classList.remove('toolbar-fullscreen');
+      }
     },
 
     copyEditor() {
@@ -91,6 +104,6 @@ export default {
   },
 
   updated() {
-    // console.log(this.active)
+    this.isActive = this.active
   }
 }
