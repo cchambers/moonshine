@@ -1,8 +1,7 @@
 <template>
-  <div class="sh-input"
-   :variant="variant">
-   <label :for="uniqueId"></label>
-   <input :id="uniqueId" class="actual" type="text" v-model="value">
+  <div class="sh-input">
+    <label :for="inputId"></label>
+    <input :id="inputId" class="actual" type="text" v-model="value" />
   </div>
 </template>
 

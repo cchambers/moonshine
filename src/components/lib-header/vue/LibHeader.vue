@@ -1,5 +1,5 @@
 <template>
-  <header class="sh-header">
+  <header class="lib-header">
     <div class="contain flex start">
       <div v-if="nav" class="toggle-nav" v-hammer:tap="toggleNav">
         <i class="material-icons nav-icon">menu</i>

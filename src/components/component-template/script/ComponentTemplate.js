@@ -14,6 +14,8 @@ export default {
   },
   
   methods: {
+
+    /* REMOVE THESE METHODS */
     snap() {
       if (!this.snapping) {
         this.snapping = true;
@@ -35,6 +37,8 @@ export default {
       let half = str.slice(0, middle);
       this.$el.innerText = half.trim();
     }
+    /* END REMOVE */
+    
   },
 
 }
