@@ -5,9 +5,8 @@
     <p>Event Bus is a component that allows other components to communicate between each other without knowing about each other.</p>
     <pre>
       <code class="language-javascript">
-        /* Somewhere in a galaxy far, far away... */
-        this.$bus.$on( 'some-event', (data) => { ... } );
-        this.$bus.$emit( 'some-event', { data } );
+        vm.$bus.$on( 'some-event', (data) => { ... } );
+        vm.$bus.$emit( 'some-event', { data } );
       </code>
     </pre>
   </section>

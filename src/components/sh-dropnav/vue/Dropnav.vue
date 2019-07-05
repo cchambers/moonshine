@@ -3,7 +3,7 @@
     <div class="html-items" hidden><slot></slot></div>
     <button ref="button" v-on:click="toggleOpen">{{ activeItem }}</button>
     <div class="item-container">
-      <sh-link-list ref="list"></sh-link-list>
+      <sh-link-list :variant="listVariant" ref="list"></sh-link-list>
     </div>
   </div>
 </template>

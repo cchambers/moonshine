@@ -3,37 +3,52 @@
 sh-dropnav {
   display: inline-block;
   position: relative;
-}
-.sh-dropnav {
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  &.is-open {
-    .item-container {
-      display: block;
+  min-width: 22rem;
+
+  .sh-dropnav {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+
+    &.is-open {
+      .item-container {
+        display: block;
+      }
     }
-  }
-  .item-container {
-    display: none;
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    left: 0;
-  }
-  button {
-    min-width: 22rem;
-  }
-  sh-link-list {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    background: $highlight-primary;
-    max-height: 50vh;
-    overflow-y: auto;
-    @include box-shadow(1);
-    a {
-      padding: 1rem;
+
+    .item-container {
+      display: none;
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      left: 0;
+    }
+
+    button {
+      display: flex;
+      padding: 0 1.5rem;
+      font-size: 3rem;
+      line-height: 4.5rem;
+    }
+
+    sh-link-list {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: $highlight-primary;
+      max-height: 50vh;
+      overflow-y: auto;
+      @include box-shadow(1);
+
+      a {
+        display: flex;
+        height: 3rem;
+        padding: 0 1.5rem;
+        &:hover {
+          background: $accent-secondary;
+        }
+      }
     }
   }
 }

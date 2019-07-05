@@ -1,5 +1,9 @@
 export default {
   name: 'Dropnav',
+  props: {
+    noActiveText: Boolean,
+    listVariant: String
+  },
 
   data() {
     return {
