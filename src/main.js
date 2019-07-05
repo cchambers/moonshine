@@ -24,6 +24,8 @@ require('./components/sh-modal')
 require('./components/sh-link-list')
 require('./components/sh-dropnav')
 require('./components/sh-tabs')
+require('./components/sh-form')
+require('./components/sh-input')
 
 if (process.env.NODE_ENV != 'production') {
   require('./assets/script/prism.js')

@@ -1,0 +1,7 @@
+{
+  "name": "Form",
+  "element": "sh-form",
+  "description": "Demonstration component.",
+  "tags": ["utilities", "demo"],
+  "requirements": []
+}
