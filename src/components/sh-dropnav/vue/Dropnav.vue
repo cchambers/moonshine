@@ -1,7 +1,7 @@
 <template>
   <div class="sh-dropnav" v-bind:class="{ 'is-open': isOpen }">
     <div class="html-items" hidden><slot></slot></div>
-    <button ref="button" v-on:click="toggleOpen">{{ activeItem }}</button>
+    <button ref="button" v-hammer:tap="toggleOpen">{{ activeItem }}</button>
     <div class="item-container">
       <sh-link-list :variant="listVariant" ref="list"></sh-link-list>
     </div>

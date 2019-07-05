@@ -4,7 +4,7 @@
       <input v-model="search" @keyup="doSearch" type="text" ref="search" placeholder="Looking for something? Just type.">
     </div>
     <div class="primary" ref="primary">
-      <div v-on:click="closeNav" class="go-back">
+      <div v-hammer:tap="closeNav" class="go-back">
         <i class="material-icons nav-icon">arrow_back</i>
       </div>
       <slot name="primary"></slot>
