@@ -12,7 +12,10 @@ export default {
 
   data() {
     return {
-      snapping: false
+      value: {
+        type: String,
+        value: 'what'
+      }
     }
   },
   
