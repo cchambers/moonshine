@@ -1,12 +1,15 @@
-const glob = require('glob')
-const fs = require('fs-extra')
+const glob = require('glob');
+const fs = require('fs-extra');
+const path = require('path');
 
 let nav = fs.readFileSync('./src/documentation/docs-nav.html', 'utf8');
+let footer = fs.readFileSync('./src/documentation/docs-footer.html', 'utf8');
 
 let pages = {
   index: {
     entry: 'src/main.js',
     nav: nav,
+    footer: footer,
     template: 'src/documentation/docs-index.html'
   }
 }
@@ -37,6 +40,7 @@ if (process.env.NODE_ENV != 'production') {
       template: 'src/documentation/docs-component.html',
       content: content,
       nav: nav,
+      footer: footer,
       filename: `components/${component}/${filename}`
     }
   })
@@ -52,6 +56,7 @@ if (process.env.NODE_ENV != 'production') {
       template: 'src/documentation/docs-component.html',
       content: content,
       nav: nav,
+      footer: footer,
       filename: `utilities/${name}/index.html`
     }
   })
@@ -76,6 +81,15 @@ module.exports = {
         'vue$': 'vue/dist/vue.esm.js'
       }
     }
+  },
+  chainWebpack: config => {
+    const vueRule = config.module.rule('scss').oneOf('vue');
+    const themeLoader= path.resolve('theme-loader.js');
+    vueRule.use('shine-theme-loader')
+      // .before('vue-style-loader')
+      .loader(themeLoader)
+      .end();
+
   },
   pages: pages,
 }

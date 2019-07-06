@@ -1,4 +1,4 @@
-<ul class="documentation contain">
+<div class="documentation contain">
   <h1>OO Classes</h1>
   <section id="usage">
     <h2>Usage</h2>
@@ -13,8 +13,10 @@
     </pre>
   </section>
 
-  <section id="animation">
+  <!-- <section id="animation">
     <h2>Animation</h2>
+
+    <h3>Staging</h3>
     <table class="class-defs">
       <thead>
         <tr>
@@ -39,12 +41,30 @@
             Position something off-screen to the right.
           </td>
         </tr>
+        <tr>
+          <td>
+            <code class="language-css">.stage-top</code>
+          </td>
+          <td>
+            Position something off-screen to the top.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code class="language-css">.stage-bottom</code>
+          </td>
+          <td>
+            Position something off-screen to the bottom.
+          </td>
+        </tr>
       </tbody>
     </table>
-  </section>
+  </section> -->
 
   <section id="box-model">
     <h2>Box Model</h2>
+
+    <h3>Padding</h3>
     <table class="class-defs">
       <thead>
         <tr>
@@ -60,23 +80,11 @@
           <td>
             <ul>
               <li>
-                Modify the padding of an element. Left+right edge combined is <code>x</code>, top+bottom edges combined
-                is <code>y</code>.
-              </li>
-            </ul>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <code class="language-css">.margin{-edge}{-amount}</code>
-          </td>
-          <td>
-            <ul>
-              <li>
-                Modify the margin of an element.
+                Modify the padding of an element.
               </li>
               <li>
-                Left+right edge combined is <code>x</code>, top+bottom edges combined is <code>y</code>.
+                  Left+right edge combined is <code>x</code>, top+bottom edges combined
+                  is <code>y</code>. Other options are "t", "r", "b", "l".
               </li>
               <li>
                 Options for 'amount' are: <em>none</em>, 'quarter', 'half', and 'double'.
@@ -86,6 +94,58 @@
         </tr>
       </tbody>
     </table>
+
+    <h3>Margin</h3>
+    <table class="class-defs">
+      <thead>
+        <tr>
+          <th>Class</th>
+          <th>Effect</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <code class="language-css">.margin{-edge}{-amount}</code>
+          </td>
+          <td>
+            <ul>
+              <li>
+                Modify the margin of an element. Left+right edge combined is <code>x</code>, top+bottom edges combined
+                is <code>y</code>.
+              </li>
+              <li>
+                  Left+right edge combined is <code>x</code>, top+bottom edges combined
+                  is <code>y</code>. Other options are "t", "r", "b", "l".
+              </li>
+              <li>
+                Options for 'amount' are: <em>none</em>, 'quarter', 'half', and 'double'.
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code class="language-css">.pull{-edge}{-amount}</code>
+          </td>
+          <td>
+            <ul>
+              <li>
+                Modify the negative margin of an element.
+              </li>
+              <li>
+                  Left+right edge combined is <code>x</code>, top+bottom edges combined
+                  is <code>y</code>. Other options are "t", "r", "b", "l".
+              </li>
+              <li>
+                Options for 'amount' are: <em>none</em>, 'quarter', 'half', and 'double'.
+              </li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
   </section>
 
   <section id="typography">
