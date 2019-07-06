@@ -468,3 +468,212 @@ pre .line-highlight {
     font-weight: bold;
   }
 }
+
+
+// TODO: everything else... find a new place for this
+
+html {
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  -webkit-overflow-scrolling: auto;
+}
+
+html.iOS {
+  height: 100% !important;
+  width: 100% !important;
+  body {
+    height: 100% !important;
+    width: 100% !important;
+  }
+}
+
+body {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  color: $lowlight-tertiary;
+}
+
+[id="xxx"] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  #page {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    transition: all 150ms $ease;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+    transform: translateX(0) translateZ(0);
+  }
+  
+
+  #control {
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    right: 0;
+    overflow: visible;
+  }
+}
+
+#page {
+  > header {
+    display: block;
+    padding: $base 0;
+    line-height: 3rem;
+    flex-shrink: 0;
+    background: $accent-tertiary;
+    color: $highlight-primary;
+  }
+
+  > main {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1 auto;
+    background: $back-primary;
+    @include scroll-y;
+  }
+
+  main > footer {
+    display: block;
+    color: $lowlight-tertiary;
+    background: $lowlight-secondary;
+  }
+}
+
+i.material-icons {
+  display: inline-flex;
+  vertical-align: middle;
+  line-height: 1em;
+  font-size: inherit;
+}
+
+
+/* 30px baseline config for Open Sans */
+.baseline30 .show-baseline:before {
+  background-size: 100% 3rem;
+}
+.baseline30 {
+  line-height: 3rem;
+}
+
+.baseline30 h1:last-child,
+.baseline30 h2:last-child,
+.baseline30 h3:last-child,
+.baseline30 h4:last-child,
+.baseline30 h5:last-child {
+  margin-bottom: 2.5rem;
+}
+
+.baseline30 h1 {
+  font-size: 3rem;
+  line-height: 3rem;
+  margin-top: 3.4rem;
+  margin-bottom: 2.5rem;
+}
+.baseline30 p + h1 {
+  margin-top: -0.5rem;
+}
+
+.baseline30 h2 {
+  font-size: 2.6rem;
+  margin-top: 0.5rem;
+  margin-bottom: 2.6rem;
+}
+
+.baseline30 p + h2,
+.baseline30 ul + h2,
+.baseline30 ol + h2 {
+  margin-top: -0.4rem;
+}
+
+.baseline30 h1 + h2 {
+  margin-top: 0.6rem;
+}
+
+.baseline30 h3 {
+  font-size: 2rem;
+  margin-top: 3.8rem;
+  // margin-bottom: 2.9rem;
+}
+
+.baseline30 p + h3,
+.baseline30 ul + h3,
+.baseline30 ol + h3 {
+  margin-top: -0.1rem;
+  // margin-bottom: 2.9rem;
+}
+
+.baseline30 h2 + h3 {
+  margin-top: 0.9rem;
+}
+
+.baseline30 p,
+.baseline30 ul,
+.baseline30 ol {
+  margin-top: 1rem;
+  line-height: 3rem;
+  margin-bottom: 3rem;
+}
+
+.baseline30 p + p {}
+
+.baseline30 p:last-child,
+.baseline30 ul:last-child,
+.baseline30 ol:last-child {
+  margin-bottom: 2.1rem
+}
+
+.baseline30 input {
+  display: block;
+  height: 3rem;
+  width: 100%;
+  background-color: #fff;
+}
+
+.baseline30 p + input,
+.baseline30 ul + input,
+.baseline30 ol + input {
+  margin-top: -0.9rem;
+  margin-bottom: -0.1rem;
+}
+
+.baseline30 .image {
+  height: 30rem;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+  transition: all 250ms $ease;
+  margin-bottom: 3.9rem;
+}
+
+.baseline30 p + .image,
+.baseline30 ul + .image,
+.baseline30 ol + .image,
+.image + .image {
+  margin-top: -0.9rem;
+  min-height: 3rem;
+}
+
+[v-cloak] {
+  opacity: none !important;
+  &[vce-ready] {
+    display: inherit !important;
+  }
+}
