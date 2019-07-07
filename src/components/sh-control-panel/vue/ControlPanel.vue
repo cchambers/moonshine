@@ -9,6 +9,11 @@
     <div class="close-modal" v-hammer:tap="back">
       <i class="material-icons nav-icon">arrow_back</i>
     </div>
+
+    <div class="theme-toggle" v-hammer:tap="toggleTheme">
+      <i v-if="theme == 'dark'" class="material-icons nav-icon">toggle_on</i>
+      <i v-else class="material-icons nav-icon">toggle_off</i>
+    </div>
   </div>
 </template>
 
@@ -24,7 +29,7 @@ html {
       transform: translateY(0) translateZ(0);
     }
     #page {
-      transform: translateX(15rem) translateZ(0);
+      transform: translateX(15rem) translateZ(0) !important;
       transition: transform 300ms $ease;
     }
     sh-nav {

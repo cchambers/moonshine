@@ -3,10 +3,10 @@
   $purple: #3700B3;
   $green: #03DAC6;
 
-  $highlight-primary: #BB86FC;
+  $highlight-primary: rgb(157, 208, 230);
   $highlight-secondary: rgb(25,25,25);
   $highlight-tertiary: #03DAC6;
-  $highlight-quaternary: #272822;
+  $highlight-quaternary: #4e1b96;
 
   $lowlight-primary: $purple;
   $lowlight-secondary: #272822;
@@ -14,11 +14,11 @@
   $lowlight-quaternary: #222;
   $lowlight-quinary: $purple;
 
-  $accent-primary: rgb(157, 208, 230);
-  $accent-secondary: rgb(129, 177, 210);
-  $accent-tertiary: $highlight-tertiary;
-  $accent-quaternary: rgb(6, 103, 160);
-  $accent-quinary: rgb(41, 57, 115);
+  $accent-primary: #BB86FC;
+  $accent-secondary:#03DAC6;
+  $accent-tertiary: #BB86FC;
+  $accent-quaternary: $purple;
+  $accent-quinary: $purple;
 
   $back-primary: $lowlight-secondary;
 }
