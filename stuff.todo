@@ -4,3 +4,17 @@ Stuff to do:
   ☐ Theming. Most important.
   ☐ Link List -> DropNav -> Tabs
   
+
+
+Independid: 
+  ☐ component prototype
+  ☐ component generator
+  ☐ theme loader 
+  ☐ static page rendering mechanism
+  ☐ lib toolbar fullscreen view
+  ☐ utility docs
+  ☐ event bus/docs
+
+  
+...
+  ☐ accordion/dropnav/link-list base

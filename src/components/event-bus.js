@@ -4,7 +4,10 @@ import Vue from 'vue';
 export const EventBus = new Vue();
 
 export default {
-  name: 'EventBus',
+	name: 'EventBus',
+	created() {
+		console.log("EB HERE")
+	}
 }
 
 // TODO: Create a mechanism for collecting events during page load and emit them with a hash or something -- maybe only emit as new components load in... 
@@ -78,3 +81,7 @@ function listen(event, target, handler, options) {
 }
 
 bindAll();
+
+function sh(el) {
+	return [el].__vue_custom_element__.$children[0];
+}

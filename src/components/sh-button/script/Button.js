@@ -3,23 +3,19 @@ export default {
 
   props: {
     closeTrigger: Boolean,
-    active: Boolean
+    toggle: Boolean,
   },
 
   data() {
     return {
-      isActive: Boolean,
+      active: false,
     }
   },
 
-  
-  mounted() {
-    this.events();
-  },
-
   methods: {
-    events() {
-      this.$el.addEventListener('click', this.ripple)
+    tapHandler(e) {
+      this.ripple(e);
+      if (this.toggle) this.doToggle();
     },
     
     ripple(e) {
@@ -34,6 +30,11 @@ export default {
       setTimeout(()=>{
         ripple.remove();
       }, 800);
+    },
+
+    doToggle() {
+      this.active = !this.active;
     }
-  }
+  },
+
 }

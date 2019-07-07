@@ -1,5 +1,8 @@
 <template>
-  <button :close-trigger="closeTrigger" class="sh-button">
+  <button :class="{ active: active }"
+    :close-trigger="closeTrigger"
+    v-hammer:tap="tapHandler"
+    class="sh-button">
     <slot name="before-text"></slot>
     <slot></slot>
     <slot name="after-text"></slot>
