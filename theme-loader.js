@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 const fs = require('fs-extra');
 
 /**
@@ -15,7 +15,7 @@ function themeLoader(content) {
   for (let x = 0, l = themes.length; x < l; x++) {
     let theme = themes[x];
     let vars = fs.readFileSync(`./src/assets/style/themes/${theme}/_variables.scss`, 'utf8');
-    let split = vars.split("}");
+    let split = vars.split('}');
     split.push(content);
     split.push('}');
     let data = split.join('');
