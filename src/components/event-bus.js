@@ -7,26 +7,23 @@ export default {
 	name: 'EventBus'
 }
 
-// TODO: Create a mechanism for collecting events during page load and emit them with a hash or something -- maybe only emit as new components load in... 
-
+// TODO: This batches the initial events before page load. 
 let batch = [];
 let preload = true;
 setTimeout(function () { 
 	preload = false;
-	console.log(batch)
+	// console.log(batch); <-- could potentially re-emit these if needed.
 });
 
-const old_on = EventBus.$on;
-EventBus.$on = (...args) => {
+const old_emit = EventBus.$emit;
+EventBus.$emit = (...args) => {
 	let event = args[0];
-	if (preload) batch.push(event);
+	if (preload && event != 'component-ready') batch.push(event);
 	// emit native event?
-  old_on.apply(EventBus, args);
+  old_emit.apply(EventBus, args);
 };
 
-// TODO: ... creating that mechanism ^
-
-var delegations = {
+let delegations = {
 	click: [
 		{
 			target: "[close-trigger]",
@@ -46,7 +43,7 @@ var delegations = {
 
 function bindAll() {
 	let self = this;
-	for (var event in delegations) {
+	for (let event in delegations) {
 		setupEvent(event);
 	}
 
@@ -60,7 +57,7 @@ function setupEvent(event) {
 	document.addEventListener(event, function(e) {
 		let arr = delegations[event];
 		// for every item that needs to be watched on *event*
-		for (var x = 0, l = arr.length; x < l; x++) {
+		for (let x = 0, l = arr.length; x < l; x++) {
 			if (e.target.matches(arr[x].target)) arr[x].handler(e)
 
 			// TODO: if (arr[x].stopProp...) return;
