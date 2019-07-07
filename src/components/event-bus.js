@@ -4,14 +4,27 @@ import Vue from 'vue';
 export const EventBus = new Vue();
 
 export default {
-	name: 'EventBus',
-	created() {
-		console.log("EB HERE")
-	}
+	name: 'EventBus'
 }
 
 // TODO: Create a mechanism for collecting events during page load and emit them with a hash or something -- maybe only emit as new components load in... 
 
+let batch = [];
+let preload = true;
+setTimeout(function () { 
+	preload = false;
+	console.log(batch)
+});
+
+const old_on = EventBus.$on;
+EventBus.$on = (...args) => {
+	let event = args[0];
+	if (preload) batch.push(event);
+	// emit native event?
+  old_on.apply(EventBus, args);
+};
+
+// TODO: ... creating that mechanism ^
 
 var delegations = {
 	click: [
@@ -82,6 +95,6 @@ function listen(event, target, handler, options) {
 
 bindAll();
 
-function sh(el) {
-	return [el].__vue_custom_element__.$children[0];
+window.sh = function(el) {
+	return el.__vue_custom_element__.$children[0];
 }
