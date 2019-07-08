@@ -6,12 +6,10 @@
  * @param {string} content
  */
 function themeLoader(content) {
-
-  // let themes = ['dark'];
   let data = content.match(/([^\s]*:\s?[$][A-z]*-[A-z]*);/g);
   
   if (data) {
-    for (var x = 0, l = data.length; x < l; x++) {
+    for (let x = 0, l = data.length; x < l; x++) {
       let scss = data[x];
       let newString = `${scss}`;
       let theVar = newString.match(/([$][A-z]*-[A-z]*)/g);
