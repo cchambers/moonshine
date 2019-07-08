@@ -6,14 +6,19 @@ require('./assets/script/core.js');
 import Vue from 'vue';
 Vue.config.productionTip = false;
 
+/* IE-11 Polyfills */
 import 'document-register-element/build/document-register-element';
 import './assets/script/polyfills.js'
+
+/* HammerJS (touch support) */
 import { VueHammer } from 'vue2-hammer';
 Vue.use(VueHammer);
 
+/* Vue Custom Element */
 import vueCustomElement from 'vue-custom-element';
 Vue.use(vueCustomElement);
 
+/* SH-COMPONENT PROTOTYPE */
 import ComponentPrototype from './components/prototype';
 Vue.mixin(ComponentPrototype);
 
