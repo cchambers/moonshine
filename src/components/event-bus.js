@@ -52,14 +52,18 @@ function bindAll() {
 	})
 }
 
+
 function setupEvent(event) {
 // create a new listener... 
 	document.addEventListener(event, function(e) {
 		let arr = delegations[event];
 		// for every item that needs to be watched on *event*
 		for (let x = 0, l = arr.length; x < l; x++) {
-			if (e.target.matches(arr[x].target)) arr[x].handler(e)
-
+			if (e.target.matches) {
+				if (e.target.matches(arr[x].target)) arr[x].handler(e)
+			} else if (e.target.msMatchesSelector) {
+				if (e.target.msMatchesSelector(arr[x].target)) arr[x].handler(e)
+			}
 			// TODO: if (arr[x].stopProp...) return;
 		}
 	});

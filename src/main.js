@@ -1,10 +1,13 @@
 /* eslint-disable */
+import '@babel/polyfill';
 
 require('./assets/script/core.js');
 
 import Vue from 'vue';
 Vue.config.productionTip = false;
 
+import 'document-register-element/build/document-register-element';
+import './assets/script/polyfills.js'
 import { VueHammer } from 'vue2-hammer';
 Vue.use(VueHammer);
 
