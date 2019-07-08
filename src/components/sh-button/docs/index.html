@@ -36,6 +36,15 @@
             </ul>
           </td>
         </tr>
+        <tr>
+          <td>toggle</td>
+          <td>Boolean</td>
+          <td>
+            <ul>
+              <li>Make button have a toggle state.</li>
+            </ul>
+          </td>
+        </tr>
       </tbody>
     </table>
 
@@ -61,13 +70,13 @@
             before the text.
           </td>
         </tr>
-        <tr>
+        <!-- <tr>
           <td>active-before-icon</td>
           <td>
             <a href="https://material.io/tools/icons/?style=baseline" target="_icons">Material Icon</a> that comes
             before the text when the 'active' prop has been toggled true.
           </td>
-        </tr>
+        </tr> -->
         <tr>
           <td>after-icon</td>
           <td>
@@ -75,13 +84,13 @@
             the text.
           </td>
         </tr>
-        <tr>
+        <!-- <tr>
           <td>active-after-icon</td>
           <td>
             <a href="https://material.io/tools/icons/?style=baseline" target="_icons">Material Icon</a> that comes after
             the text when the 'active' prop has been toggled true.
           </td>
-        </tr>
+        </tr> -->
       </tbody>
     </table>
 
@@ -116,7 +125,7 @@
 
     <h3 class="margin-b-quarter">Default</h3>
     <lib-toolbar>
-      <sh-button>Toggle Button</sh-button>
+      <sh-button toggle>Toggle Button</sh-button>
       <sh-button>
         <i class="material-icons" slot="before-text">close</i>
         With Icon

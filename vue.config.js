@@ -64,7 +64,9 @@ if (process.env.NODE_ENV != 'production') {
 
 module.exports = {
   runtimeCompiler: false,
+
   filenameHashing: false,
+
   css: {
     loaderOptions: {
       sass: {
@@ -76,6 +78,7 @@ module.exports = {
       }
     }
   },
+
   configureWebpack: {
     resolve: {
       alias: {
@@ -83,14 +86,12 @@ module.exports = {
       }
     }
   },
+
   chainWebpack: config => {
     const vueRule = config.module.rule('scss').oneOf('vue');
-    const themeLoader= path.resolve('theme-loader.js');
-    vueRule.use('shine-theme-loader')
-      // .before('vue-style-loader')
-      .loader(themeLoader)
-      .end();
-
+    const themeLoader = path.resolve('theme-loader.js');
+    vueRule.use('shine-theme-loader').loader(themeLoader).end();
   },
+
   pages: pages,
 }

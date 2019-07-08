@@ -60,7 +60,8 @@ sh-button {
       font-size: 1rem;
     }
   
-    &:hover {
+    &:hover,
+    &.active {
       background: $accent-tertiary
     }
   }

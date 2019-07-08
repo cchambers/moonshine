@@ -1,6 +1,4 @@
 'use strict';
-const fs = require('fs-extra');
-
 /**
  * The sass-loader makes node-sass available to webpack modules.
  *
@@ -9,20 +7,20 @@ const fs = require('fs-extra');
  */
 function themeLoader(content) {
 
-  let themes = ['dark'];
-  let themeData = [content];
-
-  for (let x = 0, l = themes.length; x < l; x++) {
-    let theme = themes[x];
-    let vars = fs.readFileSync(`./src/assets/style/themes/${theme}/_variables.scss`, 'utf8');
-    let split = vars.split('}');
-    split.push(content);
-    split.push('}');
-    let data = split.join('');
-    themeData.push(data);
+  // let themes = ['dark'];
+  let data = content.match(/([^\s]*:\s?[$][A-z]*-[A-z]*);/g);
+  
+  if (data) {
+    for (var x = 0, l = data.length; x < l; x++) {
+      let scss = data[x];
+      let newString = `${scss}`;
+      let theVar = newString.match(/([$][A-z]*-[A-z]*)/g);
+      let noDollar = theVar[0].substr(1);
+      newString = newString.replace(theVar[0], `var(--${noDollar})`);
+      newString = scss + newString;
+      content = content.replace(scss, newString)
+    }
   }
-
-  content = themeData.join('');
   return content;
 }
 

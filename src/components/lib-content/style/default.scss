@@ -546,7 +546,7 @@ body {
     flex-direction: column;
     justify-content: space-between;
     flex: 1 auto;
-    background: $back-primary;
+    background: $highlight-primary;
     @include scroll-y;
   }
 
