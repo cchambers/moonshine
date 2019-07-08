@@ -1,51 +1,18 @@
-$highlight-primary: rgb(254,254,254);
-$highlight-secondary: rgb(245,245,245);
-$highlight-tertiary: rgb(220,220,220);
-$highlight-quaternary: #eee;
+[theme="dark"] {
+  --highlight-primary: rgb(157, 208, 230);
+  --highlight-secondary: rgb(25,25,25);
+  --highlight-tertiary: #03DAC6;
+  --highlight-quaternary: #4e1b96;
 
-$lowlight-primary: rgb(25,25,25);
-$lowlight-secondary: #272822;
-$lowlight-tertiary: rgb(100,100,100);
-$lowlight-quaternary: rgb(165,165,165);
-$lowlight-quinary: rgb(200,200,200);
+  --lowlight-primary: #3700B3;
+  --lowlight-secondary: #272822;
+  --lowlight-tertiary: rgb(200,200,200);
+  --lowlight-quaternary: #222;
+  --lowlight-quinary: #3700B3;
 
-$accent-primary: rgb(157, 208, 230);
-$accent-secondary: rgb(129, 177, 210);
-$accent-tertiary: rgb(0,131,186);
-$accent-quaternary: rgb(6, 103, 160);
-$accent-quinary: rgb(41, 57, 115);
-
-$colors: (
-  highlight-primary: rgb(254,254,254),
-  highlight-secondary: rgb(245,245,245),
-  highlight-tertiary: rgb(220,220,220),
-  highlight-quaternary: #eee,
-
-  lowlight-primary: rgb(25,25,25),
-  lowlight-secondary: #272822,
-  lowlight-tertiary: rgb(100,100,100),
-  lowlight-quaternary: rgb(165,165,165),
-  lowlight-quinary: rgb(200,200,200),
-
-  accent-primary: rgb(157, 208, 230),
-  accent-secondary: rgb(129, 177, 210),
-  accent-tertiary: rgb(0,131,186),
-  accent-quaternary: rgb(6, 103, 160),
-  accent-quinary: rgb(41, 57, 115),
-);
-
-$breakpoint: 800px;
-
-$back-primary: $highlight-primary;
-$back-secondary: $highlight-secondary;
-$foreground: $lowlight-primary;
-
-$base: 3rem;
-
-$ease: cubic-bezier(0.4, 0.0, 0.2, 1);
-$decel: cubic-bezier(0.0, 0.0, 0.2, 1);
-$accel: cubic-bezier(0.4, 0.0, 1, 1);
-
-$pink: #fadadd;
-$link-color: $accent-tertiary;
-
+  --accent-primary: #BB86FC;
+  --accent-secondary:#03DAC6;
+  --accent-tertiary: #BB86FC;
+  --accent-quaternary: #3700B3;
+  --accent-quinary: #3700B3;
+}
