@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 /**
  * The sass-loader makes node-sass available to webpack modules.
  *
@@ -6,15 +6,21 @@
  * @param {string} content
  */
 function themeLoader(content) {
-    /*
-    EVERY THEME...
-      [theme="${name}"] {
-        ${themeVars}
-        ${content}
-      } 
-    END EVERY THEME
-    content
-    */
+
+  // let themes = ['dark'];
+  let data = content.match(/([^\s]*:\s?[$][A-z]*-[A-z]*);/g);
+  
+  if (data) {
+    for (var x = 0, l = data.length; x < l; x++) {
+      let scss = data[x];
+      let newString = `${scss}`;
+      let theVar = newString.match(/([$][A-z]*-[A-z]*)/g);
+      let noDollar = theVar[0].substr(1);
+      newString = newString.replace(theVar[0], `var(--${noDollar})`);
+      newString = scss + newString;
+      content = content.replace(scss, newString)
+    }
+  }
   return content;
 }
 

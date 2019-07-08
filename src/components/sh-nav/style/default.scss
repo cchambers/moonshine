@@ -33,17 +33,17 @@ sh-nav {
     padding: $base;
     transition: all 100ms linear;
     cursor: pointer;
-    background: $accent-quaternary;
+    background: $accent-tertiary;
     top: 0;
 
     &:hover {
-      background: $accent-tertiary;
+      background: $accent-quaternary;
     }
   }
 
   .primary {
     width: 26rem;
-    background: $lowlight-primary;
+    background: $lowlight-secondary;
     min-height: 100vh;
     // padding-top: 9rem;
     @include scroll-y;

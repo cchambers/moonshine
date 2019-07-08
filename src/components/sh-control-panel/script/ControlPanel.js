@@ -1,6 +1,18 @@
 export default {
   name: 'ControlPanel',
-  
+
+  data() {
+    return {
+      theme: 'default'
+    }
+  },
+
+  watch: {
+    theme: function (val) {
+      document.documentElement.setAttribute('theme', val);
+    }
+  },
+
   methods: {
     events() {
       let self = this;
@@ -34,9 +46,15 @@ export default {
       document.documentElement.classList.remove('modal-shown');
       this.$bus.$emit('close-modals');
     },
+    toggleTheme() {
+      this.theme = (this.theme == 'default') ? 'dark' : 'default';
+      window.localStorage.setItem('docs-theme', this.theme);
+    }
   },
 
   mounted() {
+    let theme = window.localStorage.getItem('docs-theme');
+    if (theme) this.theme = theme;
     this.events();
   },
 }

@@ -64,17 +64,21 @@ if (process.env.NODE_ENV != 'production') {
 
 module.exports = {
   runtimeCompiler: false,
+
   filenameHashing: false,
+
   css: {
     loaderOptions: {
       sass: {
         data: `
           @import "@/assets/style/common/_mixins.scss";
           @import "@/assets/style/themes/default/_variables.scss";
+          @import "@/assets/style/themes/dark/_variables.scss";
         `
       }
     }
   },
+
   configureWebpack: {
     resolve: {
       alias: {
@@ -82,14 +86,12 @@ module.exports = {
       }
     }
   },
+
   chainWebpack: config => {
     const vueRule = config.module.rule('scss').oneOf('vue');
-    const themeLoader= path.resolve('theme-loader.js');
-    vueRule.use('shine-theme-loader')
-      // .before('vue-style-loader')
-      .loader(themeLoader)
-      .end();
-
+    const themeLoader = path.resolve('theme-loader.js');
+    vueRule.use('shine-theme-loader').loader(themeLoader).end();
   },
+
   pages: pages,
 }
