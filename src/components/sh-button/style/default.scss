@@ -1,25 +1,25 @@
 sh-button {
   display: inline-flex;
   height: 4.5rem;
+  font-size: 1rem;
 
   &~sh-button {
-    margin-left: 1.5rem;
+    margin-left: 1.5em;
   }
 
   &[round] button {
-    border-radius: 2.5rem;
+    border-radius: 2.5em;
   }
 
   &[outline] button,
   &[outline][variant] button {
     background: transparent;
-    border-width: 0.25rem;
+    border-width: 0.25em;
     border-style: solid;
     border-color: inherit;
     color: $lowlight-primary;
     &:hover {
       color: $highlight-primary;
-      border-color: inherit;
     }
   }
 
@@ -30,14 +30,14 @@ sh-button {
     align-items: center;
     justify-content: center;
     flex-direction: row;
-    padding: 0 1.5rem;
+    padding: 0 1.5em;
     height: 100%;
-    min-width: 4.5rem;
+    min-width: 4.5em;
     color: $highlight-primary;
     background: $lowlight-primary;
     transition: all 250ms $decel;
     text-transform: uppercase;
-    font-size: 10px;
+    font-size: 1em;
     cursor: pointer;
     overflow: hidden;
 
@@ -62,7 +62,7 @@ sh-button {
       background: white;
       transform: translateX(-50%) translateY(-50%) translateZ(0);
       z-index: 0;
-      animation: ripple 1s $decel;
+      animation: ripple 2s $decel;
     }
 
     .material-icons {
@@ -90,6 +90,10 @@ sh-button {
     0% {
       opacity: 0.2;
       transform: scale(0);
+    }
+
+    80% {
+      opacity: 0;
     }
 
     100% {

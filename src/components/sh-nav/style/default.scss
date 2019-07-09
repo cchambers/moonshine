@@ -43,7 +43,7 @@ sh-nav {
 
   .primary {
     width: 26rem;
-    background: $accent-tertiary;
+    background: $lowlight-tertiary;
     min-height: 100vh;
     // padding-top: 9rem;
     @include scroll-y;
@@ -121,7 +121,7 @@ sh-nav {
     }
 
     a {
-      color: $highlight-primary;
+      color: $accent-primary;
       display: block;
       line-height: $base;
 

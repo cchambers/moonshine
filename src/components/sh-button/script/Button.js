@@ -24,14 +24,14 @@ export default {
       let ripple = document.createElement('div');
       ripple.classList.add('ripple');
       var rect = e.target.getBoundingClientRect();
-      var x = e.center.x - rect.left; //x position within the element.
-      var y = e.center.y - rect.top; 
+      var x = e.center.x - rect.left - 10; //x position within the element.
+      var y = e.center.y - rect.top - 10; 
       ripple.style.left = x + 'px';
       ripple.style.top = y + 'px';
-      this.$el.append(ripple);
+      this.$el.prepend(ripple);
       setTimeout(()=>{
         ripple.remove();
-      }, 800);
+      }, 1400);
     },
 
     doToggle() {
