@@ -6,7 +6,7 @@
  * @param {string} content
  */
 function themeLoader(content) {
-  let data = content.match(/([^\s]*:\s?[$][A-z]*-[A-z]*);/g);
+  let data = content.match(/([^\s]*:(\s.*)[$][A-z]*-[A-z]*);/g);
   if (data) {
     data = [...new Set(data)];
 

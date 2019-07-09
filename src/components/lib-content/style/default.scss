@@ -136,9 +136,8 @@
     margin-bottom: 6rem;
     padding-bottom: 6rem;
     padding: 0 $base $base $base;
-    border: 1px solid $highlight-secondary;
+    background-color: $highlight-quaternary;
     @include box-shadow(1);
-
     &:last-of-type {
       border-bottom: none;
     }
