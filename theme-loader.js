@@ -31,7 +31,6 @@ function themeLoader(content) {
 
       var regStr = `(?<!-)${scss}`;
       regStr = regStr.replace(/\$/, String.fromCharCode(92) + '$');
-      console.log(regStr);
       var regEx = new RegExp(regStr, 'g');
 
       content = content.replace(regEx, newString);
