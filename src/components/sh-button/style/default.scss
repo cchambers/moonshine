@@ -11,6 +11,26 @@ sh-button {
     border-radius: 2.5em;
   }
 
+  &[round="left"] button {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  &[round="right"] button {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  &[round="bottom"] button {
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+  }
+
+  &[round="top"] button {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
   &[outline] button,
   &[outline][variant] button {
     background: transparent;

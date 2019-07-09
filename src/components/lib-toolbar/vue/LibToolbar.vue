@@ -8,10 +8,10 @@
             <i class="material-icons px20">file_copy</i>
           </sh-button>
         </div> -->
-        <sh-button round class="min" v-hammer:tap="toggleFullscreen">
+        <sh-button round variant="secondary" scale="60" v-hammer:tap="toggleFullscreen">
           <i class="material-icons px20">fullscreen</i>
         </sh-button>
-        <sh-button round class="min" v-hammer:tap="toggleActive">toggle code</sh-button>
+        <sh-button round variant="primary" scale="60" v-hammer:tap="toggleActive">toggle code</sh-button>
       </div>
     </div>
     <div class="editor" ref="editor"></div>

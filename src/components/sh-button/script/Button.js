@@ -4,7 +4,7 @@ export default {
   props: {
     closeTrigger: Boolean,
     toggle: Boolean,
-    round: Boolean,
+    round: String,
     outline: Boolean
   },
 

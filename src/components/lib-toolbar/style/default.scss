@@ -12,16 +12,17 @@ lib-toolbar {
     background: transparent;
     transition: all 250ms $ease;
     .component {
-      min-height: 10rem;
+      min-height: 2rem;
       flex-grow: 2;
     }
     &.fullscreen {
       position: fixed;
       top: 9rem; left: 0;
       right: 0; bottom: 0;
-      z-index: $z-level;
+      z-index: $z-level + 3;
       &.active {
         .component {
+          padding: 0;
           min-height: 50vh;
         }
       }
@@ -51,6 +52,9 @@ lib-toolbar {
     }
     &.active {
       background: $lowlight-secondary;
+      .component {
+        padding: 1rem;
+      }
       .editor {
         display: block;
       }
@@ -82,7 +86,6 @@ lib-toolbar {
   }
   
   .component {
-    padding: 0 0 3rem 0 ;
     background: $highlight-primary;
   }
   
