@@ -1,20 +1,21 @@
+
 $highlight-primary: rgb(254,254,254);
 $highlight-secondary: rgb(245,245,245);
 $highlight-tertiary: rgb(220,220,220);
-$highlight-quaternary: #eee;
-$highlight-quinary: pink;
+$highlight-quaternary: rgb(255,255,255);
+$highlight-quinary: tomato;
 
 $lowlight-primary: rgb(25,25,25);
-$lowlight-secondary: #272822;
+$lowlight-secondary: rgb(39,40,34);
 $lowlight-tertiary: rgb(41, 57, 115);;
-$lowlight-quaternary: rgb(165,165,165);
-$lowlight-quinary: rgb(200,200,200);
+$lowlight-quaternary: rgb(100,100,100);
+$lowlight-quinary: tomato;
 
-$accent-primary: rgb(0,131,186);
-$accent-secondary: rgb(129, 177, 210);
+$accent-primary: rgb(0,131,186);;
+$accent-secondary: rgb(6, 103, 160);
 $accent-tertiary: rgb(157, 208, 230);
-$accent-quaternary: rgb(6, 103, 160);   // rgb(129, 177, 210)
-$accent-quinary: rgb(41, 57, 115);      // rgb(157, 208, 230)
+$accent-quaternary: rgb(129, 177, 210);
+$accent-quinary: tomato;
 
 $colors: (
   highlight-primary: $highlight-primary,
