@@ -1,9 +1,13 @@
 sh-button[variant=primary] {
   button {
-    background: $lowlight-tertiary;
+    background-color: $lowlight-tertiary;
     &:hover,
     &.active {
-      background: $lowlight-quaternary;
+      background-color: $lowlight-quaternary;
     }
+  }
+
+  &[outline] button {
+    color: $lowlight-tertiary;
   }
 }

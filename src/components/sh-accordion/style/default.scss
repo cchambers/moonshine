@@ -19,7 +19,7 @@ sh-accordion {
       margin: 0 !important;
     }
     &:hover {
-      color: $accent-tertiary;
+      color: $accent-primary;
       background: $highlight-primary;
     }
   }
@@ -36,11 +36,11 @@ sh-accordion {
 
   &.active {
     .header {
-      background-color: $accent-primary;
+      background-color: $accent-tertiary;
     }
 
     .body {
-      border-color: $accent-primary;
+      border-color: $accent-tertiary;
     }
 
     .collapse {

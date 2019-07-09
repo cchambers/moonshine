@@ -22,11 +22,16 @@ Vue.use(vueCustomElement);
 import ComponentPrototype from './components/prototype';
 Vue.mixin(ComponentPrototype);
 
+/* COMMON STYLES */
+require('./assets/style/common/base.scss');
+require('./assets/style/common/utility.scss');
+require('./assets/style/themes/custom-props.scss');
+
 /* non-deployed in prod */
+require('./components/sh-button');
 require('./components/sh-curtain');
 require('./components/sh-header');
 require('./components/sh-accordion');
-require('./components/sh-button');
 require('./components/sh-tooltip');
 require('./components/sh-modal');
 require('./components/sh-link-list');
@@ -37,9 +42,6 @@ require('./components/sh-input');
 
 if (process.env.NODE_ENV != 'production') {
   require('./assets/script/prism.js');
-  require('./assets/style/common/base.scss');
-  require('./assets/style/common/utility.scss');
-  require('./assets/style/layout.scss');
   require('./assets/style/prism.css');
   require('./components/component-template');
   require('./components/sh-control-panel');

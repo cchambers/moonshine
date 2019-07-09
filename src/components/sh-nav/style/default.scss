@@ -33,11 +33,11 @@ sh-nav {
     padding: $base;
     transition: all 100ms linear;
     cursor: pointer;
-    background: $accent-tertiary;
+    background: $accent-primary;
     top: 0;
 
     &:hover {
-      background: $accent-quaternary;
+      background: $accent-primary;
     }
   }
 
@@ -126,7 +126,7 @@ sh-nav {
       line-height: $base;
 
       &:hover {
-        color: $accent-tertiary;
+        color: $accent-primary;
         background: rgba(255, 255, 255, 0.02)
       }
     }
@@ -172,7 +172,7 @@ sh-nav {
         text-transform: uppercase;
         font-size: 3rem;
         line-height: 3rem;
-        color: $accent-quaternary;
+        color: $accent-primary;
       }
 
       flex-grow: 0;

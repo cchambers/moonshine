@@ -1,12 +1,13 @@
 sh-button[variant=tertiary] {
   button {
-    color: $lowlight-tertiary;
-    background: $highlight-secondary;
-    border: 1px solid $lowlight-tertiary;
+    background: $lowlight-quaternary;
     &:hover,
     &.active {
-      background: $lowlight-tertiary;
-      color: $highlight-primary;
+      background: $accent-quaternary;
     }
+  }
+  
+  &[outline] button {
+    color: $lowlight-quaternary;
   }
 }

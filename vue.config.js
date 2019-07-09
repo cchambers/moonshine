@@ -73,7 +73,6 @@ module.exports = {
         data: `
           @import "@/assets/style/common/_mixins.scss";
           @import "@/assets/style/themes/default/_variables.scss";
-          @import "@/assets/style/themes/dark/_variables.scss";
         `
       }
     }

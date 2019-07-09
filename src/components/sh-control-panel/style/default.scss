@@ -1,7 +1,7 @@
 sh-control-panel {
   .nav-icon {
     cursor: pointer;
-    color: $accent-primary;
+    color: $accent-tertiary;
     font-size: 4rem;
     transition: opacity 250ms $ease, color 250ms $ease;
     border-radius: 50%;
@@ -50,5 +50,8 @@ sh-control-panel {
     position: fixed;
     bottom: 3rem;
     right: 3rem;
+    &:hover i {
+      color: $lowlight-tertiary;
+    }
   }
 }

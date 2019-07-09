@@ -1,0 +1,36 @@
+:root {
+  --highlight-primary: rgb(254,254,254);
+  --highlight-secondary: rgb(245,245,245);
+  --highlight-tertiary: rgb(220,220,220);
+  --highlight-quaternary: lime;
+  --highlight-quinary: lime;
+
+  --lowlight-primary: rgb(25,25,25);
+  --lowlight-secondary: rgb(39,40,34);
+  --lowlight-tertiary: rgb(41, 57, 115);;
+  --lowlight-quaternary: rgb(100,100,100);
+  --lowlight-quinary: rgb(165,165,165);
+
+  --accent-primary: rgb(0,131,186);;
+  --accent-secondary: rgb(6, 103, 160);
+  --accent-tertiary: rgb(157, 208, 230);
+  --accent-quaternary: rgb(129, 177, 210);
+  --accent-quinary: lime;
+}
+
+[theme="dark"] {
+  --highlight-primary: rgb(25,25,25);
+  --highlight-secondary: rgb(39,40,34);
+  --highlight-tertiary: #3700B3;
+  --highlight-quaternary: #4e1b96;
+
+  --lowlight-primary: #BB86FC;
+  --lowlight-secondary: #4e1b96;
+  --lowlight-tertiary: #018786;
+  --lowlight-quaternary: #03DAC6;
+
+  --accent-primary: #BB86FC;
+  --accent-secondary:#4e1b96;
+  --accent-tertiary: rgb(200,200,200);
+  --accent-quaternary: #3700B3;
+}

@@ -4,6 +4,8 @@ export default {
   props: {
     closeTrigger: Boolean,
     toggle: Boolean,
+    round: Boolean,
+    outline: Boolean
   },
 
   data() {

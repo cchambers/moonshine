@@ -1,6 +1,25 @@
-
 sh-button {
   display: inline-flex;
+  height: 4.5rem;
+  min-width: 4.5rem;
+
+  &~sh-button {
+    margin-left: 1.5rem;
+  }
+
+  &[round] button {
+    border-radius: 2.5rem;
+  }
+
+  &[outline] button,
+  &[outline][variant] button {
+    background: transparent;
+    border-width: 0.25rem;
+    border-style: solid;
+    border-color: inherit;
+    color: $lowlight-primary;
+  }
+
   button {
     position: relative;
     border: 0;
@@ -8,28 +27,27 @@ sh-button {
     align-items: center;
     flex-direction: row;
     padding: 0 1em;
-    line-height: 3em;
+    height: 100%;
     color: $highlight-primary;
-    background: $accent-quaternary;
+    background: $lowlight-primary;
     transition: all 250ms $decel;
     text-transform: uppercase;
     font-size: 10px;
     cursor: pointer;
     overflow: hidden;
-    & ~ sh-button {
-      margin-left: 1.5rem;
-    }
-    span, i {
+
+    span,
+    i {
       position: relative;
       pointer-events: none;
       z-index: 0;
     }
-    
+
     span {
       display: flex;
       font-size: 1.4em;
     }
-  
+
     .ripple {
       position: absolute;
       height: 1rem;
@@ -41,40 +59,37 @@ sh-button {
       z-index: 0;
       animation: ripple 1s $decel;
     }
-  
+
     .material-icons {
       &:first-of-type {
         margin-right: 0.5em;
       }
-  
+
       &:last-of-type {
         margin-left: 0.5em;
       }
-      font-size: 1em;
+
     }
-  
-    // &[scale] {
-  
-    // }
+
     &.min {
       font-size: 1rem;
     }
-  
+
     &:hover,
     &.active {
-      background: $accent-tertiary
+      background: $lowlight-secondary;
     }
   }
-  
+
   @keyframes ripple {
     0% {
       opacity: 0.2;
       transform: scale(0);
     }
+
     100% {
       opacity: 0;
       transform: scale(50);
     }
   }
 }
-
