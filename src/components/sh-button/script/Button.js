@@ -24,8 +24,8 @@ export default {
       let ripple = document.createElement('div');
       ripple.classList.add('ripple');
       var rect = e.target.getBoundingClientRect();
-      var x = e.center.x - rect.left - 10; //x position within the element.
-      var y = e.center.y - rect.top - 10; 
+      var x = e.center.x - rect.left - 5; //x position within the element.
+      var y = e.center.y - rect.top - 5; 
       ripple.style.left = x + 'px';
       ripple.style.top = y + 'px';
       this.$el.prepend(ripple);

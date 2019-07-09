@@ -94,11 +94,14 @@ lib-toolbar {
   
   
   .control {
-    button {
-      background: $lowlight-tertiary;
-      font-size: 8px;
-      &:hover {
-        background: $accent-secondary;
+    sh-button{ 
+      font-size: 0.6rem;
+      button {
+        background: $lowlight-tertiary;
+        font-size: 8px;
+        &:hover {
+          background: $accent-secondary;
+        }
       }
     }
   }
