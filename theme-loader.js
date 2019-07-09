@@ -29,13 +29,12 @@ function themeLoader(content) {
       // color: $accent-primary; color: var(--accent-primary);
       newString = `${scss} ${newString}`;
 
+      // find/replace all occurances
       var regStr = `(?<!-)${scss}`;
       regStr = regStr.replace(/\$/, String.fromCharCode(92) + '$');
       var regEx = new RegExp(regStr, 'g');
 
       content = content.replace(regEx, newString);
-      
-      // content = content.split(scss).join(newString);
     }
   }
   return content;
