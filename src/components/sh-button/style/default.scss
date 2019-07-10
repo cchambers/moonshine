@@ -7,42 +7,6 @@ sh-button {
     margin-left: 1.5em;
   }
 
-  &[round] button {
-    border-radius: 2.5em;
-  }
-
-  &[round="left"] button {
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
-  }
-
-  &[round="right"] button {
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
-  }
-
-  &[round="bottom"] button {
-    border-top-right-radius: 0;
-    border-top-left-radius: 0;
-  }
-
-  &[round="top"] button {
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
-  }
-
-  &[outline] button,
-  &[outline][variant] button {
-    background: transparent;
-    border-width: 0.25em;
-    border-style: solid;
-    border-color: inherit;
-    color: $lowlight-primary;
-    &:hover {
-      color: $highlight-primary;
-    }
-  }
-
   &[scale] {
     &[scale="130"] { font-size: 1.3rem; }
     &[scale="120"] { font-size: 1.2rem; }
@@ -130,6 +94,42 @@ sh-button {
     100% {
       opacity: 0;
       transform: scale(50);
+    }
+  }
+
+  &[round] button {
+    border-radius: 2.5em;
+  }
+
+  &[round="left"] button {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  &[round="right"] button {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  &[round="bottom"] button {
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+  }
+
+  &[round="top"] button {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  &[outline] button,
+  &[outline][variant] button {
+    background-color: transparent;
+    border-width: 0.25em;
+    border-style: solid;
+    border-color: inherit;
+    color: $lowlight-primary;
+    &:hover {
+      color: $highlight-primary;
     }
   }
 }

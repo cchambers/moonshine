@@ -6,21 +6,21 @@
       text to change when the <code>sh-adapt-content</code> container was 400px wide:</p>
     <pre>
       <code class="language-html">
-          &lt;sh-adapt-content&gt;
-            default content
-            &lt;div slot="sm"&gt;
-              small
-            &lt;/div&gt;
-            &lt;div slot="md"&gt;
-              medium
-            &lt;/div&gt;
-            &lt;div slot="lg"&gt;
-              large
-            &lt;/div&gt;
-            &lt;div slot="xl"&gt;
-              xtra-large
-            &lt;/div&gt;
-          &lt;/sh-adapt-content&gt;
+        &lt;sh-adapt-content&gt;
+          default content
+          &lt;div slot="sm"&gt;
+            small
+          &lt;/div&gt;
+          &lt;div slot="md"&gt;
+            medium
+          &lt;/div&gt;
+          &lt;div slot="lg"&gt;
+            large
+          &lt;/div&gt;
+          &lt;div slot="xl"&gt;
+            xtra-large
+          &lt;/div&gt;
+        &lt;/sh-adapt-content&gt;
       </code>
     </pre>
 
@@ -147,18 +147,20 @@
     <lib-toolbar>
       <p>
         The changing text comes here:
-        <sh-adapt-content sm="small content">
-          full desktop content
-          <span slot="md">
-            medium
-          </span>
-          <span slot="lg">
-            large
-          </span>
-          <span slot="xl">
-            xtra-large
-          </span>
-        </sh-adapt-content>
+        <strong>
+          <sh-adapt-content sm="small content">
+            full desktop content
+            <span slot="md">
+              medium
+            </span>
+            <span slot="lg">
+              large
+            </span>
+            <span slot="xl">
+              xtra-large
+            </span>
+          </sh-adapt-content>
+        </strong>
         ... and before the ellipsis.
       </p>
     </lib-toolbar>
