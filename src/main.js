@@ -39,6 +39,7 @@ require('./components/sh-header');
 require('./components/sh-input');
 require('./components/sh-link-list');
 require('./components/sh-modal');
+require('./components/sh-rating');
 require('./components/sh-tabs');
 require('./components/sh-tooltip');
 

@@ -13,34 +13,20 @@ export default {
     return {
       id: String,
       snapping: false,
-      smContent: String,
-      mdContent: String,
-      lgContent: String,
-      xlContent: String,
-      smPoint: {
-        type: Number,
-        default: 400
-      },
-      mdPoint: {
-        type: Number,
-        default: 768
-      },
-      lgPoint: {
-        type: Number,
-        default: 960
-      },
-      xlPoint: {
-        type: Number,
-        default: 1280
-      },
+      defaultContent: String,
+      smContent: '',
+      mdContent: '',
+      lgContent: '',
+      xlContent: '',
       resizeTimer: 0
     }
   },
   
   methods: {
     resizeHandler() {
-      clearTimeout(this.resizeTimer);
-      this.resizeTimer = setTimeout(this.checkState, 50);
+      let self = this;
+      clearTimeout(self.resizeTimer);
+      this.resizeTimer = setTimeout(self.checkState, 50);
     },
 
     checkState() {
@@ -57,5 +43,16 @@ export default {
     } else {
       this.id = `ac-${this.uuid}`;
     }
+
+    if (this.$slots.default) this.defaultContent = this.$slots.default[0].elm.innerHTML;
+    if (this.$slots.sm) this.sm = this.$slots.sm[0].elm.innerHTML;
+    if (this.$slots.md) this.mdContent = this.$slots.md[0].elm.innerHTML;
+    if (this.$slots.lg) this.lgContent = this.$slots.lg[0].elm.innerHTML;
+    if (this.$slots.xl) this.xlContent = this.$slots.xl[0].elm.innerHTML;
+
+    if (!this.smContent) this.smContent = this.sm || this.defaultContent;
+    if (!this.mdContent) this.mdContent = this.md || this.smContent;
+    if (!this.lgContent) this.lgContent = this.lg || this.mdContent;
+    if (!this.xlContent) this.xlContent = this.xl || this.lgContent;
   }
 }

@@ -37,7 +37,6 @@
     </table>
 
     <h3 id="slots">Slots</h3>
-
     <table class="slots">
       <thead>
         <tr>
@@ -110,29 +109,48 @@
     <h2>Examples</h2>
     <h3>Default</h3>
     <lib-toolbar>
-      <a href="#LINK">
-        <sh-banner variant="primary" height="200">
-            <!-- MOBILE -->
-          <div class="high-off pad-y">
-            <div class="uppercase text-center">
-              <div class="px60 lh60 highlight-primary bold">
-                extra 50% off
-              </div>
-              <div class="px42 lh60 accent-tertiary pad-y-quarter">
-                all clearance items
-              </div>
-              <div>
-                <sh-button scale="120" round variant="primary">act now!</sh-button>
+      <sh-banner variant="primary">
+        <!-- DEFAULT -->
+        <sh-adapt-content>
+          <div>
+            <div class="pad-y">
+              <div class="uppercase text-center">
+                <div class="px60 lh60 highlight-primary bold">
+                  50% off
+                </div>
+                <div class="px42 lh60 accent-tertiary pad-y-quarter">
+                  everything
+                </div>
+                <div>
+                  <sh-button scale="120" round variant="primary">act now!</sh-button>
+                </div>
               </div>
             </div>
           </div>
-
-          <!-- DESKTOP -->
-          <div class="low-off px30 lh40 highlight-primary bold uppercase text-center">
-            get an extra 50% off <span class="normal accent-tertiary">all clearance items</span>
+          
+          <div slot="md">
+            <div class="pad-y">
+                <div class="uppercase text-center">
+                  <div class="px60 lh60 highlight-primary bold">
+                    extra 50% off
+                  </div>
+                  <div class="px42 lh60 accent-tertiary pad-y-quarter">
+                    all clearance items
+                  </div>
+                  <div>
+                    <sh-button scale="120" round variant="primary">act now!</sh-button>
+                  </div>
+                </div>
+              </div>
           </div>
-        </sh-banner>
-      </a>
+
+          <div slot="lg">
+            <div class="low-off px30 lh40 highlight-primary bold uppercase text-center">
+              get an extra 50% off <span class="normal accent-tertiary">all clearance items</span>
+            </div>
+          </div>
+        </sh-adapt-content>
+      </sh-banner>
     </lib-toolbar>
   </section>
 
