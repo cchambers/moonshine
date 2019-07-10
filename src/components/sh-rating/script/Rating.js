@@ -5,17 +5,31 @@ export default {
     count: Number,
     icon: String,
     level: Number,
+    choose: Boolean
   },
 
   data() {
     return {
       maticon: 'star_rate',
-      ratecount: 0
+      show: 0,
+      ratecount: 0,
+      chosen: false
     }
   },
 
   mounted() {
     if (this.icon) this.maticon = this.icon;
     if (this.count) this.ratecount = this.count;
+  },
+
+  methods: {
+    hoverHandler(e) {
+      this.show = e.target.value;
+    },
+
+    rateHandler(e) {
+      this.chosen = e.target.value;
+      this.$bus.$emit('rating-chosen', this.chosen);
+    }
   }
 }

@@ -12,8 +12,7 @@ export default {
   data() {
     return {
       id: String,
-      snapping: false,
-      defaultContent: String,
+      defaultContent: '',
       smContent: '',
       mdContent: '',
       lgContent: '',
