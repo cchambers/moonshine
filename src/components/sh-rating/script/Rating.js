@@ -2,9 +2,9 @@ export default {
   name: 'Rating',
   
   props: {
-    level: String,
+    count: Number,
     icon: String,
-    count: Number
+    level: Number,
   },
 
   data() {

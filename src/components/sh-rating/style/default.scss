@@ -7,6 +7,7 @@ sh-rating {
     margin-left: 0.5rem;
     font-size: 1.25em;
   }
+
   .sh-rating {
     position: relative;
     color: $accent-primary;
@@ -25,10 +26,10 @@ sh-rating {
     font-family: "Material Icons";
     content: attr(icon) attr(icon) attr(icon) attr(icon) attr(icon);
     letter-spacing: -2.55rem;
-    color: $lowlight-quaternary;
+    color: $accent-tertiary;
     z-index: 0;
   }
-  
+
   .sh-rating:after {
     display: block;
     position: relative;
@@ -43,7 +44,7 @@ sh-rating {
     bottom: 0;
     right: 0;
   }
-  
+
   .sh-rating[level='0.0']:after,.sh-rating[level='0']:after { width: 0 }
   .sh-rating[level='0.1']:after { width: 2% }
   .sh-rating[level='0.2']:after { width: 4% }
