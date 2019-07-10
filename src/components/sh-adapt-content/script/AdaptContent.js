@@ -32,7 +32,7 @@ export default {
     checkState() {
       if (this.elementLevel) {
         let width = this.$el.parentNode.outerWidth;
-        console.log(width)
+        return width;
       } 
     }
   },
