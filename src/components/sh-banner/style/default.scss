@@ -1,17 +1,32 @@
-/* default styling */
-
 sh-banner {
   display: block;
+  position: relative;
+
   .sh-banner {
     display: block;
     position: relative;
-    background-image: linear-gradient(135deg,  #9dd0e6 0%,#0667a0 50%);
+    background-image: linear-gradient(135deg, #9dd0e6 0%, #0667a0 50%);
     background-size: 200% 100%;
     background-repeat: no-repeat;
     background-position: 100% 0;
-    transition: background-position 400ms $ease;
+    transition: background-position 600ms $decel;
+
     &:hover {
       background-position: 0 0;
+    }
+  }
+
+  &[reveal="fade"] {
+    .sh-banner {
+      opacity: 0;
+    }
+  }
+
+  &[reveal="done"] {
+    .sh-banner {
+      opacity: 1;
+      transform: translateX(0) translateY(0) translateZ(0);
+      transition: inherit;
     }
   }
 }
