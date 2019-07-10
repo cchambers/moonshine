@@ -1952,7 +1952,7 @@ ol.lower-alpha {
   width: calc(100% / 2.99999);
 }
 
-@media (max-width: 800px), screen and (orientation: portrait) {
+@media screen and (max-width: 800px) {
   .contain {
     width: calc(100% - 3rem);
   }

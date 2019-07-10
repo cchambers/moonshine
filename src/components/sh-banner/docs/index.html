@@ -1,0 +1,143 @@
+<div class="documentation contain">
+  <h1>Banner</h1>
+  <section id="usage">
+    <h2>Usage</h2>
+    <pre>
+      <code class="language-html">
+          &lt;sh-banner&gt;new component&lt;/sh-banner&gt;
+      </code>
+    </pre>
+
+  </section>
+
+  <section id="reference">
+    <h2>Reference</h2>
+    <h3 id="attributes">Attributes</h3>
+
+    <table class="attributes">
+      <thead>
+        <tr>
+          <th>Attribute</th>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>hidden</td>
+          <td>Boolean</td>
+          <td>Hide from view.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3 id="slots">Slots</h3>
+
+    <table class="slots">
+      <thead>
+        <tr>
+          <th>Slot</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>default</td>
+          <td>
+            Text content.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3 id="methods">Public Methods</h3>
+
+    <table class="methods">
+      <thead>
+        <tr>
+          <th>Function</th>
+          <th>Params</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>snap</td>
+          <td>
+            <ul>
+              <li>
+                none
+              </li>
+            </ul>
+          </td>
+          <td>
+            Perform snap animation and half text.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3 id="events">Events</h3>
+
+    <table class="events">
+      <thead>
+        <tr>
+          <th>Event</th>
+          <th>Payload Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>event-name</td>
+          <td>
+            Type
+          </td>
+          <td>
+            Fires when something happens.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="examples">
+    <h2>Examples</h2>
+    <h3>Default</h3>
+    <lib-toolbar>
+      <a href="#LINK">
+      <sh-banner class="back-accent-primary" height="200">
+          <!-- MOBILE -->
+        <div class="high-off pad-y">
+          <div class="uppercase text-center">
+            <div class="px60 lh60 highlight-primary bold margin-b-quarter">
+              extra 50% off
+            </div>
+            <div class="px42 lh60 accent-tertiary">
+              all clearance items
+            </div>
+            <div class="pad-t-quarter">
+              <sh-button scale="120" round variant="primary">act now!</sh-button>
+            </div>
+          </div>
+        </div>
+
+        <!-- DESKTOP -->
+        <div class="low-off px30 lh40 highlight-primary bold uppercase text-center">
+          get an extra 50% off <span class="normal accent-tertiary">all clearance items</span>
+        </div>
+      </sh-banner>
+    </a>
+    </lib-toolbar>
+  </section>
+
+  <section id="changelog">
+    <h2>Changelog</h2>
+    <dl>
+      <dt>0.1.0</dt>
+      <dd>Banner is under development.</dd>
+      <!-- <dt>1.0.0</dt>
+      <dd>Banner is ready for use.</dd> -->
+    </dl>
+  </section>
+</div>

@@ -1,0 +1,7 @@
+{
+  "name": "Banner",
+  "element": "sh-banner",
+  "description": "Demonstration component.",
+  "tags": ["marketing"],
+  "requirements": []
+}

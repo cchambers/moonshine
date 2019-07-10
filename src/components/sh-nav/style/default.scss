@@ -60,7 +60,8 @@ sh-nav {
 
       &:hover,
       &.active {
-        background: $lowlight-secondary;
+        color: $highlight-primary;
+        background: $accent-primary;
         z-index: 2;
       }
 

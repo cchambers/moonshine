@@ -27,25 +27,27 @@ require('./assets/style/common/base.scss');
 require('./assets/style/common/utility.scss');
 require('./assets/style/themes/custom-props.scss');
 
-/* non-deployed in prod */
+/* Production Assets */
+require('./components/sh-accordion');
+require('./components/sh-banner');
 require('./components/sh-button');
 require('./components/sh-curtain');
-require('./components/sh-header');
-require('./components/sh-accordion');
-require('./components/sh-tooltip');
-require('./components/sh-modal');
-require('./components/sh-link-list');
 require('./components/sh-dropnav');
-require('./components/sh-tabs');
 require('./components/sh-form');
+require('./components/sh-header');
 require('./components/sh-input');
+require('./components/sh-link-list');
+require('./components/sh-modal');
+require('./components/sh-tabs');
+require('./components/sh-tooltip');
 
+/* Non-Production Assets */
 if (process.env.NODE_ENV != 'production') {
   require('./assets/script/prism.js');
   require('./assets/style/prism.css');
   require('./components/component-template');
-  require('./components/sh-control-panel');
-  require('./components/sh-nav');
+  require('./components/sh-control-panel'); // TODO: make lib-control-panel
+  require('./components/sh-nav'); // TODO: make lib-nav
   require('./components/lib-header');
   require('./components/lib-content');
   require('./components/lib-section-links');
