@@ -39,6 +39,13 @@ $colors: (
 
 $breakpoint: 800px;
 
+$breakpoints: (
+  sm: 0,
+  md: 480,
+  lg: 768,
+  xl: 1200
+);
+
 $base: 3rem;
 
 $ease: cubic-bezier(0.4, 0.0, 0.2, 1);

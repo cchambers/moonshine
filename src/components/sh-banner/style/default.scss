@@ -5,15 +5,6 @@ sh-banner {
   .sh-banner {
     display: block;
     position: relative;
-    background-image: linear-gradient(135deg, #9dd0e6 0%, #0667a0 50%);
-    background-size: 200% 100%;
-    background-repeat: no-repeat;
-    background-position: 100% 0;
-    transition: background-position 600ms $decel;
-
-    &:hover {
-      background-position: 0 0;
-    }
   }
 
   &[reveal="fade"] {

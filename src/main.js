@@ -29,6 +29,7 @@ require('./assets/style/themes/custom-props.scss');
 
 /* Production Assets */
 require('./components/sh-accordion');
+require('./components/sh-adapt-content');
 require('./components/sh-banner');
 require('./components/sh-button');
 require('./components/sh-curtain');
