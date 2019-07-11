@@ -1,6 +1,8 @@
 
 Stuff to do:
-  ☐ check out Storybook?
+  ☐ [WOW-13002] Modal + modal related tasks
+  ☐ [WOW-15414] AppBanner 
+  
   ☐ Link List -> DropNav -> Tabs
   ☐ Mega Menu
   ☐ Carousel
@@ -12,13 +14,20 @@ Recent wins:
     ✔ variant defaults
     ✔ event bus
     ✔ common events
-  ✔ input prototype for form elements
-  ☐ component generator
-  ☐ static page rendering mechanism
-  ☐ lib toolbar fullscreen view
-  ☐ theme loader v3: custom loader to polyfill css custom props with defaults for IE
-  ☐ utility and event bus docs
-
-  
-...
-  ☐ accordion/dropnav/link-list base
+    ✔ input prototype for form elements (value manager, common events, etc)
+  ✔ component generator
+  ✔ static page rendering mechanism
+  ✔ lib toolbar fullscreen view
+  ✔ theme loader v3: custom loader to polyfill css custom props with defaults for IE
+  ✔ utility and event bus docs
+  0.1.0 (prototype) components:
+    - button
+    - modal
+    - accordion
+    - dropnav
+    - link-list
+    - slider
+    - ratings
+    - html banners
+    - adaptive content
+    - tooltip base
