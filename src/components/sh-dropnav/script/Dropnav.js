@@ -15,7 +15,6 @@ export default {
 
   mounted() {
     this.list = this.$refs.list;
-    this.events();
   },
   
   methods: {

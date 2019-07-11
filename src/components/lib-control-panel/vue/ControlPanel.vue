@@ -32,7 +32,7 @@ html {
       transform: translateX(15rem) translateZ(0) !important;
       transition: transform 300ms $ease;
     }
-    sh-nav {
+    lib-nav {
       transform: translateX(0) translateZ(0) !important;
       transition: transform 300ms $ease;
     }

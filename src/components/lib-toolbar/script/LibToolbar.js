@@ -73,7 +73,7 @@ export default {
     },
 
     events() {
-      this.$bus.on('hashchange', () => {
+      this.$bus.$on('hashchange', () => {
         // console.log("got it")
       })
     },

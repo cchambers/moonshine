@@ -15,10 +15,6 @@ export default {
     this.ariaControlsId = `ac-${this.uuid}`;
     this.headerId = `ah-${this.uuid}`;
   },
-
-  mounted() {
-    this.events();
-  },
   
   methods: {
     toggleActive() {

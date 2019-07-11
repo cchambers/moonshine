@@ -1,6 +1,6 @@
 
 
-sh-nav {
+lib-nav {
   display: flex;
   position: fixed;
   top: 0;
@@ -122,7 +122,7 @@ sh-nav {
     }
 
     a {
-      color: $accent-primary;
+      color: $highlight-primary;
       display: block;
       line-height: $base;
 
@@ -242,5 +242,11 @@ sh-nav {
       border: 0;
       outline: 0;
     }
+  }
+}
+
+[theme="dark"] {
+  lib-nav .secondary > div a {
+    color: $lowlight-quaternary;
   }
 }

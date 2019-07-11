@@ -27,7 +27,9 @@ const ComponentPrototype = {
   },
 
   mounted() {
-    this.$bus.$emit('component-ready', this);
+    let self = this;
+    if (typeof self.events == 'function') setTimeout(self.events);
+    self.$bus.$emit('component-ready', self);
   } 
 };
 

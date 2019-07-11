@@ -5,16 +5,16 @@ Stuff to do:
 
 
 Recent wins: 
-  ☐ component prototype
+  ✔ component prototype
+    ✔ variant defaults
+    ✔ event bus
+    ✔ common events
+  ✔ input prototype for form elements
   ☐ component generator
   ☐ static page rendering mechanism
   ☐ lib toolbar fullscreen view
-  ☐ utility and event bus/docs
-  ☐ theme loader - 3 versions:
-    - v1, separate stylesheets: no good b/c SFC
-    - v2, compile themes into styles: no good, exponential filesize increase
-    - v3, custom loader to polyfill css custom props for IE (works)
-
+  ☐ theme loader v3: custom loader to polyfill css custom props with defaults for IE
+  ☐ utility and event bus docs
 
   
 ...

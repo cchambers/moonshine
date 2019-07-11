@@ -15,7 +15,7 @@
         <li><button v-on:mouseover="hoverHandler" v-hammer:tap="rateHandler" aria-label="rate 5 of 5 stars" value="5"></button></li>
       </ul>
     </span>
-    <span v-if="ratecount > 0" class="sh-rating-count">({{ ratecount }})</span>
+    <span v-if="ratecount > 0" class="sh-rating-count">( {{ ratecount }} )</span>
   </span>
 </template>
 

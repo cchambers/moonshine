@@ -55,6 +55,5 @@ export default {
   mounted() {
     let theme = window.localStorage.getItem('docs-theme');
     if (theme) this.theme = theme;
-    this.events();
   },
 }

@@ -10,7 +10,6 @@ export default {
   },
 
   mounted() {
-    this.events();
     this.buildSearchResults();
     setTimeout( function() {
       document.body.classList.add('ready');

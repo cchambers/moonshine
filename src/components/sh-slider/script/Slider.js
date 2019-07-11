@@ -1,12 +1,26 @@
 export default {
   name: 'Slider',
-  props: {
-    msg: {
-      type: String,
-      default: 'new component'
+
+  props: {},
+
+  data() {
+    return {
+      deltaX: 0,
+      deltaY: 0,
+      startX: 0,
+      startY: 0,
+      clickX: 0,
+      clickY: 0
     }
   },
-  data() {
+  
+  methods: {
+    panHandler(e) { // lmao
+      this.deltaX = e.deltaX;
+      this.deltaY = e.deltaY;
+
+      this.clickX = Math.round(e.srcEvent.offsetX);
+      this.clickY = Math.round(e.srcEvent.offsetY);
+    }
   },
-  methods: {}
 }

@@ -1,6 +1,7 @@
 <template>
   <div class="sh-input">
-    <label :for="inputId"></label>
+    <div hidden ref="default-value"><slot></slot></div>
+    <label :for="inputId"><slot name="label">{{ label }}</slot></label>
     <input :id="inputId" class="actual" type="text" v-model="value" />
   </div>
 </template>

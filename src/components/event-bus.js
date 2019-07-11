@@ -15,12 +15,11 @@ setTimeout(function () {
 	// console.log(batch); <-- could potentially re-emit these if needed.
 });
 
-const old_emit = EventBus.$emit;
+const baseEmit = EventBus.$emit;
 EventBus.$emit = (...args) => {
 	let event = args[0];
 	if (preload && event != 'component-ready') batch.push(event);
-	// emit native event?
-  old_emit.apply(EventBus, args);
+  baseEmit.apply(EventBus, args);
 };
 
 let delegations = {

@@ -1,15 +1,13 @@
-if (!Element.prototype.closest) {
-	if (!Element.prototype.matches) {
-		Element.prototype.matches = Element.prototype.msMatchesSelector || Element.prototype.webkitMatchesSelector;
-	}
-	Element.prototype.closest = function (s) {
-		var el = this;
-		var ancestor = this;
-		if (!document.documentElement.contains(el)) return null;
-		do {
-			if (ancestor.matches(s)) return ancestor;
-			ancestor = ancestor.parentElement;
-		} while (ancestor !== null);
-		return null;
-	};
-}
+(function () {
+
+  if ( typeof window.CustomEvent === "function" ) return false;
+
+  function CustomEvent ( event, params ) {
+    params = params || { bubbles: false, cancelable: false, detail: null };
+    var evt = document.createEvent( 'CustomEvent' );
+    evt.initCustomEvent( event, params.bubbles, params.cancelable, params.detail );
+    return evt;
+  }
+
+  window.CustomEvent = CustomEvent;
+})();
