@@ -1,7 +1,0 @@
-{
-  "name": "Flower",
-  "element": "sh-flower",
-  "description": "Demonstration component.",
-  "tags": ["utilities", "demo"],
-  "requirements": []
-}
