@@ -38,9 +38,6 @@ Shine creates a local component library that can be managed and deployed as temp
 
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
-
 ### Prerequisites
 * [yarn](https://yarnpkg.com/lang/en/docs/install)
 * [node 10+](https://nodejs.org/en/)
