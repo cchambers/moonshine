@@ -15,8 +15,8 @@ export default {
   },
 
   methods: {
-    events() {
-      console.log("YEA THAT WORKED")
+    keyupHandler(e){
+      console.log(e.target.value);
     }
   }
 }

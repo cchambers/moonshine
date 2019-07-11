@@ -132,4 +132,8 @@ sh-button {
       color: $highlight-primary;
     }
   }
+
+  &[outline] button:hover {
+    background-color: $lowlight-primary;
+  }
 }

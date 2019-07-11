@@ -19,7 +19,7 @@ import vueCustomElement from 'vue-custom-element';
 Vue.use(vueCustomElement);
 
 /* SH-COMPONENT PROTOTYPE */
-import ComponentPrototype from './components/prototype';
+import ComponentPrototype from './components/component-prototype';
 Vue.mixin(ComponentPrototype);
 
 /* COMMON STYLES */
@@ -33,6 +33,7 @@ require('./components/sh-adapt-content');
 require('./components/sh-banner');
 require('./components/sh-button');
 require('./components/sh-carousel');
+require('./components/sh-combo');
 require('./components/sh-curtain');
 require('./components/sh-dropnav');
 require('./components/sh-form');

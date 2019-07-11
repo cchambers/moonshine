@@ -73,9 +73,9 @@ export default {
     },
 
     events() {
-      this.$bus.$on('hashchange', () => {
-        // console.log("got it")
-      })
+      // this.$bus.$on('hashchange', () => {
+      //   // console.log("got it")
+      // })
     },
 
     renderCode(code) {
