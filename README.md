@@ -1,22 +1,14 @@
-[![Build Status][build-shield]]()
-<!-- [![Contributors][contributors-shield]]() -->
-<!-- [![MIT License][license-shield]][license-url] -->
 
-<!-- PROJECT LOGO -->
+
 <br />
 <p align="center">
-  <!-- <a href="https://github.com/othneildrew/Best-README-Template">
-    <img src="logo.png" alt="Logo" width="80" height="80">
-  </a> -->
-  <h1 align="center">Shine</h1>
+  <h1 align="center">shine</h1>
   <p align="center">
-    Re-usable vue components.
+    re-usable vue components.
   </p>
 </p>
 
 
-
-<!-- TABLE OF CONTENTS -->
 ## Table of Contents
 
 * [About the Project](#about-the-project)
@@ -25,15 +17,11 @@
   * [Installation](#installation)
 * [Usage](#usage)
 * [Contributing](#contributing)
-<!-- * [License](#license) -->
 * [Contact](#contact)
-<!-- * [Acknowledgements](#acknowledgements) -->
 
 
 
-<!-- ABOUT THE PROJECT -->
 ## About The Project
-<!-- ![Shine Screenshot][app-screenshot] -->
 Shine creates a local component library that can be managed and deployed as template-component bundle.
 
 
@@ -48,7 +36,6 @@ Shine creates a local component library that can be managed and deployed as temp
 
 
 
-<!-- GETTING STARTED -->
 ## Getting Started
 
 This is an example of how you may give instructions on setting up your project locally.
@@ -56,6 +43,7 @@ To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
 * [yarn](https://yarnpkg.com/lang/en/docs/install)
+* [node 10+](https://nodejs.org/en/)
 
 ```sh
 brew install yarn
@@ -79,6 +67,11 @@ yarn dev
 yarn build
 ```
 
+## Compiles and minifies for dev server
+```
+yarn build:dev
+```
+
 ## Run your tests
 ```
 yarn test
@@ -96,43 +89,11 @@ yarn generate
 
 
 
-<!-- CONTRIBUTING -->
 ## Contributing
 
 Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-
-
-<!-- LICENSE
-## License
-
-Distributed under the MIT License. See `LICENSE` for more information.
- -->
-
-
-<!-- CONTACT -->
-## Contact
-
-Project Link: [https://github.com/cchambers/shine](https://github.com/cchambers/shine)
-
-
-
-
-<!--
-## Acknowledgements
-* [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
-* [Img Shields](https://shields.io)
--->
-
-<!-- MARKDOWN LINKS & IMAGES -->
-[build-shield]: https://img.shields.io/badge/build-passing-brightgreen.svg?style=flat-square
-[contributors-shield]: https://img.shields.io/badge/contributors-3-orange.svg?style=flat-square
-[license-shield]: https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square
-[license-url]: https://choosealicense.com/licenses/mit
-[app-screenshot]: https://.../screenshot.png
+1. Create your Feature Branch (`git checkout -b feature/amazing-feature`)
+2. Commit your Changes (`git commit -m 'Add some Amazing Feature`)
+3. Push to the Branch (`git push origin feature/amazing-feature`)
+4. Open a Pull Request
