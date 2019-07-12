@@ -12,6 +12,7 @@ yarn-debug.log*
 yarn-error.log*
 
 stuff.todo
+README.md
 
 # Editor directories and files
 .idea
