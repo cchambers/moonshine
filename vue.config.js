@@ -1,17 +1,17 @@
 const glob = require('glob')
-const fs = require('fs')
+const fs = require('fs-extra')
 
-let nav = fs.readFileSync('./src/nav.ejs', 'utf8');
+let nav = fs.readFileSync('./src/documentation/docs-nav.html', 'utf8');
 
 let pages = {
   index: {
     entry: 'src/main.js',
     nav: nav,
-    template: 'src/docs-index.html'
+    template: 'src/documentation/docs-index.html'
   }
 }
 
-if (process.env.VUE_APP_DEV) {
+if (process.env.NODE_ENV != 'production') {
   glob.sync('./src/components/**/docs/data/*.html').forEach(path => {  
     let component = path.split('/')[3];
     let filename = path.split('/');
@@ -34,10 +34,25 @@ if (process.env.VUE_APP_DEV) {
 
     pages[name] = {
       entry: 'src/main.js',
-      template: 'src/docs-component.html',
+      template: 'src/documentation/docs-component.html',
       content: content,
       nav: nav,
       filename: `components/${component}/${filename}`
+    }
+  })
+
+  glob.sync('./src/documentation/utilities/*.html').forEach(path => {  
+    let filename = path.split('/');
+    filename = filename[filename.length-1];
+    let name = filename.split('.')[0];
+    let content = fs.readFileSync(path, 'utf8');
+
+    pages[name] = {
+      entry: 'src/main.js',
+      template: 'src/documentation/docs-component.html',
+      content: content,
+      nav: nav,
+      filename: `utilities/${name}/index.html`
     }
   })
 }

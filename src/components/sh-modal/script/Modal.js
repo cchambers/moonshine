@@ -1,12 +1,10 @@
-import { EventBus } from '../../event-bus';
-
 // TODO: Make tablock work.
 
 export default {
   name: 'Modal',
 
   props: {
-    id: {
+    uniqueId: {
       type: String,
       required: true
     },
@@ -34,9 +32,9 @@ export default {
 
   mounted() {
     this.modals = this.$el.querySelectorAll('.modal');
-    this.ariaID = `aria-${this.id}`;
-    this.ariaHeaderID = `aria-header-${this.id}`;
-    this.ariaDescID = `aria-desc-${this.id}`;
+    this.ariaID = `aria-${this.uniqueId}`;
+    this.ariaHeaderID = `aria-header-${this.uniqueId}`;
+    this.ariaDescID = `aria-desc-${this.uniqueId}`;
     let container = document.querySelector('#sh-modals');
     if (container) {
       this.container = container;
@@ -44,8 +42,7 @@ export default {
     } else {
       this.createContainer();
     }
-
-    this.hashHandler();
+    if (window.location.hash) this.hashHandler(window.location.hash.substr(1))
   },
 
   methods: {
@@ -53,46 +50,46 @@ export default {
       let self = this;
       this.configureTriggers();
 
-      EventBus.$on('close-modals', this.close);
-      EventBus.$on('modal-opening', function() {
+      self.$bus.$on('close-modals', this.close);
+      self.$bus.$on('modal-opening', function() {
         self.close(false);
       });
       
       window.addEventListener('keyup', (e) => {
         let key = e.keyCode;
-        if (key == 27) EventBus.$emit('close-modals'); // esc
+        if (key == 27) self.$bus.$emit('close-modals'); // esc
       });
 
-      window.addEventListener('hashchange', this.hashHandler)
+      self.$bus.$on('hashchange', this.hashHandler)
     },
 
-    hashHandler() {
-      let hash = window.location.hash; 
-      if (hash.length > 1) {
-        hash = hash.substr(1);
-        if (this.id == hash) this.open();
-      } else {
-        if (this.active) this.close(false)
+    hashHandler(id) {
+      if (id == '') {
+        if (this.active) this.close(false);
+      } else if (id == this.uniqueId) {
+        this.open();
       }
     },
 
     open() {
+      let self = this;
       if (!this.loaded && this.contentUrl) this.loadContent()
 
       if (!this.active) {
-        EventBus.$emit('modal-opening', this.id);
+        self.$bus.$emit('modal-opening', this.uniqueId);
         document.documentElement.classList.add('sh-modal-open');
         this.active = true;
-        EventBus.$emit('modal-opened', this.id);
+        self.$bus.$emit('modal-opened', this.uniqueId);
       }
     },
 
     close(clearHash = true) {
+      let self = this;
       if (this.active) {
-        EventBus.$emit('modal-closing', this.id);
+        self.$bus.$emit('modal-closing', this.uniqueId);
         document.documentElement.classList.remove('sh-modal-open');
         this.active = false;
-        EventBus.$emit('modal-closed', this.id);
+        self.$bus.$emit('modal-closed', this.uniqueId);
       }
       if (clearHash) window.location.hash = ''; 
     },
@@ -104,12 +101,12 @@ export default {
 
     configureTriggers() {
       let self = this;
-      let selector = `[modal-trigger="${this.id}"]`;
+      let selector = `[modal-trigger="${this.uniqueId}"]`;
       this.triggers = document.querySelectorAll(selector);
       this.triggers.forEach(function(el) {
         el.addEventListener('click', function(e) {
           e.preventDefault();
-          window.location.hash = `#${self.id}`;
+          window.location.hash = `#${self.uniqueId}`;
         });
       });
 
@@ -126,13 +123,13 @@ export default {
       document.body.appendChild(container);
       this.container = container;
       this.container.addEventListener('click', (e) => {
-        if (e.target == this.container) EventBus.$emit('close-modals');
+        if (e.target == this.container) self.$bus.$emit('close-modals');
       })
       this.mountToContainer();
     },
 
     mountToContainer() {
-      let id = this.id;
+      let id = this.uniqueId;
       let exists = document.querySelector(`#sh-modals #${id}`);
       if (exists) exists.remove();
       this.container.appendChild(this.$el);

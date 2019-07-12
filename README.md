@@ -41,6 +41,8 @@ Shine creates a local component library that can be managed and deployed as temp
 ### Built With
 
 * [Vue](https://vuejs.org)
+* [Vue Custom Element](https://github.com/karol-f/vue-custom-element)
+* [HammerJS](https://hammerjs.github.io/)
 * [Webpack](https://webpack.js.org)
 * [Basicss](https://basicss.com)
 
@@ -87,6 +89,11 @@ yarn test
 yarn lint
 ```
 
+## Generate a new component
+```
+yarn generate
+```
+
 
 
 <!-- CONTRIBUTING -->
@@ -112,9 +119,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Chris - [@chrisWritesCode](https://twitter.com/chrisWritesCode)
-
-Project Link: [https://github.com/cchambers/moonshine](https://github.com/cchambers/shine)
+Project Link: [https://github.com/cchambers/shine](https://github.com/cchambers/shine)
 
 
 

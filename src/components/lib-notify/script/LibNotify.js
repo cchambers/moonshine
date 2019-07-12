@@ -1,5 +1,3 @@
-import { EventBus } from "../../event-bus";
-
 export default {
   name: 'LibNotify',
   props: {
@@ -15,7 +13,7 @@ export default {
   },
   
   mounted() {
-    EventBus.$on('notify', this.doNotify)
+    this.$bus.$on('notify', this.doNotify)
   },
 
   methods: {

@@ -19,4 +19,4 @@
 </template>
   
 <script src="../script/AppBanner.js"></script>
-<style lang="scss" src="../style/default.scss" scoped></style>
+<style lang="scss" src="../style/default.scss"></style>

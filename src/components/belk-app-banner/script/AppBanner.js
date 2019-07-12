@@ -1,5 +1,3 @@
-import { EventBus } from '../../event-bus';
-
 export default {
   name: 'AppBanner',
 
@@ -83,10 +81,10 @@ export default {
 
     open() {
       if (!this.active) {
-        EventBus.$emit('app-banner-opening', this);
+        this.$bus.$emit('app-banner-opening', this);
         document.documentElement.classList.add('app-banner-open');
         this.active = true;
-        EventBus.$emit('app-banner-opened', this);
+        this.$bus.$emit('app-banner-opened', this);
       }
     },
 
@@ -96,10 +94,10 @@ export default {
 
     close() {
       if (this.active) {
-        EventBus.$emit('app-banner-closing', this);
+        this.$bus.$emit('app-banner-closing', this);
         document.documentElement.classList.remove('app-banner-open');
         this.active = false;
-        EventBus.$emit('app-banner-closed', this);
+        this.$bus.$emit('app-banner-closed', this);
       }
     },
   }

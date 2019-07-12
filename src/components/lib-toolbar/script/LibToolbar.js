@@ -5,12 +5,16 @@ import Pretty from 'pretty';
 
 export default {
   name: 'LibToolbar',
+
   props: {
     baseCode: String,
   },
+
   data() {
     return {
       active: false,
+      fullscreen: false,
+      isActive: false,
       code: '',
       editorCode: '',
       html: 'Loading...',
@@ -45,17 +49,21 @@ export default {
       showPrintMargin: false,
       indentedSoftWrap: false
     });
-    let len = this.editor.getSession().getDocument().getLength();
-    this.$refs.editor.style.height = Math.min(len*21, 550) + "px";
-    this.$refs.editor.style.width = "100%";
-    this.editor.resize();
-    this.editor.getSession().selection.clearSelection();
     
-    this.editor.getSession().on('change', function() {
-      let value = self.editor.getSession().getValue();
-      self.editorCode = value;
-      self.html = self.editorCode;
-    });
+    setTimeout( function () {
+      let len = self.editor.getSession().getDocument().getLength();
+      self.$refs.editor.style.height = Math.max(200, Math.min(len*21, 600)) + "px";
+      self.$refs.editor.style.width = "100%";
+      self.editor.resize();
+      self.editor.getSession().selection.clearSelection();
+      
+      self.editor.getSession().on('change', function() {
+        let value = self.editor.getSession().getValue();
+        self.editorCode = value;
+        self.html = self.editorCode;
+      });
+    })
+    
   },
 
   methods: {
@@ -67,12 +75,35 @@ export default {
       }, 300);
     },
 
+    events() {
+      this.$bus.on('hashchange', () => {
+        // console.log("got it")
+      })
+    },
+
     renderCode(code) {
       this.html = code;
     },
     
     toggleActive() {
       this.active = !this.active;
+    },
+
+    toggleFullscreen() {
+      this.fullscreen = !this.fullscreen;
+      if (this.fullscreen) {
+        document.documentElement.classList.add('toolbar-fullscreen');
+      } else {
+        document.documentElement.classList.remove('toolbar-fullscreen');
+      }
+    },
+
+    copyEditor() {
+      // console.log("COPY")
     }
+  },
+
+  updated() {
+    this.isActive = this.active
   }
 }

@@ -1,12 +1,18 @@
 <template>
-  <div class="lib-toolbar" v-bind:class="{ active: active }">
+  <div class="lib-toolbar" v-bind:class="{ active: active, fullscreen: fullscreen }">
+    <div ref="component" class="component" v-html="html"></div>
     <div class="control-wrap">
       <div class="control">
-        <sh-button class="min" v-if="!active" v-hammer:tap="toggleActive">show code</sh-button>
-        <!-- <sh-button class="min" v-if="active">copy code</sh-button> -->
-        <sh-button class="min" v-if="active" v-hammer:tap="toggleActive">hide code</sh-button>
+        <!-- <div v-if="isActive">
+          <sh-button class="min" v-hammer:tap="copyEditor">
+            <i class="material-icons px20">file_copy</i>
+          </sh-button>
+        </div> -->
+        <sh-button class="min" v-hammer:tap="toggleFullscreen">
+          <i class="material-icons px20">fullscreen</i>
+        </sh-button>
+        <sh-button class="min" v-hammer:tap="toggleActive">toggle code</sh-button>
       </div>
-      <div ref="component" class="component" v-html="html"></div>
     </div>
     <div class="editor" ref="editor"></div>
   </div>
@@ -20,9 +26,12 @@
 }
 
 .control {
-  button  {
+  button {
     background: $lowlight-tertiary;
     font-size: 8px;
+    &:hover {
+      background: $accent-secondary;
+    }
   }
 }
 </style>

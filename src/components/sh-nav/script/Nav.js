@@ -1,5 +1,3 @@
-import { EventBus } from '../../event-bus.js';
-
 export default {
   name: 'Nav',
   
@@ -22,6 +20,9 @@ export default {
   methods: {
     events() {
       let self = this;
+
+      self.$bus.$on('hashchange', this.closeNav)
+
       let links = this.$el.querySelectorAll('a[href^="#"]');
       for (let x = 0, l = links.length; x < l; x++) {
         let link = links[x];
@@ -49,12 +50,12 @@ export default {
         });
       }
       
-      EventBus.$on('nav-closed', this.navToggledHandler);
-      EventBus.$on('nav-toggled', this.navToggledHandler);
+      this.$bus.$on('nav-closed', this.navToggledHandler);
+      this.$bus.$on('nav-toggled', this.navToggledHandler);
     },
 
     closeNav() {
-      EventBus.$emit('close-nav');
+      this.$bus.$emit('close-nav');
     },
 
     buildSearchResults() {
