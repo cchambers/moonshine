@@ -32,7 +32,7 @@
 <style lang="scss" src="../style/primary.scss"></style>
 <style lang="scss" src="../style/secondary.scss"></style>
 <style lang="scss">
-[modal-trigger] {
+a[modal-trigger] {
   color: $accent-primary;
 }
 

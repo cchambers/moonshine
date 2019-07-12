@@ -118,6 +118,7 @@ export default {
     },
 
     createContainer() {
+      let self = this;
       let container = document.createElement('div');
       container.id = 'sh-modals';
       document.body.appendChild(container);

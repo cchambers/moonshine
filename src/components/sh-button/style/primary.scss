@@ -1,5 +1,6 @@
-sh-button[variant=primary] {
+sh-button[variant="primary"] {
   button {
+    color: $highlight-primary;
     background-color: $lowlight-tertiary;
     &:hover,
     &.active {

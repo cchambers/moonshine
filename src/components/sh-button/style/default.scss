@@ -28,14 +28,12 @@ sh-button {
     padding: 0 1.5em;
     height: 100%;
     min-width: 4.5em;
-    color: $highlight-primary;
-    background: $lowlight-primary;
+    color: $lowlight-primary;
     transition: all 250ms $decel;
     text-transform: uppercase;
     font-size: 1em;
     cursor: pointer;
     overflow: hidden;
-
     span,
     i {
       position: relative;
@@ -73,11 +71,6 @@ sh-button {
 
     &.min {
       font-size: 1rem;
-    }
-
-    &:hover,
-    &.active {
-      background: $lowlight-secondary;
     }
   }
 
@@ -135,5 +128,18 @@ sh-button {
 
   &[outline] button:hover {
     background-color: $lowlight-primary;
+  }
+
+  &:not([variant]) {
+    text-decoration: underline;
+    button {
+      &:hover,
+      &.active {
+        color: $lowlight-primary;
+        text-decoration-color: $lowlight-primary;
+        text-decoration: none;
+        background: rgba(0,0,0,0.1);
+      }
+    }
   }
 }
