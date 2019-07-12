@@ -90,6 +90,10 @@ module.exports = {
     const vueRule = config.module.rule('scss').oneOf('vue');
     const themeLoader = path.resolve('theme-loader.js');
     vueRule.use('shine-theme-loader').loader(themeLoader).end();
+
+    const normalRule = config.module.rule('scss').oneOf('normal');
+    normalRule.use('shine-theme-loader').loader(themeLoader).end();
+    
   },
 
   pages: pages,

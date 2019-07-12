@@ -1,13 +1,4 @@
-
-
-<br />
-<p align="center">
-  <h1 align="center">shine</h1>
-  <p align="center">
-    re-usable vue components.
-  </p>
-</p>
-
+Shine: re-usable vue components
 
 ## Table of Contents
 
