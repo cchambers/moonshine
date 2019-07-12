@@ -34,18 +34,6 @@ require('./components/sh-header')
 require('./components/sh-button')
 require('./components/sh-tooltip')
 require('./components/sh-modal')
-<<<<<<< HEAD
-require('./components/sh-nav')
-require('./components/belk-app-banner')
-require('./components/belk-header')
-
-require('./assets/script/prism.js')
-require('./assets/style/common/base.scss')
-require('./assets/style/common/utility.scss')
-require('./assets/style/layout.scss')
-require('./assets/style/prism.css')
-=======
->>>>>>> 25687f03b611f07bd1b950f9068097ea0677bdba
 
 require('./components/belk-app-banner')
 // TODO: require('./components/belk-header')
