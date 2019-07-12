@@ -5,22 +5,26 @@
     <div class="primary-nav">
       <div class="container">
 
-        <!-- LOGO -->
-        <a href="#" class="logo">
-          <img src="">
-        </a>
+        <slot name="logo" class="logo"></slot>
 
-        <!-- FIND A STORE LINK-->
+        <div class="nav-left">
+          <!-- FIND A STORE LINK-->
+          <slot name="find-a-store"></slot>
+          <!-- PROMOTIONAL MESSAGE -->
+          <slot name="promotion-message"></slot>
+        </div>
 
-        <!-- PROMOTIONAL MESSAGE -->
+        <div class="nav-right">
+          <!-- REWARDS CARD -->
+          <slot name=""></slot>
+          <!-- GIFT CARD DROPDOWN -->
+          <slot name=""></slot>
+          <!-- WISH LIST LINK -->
+          <slot name=""></slot>
+           <!-- REGISTRY LINK -->
+           <slot name=""></slot>
+        </div>
 
-        <!-- REWARDS CARD DROPDOWN -->
-
-        <!-- GIFT CARD DROPDOWN -->
-
-        <!-- WISH LIST LINK -->
-
-        <!-- REGISTRY LINK -->
       </div>
     </div>
 
@@ -29,16 +33,22 @@
       <div class="container">
 
         <!-- NAVIGATION HAMBURGER -->
+        <button class="navigation-trigger"></button>
 
         <!-- STICKY LOGO -->
+        <slot name="logo" class="logo"></slot>
 
         <!-- SEARCH BAR -->
+        <slot name="search-input"></slot>
 
         <!-- COUPONS LINK  -->
+        <slot name="coupons"></slot>
 
         <!-- ACCOUNT DROPDOWN -->
+        <slot name="accoung-dropdown"></slot>
 
         <!-- CART DROPDOWN -->
+        <slot name="cart"></slot>
 
       </div>
     </div>

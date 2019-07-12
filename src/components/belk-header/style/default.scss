@@ -11,6 +11,7 @@ $color-primary: #0A2240;
     display: flex;
     margin: 0 auto;
     max-width: 1280px;
+    padding: 0 15px;
   }
   .primary-nav,
   .secondary-nav {
@@ -21,14 +22,36 @@ $color-primary: #0A2240;
   .primary-nav {
     background-color: $color-white;
     color: $color-primary;
+
+    [slot="logo"] {
+      width: 57px;
+      display: none;
+    }
   }
   .secondary-nav {
     background-color: $color-primary;
     color: $color-white;
     position: sticky;
     top: 0;
+
+    [slot="logo"]  {
+      width: 57px;
+    }
   }
   .tertiary-nav {
     display: none;
+  }
+
+  @media screen and (min-width: 768px){
+    .primary-nav {
+      .logo {
+        display: block;
+      }
+    }
+    .secondary-nav {
+      .logo {
+        display: none;
+      }
+    }
   }
 }
