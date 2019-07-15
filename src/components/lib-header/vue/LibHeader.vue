@@ -1,7 +1,7 @@
 <template>
-  <header class="sh-header">
-    <div class="contain flex start">
-      <div v-if="nav" class="toggle-nav" v-on:click="toggleNav">
+  <header class="lib-header">
+    <div class="contain relative flex start">
+      <div v-if="nav" class="toggle-nav" v-hammer:tap="toggleNav">
         <i class="material-icons nav-icon">menu</i>
       </div>
       <div class="logo">

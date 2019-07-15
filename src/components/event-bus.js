@@ -4,13 +4,25 @@ import Vue from 'vue';
 export const EventBus = new Vue();
 
 export default {
-  name: 'EventBus',
+	name: 'EventBus'
 }
 
-// TODO: Create a mechanism for collecting events during page load and emit them with a hash or something -- maybe only emit as new components load in... 
+// TODO: This batches the initial events before page load. 
+let batch = [];
+let preload = true;
+setTimeout(function () { 
+	preload = false;
+	// console.log(batch); <-- could potentially re-emit these if needed.
+});
 
+const baseEmit = EventBus.$emit;
+EventBus.$emit = (...args) => {
+	let event = args[0];
+	if (preload && event != 'component-ready') batch.push(event);
+  baseEmit.apply(EventBus, args);
+};
 
-var delegations = {
+let delegations = {
 	click: [
 		{
 			target: "[close-trigger]",
@@ -30,7 +42,7 @@ var delegations = {
 
 function bindAll() {
 	let self = this;
-	for (var event in delegations) {
+	for (let event in delegations) {
 		setupEvent(event);
 	}
 
@@ -39,14 +51,18 @@ function bindAll() {
 	})
 }
 
+
 function setupEvent(event) {
 // create a new listener... 
 	document.addEventListener(event, function(e) {
 		let arr = delegations[event];
 		// for every item that needs to be watched on *event*
-		for (var x = 0, l = arr.length; x < l; x++) {
-			if (e.target.matches(arr[x].target)) arr[x].handler(e)
-
+		for (let x = 0, l = arr.length; x < l; x++) {
+			if (e.target.matches) {
+				if (e.target.matches(arr[x].target)) arr[x].handler(e)
+			} else if (e.target.msMatchesSelector) {
+				if (e.target.msMatchesSelector(arr[x].target)) arr[x].handler(e)
+			}
 			// TODO: if (arr[x].stopProp...) return;
 		}
 	});
@@ -78,3 +94,7 @@ function listen(event, target, handler, options) {
 }
 
 bindAll();
+
+window.sh = function(el) {
+	return el.__vue_custom_element__.$children[0];
+}

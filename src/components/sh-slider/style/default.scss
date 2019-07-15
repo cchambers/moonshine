@@ -1,7 +1,17 @@
 /* default styling */
 
-.slider {
-  .stage {
+sh-slider {
+  display: inline-block;
+  .sh-slider {
+    color: $highlight-primary;
+    cursor: crosshair;
     display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    text-align: center;
+    height: 50rem;
+    width: 50rem;
+    font-size: 3rem;
+    background: $accent-primary;
   }
 }

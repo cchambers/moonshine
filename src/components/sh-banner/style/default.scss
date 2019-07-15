@@ -1,0 +1,23 @@
+sh-banner {
+  display: block;
+  position: relative;
+
+  .sh-banner {
+    display: block;
+    position: relative;
+  }
+
+  &[reveal="fade"] {
+    .sh-banner {
+      opacity: 0;
+    }
+  }
+
+  &[reveal="done"] {
+    .sh-banner {
+      opacity: 1;
+      transform: translateX(0) translateY(0) translateZ(0);
+      transition: inherit;
+    }
+  }
+}

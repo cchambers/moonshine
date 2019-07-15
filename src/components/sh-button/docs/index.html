@@ -5,9 +5,7 @@
     <pre>
         <code class="language-html">
           &lt;sh-button&gt;
-            &lt;p&gt;
-              Button
-            &lt;/p&gt;
+            Button Text
           &lt;/sh-button&gt;
         </code>
       </pre>
@@ -36,6 +34,43 @@
             </ul>
           </td>
         </tr>
+        <tr>
+          <td>toggle</td>
+          <td>Boolean</td>
+          <td>
+            <ul>
+              <li>Make button have a toggle state.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>round</td>
+          <td>Boolean</td>
+          <td>
+            <ul>
+              <li>Round button edges.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>outline</td>
+          <td>Boolean</td>
+          <td>
+            <ul>
+              <li>Outlined button.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>scale</td>
+          <td>Number</td>
+          <td>
+            <ul>
+              <li>Change the scale of the button.</li>
+              <li>Options are: 120, 110, 90, 80, 70, 60, 50</li>
+            </ul>
+          </td>
+        </tr>
       </tbody>
     </table>
 
@@ -61,13 +96,13 @@
             before the text.
           </td>
         </tr>
-        <tr>
+        <!-- <tr>
           <td>active-before-icon</td>
           <td>
             <a href="https://material.io/tools/icons/?style=baseline" target="_icons">Material Icon</a> that comes
             before the text when the 'active' prop has been toggled true.
           </td>
-        </tr>
+        </tr> -->
         <tr>
           <td>after-icon</td>
           <td>
@@ -75,40 +110,13 @@
             the text.
           </td>
         </tr>
-        <tr>
+        <!-- <tr>
           <td>active-after-icon</td>
           <td>
             <a href="https://material.io/tools/icons/?style=baseline" target="_icons">Material Icon</a> that comes after
             the text when the 'active' prop has been toggled true.
           </td>
-        </tr>
-      </tbody>
-    </table>
-
-    <h3 id="methods">Public Methods</h3>
-
-    <table class="methods">
-      <thead>
-        <tr>
-          <th>Function</th>
-          <th>Params</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-        <!-- <tr>
-            <td>open</td>
-            <td>
-              <ul>
-                <li>
-                  none
-                </li>
-              </ul>
-            </td>
-            <td>
-              Trigger the modal. This will close other open modals.
-            </td>
-          </tr> -->
+        </tr> -->
       </tbody>
     </table>
 
@@ -143,24 +151,68 @@
 
     <h3 class="margin-b-quarter">Default</h3>
     <lib-toolbar>
-      <sh-button scale="70" toggle>Toggle Button</sh-button>
-      <sh-button toggle>
+      <sh-button toggle>Toggle Button</sh-button>
+      <sh-button>
         <i class="material-icons" slot="before-text">close</i>
         With Icon
         <i class="material-icons" slot="after-text">check</i>
       </sh-button>
-      <sh-button toggle>With Active Icon</sh-button>
+      <sh-button>With Active Icon</sh-button>
     </lib-toolbar>
 
-    <h3 class="margin-b-quarter">Test</h3>
+    
+    <h3 class="margin-b-quarter" id="variants">Variants</h3>
+    <lib-toolbar>
+      <sh-button>Default</sh-button>
+      <sh-button variant="primary">Primary</sh-button>
+      <sh-button variant="secondary">Secondary</sh-button>
+      <sh-button variant="tertiary">Tertiary</sh-button>
+    </lib-toolbar>
 
-    <sh-button scale="70" close-trigger toggle>Toggle Button</sh-button>
-    <sh-button toggle>
-      <i class="material-icons" slot="before-text">close</i>
-      With Icon
-      <i class="material-icons" slot="after-text">check</i>
-    </sh-button>
-    <sh-button toggle>With Active Icon</sh-button>
+    <h3 class="margin-b-quarter" id="round">Round</h3>
+    <lib-toolbar>
+      <sh-button round>Default</sh-button>
+      <sh-button round variant="primary">Primary</sh-button>
+      <sh-button round variant="secondary">Secondary</sh-button>
+      <sh-button round variant="tertiary">Tertiary</sh-button>
+    </lib-toolbar>
+
+    <h3 class="margin-b-quarter">Round Values</h3>
+    <lib-toolbar>
+      <sh-button round="left" variant="primary">Left</sh-button>
+      <sh-button round="right" variant="primary">Right</sh-button>
+      <sh-button round="top" variant="primary">Top</sh-button>
+      <sh-button round="bottom" variant="primary">Bottom</sh-button>
+    </lib-toolbar>
+        
+    <h3 class="margin-b-quarter" id="variants">Outline</h3>
+    <lib-toolbar>
+      <sh-button outline>Default</sh-button>
+      <sh-button outline variant="primary">Primary</sh-button>
+      <sh-button outline variant="secondary">Secondary</sh-button>
+      <sh-button outline variant="tertiary">Tertiary</sh-button>
+    </lib-toolbar>
+
+    <h3 class="margin-b-quarter" id="variants">Outline + Round</h3>
+    <lib-toolbar>
+      <sh-button outline round>Default</sh-button>
+      <sh-button outline round variant="primary">Primary</sh-button>
+      <sh-button outline round variant="secondary">Secondary</sh-button>
+      <sh-button outline round variant="tertiary">Tertiary</sh-button>
+    </lib-toolbar>
+
+    <h3 class="margin-b-quarter" id="scaling">Scaling</h3>
+    <lib-toolbar>
+      <div class="pad-t-quarter"><sh-button scale="120">scale = 120</sh-button></div>
+      <div class="pad-t-quarter"><sh-button scale="110">scale = 110</sh-button></div>
+      <div class="pad-t-quarter"><sh-button>DEFAULT</sh-button></div>
+      <div class="pad-t-quarter"><sh-button scale="90">scale = 90</sh-button></div>
+      <div class="pad-t-quarter"><sh-button scale="80">scale = 80</sh-button></div>
+      <div class="pad-t-quarter"><sh-button scale="70">scale = 70</sh-button></div>
+      <div class="pad-t-quarter"><sh-button scale="60">scale = 60</sh-button></div>
+      <div class="pad-t-quarter"><sh-button scale="50">scale = 50</sh-button></div>
+    </lib-toolbar>
+    
   </section>
 
   <section id="changelog">

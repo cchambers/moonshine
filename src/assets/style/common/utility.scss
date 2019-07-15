@@ -7,3 +7,19 @@
     background: $hex;
   }
 }
+
+@each $level, $size in $breakpoints {
+  @media screen and (min-width: #{$size}px) {
+    @each $l, $s in $breakpoints {
+      @if $l == $level {
+        .#{$l}-only {
+          display: initial;
+        }
+      } @else {
+        .#{$l}-only {
+          display: none;
+        }
+      }
+    }
+  }
+}

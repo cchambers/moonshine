@@ -1,0 +1,22 @@
+/* Primary Variant */
+
+sh-link-list[variant="secondary"] {
+  .sh-link-list {
+    ul {
+      display: flex;
+      flex-direction: row;
+      list-style: none;
+      padding: 0;
+      margin: 0 !important;
+    }
+
+    a {
+      display: block;
+      padding: 0 1.5rem;
+
+      &.active {
+        background: $accent-tertiary;
+      }
+    }
+  }
+}

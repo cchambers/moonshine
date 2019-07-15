@@ -1,79 +1,145 @@
-
 sh-button {
   display: inline-flex;
-}
+  font-size: 1rem;
+  height: 4em;
 
-button {
-  position: relative;
-  border: 0;
-  display: flex;
-  align-items: center;
-  flex-direction: row;
-  padding: 0 1em;
-  line-height: 3em;
-  color: $highlight-primary;
-  background: $accent-quaternary;
-  transition: all 100ms $ease;
-  text-transform: uppercase;
-  font-size: 10px;
-  cursor: pointer;
-  overflow: hidden;
-  & ~ sh-button {
-    margin-left: 1.5rem;
+  &~sh-button {
+    margin-left: 1.5em;
   }
-  span, i {
+
+  &[scale] {
+    &[scale="130"] { font-size: 1.3rem; }
+    &[scale="120"] { font-size: 1.2rem; }
+    &[scale="110"] { font-size: 1.1rem; }
+    &[scale="90"] { font-size: 0.9rem; }
+    &[scale="80"] { font-size: 0.8rem; }
+    &[scale="70"] { font-size: 0.7rem; }
+    &[scale="60"] { font-size: 0.6rem; }
+    &[scale="50"] { font-size: 0.5rem; }
+  }
+
+  button {
     position: relative;
-    pointer-events: none;
-    z-index: 0;
-  }
-  
-  span {
-    display: flex;
-    font-size: 1.4em;
-  }
-
-  .ripple {
-    position: absolute;
-    height: 1rem;
-    width: 1rem;
-    border-radius: 50%;
-    pointer-events: none;
-    background: white;
-    transform: translateX(-50%) translateY(-50%) translateZ(0);
-    z-index: 0;
-    animation: ripple 1s $decel;
-  }
-
-  .material-icons {
-    &:first-of-type {
-      margin-right: 0.5em;
-    }
-
-    &:last-of-type {
-      margin-left: 0.5em;
-    }
+    border: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    padding: 0 1.5em;
+    height: 100%;
+    min-width: 4.5em;
+    color: $lowlight-primary;
+    transition: all 250ms $decel;
+    text-transform: uppercase;
     font-size: 1em;
+    cursor: pointer;
+    overflow: hidden;
+    span,
+    i {
+      position: relative;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    span {
+      display: flex;
+      font-size: 1.4em;
+    }
+
+    .ripple {
+      position: absolute;
+      height: 1rem;
+      width: 1rem;
+      border-radius: 50%;
+      pointer-events: none;
+      background: white;
+      transform: translateX(-50%) translateY(-50%) translateZ(0);
+      z-index: 0;
+      animation: ripple 2s $decel;
+    }
+
+    .material-icons {
+      &:first-of-type {
+        margin-right: 0.5em;
+      }
+
+      &:last-of-type {
+        margin-left: 0.5em;
+      }
+
+    }
+
+    &.min {
+      font-size: 1rem;
+    }
   }
 
-  // &[scale] {
+  @keyframes ripple {
+    0% {
+      opacity: 0.2;
+      transform: scale(0);
+    }
 
-  // }
-  &.min {
-    font-size: 1rem;
+    80% {
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 0;
+      transform: scale(50);
+    }
   }
 
-  &:hover {
-    background: $accent-tertiary
+  &[round] button {
+    border-radius: 2.5em;
   }
-}
 
-@keyframes ripple {
-  0% {
-    opacity: 0.2;
-    transform: scale(0);
+  &[round="left"] button {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
   }
-  100% {
-    opacity: 0;
-    transform: scale(50);
+
+  &[round="right"] button {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  &[round="bottom"] button {
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+  }
+
+  &[round="top"] button {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  &[outline] button,
+  &[outline][variant] button {
+    background-color: transparent;
+    border-width: 0.25em;
+    border-style: solid;
+    border-color: inherit;
+    color: $lowlight-primary;
+    &:hover {
+      color: $highlight-primary;
+    }
+  }
+
+  &[outline] button:hover {
+    background-color: $lowlight-primary;
+  }
+
+  &:not([variant]) {
+    text-decoration: underline;
+    button {
+      &:hover,
+      &.active {
+        color: $lowlight-primary;
+        text-decoration-color: $lowlight-primary;
+        text-decoration: none;
+        background: rgba(0,0,0,0.1);
+      }
+    }
   }
 }

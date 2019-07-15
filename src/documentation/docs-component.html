@@ -5,40 +5,45 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <link rel="icon" href="favicon.ico">
+  <link rel="icon" href="/favicon.ico">
   <title>Shine</title>
   <style>
     body { 
       min-height: 100vh;
-      background: #000046;  /* fallback for old browsers */
-      background: -webkit-linear-gradient(to bottom, rgb(0,131,186), rgb(41, 57, 115));  /* Chrome 10-25, Safari 5.1-6 */
-      background: linear-gradient(to bottom, rgb(0,131,186), rgb(41, 57, 115)); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+      background: #000046;
+      background: repeating-linear-gradient(45deg, #2b2b2b 0%, #2b2b2b 10%, #222222 0%, #222222 50%) 0 / 15px 15px;
+      transition: none;
     }
 
+    body:not(.ready) > * {
+        display: none;
+    }
+
+    [vce-cloak] {
+      opacity: 0;
+      transition: none;
+      display: none !important;
+    }
   </style>
 </head>
 
 <body class="baseline30">
   <div id="xxx">
-    <lib-notify v-cloak id="notify"></lib-notify>
+    <lib-notify vce-cloak id="notify"></lib-notify>
     <%= htmlWebpackPlugin.options.nav %>
     <div id="page">
-      <lib-header id="header"></lib-header>
-      <lib-section-links></lib-section-links>
-      <lib-content></lib-content>
+      <lib-header vce-cloak id="header"></lib-header>
+      <lib-section-links vce-cloak></lib-section-links>
+      <lib-content vce-cloak></lib-content>
       <main>
         <div>
           <%= htmlWebpackPlugin.options.content %>
         </div>
-        <footer>
-          <div class="contain pad text-center">
-            xXx
-          </div>
-        </footer>
+        <%= htmlWebpackPlugin.options.footer %>
       </main>
     </div> <!-- #page end -->
-    <sh-curtain v-cloak id="curtain"></sh-curtain>
-    <sh-control-panel v-cloak id="control"></sh-control-panel>
+    <sh-curtain vce-cloak id="curtain"></sh-curtain>
+    <lib-control-panel vce-cloak id="control"></lib-control-panel>
   </div> 
   <!-- built files will be auto injected -->
 </body>

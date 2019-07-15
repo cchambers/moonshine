@@ -118,6 +118,7 @@ export default {
     },
 
     createContainer() {
+      let self = this;
       let container = document.createElement('div');
       container.id = 'sh-modals';
       document.body.appendChild(container);
@@ -133,7 +134,6 @@ export default {
       let exists = document.querySelector(`#sh-modals #${id}`);
       if (exists) exists.remove();
       this.container.appendChild(this.$el);
-      this.events();
     },
 
     ajax() {

@@ -783,7 +783,7 @@ ol.lower-alpha {
 
 /* Font modifiers: */
 
-.quarter {
+.light {
   font-weight: 300
 }
 
@@ -1952,7 +1952,7 @@ ol.lower-alpha {
   width: calc(100% / 2.99999);
 }
 
-@media (max-width: 800px), screen and (orientation: portrait) {
+@media screen and (max-width: 800px) {
   .contain {
     width: calc(100% - 3rem);
   }
@@ -2075,4 +2075,10 @@ ol.lower-alpha {
 svg {
   width: 100%;
   height: auto;
+}
+
+[vce-cloak] {
+  opacity: 0;
+  transition: none;
+  display: none !important;
 }

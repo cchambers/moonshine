@@ -1,0 +1,126 @@
+<div class="documentation contain">
+  <h1>Adapt Content</h1>
+  <section id="usage">
+    <h2>Usage</h2>
+    <p>This component allows you to perform and manage element level media queries... for example, if you needed the
+      text to change when the <code>sh-adapt-content</code> container was 400px wide:</p>
+    <pre>
+      <code class="language-html">
+        &lt;sh-adapt-content&gt;
+          default content
+          &lt;div slot="sm"&gt;
+            small
+          &lt;/div&gt;
+          &lt;div slot="md"&gt;
+            medium
+          &lt;/div&gt;
+          &lt;div slot="lg"&gt;
+            large
+          &lt;/div&gt;
+          &lt;div slot="xl"&gt;
+            xtra-large
+          &lt;/div&gt;
+        &lt;/sh-adapt-content&gt;
+      </code>
+    </pre>
+
+  </section>
+
+  <section id="reference">
+    <h2>Reference</h2>
+    <h3 id="attributes">Attributes</h3>
+
+    <table class="attributes">
+      <thead>
+        <tr>
+          <th>Attribute</th>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>hidden</td>
+          <td>Boolean</td>
+          <td>Hide from view.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3 id="slots">Slots</h3>
+
+    <table class="slots">
+      <thead>
+        <tr>
+          <th>Slot</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><em>default</em></td>
+          <td>
+            Text content.
+          </td>
+        </tr>
+        <tr>
+          <td>sm</td>
+          <td>
+            HTML content of banner at <code>sm</code> breakpoint.
+          </td>
+        </tr>
+        <tr>
+          <td>md</td>
+          <td>
+            HTML content of banner at <code>md</code> breakpoint.
+          </td>
+        </tr>
+        <tr>
+          <td>lg</td>
+          <td>
+            HTML content of banner at <code>lg</code> breakpoint.
+          </td>
+        </tr>
+        <tr>
+          <td>xl</td>
+          <td>
+            HTML content of banner at <code>xl</code> breakpoint.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="examples">
+    <h2>Examples</h2>
+    <h3>Default</h3>
+    <lib-toolbar>
+      <p>
+        The changing text comes here:
+        <strong>
+          <sh-adapt-content sm="small content">
+            full desktop content
+            <span slot="md">
+              medium
+            </span>
+            <span slot="lg">
+              large
+            </span>
+            <span slot="xl">
+              xtra-large
+            </span>
+          </sh-adapt-content>
+        </strong>
+        ... and before the ellipsis.
+      </p>
+    </lib-toolbar>
+  </section>
+
+  <section id="changelog">
+    <h2>Changelog</h2>
+    <dl>
+      <dt>1.0.0</dt>
+      <dd>Adapt Content was created.</dd>
+    </dl>
+  </section>
+</div>

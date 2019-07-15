@@ -32,8 +32,8 @@
 <style lang="scss" src="../style/primary.scss"></style>
 <style lang="scss" src="../style/secondary.scss"></style>
 <style lang="scss">
-[modal-trigger] {
-  color: $link-color;
+a[modal-trigger] {
+  color: $accent-primary;
 }
 
 #sh-modals {

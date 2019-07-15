@@ -1,0 +1,40 @@
+/* default styling */
+
+sh-combo {
+  display: inline-block;
+  .sh-combo {
+
+
+    /** DELETE THIS EXAMPLE SECTION **/
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    text-align: center;
+    height: 15rem;
+    width: 15rem;
+    background-size: cover;
+    border: 1px solid transparent;
+    transition: all 200ms linear;
+
+    &:hover {
+      border: 1px solid $accent-primary;
+    }
+    
+    &.snap-state {
+      color: transparent;
+      background-image: url(../../../assets/img/snap.gif);
+      border: 1px solid $accent-primary;
+    }
+
+    @media screen and (min-width: $breakpoint) {
+      // mobile first, right... make desktop mods here.
+      background: $accent-primary;
+    }
+    /** END EXAMPLE SECTION **/
+
+
+    
+
+  }
+}

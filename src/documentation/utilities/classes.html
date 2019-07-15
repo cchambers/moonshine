@@ -1,32 +1,360 @@
 <div class="documentation contain">
-    <h1>OO Classes</h1>
-    <section id="usage">
-      <h2>Usage</h2>
-      <p><sh-tooltip tip="Object-oriented">OO</sh-tooltip> classes that can be used to style or space content.</p>
-      <pre>
-        <code class="language-html">
-          &lt;p class="px30 font-primary" &gt;Lorem ipsum dolor...&lt;/p&gt;
-        </code>
-      </pre>
-    </section>
+  <h1>OO Classes</h1>
+  <section id="usage">
+    <h2>Usage</h2>
+    <p>
+      <sh-tooltip tip="Object-oriented">OO</sh-tooltip> classes that can be used to style or space content. They are not
+      used in component creation, but the variables used to create them are.
+    </p>
+    <pre>
+      <code class="language-html">
+        &lt;p class="px30 font-primary" &gt;Lorem ipsum dolor...&lt;/p&gt;
+      </code>
+    </pre>
+  </section>
 
-    <section id="animation">
-      <h2>Animation</h2>
-    </section>
+  <!-- <section id="animation">
+    <h2>Animation</h2>
 
-    <section id="box-model">
-      <h2>Box Model</h2>
-    </section>
+    <h3>Staging</h3>
+    <table class="class-defs">
+      <thead>
+        <tr>
+          <th>Class</th>
+          <th>Effect</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <code class="language-css">.stage-left</code>
+          </td>
+          <td>
+            Position something off-screen to the left.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code class="language-css">.stage-right</code>
+          </td>
+          <td>
+            Position something off-screen to the right.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code class="language-css">.stage-top</code>
+          </td>
+          <td>
+            Position something off-screen to the top.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code class="language-css">.stage-bottom</code>
+          </td>
+          <td>
+            Position something off-screen to the bottom.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section> -->
 
-    <section id="typography">
-      <h2>Typography</h2>
-    </section>
-  
-    <section id="changelog">
-      <h2>Changelog</h2>
-      <dl>
-        <dt>1.0.0</dt>
-        <dd>Basicss integration.</dd>
-      </dl>
-    </section>
-  </div>
+  <section id="box-model">
+    <h2>Box Model</h2>
+
+    <h3>Padding</h3>
+    <table class="class-defs">
+      <thead>
+        <tr>
+          <th>Class</th>
+          <th>Effect</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <code class="language-css">.pad{-edge}{-amount}</code>
+          </td>
+          <td>
+            <ul>
+              <li>
+                Modify the padding of an element.
+              </li>
+              <li>
+                  Left+right edge combined is <code>x</code>, top+bottom edges combined
+                  is <code>y</code>. Other options are "t", "r", "b", "l".
+              </li>
+              <li>
+                Options for 'amount' are: <em>none</em>, 'quarter', 'half', and 'double'.
+              </li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Margin</h3>
+    <table class="class-defs">
+      <thead>
+        <tr>
+          <th>Class</th>
+          <th>Effect</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <code class="language-css">.margin{-edge}{-amount}</code>
+          </td>
+          <td>
+            <ul>
+              <li>
+                Modify the margin of an element. Left+right edge combined is <code>x</code>, top+bottom edges combined
+                is <code>y</code>.
+              </li>
+              <li>
+                  Left+right edge combined is <code>x</code>, top+bottom edges combined
+                  is <code>y</code>. Other options are "t", "r", "b", "l".
+              </li>
+              <li>
+                Options for 'amount' are: <em>none</em>, 'quarter', 'half', and 'double'.
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code class="language-css">.pull{-edge}{-amount}</code>
+          </td>
+          <td>
+            <ul>
+              <li>
+                Modify the negative margin of an element.
+              </li>
+              <li>
+                  Left+right edge combined is <code>x</code>, top+bottom edges combined
+                  is <code>y</code>. Other options are "t", "r", "b", "l".
+              </li>
+              <li>
+                Options for 'amount' are: <em>none</em>, 'quarter', 'half', and 'double'.
+              </li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+  </section>
+
+  <section id="typography">
+    <h2>Typography</h2>
+
+    <h3 id="alignment">Size and Line Height</h3>
+    <table class="class-defs">
+      <thead>
+        <tr>
+          <th>Class</th>
+          <th>Effect</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <code class="language-css">.pxNN</code>
+          </td>
+          <td>
+            <ul>
+              <li>
+                Set the [responsive] font size of a piece of content.
+              </li>
+              <li>
+                Options range from 10-100. ex: .px62
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code class="language-css">.lhNN</code>
+          </td>
+          <td>
+            <ul>
+              <li>
+                Set the [responsive] line height of a piece of content.
+              </li>
+              <li>
+                Options range from 10-100. ex: .lh30
+              </li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3 id="alignment">Alignment</h3>
+    <table class="class-defs">
+      <thead>
+        <tr>
+          <th>Class</th>
+          <th>Effect</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <code class="language-css">.text-right</code>
+          </td>
+          <td>
+            Right align text.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code class="language-css">.text-left</code>
+          </td>
+          <td>
+            Left align text.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code class="language-css">.text-center</code>
+          </td>
+          <td>
+            Center align text.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code class="language-css">.text-justify</code>
+          </td>
+          <td>
+            Align text justified.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code class="language-css">.force-justify</code>
+          </td>
+          <td>
+            Align text justified forced (justifies the last line and single-line paragraphs).
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3 id="alignment">Casing</h3>
+    <table class="class-defs">
+      <thead>
+        <tr>
+          <th>Class</th>
+          <th>Effect</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <code class="language-css">.uppercase</code>
+          </td>
+          <td>
+            <div class="uppercase">Uppercased text.</div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code class="language-css">.lowercase</code>
+          </td>
+          <td>
+            <div class="lowercase">Lowercased text.</div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code class="language-css">.normalcase</code>
+          </td>
+          <td>
+            <div class="normalcase">Normal casing.</div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code class="language-css">.titlecase</code>
+          </td>
+          <td>
+            <div class="titlecase">Title Casing.</div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3 id="alignment">Style</h3>
+    <table class="class-defs">
+      <thead>
+        <tr>
+          <th>Class</th>
+          <th>Effect</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <code class="language-css">.strike</code>
+          </td>
+          <td>
+            <div class="strike">Strikethrough text.</div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code class="language-css">.italic</code>
+          </td>
+          <td>
+            <div class="italic">Italicized text.</div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code class="language-css">.light</code>
+          </td>
+          <td>
+            <div class="light">Light (weight) text.</div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code class="language-css">.normal</code>
+          </td>
+          <td>
+            <div class="normal">Normal (weight) text.</div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code class="language-css">.bold</code>
+          </td>
+          <td>
+            <div class="bold">Bold (weight) text.</div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code class="language-css">.heavy</code>
+          </td>
+          <td>
+            <div class="heavy">Heavy (weight) text.</div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="changelog">
+    <h2>Changelog</h2>
+    <dl>
+      <dt>1.0.0</dt>
+      <dd>Basicss integration.</dd>
+    </dl>
+  </section>
+</div>

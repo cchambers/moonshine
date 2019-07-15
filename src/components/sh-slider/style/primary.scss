@@ -1,5 +1,7 @@
-/* Primary Variant */
+/* primary variant */
 
-.slider[var="primary"] {
-  border: 1px solid tomato;
+sh-slider[variant="primary"] {
+  .sh-slider {
+    border: 1px solid tomato;
+  }
 }

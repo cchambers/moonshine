@@ -3,37 +3,40 @@ export default {
 
   props: {
     closeTrigger: Boolean,
-    active: Boolean
+    toggle: Boolean,
+    round: String,
+    outline: Boolean
   },
 
   data() {
     return {
-      isActive: Boolean,
+      active: false,
     }
   },
 
-  
-  mounted() {
-    this.events();
-  },
-
   methods: {
-    events() {
-      this.$el.addEventListener('click', this.ripple)
+    tapHandler(e) {
+      this.ripple(e);
+      if (this.toggle) this.doToggle();
     },
     
     ripple(e) {
       let ripple = document.createElement('div');
       ripple.classList.add('ripple');
       var rect = e.target.getBoundingClientRect();
-      var x = e.clientX - rect.left; //x position within the element.
-      var y = e.clientY - rect.top; 
+      var x = e.center.x - rect.left - 5; //x position within the element.
+      var y = e.center.y - rect.top - 5; 
       ripple.style.left = x + 'px';
       ripple.style.top = y + 'px';
-      this.$el.append(ripple);
+      this.$el.prepend(ripple);
       setTimeout(()=>{
         ripple.remove();
-      }, 800);
+      }, 1400);
+    },
+
+    doToggle() {
+      this.active = !this.active;
     }
-  }
+  },
+
 }

@@ -1,0 +1,252 @@
+
+
+lib-nav {
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transition: all 300ms $ease;
+  transform: translateX(-100%) translateZ(0);
+  color: $highlight-primary;
+  z-index: 9;
+  -webkit-overflow-scrolling: touch;
+  will-change: scroll-position;
+ 
+  nav {
+    display: flex;
+    a {
+      color: $highlight-primary;
+    }
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .go-back {
+    display: flex;
+    justify-content: flex-start;
+    padding: $base;
+    transition: all 100ms linear;
+    cursor: pointer;
+    background: $accent-primary;
+    top: 0;
+
+    &:hover {
+      background: $accent-primary;
+    }
+  }
+
+  .primary {
+    width: 26rem;
+    background: $lowlight-tertiary;
+    min-height: 100vh;
+    // padding-top: 9rem;
+    @include scroll-y;
+    @include no-scroll-bar;
+    @include box-shadow(2);
+
+    a {
+      display: block;
+      line-height: 6.5rem;
+      padding: 0 $base;
+      font-size: 1.8rem;
+      transition: all 100ms linear;
+      position: relative;
+
+      &:hover,
+      &.active {
+        color: $highlight-primary;
+        background: $accent-primary;
+        z-index: 2;
+      }
+
+      &:before {
+        display: block;
+        content: '';
+        position: absolute;
+        height: 20rem;
+        width: 20rem;
+        transform: rotate(45deg) translateY(-50%);
+        right: -4rem;
+        top: 50%;
+      }
+    }
+  }
+
+  .secondary {
+    position: relative;
+
+    #nav-search-results {
+      // column-count: 3;
+      // column-rule: 1px solid $highlight-primary;
+      // column-gap: 10rem;
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      align-items: flex-start;
+      align-content: flex-start;
+      position: absolute;
+      top: 9rem;
+      left: $base;
+      right: $base;
+      height: calc(100vh - 18rem);
+      transform: translateX(-300vw);
+      overflow: hidden;
+
+      @media (max-width: $breakpoint) {
+        flex-wrap: nowrap;
+        @include scroll-y;
+      }
+
+      &.active {
+        transform: translateX(0);
+      }
+    }
+  }
+
+  .secondary>div {
+    width: calc(100vw - 26rem);
+    position: relative;
+    font-size: 1.8rem;
+
+    &.active {
+      // for later
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    a {
+      color: $highlight-primary;
+      display: block;
+      line-height: $base;
+
+      &:hover {
+        color: $accent-secondary;
+        background: rgba(255, 255, 255, 0.02)
+      }
+    }
+
+    >div {
+      // lol, will fix
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      align-items: flex-start;
+      align-content: flex-start;
+      position: absolute;
+      top: 9rem;
+      left: $base;
+      right: $base;
+      height: calc(100vh - 18rem);
+      transform: translateX(-300vw);
+      overflow: hidden;
+
+      @media (max-width: $breakpoint) {
+        @include scroll-y;
+      }
+
+      &.active {
+        transform: translateX(0);
+      }
+    }
+
+    h2 {
+      font-size: 2rem;
+      break-after: avoid;
+      padding-top: $base;
+      break-before: auto;
+    }
+
+    ul {
+      &:before {
+        display: block;
+        content: attr(category);
+        font-family: "Menlo", monospace;
+        font-weight: bold;
+        text-transform: uppercase;
+        font-size: 3rem;
+        line-height: 3rem;
+        color: $accent-primary;
+      }
+
+      flex-grow: 0;
+      flex-shrink: 0;
+      width: 28rem;
+      line-height: $base;
+      padding-top: $base;
+      break-before: avoid;
+      break-inside: avoid;
+      margin-right: 1.5rem;
+    }
+
+    li {
+      break-inside: avoid;
+
+      a {
+        padding: 1.5rem 3rem;
+        line-height: 3rem;
+      }
+    }
+  }
+
+  .ad-space {
+    display: none;
+    padding: 10rem $base;
+    width: 20rem;
+  }
+
+  a[note] {
+    display: flex !important;
+
+    &:after {
+      content: "( "attr(note) " )";
+      display: inline-block;
+      font-size: 1.4rem;
+      margin-left: auto;
+      color: $lowlight-tertiary;
+    }
+  }
+
+  [disabled] {
+    opacity: 0.2;
+    pointer-events: none;
+  }
+
+
+  #nav-search {
+    position: absolute;
+    z-index: 2;
+    background: rgba(255, 255, 255, 0.02);
+    width: calc(100% - 36rem);
+    right: 9rem;
+    top: 0;
+    left: 26rem;
+    padding: 0 $base;
+
+    input {
+      display: block;
+      font-family: "Menlo", monospace;
+      font-size: $base;
+      width: 100%;
+      line-height: 6rem;
+      height: 9rem;
+      background: transparent;
+      color: $highlight-primary;
+      border: 0;
+      outline: 0;
+    }
+  }
+}
+
+[theme="dark"] {
+  lib-nav .secondary > div a {
+    color: $lowlight-quaternary;
+  }
+}

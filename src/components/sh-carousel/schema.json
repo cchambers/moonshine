@@ -1,0 +1,7 @@
+{
+  "name": "Carousel",
+  "element": "sh-carousel",
+  "description": "Demonstration component.",
+  "tags": ["utilities", "demo"],
+  "requirements": []
+}
