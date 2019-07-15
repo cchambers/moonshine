@@ -5,7 +5,9 @@
     <div class="primary-nav">
       <div class="container">
 
-        <slot name="logo" class="logo"></slot>
+        <div class="logo">
+          <slot name="logo"></slot>
+        </div>
 
         <div class="nav-left">
           <!-- FIND A STORE LINK-->
@@ -33,10 +35,15 @@
       <div class="container">
 
         <!-- NAVIGATION HAMBURGER -->
-        <button class="navigation-trigger"></button>
+        <button class="navigation-trigger">
+          <i class="icon-hamburger"></i>
+          <span>Shop by Department</span>
+        </button>
 
         <!-- STICKY LOGO -->
-        <slot name="logo" class="logo"></slot>
+        <div class="logo">
+          <slot name="logo"></slot>
+        </div>
 
         <!-- SEARCH BAR -->
         <slot name="search-input"></slot>

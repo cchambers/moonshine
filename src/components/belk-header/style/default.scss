@@ -1,41 +1,44 @@
-// Palette
-$color-white: #fff;
-$color-black: #000;
-$color-primary: #0A2240;
-
 /* default styling */
 .belk-header {
+  * { box-sizing: border-box; }
 
   .container {
     align-content: center;
     display: flex;
     margin: 0 auto;
     max-width: 1280px;
-    padding: 0 15px;
+    width: 100%;
+    padding: 0 20px;
   }
   .primary-nav,
   .secondary-nav {
     display: flex;
-    height: 50px;
+    height: 60px;
     width: 100%;
+    
+    .container {
+      height: 100%;
+      align-items: center;
+    }
   }
-  .primary-nav {
-    background-color: $color-white;
-    color: $color-primary;
 
-    [slot="logo"] {
-      width: 57px;
-      display: none;
+  .primary-nav {
+    background-color: $highlight-primary;
+    // color: $color-primary;
+
+    .logo {
+      width: 96px;
     }
   }
   .secondary-nav {
-    background-color: $color-primary;
-    color: $color-white;
+    background-color: $lowlight-tertiary;
+    color: $lowlight-tertiary;
     position: sticky;
     top: 0;
 
-    [slot="logo"]  {
+    .logo {
       width: 57px;
+      display: none;
     }
   }
   .tertiary-nav {
