@@ -78,6 +78,20 @@
             Selector to target specific content in the returned ajax call.
           </td>
         </tr>
+        <tr>
+          <td>overlay</td>
+          <td>String</td>
+          <td>
+            <ul>
+              <li>
+                Define the main color for the overlay.
+              </li>
+              <li>
+                Options are all base color variables (accent-ordinal, lowlight-ordinal, highlight-ordinal) and 'none'.
+              </li>
+            </ul>
+          </td>
+        </tr>
       </tbody>
     </table>
 
@@ -244,6 +258,18 @@
       </sh-modal>
     </lib-toolbar>
 
+    <h3 class="margin-b-quarter">Variants</h3>
+      <sh-button modal-trigger="demo-variant-primary">Primary</sh-button>
+      <sh-modal variant="primary" unique-id="demo-variant-primary">
+        <p>"Primary" variant.</p>
+      </sh-modal>
+      
+      <sh-button modal-trigger="demo-variant-secondary">Secondary</sh-button>
+      <sh-modal variant="secondary" unique-id="demo-variant-secondary">
+        <p>"Secondary" variant.</p>
+      </sh-modal>
+    </lib-toolbar>
+
     <h3 class="margin-b-quarter">Remote Content (Ajax)</h3>
     <lib-toolbar>
       <sh-button modal-trigger="demo-ajax">Basic</sh-button>
@@ -270,27 +296,27 @@
     <h3 class="margin-b-quarter">Reveal Animations</h3>
     <lib-toolbar>
       <sh-button modal-trigger="demo-reveal-default">Default</sh-button>
-      <sh-modal unique-id="demo-reveal-default">
+      <sh-modal variant="primary" unique-id="demo-reveal-default">
         <p>The default reveal is a simple opacity fade.</p>
       </sh-modal>
       
       <sh-button modal-trigger="demo-reveal-left">From Left</sh-button>
-      <sh-modal reveal="left" unique-id="demo-reveal-left">
+      <sh-modal reveal="left" variant="primary" unique-id="demo-reveal-left">
         <p>From left!</p>
       </sh-modal>
 
       <sh-button modal-trigger="demo-reveal-right">From Right</sh-button>
-      <sh-modal reveal="right" unique-id="demo-reveal-right">
+      <sh-modal reveal="right" variant="primary" unique-id="demo-reveal-right">
         <p>From right!</p>
       </sh-modal>
 
       <sh-button modal-trigger="demo-reveal-top">From Top</sh-button>
-      <sh-modal reveal="top" unique-id="demo-reveal-top">
+      <sh-modal reveal="top" variant="primary" unique-id="demo-reveal-top">
         <p>From top!</p>
       </sh-modal>
 
       <sh-button modal-trigger="demo-reveal-bottom">From Bottom</sh-button>
-      <sh-modal reveal="bottom" unique-id="demo-reveal-bottom">
+      <sh-modal reveal="bottom" variant="primary" unique-id="demo-reveal-bottom">
         <p>From bottom!</p>
       </sh-modal>
     </lib-toolbar>
@@ -317,21 +343,29 @@
       </sh-modal>
     </lib-toolbar>
 
-    <h3 class="margin-b-quarter">Variants</h3>
+    <h3 class="margin-b-quarter">Overlays</h3>
     <lib-toolbar>
-      <sh-button modal-trigger="demo-variant-default">Default</sh-button>
-      <sh-modal unique-id="demo-variant-default">
-        <p>Default (no) variant.</p>
+      <sh-button modal-trigger="demo-overlay1">Accent Overlay</sh-button>
+      <sh-modal variant="primary" overlay="accent-primary" unique-id="demo-overlay1">
+        <p>Primary accent background.</p>
       </sh-modal>
-      
-      <sh-button modal-trigger="demo-variant-primary">Primary</sh-button>
-      <sh-modal variant="primary" unique-id="demo-variant-primary">
-        <p>"Primary" variant.</p>
+    </lib-toolbar>
+    <lib-toolbar>
+      <sh-button modal-trigger="demo-overlay2">Lowlight Overlay</sh-button>
+      <sh-modal variant="primary" overlay="lowlight-primary" unique-id="demo-overlay2">
+        <p>Primary lowlight background.</p>
       </sh-modal>
-      
-      <sh-button modal-trigger="demo-variant-secondary">Secondary</sh-button>
-      <sh-modal variant="secondary" unique-id="demo-variant-secondary">
-        <p>"Secondary" variant.</p>
+    </lib-toolbar>
+    <lib-toolbar>
+      <sh-button modal-trigger="demo-overlay3">Highlight Overlay</sh-button>
+      <sh-modal variant="primary" overlay="highlight-primary" unique-id="demo-overlay3">
+        <p>Primary highlight background.</p>
+      </sh-modal>
+    </lib-toolbar>
+    <lib-toolbar>
+      <sh-button modal-trigger="demo-overlay4">No Overlay</sh-button>
+      <sh-modal variant="primary" overlay="none" unique-id="demo-overlay4">
+        <p>No overlay.</p>
       </sh-modal>
     </lib-toolbar>
   </section>
@@ -343,7 +377,12 @@
       <dd>Component was created.</dd>
       <dt>1.1.0</dt>
       <dd>Added ability to pull content from an external URL with <code>content-url</code> and
-        <code>content-selector</code>.</dd>
+        <code>content-selector</code>.
+      </dd>
+      <dt>1.2.0</dt>
+      <dd>
+        Added ability to theme the overlay via the <code>overlay</code> attribute.
+      </dd>
     </dl>
   </section>
 </div>

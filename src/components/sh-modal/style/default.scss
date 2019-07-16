@@ -9,42 +9,59 @@
   overflow: hidden;
   opacity: 0;
   pointer-events: none;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
   .content {
-    background: #fff;
+    background: $highlight-primary;
     pointer-events: all;
     height: 100%;
-    max-width: 102rem;
-    margin: 12rem auto;
-    @include box-shadow(1);
+    min-height: 12rem;
+    width: calc(100% - 3rem);
+    max-width: 78rem;
+    flex-shrink: 0;
+    flex-grow: 0;
+    margin: 12rem 1.5rem;
   }
+
   .body {
-    padding: 0 $base;
+    padding: 1.5rem;
   }
+
   &.active {
     transform: translateX(0) translateY(0) translateZ(0);
     opacity: 1;
-    .content {
-      border: 1px solid #ccc;
-    }
   }
+
   .header {
     display: flex;
     color: $accent-primary;
     justify-content: space-between;
+    height: 3rem;
+
+    div {
+      display: flex;
+      align-items: center;
+    }
+
     i {
       cursor: pointer;
-      font-size: $base;
+      font-size: 2.2rem;
+      padding-right: 0.5rem;
     }
   }
-  .footer {
+
+  .footer:not(:empty) {
     padding: 0.5rem $base;
     margin-top: 0;
   }
+
   h3 {
     margin: 0 !important;
     padding-left: $base;
   }
-  
+
   [close-trigger] {
     cursor: pointer;
   }
@@ -63,5 +80,80 @@
 
   &[reveal='bottom'] {
     transform: translateY(200%);
+  }
+
+
+  .loading {
+    height: 30rem;
+    width: 100%;
+
+    .bar {
+      height: 9%;
+      margin-top: 1%;
+      background: $lowlight-primary;
+      opacity: .05;
+      animation: loading 500ms infinite alternate backwards $ease;
+      transform: translateZ(0);
+    }
+
+    .bar:nth-child(1) {
+      -webkit-animation-delay: 100ms;
+      animation-delay: 100ms
+    }
+
+    .bar:nth-child(2) {
+      -webkit-animation-delay: 200ms;
+      animation-delay: 200ms
+    }
+
+    .bar:nth-child(3) {
+      -webkit-animation-delay: 300ms;
+      animation-delay: 300ms
+    }
+
+    .bar:nth-child(4) {
+      -webkit-animation-delay: 400ms;
+      animation-delay: 400ms
+    }
+
+    .bar:nth-child(5) {
+      -webkit-animation-delay: 500ms;
+      animation-delay: 500ms
+    }
+
+    .bar:nth-child(6) {
+      -webkit-animation-delay: 600ms;
+      animation-delay: 600ms
+    }
+
+    .bar:nth-child(7) {
+      -webkit-animation-delay: 700ms;
+      animation-delay: 700ms
+    }
+
+    .bar:nth-child(8) {
+      -webkit-animation-delay: 800ms;
+      animation-delay: 800ms
+    }
+
+    .bar:nth-child(9) {
+      -webkit-animation-delay: 900ms;
+      animation-delay: 900ms
+    }
+
+    .bar:nth-child(10) {
+      -webkit-animation-delay: 1000ms;
+      animation-delay: 1000ms
+    }
+
+    @keyframes loading {
+      0% {
+        opacity: 0;
+      }
+
+      100% {
+        opacity: .05;
+      }
+    }
   }
 }

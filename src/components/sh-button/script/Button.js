@@ -5,7 +5,8 @@ export default {
     closeTrigger: Boolean,
     toggle: Boolean,
     round: String,
-    outline: Boolean
+    outline: Boolean,
+    clickEvent: String
   },
 
   data() {
@@ -18,6 +19,8 @@ export default {
     tapHandler(e) {
       this.ripple(e);
       if (this.toggle) this.doToggle();
+
+      if (this.clickEvent) this.emit(this.clickEvent);
     },
     
     ripple(e) {
