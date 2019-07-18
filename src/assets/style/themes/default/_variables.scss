@@ -20,34 +20,39 @@ $accent-quinary: rgb(0,131,186);
 $base: 3rem;
 
 $colors: (
-  highlight-primary: $highlight-primary,
-  highlight-secondary: $highlight-secondary,
-  highlight-tertiary: $highlight-tertiary,
-  highlight-quaternary: $highlight-quaternary,
-  highlight-quinary: $highlight-quinary,
+  "highlight-primary": $highlight-primary,
+  "highlight-secondary": $highlight-secondary,
+  "highlight-tertiary": $highlight-tertiary,
+  "highlight-quaternary": $highlight-quaternary,
+  "highlight-quinary": $highlight-quinary,
 
-  lowlight-primary: $lowlight-primary,
-  lowlight-secondary: $lowlight-secondary,
-  lowlight-tertiary: $lowlight-tertiary,
-  lowlight-quaternary: $lowlight-quaternary,
-  lowlight-quinary: $lowlight-quinary,
+  "lowlight-primary": $lowlight-primary,
+  "lowlight-secondary": $lowlight-secondary,
+  "lowlight-tertiary": $lowlight-tertiary,
+  "lowlight-quaternary": $lowlight-quaternary,
+  "lowlight-quinary": $lowlight-quinary,
 
-  accent-primary: $accent-primary,
-  accent-secondary: $accent-secondary,
-  accent-tertiary: $accent-tertiary,
-  accent-quaternary: $accent-quaternary,
-  accent-quinary: $accent-quinary,
+  "accent-primary": $accent-primary,
+  "accent-secondary": $accent-secondary,
+  "accent-tertiary": $accent-tertiary,
+  "accent-quaternary": $accent-quaternary,
+  "accent-quinary": $accent-quinary,
 );
 
+$break-sm: 0;
+$break-md: 480;
+$break-lg: 768;
+$break-xl: 1200;
+
 $breakpoints: (
-  sm: 0,
-  md: 480,
-  lg: 768,
-  xl: 1200
+  "sm": $break-sm,
+  "md": #{$break-md}px,
+  "lg": #{$break-lg}px,
+  "xl": #{$break-xl}px
 );
 
 $rem: $base;
-$box-model-mods: ( pad: "padding", margin: "margin" );
+$box-model-mods: ( "pad": "padding", "margin": "margin" );
 $edges: ( 
   "y": ("top", "bottom"),
   "x": ("left", "right"),
@@ -57,8 +62,7 @@ $edges: (
   "r": "right"
 );
 
-$modamounts: ( quarter: $rem/4, half: $rem/2, base: $rem, double: $rem*2, quad: $rem*4 );
-
+$mod-amounts: ( quarter: $rem/4, half: $rem/2, base: $rem, double: $rem*2, quad: $rem*4 );
 
 $ease: cubic-bezier(0.4, 0.0, 0.2, 1);
 $decel: cubic-bezier(0.0, 0.0, 0.2, 1);

@@ -30,7 +30,7 @@ lib-header {
       opacity: 1;
     }
 
-    @media screen and (min-width: $libBreak) {
+    @media screen and (min-width: $break-xl) {
       margin-right: 0;
     }
   }

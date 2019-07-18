@@ -4,26 +4,6 @@
   @return type-of($var) == 'list';
 }
 
-$colors: (
-  highlight-primary: $highlight-primary,
-  highlight-secondary: $highlight-secondary,
-  highlight-tertiary: $highlight-tertiary,
-  highlight-quaternary: $highlight-quaternary,
-  highlight-quinary: $highlight-quinary,
-
-  lowlight-primary: $lowlight-primary,
-  lowlight-secondary: $lowlight-secondary,
-  lowlight-tertiary: $lowlight-tertiary,
-  lowlight-quaternary: $lowlight-quaternary,
-  lowlight-quinary: $lowlight-quinary,
-
-  accent-primary: $accent-primary,
-  accent-secondary: $accent-secondary,
-  accent-tertiary: $accent-tertiary,
-  accent-quaternary: $accent-quaternary,
-  accent-quinary: $accent-quinary,
-);
-
 @each $name, $hex in $colors {
   .#{$name} {
     color: $hex;
