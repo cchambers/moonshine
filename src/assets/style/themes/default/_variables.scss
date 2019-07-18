@@ -17,6 +17,8 @@ $accent-tertiary: rgb(157, 208, 230);
 $accent-quaternary: rgb(129, 177, 210);
 $accent-quinary: rgb(0,131,186);
 
+$base: 3rem;
+
 $colors: (
   highlight-primary: $highlight-primary,
   highlight-secondary: $highlight-secondary,
@@ -37,8 +39,6 @@ $colors: (
   accent-quinary: $accent-quinary,
 );
 
-$breakpoint: 800px;
-
 $breakpoints: (
   sm: 0,
   md: 480,
@@ -46,7 +46,19 @@ $breakpoints: (
   xl: 1200
 );
 
-$base: 3rem;
+$rem: $base;
+$box-model-mods: ( pad: "padding", margin: "margin" );
+$edges: ( 
+  "y": ("top", "bottom"),
+  "x": ("left", "right"),
+  "t": "top",
+  "b": "bottom",
+  "l": "left",
+  "r": "right"
+);
+
+$modamounts: ( quarter: $rem/4, half: $rem/2, base: $rem, double: $rem*2, quad: $rem*4 );
+
 
 $ease: cubic-bezier(0.4, 0.0, 0.2, 1);
 $decel: cubic-bezier(0.0, 0.0, 0.2, 1);

@@ -1,12 +1,58 @@
 
+
+@function is-list($var){
+  @return type-of($var) == 'list';
+}
+
+$colors: (
+  highlight-primary: $highlight-primary,
+  highlight-secondary: $highlight-secondary,
+  highlight-tertiary: $highlight-tertiary,
+  highlight-quaternary: $highlight-quaternary,
+  highlight-quinary: $highlight-quinary,
+
+  lowlight-primary: $lowlight-primary,
+  lowlight-secondary: $lowlight-secondary,
+  lowlight-tertiary: $lowlight-tertiary,
+  lowlight-quaternary: $lowlight-quaternary,
+  lowlight-quinary: $lowlight-quinary,
+
+  accent-primary: $accent-primary,
+  accent-secondary: $accent-secondary,
+  accent-tertiary: $accent-tertiary,
+  accent-quaternary: $accent-quaternary,
+  accent-quinary: $accent-quinary,
+);
+
 @each $name, $hex in $colors {
-  &.#{$name} {
+  .#{$name} {
     color: $hex;
   }
-  &.back-#{$name} {
+  .back-#{$name} {
     background: $hex;
   }
 }
+
+@each $name, $mod in $box-model-mods {
+  .#{$name} {
+    #{$mod}: #{$rem};
+  }
+  @each $edge, $actual in $edges {
+    @if is-list($actual) {
+      .#{$name}-#{$edge} {
+        @each $side in $actual {
+          #{$mod}-#{$side}: #{$rem};
+        }
+      }
+    } @else {
+      .#{$name}-#{$edge} {
+        #{$mod}-#{$actual}: #{$rem};
+      }
+    }
+  }
+}
+
+// need a PULL
 
 @each $level, $size in $breakpoints {
   @media screen and (min-width: #{$size}px) {
@@ -23,3 +69,4 @@
     }
   }
 }
+

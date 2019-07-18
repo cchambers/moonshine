@@ -27,7 +27,7 @@ component-template {
       border: 1px solid $accent-primary;
     }
 
-    @media screen and (min-width: $breakpoint) {
+    @media screen and (min-width: $breakpoints(lg)) {
       // mobile first, right... make desktop mods here.
       background: $accent-primary;
       color: $highlight-primary;

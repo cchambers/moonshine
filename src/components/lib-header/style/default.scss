@@ -1,3 +1,5 @@
+$libBreak: 800px;
+
 lib-header {
   .nav-icon {
     padding-right: $base;
@@ -28,7 +30,7 @@ lib-header {
       opacity: 1;
     }
 
-    @media screen and (min-width: $breakpoint) {
+    @media screen and (min-width: $libBreak) {
       margin-right: 0;
     }
   }

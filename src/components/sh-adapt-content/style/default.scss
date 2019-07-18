@@ -27,12 +27,5 @@ adapt-content {
       border: 1px solid $accent-primary;
     }
 
-    @media screen and (min-width: $breakpoint) {
-      // mobile first, right... make desktop mods here.
-      background: $accent-primary;
-    }
-    /** END EXAMPLE SECTION **/
-
-
   }
 }

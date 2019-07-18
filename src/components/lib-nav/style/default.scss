@@ -1,4 +1,4 @@
-
+$libBreak: 800px;
 
 lib-nav {
   display: flex;
@@ -99,7 +99,7 @@ lib-nav {
       transform: translateX(-300vw);
       overflow: hidden;
 
-      @media (max-width: $breakpoint) {
+      @media (max-width: $libBreak) {
         flex-wrap: nowrap;
         @include scroll-y;
       }
@@ -148,7 +148,7 @@ lib-nav {
       transform: translateX(-300vw);
       overflow: hidden;
 
-      @media (max-width: $breakpoint) {
+      @media (max-width: $libBreak) {
         @include scroll-y;
       }
 
