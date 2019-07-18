@@ -11,6 +11,11 @@
   will-change: scroll-position;
 }
 
+@mixin background-opacity($color, $opacity: 0.3) {
+  background: $color; /* The Fallback */
+  background: rgba($color, $opacity);
+}
+
 @mixin custom-scroll-bar() {
   &::-webkit-scrollbar {
     border-radius: 10px;

@@ -1,5 +1,3 @@
-// TODO: Make tablock work.
-
 export default {
   name: 'Modal',
 
@@ -13,7 +11,8 @@ export default {
     header: String,
     footer: String,
     reveal: String,
-    variant: String
+    variant: String,
+    overlay: String
   },
 
   data() {
@@ -26,7 +25,17 @@ export default {
       active: false,
       ariaID: String,
       ariaHeaderID: String,
-      ariaDescID: String
+      ariaDescID: String,
+      loadHtml: `<div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>`
     };
   },
 
@@ -46,6 +55,17 @@ export default {
   },
 
   methods: {
+
+    focusFirst() {
+      let el = this.$el.querySelectorAll('a, input, button, [tabindex]');
+      if (el) el[0].focus()
+    },
+
+    focusLast() {
+      let el = this.$el.querySelectorAll('a, input, button, [tabindex]');
+      if (el) el[el.length].focus()
+    },
+    
     events() {
       let self = this;
       this.configureTriggers();
@@ -73,13 +93,20 @@ export default {
 
     open() {
       let self = this;
-      if (!this.loaded && this.contentUrl) this.loadContent()
+      if (!self.loaded && self.contentUrl) self.loadContent()
 
-      if (!this.active) {
-        self.$bus.$emit('modal-opening', this.uniqueId);
+      if (self.overlay) {
+        self.container.setAttribute('overlay', self.overlay);
+      } else {
+        self.container.removeAttribute('overlay');
+      }
+
+      if (!self.active) {
+        self.$bus.$emit('modal-opening', self.uniqueId);
         document.documentElement.classList.add('sh-modal-open');
-        this.active = true;
-        self.$bus.$emit('modal-opened', this.uniqueId);
+        self.active = true;
+        self.$el.focus();
+        self.$bus.$emit('modal-opened', self.uniqueId);
       }
     },
 
@@ -146,6 +173,7 @@ export default {
         let OK = 200; // status 200 is a successful return.
         if (xhr.readyState === DONE) {
           if (xhr.status === OK) {
+            self.loaded = true;
             let response = xhr.responseText;
             var pattern = /<body[^>]*>((.|[\n\r])*)<\/body>/im
             var arr = pattern.exec(response);
@@ -160,10 +188,11 @@ export default {
             }
 
             self.$refs.body.appendChild(html);
-            self.loaded = true;
           } else {
             // eslint-disable-next-line
-            console.log(`Content isn't available from: ${this.contentUrl}`);
+            self.$refs.body.innerHTML = `<p class="error">
+              There was a problem loading content from <a href='${window.location.host}${this.contentUrl}'>${window.location.host}${this.contentUrl}</a>.
+            </p>`;
           }
         }
       }

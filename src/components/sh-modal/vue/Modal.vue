@@ -7,22 +7,23 @@
     :aria-labelledby="ariaID" 
     :aria-describedby="ariaDescID">
     <div class="content">
-      <div class="tab-lock" tabindex="0"></div>
+      <div class="tab-lock" v-on:focus="focusLast()" tabindex="0"></div>
       <div class="header">
         <h3 :id="ariaHeaderID">
           <slot name="header">{{ header }}</slot>
         </h3>
         <div>
-          <i v-hammer:tap="close" class="material-icons">close</i>
+          <i v-hammer:tap="close" class="material-icons material-icons-round bold">close</i>
         </div>
       </div>
       <div class="body" ref="body" :id="ariaDescID">
+        <div v-if="contentUrl && !loaded" class="loading" v-html="loadHtml"></div>
         <slot></slot>
       </div>
       <div class="footer">
         <slot name="footer">{{ footer }}</slot>
       </div>
-      <div class="tab-lock" tabindex="0"></div>
+      <div class="tab-lock" v-on:focus="focusFirst()" tabindex="0"></div>
     </div>
   </div>
 </template>
@@ -43,12 +44,24 @@ a[modal-trigger] {
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: 9;
+  z-index: 90;
   opacity: 0;
   background: rgba(255, 255, 255, 0.9);
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   will-change: scroll-position;
+  &[overlay] {
+    &[overlay="none"] {
+      background: transparent;
+    }
+    /* Generate background colors for every bg */
+    @each $name, $hex in $colors {
+      &[overlay="#{$name}"] {
+        @include background-opacity($hex, 0.9);
+      }
+    }
+  }
+
 }
 
 html {

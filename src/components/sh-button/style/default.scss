@@ -131,7 +131,9 @@ sh-button {
   }
 
   &:not([variant]) {
-    text-decoration: underline;
+    span {
+      text-decoration: underline;
+    }
     button {
       &:hover,
       &.active {
