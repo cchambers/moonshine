@@ -1,3 +1,5 @@
+$libBreak: 800px;
+
 .nav-icon {
   padding-right: $base;
 }
@@ -23,7 +25,7 @@
     transform: translateZ(0);
     opacity: 1;
   }
-  @media screen and (min-width: $breakpoint) {
+  @media screen and (min-width: $libBreak) {
     margin-right: 0;
     font-size: 6rem;
   }
