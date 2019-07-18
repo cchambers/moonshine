@@ -29,6 +29,7 @@ require('./assets/style/themes/custom-props.scss');
 
 /* PRODUCTION ASSETS */
 require('./components/sh-modal');
+require('./components/sh-popper');
 
 /* NON-PRODUCTION ASSETS */
 if (process.env.NODE_ENV != 'production') {
