@@ -53,13 +53,13 @@
   }
 
   .footer:not(:empty) {
-    padding: 0.5rem $base;
+    padding: 0.5rem $rem;
     margin-top: 0;
   }
 
   h3 {
     margin: 0 !important;
-    padding-left: $base;
+    padding-left: $rem;
   }
 
   [close-trigger] {
