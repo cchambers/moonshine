@@ -1,10 +1,10 @@
 <div class="documentation contain">
-  <h1>Belk Logo</h1>
+  <h1>Belk Header</h1>
   <section id="usage">
     <h2>Usage</h2>
     <pre>
       <code class="language-html">
-          &lt;belk-logo&gt;new component&lt;/belk-logo&gt;
+          &lt;belk-header&gt;new component&lt;/belk-header&gt;
       </code>
     </pre>
 
@@ -14,7 +14,7 @@
     <h2>Reference</h2>
     <h3 id="attributes">Attributes</h3>
 
-    <table class="attributes">
+    <!-- <table class="attributes">
       <thead>
         <tr>
           <th>Attribute</th>
@@ -98,18 +98,34 @@
           </td>
         </tr>
       </tbody>
-    </table>
+    </table> -->
   </section>
 
   <section id="examples">
     <h2>Examples</h2>
     <h3>Default</h3>
     <lib-toolbar>
-      <belk-logo width="160"></belk-logo>
-    </lib-toolbar>
-    <h3>Using color attribute</h3>
-    <lib-toolbar>
-      <belk-logo width="80" color="accent-primary"></belk-logo>
+      <belk-header>
+        <nav slot="tertiary-nav">
+          <ul>
+            <li>
+              <a href="#">
+                Lorem
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                Ipsum
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                  Doler
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </belk-header>
     </lib-toolbar>
   </section>
 
@@ -117,15 +133,9 @@
     <h2>Changelog</h2>
     <dl>
       <dt>0.1.0</dt>
-      <dd>Belk Logo is under development.</dd>
+      <dd>Belk Header is under development.</dd>
       <dt>1.0.0</dt>
-      <dd>Belk Logo is ready for use.</dd>
-      <dt>1.0.1</dt>
-      <dd><strong>PATCH</strong> version when you make backwards-compatible bug fixes.</dd>
-      <dt>1.1.0</dt>
-      <dd><strong>MINOR</strong> version when you add functionality in a backwards-compatible manner.</dd>
-      <dt>2.0.0</dt>
-      <dd><strong>MAJOR</strong> version when you make incompatible API changes.</dd>
+      <dd>Belk Header is ready for use.</dd>
     </dl>
   </section>
 </div>

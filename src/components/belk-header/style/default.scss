@@ -1,0 +1,53 @@
+/* default styling */
+
+belk-header {
+  display: flex;
+  flex-direction: column;
+  padding: 1px;
+  background: $lowlight-quaternary;
+  .belk-header {
+    //
+  }
+  .pre:empty,
+  .post:empty {
+    display: none;
+  }
+
+  .primary,
+  .secondary,
+  .tertiary {
+    display: flex;
+  }
+
+  .belk-logo {
+    display: flex;
+  }
+
+  .primary {
+    background-color: $highlight-primary;
+    belk-logo {
+      margin: 10px;
+    }
+  }
+
+  .secondary {
+    background-color: $lowlight-tertiary;
+    belk-logo {
+      margin: 10px;
+    }
+  }
+
+  .tertiary {
+    background-color: $highlight-secondary;
+    ul {
+      display: flex;
+      justify-content: space-between;
+      padding: 0;
+      margin: 0 !important;
+      a {
+        display: flex;
+        padding: 1rem 2rem;
+      }
+    }
+  }
+}

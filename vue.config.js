@@ -93,6 +93,12 @@ module.exports = {
 
     const normalRule = config.module.rule('scss').oneOf('normal');
     normalRule.use('shine-theme-loader').loader(themeLoader).end();
+
+    const vueModules = config.module.rule('scss').oneOf('vue-modules');
+    vueModules.use('shine-theme-loader').loader(themeLoader).end();
+
+    const normalModules = config.module.rule('scss').oneOf('normal-modules');
+    normalModules.use('shine-theme-loader').loader(themeLoader).end();
     
   },
 
