@@ -30,7 +30,7 @@ lib-nav {
   .go-back {
     display: flex;
     justify-content: flex-start;
-    padding: $base;
+    padding: $rem;
     transition: all 100ms linear;
     cursor: pointer;
     background: $accent-primary;
@@ -53,7 +53,7 @@ lib-nav {
     a {
       display: block;
       line-height: 6.5rem;
-      padding: 0 $base;
+      padding: 0 $rem;
       font-size: 1.8rem;
       transition: all 100ms linear;
       position: relative;
@@ -93,8 +93,8 @@ lib-nav {
       align-content: flex-start;
       position: absolute;
       top: 9rem;
-      left: $base;
-      right: $base;
+      left: $rem;
+      right: $rem;
       height: calc(100vh - 18rem);
       transform: translateX(-300vw);
       overflow: hidden;
@@ -124,7 +124,7 @@ lib-nav {
     a {
       color: $highlight-primary;
       display: block;
-      line-height: $base;
+      line-height: $rem;
 
       &:hover {
         color: $accent-secondary;
@@ -142,8 +142,8 @@ lib-nav {
       align-content: flex-start;
       position: absolute;
       top: 9rem;
-      left: $base;
-      right: $base;
+      left: $rem;
+      right: $rem;
       height: calc(100vh - 18rem);
       transform: translateX(-300vw);
       overflow: hidden;
@@ -160,7 +160,7 @@ lib-nav {
     h2 {
       font-size: 2rem;
       break-after: avoid;
-      padding-top: $base;
+      padding-top: $rem;
       break-before: auto;
     }
 
@@ -179,8 +179,8 @@ lib-nav {
       flex-grow: 0;
       flex-shrink: 0;
       width: 28rem;
-      line-height: $base;
-      padding-top: $base;
+      line-height: $rem;
+      padding-top: $rem;
       break-before: avoid;
       break-inside: avoid;
       margin-right: 1.5rem;
@@ -198,7 +198,7 @@ lib-nav {
 
   .ad-space {
     display: none;
-    padding: 10rem $base;
+    padding: 10rem $rem;
     width: 20rem;
   }
 
@@ -228,12 +228,12 @@ lib-nav {
     right: 9rem;
     top: 0;
     left: 26rem;
-    padding: 0 $base;
+    padding: 0 $rem;
 
     input {
       display: block;
       font-family: "Menlo", monospace;
-      font-size: $base;
+      font-size: $rem;
       width: 100%;
       line-height: 6rem;
       height: 9rem;

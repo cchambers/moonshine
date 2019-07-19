@@ -2,7 +2,7 @@ $libBreak: 800px;
 
 lib-header {
   .nav-icon {
-    padding-right: $base;
+    padding-right: $rem;
   }
 
   .logo {
@@ -29,7 +29,6 @@ lib-header {
       transform: translateZ(0);
       opacity: 1;
     }
-
     @media screen and (min-width: $break-xl) {
       margin-right: 0;
     }

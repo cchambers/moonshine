@@ -437,7 +437,7 @@ a:hover {
   section {
     margin-bottom: 6rem;
     padding-bottom: 6rem;
-    padding: 0 $base $base $base;
+    padding: 0 $rem $rem $rem;
     background-color: $highlight-quaternary;
     @include box-shadow(1);
     &:last-of-type {
@@ -944,7 +944,7 @@ body {
 #page {
   > header {
     display: block;
-    padding: $base 0;
+    padding: $rem 0;
     line-height: 3rem;
     flex-shrink: 0;
     background: $accent-primary;
