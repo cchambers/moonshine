@@ -1,4 +1,5 @@
 require('./components/belk-logo');
+require('./components/belk-header');
 
 require('./components/sh-accordion');
 require('./components/sh-adapt-content');

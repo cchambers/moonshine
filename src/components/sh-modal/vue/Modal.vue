@@ -17,7 +17,7 @@
         </div>
       </div>
       <div class="body" ref="body" :id="ariaDescID">
-        <div v-if="contentUrl && !loaded" class="loading" v-html="loadHtml"></div>
+        <div v-if="contentUrl && !loaded" class="loading-anim" v-html="loadHtml"></div>
         <slot></slot>
       </div>
       <div class="footer">

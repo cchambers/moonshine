@@ -68,7 +68,7 @@ lib-toolbar {
   
   .control-wrap {
     position: relative;
-    opacity: 0;
+    opacity: 0.2;
     transition: all 400ms $ease;
     transition-delay: 0.1s;
     i {

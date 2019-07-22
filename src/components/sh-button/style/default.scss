@@ -1,7 +1,6 @@
 sh-button {
   display: inline-flex;
   font-size: 1rem;
-  height: 4em;
 
   &~sh-button {
     margin-left: 1.5em;
@@ -26,7 +25,7 @@ sh-button {
     justify-content: center;
     flex-direction: row;
     padding: 0 1.5em;
-    height: 100%;
+    min-height: 4em;
     min-width: 4.5em;
     color: $lowlight-primary;
     transition: all 250ms $decel;
@@ -131,6 +130,7 @@ sh-button {
   }
 
   &:not([variant]) {
+    background-color: transparent;
     span {
       text-decoration: underline;
     }

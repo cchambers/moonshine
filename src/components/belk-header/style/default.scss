@@ -1,0 +1,16 @@
+/* default styling */
+
+belk-header {
+  display: flex;
+  flex-direction: column;
+  padding: 1px;
+  background: $lowlight-quaternary;
+  .belk-header {
+    //
+  }
+  .pre:empty,
+  .post:empty {
+    display: none;
+  }
+
+}
