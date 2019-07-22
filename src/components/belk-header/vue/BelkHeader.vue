@@ -1,16 +1,27 @@
 <template>
   <div class="belk-header">
     <div ref="pre" class="pre">
-      <slot name="pre-header"></slot>
+      <div class="contain">
+        <slot name="pre-header"></slot>
+      </div>
     </div>
     <div ref="primary" class="primary">
-      <belk-logo class="logo" width="100"></belk-logo>
+      <div class="contain">
+        <belk-logo class="logo" width="80"></belk-logo>
+      </div>
     </div>
     <div ref="secondary" class="secondary">
-      <belk-logo class="logo" width="80" color="highlight-primary"></belk-logo>
+      <div class="contain">
+        <sh-button nav-trigger>
+          <i class="material-icons-round">menu</i>
+        </sh-button>
+        <belk-logo class="logo" width="60" color="highlight-primary"></belk-logo>
+      </div>
     </div>
     <div ref="tertiary" class="tertiary">
-      <slot name="tertiary-nav"></slot>
+      <div class="contain">
+        <slot name="tertiary-nav"></slot>
+      </div>
     </div>
     <div ref="post" class="post">
       <slot name="post-header"></slot>
@@ -20,3 +31,4 @@
 
 <script src="../script/BelkHeader.js"></script>
 <style lang="scss" src="../style/default.scss"></style>
+<style lang="scss" src="../style/primary.scss"></style>

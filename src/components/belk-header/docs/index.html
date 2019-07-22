@@ -105,13 +105,24 @@
     <h2>Examples</h2>
     <h3>Default</h3>
     <lib-toolbar>
-      <belk-header>
+      <belk-header variant="primary">
         <nav slot="tertiary-nav">
           <ul>
             <li>
-              <a href="#">
-                Lorem
-              </a>
+              <sh-popper>
+                <div slot="reference">
+                  <a href="#">
+                    Lorem
+                  </a>
+                </div>
+                <div>
+                  <ul>
+                    <li>
+                      Something else
+                    </li>
+                  </ul>
+                </div>
+              </sh-popper>
             </li>
             <li>
               <a href="#">

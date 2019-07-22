@@ -1,7 +1,55 @@
 /* primary variant */
 
 belk-header[variant="primary"] {
-  .belk-header {
-    border: 1px solid tomato;
+  .primary .contain,
+  .secondary .contain,
+  .tertiary .contain {
+    display: flex;
+  }
+
+  .belk-logo {
+    display: flex;
+  }
+
+  .primary {
+    background-color: $highlight-primary;
+    belk-logo {
+      margin: 10px;
+    }
+  }
+
+  .secondary {
+    background-color: $lowlight-tertiary;
+    belk-logo {
+      margin: 10px;
+    }
+  }
+
+  .tertiary {
+    background-color: $highlight-secondary;
+    ul {
+      display: flex;
+      justify-content: space-between;
+      padding: 0;
+      margin: 0 !important;
+      a {
+        display: flex;
+        padding: 1rem 2rem;
+      }
+    }
+  }
+
+  sh-button[nav-trigger] {
+    .sh-button {
+      background: transparent !important;
+      color: $highlight-primary;
+      padding: 0;
+      height: 4.5rem;
+      i {
+        font-size: 3rem;
+        padding: 0;
+        margin: 0;
+      }
+    }
   }
 }
