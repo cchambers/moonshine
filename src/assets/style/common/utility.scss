@@ -35,7 +35,7 @@
 // need a PULL
 
 @each $level, $size in $breakpoints {
-  @media screen and (min-width: #{$size}px) {
+  @media screen and (min-width: #{$size}) {
     @each $l, $s in $breakpoints {
       @if $l == $level {
         .#{$l}-only {
