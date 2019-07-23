@@ -13,7 +13,7 @@
           <slot name="header">{{ header }}</slot>
         </h3>
         <div>
-          <i v-hammer:tap="close" class="material-icons material-icons-round bold">close</i>
+          <i v-hammer:tap="close" class="material-icons-round bold">close</i>
         </div>
       </div>
       <div class="body" ref="body" :id="ariaDescID">

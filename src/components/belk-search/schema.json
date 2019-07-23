@@ -1,0 +1,7 @@
+{
+  "name": "Belk Search",
+  "element": "belk-search",
+  "description": "Demonstration component.",
+  "tags": ["utilities", "demo"],
+  "requirements": []
+}

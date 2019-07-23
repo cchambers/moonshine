@@ -1,4 +1,8 @@
 require('./components/belk-logo');
+require('./components/belk-mega-nav');
+require('./components/belk-search');
+require('./components/belk-bag');
+require('./components/belk-coupon');
 require('./components/belk-header');
 
 require('./components/sh-accordion');
