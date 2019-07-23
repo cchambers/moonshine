@@ -8,6 +8,7 @@
     <div ref="primary" class="primary">
       <div class="contain">
         <belk-logo class="logo" width="80"></belk-logo>
+        <belk-search></belk-search>
       </div>
     </div>
     <div ref="secondary" class="secondary">

@@ -1,15 +1,14 @@
 export default {
   name: 'BelkSearch',
   props: {
-    msg: {
-      type: String,
-      default: 'new component'
-    }
+    
   },
 
   data() {
     return {
-      snapping: false
+      value: '',
+      triggerResults: 3,
+      placeholder: 'Submit',
     }
   },
   
