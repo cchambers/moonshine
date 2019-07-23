@@ -1,9 +1,17 @@
 <template>
-  <div class="belk-search"
-    :variant="variant"
-    v-bind:class="{ 'snap-state': snapping }"
-    v-hammer:tap="snap">
-    <slot>{{ msg }}</slot>
+  <div class="belk-search">
+    <input :placeholder="placeholder" type="text">
+    <button ref="clear">Clear</button>
+    <button ref="search">Search</button>
+    <button ref="cancel">Cancel</button>
+    <sh-popper refs="results" id="results">
+      <div ref="recent">
+        HERE BE THE RECENTS.
+      </div>
+      <div ref="actual">
+        HERE BE THE RESULTS.
+      </div>
+    </sh-popper>
   </div>
 </template>
 
