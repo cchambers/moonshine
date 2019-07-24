@@ -1,11 +1,9 @@
 /* default styling */
 
 sh-popper {
-  display: inline-block;
   .actual > * {
     background: $lowlight-primary;
     color: $highlight-primary;
   }
-
   // TODO: enter-active-class demos
 }

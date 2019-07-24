@@ -2,28 +2,28 @@
 
 belk-bag {
   display: inline-flex;
+
   .belk-bag {
     // color: $highlight-primary;
     display: flex;
     flex-direction: row;
     align-content: flex-start;
+    align-items: stretch;
+  }
+
+  .bag-icon {
+    display: inline-flex;
     align-items: center;
-  }
-
-  .bag-icon {
-    border: 2px solid $accent-primary;
-  }
-
-  .bag-icon {
     background: $accent-primary;
     color: $highlight-primary;
-    padding: 1.5rem 3rem;
+    padding: 0 1.5rem;
   }
 
   .bag-total {
     background: $accent-tertiary;
     color: $highlight-primary;
     padding: 0 0.5rem;
+    align-self: center;
   }
 }
 

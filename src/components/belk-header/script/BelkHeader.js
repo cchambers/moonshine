@@ -1,21 +1,19 @@
 export default {
   name: 'BelkHeader',
-  props: {
-    msg: {
-      type: String,
-      default: 'new component'
-    }
-  },
 
   data() {
     return {
-      snapping: false
+      bagEl: {}
     }
+  },
+
+  mounted() {
+    this.bagEl = this.$refs.bag;
   },
   
   methods: {
     events() {
-      this.$bus.on('mega-nav-opening');
+      this.$bus.$on('mega-nav-opening');
     }
   },
 

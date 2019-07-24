@@ -10,7 +10,7 @@
         <belk-logo class="logo" width="80"></belk-logo>
         <belk-search></belk-search>
         <div class="icon-bar">
-          <belk-bag count="10" price="1234.53"></belk-bag>
+          <belk-bag ref="bag" count="10" price="1234.53"></belk-bag>
         </div>
       </div>
     </div>

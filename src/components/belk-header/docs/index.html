@@ -104,21 +104,65 @@
   <section id="examples">
     <h2>Examples</h2>
     <h3>Default</h3>
-    <lib-toolbar>
+    <!-- <lib-toolbar> -->
       <belk-header variant="primary">
         <nav slot="tertiary-nav">
           <ul>
             <li>
-              <sh-popper boundaries-selector="#main">
-                <div slot="reference">
-                  <a href="#">
-                    Lorem
-                  </a>
-                </div>
-                <div>
+              <a id="lorem-link" href="#" class="highlight-quinary">
+                Lorem
+              </a>
+              <sh-popper variant="mega-nav" delay-on-mouse-out="200" reference="#lorem-link" >
+                <div id="lorem-menu">
+                  <h3>Header one</h3>
                   <ul>
                     <li>
-                      Something else
+                      Lorem
+                    </li>
+                    <li>
+                      Ipsum
+                    </li>
+                    <li>
+                      Doler
+                    </li>
+                  </ul>
+                  
+                  <h3>Header two</h3>
+                  <ul>
+                    <li>
+                      Lorem
+                    </li>
+                    <li>
+                      Ipsum
+                    </li>
+                    <li>
+                      Doler
+                    </li>
+                  </ul>
+                  
+                  <h3>Header three</h3>
+                  <ul>
+                    <li>
+                      Lorem
+                    </li>
+                    <li>
+                      Ipsum
+                    </li>
+                    <li>
+                      Doler
+                    </li>
+                  </ul>
+                  
+                  <h3>Header four</h3>
+                  <ul>
+                    <li>
+                      Lorem
+                    </li>
+                    <li>
+                      Ipsum
+                    </li>
+                    <li>
+                      Doler
                     </li>
                   </ul>
                 </div>
@@ -136,8 +180,14 @@
             </li>
           </ul>
         </nav>
+        <div slot="secondary-nav">
+          <sh-button nav-trigger>
+            <i class="material-icons-round">menu</i>
+          </sh-button>
+          <belk-logo class="logo" width="60" color="highlight-primary"></belk-logo>
+        </div>
       </belk-header>
-    </lib-toolbar>
+    <!-- </lib-toolbar> -->
   </section>
 
   <section id="changelog">
