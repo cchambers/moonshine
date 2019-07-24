@@ -18,3 +18,4 @@
 
 <script src="../script/Popper.js"></script>
 <style lang="scss" src="../style/default.scss"></style>
+<style lang="scss" src="../style/mega-menu.scss"></style>

@@ -1,6 +1,6 @@
 <template>
   <div class="sh-nav-item">
-    <Popper ref="pop">
+    <Popper ref="pop" boundaries-selector="#main">
       <slot name="flyout"></slot>
       <div slot="reference">
         <slot></slot>

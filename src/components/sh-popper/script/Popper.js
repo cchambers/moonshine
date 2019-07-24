@@ -123,7 +123,19 @@ export default {
   created() {
     this.appendedArrow = false;
     this.appendedToBody = false;
-    this.popperOptions = Object.assign(this.popperOptions, this.options);
+
+    this.opts = {
+      flip: {
+        behavior: ['bottom']
+      },
+      modifiers: {
+        hide: { enabled: false },
+        preventOverflow: { enabled: false, boundariesElement: document.querySelector('main .contain') }
+      },
+    }
+
+  this.popperOptions = Object.assign(this.popperOptions, this.opts);
+
   },
 
   mounted() {
@@ -133,9 +145,9 @@ export default {
   methods: {
 
     ready() {
-      this.referenceElm = this.reference || this.$slots.reference[0].elm;
+      if (typeof this.reference == 'string') this.referenceElm = document.querySelector(this.reference);
+      if (this.$slots.reference) this.referenceElm = this.referenceElm || this.$slots.reference[0].elm;
       this.popper = this.$refs.popper;
-  
       switch (this.trigger) {
         case 'click':
           on(this.referenceElm, 'click', this.doToggle);
@@ -249,7 +261,7 @@ export default {
 
       const arrow = document.createElement('div');
       arrow.setAttribute('x-arrow', '');
-      arrow.className = 'popper__arrow';
+      arrow.className = 'popper-arrow';
       element.appendChild(arrow);
     },
 
