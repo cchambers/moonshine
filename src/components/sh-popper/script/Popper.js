@@ -35,7 +35,6 @@ export default {
       type: Boolean,
       default: false
     },
-    content: String,
     enterActiveClass: String,
     leaveActiveClass: String,
     boundariesSelector: String,
@@ -81,6 +80,7 @@ export default {
       popperJS: null,
       showPopper: false,
       currentPlacement: '',
+      content: 'empty',
       popperOptions: {
         placement: 'bottom',
         computeStyle: {
@@ -127,28 +127,33 @@ export default {
   },
 
   mounted() {
-    this.referenceElm = this.reference || this.$slots.reference[0].elm;
-    this.popper = this.$slots.default[0].elm;
-
-    switch (this.trigger) {
-      case 'click':
-        on(this.referenceElm, 'click', this.doToggle);
-        on(document, 'click', this.handleDocumentClick);
-        break;
-      case 'hover':
-        on(this.referenceElm, 'mouseover', this.onMouseOver);
-        on(this.referenceElm, 'focus', this.onMouseOver);
-        on(this.popper, 'mouseover', this.onMouseOver);
-        on(this.popper, 'focus', this.onMouseOver);
-        on(this.referenceElm, 'mouseout', this.onMouseOut);
-        on(this.referenceElm, 'blur', this.onMouseOut);
-        on(this.popper, 'mouseout', this.onMouseOut);
-        on(this.popper, 'blur', this.onMouseOut);
-        break;
-    }
+    this.ready();
   },
 
   methods: {
+
+    ready() {
+      this.referenceElm = this.reference || this.$slots.reference[0].elm;
+      this.popper = this.$refs.popper;
+  
+      switch (this.trigger) {
+        case 'click':
+          on(this.referenceElm, 'click', this.doToggle);
+          on(document, 'click', this.handleDocumentClick);
+          break;
+        case 'hover':
+          on(this.referenceElm, 'mouseover', this.onMouseOver);
+          on(this.referenceElm, 'focus', this.onMouseOver);
+          on(this.popper, 'mouseover', this.onMouseOver);
+          on(this.popper, 'focus', this.onMouseOver);
+          on(this.referenceElm, 'mouseout', this.onMouseOut);
+          on(this.referenceElm, 'blur', this.onMouseOut);
+          on(this.popper, 'mouseout', this.onMouseOut);
+          on(this.popper, 'blur', this.onMouseOut);
+          break;
+      }
+    },
+
     doToggle(event) {
       if (this.stopPropagation) {
         event.stopPropagation();

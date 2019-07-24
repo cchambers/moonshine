@@ -1,0 +1,7 @@
+{
+  "name": "Nav Item",
+  "element": "sh-nav-item",
+  "description": "A suped-up link.",
+  "tags": ["utilities", "demo"],
+  "requirements": []
+}

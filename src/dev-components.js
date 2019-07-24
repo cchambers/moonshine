@@ -18,6 +18,8 @@ require('./components/sh-form');
 require('./components/sh-header');
 require('./components/sh-input');
 require('./components/sh-link-list');
+require('./components/sh-nav-item');
+require('./components/sh-popper');
 require('./components/sh-rating');
 require('./components/sh-slider');
 require('./components/sh-tabs');

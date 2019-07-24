@@ -1,9 +1,6 @@
 <template>
-  <div class="belk-mega-nav"
-    :variant="variant"
-    v-bind:class="{ 'snap-state': snapping }"
-    v-hammer:tap="snap">
-    <slot>{{ msg }}</slot>
+  <div class="belk-mega-nav">
+    <slot></slot>
   </div>
 </template>
 
