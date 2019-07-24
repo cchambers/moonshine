@@ -1,12 +1,9 @@
 <template>
-  <div class="belk-bag"
-    :variant="variant"
-    v-bind:class="{ 'snap-state': snapping }"
-    v-hammer:tap="snap">
-    <slot>{{ msg }}</slot>
+  <div class="belk-bag" :variant="variant">
+    <div class="bag-icon">{{ itemCount }}</div>
+    <div class="bag-total">{{ priceFormatted }}</div>
   </div>
 </template>
 
 <script src="../script/BelkBag.js"></script>
 <style lang="scss" src="../style/default.scss"></style>
-<style lang="scss" src="../style/primary.scss"></style>

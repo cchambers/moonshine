@@ -1,41 +1,29 @@
 /* default styling */
 
 belk-bag {
-  display: inline-block;
+  display: inline-flex;
   .belk-bag {
-
-
-    /** DELETE THIS EXAMPLE SECTION **/
-    cursor: pointer;
+    // color: $highlight-primary;
     display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    text-align: center;
-    height: 15rem;
-    width: 15rem;
-    background-size: cover;
-    border: 1px solid transparent;
-    transition: all 200ms linear;
+    flex-direction: row;
+    align-content: flex-start;
+    align-items: center;
+  }
 
-    &:hover {
-      border: 1px solid $accent-primary;
-    }
-    
-    &.snap-state {
-      color: transparent;
-      background-image: url(../../../assets/img/snap.gif);
-      border: 1px solid $accent-primary;
-    }
+  .bag-icon {
+    border: 2px solid $accent-primary;
+  }
 
-    @media screen and (min-width: $break-lg) {
-      // mobile first, right... make desktop mods here.
-      background: $accent-primary;
-      color: $highlight-primary;
-    }
-    /** END EXAMPLE SECTION **/
+  .bag-icon {
+    background: $accent-primary;
+    color: $highlight-primary;
+    padding: 1.5rem 3rem;
+  }
 
-
-    
-
+  .bag-total {
+    background: $accent-tertiary;
+    color: $highlight-primary;
+    padding: 0 0.5rem;
   }
 }
+
