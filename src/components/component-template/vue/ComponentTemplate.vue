@@ -1,6 +1,5 @@
 <template>
   <div class="component-template"
-    :variant="variant"
     v-bind:class="{ 'snap-state': snapping }"
     v-hammer:tap="snap">
     <slot>{{ msg }}</slot>

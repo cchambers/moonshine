@@ -1,10 +1,10 @@
 <div class="documentation contain">
-  <h1>Belk Bag</h1>
+  <h1>Navitem</h1>
   <section id="usage">
     <h2>Usage</h2>
     <pre>
       <code class="language-html">
-          &lt;belk-bag count="10" price="200.24"&gt;&lt;/belk-bag&gt;
+          &lt;sh-nav-item&gt;new component&lt;/sh-nav-item&gt;
       </code>
     </pre>
 
@@ -13,7 +13,7 @@
   <section id="reference">
     <h2>Reference</h2>
     <h3 id="attributes">Attributes</h3>
-<!-- 
+
     <table class="attributes">
       <thead>
         <tr>
@@ -48,7 +48,7 @@
           </td>
         </tr>
       </tbody>
-    </table> -->
+    </table>
 
     <h3 id="methods">Public Methods</h3>
 
@@ -89,12 +89,12 @@
       </thead>
       <tbody>
         <tr>
-          <td>value-changed</td>
+          <td>event-name</td>
           <td>
-            Object
+            Type
           </td>
           <td>
-            Fires when the totalPrice or itemCount props update; the payload is an object of the values.
+            Fires when something happens.
           </td>
         </tr>
       </tbody>
@@ -104,18 +104,25 @@
   <section id="examples">
     <h2>Examples</h2>
     <h3>Default</h3>
-    <lib-toolbar>
-      <belk-bag count="15" price="300.00"></belk-bag>
-    </lib-toolbar>
+    <sh-nav-item>
+      <a href="#">Example</a>
+      <div slot="flyout">TESTING</div>
+    </sh-nav-item>
   </section>
 
   <section id="changelog">
     <h2>Changelog</h2>
     <dl>
       <dt>0.1.0</dt>
-      <dd>Belk Bag is under development.</dd>
-      <!-- <dt>1.0.0</dt>
-      <dd>Belk Bag is ready for use.</dd> -->
+      <dd>Navitem is under development.</dd>
+      <dt>1.0.0</dt>
+      <dd>Navitem is ready for use.</dd>
+      <dt>1.0.1</dt>
+      <dd><strong>PATCH</strong> version when you make backwards-compatible bug fixes.</dd>
+      <dt>1.1.0</dt>
+      <dd><strong>MINOR</strong> version when you add functionality in a backwards-compatible manner.</dd>
+      <dt>2.0.0</dt>
+      <dd><strong>MAJOR</strong> version when you make incompatible API changes.</dd>
     </dl>
   </section>
 </div>

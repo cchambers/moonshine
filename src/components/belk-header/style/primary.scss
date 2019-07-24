@@ -7,6 +7,10 @@ belk-header[variant="primary"] {
     display: flex;
   }
 
+  .primary .contain {
+    justify-content: space-between;
+  }
+
   .belk-logo {
     display: flex;
   }
