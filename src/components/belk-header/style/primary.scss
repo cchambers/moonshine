@@ -24,8 +24,42 @@ belk-header[variant="primary"] {
 
   .secondary {
     background-color: $lowlight-tertiary;
+    height: 50px;
+
     belk-logo {
       margin: 10px;
+    }
+    belk-search {
+      width: 100%;
+    }
+    .belk-search {
+      display: flex;
+      width: 100%;
+      position: relative;
+      
+      .search-wrapper {
+        background-color: $lowlight-tertiary;
+        width:100%;
+        display: flex;
+        position: absolute;
+        left: 0; top: 0;
+        height: 50px;
+        align-items: center;
+        padding: 9px 8px;
+
+        .search-input {
+          position: relative;
+          width: 100%;
+          height: 34px;
+        }
+
+        .input-actions {
+          position: absolute;
+          top: 0;
+          right: 0;
+        }
+      }
+      
     }
   }
 

@@ -1,9 +1,23 @@
 <template>
   <div class="belk-search">
-    <input :placeholder="placeholder" type="text">
-    <button ref="clear">Clear</button>
-    <button ref="search">Search</button>
-    <button ref="cancel">Cancel</button>
+
+    <!-- Sarch Wrapper -->
+    <div class="search-wrapper">
+
+      <!-- Input -->
+      <div class="search-input">
+        <input :placeholder="placeholder" type="text">
+        <div class="input-actions">
+          <button ref="clear">Clear</button>
+          <button ref="search">Search</button>
+        </div>
+      </div>  
+      <!-- Close Input -->
+      <button ref="cancel">Cancel</button>
+    </div>
+    <!-- Search Trigger -->
+    <button>Search <i></i></button>
+
     <sh-popper refs="results" id="results">
       <div ref="recent">
         HERE BE THE RECENTS.
