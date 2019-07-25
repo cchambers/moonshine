@@ -65,8 +65,8 @@ if (process.env.NODE_ENV != 'production') {
 
 module.exports = {
   runtimeCompiler: false,
-
   filenameHashing: false,
+  transpileDependencies: ['vue2-hammer'],
 
   css: {
     loaderOptions: {
