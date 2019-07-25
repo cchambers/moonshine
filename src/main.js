@@ -1,7 +1,7 @@
 /* eslint-disable */
 // import '@babel/polyfill';
 
-import 'babel-polyfill'  
+import 'babel-polyfill'
 
 require('./assets/script/core.js');
 
@@ -10,7 +10,7 @@ Vue.config.productionTip = false;
 
 /* IE-11 Polyfills */
 import 'document-register-element/build/document-register-element';
-import './assets/script/polyfills.js'
+// import './assets/script/polyfills.js'
 
 /* HammerJS (touch support) */
 import { VueHammer } from 'vue2-hammer';
