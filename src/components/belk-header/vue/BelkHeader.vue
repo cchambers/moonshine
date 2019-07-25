@@ -8,7 +8,6 @@
     <div ref="primary" class="primary">
       <div class="contain">
         <belk-logo class="logo" width="80"></belk-logo>
-        <belk-search></belk-search>
         <div class="icon-bar">
           <belk-bag ref="bag" count="10" price="1234.53"></belk-bag>
         </div>
@@ -20,7 +19,6 @@
           <i class="material-icons-round">menu</i>
         </sh-button>
         <belk-logo class="logo" width="60" color="highlight-primary"></belk-logo>
-        <belk-search></belk-search>
       </div>
     </div>
     <div ref="tertiary" class="tertiary">

@@ -72,6 +72,7 @@ module.exports = {
     loaderOptions: {
       sass: {
         data: `
+          @import "@/assets/style/common/_functions.scss";
           @import "@/assets/style/common/_mixins.scss";
           @import "@/assets/style/themes/default/_variables.scss";
         `

@@ -7,7 +7,7 @@
 
   --lowlight-primary: rgb(25,25,25);
   --lowlight-secondary: rgb(39,40,34);
-  --lowlight-tertiary: rgb(41, 57, 115);
+  --lowlight-tertiary: rgb(0,51,129);
   --lowlight-quaternary: rgb(100,100,100);
   --lowlight-quinary: tomato;
 
@@ -15,7 +15,7 @@
   --accent-secondary: rgb(6, 103, 160);
   --accent-tertiary: rgb(157, 208, 230);
   --accent-quaternary: rgb(129, 177, 210);
-  --accent-quinary: rgb(0,131,186);
+  --accent-quinary: rgb(59,221,174);
 }
 
 [theme="dark"] {
@@ -27,10 +27,10 @@
   --lowlight-primary: #BB86FC;
   --lowlight-secondary: #4e1b96;
   --lowlight-tertiary: #018786;
-  --lowlight-quaternary: #03DAC6;
+  --lowlight-quaternary: rgb(59,221,174);
 
   --accent-primary: #BB86FC;
   --accent-secondary:#4e1b96;
-  --accent-tertiary: #03DAC6;;
+  --accent-tertiary: rgb(59,221,174);
   --accent-quaternary: #3700B3;
 }

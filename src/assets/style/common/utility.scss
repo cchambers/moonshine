@@ -6,10 +6,10 @@
 
 @each $name, $hex in $colors {
   .#{$name} {
-    color: $hex;
+    color: map-get($colors, $name);
   }
   .back-#{$name} {
-    background: $hex;
+    background: map-get($colors, $name);
   }
 }
 
