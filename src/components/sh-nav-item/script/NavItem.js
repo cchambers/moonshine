@@ -217,7 +217,7 @@ export default {
         }
 
         if (this.boundariesSelector) {
-          const boundariesElement = document.querySelector(this.boundariesSelector);
+          const boundariesElement = document.querySelector(this.boundariesSelector) || document.querySelector("#main") ;
 
           if (boundariesElement) {
             this.popperOptions.modifiers = Object.assign({
