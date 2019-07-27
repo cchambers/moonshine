@@ -104,69 +104,35 @@
   <section id="examples">
     <h2>Examples</h2>
     <h3>Default</h3>
-    <!-- <lib-toolbar> -->
+    <lib-toolbar>
       <belk-header variant="primary">
         <nav slot="tertiary-nav">
           <ul>
             <li>
-              <a id="lorem-link" href="#" class="highlight-quinary">
-                Lorem
-              </a>
-              <sh-popper variant="mega-nav" delay-on-mouse-out="200" reference="#lorem-link" >
+              <sh-nav-item force-show delay-on-mouse-out="200">
+                <a slot="reference" id="lorem-link" href="#" class="highlight-quinary">
+                  Lorem
+                </a>
                 <div id="lorem-menu">
-                  <h3>Header one</h3>
-                  <ul>
-                    <li>
-                      Lorem
-                    </li>
-                    <li>
-                      Ipsum
-                    </li>
-                    <li>
-                      Doler
-                    </li>
-                  </ul>
+
+                    <div class="pad">
+                    <h3>Header one</h3>
+                    <ul>
+                      <li>
+                        Lorem
+                      </li>
+                      <li>
+                        Ipsum
+                      </li>
+                      <li>
+                        Doler
+                      </li>
+                    </ul>
                   
-                  <h3>Header two</h3>
-                  <ul>
-                    <li>
-                      Lorem
-                    </li>
-                    <li>
-                      Ipsum
-                    </li>
-                    <li>
-                      Doler
-                    </li>
-                  </ul>
-                  
-                  <h3>Header three</h3>
-                  <ul>
-                    <li>
-                      Lorem
-                    </li>
-                    <li>
-                      Ipsum
-                    </li>
-                    <li>
-                      Doler
-                    </li>
-                  </ul>
-                  
-                  <h3>Header four</h3>
-                  <ul>
-                    <li>
-                      Lorem
-                    </li>
-                    <li>
-                      Ipsum
-                    </li>
-                    <li>
-                      Doler
-                    </li>
-                  </ul>
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsam, architecto? Blanditiis nesciunt earum dolor numquam facere labore doloribus aspernatur natus assumenda, officia aut fuga dolorum officiis sapiente. Similique, dicta a?</p>
+                    </div>
                 </div>
-              </sh-popper>
+              </sh-nav-item>
             </li>
             <li>
               <a href="#">
@@ -187,7 +153,7 @@
           <belk-logo class="logo" width="60" color="highlight-primary"></belk-logo>
         </div>
       </belk-header>
-    <!-- </lib-toolbar> -->
+    </lib-toolbar>
   </section>
 
   <section id="changelog">

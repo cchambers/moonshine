@@ -1,4 +1,4 @@
-import Popper from 'popper.js';
+import Popper from '../../../assets/script/popper';
 
 function on(element, event, handler) {
   if (element && event && handler) {
@@ -123,19 +123,6 @@ export default {
   created() {
     this.appendedArrow = false;
     this.appendedToBody = false;
-
-    this.opts = {
-      flip: {
-        behavior: ['bottom']
-      },
-      modifiers: {
-        hide: { enabled: false },
-        preventOverflow: { enabled: false, boundariesElement: document.querySelector('main .contain') }
-      },
-    }
-
-  this.popperOptions = Object.assign(this.popperOptions, this.opts);
-
   },
 
   mounted() {

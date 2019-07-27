@@ -66,7 +66,7 @@ if (process.env.NODE_ENV != 'production') {
 module.exports = {
   runtimeCompiler: false,
   filenameHashing: false,
-  transpileDependencies: ['vue2-hammer'],
+  // transpileDependencies: ['vue2-hammer', 'vue-custom-element'],
 
   css: {
     loaderOptions: {
@@ -85,12 +85,16 @@ module.exports = {
       alias: {
         'vue$': 'vue/dist/vue.esm.js'
       }
-    }
+    },
+    optimization: {
+      minimize: false
+    },
   },
 
   chainWebpack: config => {
-    const vueRule = config.module.rule('scss').oneOf('vue');
     const themeLoader = path.resolve('theme-loader.js');
+
+    const vueRule = config.module.rule('scss').oneOf('vue');
     vueRule.use('shine-theme-loader').loader(themeLoader).end();
 
     const normalRule = config.module.rule('scss').oneOf('normal');
@@ -101,7 +105,7 @@ module.exports = {
 
     const normalModules = config.module.rule('scss').oneOf('normal-modules');
     normalModules.use('shine-theme-loader').loader(themeLoader).end();
-    
+
   },
 
   pages: pages,

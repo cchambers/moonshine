@@ -4,7 +4,7 @@ let app = {
   },
 
   setup() {
-    let iOSCheck = navigator.userAgent.indexOf("Safari") > -1 && navigator.userAgent.indexOf("Chrome") < 0;
+    let iOSCheck = navigator.userAgent.indexOf('Safari') > -1 && navigator.userAgent.indexOf('Chrome') < 0;
     if (iOSCheck) document.getElementsByTagName('html')[0].classList.add('iOS');
 
     let demos = document.querySelectorAll('lib-toolbar');

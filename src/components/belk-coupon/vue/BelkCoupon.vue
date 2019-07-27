@@ -1,8 +1,6 @@
 <template>
   <div class="belk-coupon"
-    :variant="variant"
-    v-bind:class="{ 'snap-state': snapping }"
-    v-hammer:tap="snap">
+    :variant="variant">
     <slot>{{ msg }}</slot>
   </div>
 </template>
