@@ -145,6 +145,11 @@ export default {
     init() {
       this.referenceElm = this.$refs.target;
       this.popper = this.$refs.popper;
+
+      this.$bus.$on('show-nav', (which) => {
+        if (which !== this.uuid) this.doClose();
+      });
+
       switch (this.trigger) {
         case 'click':
           on(this.referenceElm, 'click', this.doToggle);
@@ -217,7 +222,7 @@ export default {
         }
 
         if (this.boundariesSelector) {
-          const boundariesElement = document.querySelector(this.boundariesSelector) || document.querySelector("#main") ;
+          const boundariesElement = document.querySelector(this.boundariesSelector) || document.querySelector('#main');
 
           if (boundariesElement) {
             this.popperOptions.modifiers = Object.assign({
@@ -271,6 +276,7 @@ export default {
     onMouseOver() {
       clearTimeout(this._timer);
       this._timer = setTimeout(() => {
+        this.$bus.$emit('show-nav', this.uuid);
         this.showPopper = true;
       }, this.delayOnMouseOver);
     },

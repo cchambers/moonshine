@@ -2,8 +2,7 @@
 
 belk-header[variant="primary"] {
   .primary .contain,
-  .secondary .contain,
-  .tertiary .contain {
+  .secondary .contain {
     display: flex;
   }
 
@@ -30,25 +29,16 @@ belk-header[variant="primary"] {
   }
 
   .tertiary {
-    background-color: $highlight-secondary;
+    nav {
+      display: block;
+    }
     nav > ul {
       display: flex;
-      justify-content: space-between;
+      justify-content: flex-start;
       padding: 0;
       margin: 0 !important;
-      a {
-        display: flex;
-        padding: 1rem 2rem;
-      }
-    }
-    .sh-popper {
-      .actual > div:not([x-arrow]) {
-        border: 1px solid red;
-        background: $highlight-primary;
-        color: $lowlight-primary;
-      }
-      ul {
-        padding: 0.5rem;
+      li:not(:first-child) {
+        margin-left: 1rem
       }
     }
   }
