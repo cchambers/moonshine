@@ -1,22 +1,16 @@
 <template>
   <div class="belk-search">
 
-    <!-- Sarch Wrapper -->
-    <div class="search-wrapper">
 
-      <!-- Input -->
-      <div class="search-input">
-        <input :placeholder="placeholder" type="text">
-        <div class="input-actions">
-          <button ref="clear">Clear</button>
-          <button ref="search">Search</button>
-        </div>
-      </div>  
-      <!-- Close Input -->
-      <button ref="cancel">Cancel</button>
-    </div>
-    <!-- Search Trigger -->
-    <button>Search <i></i></button>
+    <!-- Input -->
+    <div class="search-input">
+      <input :placeholder="placeholder" type="text" @focus="magic_flag = true" @blur="magic_flag = false">
+      <button ref="clear"><i class="material-icons-round">close</i></button>
+      <button ref="search"><i class="material-icons-round">search</i></button>
+    </div> 
+
+    <!-- Close Input -->
+    <button ref="cancel" class="close-search">Cancel</button>
 
     <sh-popper refs="results" id="results">
       <div ref="recent">

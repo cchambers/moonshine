@@ -15,12 +15,29 @@
     </div>
     <div ref="secondary" class="secondary">
       <div class="contain">
-        <sh-button nav-trigger>
-          <i class="material-icons-round">menu</i>
-        </sh-button>
-        <belk-logo class="logo" width="60" color="highlight-primary"></belk-logo>
+        <!-- nav left -->
+        <div class="nav-left">
+          <sh-button nav-trigger>
+            <i class="material-icons-round">menu</i>
+          </sh-button>
+          <belk-logo class="logo" width="60" color="highlight-primary"></belk-logo>
+        </div>
+
+        <!-- Search bar -->
         <belk-search></belk-search>
+
+        <!-- nav-right -->
+        <div class="nav-right">
+          <a>
+            <i class="material-icons-round">perm_identity</i>
+          </a>
+          <a>
+            <i class="material-icons-round">shopping_cart</i>
+          </a>
+        </div>
+
       </div>
+
     </div>
     <div ref="tertiary" class="tertiary">
       <div class="contain">
@@ -36,3 +53,4 @@
 <script src="../script/BelkHeader.js"></script>
 <style lang="scss" src="../style/default.scss"></style>
 <style lang="scss" src="../style/primary.scss"></style>
+
