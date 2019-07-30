@@ -27,6 +27,7 @@ belk-header[variant="primary"] {
   .tertiary {
     nav {
       display: block;
+      flex-grow: 1;
     }
   }
 
@@ -71,6 +72,10 @@ belk-header[variant="primary"] {
   /* EMBEDDED MEGA NAV */
   .belk-mega-nav {
     position: fixed;
+    overflow-y: auto;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
     top: 0;
     left: 0;
     bottom: 0;
@@ -95,11 +100,24 @@ belk-header[variant="primary"] {
         display: block;
       }
     }
+    .mobile-links {
+      background: $highlight-secondary;
+      a {
+        display: flex;
+        align-items: center;
+        height: 4.5rem;
+        color: $lowlight-primary;
+        padding: 0 1rem;
+      }
+    }
   }
 
   @media (min-width: breakpoint("lg")) {
     .belk-mega-nav {
       position: static;
+      display: block;
+      height: auto;
+      overflow-y: visible;
       top: auto;
       left: auto;
       bottom: auto;

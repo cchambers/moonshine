@@ -26,6 +26,14 @@ sh-nav-item {
       text-align: center;
       min-width: 4.5rem;
     }
+    i {
+      transition: all 250ms $ease;
+    }
+  }
+  [active] {
+    button i {
+      transform: rotate(45deg);
+    }
   }
 
   @media (min-width: breakpoint("lg")) {

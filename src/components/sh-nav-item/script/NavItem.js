@@ -120,14 +120,14 @@ export default {
   },
 
   mounted() {
-    this.init();
+    this.referenceElm = this.$refs.target;
+    this.popper = this.$refs.popper;
+
+    this.initPopper();
   },
 
   methods: {
-    init() {
-      this.referenceElm = this.$refs.target;
-      this.popper = this.$refs.popper;
-
+    events() {
       this.$bus.$on('show-nav', (which) => {
         if (which !== this.uuid) this.close();
       });
@@ -140,7 +140,9 @@ export default {
         this.mobile = false;
       });
 
+    },
 
+    initPopper() {
       switch (this.trigger) {
         case 'click':
           on(this.referenceElm, 'click', this.doToggle);
