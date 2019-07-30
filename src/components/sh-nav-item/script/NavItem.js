@@ -15,20 +15,16 @@ function off(element, event, handler) {
 export default {
   name: 'NavItem',
   props: {
-    tagName: {
-      type: String,
-      default: 'span',
-    },
     trigger: {
       type: String,
       default: 'hover',
       validator: value => ['click', 'hover'].indexOf(value) > -1
     },
-    delayOnMouseOver: {
+    delaymouseoverHandler: {
       type: Number,
       default: 10,
     },
-    delayOnMouseOut: {
+    delaymouseoutHandler: {
       type: Number,
       default: 10,
     },
@@ -42,19 +38,7 @@ export default {
       type: String,
       default: '.documentation'
     },
-    reference: {},
     forceShow: {
-      type: Boolean,
-      default: false
-    },
-    dataValue: {
-      default: null,
-    },
-    appendToBody: {
-      type: Boolean,
-      default: false
-    },
-    visibleArrow: {
       type: Boolean,
       default: false
     },
@@ -80,9 +64,11 @@ export default {
 
   data() {
     return {
+      active: false,
       referenceElm: null,
       popperJS: null,
       showPopper: false,
+      mobile: false,
       currentPlacement: '',
       content: 'empty',
       popperOptions: {
@@ -106,21 +92,17 @@ export default {
     showPopper(value) {
       if (value) {
         this.$emit('show', this);
-        if (this.popperJS) {
-          this.popperJS.enableEventListeners();
-        }
+        if (this.popperJS) this.popperJS.enableEventListeners();
         this.updatePopper();
       } else {
-        if (this.popperJS) {
-          this.popperJS.disableEventListeners();
-        }
+        if (this.popperJS) this.popperJS.disableEventListeners();
         this.$emit('hide', this);
       }
     },
 
     forceShow: {
       handler(value) {
-        this[value ? 'doShow' : 'doClose']();
+        this[value ? 'show' : 'close']();
       },
       immediate: true
     },
@@ -147,8 +129,17 @@ export default {
       this.popper = this.$refs.popper;
 
       this.$bus.$on('show-nav', (which) => {
-        if (which !== this.uuid) this.doClose();
+        if (which !== this.uuid) this.close();
       });
+
+      this.$bus.$on('breakpoint-mobile', () => {
+        this.mobile = true;
+      });
+
+      this.$bus.$on('breakpoint-desktop', () => {
+        this.mobile = false;
+      });
+
 
       switch (this.trigger) {
         case 'click':
@@ -156,16 +147,20 @@ export default {
           on(document, 'click', this.handleDocumentClick);
           break;
         case 'hover':
-          on(this.referenceElm, 'mouseover', this.onMouseOver);
-          on(this.referenceElm, 'focus', this.onMouseOver);
-          on(this.popper, 'mouseover', this.onMouseOver);
-          on(this.popper, 'focus', this.onMouseOver);
-          on(this.referenceElm, 'mouseout', this.onMouseOut);
-          on(this.referenceElm, 'blur', this.onMouseOut);
-          on(this.popper, 'mouseout', this.onMouseOut);
-          on(this.popper, 'blur', this.onMouseOut);
+          on(this.referenceElm, 'mouseover', this.mouseoverHandler);
+          on(this.referenceElm, 'focus', this.mouseoverHandler);
+          on(this.popper, 'mouseover', this.mouseoverHandler);
+          on(this.popper, 'focus', this.mouseoverHandler);
+          on(this.referenceElm, 'mouseout', this.mouseoutHandler);
+          on(this.referenceElm, 'blur', this.mouseoutHandler);
+          on(this.popper, 'mouseout', this.mouseoutHandler);
+          on(this.popper, 'blur', this.mouseoutHandler);
           break;
       }
+    },
+
+    activate() {
+      this.active = !this.active;
     },
 
     doToggle(event) {
@@ -182,11 +177,11 @@ export default {
       }
     },
 
-    doShow() {
+    show() {
       this.showPopper = true;
     },
 
-    doClose() {
+    close() {
       this.showPopper = false;
     },
 
@@ -208,14 +203,6 @@ export default {
 
     createPopper() {
       this.$nextTick(() => {
-        if (this.visibleArrow) {
-          this.appendArrow(this.popper);
-        }
-
-        if (this.appendToBody && !this.appendedToBody) {
-          this.appendedToBody = true;
-          document.body.appendChild(this.popper.parentElement);
-        }
 
         if (this.popperJS && this.popperJS.destroy) {
           this.popperJS.destroy();
@@ -244,48 +231,39 @@ export default {
 
     destroyPopper() {
       off(this.referenceElm, 'click', this.doToggle);
-      off(this.referenceElm, 'mouseup', this.doClose);
-      off(this.referenceElm, 'mousedown', this.doShow);
-      off(this.referenceElm, 'focus', this.doShow);
-      off(this.referenceElm, 'blur', this.doClose);
-      off(this.referenceElm, 'mouseout', this.onMouseOut);
-      off(this.referenceElm, 'mouseover', this.onMouseOver);
+      off(this.referenceElm, 'mouseup', this.close);
+      off(this.referenceElm, 'mousedown', this.show);
+      off(this.referenceElm, 'focus', this.show);
+      off(this.referenceElm, 'blur', this.close);
+      off(this.referenceElm, 'mouseout', this.mouseoutHandler);
+      off(this.referenceElm, 'mouseover', this.mouseoverHandler);
       off(document, 'click', this.handleDocumentClick);
 
       this.showPopper = false;
       this.doDestroy();
     },
 
-    appendArrow(element) {
-      if (this.appendedArrow) {
-        return;
-      }
-
-      this.appendedArrow = true;
-
-      const arrow = document.createElement('div');
-      arrow.setAttribute('x-arrow', '');
-      arrow.className = 'popper-arrow';
-      element.appendChild(arrow);
-    },
-
     updatePopper() {
       this.popperJS ? this.popperJS.scheduleUpdate() : this.createPopper();
     },
 
-    onMouseOver() {
-      clearTimeout(this._timer);
-      this._timer = setTimeout(() => {
-        this.$bus.$emit('show-nav', this.uuid);
-        this.showPopper = true;
-      }, this.delayOnMouseOver);
+    mouseoverHandler() {
+      if (!this.mobile) {
+        clearTimeout(this._timer);
+        this._timer = setTimeout(() => {
+          this.$bus.$emit('show-nav', this.uuid);
+          this.showPopper = true;
+        }, this.delaymouseoverHandler);
+      }
     },
 
-    onMouseOut() {
-      clearTimeout(this._timer);
-      this._timer = setTimeout(() => {
-        this.showPopper = false;
-      }, this.delayOnMouseOut);
+    mouseoutHandler() {
+      if (!this.mobile) {
+        clearTimeout(this._timer);
+        this._timer = setTimeout(() => {
+          this.showPopper = false;
+        }, this.delaymouseoutHandler);
+      }
     },
 
     handleDocumentClick(e) {

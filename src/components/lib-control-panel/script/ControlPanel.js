@@ -33,6 +33,7 @@ export default {
     openNav() {
       document.documentElement.classList.add('nav-shown');
       this.$bus.$emit('nav-shown');
+      this.$bus.$emit('show-curtain');
     },
     toggleNav() {
       document.documentElement.classList.toggle('nav-shown');

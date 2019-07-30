@@ -2,8 +2,8 @@ const glob = require('glob');
 const fs = require('fs-extra');
 const path = require('path');
 
-let nav = fs.readFileSync('./src/documentation/docs-nav.html', 'utf8');
-let footer = fs.readFileSync('./src/documentation/docs-footer.html', 'utf8');
+let nav = fs.readFileSync('./src/documentation/incl-nav.html', 'utf8');
+let footer = fs.readFileSync('./src/documentation/incl-footer.html', 'utf8');
 
 let pages = {
   index: {
@@ -58,6 +58,20 @@ if (process.env.NODE_ENV != 'production') {
       nav: nav,
       footer: footer,
       filename: `utilities/${name}/index.html`
+    }
+  })
+
+  glob.sync('./src/documentation/demos/*.html').forEach(path => {  
+    let filename = path.split('/');
+    filename = filename[filename.length-1];
+    let name = filename.split('.')[0];
+    let content = fs.readFileSync(path, 'utf8');
+
+    pages[name] = {
+      entry: 'src/main.js',
+      template: 'src/documentation/docs-demonstration.html',
+      content: content,
+      filename: `demo/${name}/index.html`
     }
   })
 }

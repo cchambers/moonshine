@@ -2,44 +2,65 @@
 export default {
   name: 'BelkMegaNav',
   props: {
-    msg: {
-      type: String,
-      default: 'new component'
-    }
+    disableCurtain: Boolean
   },
 
   data() {
     return {
-      snapping: false
+      active: false,
+      mobile: false,
+      curtain: true
     }
+  },
+
+  mounted() {
+    this.windowWatcher();
+
+    if (this.disableCurtain) this.curtain = false;
   },
   
   methods: {
+    events() {
+      this.$bus.$on('curtain-hiding', () => {
+        if (this.active) this.hide();
+      });
 
-    /* REMOVE THESE METHODS */
-    snap() {
-      if (!this.snapping) {
-        this.snapping = true;
-        this.snapTimeout = setTimeout(this.recover, 1500);
-        this.$emit('snapping');
+      window.addEventListener('resize', this.windowWatcher);
+    },
+
+    windowWatcher() {
+      let _w = window.innerWidth;
+      if (_w < 800) {
+        if (!this.mobile) {
+          this.mobile = true;
+          this.$bus.$emit('breakpoint-mobile');
+        }
+      } else {
+        if (this.mobile) {
+          this.mobile = false;
+          if (this.active) this.hide();
+          this.$bus.$emit('breakpoint-desktop');
+        }
       }
     },
 
-    recover() {
-      this.halve();
-      this.snapping = false;
-      this.$emit('snapped');
+    toggleActive() {
+      if (this.active) {
+        this.hide();
+      } else {
+        this.show();
+      }
     },
-
-    halve() {
-      let str = this.$el.innerText;
-      if (!str.length) return;
-      let middle = Math.ceil(str.length / 2);
-      let half = str.slice(0, middle);
-      this.$el.innerText = half.trim();
-    }
-    /* END REMOVE */
     
+    hide() {
+      this.active = false;
+      if (this.curtain) this.$bus.$emit('hide-curtain');
+    },
+    
+    show() {
+      this.active = true;
+      if (this.curtain) this.$bus.$emit('show-curtain');
+    }
   },
 
 }

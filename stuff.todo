@@ -1,33 +1,9 @@
 
 Stuff to do:
-  ☐ [WOW-13002] Modal + modal related tasks
-  ☐ [WOW-15414] AppBanner 
-  
-  ☐ Link List -> DropNav -> Tabs
-  ☐ Mega Menu
-  ☐ Carousel
-  ☐ Slider
-
-
-Recent wins: 
-  ✔ component prototype
-    ✔ variant defaults
-    ✔ event bus
-    ✔ common events
-    ✔ input prototype for form elements (value manager, common events, etc)
-  ✔ component generator
-  ✔ static page rendering mechanism
-  ✔ lib toolbar fullscreen view
-  ✔ theme loader v3: custom loader to polyfill css custom props with defaults for IE
-  ✔ utility and event bus docs
-  0.1.0 (prototype) components:
-    - button
-    - modal
-    - accordion
-    - dropnav
-    - link-list
-    - slider
-    - ratings
-    - html banners
-    - adaptive content
-    - tooltip base
+  Mega Nav:
+    ☐ incorporate curtain handling
+      ✔ mobile
+      ☐ desktop
+    ☐ method to disable popper when in mobile mode
+    ✔ add listener for menu-trigger button tap and state management
+    ☐ make megamenu work on tap also

@@ -1,5 +1,13 @@
 <template>
-  <div class="sh-nav-item">
+  <div class="sh-nav-item" 
+    v-bind:class="{ 'touch': mobile }"
+    :active="showPopper">
+    <div class="popper-target" ref="target">
+      <slot name="reference"></slot>
+      <button v-hammer:tap="activate">
+        <i class="material-icons-round">add</i>
+      </button>
+    </div>
     <transition
     :name="transition"
     :enter-active-class="enterActiveClass"
@@ -12,9 +20,6 @@
         <slot>{{ content }}</slot>
       </div>
     </transition>
-    <div ref="target">
-      <slot name="reference"></slot>
-    </div>
   </div>
 </template>
 

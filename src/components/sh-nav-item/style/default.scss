@@ -1,65 +1,103 @@
 /* default styling */
 
 sh-nav-item {
-  .sh-nav-item {
-    display: inline-flex;
-    color: $lowlight-primary;
-    &:hover {
+  display: block;
+
+  a {
+    display: flex;
+    height: 4.5rem;
+    width: 100%;
+    align-items: center;
+    text-transform: uppercase;
+    padding: 0 1rem;
+  }
+
+  .popper-target {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid $lowlight-quaternary;
+    button {
+      outline: 0;
+      border: none;
+      background: transparent;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      min-width: 4.5rem;
+    }
+  }
+
+  @media (min-width: breakpoint("lg")) {
+    .sh-nav-item {
+      display: block;
+      color: $lowlight-primary;
+      &:hover {
+        a {
+          background: $lowlight-primary;
+          color: $highlight-primary;
+          &:after {
+            opacity: 1;
+          }
+        }
+      }
+      .popper-target {
+        border-bottom: none;
+      }
       a {
-        background: $lowlight-primary;
-        color: $highlight-primary;
+        position: relative;
+        display:  flex;
+        align-items: center;
+        padding: 0 2rem;
+        height: 5rem;
+        font-size: 1.4rem;
+        text-transform: uppercase;
+        color: inherit;
+        transition: all 150ms $ease;
+  
         &:after {
-          opacity: 1;
+          display: block;
+          content: '';
+          position: absolute;
+          bottom: -1rem;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 0;
+          height: 0;
+          border-style: solid;
+          border-width: 1rem 1rem 0 1rem;
+          border-color: $lowlight-primary transparent transparent transparent;
+          z-index: 2;
+          opacity: 0;
+          transition: all 150ms $decel;
         }
       }
     }
-    a {
-      position: relative;
-      display:  flex;
-      align-items: center;
-      padding: 0 2rem;
-      height: 5rem;
-      font-size: 1.4rem;
-      text-transform: uppercase;
-      color: inherit;
-      transition: all 150ms $ease;
-
-      &:after {
-        display: block;
-        content: '';
-        position: absolute;
-        bottom: -1rem;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 0;
-        height: 0;
-        border-style: solid;
-        border-width: 1rem 1rem 0 1rem;
-        border-color: $lowlight-primary transparent transparent transparent;
-        z-index: 2;
-        opacity: 0;
-        transition: all 150ms $decel;
+  
+    .actual>* {
+      background: $highlight-primary;
+      color: $lowlight-primary;
+      border: 1px solid $lowlight-primary;
+    }
+  
+    .actual {
+      width: 100%;
+      max-width: 128rem;
+  
+      h1,
+      h2,
+      h3,
+      h4,
+      h5 {
+        margin-top: 0;
+      }
+    }
+  
+    .popper-target {
+      display: inline-flex;
+      button {
+        display: none;
       }
     }
   }
-
-  .actual>* {
-    background: $highlight-primary;
-    color: $lowlight-primary;
-    border: 1px solid $lowlight-primary;
-  }
-
-  .actual {
-    width: 100%;
-
-    h1,
-    h2,
-    h3,
-    h4,
-    h5 {
-      margin-top: 0;
-    }
-  }
-
-  // TODO: enter-active-class demos
 }
