@@ -3,6 +3,7 @@
 belk-header {
   display: flex;
   flex-direction: column;
+  background: $highlight-primary;
   .belk-header {
     .contain {
       width: 100%;
@@ -19,9 +20,10 @@ belk-header {
   }
 
   .close-trigger {
+    display: flex;
+    justify-content: flex-end;
     background-color: $lowlight-tertiary;
     color: $highlight-primary;
-    text-align: right;
     padding: 1rem;
     cursor: pointer;
   }

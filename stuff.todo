@@ -4,6 +4,9 @@ Stuff to do:
     ☐ incorporate curtain handling
       ✔ mobile
       ☐ desktop
-    ☐ method to disable popper when in mobile mode
+    ✔ method to disable popper when in mobile mode
     ✔ add listener for menu-trigger button tap and state management
-    ☐ make megamenu work on tap also
+    ☐ make desktop megamenu work on tap ALSO
+    ☐ ADA
+    ☐ Use accordion? Rename collapse?
+      ☐ test nested accordions

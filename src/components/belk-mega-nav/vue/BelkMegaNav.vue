@@ -1,6 +1,7 @@
 <template>
   <div class="belk-mega-nav"
-    v-bind:class="{ active: active, mobile: mobile }">
+    v-bind:class="{ active: active, mobile: mobile }"
+    @mouseleave="mouseleaveHandler">
     <div class="close-trigger" v-show="mobile" v-hammer:tap="hide">
       <i class="material-icons-round">close</i>
     </div>

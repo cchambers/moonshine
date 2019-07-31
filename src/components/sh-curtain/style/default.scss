@@ -11,7 +11,7 @@ sh-curtain {
     transform: translateY(-100%) translateZ(0); //skewY(15deg)
     transform-origin: bottom right;
     z-index: 8;
-    transition: all 250ms $ease;
+    transition: opacity 250ms $ease;
     &.active {
       transform: translateZ(0);
       opacity: 1;

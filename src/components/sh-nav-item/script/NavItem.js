@@ -15,16 +15,11 @@ function off(element, event, handler) {
 export default {
   name: 'NavItem',
   props: {
-    trigger: {
-      type: String,
-      default: 'hover',
-      validator: value => ['click', 'hover'].indexOf(value) > -1
-    },
-    delaymouseoverHandler: {
+    delayOnMouseOver: {
       type: Number,
       default: 10,
     },
-    delaymouseoutHandler: {
+    delayOnMouseOut: {
       type: Number,
       default: 10,
     },
@@ -91,12 +86,12 @@ export default {
   watch: {
     showPopper(value) {
       if (value) {
-        this.$emit('show', this);
+        this.$emit('show-mega-nav', this);
         if (this.popperJS) this.popperJS.enableEventListeners();
         this.updatePopper();
       } else {
         if (this.popperJS) this.popperJS.disableEventListeners();
-        this.$emit('hide', this);
+        this.$emit('hide-mega-nav', this);
       }
     },
 
@@ -112,11 +107,6 @@ export default {
         this.showPopper = false;
       }
     }
-  },
-
-  created() {
-    this.appendedArrow = false;
-    this.appendedToBody = false;
   },
 
   mounted() {
@@ -143,22 +133,16 @@ export default {
     },
 
     initPopper() {
-      switch (this.trigger) {
-        case 'click':
-          on(this.referenceElm, 'click', this.doToggle);
-          on(document, 'click', this.handleDocumentClick);
-          break;
-        case 'hover':
-          on(this.referenceElm, 'mouseover', this.mouseoverHandler);
-          on(this.referenceElm, 'focus', this.mouseoverHandler);
-          on(this.popper, 'mouseover', this.mouseoverHandler);
-          on(this.popper, 'focus', this.mouseoverHandler);
-          on(this.referenceElm, 'mouseout', this.mouseoutHandler);
-          on(this.referenceElm, 'blur', this.mouseoutHandler);
-          on(this.popper, 'mouseout', this.mouseoutHandler);
-          on(this.popper, 'blur', this.mouseoutHandler);
-          break;
-      }
+      on(this.referenceElm, 'click', this.doToggle);
+      on(document, 'click', this.handleDocumentClick);
+      on(this.referenceElm, 'mouseover', this.mouseoverHandler);
+      on(this.referenceElm, 'focus', this.mouseoverHandler);
+      on(this.popper, 'mouseover', this.mouseoverHandler);
+      on(this.popper, 'focus', this.mouseoverHandler);
+      on(this.referenceElm, 'mouseout', this.mouseoutHandler);
+      on(this.referenceElm, 'blur', this.mouseoutHandler);
+      on(this.popper, 'mouseout', this.mouseoutHandler);
+      on(this.popper, 'blur', this.mouseoutHandler);
     },
 
     activate() {
@@ -188,18 +172,11 @@ export default {
     },
 
     doDestroy() {
-      if (this.showPopper) {
-        return;
-      }
+      if (this.showPopper) return;
 
       if (this.popperJS) {
         this.popperJS.destroy();
         this.popperJS = null;
-      }
-
-      if (this.appendedToBody) {
-        this.appendedToBody = false;
-        document.body.removeChild(this.popper.parentElement);
       }
     },
 
@@ -255,7 +232,7 @@ export default {
         this._timer = setTimeout(() => {
           this.$bus.$emit('show-nav', this.uuid);
           this.showPopper = true;
-        }, this.delaymouseoverHandler);
+        }, this.delayOnMouseOver);
       }
     },
 
@@ -264,7 +241,7 @@ export default {
         clearTimeout(this._timer);
         this._timer = setTimeout(() => {
           this.showPopper = false;
-        }, this.delaymouseoutHandler);
+        }, this.delayOnMouseOut);
       }
     },
 
