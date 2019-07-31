@@ -16,6 +16,33 @@
       transition: none;
       display: none !important;
     }
+
+    #page {
+      display: flex;
+      flex-direction: column;
+      max-height: 100vh;
+    }
+    
+    #page > header {
+        display: block;
+        flex-shrink: 0;
+      }
+    
+      #page> main {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        flex: 1 auto;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        will-change: scroll-position;
+      }
+    
+      #page main > footer {
+        display: block;
+      }
+    
+    
   </style>
 </head>
 
