@@ -15,6 +15,7 @@
     </div>
     <div ref="secondary" class="secondary">
       <div class="contain">
+
         <!-- nav left -->
         <div class="nav-left">
           <sh-button nav-trigger>

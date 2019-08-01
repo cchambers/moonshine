@@ -1,10 +1,13 @@
 <template>
-  <div class="belk-search">
+  <div class="belk-search" v-bind:class="">
 
 
     <!-- Input -->
     <div class="search-input">
-      <input :placeholder="placeholder" type="text" @focus="magic_flag = true" @blur="magic_flag = false">
+      <input  type="text"
+              :placeholder="placeholder" 
+              @focus="search_active = true" 
+              @blur="search_active = false" >
       <button ref="clear"><i class="material-icons-round">close</i></button>
       <button ref="search"><i class="material-icons-round">search</i></button>
     </div> 

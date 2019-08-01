@@ -3,7 +3,8 @@ export default {
 
   data() {
     return {
-      bagEl: {}
+      bagEl: {},
+      searchExpanded: 'searchExpanded'
     }
   },
 
@@ -14,6 +15,13 @@ export default {
   methods: {
     events() {
       this.$bus.$on('mega-nav-opening');
+    },
+    toggleSearch(){
+      let formerValue = this.searchExpanded;
+      this.searchExpanded = formerValue === 'searchExpanded' ? '' : 'searchExpanded';
+    },
+    closeSearch() {
+      this.searchExpanded = '';
     }
   },
 
