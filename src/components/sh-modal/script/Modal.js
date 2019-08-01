@@ -65,7 +65,7 @@ export default {
       let el = this.$el.querySelectorAll('a, input, button, [tabindex]');
       if (el) el[el.length].focus()
     },
-    
+
     events() {
       let self = this;
       this.configureTriggers();
@@ -74,7 +74,7 @@ export default {
       self.$bus.$on('modal-opening', function() {
         self.close(false);
       });
-      
+
       window.addEventListener('keyup', (e) => {
         let key = e.keyCode;
         if (key == 27) self.$bus.$emit('close-modals'); // esc
@@ -118,7 +118,7 @@ export default {
         this.active = false;
         self.$bus.$emit('modal-closed', this.uniqueId);
       }
-      if (clearHash) window.location.hash = ''; 
+      if (clearHash) window.location.hash = '';
     },
 
     loadContent() {
@@ -130,18 +130,21 @@ export default {
       let self = this;
       let selector = `[modal-trigger="${this.uniqueId}"]`;
       this.triggers = document.querySelectorAll(selector);
-      this.triggers.forEach(function(el) {
+      for (let x = 0; x < this.triggers.length; x++) {
+        let el = this.triggers[x];
         el.addEventListener('click', function(e) {
           e.preventDefault();
           window.location.hash = `#${self.uniqueId}`;
         });
-      });
+      }
 
       let closeSelector = `[close-trigger]`;
       this.closeTriggers = this.$el.querySelectorAll(closeSelector);
-      this.closeTriggers.forEach(function(el) {
+
+      for (let y = 0; y < this.closeTriggers.length; y++) {
+        let el = this.closeTriggers[y];
         el.addEventListener('click', self.close);
-      });
+      }
     },
 
     createContainer() {

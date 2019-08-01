@@ -1,0 +1,13 @@
+@function color($key) {
+  @if not map-has-key($colors, $key) {
+    @warn "Key `#{$key}` not found.";
+  }
+  @return map-get($colors, $key);
+}
+
+@function breakpoint($key) {
+  @if not map-has-key($breakpoints, $key) {
+    @warn "Key `#{$key}` not found.";
+  }
+  @return map-get($breakpoints, $key);
+}

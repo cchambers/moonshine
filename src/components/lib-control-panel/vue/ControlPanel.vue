@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="show-nav" v-hammer:tap="toggleNav">
+    <div class="show-nav" v-hammer:tap="openNav">
       <i class="material-icons nav-icon">menu</i>
     </div>
     <div class="close-curtain" v-hammer:tap="closeNav">

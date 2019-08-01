@@ -87,13 +87,13 @@ export default {
           range.moveToElementText(el);
           range.select();
       }
-      document.execCommand("copy");
+      document.execCommand('copy');
       this.$bus.$emit('notify', { type: 'default', message: 'Copied to clipboard.' })
     },
 
     docEvents() { 
       let self = this;
-      let tds = document.querySelectorAll("td:nth-child(1)");
+      let tds = document.querySelectorAll('td:nth-child(1)');
       
       for (let x = 0, l = tds.length; x < l; x++) {
         tds[x].addEventListener('click', function () {
@@ -112,7 +112,7 @@ export default {
       for (let x = 0, l = els.length; x < l; x++) {
         let href = els[x].id;
         let text = href.replace('-', ' ');
-        links.push(`<a href="#${href}">${text}</a>`)
+        links.push(`<a href='#${href}'>${text}</a>`)
       }
       links = links.join('');
       setTimeout(function() { self.$bus.$emit('section-links', links) });

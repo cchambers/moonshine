@@ -16,13 +16,14 @@ belk-bag {
     align-items: center;
     background: $accent-primary;
     color: $highlight-primary;
-    padding: 0 1.5rem;
+    padding: 1.5rem;
   }
 
   .bag-total {
     background: $accent-tertiary;
     color: $highlight-primary;
-    padding: 0 0.5rem;
+    padding: 0 0.25rem;
+    font-size: 1.2rem;
     align-self: center;
   }
 }

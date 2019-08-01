@@ -3,15 +3,28 @@
 belk-header {
   display: flex;
   flex-direction: column;
-  border: 1px solid tomato;
+  background: $highlight-primary;
   .belk-header {
     .contain {
-      max-width: 120rem;
+      width: 100%;
+      max-width: 128rem;
       margin: 0 auto;
+      flex-grow: 0;
+      flex-shrink: 0;
+      flex-basis: auto;
     }
   }
   .pre:empty,
   .post:empty {
     display: none;
+  }
+
+  .close-trigger {
+    display: flex;
+    justify-content: flex-end;
+    background-color: $lowlight-tertiary;
+    color: $highlight-primary;
+    padding: 1rem;
+    cursor: pointer;
   }
 }

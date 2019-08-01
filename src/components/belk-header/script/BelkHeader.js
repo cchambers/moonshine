@@ -1,28 +1,32 @@
+import BelkMegaNav from '../../belk-mega-nav/vue/BelkMegaNav.vue'
+
 export default {
   name: 'BelkHeader',
 
   data() {
     return {
       bagEl: {},
-      searchExpanded: 'searchExpanded'
+      navEl: {}
     }
   },
 
   mounted() {
     this.bagEl = this.$refs.bag;
+    this.navEl = this.$refs.meganav;
   },
   
   methods: {
     events() {
       this.$bus.$on('mega-nav-opening');
     },
-    toggleSearch(){
-      let formerValue = this.searchExpanded;
-      this.searchExpanded = formerValue === 'searchExpanded' ? '' : 'searchExpanded';
+
+    menuHandler() {
+      this.navEl.show();
     },
-    closeSearch() {
-      this.searchExpanded = '';
-    }
   },
+
+  components: {
+    BelkMegaNav
+  }
 
 }
