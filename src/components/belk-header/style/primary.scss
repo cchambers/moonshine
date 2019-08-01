@@ -27,6 +27,7 @@ belk-header[variant="primary"] {
     nav {
       display: block;
     }
+
     belk-search {
       width: 100%;
 
@@ -61,28 +62,31 @@ belk-header[variant="primary"] {
       button.close-search {
         color: #fff;
       }
-    .mobile-links {
-      flex-grow: 1;
-    }
-  }
-
-  .icon-bar {
-    display: flex;
-    margin-left: auto;
-  }
-
-  sh-button.nav-trigger {
-    .sh-button {
-      background: transparent !important;
-      color: $highlight-primary;
-      padding: 0;
-      height: 4.5rem;
-      i {
-        font-size: 3rem;
-        padding: 0;
-        margin: 0;
+      
+      .mobile-links {
+        flex-grow: 1;
       }
     }
+
+    .icon-bar {
+      display: flex;
+      margin-left: auto;
+    }
+
+    sh-button.nav-trigger {
+      .sh-button {
+        background: transparent !important;
+        color: $highlight-primary;
+        padding: 0;
+        height: 4.5rem;
+        i {
+          font-size: 3rem;
+          padding: 0;
+          margin: 0;
+        }
+      }
+    }
+
   }
 
   @media (min-width: breakpoint("lg")) {
@@ -104,6 +108,7 @@ belk-header[variant="primary"] {
     }
     
   }
+
 
   /* EMBEDDED MEGA NAV */
   .belk-mega-nav {
@@ -159,7 +164,7 @@ belk-header[variant="primary"] {
     }
   }
 
-  @media (min-width: breakpoint("lg")) {
+  @media (min-width: breakpoint("lg") ) {
     .belk-mega-nav {
       position: static;
       display: block;
@@ -170,12 +175,13 @@ belk-header[variant="primary"] {
       bottom: auto;
       min-width: 100%;
       transform: none;
+
       > nav > ul {
-        width: 100%;
+          width: 100%;
       }
 
       .popper-target > a {
-        width: 100%;
+          width: 100%;
       }
     }
 
@@ -183,5 +189,5 @@ belk-header[variant="primary"] {
       flex-direction: row;
     }
   }
-  /* END EMBEDDED MEGA NAV */
+
 }
