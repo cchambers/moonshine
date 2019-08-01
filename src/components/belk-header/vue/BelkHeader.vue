@@ -8,17 +8,10 @@
     <div ref="primary" class="primary">
       <div class="contain">
         <belk-logo class="logo" width="80"></belk-logo>
-<<<<<<< HEAD
-=======
-        <div class="icon-bar">
-          <belk-bag ref="bag" count="10" price="1234.53"></belk-bag>
-        </div>
->>>>>>> d825566219be9fbc6dbce87fcec71ed13e1e3dce
       </div>
     </div>
     <div ref="secondary" class="secondary">
       <div class="contain">
-<<<<<<< HEAD
         <sh-button class="nav-trigger" v-hammer:tap="menuHandler">
           <i class="material-icons-round">menu</i>
         </sh-button>
@@ -26,29 +19,6 @@
         <div class="icon-bar">
           <belk-bag ref="bag" count="10" price="1234.53"></belk-bag>
         </div>
-=======
-        <!-- nav left -->
-        <div class="nav-left">
-          <sh-button nav-trigger>
-            <i class="material-icons-round">menu</i>
-          </sh-button>
-          <belk-logo class="logo" width="60" color="highlight-primary"></belk-logo>
-        </div>
-
-        <!-- Search bar -->
-        <belk-search></belk-search>
-
-        <!-- nav-right -->
-        <div class="nav-right">
-          <a>
-            <i class="material-icons-round">perm_identity</i>
-          </a>
-          <a>
-            <i class="material-icons-round">shopping_cart</i>
-          </a>
-        </div>
-
->>>>>>> d825566219be9fbc6dbce87fcec71ed13e1e3dce
       </div>
 
     </div>
