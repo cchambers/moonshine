@@ -35,6 +35,7 @@ let delegations = {
 			target: "[nav-trigger]",
 			handler() {
 				EventBus.$emit('show-nav');
+				this.$bus.$emit('show-curtain');
 			}
     }
 	]
