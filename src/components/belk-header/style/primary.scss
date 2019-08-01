@@ -11,6 +11,9 @@ belk-header[variant="primary"] {
   .primary {
     display: none;
     background-color: $highlight-primary;
+    belk-logo {
+      margin: 1rem;
+    }
   }
 
   .secondary {
