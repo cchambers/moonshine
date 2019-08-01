@@ -19,23 +19,7 @@ belk-header[variant="primary"] {
   .secondary {
     background-color: $lowlight-tertiary;
     .contain {
-<<<<<<< HEAD
-      align-items: center;
-    }
-    .nav-left,
-    .nav-right {
-      width: auto;
-      display: inline-flex;
-      align-items: center;
-    }
-    
-    a {
-      color: #fff;
-      display: inline-flex;
-      align-items: center;
-=======
       justify-content: space-between;
->>>>>>> a319f92871487c62ef54018a70c534a89cbb99b0
     }
   }
 
@@ -43,7 +27,6 @@ belk-header[variant="primary"] {
     nav {
       display: block;
     }
-<<<<<<< HEAD
     belk-search {
       width: 100%;
 
@@ -78,7 +61,6 @@ belk-header[variant="primary"] {
       button.close-search {
         color: #fff;
       }
-=======
     .mobile-links {
       flex-grow: 1;
     }
@@ -119,7 +101,6 @@ belk-header[variant="primary"] {
 
     sh-button.nav-trigger {
       display: none;
->>>>>>> a319f92871487c62ef54018a70c534a89cbb99b0
     }
     
   }
