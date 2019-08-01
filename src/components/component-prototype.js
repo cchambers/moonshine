@@ -13,6 +13,10 @@ const ComponentPrototype = {
       }
   },
 
+  methods: {
+   // 
+  },
+
   data() {
     return {
       uuid: String

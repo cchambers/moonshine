@@ -2,121 +2,42 @@
 
 belk-header[variant="primary"] {
   .primary .contain,
-  .secondary .contain,
-  .tertiary .contain {
+  .secondary .contain {
     display: flex;
-  }
-
-  .primary .contain {
     justify-content: space-between;
-  }
-
-  .belk-logo {
-    display: flex;
+    align-items: center;
   }
 
   .primary {
+    display: none;
     background-color: $highlight-primary;
     belk-logo {
-      margin: 10px;
+      margin: 1rem;
     }
   }
 
   .secondary {
     background-color: $lowlight-tertiary;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    padding: 9px 8px;
-
     .contain {
-      align-items: center;
-    }
-    .nav-left,
-    .nav-right {
-      width: auto;
-      display: inline-flex;
-      align-items: center;
-    }
-    a {
-      color: #fff;
-      display: inline-flex;
-      align-items: center;
-    }
-
-    belk-logo {
-      margin-right: 17px;
-    }
-    belk-search {
-      width: 100%;
-
-
-
-      button.close-search {
-        color: #fff;
-        max-width: 0px;
-        overflow: hidden;
-      }
-    }
-    .belk-search {
-      display: flex;
-      width: 100%;
-      position: relative;
-      align-items: center;
-      
-      .search-input {
-        position: relative;
-        width: 100%;
-        height: 34px;
-        background-color: #fff;
-        display: flex;
-        align-items: center;
-        margin-right: 8px;
-
-        button {
-          color: #333;
-        }
-      }
-
-      .input-actions {
-        position: absolute;
-        top: 0;
-        right: 0;
-      }
-      
+      justify-content: space-between;
     }
   }
 
   .tertiary {
-    background-color: $highlight-secondary;
-    nav > ul {
-      display: flex;
-      justify-content: space-between;
-      padding: 0;
-      margin: 0 !important;
-      a {
-        display: flex;
-        padding: 1rem 2rem;
-      }
+    nav {
+      display: block;
     }
-    .sh-popper {
-      .actual > div:not([x-arrow]) {
-        border: 1px solid red;
-        background: $highlight-primary;
-        color: $lowlight-primary;
-      }
-      ul {
-        padding: 0.5rem;
-      }
+    .mobile-links {
+      flex-grow: 1;
     }
   }
 
   .icon-bar {
     display: flex;
-    justify-content: flex-start;
+    margin-left: auto;
   }
 
-  sh-button[nav-trigger] {
+  sh-button.nav-trigger {
     .sh-button {
       background: transparent !important;
       color: $highlight-primary;
@@ -129,4 +50,103 @@ belk-header[variant="primary"] {
       }
     }
   }
+
+  @media (min-width: breakpoint("lg")) {
+    .primary {
+      display: flex;
+    }
+
+    .secondary {
+      .contain {
+        justify-content: flex-end;
+      }
+      belk-logo {
+        display: none;
+      }
+    }
+
+    sh-button.nav-trigger {
+      display: none;
+    }
+  }
+
+  /* EMBEDDED MEGA NAV */
+  .belk-mega-nav {
+    position: fixed;
+    overflow-y: auto;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 30rem;
+    max-width: 100vw;
+    transform: translateX(-100%) translateZ(0);
+    background: $highlight-primary;
+    transition: all 150ms $accel;
+    &.active {
+      transform: translateZ(0);
+      z-index: 9;
+      transition: all 150ms $decel;
+    }
+    > nav > ul {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      justify-content: flex-start;
+      padding: 0;
+      margin: 0 !important;
+      li {
+        flex-grow: 0;
+        flex-shrink: 0;
+        flex-basis: auto;
+        display: block;
+      }
+    }
+    .mobile-links {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      justify-content: flex-end;
+      background: $highlight-secondary;
+      a {
+        display: flex;
+        align-items: center;
+        min-height: 4.5rem;
+        color: $lowlight-primary;
+        padding: 0.5rem 1rem;
+        transition: all 150ms linear;
+        &:hover {
+          background: $highlight-primary;
+        }
+      }
+    }
+  }
+
+  @media (min-width: breakpoint("lg")) {
+    .belk-mega-nav {
+      position: static;
+      display: block;
+      height: auto;
+      overflow-y: visible;
+      top: auto;
+      left: auto;
+      bottom: auto;
+      min-width: 100%;
+      transform: none;
+      > nav > ul {
+        width: 100%;
+      }
+
+      .popper-target > a {
+        width: 100%;
+      }
+    }
+
+    .belk-mega-nav > nav > ul {
+      flex-direction: row;
+    }
+  }
+  /* END EMBEDDED MEGA NAV */
 }

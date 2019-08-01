@@ -1,7 +1,7 @@
 {
-  "name": "Nav Item",
-  "element": "sh-nav-item",
-  "description": "A suped-up link.",
+  "name": "Popper",
+  "element": "sh-popper",
+  "description": "Demonstration component.",
   "tags": ["utilities", "demo"],
   "requirements": []
 }

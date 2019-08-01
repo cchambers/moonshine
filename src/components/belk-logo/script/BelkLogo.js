@@ -10,6 +10,7 @@ export default {
   },
 
   mounted() {
-    if (this.width) this.$refs.logo.style.maxWidth = `${this.width}px`;
+    let _w = `${this.width}px`;
+    if (this.width) this.$refs.logo.style.maxWidth = _w;
   }
 }
