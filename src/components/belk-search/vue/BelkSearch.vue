@@ -1,9 +1,17 @@
 <template>
   <div class="belk-search">
-    <input :placeholder="placeholder" type="text">
-    <button ref="clear">Clear</button>
-    <button ref="search">Search</button>
-    <button ref="cancel">Cancel</button>
+
+
+    <!-- Input -->
+    <div class="search-input">
+      <input :placeholder="placeholder" type="text" @focus="magic_flag = true" @blur="magic_flag = false">
+      <button ref="clear"><i class="material-icons-round">close</i></button>
+      <button ref="search"><i class="material-icons-round">search</i></button>
+    </div> 
+
+    <!-- Close Input -->
+    <button ref="cancel" class="close-search">Cancel</button>
+
     <sh-popper refs="results" id="results">
       <div ref="recent">
         HERE BE THE RECENTS.
