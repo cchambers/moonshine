@@ -38,10 +38,17 @@ export default {
     toggleNav() {
       document.documentElement.classList.toggle('nav-shown');
       this.$bus.$emit('nav-toggled');
+      let isActive = document.documentElement.classList.contains('nav-shown');
+      if (isActive) {
+        this.$bus.$emit('show-curtain');
+      } else {
+        this.$bus.$emit('hide-curtain');
+      }
     },
     closeNav() {
       document.documentElement.classList.remove('nav-shown');
       this.$bus.$emit('nav-closed');
+      this.$bus.$emit('hide-curtain');
     },
     closeModal() {
       document.documentElement.classList.remove('modal-shown');
