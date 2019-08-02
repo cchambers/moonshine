@@ -10,7 +10,8 @@ belk-header[variant="primary"] {
 
   .primary {
     display: none;
-    background-color: $highlight-primary;
+    background-color: $lowlight-tertiary;
+    color: $highlight-primary;
     belk-logo {
       margin: 1rem;
     }
@@ -58,10 +59,7 @@ belk-header[variant="primary"] {
 
     .secondary {
       .contain {
-        justify-content: flex-end;
-      }
-      belk-logo {
-        display: none;
+        justify-content: flex-start;
       }
     }
 

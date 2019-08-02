@@ -3,7 +3,9 @@
     v-bind:class="{ 'touch': mobile }"
     :active="active">
     <div class="popper-target" ref="target">
-      <slot name="reference"></slot>
+      <div class="reference">
+        <slot name="reference"></slot>
+      </div>
       <button v-hammer:tap="activate">
         <i class="material-icons-round">add</i>
       </button>
