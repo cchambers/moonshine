@@ -7,7 +7,9 @@
     </div>
     <div ref="primary" class="primary">
       <div class="contain">
-        <belk-logo class="logo" width="80"></belk-logo>
+        <div>Lorem</div>
+        <div>Ipsum</div>
+        <div>Doler</div>
       </div>
     </div>
     <div ref="secondary" class="secondary">
