@@ -20,5 +20,9 @@ belk-products[variant="primary"] {
     .image {
       border: 1px solid $highlight-tertiary;
     }
+
+    .quick-view {
+      display: none;
+    }
   }
 }

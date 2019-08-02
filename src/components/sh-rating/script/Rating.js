@@ -22,7 +22,6 @@ export default {
     if (this.icon) this.maticon = this.icon;
     if (this.count) this.ratecount = this.count;
     if (this.arr) {
-      console.log(this.arr)
       this.$el.setAttribute('level', this.arr[0].toFixed(1))
     }
   },
