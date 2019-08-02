@@ -38,11 +38,12 @@ sh-rating {
     color: $accent-primary;
     font-language-override: normal;
     display: inline-block;
-    font-size: 3rem; 
+    font-size: 2rem; 
     font-family: sans-serif;
   }
   
-  .sh-rating:before {
+  .sh-rating:before,
+  .sh-rating:after {
     display: block;
     position: absolute;
     left: 0;
@@ -50,26 +51,17 @@ sh-rating {
     bottom: 0;
     font-family: "Material Icons";
     content: attr(icon) attr(icon) attr(icon) attr(icon) attr(icon);
-    letter-spacing: -2.55rem;
+    letter-spacing: -1.65rem;
     color: $accent-tertiary;
     z-index: 0;
   }
 
   .sh-rating:after {
-    display: block;
     position: relative;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    font-family: "Material Icons";
-    content: attr(icon) attr(icon) attr(icon) attr(icon) attr(icon);
-    letter-spacing: -2.55rem;
     color: $accent-primary;
+    display: block;
+    right: 0;
     overflow: hidden;
-    z-index: 0;
-  }
-  .sh-rating:after {
     transition: all 250ms $ease;
   }
   .sh-rating[level='0.0']:after,
