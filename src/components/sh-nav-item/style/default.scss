@@ -71,11 +71,11 @@ sh-nav-item {
             }
             &:after{
               border-width:  0 1.5rem 0.9rem 1.5rem;
-              opacity: 1;
             }
           }
           a {
             color: $lowlight-primary;
+            background:$highlight-secondary;
             &:active {
               &:before {
                 animation: seesaw 1s infinite linear;
@@ -93,7 +93,8 @@ sh-nav-item {
         .reference {
           position: relative;
 
-          &:before {
+          &:before,
+          &:after {
             display: block;
             content: '';
             position: absolute;
@@ -108,22 +109,13 @@ sh-nav-item {
             z-index: 2;
             opacity: 0;
             transition: all 150ms $decel;
+            transition-delay: 400ms;
+            pointer-events: none;
           }
           &:after {
-            display: block;
-            content: '';
-            position: absolute;
             bottom: -1px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 0;
-            height: 0;
-            border-style: solid;
-            border-width:  0 1.5rem 0 1.5rem;
+            opacity: 1;
             border-color:  transparent transparent $highlight-primary transparent;
-            z-index: 2;
-            opacity: 0;
-            transition: all 150ms $decel;
           }
         }
         a {
