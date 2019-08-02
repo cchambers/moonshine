@@ -1,13 +1,11 @@
 <template>
-  <div class="belk-search" v-bind:class="">
-
+  <div class="belk-search" >
 
     <!-- Input -->
     <div class="search-input">
       <input  type="text"
               :placeholder="placeholder" 
-              @focus="search_active = true" 
-              @blur="search_active = false" >
+              @focus="search_active = true" @blur="search_active = false">
       <button ref="clear"><i class="material-icons-round">close</i></button>
       <button ref="search"><i class="material-icons-round">search</i></button>
     </div> 
@@ -23,6 +21,7 @@
         HERE BE THE RESULTS.
       </div>
     </sh-popper>
+
   </div>
 </template>
 

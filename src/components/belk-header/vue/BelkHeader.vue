@@ -5,18 +5,37 @@
         <slot name="pre-header"></slot>
       </div>
     </div>
+
     <div ref="primary" class="primary">
       <div class="contain">
-        <belk-logo class="logo" width="80"></belk-logo>
+        <slot name="promotion">FREE SHIPPING On Orders Over $49!</slot>
       </div>
     </div>
+
     <div ref="secondary" class="secondary">
       <div class="contain">
+        <belk-logo class="logo" width="60" color="highlight-primary"></belk-logo>
+
         <sh-button class="nav-trigger" v-hammer:tap="menuHandler">
           <i class="material-icons-round">menu</i>
         </sh-button>
-        <belk-logo class="logo" width="60" color="highlight-primary"></belk-logo>
+        
+        <belk-search></belk-search>
+
         <div class="icon-bar">
+
+          <a name="coupons">
+            <i class="material-icons-round">local_offer</i>
+            <span>Coupons</span>
+          </a>
+
+          <a name="account">
+            <i class="material-icons-round">person_outline</i>
+         
+              <div>Sign In</div>
+              <i class="material-icons-round">expand_more</i>
+          </a>
+
           <belk-bag ref="bag" count="10" price="1234.53"></belk-bag>
         </div>
       </div>
