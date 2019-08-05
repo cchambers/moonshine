@@ -1,6 +1,27 @@
 
 $z-level: 8;
 lib-toolbar {
+  &[demo] {
+    .lib-toolbar:before {
+      @include fill;
+      display: flex;
+      align-content: center;
+      justify-content: center;
+      align-items: center;
+      background: rgba(0,0,0,0.8);
+      content: 'click for demo';
+      z-index: 5;
+      color: #ccc;
+      opacity: 0;
+      transform: opacity 250ms $ease;
+      cursor: pointer;
+    }
+    &:hover {
+      .lib-toolbar:before {
+        opacity: 1;
+      }
+    }
+  }
   .lib-toolbar {
     position: relative;
     display: flex;

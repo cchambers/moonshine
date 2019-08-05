@@ -1,14 +1,14 @@
 <template>
   <div class="belk-header">
     <div ref="pre" class="pre">
-      <div class="contain">
-        <slot name="pre-header"></slot>
-      </div>
+      <slot name="pre-header"></slot>
     </div>
 
     <div ref="primary" class="primary">
       <div class="contain">
-        <slot name="promotion">FREE SHIPPING On Orders Over $49!</slot>
+        <div>Lorem</div>
+        <div>Ipsum</div>
+        <div>Doler</div>
       </div>
     </div>
 
@@ -31,7 +31,6 @@
 
           <a name="account">
             <i class="material-icons-round">person_outline</i>
-         
               <div>Sign In</div>
               <i class="material-icons-round">expand_more</i>
           </a>

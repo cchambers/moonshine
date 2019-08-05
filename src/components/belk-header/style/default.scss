@@ -4,6 +4,7 @@ belk-header {
   display: flex;
   flex-direction: column;
   background: $highlight-primary;
+  border-bottom: 1px solid $lowlight-tertiary;
   .belk-header {
     .contain {
       width: 100%;

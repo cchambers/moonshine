@@ -1,6 +1,7 @@
 <template>
   <div class="belk-search" 
-        v-bind:class="{ active: isActive }" >
+    :count="count"
+    v-bind:class="{ active: isActive }" >
 
     <!-- Input -->
     <div class="search-input">
@@ -15,12 +16,12 @@
     </div> 
 
     <!-- Close Input -->
-    <button ref="cancel" class="close-search">Cancel</button>
+    <sh-button ref="cancel" class="cancel-trigger">Cancel</sh-button>
 
-    <!-- <sh-popper ref="results" id="results"> -->
+    <div class="search-results">
       <div ref="recent">
         <ul>
-          <li v-for="item in suggestions">
+          <li v-for="item in suggestions" v-bind:key="item.id">
             {{ item.q}}
           </li>
         </ul>
@@ -28,13 +29,12 @@
       
       <div ref="actual">
         <ul>
-          <li v-for="item in products">
+          <li v-for="item in products" v-bind:key="item.id">
             {{ item.title }}
           </li>
         </ul>
       </div>
-    <!-- </sh-popper> -->
-
+    </div>
   </div>
 </template>
 

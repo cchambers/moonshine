@@ -8,13 +8,12 @@ sh-curtain {
     bottom: 0;
     opacity: 0;
     background: rgba(25,25,25,.95);
-    transform: translateY(-100%) translateZ(0); //skewY(15deg)
-    transform-origin: bottom right;
     z-index: 8;
-    transition: opacity 250ms $ease;
+    transition: all 250ms $ease;
+    pointer-events: none;
     &.active {
-      transform: translateZ(0);
       opacity: 1;
+      pointer-events: initial;
     }
     .nav-trigger {
       z-index: 10;
