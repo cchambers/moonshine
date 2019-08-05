@@ -26,8 +26,8 @@ Vue.mixin(ComponentPrototype);
 
 /* This disables warnings caused by 'undefined vue components' that are actually defined. vce-workaround */
 Vue.config.ignoredElements = [
-  /^belk-/,
-  /^sh-/
+  /^belk-.*/,
+  /^sh-.*/
 ]
 
 /* COMMON STYLES */
