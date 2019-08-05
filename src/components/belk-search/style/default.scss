@@ -1,9 +1,48 @@
 /* default styling */
 
 belk-search {
-  display: inline-flex;
+  display: block;
+  ul { list-style: none; padding: 0; margin: 0 }
   .belk-search {
+    position: relative;
     display: flex;
     align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    .search-input {
+      display: flex;
+      border: 1px solid tomato;
+      width: 80%;
+      flex-grow: 1;
+      input {
+        width: 90%;
+        flex-grow: 1;
+      }
+    }
+    .search-results {
+      position: absolute;
+      display: flex;
+      top: 100%;
+      background: tomato;
+      color: white;
+      padding: 1rem;
+      > * {
+        flex-grow: 2;
+        width: 50%;
+      }
+    }
+    /* TEMPORARY */
+    &[count="0"] {
+      .search-results {
+        display: none;
+      }
+    }
+    /* END TEMPORARY */
+    
+    @media (min-width: breakpoint("lg")) {
+      .cancel-trigger {
+        display: none;
+      }
+    }
   }
 }
