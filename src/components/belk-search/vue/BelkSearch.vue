@@ -7,12 +7,13 @@
     <div class="search-input">
       <input ref="input"
               type="text"
+              v-on:keydown.enter="doSearch"
               :placeholder="placeholder" 
               @focus="isActive = true" 
               @blur="isActive = false"
               v-on:keyup="keyupHandler">
-      <button v-hammer:tap="clearSearch" ref="clear"><i class="material-icons-round">close</i></button>
-      <button ref="search"><i class="material-icons-round">search</i></button>
+      <button ref="clear" v-hammer:tap="clearSearch"><i class="material-icons-round">close</i></button>
+      <button ref="search" v-hammer:tap="doSearch"><i class="material-icons-round">search</i></button>
     </div> 
 
     <!-- Close Input -->

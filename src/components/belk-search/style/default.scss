@@ -12,7 +12,7 @@ belk-search {
     .search-input {
       display: flex;
       border: 1px solid tomato;
-      width: 80%;
+      width: 60%;
       flex-grow: 1;
       input {
         width: 90%;
@@ -31,6 +31,17 @@ belk-search {
         width: 50%;
       }
     }
+
+    .cancel-trigger {
+      display: none;
+    }
+
+    &[active] {
+      .cancel-trigger {
+        display: block;
+      }
+    }
+
     /* TEMPORARY */
     &[count="0"] {
       .search-results {
@@ -40,9 +51,7 @@ belk-search {
     /* END TEMPORARY */
     
     @media (min-width: breakpoint("lg")) {
-      .cancel-trigger {
-        display: none;
-      }
+   
     }
   }
 }

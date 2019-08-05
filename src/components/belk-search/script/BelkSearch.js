@@ -1,14 +1,11 @@
 export default {
   name: 'BelkSearch',
-  props: {
-    contentUrl: String
-  },
 
   data() {
     return {
       value: '',
       triggerResults: 3,
-      placeholder: 'Submit',
+      placeholder: 'Search',
       isActive: false,
       inputEl: {},
       resultsEl: {},
@@ -33,6 +30,10 @@ export default {
   mounted() {
     this.inputEl = this.$refs.input;
     this.resultsEl = this.$refs.results;
+    if (location.params) {
+      let query = location.params.q;
+      if (query) this.fillSearch(query);
+    }
   },
 
   methods: {
@@ -52,7 +53,7 @@ export default {
     doRequest() {
       let self = this;
       let xhr = new XMLHttpRequest();
-      let url = `https://brm-suggest-0.brsrvr.com/api/v1/suggest/?account_id=6082&auth_key=&domain_key=belk&request_type=suggest&q=${this.input.value}`;
+      let url = `https://brm-suggest-0.brsrvr.com/api/v1/suggest/?account_id=6082&auth_key=&domain_key=belk&request_type=suggest&q=${this.inputEl.value}`;
       xhr.open('GET', url);
       xhr.send(null);
 
@@ -60,17 +61,20 @@ export default {
         let DONE = 4;
         let OK = 200;
         if (xhr.readyState === DONE) {
-          if (xhr.status === OK) {
-            self.response = JSON.parse(xhr.responseText);
-          }
+          if (xhr.status === OK) self.response = JSON.parse(xhr.responseText);
         }
       }
+    },
+
+    doSearch() {
+      let url = `https://www.belk.com/search/?q=${this.inputEl.value}&lang=default`;
+      window.location.href = url;
+    },
+
+    fillSearch(val, doSearch) {
+      this.inputEl.value = val;
+      if (doSearch) this.doRequest();
     }
-
   },
 
-  doSearch() {
-    let url = `https://www.belk.com/search/?q=${this.inputEl.value}&lang=default`;
-    window.location.href = url;
-  },
 };
