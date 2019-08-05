@@ -1,9 +1,7 @@
 <template>
   <div class="belk-header">
     <div ref="pre" class="pre">
-      <div class="contain">
-        <slot name="pre-header"></slot>
-      </div>
+      <slot name="pre-header"></slot>
     </div>
     <div ref="primary" class="primary">
       <div class="contain">
