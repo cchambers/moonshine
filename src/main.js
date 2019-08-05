@@ -1,8 +1,6 @@
 /* eslint-disable */
 import '@babel/polyfill';
 
-// import 'babel-polyfill'
-
 require('./assets/script/core.js');
 
 import Vue from 'vue';

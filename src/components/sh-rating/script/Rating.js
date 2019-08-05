@@ -5,7 +5,8 @@ export default {
     count: Number,
     icon: String,
     level: Number,
-    choose: Boolean
+    choose: Boolean,
+    arr: Array
   },
 
   data() {
@@ -20,6 +21,9 @@ export default {
   mounted() {
     if (this.icon) this.maticon = this.icon;
     if (this.count) this.ratecount = this.count;
+    if (this.arr) {
+      this.$el.setAttribute('level', this.arr[0].toFixed(1))
+    }
   },
 
   methods: {

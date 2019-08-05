@@ -1,10 +1,10 @@
 <div class="documentation contain">
-  <h1>Belk Logo</h1>
+  <h1>header</h1>
   <section id="usage">
     <h2>Usage</h2>
     <pre>
       <code class="language-html">
-          &lt;belk-logo&gt;new component&lt;/belk-logo&gt;
+        &lt;sh-header id="header"&gt;shine&lt;/sh-header&gt;
       </code>
     </pre>
 
@@ -12,6 +12,7 @@
 
   <section id="reference" class="baseline30">
     <h2>Reference</h2>
+
     <h3 id="attributes">Attributes</h3>
 
     <table class="attributes">
@@ -24,9 +25,9 @@
       </thead>
       <tbody>
         <tr>
-          <td>hidden</td>
+          <td>nav</td>
           <td>Boolean</td>
-          <td>Hide from view.</td>
+          <td>Turn on/off the mobile nav button.</td>
         </tr>
       </tbody>
     </table>
@@ -42,9 +43,21 @@
       </thead>
       <tbody>
         <tr>
-          <td>default</td>
+          <td>pre</td>
           <td>
-            Text content.
+            HTML content that comes before the logo.
+          </td>
+        </tr>
+        <tr>
+          <td>logo-url</td>
+          <td>
+            Image tag for logo.
+          </td>
+        </tr>
+        <tr>
+          <td>post</td>
+          <td>
+            HTML content that comes after the logo.
           </td>
         </tr>
       </tbody>
@@ -62,7 +75,7 @@
       </thead>
       <tbody>
         <tr>
-          <td>snap</td>
+          <td>openNav</td>
           <td>
             <ul>
               <li>
@@ -71,7 +84,7 @@
             </ul>
           </td>
           <td>
-            Perform snap animation and half text.
+            Open the header navigation.
           </td>
         </tr>
       </tbody>
@@ -89,12 +102,12 @@
       </thead>
       <tbody>
         <tr>
-          <td>event-name</td>
+          <td>logo-clicked</td>
           <td>
-            Type
+            String
           </td>
           <td>
-            Fires when something happens.
+            Fires when the logo is clicked.
           </td>
         </tr>
       </tbody>
@@ -103,29 +116,61 @@
 
   <section id="examples">
     <h2>Examples</h2>
+
     <h3>Default</h3>
     <lib-toolbar>
-      <belk-logo width="160"></belk-logo>
+      <sh-header>words</sh-header>
     </lib-toolbar>
-    <h3>Using color attribute</h3>
-    <lib-toolbar>
-      <belk-logo width="80" color="accent-primary"></belk-logo>
-    </lib-toolbar>
+
+    <h3>variant="dark"</h3>
+    <sh-header variant="dark">words</sh-header>
+    <pre>
+      <code class="language-html">
+        &lt;sh-header id="header" variant="dark"&gt;words&lt;/sh-header&gt;
+      </code>
+    </pre>
+
+    <h3>variant="secondary"</h3>
+    <sh-header variant="secondary">words</sh-header>
+    <pre>
+      <code class="language-html">
+        &lt;sh-header id="header" variant="secondary"&gt;words&lt;/sh-header&gt;
+      </code>
+    </pre>
+
   </section>
 
   <section id="changelog">
     <h2>Changelog</h2>
     <dl>
-      <dt>0.1.0</dt>
-      <dd>Belk Logo is under development.</dd>
       <dt>1.0.0</dt>
-      <dd>Belk Logo is ready for use.</dd>
+      <dd>Component was created.</dd>
       <dt>1.0.1</dt>
-      <dd><strong>PATCH</strong> version when you make backwards-compatible bug fixes.</dd>
-      <dt>1.1.0</dt>
-      <dd><strong>MINOR</strong> version when you add functionality in a backwards-compatible manner.</dd>
+      <dd>Hotfix created for some issue.</dd>
+      <dt>1.2.0</dt>
+      <dd>
+        Minor style or functionality was added or updated.
+        <ul>
+          <li>
+            Change information...
+          </li>
+          <li>
+            Change information...
+          </li>
+        </ul>
+      </dd>
       <dt>2.0.0</dt>
-      <dd><strong>MAJOR</strong> version when you make incompatible API changes.</dd>
+      <dd>
+        Major change. Anyone using this component may need to update their code.
+        <ul>
+          <li>
+            Change information...
+          </li>
+          <li>
+            Change information...
+          </li>
+        </ul>
+      </dd>
     </dl>
   </section>
 </div>
