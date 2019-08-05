@@ -25,10 +25,7 @@ import ComponentPrototype from './components/component-prototype';
 Vue.mixin(ComponentPrototype);
 
 /* This disables warnings caused by 'undefined vue components' that are actually defined. vce-workaround */
-Vue.config.ignoredElements = [
-  /^belk-.*/,
-  /^sh-.*/
-]
+Vue.config.ignoredElements = [ /.*/ ]
 
 /* COMMON STYLES */
 require('./assets/style/common/base.scss');
