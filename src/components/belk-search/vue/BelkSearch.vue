@@ -1,26 +1,39 @@
 <template>
-  <div class="belk-search" >
+  <div class="belk-search" 
+        v-bind:class="{ active: isActive }" >
 
     <!-- Input -->
     <div class="search-input">
-      <input  type="text"
+      <input ref="input"
+              type="text"
               :placeholder="placeholder" 
-              @focus="search_active = true" @blur="search_active = false">
-      <button ref="clear"><i class="material-icons-round">close</i></button>
+              @focus="isActive = true" 
+              @blur="isActive = false"
+              v-on:keyup="keyupHandler">
+      <button v-hammer:tap="clearSearch" ref="clear"><i class="material-icons-round">close</i></button>
       <button ref="search"><i class="material-icons-round">search</i></button>
     </div> 
 
     <!-- Close Input -->
     <button ref="cancel" class="close-search">Cancel</button>
 
-    <sh-popper refs="results" id="results">
+    <!-- <sh-popper ref="results" id="results"> -->
       <div ref="recent">
-        HERE BE THE RECENTS.
+        <ul>
+          <li v-for="item in suggestions">
+            {{ item.q}}
+          </li>
+        </ul>
       </div>
+      
       <div ref="actual">
-        HERE BE THE RESULTS.
+        <ul>
+          <li v-for="item in products">
+            {{ item.title }}
+          </li>
+        </ul>
       </div>
-    </sh-popper>
+    <!-- </sh-popper> -->
 
   </div>
 </template>
