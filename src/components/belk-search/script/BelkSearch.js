@@ -69,6 +69,7 @@ export default {
 
     clearSearch() {
       this.inputEl.value = '';
+      this.searchValue = '';
       this.response = { response: {} }
     },
 
@@ -102,7 +103,6 @@ export default {
     },
 
     clearRecentSearches() {
-      console.log("CLEARING")
       this.recents = [];
       this.setItem('recentSearches', []);
     },
