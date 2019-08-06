@@ -22,13 +22,21 @@ belk-search {
     .search-results {
       position: absolute;
       display: flex;
+      flex-direction: column;
       top: 100%;
       background: tomato;
       color: white;
-      padding: 1rem;
-      > * {
-        flex-grow: 2;
-        width: 50%;
+      > div {
+        width: 100%;
+        padding: 1rem;
+      }
+
+      .search-suggestions {
+        display: flex;
+        > div {
+          width: 50%;
+          flex-grow: 2;
+        }
       }
     }
 
@@ -42,16 +50,11 @@ belk-search {
       }
     }
 
-    /* TEMPORARY */
-    &[count="0"] {
-      .search-results {
-        display: none;
-      }
+    .search-recent {
+      border: 1px solid white
     }
-    /* END TEMPORARY */
     
     @media (min-width: breakpoint("lg")) {
-   
     }
   }
 }

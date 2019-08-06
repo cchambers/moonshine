@@ -4,13 +4,18 @@ export default {
   data() {
     return {
       value: '',
+      valueLength: 0,
       triggerResults: 3,
       placeholder: 'Search',
+      noResults: false,
       isActive: false,
       inputEl: {},
       resultsEl: {},
       products: {},
       suggestions: {},
+      recents: [],
+      recentCount: 0,
+      valueLenth: 0,
       _timer: null,
       response: {},
       count: 0,
@@ -23,13 +28,25 @@ export default {
     response: function (val) {
       this.suggestions = val.response.suggestions || {};
       this.products = val.response.products || {};
-      this.count = this.suggestions.length;
+      this.count = this.suggestions.length || 0;
+      if (this.count == 0) {
+        this.noResults = true;
+        this.searchValue = this.value;
+      } else {
+        this.noResults = false;
+        this.searchValue = '';
+      }
+    },
+
+    recents: function (arr) {
+      this.recentCount = arr.length;
     }
   },
 
   mounted() {
     this.inputEl = this.$refs.input;
     this.resultsEl = this.$refs.results;
+    this.recentSearches();
     if (location.params) {
       let query = location.params.q;
       if (query) this.fillSearch(query);
@@ -38,10 +55,15 @@ export default {
 
   methods: {
     keyupHandler() {
-      let len = this.inputEl.value.length;
-      if (len >= 3) {
+      this.value = this.inputEl.value;
+      let len = this.value.length;
+      this.valueLength = len;
+
+      if (len >= this.triggerResults) {
         clearTimeout(this._timer);
         this._timer = setTimeout(this.doRequest, 200);
+      } else {
+        this.count = 0;
       }
     },
 
@@ -66,14 +88,43 @@ export default {
       }
     },
 
+    recentSearches(val) {
+      let recents = this.getItem('recentSearches') || [];
+      if (val) {
+        let exists = recents.indexOf(val);
+        if (exists > -1) recents.splice(exists, 1);
+        recents.unshift(val);
+        if (recents.length > 10) recents = recents.slice(0, 10);
+        this.setItem('recentSearches', recents);
+      }
+      this.recentCount = recents.length;
+      this.recents = recents;
+    },
+
+    clearRecentSearches() {
+      console.log("CLEARING")
+      this.recents = [];
+      this.setItem('recentSearches', []);
+    },
+
     doSearch() {
-      let url = `https://www.belk.com/search/?q=${this.inputEl.value}&lang=default`;
-      window.location.href = url;
+      let val = this.inputEl.value;
+      this.recentSearches(val);
+      // let url = `https://www.belk.com/search/?q=${val}&lang=default`;
+      // window.location.href = url;
     },
 
     fillSearch(val, doSearch) {
       this.inputEl.value = val;
       if (doSearch) this.doRequest();
+    },
+
+    suggestionHoverHandler(val) {
+      return val
+    },
+
+    showSuggestedProducts(which = 0) {
+      return which
     }
   },
 
