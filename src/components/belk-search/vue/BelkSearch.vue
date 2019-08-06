@@ -12,7 +12,7 @@
         :placeholder="placeholder" 
         @focus="isActive = true" 
         @blur="isActive = false">
-      <button ref="clear" v-hammer:tap="clearSearch"><i class="material-icons-round">close</i></button>
+      <button v-if="valueLength>0" ref="clear" v-hammer:tap="clearSearch"><i class="material-icons-round">close</i></button>
       <button ref="search" v-hammer:tap="doSearch"><i class="material-icons-round">search</i></button>
     </div> 
 
@@ -68,4 +68,3 @@
 
 <script src="../script/BelkSearch.js"></script>
 <style lang="scss" src="../style/default.scss"></style>
-<style lang="scss" src="../style/primary.scss"></style>

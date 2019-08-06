@@ -28,13 +28,22 @@
 
   button, 
   input {
-    display: block;
+    display: flex;
     background: none;
     border: none;
     outline: 0;
+    height: 3.6rem;
+    min-width: 3.6rem;
     &:hover {
       background: $highlight-secondary;
     }
+  }
+  input {
+    padding: 0 1rem;
+  }
+  button {
+    justify-content: center;
+    cursor: pointer;
   }
 
   .search-results {
@@ -45,8 +54,9 @@
     top: 100%;
     width: 100%;
     left: 0;
-    background: tomato;
-    color: white;
+    background: $highlight-primary;
+    color: $lowlight-primary;
+    border: 1px solid $highlight-secondary;
     > div {
       width: 100%;
       padding: 1rem;
