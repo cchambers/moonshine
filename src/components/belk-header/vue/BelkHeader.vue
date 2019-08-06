@@ -14,31 +14,29 @@
 
     <div ref="secondary" class="secondary">
       <div class="contain">
-        <belk-logo class="logo" width="60" color="highlight-primary"></belk-logo>
+        <belk-search></belk-search>
 
         <sh-button class="nav-trigger" v-hammer:tap="menuHandler">
           <i class="material-icons-round">menu</i>
         </sh-button>
-        
-        <belk-search></belk-search>
+
+        <belk-logo class="logo" width="60" color="highlight-primary"></belk-logo>
+
 
         <div class="icon-bar">
-
-          <a name="coupons">
+          <div class="icon-bar-icon">
             <i class="material-icons-round">local_offer</i>
-            <span>Coupons</span>
-          </a>
+            <div>Coupons</div>
+          </div>
 
-          <a name="account">
+          <div class="icon-bar-icon">
             <i class="material-icons-round">person_outline</i>
-              <div>Sign In</div>
-              <i class="material-icons-round">expand_more</i>
-          </a>
+            <div>Sign In</div>
+          </div>
 
           <belk-bag ref="bag" count="10" price="1234.53"></belk-bag>
         </div>
       </div>
-
     </div>
     <div ref="tertiary" class="tertiary">
       <div class="contain">

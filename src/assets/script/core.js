@@ -1,6 +1,7 @@
 let app = {
   init() {
     app.setup();
+    if (location.search) app.urlParamsToObj()
   },
 
   setup() {
@@ -15,6 +16,12 @@ let app = {
       demos[x].setAttribute('base-code', demos[x].innerHTML);
       demos[x].innerHTML = '';
     }
+  },
+
+  urlParamsToObj() {
+    let search = location.search.substr(1);
+    let result = JSON.parse('{"' + search.replace(/&/g, '","').replace(/=/g,'":"') + '"}', function(key, value) { return key===""?value:decodeURIComponent(value) })
+    location.params = result;
   }
 }
 

@@ -14,7 +14,15 @@ const ComponentPrototype = {
   },
 
   methods: {
-   // 
+    getItem(which) {
+      let val = localStorage.getItem(which);
+      return JSON.parse(val)
+    },
+
+    setItem(which, val) {
+      localStorage.setItem(which, JSON.stringify(val));
+      return true
+    }
   },
 
   data() {

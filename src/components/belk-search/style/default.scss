@@ -1,48 +1,85 @@
-/* default styling */
+.belk-search {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 40%;
+  flex-grow: 1;
+  order: 1;
 
-belk-search {
-  display: block;
-  ul { list-style: none; padding: 0; margin: 0 }
-  .belk-search {
-    position: relative;
+  // &.active {
+  //   max-width: 100%;
+  //   &~ * {
+  //     max-width: 0 !important;
+  //     overflow: hidden;
+  //   }
+  // }
+  .search-input {
     display: flex;
-    align-items: center;
-    flex-direction: row;
-    flex-wrap: wrap;
-    .search-input {
-      display: flex;
-      border: 1px solid tomato;
-      width: 80%;
+    background: $highlight-primary;
+    width: 60%;
+    flex-grow: 1;
+    input {
+      width: 90%;
       flex-grow: 1;
-      input {
-        width: 90%;
-        flex-grow: 1;
-      }
     }
-    .search-results {
-      position: absolute;
-      display: flex;
-      top: 100%;
-      background: tomato;
-      color: white;
+  }
+
+  button, 
+  input {
+    display: block;
+    background: none;
+    border: none;
+    outline: 0;
+    &:hover {
+      background: $highlight-secondary;
+    }
+  }
+
+  .search-results {
+    position: absolute;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    top: 100%;
+    width: 100%;
+    left: 0;
+    background: tomato;
+    color: white;
+    > div {
+      width: 100%;
       padding: 1rem;
-      > * {
-        flex-grow: 2;
+    }
+
+    .search-suggestions {
+      display: flex;
+      > div {
         width: 50%;
-      }
-    }
-    /* TEMPORARY */
-    &[count="0"] {
-      .search-results {
-        display: none;
-      }
-    }
-    /* END TEMPORARY */
-    
-    @media (min-width: breakpoint("lg")) {
-      .cancel-trigger {
-        display: none;
+        flex-grow: 2;
       }
     }
   }
+
+  .cancel-trigger {
+    display: none;
+  }
+
+  &[active] {
+    .cancel-trigger {
+      display: block;
+    }
+  }
+
+  .search-recent {
+    border: 1px solid white
+  }
+  
+  @media (min-width: breakpoint("lg")) {
+    .belk-search.active ~ * {
+      max-width: initial;
+    }
+  }
+
+  ul { list-style: none; padding: 0; margin: 0 }
 }
