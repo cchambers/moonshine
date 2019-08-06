@@ -9,9 +9,10 @@ sh-curtain {
     opacity: 0;
     background: rgba(25,25,25,.95);
     z-index: 8;
-    transition: all 250ms $ease;
+    transition: none;
     pointer-events: none;
     &.active {
+      transition: all 250ms $ease;
       opacity: 1;
       pointer-events: initial;
     }
