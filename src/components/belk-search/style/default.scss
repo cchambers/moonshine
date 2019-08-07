@@ -57,7 +57,9 @@
     left: 0;
     background: $highlight-primary;
     color: $lowlight-primary;
-    border: 1px solid $highlight-secondary;
+    border: 1px solid $lowlight-primary;
+    border-top: none;
+    @include box-shadow(1);
     > div {
       width: 100%;
       padding: 1rem;
@@ -76,7 +78,7 @@
     display: none;
   }
 
-  &[active] {
+  &.active {
     .cancel-trigger {
       display: block;
     }
@@ -89,6 +91,10 @@
   @media (min-width: breakpoint("lg")) {
     .belk-search.active ~ * {
       max-width: initial;
+    }
+    
+    .cancel-trigger {
+      display: none;
     }
   }
 
