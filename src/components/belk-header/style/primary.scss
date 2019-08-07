@@ -1,6 +1,7 @@
 /* primary variant */
 
 belk-header[variant="primary"] {
+
   .primary .contain,
   .secondary .contain {
     display: flex;
@@ -10,31 +11,40 @@ belk-header[variant="primary"] {
 
   .primary {
     display: none;
-    background-color: $highlight-primary;
-    belk-logo {
-      margin: 1rem;
-    }
+    background-color: $lowlight-tertiary;
+    color: $highlight-primary;
   }
 
   .secondary {
     background-color: $lowlight-tertiary;
-    .contain {
-      justify-content: space-between;
-    }
   }
-
-  .tertiary {
-    nav {
-      display: block;
-    }
-    .mobile-links {
-      flex-grow: 1;
-    }
+  .contain {
+    justify-content: space-between;
   }
 
   .icon-bar {
     display: flex;
     margin-left: auto;
+    display: inline-flex;
+    align-items: center;
+    color: $highlight-primary;
+    order: 3;
+    margin: 0 1rem;
+    > div {
+      display: flex;
+      margin: 1rem;
+      align-items: center;
+      flex-shrink: 0;
+      > div {
+        display: none;
+        margin-left: 1rem;
+      }
+    }
+  }
+  
+  belk-logo {
+    margin: 1rem;
+    order: 0;
   }
 
   sh-button.nav-trigger {
@@ -43,11 +53,43 @@ belk-header[variant="primary"] {
       color: $highlight-primary;
       padding: 0;
       height: 4.5rem;
+
       i {
         font-size: 3rem;
         padding: 0;
         margin: 0;
       }
+    }
+  }
+
+  /* default styling */
+
+  sh-button.nav-trigger {
+    max-width: 100vw;
+    overflow: hidden;
+    transition: max-width 250ms $ease;
+
+    .sh-button {
+      background: transparent !important;
+      color: $highlight-primary;
+      padding: 0;
+      height: 4.5rem;
+
+      i {
+        font-size: 3rem;
+        padding: 0;
+        margin: 0;
+      }
+
+      .mobile-links {
+        flex-grow: 1;
+      }
+    }
+  }
+
+  .tertiary {
+    nav {
+      display: block;
     }
   }
 
@@ -58,15 +100,17 @@ belk-header[variant="primary"] {
 
     .secondary {
       .contain {
-        justify-content: flex-end;
-      }
-      belk-logo {
-        display: none;
+        justify-content: flex-start;
       }
     }
 
     sh-button.nav-trigger {
-      display: none;
+      max-width: 0;
+    }
+
+    .icon-bar>div>div {
+      display: block;
+      order: 3;
     }
   }
 
@@ -85,18 +129,21 @@ belk-header[variant="primary"] {
     transform: translateX(-100%) translateZ(0);
     background: $highlight-primary;
     transition: all 150ms $accel;
+
     &.active {
       transform: translateZ(0);
       z-index: 9;
       transition: all 150ms $decel;
     }
-    > nav > ul {
+
+    >nav>ul {
       display: flex;
       flex-direction: column;
       width: 100%;
       justify-content: flex-start;
       padding: 0;
       margin: 0 !important;
+
       li {
         flex-grow: 0;
         flex-shrink: 0;
@@ -104,12 +151,14 @@ belk-header[variant="primary"] {
         display: block;
       }
     }
+
     .mobile-links {
       display: flex;
       flex-direction: column;
       flex-grow: 1;
       justify-content: flex-end;
       background: $highlight-secondary;
+
       a {
         display: flex;
         align-items: center;
@@ -117,6 +166,7 @@ belk-header[variant="primary"] {
         color: $lowlight-primary;
         padding: 0.5rem 1rem;
         transition: all 150ms linear;
+
         &:hover {
           background: $highlight-primary;
         }
@@ -135,18 +185,18 @@ belk-header[variant="primary"] {
       bottom: auto;
       min-width: 100%;
       transform: none;
-      > nav > ul {
+
+      >nav>ul {
         width: 100%;
       }
 
-      .popper-target > a {
+      .popper-target>a {
         width: 100%;
       }
     }
 
-    .belk-mega-nav > nav > ul {
+    .belk-mega-nav>nav>ul {
       flex-direction: row;
     }
   }
-  /* END EMBEDDED MEGA NAV */
 }

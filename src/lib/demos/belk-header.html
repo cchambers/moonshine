@@ -1,9 +1,31 @@
 <div id="page">
   <belk-header variant="primary">
+    <div slot="pre-header">
+      <sh-banner variant="primary">
+          <!-- DEFAULT -->
+        <sh-adapt-content>
+          <div>
+            <div class="px16 lh30 highlight-primary bold uppercase text-center">
+              50% off <span class="normal accent-tertiary">all components</span>
+            </div>
+          </div>
+          <div slot="md">
+              <div class="px18 lh30 highlight-primary bold uppercase text-center">
+                extra 50% off <span class="normal accent-tertiary">all vue components</span>
+              </div>
+          </div>
+          <div slot="lg">
+            <div class="px20 lh30 highlight-primary bold uppercase text-center">
+              get an extra 50% off <span class="normal accent-tertiary">all vue components</span>
+            </div>
+          </div>
+        </sh-adapt-content>
+      </sh-banner>
+    </div>
     <nav slot="tertiary-nav">
       <ul>
         <li>
-          <sh-nav-item delay-on-mouse-out="200">
+          <sh-nav-item delay-on-mouse-over="400" delay-on-mouse-out="400">
             <a slot="reference" id="lorem-link" href="#">
               Lorem
             </a>
@@ -25,12 +47,11 @@
           </sh-nav-item>
         </li>
         <li>
-          <sh-nav-item delay-on-mouse-out="200">
+          <sh-nav-item delay-on-mouse-over="400" delay-on-mouse-out="400">
             <a slot="reference" id="ipsum-link" href="#">
               Ipsum
             </a>
             <div id="ipsum-menu">
-
               <h3>Header Two</h3>
               <ul>
                 <li>
@@ -54,7 +75,7 @@
         </li>
 
         <li>
-          <sh-nav-item delay-on-mouse-out="200">
+          <sh-nav-item delay-on-mouse-over="400" delay-on-mouse-out="400">
             <a slot="reference" id="doler-link" href="#">
               Doler
             </a>
@@ -77,7 +98,7 @@
           </sh-nav-item>
         </li>
         <li>
-          <sh-nav-item delay-on-mouse-out="200">
+          <sh-nav-item delay-on-mouse-over="400" delay-on-mouse-out="400">
             <a slot="reference" id="sit-link" href="#" class="highlight-quinary">
               Sit
             </a>
@@ -117,48 +138,7 @@
     <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Asperiores saepe obcaecati cupiditate debitis corporis, maxime corrupti eaque itaque harum id possimus perferendis sequi dolore nemo mollitia pariatur? Repellat, quae enim?</p>
     <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Asperiores saepe obcaecati cupiditate debitis corporis, maxime corrupti eaque itaque harum id possimus perferendis sequi dolore nemo mollitia pariatur? Repellat, quae enim?</p>
     <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Asperiores saepe obcaecati cupiditate debitis corporis, maxime corrupti eaque itaque harum id possimus perferendis sequi dolore nemo mollitia pariatur? Repellat, quae enim?</p>
-    <sh-banner variant="primary">
-      <!-- DEFAULT -->
-      <sh-adapt-content>
-        <div>
-          <div class="pad-y">
-            <div class="uppercase text-center">
-              <div class="px60 lh60 highlight-primary bold">
-                50% off
-              </div>
-              <div class="px42 lh60 accent-tertiary">
-                everything
-              </div>
-              <div>
-                <sh-button scale="120" round variant="primary">act now!</sh-button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div slot="md">
-          <div class="pad-y">
-            <div class="uppercase text-center">
-              <div class="px60 lh60 highlight-primary bold">
-                extra 50% off
-              </div>
-              <div class="px42 lh60 accent-tertiary pad-y-quarter">
-                all vue components
-              </div>
-              <div>
-                <sh-button scale="120" round variant="primary">act now!</sh-button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div slot="lg">
-          <div class="px30 lh40 highlight-primary bold uppercase text-center">
-            get an extra 50% off <span class="normal accent-tertiary">all vue components</span>
-          </div>
-        </div>
-      </sh-adapt-content>
-    </sh-banner>
+   
     <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Asperiores saepe obcaecati cupiditate debitis corporis, maxime corrupti eaque itaque harum id possimus perferendis sequi dolore nemo mollitia pariatur? Repellat, quae enim?</p>
     <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Asperiores saepe obcaecati cupiditate debitis corporis, maxime corrupti eaque itaque harum id possimus perferendis sequi dolore nemo mollitia pariatur? Repellat, quae enim?</p>
     <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Asperiores saepe obcaecati cupiditate debitis corporis, maxime corrupti eaque itaque harum id possimus perferendis sequi dolore nemo mollitia pariatur? Repellat, quae enim?</p>

@@ -54,10 +54,10 @@ export default {
 
     mouseleaveHandler() {
       if (this.curtain && !this.mobile) {
-        // clearTimeout(this._timer)
-        // this._timer = setTimeout(() => {
+        clearTimeout(this._timer)
+        this._timer = setTimeout(() => {
           this.$bus.$emit('hide-curtain');
-        // }, 200);
+        }, 400);
       }
     },
 

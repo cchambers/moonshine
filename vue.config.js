@@ -2,15 +2,15 @@ const glob = require('glob');
 const fs = require('fs-extra');
 const path = require('path');
 
-let nav = fs.readFileSync('./src/documentation/incl-nav.html', 'utf8');
-let footer = fs.readFileSync('./src/documentation/incl-footer.html', 'utf8');
+let nav = fs.readFileSync('./src/lib/incl-nav.html', 'utf8');
+let footer = fs.readFileSync('./src/lib/incl-footer.html', 'utf8');
 
 let pages = {
   index: {
     entry: 'src/main.js',
     nav: nav,
     footer: footer,
-    template: 'src/documentation/docs-index.html'
+    template: 'src/lib/docs-index.html'
   }
 }
 
@@ -37,7 +37,7 @@ if (process.env.NODE_ENV != 'production') {
 
     pages[name] = {
       entry: 'src/main.js',
-      template: 'src/documentation/docs-component.html',
+      template: 'src/lib/docs-component.html',
       content: content,
       nav: nav,
       footer: footer,
@@ -45,7 +45,7 @@ if (process.env.NODE_ENV != 'production') {
     }
   })
 
-  glob.sync('./src/documentation/utilities/*.html').forEach(path => {  
+  glob.sync('./src/lib/utilities/*.html').forEach(path => {  
     let filename = path.split('/');
     filename = filename[filename.length-1];
     let name = filename.split('.')[0];
@@ -53,7 +53,7 @@ if (process.env.NODE_ENV != 'production') {
 
     pages[name] = {
       entry: 'src/main.js',
-      template: 'src/documentation/docs-component.html',
+      template: 'src/lib/docs-component.html',
       content: content,
       nav: nav,
       footer: footer,
@@ -61,7 +61,7 @@ if (process.env.NODE_ENV != 'production') {
     }
   })
 
-  glob.sync('./src/documentation/demos/*.html').forEach(path => {  
+  glob.sync('./src/lib/demos/*.html').forEach(path => {  
     let filename = path.split('/');
     filename = filename[filename.length-1];
     let name = filename.split('.')[0];
@@ -69,7 +69,7 @@ if (process.env.NODE_ENV != 'production') {
 
     pages[name] = {
       entry: 'src/main.js',
-      template: 'src/documentation/docs-demonstration.html',
+      template: 'src/lib/docs-demonstration.html',
       content: content,
       filename: `demo/${name}/index.html`
     }

@@ -8,6 +8,7 @@ export default {
 
   props: {
     baseCode: String,
+    demo: String
   },
 
   data() {
@@ -27,6 +28,11 @@ export default {
   mounted() {
     let self = this;
     this.uniqueId = 'sh' + this.uuid;
+    if (this.demo) {
+      this.$el.addEventListener('click', () => {
+        window.open(`${location.origin}/${this.demo}`, 'demo');
+      })
+    }
     if (this.baseCode) {
       this.code = this.baseCode;
       this.renderCode(this.baseCode);

@@ -133,8 +133,8 @@ export default {
     },
 
     initPopper() {
-      on(this.referenceElm, 'click', this.doToggle);
-      on(document, 'click', this.handleDocumentClick);
+      // on(this.referenceElm, 'click', this.doToggle);
+      // on(document, 'click', this.handleDocumentClick);
       on(this.referenceElm, 'mouseover', this.mouseoverHandler);
       on(this.referenceElm, 'focus', this.mouseoverHandler);
       on(this.popper, 'mouseover', this.mouseoverHandler);

@@ -4,7 +4,7 @@ sh-nav-item {
   display: block;
 
   .sh-nav-item.touch {
-    &[active]{
+    &[active] {
       .actual {
         padding: 1rem;
         display: block !important;
@@ -12,21 +12,24 @@ sh-nav-item {
       }
     }
   }
+
   a {
     color: $lowlight-primary;
   }
+
   .popper-target {
     display: flex;
     justify-content: space-between;
     border-bottom: 1px solid $lowlight-quaternary;
+
     a {
       display: flex;
       height: 4.5rem;
       width: 100%;
       align-items: center;
-      text-transform: uppercase;
       padding: 0 1rem;
     }
+
     button {
       outline: 0;
       border: none;
@@ -37,14 +40,17 @@ sh-nav-item {
       text-align: center;
       min-width: 4.5rem;
       cursor: pointer;
+
       &:hover {
         background: $highlight-secondary;
       }
     }
+
     i {
       transition: all 150ms $ease;
     }
   }
+
   [active] {
     button i {
       transform: rotate(45deg);
@@ -55,60 +61,99 @@ sh-nav-item {
     .sh-nav-item {
       display: block;
       color: $lowlight-primary;
-      &:hover {
 
-      .popper-target {
-        a {
-            background: $lowlight-primary;
-            color: $highlight-primary;
-            &:after {
+      &:hover {
+        .popper-target {
+          .reference {
+            &:before{
+              border-width:  0 1.5rem 0.9rem 1.5rem;
               opacity: 1;
+            }
+            &:after{
+              border-width:  0 1.5rem 0.9rem 1.5rem;
+            }
+          }
+          a {
+            color: $lowlight-primary;
+            background:$highlight-secondary;
+            &:active {
+              &:before {
+                animation: seesaw 1s infinite linear;
+              }
+            }
+            &:before {
+              transform: translateX(-50%) translateY(1.25rem) translateZ(0) scaleX(1);
             }
           }
         }
       }
+
       .popper-target {
         border-bottom: none;
-        a {
+        .reference {
           position: relative;
-          display:  flex;
-          align-items: center;
-          padding: 0 2rem;
-          height: 5rem;
-          font-size: 1.4rem;
-          text-transform: uppercase;
-          transition: all 150ms $ease;
+
+          &:before,
           &:after {
             display: block;
             content: '';
             position: absolute;
-            bottom: -1rem;
+            bottom: 0;
             left: 50%;
             transform: translateX(-50%);
             width: 0;
             height: 0;
             border-style: solid;
-            border-width: 1rem 1rem 0 1rem;
-            border-color: $lowlight-primary transparent transparent transparent;
+            border-width:  0 1.5rem 0 1.5rem;
+            border-color:  transparent transparent $lowlight-primary transparent;
             z-index: 2;
             opacity: 0;
             transition: all 150ms $decel;
+            transition-delay: 400ms;
+            pointer-events: none;
           }
+          &:after {
+            bottom: -1px;
+            opacity: 1;
+            border-color:  transparent transparent $highlight-primary transparent;
+          }
+        }
+        a {
+          position: relative;
+          display: flex;
+          align-items: center;
+          padding: 0 2rem;
+          height: 5rem;
+          font-size: 1.4rem;
+          transition: all 150ms $ease;
+          // &:before {
+          //   content: '';
+          //   display: block;
+          //   position: absolute;
+          //   height: 0.4rem;
+          //   border-radius: 0.2rem;
+          //   width: calc(100% - 4rem);
+          //   left: 50%;
+          //   background: $lowlight-primary;
+          //   transform: translateX(-50%) translateY(1.5rem) translateZ(0) scaleY(0);
+          //   transform-origin: center center;
+          //   transition: all 150ms $decel;
+          // }
         }
       }
     }
-  
+
     .actual>* {
       background: $highlight-primary;
       color: $lowlight-primary;
       padding: 3rem;
       border: 1px solid $lowlight-primary;
     }
-  
+
     .actual {
       width: 100%;
       max-width: 128rem;
-  
+
       h1,
       h2,
       h3,
@@ -117,12 +162,29 @@ sh-nav-item {
         margin-top: 0;
       }
     }
-  
+
     .popper-target {
       display: inline-flex;
+
       button {
         display: none;
       }
+    }
+  }
+
+
+  @keyframes seesaw {
+    0% {
+      transform: translateX(-50%) translateY(1.25rem) translateZ(0) scaleX(1);
+    }
+    25% {
+      transform: translateX(-50%) translateY(1.25rem) translateZ(0) scaleX(1) rotate(15deg);
+    }
+    75% {
+      transform: translateX(-50%) translateY(1.25rem) translateZ(0) scaleX(1) rotate(-15deg);
+    }
+    100% {
+      transform: translateX(-50%) translateY(1.25rem) translateZ(0) scaleX(1);
     }
   }
 }
