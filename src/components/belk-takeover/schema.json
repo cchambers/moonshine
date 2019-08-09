@@ -1,0 +1,7 @@
+{
+  "name": "Belk Takeover",
+  "element": "belk-takeover",
+  "description": "Demonstration component.",
+  "tags": ["utilities", "demo"],
+  "requirements": []
+}

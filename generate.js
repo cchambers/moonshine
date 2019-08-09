@@ -95,7 +95,7 @@ function updateFiles(files) {
     writeUpdates(`${files[x].dir}/${files[x].filename}`);
   }
   console.log('Your new component was created.');
-  console.log('Be sure to add it in the appropriate spot in main.js!');
+  console.log('Be sure to add it in the appropriate spot in dev- or prod-components.js!');
 }
 
 function writeUpdates(filename) {

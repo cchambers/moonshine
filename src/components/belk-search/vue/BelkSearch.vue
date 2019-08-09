@@ -1,7 +1,7 @@
 <template>
   <div class="belk-search" 
     :count="count"
-    v-bind:class="{ active: isActive }">
+    v-bind:class="{ active: isFocused }">
 
     <!-- Input -->
     <div class="search-input">
@@ -10,9 +10,9 @@
         v-on:keyup="keyupHandler"
         v-on:keyup.enter="doSearch"
         :placeholder="placeholder" 
-        @focus="isActive = true" 
-        @blur="isActive = false">
-      <button ref="clear" v-hammer:tap="clearSearch"><i class="material-icons-round">close</i></button>
+        @focus="isFocused = true" 
+        @blur="isFocused = false">
+      <button v-if="valueLength>0" ref="clear" v-hammer:tap="clearSearch"><i class="material-icons-round">close</i></button>
       <button ref="search" v-hammer:tap="doSearch"><i class="material-icons-round">search</i></button>
     </div> 
 
@@ -20,7 +20,7 @@
     <sh-button ref="cancel" class="cancel-trigger">Cancel</sh-button>
 
     <div class="search-results">
-      <div v-if="count==0 && valueLength>2 && isActive && noResults" class="search-noresults">
+      <div v-if="count==0 && valueLength>2 && isFocused && noResults && searchValue!=''" class="search-noresults">
         <p class="italic px14">
           No suggestions found for "{{ searchValue }}"...
         </p>
@@ -68,4 +68,3 @@
 
 <script src="../script/BelkSearch.js"></script>
 <style lang="scss" src="../style/default.scss"></style>
-<style lang="scss" src="../style/primary.scss"></style>
