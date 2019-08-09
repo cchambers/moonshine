@@ -8,7 +8,7 @@ export default {
       triggerResults: 3,
       placeholder: 'Search',
       noResults: false,
-      isActive: false,
+      isFocused: false,
       inputEl: {},
       resultsEl: {},
       products: {},
@@ -25,20 +25,18 @@ export default {
   },
 
   watch: {
-    response: function (val) {
+    response(val) {
       this.suggestions = val.response.suggestions || {};
       this.products = val.response.products || {};
       this.count = this.suggestions.length || 0;
       if (this.count == 0) {
         this.noResults = true;
-        this.searchValue = this.value;
       } else {
         this.noResults = false;
-        this.searchValue = '';
       }
     },
 
-    recents: function (arr) {
+    recents(arr) {
       this.recentCount = arr.length;
     }
   },
@@ -76,7 +74,9 @@ export default {
     doRequest() {
       let self = this;
       let xhr = new XMLHttpRequest();
-      let url = `https://brm-suggest-0.brsrvr.com/api/v1/suggest/?account_id=6082&auth_key=&domain_key=belk&request_type=suggest&q=${this.inputEl.value}`;
+      let value = this.inputEl.value;
+      this.searchValue = value;
+      let url = `https://brm-suggest-0.brsrvr.com/api/v1/suggest/?account_id=6082&auth_key=&domain_key=belk&request_type=suggest&q=${value}`;
       xhr.open('GET', url);
       xhr.send(null);
 
