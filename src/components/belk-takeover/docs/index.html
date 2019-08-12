@@ -1,3 +1,15 @@
+<belk-takeover>
+  <div class="top">
+    MAIN AD HERE
+    <div class="pres"></div>
+  </div>
+  <div slot="left" class="popper demo-one">
+    left ad space
+  </div>
+  <div slot="right" class="popper demo-two">
+    right ad space
+  </div>
+</belk-takeover>
 <div class="documentation contain">
   <h1>Belk Takeover</h1>
   <section id="usage">
@@ -10,7 +22,7 @@
 
   </section>
 
-  <!-- <section id="reference" class="baseline30">
+  <section id="reference" class="baseline30">
     <h2>Reference</h2>
     <h3 id="attributes">Attributes</h3>
 
@@ -24,9 +36,9 @@
       </thead>
       <tbody>
         <tr>
-          <td>hidden</td>
-          <td>Boolean</td>
-          <td>Hide from view.</td>
+          <td>delay</td>
+          <td>Number</td>
+          <td>Time before ad is shown.</td>
         </tr>
       </tbody>
     </table>
@@ -44,34 +56,19 @@
         <tr>
           <td>default</td>
           <td>
-            Text content.
+            Main banner content.
           </td>
         </tr>
-      </tbody>
-    </table>
-
-    <h3 id="methods">Public Methods</h3>
-
-    <table class="methods">
-      <thead>
         <tr>
-          <th>Function</th>
-          <th>Params</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>snap</td>
+          <td>left</td>
           <td>
-            <ul>
-              <li>
-                none
-              </li>
-            </ul>
+            Left side banner content.
           </td>
+        </tr>
+        <tr>
+          <td>right</td>
           <td>
-            Perform snap animation and half text.
+            Right side banner content.
           </td>
         </tr>
       </tbody>
@@ -89,26 +86,118 @@
       </thead>
       <tbody>
         <tr>
-          <td>event-name</td>
+          <td>takeover-shown</td>
           <td>
             Type
           </td>
           <td>
-            Fires when something happens.
+            Fires when ad takeover occurs.
           </td>
         </tr>
       </tbody>
     </table>
-  </section> -->
+  </section>
 
   <section id="examples">
     <h2>Examples</h2>
     <h3>Default</h3>
-    <belk-takeover variant="left">
-      <div style="height:20rem;width:20rem;background:red;">
-        takeover
-      </div>
-    </belk-takeover>
+
+    <style>
+      .takeover {
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transition: opacity 250ms ease-in;
+      }
+      .takeover.active {
+        max-height: 600px;
+        opacity: 1;
+      }
+      
+      .top {
+        position: relative;
+        height: 300px;
+        border: 1px solid blue;
+        border-left: none;
+        border-right: none;
+        background: rgba(0, 0, 255, 0.05);
+      }
+      
+      .top:before,
+      .top:after,
+      .pres:before,
+      .pres:after,
+      .popper:before {
+        position: absolute;
+        content: "";
+        display: block;
+        height: 30px;
+        width: 30px;
+        background: blue;
+        top: 0;
+      }
+      
+      .top:after,
+      .pres:after {
+        left: auto;
+        right: 0;
+      }
+      
+      .pres:before,
+      .pres:after {
+        top: auto;
+        bottom: 0;
+      }
+      
+      main {
+        display: block;
+        max-height: 100vh;
+        overflow-y: auto;
+      }
+      
+      img {
+        margin: 30px;
+      }
+      
+      .content {
+        padding: 20px;
+        width: 100%;
+        max-width: 1020px;
+        position: relative;
+        margin: 0 auto;
+      }
+      
+      .popper {
+        display: flex;
+        position: relative;
+        width: 300px;
+        height: 600px;
+        overflow: hidden;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      .demo-one {
+        border-top: 1px solid red;
+        border-right: 1px solid red;
+        background: rgba(255, 0, 0, 0.05);
+      }
+      .demo-one:before {
+        background: red;
+        right: 0;
+      }
+      
+      .demo-two {
+        border-top: 1px solid green;
+        border-left: 1px solid green;
+        background: rgba(0, 255, 0, 0.05);
+      }
+      .demo-two:before {
+        background: green;
+        left: 0;
+      }
+    </style>
+   
   </section>
 
   <section id="changelog">

@@ -3,47 +3,84 @@ import Popper from '../../../assets/script/popper';
 export default {
   name: 'BelkTakeover',
 
+  props: {
+    placement: {
+      type: String,
+      default: 'left-start'
+    },
+    delay:{
+      type: Number,
+      default: 2000
+    }
+  },
+
   data() {
     return {
       active: false,
-      referenceElm: null,
+      referenceEl: {},
+      main: {},
+      scrollingEl: {},
       popperJS: null,
       showPopper: false,
       mobile: false,
       currentPlacement: '',
-      popperOptions: {
-        placement: 'left-start',
-        modifiers: {
-          preventOverflow: {
-            boundariesElement: this.scrollingEl,
-            priority: ['top'],
-            padding: 0
-          }
-        }
-      }
+      poppers: []
     }
   },
 
 
   mounted() {
+    let self = this;
     this.referenceEl = document.querySelector('.documentation.contain'); 
+    this.main = document.querySelector('main');
     this.scrollingEl = document.querySelector('main');
-    this.popperOptions.modifiers.preventOverflow.boundariesElement = this.scrollingEl;
-    this.popper = this.$refs.popper;
+    this.popperLeft = this.$refs.popperLeft;
+    this.popperRight = this.$refs.popperRight;
 
-    this.popperOptions.onCreate = () => {
-      this.$emit('created', this);
-      this.$nextTick(this.updatePopper);
-    };
+    this.poppers.push(new Popper(this.referenceEl, this.popperLeft, this.opts('left-start')));
+    this.poppers.push(new Popper(this.referenceEl, this.popperRight, this.opts('right-start')));
+
     
-    this.popperJS = new Popper(this.referenceEl, this.popper, this.popperOptions);
-    // this.popperJS.enableEventListeners();
+
+    setTimeout(()=> {
+      self.$el.classList.add('active');
+      self.$nextTick(self.updatePopper);
+    }, this.delay);
+
+    this.poppers.forEach((el)=>{ 
+      el.enableEventListeners();
+    })
   },
   
   methods: {
     updatePopper() {
-      if (this.popperJS) this.popperJS.scheduleUpdate();
+      if (this.poppers.length) {
+        this.poppers.forEach((popper)=>{ 
+          popper.scheduleUpdate();
+        })
+      }     
     },
+
+    opts(pos) {
+      let self = this;
+      return {
+        placement: pos,
+        modifiers: {
+          preventOverflow: {
+            boundariesElement: self.main,
+            priority: ['top'],
+            padding: 0
+          },
+          flip: {
+            behavior: [pos]
+          }
+        },
+        onCreate: () => {
+          self.$emit('created', self);
+          self.$nextTick(self.updatePopper);
+        }
+      }
+    }
   },
 
 }
