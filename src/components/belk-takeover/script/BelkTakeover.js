@@ -6,8 +6,11 @@ export default {
   props: {
     placement: {
       type: String,
-      default: 'left-start',
-      delay: 2000
+      default: 'left-start'
+    },
+    delay:{
+      type: Number,
+      default: 2000
     }
   },
 
@@ -37,12 +40,11 @@ export default {
     this.poppers.push(new Popper(this.referenceEl, this.popperLeft, this.opts('left-start')));
     this.poppers.push(new Popper(this.referenceEl, this.popperRight, this.opts('right-start')));
 
-    setTimeout(()=> {
-      self.$nextTick(self.updatePopper);
-    });
+    
 
     setTimeout(()=> {
       self.$el.classList.add('active');
+      self.$nextTick(self.updatePopper);
     }, this.delay);
 
     this.poppers.forEach((el)=>{ 
@@ -53,8 +55,8 @@ export default {
   methods: {
     updatePopper() {
       if (this.poppers.length) {
-        this.poppers.forEach((el)=>{ 
-          el.scheduleUpdate();
+        this.poppers.forEach((popper)=>{ 
+          popper.scheduleUpdate();
         })
       }     
     },
