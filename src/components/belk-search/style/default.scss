@@ -37,16 +37,16 @@ belk-search {
     position: relative;
     &:after {
       display: block;
-      opacity: 0;
-      content: '';
-      height: 1px;
-      width: calc(100% - 3rem);
       position: absolute;
       top: 100%;
       left: 50%;
-      transform: translateX(-50%);
-      transition: opacity 250ms $ease;
+      content: '';
+      height: 1px;
+      width: calc(100% - 3rem);
       border-bottom: 1px solid $lowlight-quaternary;
+      transform: translateX(-50%);
+      opacity: 0;
+      transition: opacity 250ms $ease;
       z-index: 3;
     }
     input {
