@@ -1,12 +1,22 @@
-.belk-search {
+belk-search {
+  display: flex;
   position: relative;
+  max-width: 60rem;
+  height: 4rem;
+}
+
+.belk-search {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
   display: flex;
   align-items: center;
   flex-direction: row;
   flex-wrap: wrap;
-  width: 40%;
   flex-grow: 1;
   order: 1;
+  overflow: hidden;
   // &.active {
   //   max-width: 100%;
   //   &~ * {
@@ -15,12 +25,30 @@
   //   }
   // }
 
+  .search-wrap {
+    width: 100%
+  }
+
   .search-input {
     display: flex;
     background: $highlight-primary;
     width: 60%;
     flex-grow: 1;
-    border: 1px solid $lowlight-primary;
+    position: relative;
+    &:after {
+      display: block;
+      opacity: 0;
+      content: '';
+      height: 1px;
+      width: calc(100% - 3rem);
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      transition: opacity 250ms $ease;
+      border-bottom: 1px solid $lowlight-quaternary;
+      z-index: 3;
+    }
     input {
       width: 90%;
       flex-grow: 1;
@@ -48,7 +76,6 @@
   }
 
   .search-results {
-    position: absolute;
     z-index: 2;
     display: flex;
     flex-direction: column;
@@ -57,9 +84,7 @@
     left: 0;
     background: $highlight-primary;
     color: $lowlight-primary;
-    border: 1px solid $lowlight-primary;
     border-top: none;
-    @include box-shadow(1);
     > div {
       width: 100%;
       padding: 1rem;
@@ -82,6 +107,11 @@
     .cancel-trigger {
       display: block;
     }
+    .search-input {
+      &:after {
+        opacity: 1;
+      }
+    }
   }
 
   .search-recent {
@@ -89,8 +119,11 @@
   }
   
   @media (min-width: breakpoint("lg")) {
+    border: 2px solid $lowlight-primary;
+    border-radius: 20px;
     .belk-search.active ~ * {
       max-width: initial;
+      border-radius: 20px;
     }
     
     .cancel-trigger {
