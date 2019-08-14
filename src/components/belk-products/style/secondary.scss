@@ -1,0 +1,63 @@
+/* primary variant */
+
+.belk-products[variant="secondary"] {
+  ul {
+    justify-content: space-between;
+    flex-direction: column;
+  }
+  li {
+    font-size: 1.4rem;
+    overflow: hidden;
+    margin-bottom: 1rem;
+  }
+
+  a {
+    color: $lowlight-primary;
+    display: flex;
+    width: 100%;
+  }
+
+  .data {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .image {
+    width: 6rem;
+    height: 8.5rem;
+    flex-grow: 0;
+    flex-shrink: 0;
+    background-size: contain;
+    background-position: center center;
+    border: 1px solid $highlight-tertiary;
+    background-repeat: no-repeat;
+    margin-right: 1rem;
+  }
+
+  .quick-view {
+    display: none;
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+  }
+
+  .rating {
+    display: none;
+  }
+
+  .price {
+    font-weight: bold;
+  }
+
+  .name > div {
+    display: inline;
+    &.title {
+      &:before {
+        content: ' ';
+      }
+    }
+  }
+}

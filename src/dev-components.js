@@ -1,6 +1,7 @@
 
 require('./components/belk-coupon');
 require('./components/belk-search');
+require('./components/belk-products');
 
 
 require('./components/sh-accordion');

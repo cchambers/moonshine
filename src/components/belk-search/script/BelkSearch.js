@@ -1,3 +1,5 @@
+import BelkProducts from '../../belk-products/vue/BelkProducts.vue'
+
 export default {
   name: 'BelkSearch',
 
@@ -20,7 +22,8 @@ export default {
       response: {},
       count: 0,
       preloaded: false,
-      fullyloaded: false
+      fullyloaded: false,
+      belkProducts: BelkProducts
     };
   },
 
@@ -38,12 +41,19 @@ export default {
 
     recents(arr) {
       this.recentCount = arr.length;
+    },
+    
+    products(val) {
+      console.log("PRODUCTS UPDATED")
+      this.productsEl.products = val;
     }
   },
 
   mounted() {
     this.inputEl = this.$refs.input;
     this.resultsEl = this.$refs.results;
+    this.productsEl = this.$refs.suggestedProducts;
+
     this.recentSearches();
     if (location.params) {
       let query = location.params.q;
@@ -52,6 +62,7 @@ export default {
   },
 
   methods: {
+
     keyupHandler() {
       this.value = this.inputEl.value;
       let len = this.value.length;
@@ -107,11 +118,11 @@ export default {
       this.setItem('recentSearches', []);
     },
 
-    doSearch() {
-      let val = this.inputEl.value;
+    doSearch(value) {
+      let val = value || this.inputEl.value;
       this.recentSearches(val);
-      // let url = `https://www.belk.com/search/?q=${val}&lang=default`;
-      // window.location.href = url;
+      let url = `https://www.belk.com/search/?q=${val}&lang=default`;
+      window.location.href = url;
     },
 
     fillSearch(val, doSearch) {
@@ -125,7 +136,16 @@ export default {
 
     showSuggestedProducts(which = 0) {
       return which
-    }
-  },
+    },
 
+    format(price) {
+      let formatter = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+        minimumFractionDigits: 2
+      });
+
+      return formatter.format(price);
+    }
+  }
 };

@@ -8,9 +8,17 @@ export default {
       type: String,
       default: 'left-start'
     },
-    delay:{
+    delay: {
       type: Number,
       default: 2000
+    },
+    attachTo: {
+      type: String,
+      default: '.documentation.contain'
+    },
+    scrollWith: {
+      type: String,
+      default: 'main'
     }
   },
 
@@ -18,7 +26,6 @@ export default {
     return {
       active: false,
       referenceEl: {},
-      main: {},
       scrollingEl: {},
       popperJS: null,
       showPopper: false,
@@ -31,34 +38,31 @@ export default {
 
   mounted() {
     let self = this;
-    this.referenceEl = document.querySelector('.documentation.contain'); 
-    this.main = document.querySelector('main');
-    this.scrollingEl = document.querySelector('main');
+    this.referenceEl = document.querySelector(this.attachTo);
+    this.scrollingEl = document.querySelector(this.scrollWith);
     this.popperLeft = this.$refs.popperLeft;
     this.popperRight = this.$refs.popperRight;
 
     this.poppers.push(new Popper(this.referenceEl, this.popperLeft, this.opts('left-start')));
     this.poppers.push(new Popper(this.referenceEl, this.popperRight, this.opts('right-start')));
 
-    
-
-    setTimeout(()=> {
+    setTimeout(() => {
       self.$el.classList.add('active');
       self.$nextTick(self.updatePopper);
     }, this.delay);
 
-    this.poppers.forEach((el)=>{ 
+    this.poppers.forEach((el) => {
       el.enableEventListeners();
     })
   },
-  
+
   methods: {
     updatePopper() {
       if (this.poppers.length) {
-        this.poppers.forEach((popper)=>{ 
+        this.poppers.forEach((popper) => {
           popper.scheduleUpdate();
         })
-      }     
+      }
     },
 
     opts(pos) {
@@ -67,7 +71,7 @@ export default {
         placement: pos,
         modifiers: {
           preventOverflow: {
-            boundariesElement: self.main,
+            boundariesElement: self.scrollingEl,
             priority: ['top'],
             padding: 0
           },

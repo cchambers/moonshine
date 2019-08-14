@@ -39,21 +39,27 @@
         </ul>
       </div>
 
-      <div ref="actual" v-if="count>0" class="search-suggestions">
+      <div ref="actual" v-bind:class="{ 'active': count>0 }" class="search-suggestions">
         <div class="keywords">
           <ul>
             <li
               v-for="item in suggestions"
               v-bind:key="item.id"
+              v-hammer:tap="doSearch(item.q)"
               @mouseover="suggestionHoverHandler(item.q)"
-            >{{ item.q }}</li>
+            >
+              {{ item.q }}
+            </li>
           </ul>
         </div>
 
-        <div ref="products" class="products">
-          <ul>
-            <li v-for="item in products" v-bind:key="item.id">{{ item.title }}</li>
-          </ul>
+        <div class="products">
+          <component
+            ref="suggestedProducts"
+            v-bind:is="belkProducts"
+            v-bind:product-array="products"
+            variant="secondary"
+          ></component>
         </div>
       </div>
     </div>

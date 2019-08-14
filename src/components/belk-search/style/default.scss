@@ -52,6 +52,7 @@ belk-search {
     input {
       width: 90%;
       flex-grow: 1;
+      font-size: 1.6rem;
     }
   }
 
@@ -63,6 +64,8 @@ belk-search {
     outline: 0;
     height: 3.6rem;
     min-width: 3.6rem;
+    transition: background 250ms $ease;
+    color: $lowlight-primary;
     &:hover {
       background: $highlight-secondary;
     }
@@ -87,14 +90,26 @@ belk-search {
     border-top: none;
     > div {
       width: 100%;
+    }
+  }
+  
+  .search-suggestions {
+    display: none;
+    > div {
+      width: 50%;
+      flex-grow: 2;
+    }
+    li {
       padding: 1rem;
+      font-size: 1.4rem;
     }
 
-    .search-suggestions {
-      display: flex;
-      > div {
-        width: 50%;
-        flex-grow: 2;
+    .keywords {
+      li {
+        cursor: pointer;
+        &:hover {
+          background: $highlight-secondary;
+        }
       }
     }
   }
@@ -111,6 +126,14 @@ belk-search {
       &:after {
         opacity: 1;
       }
+    }
+  }
+
+  .search-recent,
+  .search-suggestions {
+    display: none;
+    &.active {
+      display: flex;
     }
   }
 
