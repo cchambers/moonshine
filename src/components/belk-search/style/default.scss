@@ -1,12 +1,22 @@
-.belk-search {
+belk-search {
+  display: flex;
   position: relative;
+  max-width: 60rem;
+  height: 4rem;
+}
+
+.belk-search {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
   display: flex;
   align-items: center;
   flex-direction: row;
   flex-wrap: wrap;
-  width: 40%;
   flex-grow: 1;
   order: 1;
+  overflow: hidden;
   // &.active {
   //   max-width: 100%;
   //   &~ * {
@@ -15,15 +25,34 @@
   //   }
   // }
 
+  .search-wrap {
+    width: 100%
+  }
+
   .search-input {
     display: flex;
     background: $highlight-primary;
     width: 60%;
     flex-grow: 1;
-    border: 1px solid $lowlight-primary;
+    position: relative;
+    &:after {
+      display: block;
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      content: '';
+      height: 1px;
+      width: calc(100% - 3rem);
+      border-bottom: 1px solid $lowlight-quaternary;
+      transform: translateX(-50%);
+      opacity: 0;
+      transition: opacity 250ms $ease;
+      z-index: 3;
+    }
     input {
       width: 90%;
       flex-grow: 1;
+      font-size: 1.6rem;
     }
   }
 
@@ -35,6 +64,8 @@
     outline: 0;
     height: 3.6rem;
     min-width: 3.6rem;
+    transition: background 250ms $ease;
+    color: $lowlight-primary;
     &:hover {
       background: $highlight-secondary;
     }
@@ -48,7 +79,6 @@
   }
 
   .search-results {
-    position: absolute;
     z-index: 2;
     display: flex;
     flex-direction: column;
@@ -57,19 +87,37 @@
     left: 0;
     background: $highlight-primary;
     color: $lowlight-primary;
-    border: 1px solid $lowlight-primary;
     border-top: none;
-    @include box-shadow(1);
     > div {
       width: 100%;
-      padding: 1rem;
+    }
+  }
+  
+  .search-suggestions {
+    display: none;
+    > div {
+      width: 50%;
+      flex-grow: 2;
+    }
+    li {
+      font-size: 1.4rem;
     }
 
-    .search-suggestions {
-      display: flex;
-      > div {
-        width: 50%;
-        flex-grow: 2;
+    .keywords,
+    .products {
+      a {
+        display: flex;
+        padding: 1rem;
+        transition: background 250ms $ease;
+        &:hover {
+          background: $highlight-secondary;
+        }
+      }
+    }
+
+    .products {
+      li {
+        margin-bottom: 0;
       }
     }
   }
@@ -82,6 +130,19 @@
     .cancel-trigger {
       display: block;
     }
+    .search-input {
+      &:after {
+        opacity: 1;
+      }
+    }
+  }
+
+  .search-recent,
+  .search-suggestions {
+    display: none;
+    &.active {
+      display: flex;
+    }
   }
 
   .search-recent {
@@ -89,8 +150,11 @@
   }
   
   @media (min-width: breakpoint("lg")) {
+    border: 2px solid $lowlight-primary;
+    border-radius: 20px;
     .belk-search.active ~ * {
       max-width: initial;
+      border-radius: 20px;
     }
     
     .cancel-trigger {

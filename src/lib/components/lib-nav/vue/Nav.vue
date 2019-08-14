@@ -31,7 +31,7 @@
 <style lang="scss">
 a {
   .search-highlight {
-    color: $accent-tertiary;
+    color: $accent-primary;
   }
   &:hover {
     .search-highlight {

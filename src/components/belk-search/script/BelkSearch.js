@@ -1,3 +1,5 @@
+import BelkProducts from '../../belk-products/vue/BelkProducts.vue'
+
 export default {
   name: 'BelkSearch',
 
@@ -20,8 +22,15 @@ export default {
       response: {},
       count: 0,
       preloaded: false,
-      fullyloaded: false
+      fullyloaded: false,
+      belkProducts: BelkProducts
     };
+  },
+
+  computed: {
+    isActive() {
+      return this.isFocused;
+    }
   },
 
   watch: {
@@ -36,14 +45,24 @@ export default {
       }
     },
 
+    value(val) {
+      this.valueLength = val.len;
+    },
+
     recents(arr) {
       this.recentCount = arr.length;
+    },
+    
+    products(val) {
+      this.productsEl.products = val;
     }
   },
 
   mounted() {
     this.inputEl = this.$refs.input;
     this.resultsEl = this.$refs.results;
+    this.productsEl = this.$refs.suggestedProducts;
+
     this.recentSearches();
     if (location.params) {
       let query = location.params.q;
@@ -55,7 +74,6 @@ export default {
     keyupHandler() {
       this.value = this.inputEl.value;
       let len = this.value.length;
-      this.valueLength = len;
 
       if (len >= this.triggerResults) {
         clearTimeout(this._timer);
@@ -79,7 +97,6 @@ export default {
       let url = `https://brm-suggest-0.brsrvr.com/api/v1/suggest/?account_id=6082&auth_key=&domain_key=belk&request_type=suggest&q=${value}`;
       xhr.open('GET', url);
       xhr.send(null);
-
       xhr.onreadystatechange = function () {
         let DONE = 4;
         let OK = 200;
@@ -107,16 +124,20 @@ export default {
       this.setItem('recentSearches', []);
     },
 
-    doSearch() {
-      let val = this.inputEl.value;
+    doSearch(value) {
+      let val = value || this.inputEl.value;
       this.recentSearches(val);
-      // let url = `https://www.belk.com/search/?q=${val}&lang=default`;
-      // window.location.href = url;
+      let url = `https://www.belk.com/search/?q=${val}&lang=default`;
+      window.location.href = url;
     },
 
     fillSearch(val, doSearch) {
       this.inputEl.value = val;
       if (doSearch) this.doRequest();
+    },
+
+    buildSearchLink(q) {
+      return `https://brm-suggest-0.brsrvr.com/api/v1/suggest/?account_id=6082&auth_key=&domain_key=belk&request_type=suggest&q=${q}`;
     },
 
     suggestionHoverHandler(val) {
@@ -125,7 +146,16 @@ export default {
 
     showSuggestedProducts(which = 0) {
       return which
-    }
-  },
+    },
 
+    format(price) {
+      let formatter = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+        minimumFractionDigits: 2
+      });
+
+      return formatter.format(price);
+    }
+  }
 };

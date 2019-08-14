@@ -1,6 +1,3 @@
-import BelkMegaNav from '../../belk-mega-nav/vue/BelkMegaNav.vue'
-import BelkSearch from '../../belk-search/vue/BelkSearch.vue'
-
 export default {
   name: 'BelkHeader',
 
@@ -25,10 +22,4 @@ export default {
       this.navEl.show();
     },
   },
-
-  components: {
-    BelkMegaNav,
-    BelkSearch
-  }
-
 }

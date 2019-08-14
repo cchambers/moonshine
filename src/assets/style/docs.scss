@@ -959,6 +959,7 @@ body {
     justify-content: space-between;
     flex: 1 auto;
     background: $highlight-primary;
+    scroll-behavior: smooth;
     @include scroll-y;
   }
 
