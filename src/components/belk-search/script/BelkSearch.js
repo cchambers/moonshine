@@ -27,6 +27,12 @@ export default {
     };
   },
 
+  computed: {
+    isActive() {
+      return this.isFocused;
+    }
+  },
+
   watch: {
     response(val) {
       this.suggestions = val.response.suggestions || {};
@@ -39,12 +45,15 @@ export default {
       }
     },
 
+    value(val) {
+      this.valueLength = val.len;
+    },
+
     recents(arr) {
       this.recentCount = arr.length;
     },
     
     products(val) {
-      console.log("PRODUCTS UPDATED")
       this.productsEl.products = val;
     }
   },
@@ -62,11 +71,9 @@ export default {
   },
 
   methods: {
-
     keyupHandler() {
       this.value = this.inputEl.value;
       let len = this.value.length;
-      this.valueLength = len;
 
       if (len >= this.triggerResults) {
         clearTimeout(this._timer);
@@ -90,7 +97,6 @@ export default {
       let url = `https://brm-suggest-0.brsrvr.com/api/v1/suggest/?account_id=6082&auth_key=&domain_key=belk&request_type=suggest&q=${value}`;
       xhr.open('GET', url);
       xhr.send(null);
-
       xhr.onreadystatechange = function () {
         let DONE = 4;
         let OK = 200;
@@ -128,6 +134,10 @@ export default {
     fillSearch(val, doSearch) {
       this.inputEl.value = val;
       if (doSearch) this.doRequest();
+    },
+
+    buildSearchLink(q) {
+      return `https://brm-suggest-0.brsrvr.com/api/v1/suggest/?account_id=6082&auth_key=&domain_key=belk&request_type=suggest&q=${q}`;
     },
 
     suggestionHoverHandler(val) {

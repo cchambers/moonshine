@@ -1,5 +1,5 @@
 <template>
-  <div class="belk-search" :count="count" v-bind:class="{ active: isFocused }">
+  <div class="belk-search" :count="count" v-bind:class="{ active: isActive }">
     <!-- Input -->
     <div class="search-input">
       <input
@@ -22,8 +22,7 @@
     <div class="search-results">
       <div
         v-if="count==0 && valueLength>2 && isFocused && noResults && searchValue!=''"
-        class="search-noresults"
-      >
+        class="search-noresults">
         <p class="italic px14">No suggestions found for "{{ searchValue }}"...</p>
       </div>
 
@@ -45,10 +44,9 @@
             <li
               v-for="item in suggestions"
               v-bind:key="item.id"
-              v-hammer:tap="doSearch(item.q)"
               @mouseover="suggestionHoverHandler(item.q)"
             >
-              {{ item.q }}
+              <a :href="buildSearchLink(item.q)">{{ item.q }}</a>
             </li>
           </ul>
         </div>

@@ -1,7 +1,5 @@
 
-require('./components/belk-coupon');
-require('./components/belk-search');
-require('./components/belk-products');
+// require('./components/belk-coupon');
 
 
 require('./components/sh-accordion');
@@ -14,9 +12,7 @@ require('./components/sh-dropnav');
 require('./components/sh-form');
 require('./components/sh-input');
 require('./components/sh-link-list');
-require('./components/sh-nav-item');
 require('./components/sh-popper');
-require('./components/sh-rating');
 require('./components/sh-slider');
 require('./components/sh-tabs');
 require('./components/sh-tooltip');

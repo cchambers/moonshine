@@ -100,16 +100,24 @@ belk-search {
       flex-grow: 2;
     }
     li {
-      padding: 1rem;
       font-size: 1.4rem;
     }
 
-    .keywords {
-      li {
-        cursor: pointer;
+    .keywords,
+    .products {
+      a {
+        display: flex;
+        padding: 1rem;
+        transition: background 250ms $ease;
         &:hover {
           background: $highlight-secondary;
         }
+      }
+    }
+
+    .products {
+      li {
+        margin-bottom: 0;
       }
     }
   }

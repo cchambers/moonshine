@@ -206,11 +206,11 @@ lib-nav {
     display: flex !important;
 
     &:after {
-      content: "( "attr(note) " )";
+      content: "("attr(note) ")";
       display: inline-block;
       font-size: 1.4rem;
       margin-left: auto;
-      color: $lowlight-tertiary;
+      color: $lowlight-quaternary;
     }
   }
 
