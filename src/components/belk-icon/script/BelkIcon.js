@@ -17,9 +17,21 @@ export default {
     },
   },
 
+  data() {
+    return {
+      title: false
+    }
+  },
+
   computed: {
     iconID() {
       return `#${this.name}`;
     }
-  }
+  },
+
+  mounted() {
+    if (this.$refs.title) {
+      this.title = this.$refs.title.innerText;
+    }
+  },
 }

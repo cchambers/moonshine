@@ -1,6 +1,3 @@
-
-require('./assets/style/common/utility.scss');
-
 require('./components/belk-bag');
 require('./components/belk-header');
 require('./components/belk-icon');
