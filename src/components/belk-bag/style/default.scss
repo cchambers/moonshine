@@ -8,23 +8,30 @@ belk-bag {
     display: flex;
     flex-direction: row;
     align-content: flex-start;
-    align-items: stretch;
+    align-items: center;
+  }
+  .bag-text {
+    font-size: 16px;
+    margin-top: 4px;
   }
 
   .bag-icon {
-    display: inline-flex;
-    align-items: center;
-    background: $accent-primary;
-    color: $highlight-primary;
-    padding: 1.5rem;
-  }
-
-  .bag-total {
-    background: $accent-tertiary;
-    color: $highlight-primary;
-    padding: 0 0.25rem;
-    font-size: 1.2rem;
-    align-self: center;
+    position: relative;
+    width: 28px;
+    margin-right: 8px;
+    svg {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+    }
+    span {
+      font-size: 11px;
+      display: flex;
+      height: 28px;
+      align-items: center;
+      justify-content: center;
+      margin-top: 4px;
+    }
   }
 }
 
