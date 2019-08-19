@@ -13,6 +13,8 @@ belk-header[variant="primary"] {
   .primary {
     display: none;
     padding: 1rem;
+    height: 48px;
+    font-size: 14px;
   }
 
   .contain {
@@ -25,16 +27,36 @@ belk-header[variant="primary"] {
     align-items: center;
     order: 3;
     margin: 0 1rem;
-    margin-left: auto;
-    > div {
+
+    > .icon-bar-icon {
       display: flex;
-      margin: 1rem;
+      margin-right: 24px;
       align-items: center;
       flex-shrink: 0;
-      > div {
-        display: none;
-        margin-left: 1rem;
+      svg {
+        width: 30px;
+        margin-right: 8px;
       }
+      > .icon-text {
+        display: inline-flex;
+        flex-direction: column;
+        font-size: 16px;
+        sup {
+          font-size: 14px;
+        }
+      }
+    }
+  }
+  .html-slot-container {
+    font-weight: bold;
+  }
+  .utility-menu {
+    display: flex;
+    svg {
+      width: 8px;
+    }
+    .utility-menu-item {
+      margin-left: 16px;
     }
   }
   
@@ -112,9 +134,5 @@ belk-header[variant="primary"] {
       max-width: 0;
     }
 
-    .icon-bar>div>div {
-      display: block;
-      order: 3;
-    }
   }
 }
