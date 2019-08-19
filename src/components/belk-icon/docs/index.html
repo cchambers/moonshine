@@ -1,22 +1,12 @@
-<belk-takeover variant="demo">
-  <div class="top">
-    MAIN AD HERE
-    <div class="pres"></div>
-  </div>
-  <div slot="left" class="popper demo-one">
-    left ad space
-  </div>
-  <div slot="right" class="popper demo-two">
-    right ad space
-  </div>
-</belk-takeover>
+<sh-svglib></sh-svglib>
+
 <div class="documentation contain">
-  <h1>Belk Takeover</h1>
+  <h1>Belk Icon</h1>
   <section id="usage">
     <h2>Usage</h2>
     <pre>
       <code class="language-html">
-        &lt;belk-takeover&gt; html content &lt;/belk-takeover&gt;
+          &lt;belk-icon&gt;new component&lt;/belk-icon&gt;
       </code>
     </pre>
 
@@ -36,9 +26,9 @@
       </thead>
       <tbody>
         <tr>
-          <td>delay</td>
-          <td>Number</td>
-          <td>Time before ad is shown.</td>
+          <td>hidden</td>
+          <td>Boolean</td>
+          <td>Hide from view.</td>
         </tr>
       </tbody>
     </table>
@@ -56,19 +46,34 @@
         <tr>
           <td>default</td>
           <td>
-            Main banner content.
+            Text content.
           </td>
         </tr>
+      </tbody>
+    </table>
+
+    <h3 id="methods">Public Methods</h3>
+
+    <table class="methods">
+      <thead>
         <tr>
-          <td>left</td>
-          <td>
-            Left side banner content.
-          </td>
+          <th>Function</th>
+          <th>Params</th>
+          <th>Description</th>
         </tr>
+      </thead>
+      <tbody>
         <tr>
-          <td>right</td>
+          <td>snap</td>
           <td>
-            Right side banner content.
+            <ul>
+              <li>
+                none
+              </li>
+            </ul>
+          </td>
+          <td>
+            Perform snap animation and half text.
           </td>
         </tr>
       </tbody>
@@ -86,12 +91,12 @@
       </thead>
       <tbody>
         <tr>
-          <td>takeover-shown</td>
+          <td>event-name</td>
           <td>
             Type
           </td>
           <td>
-            Fires when ad takeover occurs.
+            Fires when something happens.
           </td>
         </tr>
       </tbody>
@@ -101,15 +106,26 @@
   <section id="examples">
     <h2>Examples</h2>
     <h3>Default</h3>
+    <lib-toolbar>
+      <belk-icon name="close"></belk-icon>
+      <belk-icon name="close" class="accent-tertiary"></belk-icon>
+      <belk-icon name="close" class="accent-secondary"></belk-icon>
+    </lib-toolbar>
   </section>
 
   <section id="changelog">
     <h2>Changelog</h2>
     <dl>
       <dt>0.1.0</dt>
-      <dd>Belk Takeover is under development.</dd>
-      <!-- <dt>1.0.0</dt>
-      <dd>Belk Takeover is ready for use.</dd> -->
+      <dd>Belk Icon is under development.</dd>
+      <dt>1.0.0</dt>
+      <dd>Belk Icon is ready for use.</dd>
+      <dt>1.0.1</dt>
+      <dd><strong>PATCH</strong> version when you make backwards-compatible bug fixes.</dd>
+      <dt>1.1.0</dt>
+      <dd><strong>MINOR</strong> version when you add functionality in a backwards-compatible manner.</dd>
+      <dt>2.0.0</dt>
+      <dd><strong>MAJOR</strong> version when you make incompatible API changes.</dd>
     </dl>
   </section>
 </div>

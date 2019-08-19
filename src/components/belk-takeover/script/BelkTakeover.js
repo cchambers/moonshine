@@ -39,7 +39,7 @@ export default {
   mounted() {
     let self = this;
     this.referenceEl = document.querySelector(this.attachTo);
-    this.scrollingEl = document.querySelector(this.scrollWith);
+    this.scrollingEl = document.querySelector(this.scrollWith) || 'viewport';
     this.popperLeft = this.$refs.popperLeft;
     this.popperRight = this.$refs.popperRight;
 

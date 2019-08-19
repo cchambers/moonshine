@@ -9,3 +9,4 @@
 
 <script src="../script/BelkTakeover.js"></script>
 <style lang="scss" src="../style/default.scss"></style>
+<style lang="scss" src="../style/demo.scss"></style>

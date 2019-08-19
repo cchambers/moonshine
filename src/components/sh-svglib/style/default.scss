@@ -1,0 +1,15 @@
+/* 
+  I know this is overkill, but it
+  should cover at least 3 different
+  possible conflicts. ~CC
+*/
+
+sh-svglib {
+  display: none;
+  height: 0;
+  width: 0;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
