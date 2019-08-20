@@ -3,12 +3,12 @@ export default {
   props: {
     height: {
       type: Number,
-      default: 30
+      default: null
     },
 
     width: {
       type: Number,
-      default: 30
+      default: 60
     },
 
     name: {
@@ -19,7 +19,9 @@ export default {
 
   data() {
     return {
-      title: false
+      title: false,
+      viewbox: '0 0 24 24',
+      configured: false
     }
   },
 
@@ -30,8 +32,19 @@ export default {
   },
 
   mounted() {
-    if (this.$refs.title) {
-      this.title = this.$refs.title.innerText;
-    }
+    if (this.width) this.$el.style.width = `${this.width}px`;
+    if (this.$refs.title) this.title = this.$refs.title.innerText;
+    this.$bus.$emit(`icon-setup`, this);
   },
+
+  methods: {
+    setup(data){ 
+      if (!this.configured) {
+        this.configured = true;
+        console.log("TEST: ",data)
+        this.$bus.$off(`icon-${this.name}`, this.setup);
+        this.viewbox = data;
+      }
+    }
+  }
 }

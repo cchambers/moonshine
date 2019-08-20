@@ -13,7 +13,7 @@
           <slot name="header">{{ header }}</slot>
         </h3>
         <div close-trigger v-hammer:tap="close">
-          <belk-icon name="close"></belk-icon>
+          <belk-icon name="close" width="30"></belk-icon>
         </div>
       </div>
       <div class="body" ref="body" :id="ariaDescID">
