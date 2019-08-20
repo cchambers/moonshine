@@ -1,7 +1,9 @@
 <template>
   <div class="sh-svglib">
     <svg>
-      <g v-for="(html, name) in icons" v-bind:key="name" v-html="html" :id="name"></g>
+      <defs>
+        <g v-for="(html, name) in icons" v-bind:key="name" v-html="html" :id="name"></g>
+      </defs>
     </svg>
   </div>
 </template>

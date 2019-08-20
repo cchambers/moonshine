@@ -1,7 +1,7 @@
 {
   "name": "Belk Icon",
   "element": "belk-icon",
-  "description": "Demonstration component.",
-  "tags": ["utilities", "demo"],
+  "description": "Icon display component.",
+  "tags": ["icons", "svgs", "imagery"],
   "requirements": []
 }

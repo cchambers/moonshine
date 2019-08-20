@@ -12,8 +12,8 @@
         <h3 :id="ariaHeaderID">
           <slot name="header">{{ header }}</slot>
         </h3>
-        <div>
-          <i v-hammer:tap="close" class="material-icons-round bold">close</i>
+        <div close-trigger v-hammer:tap="close">
+          <belk-icon name="close"></belk-icon>
         </div>
       </div>
       <div class="body" ref="body" :id="ariaDescID">
