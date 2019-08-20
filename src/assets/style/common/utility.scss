@@ -5,11 +5,14 @@
 }
 
 @each $name, $hex in $colors {
+  $var: map-get($colors, $name);
   .#{$name} {
-    color: map-get($colors, $name);
+    color: $var;
+    color: var(--#{$name});
   }
   .back-#{$name} {
-    background: map-get($colors, $name);
+    background-color: $var;
+    background-color: var(--#{$name});
   }
 }
 

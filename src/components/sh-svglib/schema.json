@@ -1,0 +1,7 @@
+{
+  "name": "Svglib",
+  "element": "sh-svglib",
+  "description": "Demonstration component.",
+  "tags": ["utilities", "demo"],
+  "requirements": []
+}

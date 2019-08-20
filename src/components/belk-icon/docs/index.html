@@ -1,0 +1,82 @@
+<sh-svglib></sh-svglib>
+
+<div class="documentation contain">
+  <h1>Icon</h1>
+  <section id="usage">
+    <h2>Usage</h2>
+    <pre>
+      <code class="language-html">
+          &lt;belk-icon name="close"&gt;Title for specific case.&lt;/belk-icon&gt;
+      </code>
+    </pre>
+  </section>
+
+  <section id="reference" class="baseline30">
+    <h2>Reference</h2>
+    <h3 id="attributes">Attributes</h3>
+
+    <table class="attributes">
+      <thead>
+        <tr>
+          <th>Attribute</th>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>name</td>
+          <td>String</td>
+          <td>Name of the icon to use.</td>
+        </tr>
+        <tr>
+          <td>height</td>
+          <td>Number</td>
+          <td>Height of icon.</td>
+        </tr>
+        <tr>
+          <td>width</td>
+          <td>Number</td>
+          <td>Width of icon.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3 id="slots">Slots</h3>
+
+    <table class="slots">
+      <thead>
+        <tr>
+          <th>Slot</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>default</td>
+          <td>
+            Title content for SVG (like accessible ALT text).
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="examples">
+    <h2>Examples</h2>
+    <h3>Default</h3>
+    <lib-toolbar>
+      <belk-icon name="close">Close this container.</belk-icon>
+      <belk-icon name="close" class="accent-tertiary">Test title content.</belk-icon>
+      <belk-icon name="close" class="accent-secondary"></belk-icon>
+    </lib-toolbar>
+  </section>
+
+  <section id="changelog">
+    <h2>Changelog</h2>
+    <dl>
+      <dt>1.0.0</dt>
+      <dd>Belk Icon is ready for use.</dd>
+    </dl>
+  </section>
+</div>
