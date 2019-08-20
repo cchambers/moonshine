@@ -8,7 +8,7 @@ export default {
 
     width: {
       type: Number,
-      default: 60
+      default: 45
     },
 
     name: {
@@ -41,8 +41,6 @@ export default {
     setup(data){ 
       if (!this.configured) {
         this.configured = true;
-        console.log("TEST: ",data)
-        this.$bus.$off(`icon-${this.name}`, this.setup);
         this.viewbox = data;
       }
     }
