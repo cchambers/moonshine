@@ -11,26 +11,26 @@ belk-bag {
     align-items: center;
   }
   .bag-text {
-    font-size: 16px;
-    margin-top: 4px;
+    font-size: 1.6rem;
+    margin-top: .4rem;
   }
 
   .bag-icon {
     position: relative;
-    width: 28px;
-    margin-right: 8px;
+    width: 2.8rem;
+    margin-right: .8rem;
     svg {
       position: absolute;
       bottom: 0;
       left: 0;
     }
     span {
-      font-size: 11px;
+      font-size: 1.1rem;
       display: flex;
-      height: 28px;
+      height: 2.8rem;
       align-items: center;
       justify-content: center;
-      margin-top: 4px;
+      margin-top: .4rem;
     }
   }
 }

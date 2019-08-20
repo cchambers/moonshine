@@ -13,8 +13,8 @@ belk-header[variant="primary"] {
   .primary {
     display: none;
     padding: 1rem;
-    height: 48px;
-    font-size: 14px;
+    height: 4.8rem;
+    font-size: 1.4rem;
   }
 
   .contain {
@@ -30,19 +30,19 @@ belk-header[variant="primary"] {
 
     > .icon-bar-icon {
       display: flex;
-      margin-right: 24px;
+      margin-right: 2.4rem;
       align-items: center;
       flex-shrink: 0;
       svg {
-        width: 30px;
-        margin-right: 8px;
+        width: 3.0rem;
+        margin-right: .8rem;
       }
       > .icon-text {
         display: inline-flex;
         flex-direction: column;
-        font-size: 16px;
+        font-size: 1.6rem;
         sup {
-          font-size: 14px;
+          font-size: 1.4rem;
         }
       }
     }
@@ -53,10 +53,10 @@ belk-header[variant="primary"] {
   .utility-menu {
     display: flex;
     svg {
-      width: 8px;
+      width: .8rem;
     }
     .utility-menu-item {
-      margin-left: 16px;
+      margin-left: 1.6rem;
     }
   }
   
