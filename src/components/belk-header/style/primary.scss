@@ -8,6 +8,7 @@ belk-header[variant="primary"] {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 0 15px;
   }
 
   .primary {
@@ -71,10 +72,6 @@ belk-header[variant="primary"] {
     margin-left: auto;
   }
 
-  belk-mega-nav {
-
-  }
-
   sh-button.nav-trigger {
     .sh-button {
       background: transparent !important;
@@ -116,6 +113,13 @@ belk-header[variant="primary"] {
   .tertiary {
     nav {
       display: block;
+    }
+  }
+
+  .icon-bar-icon {
+    a {
+      display: flex;
+      align-items: center;
     }
   }
 
