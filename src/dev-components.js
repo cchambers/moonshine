@@ -1,6 +1,10 @@
 
-// require('./components/belk-coupon');
-
+require('./components/belk-bag');
+require('./components/belk-header');
+require('./components/belk-logo');
+require('./components/belk-search');
+require('./components/belk-mega-nav');
+require('./components/belk-products');
 
 require('./components/sh-accordion');
 require('./components/sh-adapt-content');
@@ -12,7 +16,9 @@ require('./components/sh-dropnav');
 require('./components/sh-form');
 require('./components/sh-input');
 require('./components/sh-link-list');
+require('./components/sh-nav-item');
 require('./components/sh-popper');
+require('./components/sh-rating');
 require('./components/sh-slider');
 require('./components/sh-tabs');
 require('./components/sh-tooltip');
