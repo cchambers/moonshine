@@ -2,7 +2,7 @@
   <div class="sh-svglib">
     <svg>
       <defs>
-        <g v-for="(html, name) in icons" v-bind:key="name" v-html="html" :id="name"></g>
+        <g v-for="(data, name) in icons" v-bind:key="name" v-html="data.svg" :id="name"></g>
       </defs>
     </svg>
   </div>
