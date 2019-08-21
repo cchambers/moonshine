@@ -5,6 +5,9 @@
     <div class="popper-target" ref="target">
       <div class="reference">
         <slot name="reference"></slot>
+        <!-- <belk-icon name="arrow-down" v-if="variant == 'primary'">
+          has dropdown
+        </belk-icon> -->
       </div>
       <button v-hammer:tap="activate">
         <i class="material-icons-round">add</i>

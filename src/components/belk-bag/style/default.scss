@@ -10,6 +10,15 @@ belk-bag {
     align-content: flex-start;
     align-items: center;
   }
+  
+  .bag-count {
+    display: flex;
+    height: 2.5rem;
+    font-size: 1.4rem;
+    align-items: center;
+    text-align: center;
+  }
+
   .bag-text {
     font-size: 1.6rem;
     margin-top: .4rem;

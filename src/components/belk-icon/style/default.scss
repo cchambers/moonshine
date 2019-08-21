@@ -4,5 +4,6 @@ belk-icon {
   display: inline-flex;
   svg {
     height: auto;
+    pointer-events: none;
   }
 }
