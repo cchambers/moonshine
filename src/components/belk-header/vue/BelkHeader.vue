@@ -182,13 +182,42 @@
             </sh-nav-item>
           </li>
 
+
           <li class="icon-bar-icon">
-            <sh-nav-item>
+            <sh-nav-item delay-on-mouse-over="400" delay-on-mouse-out="400" variant="primary">
+              <a slot="reference" id="bopis-link" href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.02 25.7">
+                  <title>Asset 1_2</title>
+                  <g id="Layer_2" data-name="Layer 2">
+                    <g id="Layer_1-2" data-name="Layer 1">
+                      <path
+                        d="M14.32,12.3a9.25,9.25,0,0,0-1-.5A6.36,6.36,0,0,0,16,6.5a6.5,6.5,0,0,0-13,0,6.62,6.62,0,0,0,2.7,5.3c-.4.2-.8.3-1.2.5C-.08,15.2-.08,16.6,0,23.2v1.5a1.08,1.08,0,0,0,1,1H18a.94.94,0,0,0,1-1V22.8C19,16.3,19,15,14.32,12.3ZM5,6.5A4.5,4.5,0,1,1,9.52,11,4.48,4.48,0,0,1,5,6.5ZM17,22.8v.9h-1.5V19a1,1,0,0,0-2,0v4.7h-8V19a.94.94,0,0,0-1-1,.94.94,0,0,0-1,1v4.7H2v-.5c-.1-6.5-.1-6.9,3.5-9.1a9,9,0,0,1,4-1.1,8.3,8.3,0,0,1,3.8,1C17,16.2,17,16.4,17,22.8Z"
+                      />
+                    </g>
+                  </g>
+                </svg>
+                <div class="icon-text">
+                  <sup>Sign In,</sup>
+                  <span>Account ⋁</span>
+                </div>
+              </a>
+              <div id="bopis-menu">
+                <ul>
+                  <li>
+                    <a>Bopis Thing</a>
+                  </li>
+                </ul>
+              </div>
+            </sh-nav-item>
+          </li>
+
+          <li class="icon-bar-icon">
+            <sh-nav-item variant="primary">
               <div slot="referece">
                 <belk-bag ref="bag" count="10" price="1234.53"></belk-bag>
               </div>
               <div>
-                Flyout
+                
               </div>
             </sh-nav-item>
           </li>
