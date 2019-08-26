@@ -7,8 +7,6 @@ require('./components/belk-mega-nav');
 require('./components/belk-products');
 
 
-require('./components/test-thing');
-
 require('./components/sh-accordion');
 require('./components/sh-adapt-content');
 require('./components/sh-banner');

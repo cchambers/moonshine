@@ -47,10 +47,9 @@ belk-search {
       content: '';
       height: 1px;
       width: calc(100% - 3rem);
-      border-bottom: 1px solid trasnparent;
+      border-bottom: 1px solid transparent;
       transform: translateX(-50%);
       opacity: 0;
-      transition: opacity 250ms $ease;
       z-index: 3;
     }
     input {
@@ -92,6 +91,7 @@ belk-search {
     background: $highlight-primary;
     color: $lowlight-primary;
     border-top: none;
+    font-size: 1.4rem;
     > div {
       width: 100%;
     }
@@ -102,9 +102,6 @@ belk-search {
     > div {
       width: 50%;
       flex-grow: 2;
-    }
-    li {
-      font-size: 1.4rem;
     }
 
     .products {

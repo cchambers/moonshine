@@ -3,8 +3,7 @@
     class="belk-search"
     :count="count"
     :state="state"
-    v-bind:class="{ active: isActive, focused: isFocused }"
-  >
+    v-bind:class="{ active: isActive, focused: isFocused }">
     <!-- Input -->
     <div class="search-input">
       <input
@@ -12,10 +11,10 @@
         type="text"
         v-on:keyup="keyupHandler"
         v-on:keyup.enter="doSearch"
-        v-on:keyup.esc="forceBlur"
+        v-on:keydown.esc="forceBlur"
+        v-on:keydown.tab="forceBlur"
         :placeholder="placeholder"
-        @focus="isFocused = true"
-      />
+        @focus="focusHandler"/>
       <button ref="clear" v-if="valueLength>0" v-hammer:tap="clearSearch">
         <i class="material-icons-round">close</i>
       </button>
@@ -43,7 +42,7 @@
         </ul>
       </div>
 
-      <div ref="actual" v-bind:class="{ 'active': count>0 }" class="search-suggestions">
+      <div ref="actual" v-bind:class="{ 'active': state == 2 }" class="search-suggestions">
         <div class="keywords">
           <ul>
             <li>
@@ -120,13 +119,7 @@ export default {
       let state = 0;
       if (this.recents.length && this.count == 0 && this.isFocused) state = 1;
       if (this.count > 0 && this.isFocused) state = 2;
-      if (
-        this.count == 0 &&
-        this.noResults &&
-        this.searchValue != "" &&
-        this.isFocused
-      )
-        state = 3;
+      if (this.count == 0 && this.noResults && this.searchValue != "" && this.isFocused) state = 3;
       return state;
     }
   },
@@ -144,6 +137,7 @@ export default {
     },
 
     value(val) {
+      if (this.inputEl.value != val) this.inputEl.value = val;
       this.valueLength = val.length;
     },
 
@@ -199,7 +193,6 @@ export default {
         if ( !self.$el ||self.elementContains(self.$el, e.target) ) {
           return;
         }
-
         self.isFocused = false;
       });
     },
@@ -216,12 +209,23 @@ export default {
       }
     },
 
+    focusHandler() {
+      this.isFocused = true;
+      this.inputEl.setSelectionRange(0, this.inputEl.value.length);
+    },
+
+    forceBlur() {
+      // this.inputEl.value = '';
+      if (document.activeElement == this.inputEl) this.inputEl.blur();
+      this.isFocused = false;
+    },
+
     clearSearch() {
       this.inputEl.value = "";
       this.value = "";
       this.searchValue = "";
       this.response = { response: {} };
-      this.inputEl.focus();
+      // this.inputEl.focus();
     },
 
     doRequest() {
@@ -242,11 +246,6 @@ export default {
           }
         }
       };
-    },
-
-    close() {
-      this.inputEl.blur();
-      this.setState(0);
     },
 
     recentSearches(val) {
