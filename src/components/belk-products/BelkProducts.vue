@@ -21,7 +21,29 @@
   </div>
 </template>
 
-<script src="../script/BelkProducts.js"></script>
-<style lang="scss" src="../style/default.scss"></style>
-<style lang="scss" src="../style/primary.scss"></style>
-<style lang="scss" src="../style/secondary.scss"></style>
+<script>
+export default {
+  name: 'BelkProducts',
+  props: {
+    priceAPI: {
+      type: String,
+      default: 'https://www.belk.com/on/demandware.store/Sites-Belk-Site/default/Certona-ProductPricingJSON'
+    }
+  },
+
+  data() {
+    return {
+      products: []
+    }
+  },
+  
+  methods: {
+    quickView(e) {
+      e.preventDefault();
+    }
+  }
+}
+</script>
+<style lang="scss" src="./style/default.scss"></style>
+<style lang="scss" src="./style/primary.scss"></style>
+<style lang="scss" src="./style/secondary.scss"></style>

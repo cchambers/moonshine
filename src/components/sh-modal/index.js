@@ -1,4 +1,4 @@
 import Vue from 'vue'
-import Modal from './vue/Modal';
+import Modal from './Modal';
 
 Vue.customElement('sh-modal', Modal);

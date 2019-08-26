@@ -40,6 +40,7 @@ export default {
     if (this.uniqueId) {
       this.id = this.uniqueId;
     } else {
+      this.setUUID();
       this.id = `ac-${this.uuid}`;
     }
 

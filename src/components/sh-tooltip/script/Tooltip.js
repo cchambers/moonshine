@@ -12,6 +12,7 @@ export default {
   },
 
   created() {
+    this.setUUID();
     this.tipId = `tip-${this.uuid}`;
   },
 

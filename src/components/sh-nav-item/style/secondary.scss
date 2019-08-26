@@ -1,4 +1,4 @@
-sh-nav-item[variant="primary"] {
+sh-nav-item[variant="secondary"] {
   .sh-nav-item.touch {
     &[active] {
       .actual {
@@ -11,6 +11,9 @@ sh-nav-item[variant="primary"] {
 
   a {
     color: $lowlight-primary;
+    belk-icon {
+      width: 20px;
+    }
   }
 
   .popper-target {
@@ -134,7 +137,7 @@ sh-nav-item[variant="primary"] {
     }
 
     .actual {
-      width: auto;
+      width: 100%;
       max-width: 128rem;
 
       h1,
@@ -155,3 +158,4 @@ sh-nav-item[variant="primary"] {
     }
   }
 }
+

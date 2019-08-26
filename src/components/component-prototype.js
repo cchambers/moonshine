@@ -7,13 +7,20 @@ Vue.prototype.$prefix = 'sh';
 
 const ComponentPrototype = {
   props: {
-      variant: {
-        type: String,
-        value: 'default'
-      }
+    variant: {
+      type: String,
+      value: 'default'
+    }
   },
 
   methods: {
+    setUUID() {
+      this.uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+        var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+        return v.toString(16);
+      });
+    },
+    
     getItem(which) {
       let val = localStorage.getItem(which);
       return JSON.parse(val)
@@ -22,6 +29,14 @@ const ComponentPrototype = {
     setItem(which, val) {
       localStorage.setItem(which, JSON.stringify(val));
       return true
+    },
+    
+    elementContains(elm, otherElm) {
+      if (typeof elm.contains === 'function') {
+        return elm.contains(otherElm);
+      }
+
+      return false;
     }
   },
 
@@ -33,17 +48,13 @@ const ComponentPrototype = {
 
   created() {
     
-    this.uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-      var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
-      return v.toString(16);
-    });
   },
 
   mounted() {
     let self = this;
     if (typeof self.events == 'function') setTimeout(self.events);
     self.$bus.$emit('component-ready', self);
-  } 
+  }
 };
 
 export default ComponentPrototype
