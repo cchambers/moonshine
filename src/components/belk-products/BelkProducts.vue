@@ -9,7 +9,7 @@
               <div class="brand">{{ product.brand }}</div>
               <div class="title">{{ product.title }}</div>
             </div>
-            <div class="price" is='belk-price'>{{product.price}}</div>
+            <div class="price" is='belk-price'>{{ format(product.price) }}</div>
             <div class="rating"><sh-rating :level="product.reviews"></sh-rating></div>
             <div class="quick-view">
               <sh-button v-hammer:tap="quickView">Quick View</sh-button>
@@ -40,6 +40,16 @@ export default {
   methods: {
     quickView(e) {
       e.preventDefault();
+    },
+
+     format(price) {
+      let formatter = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+        minimumFractionDigits: 2
+      });
+
+      return formatter.format(price);
     }
   }
 }

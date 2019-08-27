@@ -32,8 +32,10 @@
     "Suggested Keywords (container)": [
       "Should list 9 keyword suggestions and whatever the user is typing currently at the top",
       "Should show users current input highlighted as first suggestion",
+      "Should emphasize the text match in bold",
       "Should update the input with the value of the highlighted element during keyboard navigation (should not not trigger an ajax call)",
-      "Should update Popular Products container with new data when item is hovered or highlighted with keyboard controls"
+      "Should update Popular Products container with new data when item is hovered or highlighted with keyboard controls",
+      "Should show previous results if keyword+letter returns 0 results"
     ],
 
     "Popular Products (container)": [
@@ -45,6 +47,10 @@
       "Predict results for next X amount of items when keyboard navigating.",
       "Save last 10 search results in session storage and compare/pull before searching"
     ]
+  },
+
+  "aria": {
+    
   },
 
   "states": {
@@ -72,4 +78,5 @@
       "result": "Entered term is shown alone as first keyword suggestion"
     }
   }
+  
 }

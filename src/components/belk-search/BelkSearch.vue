@@ -10,9 +10,12 @@
         ref="input"
         type="text"
         v-on:keyup="keyupHandler"
+        v-on:keydown="keydownHandler"
         v-on:keyup.enter="doSearch"
         v-on:keydown.esc="forceBlur"
         v-on:keydown.tab="forceBlur"
+        v-on:keydown.down="highlightHandler"
+        v-on:keydown.up="highlightHandler"
         :placeholder="placeholder"
         @focus="focusHandler"/>
       <button ref="clear" v-if="valueLength>0" v-hammer:tap="clearSearch">
@@ -22,10 +25,23 @@
         <i class="material-icons-round">search</i>
       </button>
     </div>
-
+    <div ref="loading" class="search-loading">
+      <div class="loading-bar"></div>
+    </div>
     <div class="search-results">
       <div ref="noresults" v-bind:class="{ active: state == 3 }" class="search-noresults">
-        <a :href="buildSearchLink(searchValue)">{{ searchValue }}</a>
+        <ul>
+          <li>
+            <a :href="buildSearchLink(searchValue)">{{ searchValue }}</a>
+          </li>
+            <li
+              v-for="(item, index) in previousSuggestions"
+              v-bind:key="item.id"
+              v-bind:class="{ highlight: item.highlighted }"
+              @mouseover="suggestionHoverHandler(index)">
+              <a :href="buildSearchLink(item.q)" v-html="emphasizeText(item.q)"></a>
+            </li>
+          </ul>
       </div>
 
       <div ref="recent" v-bind:class="{ active: state == 1 }" class="search-recent">
@@ -42,25 +58,21 @@
         </ul>
       </div>
 
-      <div ref="actual" v-bind:class="{ 'active': state == 2 }" class="search-suggestions">
+      <div ref="actual" v-bind:class="{ active: state == 2 }" class="search-suggestions">
         <div class="keywords">
           <ul>
-            <li>
-              <a :href="buildSearchLink(searchValue)">{{ searchValue }}</a>
-            </li>
             <li
-              v-for="item in suggestionsLimited"
+              v-for="(item, index) in suggestionsLimited"
               v-bind:key="item.id"
-              @mouseover="suggestionHoverHandler(item.q)"
               v-bind:class="{ highlight: item.highlighted }"
-            >
-              <a :href="buildSearchLink(item.q)">{{ item.q }}</a>
+              @mouseover="suggestionHoverHandler(index)">
+              <a :href="buildSearchLink(item.q)" v-html="emphasizeText(item.q)"></a>
             </li>
           </ul>
         </div>
 
         <div class="products">
-          <div class="heading">Popular in "{{ searchValue }}"</div>
+          <div class="heading">Popular in "{{ suggestTerm }}"</div>
           <component
             ref="suggestedProducts"
             v-bind:is="belkProducts"
@@ -68,11 +80,14 @@
             variant="secondary"
             :limit="3"
           ></component>
+          <a class="view-more" :href="buildSearchLink(suggestTerm)">View more results for "{{ suggestTerm }}"</a>
         </div>
       </div>
     </div>
   </div>
 </template>
+
+<style lang="scss" src="./style/default.scss"></style>
 
 <script>
 import BelkProducts from "../belk-products/BelkProducts";
@@ -82,20 +97,28 @@ export default {
 
   data() {
     return {
-      value: "",
-      searchValue: "",
+      value: '',
+      searchValue: '',
+      lowerPlaceholder: 'Lower Placeholder',
+      upperPlaceholder: 'Upper Placeholder',
+      placeholder: '',
       valueLength: 0,
       triggerResults: 1,
-      placeholder: "Search",
+      highlightIndex: 0,
       noResults: false,
       isFocused: false,
       inputEl: {},
+      ignoreKeys: [37,39,91,16,13],
+      navKeys: [38,40],
       resultsEl: {},
+      allProducts: [],
       products: [],
       productsLimited: [],
       productsLimit: 3,
       suggestions: [],
       suggestionsLimited: [],
+      previousSuggestions: [],
+      suggestTerm: '',
       suggestionsLimit: 10,
       recents: [],
       recentCount: 0,
@@ -120,6 +143,7 @@ export default {
       if (this.recents.length && this.count == 0 && this.isFocused) state = 1;
       if (this.count > 0 && this.isFocused) state = 2;
       if (this.count == 0 && this.noResults && this.searchValue != "" && this.isFocused) state = 3;
+
       return state;
     }
   },
@@ -134,6 +158,16 @@ export default {
       } else {
         this.noResults = false;
       }
+
+      this.getAllProducts(this.suggestions);
+    },
+
+    highlightIndex(val, oldVal) {
+      this.$set(this.suggestionsLimited[oldVal], 'highlighted', false);
+      this.$set(this.suggestionsLimited[val], 'highlighted', true);
+      this.showSuggestedProducts(val);
+      this.value = this.suggestionsLimited[val].q;
+      // this.selectInput();
     },
 
     value(val) {
@@ -154,22 +188,43 @@ export default {
       this.productsEl.products = this.productsLimited;
     },
 
-    suggestions(val) {
-      if (val.length) {
-        this.suggestionsLimited = val.slice(0, this.suggestionsLimit);
-        this.suggestionsLimited[0].highlighted = true;
-        let currentValueExists = false;
-        for (let x = 0, l = val.length; x < l; x++) {
-          if (val[x].q.toLowerCase() == this.searchValue.toLowerCase()) {
+    suggestions(val, old) {
+      if (val == old) return;
+      let length = val.length;
+      let arr = [];
+      let highlight;
+      let searchVal = this.searchValue.toLowerCase().trim();
+
+      if (length) {
+        for (let x = 0, l = Math.min(length, this.suggestionsLimit); x < l; x++) {
+          arr.push(val[x]);
+        }
+
+        let currentValueExists = -1;
+
+        for (let x = 0, l = arr.length; x < l; x++) {
+          let arrVal = arr[x].q.toLowerCase();
+          let match = (arrVal === searchVal);
+          if (match) {
             currentValueExists = x;
             break;
           }
         }
-        if (currentValueExists >= 0)
-          this.suggestionsLimited.splice(currentValueExists, 1);
-      } else {
-        this.suggestionsLimited = [];
+
+        if (currentValueExists < 0) {
+          let obj = { q: this.searchValue, highlighted: true };
+          arr.unshift(obj);
+          if (arr.length > this.suggestionsLimit) arr.pop();
+          highlight = 0;
+        } else {
+          arr[currentValueExists].highlighted = true;
+          highlight = currentValueExists;
+        }
       }
+
+      this.$set(this, 'suggestionsLimited', arr);
+      if (arr.length) this.$set(this, 'previousSuggestions', arr);
+      this.highlightIndex = highlight || 0;
     }
   },
 
@@ -177,7 +232,7 @@ export default {
     this.inputEl = this.$refs.input;
     this.resultsEl = this.$refs.results;
     this.productsEl = this.$refs.suggestedProducts;
-
+    this.placeholderHandler();
     this.recentSearches();
 
     if (location.params) {
@@ -189,15 +244,33 @@ export default {
   methods: {
     events() {
       let self = this;
-      document.addEventListener("click", e => {
-        if ( !self.$el ||self.elementContains(self.$el, e.target) ) {
-          return;
-        }
+      document.addEventListener('click', e => {
+        if ( !self.$el || self.elementContains(self.$el, e.target) ) return;
         self.isFocused = false;
       });
+
+      window.addEventListener('resize', self.placeholderHandler)
     },
 
-    keyupHandler() {
+    keydownHandler(e) {
+      let key = e.charCode || e.keyCode;
+      let nav = this.navKeys.indexOf(key) >= 0; // up/down arrows
+      let ignore = this.ignoreKeys.indexOf(key) >= 0; // left/right arrows, enter
+      if (ignore || nav) {
+        if (nav) e.preventDefault();
+        return;
+      }
+    },
+
+    keyupHandler(e) {
+      let key = e.charCode || e.keyCode;
+      let nav = this.navKeys.indexOf(key) >= 0; // up/down arrows
+      let ignore = this.ignoreKeys.indexOf(key) >= 0; // left/right arrows
+      if (ignore || nav) {
+        if (nav) e.preventDefault();
+        return;
+      }
+
       this.value = this.inputEl.value;
       let len = this.value.length;
 
@@ -211,29 +284,69 @@ export default {
 
     focusHandler() {
       this.isFocused = true;
-      this.inputEl.setSelectionRange(0, this.inputEl.value.length);
+      this.selectInput();
+    },
+
+    placeholderHandler() {
+      let self = this;
+      clearTimeout(self._placeholderTimer);
+      self._placeholderTimer = setTimeout(() => {
+        let text = (window.innerWidth < 768) ? this.lowerPlaceholder : this.upperPlaceholder;
+        self.placeholder = text;
+      }, 100);
+    },
+
+    selectInput() {
+      let self = this;
+      setTimeout( function() {
+        self.inputEl.setSelectionRange(0, self.value.length);
+      }, 10)
+    },
+
+    highlightHandler(e) {
+      let length = this.suggestionsLimited.length;
+      let choose;
+      let key = e.charCode || e.keyCode;
+
+      switch(key) {
+        case 38:
+          choose = -1;
+          break;
+        case 40:
+          choose = 1;
+          break;
+        default:
+          choose = 0;
+          break;
+      }
+
+      let which = this.highlightIndex;
+      which += choose;
+      if (which >= length) which = 0;
+      if (which < 0) which = length - 1;
+
+      this.highlightIndex = which;
     },
 
     forceBlur() {
-      // this.inputEl.value = '';
       if (document.activeElement == this.inputEl) this.inputEl.blur();
       this.isFocused = false;
     },
 
     clearSearch() {
-      this.inputEl.value = "";
-      this.value = "";
-      this.searchValue = "";
+      this.inputEl.value = '';
+      this.value = '';
+      this.searchValue = '';
       this.response = { response: {} };
-      // this.inputEl.focus();
+      setTimeout(() => { this.inputEl.focus()});
     },
 
     doRequest() {
       let self = this;
       let xhr = new XMLHttpRequest();
       let value = this.inputEl.value;
-      let url = `https://brm-suggest-0.brsrvr.com/api/v1/suggest/?account_id=6082&auth_key=&domain_key=belk&request_type=suggest&q=${value}`;
-      xhr.open("GET", url);
+      let url = this.buildBloomreachURL(value);
+      xhr.open('GET', url);
       xhr.send(null);
       xhr.onreadystatechange = function() {
         let DONE = 4;
@@ -241,21 +354,26 @@ export default {
         if (xhr.readyState === DONE) {
           if (xhr.status === OK) {
             let res = JSON.parse(xhr.responseText);
-            self.searchValue = value;
+            self.searchValue = value.trim();
             self.response = res;
           }
         }
       };
     },
 
+    buildBloomreachURL(val) {
+      let url = `https://brm-suggest-0.brsrvr.com/api/v1/suggest/?account_id=6082&auth_key=&domain_key=belk&request_type=suggest&q=${val}`;
+      return url
+    },
+
     recentSearches(val) {
-      let rec = this.getItem("recentSearches") || [];
+      let rec = this.getItem('recentSearches') || [];
       if (val) {
         let exists = rec.indexOf(val);
         if (exists > -1) rec.splice(exists, 1);
         rec.unshift(val);
         if (rec.length > 10) rec = rec.slice(0, 10);
-        this.setItem("recentSearches", rec);
+        this.setItem('recentSearches', rec);
       }
       this.recentCount = rec.length;
       this.recents = rec;
@@ -263,45 +381,75 @@ export default {
 
     clearRecentSearches() {
       this.recents = [];
-      this.setItem("recentSearches", []);
+      this.setItem('recentSearches', []);
     },
 
     doSearch(e) {
-      let val = e.target.value || this.inputEl.value;
+      let val = e.target.value || this.value;
       if (val.length > 0) {
         this.recentSearches(val);
-        let url = `https://www.belk.com/search/?q=${val}&lang=default`;
+        let url = this.buildSearchLink(val);
         window.location.href = url;
+        this.state = 0;
       }
     },
 
     fillSearch(val, doSearch) {
-      this.inputEl.value = val;
-      if (doSearch) this.doRequest();
+      this.value = val;
+      if (doSearch) setTimeout(this.doRequest, 10);
+    },
+
+    emphasizeText(text) {
+      let val = this.searchValue.trim();
+      let arr = text.split(val);
+      if (arr.length > 1) arr.splice(1, 0, `<span class="bold">${val}</span>`);
+      return arr.join('');
     },
 
     buildSearchLink(q) {
       return `https://www.belk.com/search/?q=${q}&lang=default`;
     },
 
+    getAllProducts(arr) {
+      let self = this;
+
+      function doReq(which) {
+        let xhr = new XMLHttpRequest();
+        let value = arr[which].q;
+        let url = self.buildBloomreachURL(value);
+        xhr.open('GET', url);
+        xhr.send(null);
+        xhr.onreadystatechange = function() {
+          let DONE = 4;
+          let OK = 200;
+          if (xhr.readyState === DONE) {
+            if (xhr.status === OK) {
+              let res = JSON.parse(xhr.responseText);
+              let arr = res.response.products;
+              arr = arr.splice(0, Math.min(arr.length, self.productsLimit))
+              self.$set(self.allProducts[which], 'products', res.response.products);
+            }
+          }
+        };
+      }
+
+
+      let length = arr.length;
+      this.allProducts = [];
+      for (let x = 0, l = length; x < l; x++) {
+        this.allProducts[x] = {};
+        doReq(x);
+      }
+    },
+
     suggestionHoverHandler(val) {
-      return val;
+      this.showSuggestedProducts(val);
     },
 
     showSuggestedProducts(which = 0) {
-      return which;
-    },
-
-    format(price) {
-      let formatter = new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "USD",
-        minimumFractionDigits: 2
-      });
-
-      return formatter.format(price);
+      this.suggestTerm = this.suggestionsLimited[which].q;
+      this.products = this.allProducts[which].products;
     }
   }
 };
 </script>
-<style lang="scss" src="./style/default.scss"></style>
