@@ -19,13 +19,13 @@
         v-on:keyup="keyupHandler"
         v-on:keydown="keydownHandler"
         v-on:keyup.enter="doSearch"
-        v-on:keydown.esc="forceBlur(true)"
+        v-on:keydown.esc="forceBlur"
         v-on:keydown.tab="forceBlur"
         v-on:keydown.down="highlightHandler"
         v-on:keydown.up="highlightHandler"
         :placeholder="placeholder"
         @focus="focusHandler"/>
-      <button ref="clear" v-if="valueLength>0" v-hammer:tap="clearSearch">
+      <button ref="clear" v-if="valueLength>0" v-hammer:tap="forceBlur">
         <i class="material-icons-round">close</i>
       </button>
       <button ref="search" v-hammer:tap="doSearch">
@@ -158,7 +158,7 @@ export default {
       if (this.recents.length && this.count == 0 && this.isFocused) state = 1;
       if (this.count > 0 && this.isFocused) state = 2;
       if (this.count == 0 && this.noResults && this.searchValue != "" && this.isFocused) state = 3;
-      this.activeDescendant = false;
+      this.activeDescendantHandler();
       return state;
     },
 
@@ -173,7 +173,7 @@ export default {
           label = 'Recent Searches';
           break
         case 0:
-          label = '';
+          label = this.placeholder;
           break
       }
       return label;
@@ -313,7 +313,7 @@ export default {
     },
 
     activeDescendantHandler(id) {
-      this.activeDescendant = id;
+      this.activeDescendant = (id) ? id : false;
     },
 
     keydownHandler(e) {
@@ -407,7 +407,10 @@ export default {
       this.highlightIndex = which;
     },
 
-    forceBlur(clear) {
+    forceBlur(e) {
+      let key = e.charCode || e.keyCode;
+      let clear = false;
+      if (key == 27 || e.target == this.$refs.clear) clear = true;
       if (document.activeElement == this.inputEl) this.inputEl.blur();
       this.isFocused = false;
 
@@ -415,6 +418,7 @@ export default {
     },
 
     clearSearch(focus = true) {
+      console.log("CLEARING")
       this.inputEl.value = '';
       this.value = '';
       this.searchValue = '';
