@@ -15,7 +15,6 @@
       "Should perform search on keyup.enter",
       "Should highlight next search term on keydown.down, loop to first at end of list",
       "Should highlight previous search term on keydown.down, loop to end at beginning of list",
-      "Should switch focus between lists on keydown.right or keydown.left",
       "Should pre-load data from location.param.q parameter",
       "Should show [Clear] button (cancel icon) when character count is greater than 0",
       "Should perform total text selection when focused"
@@ -40,12 +39,6 @@
 
     "Popular Products (container)": [
       "Should list no more than 3 items"
-    ],
-
-    "Enhancements": [
-      "Save last search result data and pre-load on page load?",
-      "Predict results for next X amount of items when keyboard navigating.",
-      "Save last 10 search results in session storage and compare/pull before searching"
     ]
   },
 

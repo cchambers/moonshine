@@ -9,10 +9,17 @@
       <input
         ref="input"
         type="text"
+        autocomplete="off"
+        role="combobox"
+        aria-autocomplete="list"
+        aria-haspopup="true"
+        :aria-owns="ariaIDResults"
+        :aria-expanded="isActive"
+        :aria-activedescendant="activeDescendant"
         v-on:keyup="keyupHandler"
         v-on:keydown="keydownHandler"
         v-on:keyup.enter="doSearch"
-        v-on:keydown.esc="forceBlur"
+        v-on:keydown.esc="forceBlur(true)"
         v-on:keydown.tab="forceBlur"
         v-on:keydown.down="highlightHandler"
         v-on:keydown.up="highlightHandler"
@@ -28,8 +35,8 @@
     <div ref="loading" class="search-loading">
       <div class="loading-bar"></div>
     </div>
-    <div class="search-results">
-      <div ref="noresults" v-bind:class="{ active: state == 3 }" class="search-noresults">
+    <div class="search-results" :id="ariaIDResults" :aria-label="ariaListLabel">
+      <!-- <div ref="noresults" v-bind:class="{ active: state == 3 }" class="search-noresults">
         <ul>
           <li>
             <a :href="buildSearchLink(searchValue)">{{ searchValue }}</a>
@@ -42,7 +49,7 @@
               <a :href="buildSearchLink(item.q)" v-html="emphasizeText(item.q)"></a>
             </li>
           </ul>
-      </div>
+      </div> -->
 
       <div ref="recent" v-bind:class="{ active: state == 1 }" class="search-recent">
         <div class="flex space-between align-center">
@@ -53,19 +60,24 @@
         </div>
         <ul>
           <li v-for="item in recents" v-bind:key="item.id"
-            v-bind:class="{ highlight: item.highlighted }">
+            v-bind:class="{ highlight: item.highlighted }"
+            role="option"
+            :id="item.id"
+            :aria-selected="item.highlighted">
             <a :href="buildSearchLink(item.q)">{{ item.q }}</a>
           </li>
         </ul>
       </div>
 
-      <div ref="actual" v-bind:class="{ active: state == 2 }" class="search-suggestions">
+      <div ref="actual" v-bind:class="{ active: state == 2 || state == 3 }" class="search-suggestions">
         <div class="keywords">
           <ul>
-            <li
-              v-for="(item, index) in suggestionsLimited"
+            <li v-for="(item, index) in suggestionsLimited"
               v-bind:key="item.id"
               v-bind:class="{ highlight: item.highlighted }"
+              role="option"
+              :id="item.id"
+              :aria-selected="item.highlighted"
               @mouseover="suggestionHoverHandler(index)">
               <a :href="buildSearchLink(item.q)" v-html="emphasizeText(item.q)"></a>
             </li>
@@ -100,8 +112,8 @@ export default {
     return {
       value: '',
       searchValue: '',
-      lowerPlaceholder: 'Lower Placeholder',
-      upperPlaceholder: 'Upper Placeholder',
+      lowerPlaceholder: 'Search',
+      upperPlaceholder: 'What can we help you find?',
       placeholder: '',
       valueLength: 0,
       triggerResults: 1,
@@ -112,6 +124,8 @@ export default {
       ignoreKeys: [37,39,91,16,13],
       navKeys: [38,40],
       resultsEl: {},
+      ariaIDResults: '',
+      activeDescendant: false,
       allProducts: [],
       products: [],
       productsLimited: [],
@@ -144,22 +158,41 @@ export default {
       if (this.recents.length && this.count == 0 && this.isFocused) state = 1;
       if (this.count > 0 && this.isFocused) state = 2;
       if (this.count == 0 && this.noResults && this.searchValue != "" && this.isFocused) state = 3;
-
+      this.activeDescendant = false;
       return state;
+    },
+
+    ariaListLabel() {
+      let label;
+      switch(this.state) {
+        case 3:
+        case 2:
+          label = 'Suggested Keywords';
+          break
+        case 1:
+          label = 'Recent Searches';
+          break
+        case 0:
+          label = '';
+          break
+      }
+      return label;
     }
   },
 
   watch: {
     response(val) {
-      this.suggestions = val.response.suggestions || {};
-      this.products = val.response.products || {};
-      this.suggestTerm = this.searchValue;
+      if (val.response.suggestions) {
+        this.suggestions = val.response.suggestions;
+        this.products = val.response.products || {};
+        this.suggestTerm = this.searchValue;
 
-      this.count = this.suggestions.length || 0;
-      if (this.count == 0) {
-        this.noResults = true;
-      } else {
-        this.noResults = false;
+        this.count = this.suggestions.length || 0;
+        if (this.count == 0) {
+          this.noResults = true;
+        } else {
+          this.noResults = false;
+        }
       }
     },
 
@@ -168,12 +201,14 @@ export default {
         case 2: // suggested keywords and products
           if (this.suggestionsLimited[oldVal]) this.$set(this.suggestionsLimited[oldVal], 'highlighted', false);
           this.$set(this.suggestionsLimited[val], 'highlighted', true);
+          this.$emit('active-descendant', this.suggestionsLimited[val].id);
           this.showSuggestedProducts(val);
           this.value = this.suggestionsLimited[val].q;
           break;
         case 1:
           this.removeHighlight(this.recents);
           this.$set(this.recents[val], 'highlighted', true);
+          this.$emit('active-descendant', this.recents[val].id);
           this.value = this.recents[val].q;
         break;
       }
@@ -207,6 +242,7 @@ export default {
 
       if (length) {
         for (let x = 0, l = Math.min(length, this.suggestionsLimit); x < l; x++) {
+          val[x].id = `suggestion-${x}`
           arr.push(val[x]);
         }
 
@@ -222,13 +258,15 @@ export default {
         }
 
         if (currentValueExists < 0) {
-          let obj = { q: this.searchValue, highlighted: true };
+          let obj = { q: this.searchValue, highlighted: true, id: 'filled-0' };
           arr.unshift(obj);
           if (arr.length > this.suggestionsLimit) arr.pop();
           highlight = 0;
+          this.$emit('active-descendant', 'filled-0')
         } else {
           arr[currentValueExists].highlighted = true;
           highlight = currentValueExists;
+          this.$emit('active-descendant', arr[currentValueExists].id)
         }
       }
 
@@ -239,10 +277,15 @@ export default {
     }
   },
 
+  created() {
+    this.setUUID();
+  },
+
   mounted() {
     this.inputEl = this.$refs.input;
     this.resultsEl = this.$refs.results;
     this.productsEl = this.$refs.suggestedProducts;
+    this.configureAria();
     this.placeholderHandler();
     this.recentSearches();
 
@@ -262,6 +305,15 @@ export default {
 
       window.addEventListener('resize', self.placeholderHandler);
 
+      this.$on('active-descendant', self.activeDescendantHandler)
+    },
+
+    configureAria() {
+      this.ariaIDResults = `res-${this.uuid}`;
+    },
+
+    activeDescendantHandler(id) {
+      this.activeDescendant = id;
     },
 
     keydownHandler(e) {
@@ -333,7 +385,6 @@ export default {
           break;
         case 1:
           length = this.recents.length;
-          
           break;
       }
         
@@ -356,17 +407,19 @@ export default {
       this.highlightIndex = which;
     },
 
-    forceBlur() {
+    forceBlur(clear) {
       if (document.activeElement == this.inputEl) this.inputEl.blur();
       this.isFocused = false;
+
+      if (clear) this.clearSearch(false);
     },
 
-    clearSearch() {
+    clearSearch(focus = true) {
       this.inputEl.value = '';
       this.value = '';
       this.searchValue = '';
       this.response = { response: {} };
-      setTimeout(() => { this.inputEl.focus()});
+      if (focus) setTimeout(() => { this.inputEl.focus()});
     },
 
     doRequest() {
@@ -410,7 +463,8 @@ export default {
       for (let x = 0, l = rec.length; x < l; x++) {
         arr.push({
           q: rec[x],
-          highlighted: false
+          highlighted: false,
+          id: `recommended-${x}`
         })
       }
       this.recents = arr;
@@ -427,7 +481,9 @@ export default {
         this.recentSearches(val);
         let url = this.buildSearchLink(val);
         window.location.href = url;
-        this.clearSearch();
+        this.forceBlur(true);
+      } else {
+        this.inputEl.focus();
       }
     },
 
@@ -485,7 +541,6 @@ export default {
 
     showSuggestedProducts(which = 0) {
       this.suggestTerm = this.suggestionsLimited[which].q;
-      console.log(this.suggestTerm, which, this.allProducts)
       if (typeof this.allProducts[which] == "undefined") {
         this.$once(`products-loaded.${which}`, (arr) => {
           this.products = arr;
