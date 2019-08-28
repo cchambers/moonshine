@@ -38,13 +38,16 @@
     ],
 
     "Popular Products (container)": [
-      "Should list no more than 3 items"
+      "Should list no more than 3 items",
+      "Should update to show different products when suggestion is highlighted via keyboard or mouse interaction"
     ]
   },
 
-  "aria": {
-    
-  },
+  "aria": [
+    "Should have a label, currently matches placeholder",
+    "Should have all appropriate ARIA roles for combobox 1.0",
+    "Should update activedescendant based oncurrently active item"
+  ],
 
   "states": {
     "0": {
