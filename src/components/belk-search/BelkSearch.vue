@@ -52,8 +52,9 @@
           </div>
         </div>
         <ul>
-          <li v-for="item in recents" v-bind:key="item.id">
-            <a :href="buildSearchLink(item)">{{ item }}</a>
+          <li v-for="item in recents" v-bind:key="item.id"
+            v-bind:class="{ highlight: item.highlighted }">
+            <a :href="buildSearchLink(item.q)">{{ item.q }}</a>
           </li>
         </ul>
       </div>
@@ -76,7 +77,7 @@
           <component
             ref="suggestedProducts"
             v-bind:is="belkProducts"
-            v-bind:product-array="products"
+            v-bind:product-array="productsLimited"
             variant="secondary"
             :limit="3"
           ></component>
@@ -115,10 +116,10 @@ export default {
       products: [],
       productsLimited: [],
       productsLimit: 3,
+      suggestTerm: '',
       suggestions: [],
       suggestionsLimited: [],
       previousSuggestions: [],
-      suggestTerm: '',
       suggestionsLimit: 10,
       recents: [],
       recentCount: 0,
@@ -152,21 +153,30 @@ export default {
     response(val) {
       this.suggestions = val.response.suggestions || {};
       this.products = val.response.products || {};
+      this.suggestTerm = this.searchValue;
+
       this.count = this.suggestions.length || 0;
       if (this.count == 0) {
         this.noResults = true;
       } else {
         this.noResults = false;
       }
-
-      this.getAllProducts(this.suggestions);
     },
 
     highlightIndex(val, oldVal) {
-      this.$set(this.suggestionsLimited[oldVal], 'highlighted', false);
-      this.$set(this.suggestionsLimited[val], 'highlighted', true);
-      this.showSuggestedProducts(val);
-      this.value = this.suggestionsLimited[val].q;
+      switch(this.state) {
+        case 2: // suggested keywords and products
+          if (this.suggestionsLimited[oldVal]) this.$set(this.suggestionsLimited[oldVal], 'highlighted', false);
+          this.$set(this.suggestionsLimited[val], 'highlighted', true);
+          this.showSuggestedProducts(val);
+          this.value = this.suggestionsLimited[val].q;
+          break;
+        case 1:
+          this.removeHighlight(this.recents);
+          this.$set(this.recents[val], 'highlighted', true);
+          this.value = this.recents[val].q;
+        break;
+      }
       // this.selectInput();
     },
 
@@ -180,7 +190,7 @@ export default {
     },
 
     products(val) {
-      if (val.length) {
+      if (val && val.length) {
         this.productsLimited = val.slice(0, this.productsLimit);
       } else {
         this.productsLimited = [];
@@ -223,6 +233,7 @@ export default {
       }
 
       this.$set(this, 'suggestionsLimited', arr);
+      this.getAllProducts(arr);
       if (arr.length) this.$set(this, 'previousSuggestions', arr);
       this.highlightIndex = highlight || 0;
     }
@@ -249,7 +260,8 @@ export default {
         self.isFocused = false;
       });
 
-      window.addEventListener('resize', self.placeholderHandler)
+      window.addEventListener('resize', self.placeholderHandler);
+
     },
 
     keydownHandler(e) {
@@ -303,11 +315,28 @@ export default {
       }, 10)
     },
 
+    removeHighlight(arr) {
+      for (let x = 0, l = arr.length; x < l; x++) {
+        if (arr[x].highlighted) this.$set(arr[x], 'highlighted', false);
+      }
+    },
+
     highlightHandler(e) {
-      let length = this.suggestionsLimited.length;
+      let length;
       let choose;
       let key = e.charCode || e.keyCode;
+      let which = this.highlightIndex;
 
+      switch (this.state) {
+        case 2:
+          length = this.suggestionsLimited.length;
+          break;
+        case 1:
+          length = this.recents.length;
+          
+          break;
+      }
+        
       switch(key) {
         case 38:
           choose = -1;
@@ -320,7 +349,6 @@ export default {
           break;
       }
 
-      let which = this.highlightIndex;
       which += choose;
       if (which >= length) which = 0;
       if (which < 0) which = length - 1;
@@ -368,6 +396,7 @@ export default {
 
     recentSearches(val) {
       let rec = this.getItem('recentSearches') || [];
+
       if (val) {
         let exists = rec.indexOf(val);
         if (exists > -1) rec.splice(exists, 1);
@@ -376,7 +405,15 @@ export default {
         this.setItem('recentSearches', rec);
       }
       this.recentCount = rec.length;
-      this.recents = rec;
+
+      let arr = [];
+      for (let x = 0, l = rec.length; x < l; x++) {
+        arr.push({
+          q: rec[x],
+          highlighted: false
+        })
+      }
+      this.recents = arr;
     },
 
     clearRecentSearches() {
@@ -390,7 +427,7 @@ export default {
         this.recentSearches(val);
         let url = this.buildSearchLink(val);
         window.location.href = url;
-        this.state = 0;
+        this.clearSearch();
       }
     },
 
@@ -426,18 +463,18 @@ export default {
             if (xhr.status === OK) {
               let res = JSON.parse(xhr.responseText);
               let arr = res.response.products;
-              arr = arr.splice(0, Math.min(arr.length, self.productsLimit))
-              self.$set(self.allProducts[which], 'products', res.response.products);
+              self.$set(self.allProducts[which], 'products', arr);
+              let event = `products-loaded.${which}`;
+              self.$emit(event, arr);
             }
           }
         };
       }
 
-
       let length = arr.length;
-      this.allProducts = [];
+      self.allProducts = [];
       for (let x = 0, l = length; x < l; x++) {
-        this.allProducts[x] = {};
+        self.allProducts[x] = { products: false };
         doReq(x);
       }
     },
@@ -448,7 +485,14 @@ export default {
 
     showSuggestedProducts(which = 0) {
       this.suggestTerm = this.suggestionsLimited[which].q;
-      this.products = this.allProducts[which].products;
+      console.log(this.suggestTerm, which, this.allProducts)
+      if (typeof this.allProducts[which] == "undefined") {
+        this.$once(`products-loaded.${which}`, (arr) => {
+          this.products = arr;
+        });
+      } else {
+        if (this.allProducts[which]) this.products = this.allProducts[which].products;
+      }
     }
   }
 };
