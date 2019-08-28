@@ -117,7 +117,7 @@ export default {
       placeholder: '',
       valueLength: 0,
       triggerResults: 1,
-      highlightIndex: 0,
+      highlightIndex: -1,
       noResults: false,
       isFocused: false,
       inputEl: {},
@@ -379,15 +379,6 @@ export default {
       let key = e.charCode || e.keyCode;
       let which = this.highlightIndex;
 
-      switch (this.state) {
-        case 2:
-          length = this.suggestionsLimited.length;
-          break;
-        case 1:
-          length = this.recents.length;
-          break;
-      }
-        
       switch(key) {
         case 38:
           choose = -1;
@@ -399,6 +390,16 @@ export default {
           choose = 0;
           break;
       }
+
+      switch (this.state) {
+        case 2:
+          length = this.suggestionsLimited.length;
+          break;
+        case 1:
+          length = this.recents.length;
+          break;
+      }
+        
 
       which += choose;
       if (which >= length) which = 0;
@@ -418,7 +419,6 @@ export default {
     },
 
     clearSearch(focus = true) {
-      console.log("CLEARING")
       this.inputEl.value = '';
       this.value = '';
       this.searchValue = '';
