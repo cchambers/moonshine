@@ -36,7 +36,6 @@
 
   .header {
     display: flex;
-    color: $accent-primary;
     justify-content: space-between;
     height: 3rem;
 
@@ -64,6 +63,18 @@
 
   [close-trigger] {
     cursor: pointer;
+  }
+
+  .header [close-trigger] {
+    display: flex;
+    height: 4.5rem;
+    width: 4.5rem;
+    align-content: center;
+    justify-content: center;
+    opacity: 0.8;
+    &:hover {
+      opacity: 1;
+    }
   }
 
   &[reveal='left'] {

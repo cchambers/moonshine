@@ -19,11 +19,13 @@
 
     mounted() {
       this.$bus.$on('icon-setup', this.setup);
+      this.$bus.$emit('icons-ready');
     },
 
     methods: {
       setup(el) {
-        el.viewbox = this.icons[el.name].viewbox
+        el.viewbox = this.icons[el.name].viewbox;
+        el.configured = true;
       }
     }
   }
