@@ -4,13 +4,21 @@ export default {
   data() {
     return {
       bagEl: {},
-      navEl: {}
+      navEl: {},
+      data: {}
+    }
+  },
+
+  watch: {
+    data(val) {
+      this.$bus.$emit('BRD-VALUE', val.BRD);
     }
   },
 
   mounted() {
     this.bagEl = this.$refs.bag;
     this.navEl = this.$refs.meganav;
+    this.data = window.pageData;
   },
   
   methods: {

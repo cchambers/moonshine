@@ -6,9 +6,6 @@
       <div class="reference">
         <slot name="reference"></slot>
       </div>
-      <button v-hammer:tap="activate">
-        <i class="material-icons-round">add</i>
-      </button>
     </div>
     <transition
     :name="transition"
@@ -16,10 +13,14 @@
     :leave-active-class="leaveActiveClass"
     @after-leave="doDestroy">
       <div
-        class="actual"
+        class="popper-actual"
+        :fill="fill"
         ref="popper"
         v-show="!disabled && showPopper">
-        <slot>{{ content }}</slot>
+        <div class="popper-content">
+          <slot>{{ content }}</slot>
+        </div>
+      <div class="popper-arrow" x-arrow></div>
       </div>
     </transition>
   </div>
@@ -47,6 +48,10 @@
         type: String,
         default: 'default'
       },
+      hasArrow: {
+        type: Boolean,
+        default: false
+      },
       delayOnMouseOver: {
         type: Number,
         default: 10,
@@ -56,6 +61,10 @@
         default: 10,
       },
       disabled: {
+        type: Boolean,
+        default: false
+      },
+      fill: {
         type: Boolean,
         default: false
       },
@@ -98,7 +107,6 @@
         mobile: false,
         currentPlacement: '',
         content: 'empty',
-        hasArrow: false,
         popperOptions: {
           modifiers: {
             flip: {
@@ -143,13 +151,12 @@
     },
 
     mounted() {
-      if (this.variant == 'secondary') this.hasArrow = true;
       this.referenceElm = this.$refs.target;
       this.popper = this.$refs.popper;
       this.link = this.referenceElm.querySelector('a');
       if (this.link && this.hasArrow) {
         this.link.innerHTML += '<belk-icon name="arrow-down" width="20"></belk-icon>';
-      } 
+      }
 
       this.initPopper();
     },
@@ -171,16 +178,16 @@
       },
 
       initPopper() {
-        // on(this.referenceElm, 'click', this.doToggle);
-        // on(document, 'click', this.handleDocumentClick);
-        on(this.referenceElm, 'mouseover', this.mouseoverHandler);
-        on(this.referenceElm, 'focus', this.mouseoverHandler);
-        on(this.popper, 'mouseover', this.mouseoverHandler);
-        on(this.popper, 'focus', this.mouseoverHandler);
-        on(this.referenceElm, 'mouseout', this.mouseoutHandler);
-        on(this.referenceElm, 'blur', this.mouseoutHandler);
-        on(this.popper, 'mouseout', this.mouseoutHandler);
-        on(this.popper, 'blur', this.mouseoutHandler);
+          on(this.referenceElm, 'click', this.doToggle);
+          on(document, 'click', this.handleDocumentClick);
+          on(this.referenceElm, 'mouseover', this.mouseoverHandler);
+          on(this.referenceElm, 'focus', this.mouseoverHandler);
+          on(this.popper, 'mouseover', this.mouseoverHandler);
+          on(this.popper, 'focus', this.mouseoverHandler);
+          on(this.referenceElm, 'mouseout', this.mouseoutHandler);
+          on(this.referenceElm, 'blur', this.mouseoutHandler);
+          on(this.popper, 'mouseout', this.mouseoutHandler);
+          on(this.popper, 'blur', this.mouseoutHandler);
       },
 
       activate() {

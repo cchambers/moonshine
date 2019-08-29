@@ -1,5 +1,132 @@
-/* default styling */
-
 sh-nav-item {
-  display: inline-flex;
+  .sh-nav-item {
+    display: block;
+    color: $lowlight-primary;
+
+    .popper-target {
+      border-bottom: none;
+
+      .reference {
+        position: relative;
+      }
+
+      a {
+        position: relative;
+        display: flex;
+        align-items: center;
+        padding: 0 2rem;
+        font-size: 1.4rem;
+        transition: all 150ms $ease;
+      }
+    }
+  }
+
+  .popper-arrow {
+    width: 0;
+    height: 0;
+    border-style: solid;
+    position: absolute;
+    margin: 2rem;
+    z-index: 0;
+    border-width: 2rem;
+    &:before {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 1px;
+      left: 0;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: inherit;
+      border-color: transparent;
+      transform: translateX(-50%)
+    }
+  }
+
+  .popper-actual {
+    width: auto;
+    max-width: 128rem;
+    position: relative;
+    &[fill] {
+      width: 100%;
+      max-width: 100%;
+    }
+    &[x-placement^="top"] {
+      margin-bottom: 2rem;
+    }
+  
+    &[x-placement^="top"] .popper-arrow {
+      border-top-width: 1.5rem;
+      border-bottom-width: 0;
+      border-color: $lowlight-primary transparent transparent transparent;
+      bottom: -1.5rem;
+      left: 50%;
+      margin-top: 0;
+      margin-bottom: 0;
+      &:before {
+        top: 1px;
+        border-color: $highlight-primary transparent transparent transparent;
+      }
+    }
+  
+    &[x-placement^="bottom"] {
+      margin-top: 2rem;
+    }
+  
+    &[x-placement^="bottom"] .popper-arrow {
+      border-top-width: 0;
+      border-bottom-width: 1.5rem;
+      border-color: transparent transparent $lowlight-primary transparent;
+      top: -1.5rem;
+      left: 50%;
+      margin-top: 0;
+      margin-bottom: 0;
+      &:before {
+        border-color: transparent transparent $highlight-primary transparent;
+      }
+    }
+  
+    &[x-placement^="right"] {
+      margin-left: 2rem;
+    }
+  
+    &[x-placement^="right"] .popper-arrow {
+      border-width: 1.5rem 2rem 2rem 0;
+      border-color: transparent $lowlight-primary transparent transparent;
+      left: -2rem;
+      top: calc(50% - 2rem);
+      margin-left: 0;
+      margin-right: 0;
+    }
+  
+    &[x-placement^="left"] {
+      margin-right: 2rem;
+    }
+  
+    &[x-placement^="left"] .popper-arrow {
+      border-width: 2rem 0 2rem 1.5rem;
+      border-color: transparent transparent transparent $lowlight-primary;
+      right: -2rem;
+      top: calc(50% - 2rem);
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
+
+  .popper-target {
+    display: inline-flex;
+
+    button {
+      display: none;
+    }
+  }
+
+  .popper-content {
+    background: $highlight-primary;
+    color: $lowlight-primary;
+    padding: 1.5rem;
+    border: 1px solid $lowlight-primary;
+  }
+  
 }

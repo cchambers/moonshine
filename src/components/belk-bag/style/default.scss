@@ -2,21 +2,41 @@
 
 belk-bag {
   display: inline-flex;
-
+  font-size: 1.4rem;
+  color: $lowlight-primary;
+  rect.bag-background {
+    fill: red;
+  }
   .belk-bag {
     // color: $highlight-primary;
     display: flex;
     flex-direction: row;
     align-content: flex-start;
     align-items: center;
+    .bag-background {
+      fill: transparent;
+    }
+    &.active {
+      .bag-background {
+        fill: $lowlight-primary;
+      }
+      .bag-count {
+        color: $highlight-primary;
+      }
+    }
   }
   
   .bag-count {
+    position: relative;
     display: flex;
     height: 2.5rem;
-    font-size: 1.4rem;
     align-items: center;
+    justify-content: center;
     text-align: center;
+  }
+
+  .bag-total {
+    margin-top: 1.4rem;
   }
 
   .bag-text {
@@ -26,7 +46,6 @@ belk-bag {
 
   .bag-icon {
     position: relative;
-    width: 2.8rem;
     margin-right: .8rem;
     svg {
       position: absolute;
@@ -36,7 +55,6 @@ belk-bag {
     span {
       font-size: 1.1rem;
       display: flex;
-      height: 2.8rem;
       align-items: center;
       justify-content: center;
       margin-top: .4rem;
