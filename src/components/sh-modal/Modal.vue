@@ -18,7 +18,10 @@
       </div>
       <div class="body" ref="body" :id="ariaDescID">
         <div v-if="contentUrl && !loaded" class="loading-anim" v-html="loadHtml"></div>
-        <slot></slot>
+        <div v-html="dynamicHTML">
+          <slot>{{ content }}</slot>
+        </div>
+        
       </div>
       <div class="footer">
         <slot name="footer">{{ footer }}</slot>
@@ -37,6 +40,7 @@ export default {
       type: String,
       required: true
     },
+    content: String,
     contentUrl: String,
     contentSelector: String,
     noHistory: Boolean,

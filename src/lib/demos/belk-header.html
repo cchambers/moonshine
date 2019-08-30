@@ -12,10 +12,9 @@
     <div slot="utility">
       <sh-nav-item has-arrow>
         <div slot="reference" id="rewards-link">
-          Belk <span class="user-tier"></span> Rewards
-
+          Belk <span class="data-user-tier"></span> Rewards
         </div>
-        <div id="rewards-menu">
+        <div slot="content" id="rewards-menu">
           Belk Rewards Cards
         </div>
       </sh-nav-item>
@@ -24,7 +23,7 @@
         <div slot="reference" id="giftcards-link">
           Gift Cards
         </div>
-        <div id="giftcards-menu">
+        <div slot="content" id="giftcards-menu">
           Belk Rewards Cards
         </div>
       </sh-nav-item>
@@ -194,6 +193,35 @@
     </div>
   </belk-header>
   <main id="main" class="baseline30" style="flex-grow: 1; width: 100%; max-width:128rem; margin: 0 auto; overflow-y: auto">
+
+      <div slot="icon-bar">
+
+          <a href="coupons" class="icon-bar-action">
+            <belk-icon width="30" name="coupon"></belk-icon>
+            <div class="icon-bar-context">Coupons</div>
+          </a>
+    
+          <sh-nav-item class="icon-bar-action" variant="primary" has-arrow>
+            <a slot="reference" id="signin-link" href="#" class="highlight-quinary">
+              <belk-icon width="30" name="person"></belk-icon>
+              <div class="icon-bar-context">
+                <div class="greet">Hi, <span class="data-user-name">Sign In</span></div>
+                <div><span>My&nbsp;</span>Account</div>
+              </div>
+            </a>
+            <div slot="content" id="signin-menu" class="icon-bar-context">
+              <sh-button variant="primary">Sign in</sh-button>
+              <sh-button>Create an Account</sh-button>
+            </div>
+          </sh-nav-item>
+    
+          <sh-nav-item class="icon-bar-action" variant="primary">
+            <belk-bag slot="reference" id="bag-link" ref="bag" count="10" price="1234.53"></belk-bag>
+            <div slot="content" id="bag-menu">
+              ... bag ...
+            </div>
+          </sh-nav-item>
+        </div>
     <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Asperiores saepe obcaecati cupiditate debitis corporis, maxime corrupti eaque itaque harum id possimus perferendis sequi dolore nemo mollitia pariatur? Repellat, quae enim?</p>
     <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Asperiores saepe obcaecati cupiditate debitis corporis, maxime corrupti eaque itaque harum id possimus perferendis sequi dolore nemo mollitia pariatur? Repellat, quae enim?</p>
     <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Asperiores saepe obcaecati cupiditate debitis corporis, maxime corrupti eaque itaque harum id possimus perferendis sequi dolore nemo mollitia pariatur? Repellat, quae enim?</p>

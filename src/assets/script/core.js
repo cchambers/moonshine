@@ -16,6 +16,29 @@ let app = {
       demos[x].setAttribute('base-code', demos[x].innerHTML);
       demos[x].innerHTML = '';
     }
+
+    app.interaction = 'keyboard';
+
+    document.addEventListener('keydown', ()=> {
+      if (app.interaction != 'keyboard') {
+        app.interaction = 'keyboard';
+        document.documentElement.setAttribute('interaction', app.interaction);
+      }
+    });
+
+    document.addEventListener('click', ()=> {
+      if (app.interaction != 'mouse') {
+        app.interaction = 'mouse';
+        document.documentElement.setAttribute('interaction', app.interaction);
+      }
+    });
+
+    document.addEventListener('touchstart', ()=> {
+      if (app.interaction != 'touch') {
+        app.interaction = 'touch';
+        document.documentElement.setAttribute('interaction', app.interaction);
+      }
+    });
   },
 
   urlParamsToObj() {

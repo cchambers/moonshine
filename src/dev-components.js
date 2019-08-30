@@ -30,3 +30,4 @@ require('./lib/components/lib-content');
 require('./lib/components/lib-section-links');
 require('./lib/components/lib-notify');
 require('./lib/components/lib-toolbar');
+require('./components/component-template');

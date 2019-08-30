@@ -16,7 +16,7 @@
         ref="popper"
         v-show="!disabled && showPopper">
         <div class="popper-content">
-          <slot>{{ content }}</slot>
+          <slot name="content">{{ content }}</slot>
         </div>
         <div class="popper-arrow" x-arrow></div>
       </div>

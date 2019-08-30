@@ -33,16 +33,10 @@
         </div>
       </div>
     </div>
-    <div ref="tertiary" class="tertiary">
-      <div class="contain">
-        <belk-mega-nav ref="meganav">
-          <slot name="tertiary-nav"></slot>
-        </belk-mega-nav>
-      </div>
-    </div>
-    <div ref="post" class="post">
+
+    <!-- <div ref="post" class="post">
       <slot name="post-header"></slot>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -56,8 +50,8 @@ export default {
       navEl: {},
       data: {
         name: 'Sign In',
-        brd: 0,
-        brc: 0,
+        brd: 0, // dollars
+        brc: 0, // tier
       }
     }
   },

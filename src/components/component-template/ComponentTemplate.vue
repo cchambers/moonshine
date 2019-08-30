@@ -1,8 +1,9 @@
 <template>
   <div class="component-template"
     :variant="variant"
-    v-bind:class="{ 'snap-state': snapping }">
-    <slot>{{ msg }}</slot>
+    v-bind:class="{ 'snap-state': snapping }"
+    v-hammer:tap="snap">
+    <slot name="test">{{ msg }}</slot>
   </div>
 </template>
 
