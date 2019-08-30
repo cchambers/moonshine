@@ -25,10 +25,10 @@
         v-on:keydown.up="highlightHandler"
         :placeholder="placeholder"
         @focus="focusHandler"/>
-      <button ref="clear" v-if="valueLength>0" v-hammer:tap="forceBlur">
-        <i class="material-icons-round">close</i>
+      <button aria-role="button" aria-label="clear search field" ref="clear" v-if="valueLength>0" v-hammer:tap="forceBlur">
+        <belk-icon name="close" width="24">Clear Input</belk-icon>
       </button>
-      <button ref="search" v-hammer:tap="doSearch">
+      <button aria-role="button" aria-label="perform search" ref="search" v-hammer:tap="doSearch">
         <i class="material-icons-round">search</i>
       </button>
     </div>

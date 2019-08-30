@@ -2,6 +2,9 @@
 
 belk-icon {
   display: inline-flex;
+  .belk-icon {
+    display: flex;
+  }
   svg {
     height: auto;
     pointer-events: none;

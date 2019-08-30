@@ -18,7 +18,7 @@
         <div class="popper-content">
           <slot>{{ content }}</slot>
         </div>
-      <div class="popper-arrow" x-arrow></div>
+        <div class="popper-arrow" x-arrow></div>
       </div>
     </transition>
   </div>

@@ -1,8 +1,67 @@
 <div id="page">
   <belk-header variant="primary">
+
+    <div slot="promo">
+      <strong>FREE SHIPPING YO</strong>
+    </div>
+
+    <div slot="store-locator">
+      Find a Store
+    </div>
+
+    <div slot="utility">
+      <sh-nav-item class="icon-bar-action" has-arrow>
+        <div slot="reference" id="rewards-link">
+          Belk <span class="user-tier"></span> Rewards
+
+        </div>
+        <div id="rewards-menu">
+          Belk Rewards Cards
+        </div>
+      </sh-nav-item>
+
+      <sh-nav-item class="icon-bar-action" has-arrow>
+        <div slot="reference" id="giftcards-link">
+          Gift Cards
+        </div>
+        <div id="giftcards-menu">
+          Belk Rewards Cards
+        </div>
+      </sh-nav-item>
+    </div>
+
+    <div slot="icon-bar">
+
+      <a href="coupons" class="icon-bar-action">
+        <belk-icon width="30" name="coupon"></belk-icon>
+        <div class="icon-bar-context">Coupons</div>
+      </a>
+
+      <sh-nav-item class="icon-bar-action" variant="primary" has-arrow>
+        <a slot="reference" id="signin-link" href="#" class="highlight-quinary">
+          <belk-icon width="30" name="person"></belk-icon>
+          <div class="icon-bar-context">
+            <div class="greet">Hi, <span class="data-user-name">Sign In</span></div>
+            <div><span>My&nbsp;</span>Account</div>
+          </div>
+        </a>
+        <div id="signin-menu" class="icon-bar-context">
+          <sh-button variant="primary">Sign in</sh-button>
+          <sh-button>Create an Account</sh-button>
+        </div>
+      </sh-nav-item>
+
+      <sh-nav-item class="icon-bar-action" variant="primary">
+        <belk-bag slot="reference" id="bag-link" ref="bag" count="10" price="1234.53"></belk-bag>
+        <div id="bag-menu">
+          ... bag ...
+        </div>
+      </sh-nav-item>
+    </div>
+
     <div slot="pre-header">
       <sh-banner variant="primary">
-          <!-- DEFAULT -->
+        <!-- DEFAULT -->
         <sh-adapt-content>
           <div>
             <div class="px16 lh30 highlight-primary bold uppercase text-center">
@@ -10,9 +69,9 @@
             </div>
           </div>
           <div slot="md">
-              <div class="px18 lh30 highlight-primary bold uppercase text-center">
-                extra 50% off <span class="normal accent-tertiary">all vue components</span>
-              </div>
+            <div class="px18 lh30 highlight-primary bold uppercase text-center">
+              extra 50% off <span class="normal accent-tertiary">all vue components</span>
+            </div>
           </div>
           <div slot="lg">
             <div class="px20 lh30 highlight-primary bold uppercase text-center">
@@ -128,7 +187,7 @@
     </nav> -->
     <div slot="secondary-nav">
       <sh-button nav-trigger>
-        <i class="material-icons-round">menu</i>
+        <belk-icon name="menu"></belk-icon>
       </sh-button>
       <belk-logo class="logo" width="60" color="highlight-primary"></belk-logo>
       <belk-search></belk-search>

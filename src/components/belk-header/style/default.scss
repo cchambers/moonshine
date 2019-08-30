@@ -28,4 +28,30 @@ belk-header {
     padding: 1rem;
     cursor: pointer;
   }
+
+  .icon-bar {
+    display: flex;
+    align-items: center;
+    order: 3;
+    margin: 0 1rem;
+    margin-left: auto;
+    font-size: 1.4rem;
+    belk-icon.arrow-down {
+      align-self: flex-end;
+    }
+    .icon-bar-action {
+      padding: 1rem;
+      display: flex;
+      align-items: center;
+      &:hover {
+        background: $highlight-secondary;
+      }
+    }
+    .icon-bar-context {
+      margin-left: 1rem;
+    }
+    .greet {
+      font-size: 1.2rem;
+    }
+  }
 }

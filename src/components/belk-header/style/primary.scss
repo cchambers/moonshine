@@ -12,30 +12,10 @@ belk-header[variant="primary"] {
 
   .primary {
     display: none;
-    padding: 1rem;
   }
 
   .contain {
     justify-content: space-between;
-  }
-
-  .icon-bar {
-    display: flex;
-    display: inline-flex;
-    align-items: center;
-    order: 3;
-    margin: 0 1rem;
-    margin-left: auto;
-    > div {
-      display: flex;
-      margin: 1rem;
-      align-items: center;
-      flex-shrink: 0;
-      > div {
-        display: none;
-        margin-left: 1rem;
-      }
-    }
   }
   
   belk-logo {

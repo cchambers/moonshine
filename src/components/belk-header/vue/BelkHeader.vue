@@ -6,9 +6,15 @@
 
     <div ref="primary" class="primary">
       <div class="contain">
-        <div>Lorem</div>
-        <div>Ipsum</div>
-        <div>Doler</div>
+        <div class="primary-promo">
+          <slot name="promo"></slot>          
+        </div>
+        <!-- <div>
+          <slot name="store-locator"></slot>          
+        </div> -->
+        <div class="primary-utility">
+          <slot name="utility"></slot>    
+        </div>
       </div>
     </div>
 
@@ -22,26 +28,8 @@
 
         <belk-logo class="logo" width="60"></belk-logo>
 
-
         <div class="icon-bar">
-          <a class="icon-bar-icon" href="coupons">
-            <belk-icon width="30" name="coupon"></belk-icon>
-            <div>Coupons</div>
-          </a>
-
-          <div class="icon-bar-icon">
-            <sh-nav-item delay-on-mouse-out="400" delay-on-mouse-over="400" variant="primary">
-              <a slot="reference" id="signin-link" href="#" class="highlight-quinary">
-                <belk-icon width="30" name="person"></belk-icon>
-                <div>Sign In</div>
-              </a>
-              <div id="signin-menu">
-                <sh-button variant="primary">Sign in</sh-button>
-                <sh-button>Create an Account</sh-button>
-              </div>
-            </sh-nav-item>
-          </div>
-          <belk-bag ref="bag" count="10" price="1234.53"></belk-bag>
+          <slot name="icon-bar"></slot>
         </div>
       </div>
     </div>
@@ -58,7 +46,54 @@
   </div>
 </template>
 
-<script src="../script/BelkHeader.js"></script>
+<script>
+export default {
+  name: 'BelkHeader',
+
+  data() {
+    return {
+      bagEl: {},
+      navEl: {},
+      data: {
+        name: 'Sign In',
+        brd: 0,
+        brc: 0,
+      }
+    }
+  },
+
+  watch: {
+    data(val) {
+      this.$bus.$emit('user-data', val);
+      if (val.name) this.updateUsername(val.name)
+    }
+  },
+
+  mounted() {
+    this.bagEl = this.$refs.bag;
+    this.navEl = this.$refs.meganav;
+    // this.data = window.pageData;
+  },
+  
+  methods: {
+    events() {
+      this.$bus.$on('mega-nav-opening');
+    },
+
+    menuHandler() {
+      this.navEl.show();
+    },
+
+    updateUsername(name) {
+      let els = this.querySelectorAll('.data-user-name');
+      this.$el.classList.add('is-user');
+      els.forEach(element => {
+        element.innerText = name;
+      });
+    }
+  },
+}
+</script>
 <style lang="scss" src="../style/default.scss"></style>
 <style lang="scss" src="../style/primary.scss"></style>
 

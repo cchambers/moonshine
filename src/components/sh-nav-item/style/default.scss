@@ -9,11 +9,6 @@ sh-nav-item {
   .sh-nav-item {
     display: inline-block;
     color: $lowlight-primary;
-    &:hover {
-      a {
-        background-color: $highlight-secondary;
-      }
-    }
   }
   
   .popper-target {
@@ -153,5 +148,9 @@ sh-nav-item {
   }
   .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
     opacity: 0;
+  }
+
+  belk-icon.arrow-down {
+    align-self: flex-end;
   }
 }

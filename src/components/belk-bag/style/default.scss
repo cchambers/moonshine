@@ -13,6 +13,9 @@ belk-bag {
     flex-direction: row;
     align-content: flex-start;
     align-items: center;
+    belk-icon {
+      margin: 0;
+    }
     .bag-background {
       fill: transparent;
     }
@@ -37,16 +40,14 @@ belk-bag {
 
   .bag-total {
     margin-top: 1.4rem;
-  }
-
-  .bag-text {
-    font-size: 1.6rem;
-    margin-top: .4rem;
+    margin-left: 1rem;
   }
 
   .bag-icon {
     position: relative;
-    margin-right: .8rem;
+    .belk-icon {
+      display: flex;
+    }
     svg {
       position: absolute;
       bottom: 0;
