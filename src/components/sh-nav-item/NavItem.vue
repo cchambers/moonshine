@@ -9,8 +9,6 @@
     </div>
     <transition
     :name="transition"
-    :enter-active-class="enterActiveClass"
-    :leave-active-class="leaveActiveClass"
     @after-leave="doDestroy">
       <div
         class="popper-actual"
@@ -54,11 +52,11 @@
       },
       delayOnMouseOver: {
         type: Number,
-        default: 10,
+        default: 250,
       },
       delayOnMouseOut: {
         type: Number,
-        default: 10,
+        default: 250,
       },
       disabled: {
         type: Boolean,
@@ -68,8 +66,6 @@
         type: Boolean,
         default: false
       },
-      enterActiveClass: String,
-      leaveActiveClass: String,
       boundariesSelector: {
         type: String,
         default: '.documentation'
@@ -80,7 +76,7 @@
       },
       transition: {
         type: String,
-        default: ''
+        default: 'fade'
       },
       stopPropagation: {
         type: Boolean,

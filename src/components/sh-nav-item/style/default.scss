@@ -1,24 +1,44 @@
+$arrowHeight: 1.5rem;
+$arrowWidth: 4rem;
+$_aw: $arrowWidth/2;
+
 sh-nav-item {
+  i {
+    pointer-events: none;
+  }
   .sh-nav-item {
-    display: block;
+    display: inline-block;
     color: $lowlight-primary;
-
-    .popper-target {
-      border-bottom: none;
-
-      .reference {
-        position: relative;
-      }
-
+    &:hover {
       a {
-        position: relative;
-        display: flex;
-        align-items: center;
-        padding: 0 2rem;
-        font-size: 1.4rem;
-        transition: all 150ms $ease;
+        background-color: $highlight-secondary;
       }
     }
+  }
+  
+  .popper-target {
+    border-bottom: none;
+
+    .reference {
+      position: relative;
+    }
+
+    a {
+      position: relative;
+      display: flex;
+      align-items: center;
+      transition: all 150ms $ease;
+      color: $lowlight-primary;
+      cursor: pointer;
+    }
+
+    .belk-icon {
+      display: flex;
+    }
+  }
+
+  .fold-in {
+    background: red;
   }
 
   .popper-arrow {
@@ -26,9 +46,9 @@ sh-nav-item {
     height: 0;
     border-style: solid;
     position: absolute;
-    margin: 2rem;
+    margin: $_aw;
     z-index: 0;
-    border-width: 2rem;
+    border-width: $_aw;
     &:before {
       content: '';
       display: block;
@@ -46,21 +66,20 @@ sh-nav-item {
 
   .popper-actual {
     width: auto;
-    max-width: 128rem;
-    position: relative;
+    max-width: 102rem;
+    z-index: 90;
     &[fill] {
       width: 100%;
-      max-width: 100%;
     }
     &[x-placement^="top"] {
-      margin-bottom: 2rem;
+      margin-bottom: $arrowHeight;
     }
   
     &[x-placement^="top"] .popper-arrow {
-      border-top-width: 1.5rem;
+      border-top-width: $arrowHeight;
       border-bottom-width: 0;
       border-color: $lowlight-primary transparent transparent transparent;
-      bottom: -1.5rem;
+      bottom: -$arrowHeight;
       left: 50%;
       margin-top: 0;
       margin-bottom: 0;
@@ -71,14 +90,14 @@ sh-nav-item {
     }
   
     &[x-placement^="bottom"] {
-      margin-top: 2rem;
+      margin-top: $arrowHeight;
     }
   
     &[x-placement^="bottom"] .popper-arrow {
       border-top-width: 0;
-      border-bottom-width: 1.5rem;
+      border-bottom-width: $arrowHeight;
       border-color: transparent transparent $lowlight-primary transparent;
-      top: -1.5rem;
+      top: -$arrowHeight;
       left: 50%;
       margin-top: 0;
       margin-bottom: 0;
@@ -88,27 +107,27 @@ sh-nav-item {
     }
   
     &[x-placement^="right"] {
-      margin-left: 2rem;
+      margin-left: $_aw;
     }
   
     &[x-placement^="right"] .popper-arrow {
-      border-width: 1.5rem 2rem 2rem 0;
+      border-width: $arrowHeight $_aw $_aw 0;
       border-color: transparent $lowlight-primary transparent transparent;
-      left: -2rem;
-      top: calc(50% - 2rem);
+      left: -$_aw;
+      top: calc(50% - $_aw);
       margin-left: 0;
       margin-right: 0;
     }
   
     &[x-placement^="left"] {
-      margin-right: 2rem;
+      margin-right: $_aw;
     }
   
     &[x-placement^="left"] .popper-arrow {
-      border-width: 2rem 0 2rem 1.5rem;
+      border-width: $_aw 0 $_aw $arrowHeight;
       border-color: transparent transparent transparent $lowlight-primary;
-      right: -2rem;
-      top: calc(50% - 2rem);
+      right: -$_aw;
+      top: calc(50% - $_aw);
       margin-left: 0;
       margin-right: 0;
     }
@@ -125,8 +144,14 @@ sh-nav-item {
   .popper-content {
     background: $highlight-primary;
     color: $lowlight-primary;
-    padding: 1.5rem;
+    padding: 1rem;
     border: 1px solid $lowlight-primary;
   }
-  
+
+  .fade-enter-active, .fade-leave-active {
+    transition: opacity 250ms $ease;
+  }
+  .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+    opacity: 0;
+  }
 }

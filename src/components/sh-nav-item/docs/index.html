@@ -4,7 +4,14 @@
     <h2>Usage</h2>
     <pre>
       <code class="language-html">
-          &lt;sh-nav-item&gt;&lt;/sh-nav-item&gt;
+          &lt;sh-nav-item&gt;
+            &lt;div&gt; &lt;!-- content slot--&gt;
+              &lt;...&gt;
+                html
+              &lt;...&gt;
+            &lt;/div&gt;
+            &lt;a slot="reference"&gt;call to action&lt;/a&gt;
+          &lt;/sh-nav-item&gt;
       </code>
     </pre>
 
@@ -87,7 +94,7 @@
     <h2>Examples</h2>
     <h3>Default</h3>
     <!-- <lib-toolbar> -->
-      <sh-nav-item variant="primary">
+      <sh-nav-item variant="primary" fill>
         <div>
           <ul>
             <li>One</li>
@@ -97,9 +104,6 @@
         </div>
         <a slot="reference">Hover here!</a>
       </sh-nav-item>
-
-      <hr>
-
       <sh-nav-item variant="secondary" has-arrow>
         <div>
           <p>Content-width based.</p>
