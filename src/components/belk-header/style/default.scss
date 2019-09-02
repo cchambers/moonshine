@@ -1,20 +1,19 @@
 /* default styling */
 
-belk-header {
+.belk-header {
   display: flex;
   flex-direction: column;
   background: $highlight-primary;
   border-bottom: 1px solid $lowlight-tertiary;
-  .belk-header {
-    .contain {
-      width: 100%;
-      max-width: 128rem;
-      margin: 0 auto;
-      flex-grow: 0;
-      flex-shrink: 0;
-      flex-basis: auto;
-    }
+  .contain {
+    width: 100%;
+    max-width: 128rem;
+    margin: 0 auto;
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: auto;
   }
+
   .pre:empty,
   .post:empty {
     display: none;
@@ -41,17 +40,119 @@ belk-header {
     }
     .icon-bar-action {
       padding: 1rem;
+      height: 6rem;
       display: flex;
       align-items: center;
+      cursor: pointer;
       &:hover {
         background: $highlight-secondary;
       }
     }
     .icon-bar-context {
+      display: none;
       margin-left: 1rem;
     }
     .greet {
       font-size: 1.2rem;
+    }
+  }
+
+  .primary .contain,
+  .secondary .contain {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .primary {
+    display: none;
+  }
+
+  .contain {
+    justify-content: space-between;
+  }
+
+  belk-logo {
+    margin: 1rem 1rem 1rem 0;
+    order: 0;
+    flex-shrink: 0;
+  }
+
+  belk-search {
+    width: 60%;
+    order: 1;
+    margin-left: auto;
+  }
+
+  sh-button.nav-trigger {
+
+    flex-shrink: 0;
+
+    .sh-button {
+      background: transparent !important;
+      padding: 0;
+      height: 4.5rem;
+
+      i {
+        font-size: 3rem;
+        padding: 0;
+        margin: 0;
+      }
+    }
+  }
+
+  /* default styling */
+
+  sh-button.nav-trigger {
+    max-width: 100vw;
+    overflow: hidden;
+    transition: max-width 250ms $ease;
+
+    .sh-button {
+      background: transparent !important;
+      padding: 0;
+      height: 4.5rem;
+
+      i {
+        font-size: 3rem;
+        padding: 0;
+        margin: 0;
+      }
+
+      .mobile-links {
+        flex-grow: 1;
+      }
+    }
+  }
+
+  .tertiary {
+    nav {
+      display: block;
+    }
+  }
+
+  @media (min-width: breakpoint("lg")) {
+    .primary {
+      display: flex;
+    }
+
+    .secondary {
+      .contain {
+        justify-content: flex-start;
+      }
+    }
+
+    sh-button.nav-trigger {
+      max-width: 0;
+    }
+
+    .icon-bar>div>div {
+      display: block;
+      order: 3;
+    }
+
+    .icon-bar-context {
+      display: block;
     }
   }
 }

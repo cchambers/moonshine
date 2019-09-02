@@ -1,7 +1,5 @@
 
-require('./components/belk-bag');
-require('./components/belk-header');
-require('./components/belk-mega-nav');
+// require('./components/belk-mega-nav');
 
 require('./components/sh-accordion');
 require('./components/sh-adapt-content');
@@ -30,4 +28,3 @@ require('./lib/components/lib-content');
 require('./lib/components/lib-section-links');
 require('./lib/components/lib-notify');
 require('./lib/components/lib-toolbar');
-require('./components/component-template');

@@ -36,7 +36,7 @@ export default {
       products: []
     }
   },
-  
+
   methods: {
     quickView(e) {
       e.preventDefault();

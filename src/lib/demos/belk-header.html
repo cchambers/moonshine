@@ -1,234 +1,133 @@
 <div id="page">
-  <belk-header variant="primary">
-
-    <div slot="promo">
-      <strong>FREE SHIPPING YO</strong>
+  <belk-header></belk-header>
+  <div class="belk-header">
+    <div class="pre">
+      pre-header content
     </div>
 
-    <div slot="store-locator">
-      Find a Store
-    </div>
-
-    <div slot="utility">
-      <sh-nav-item has-arrow>
-        <div slot="reference" id="rewards-link">
-          Belk <span class="data-user-tier"></span> Rewards
+    <div class="primary">
+      <div class="contain">
+        <div class="primary-promo">
+          <strong>FREE SHIPPING YO</strong>
         </div>
-        <div slot="content" id="rewards-menu">
-          Belk Rewards Cards
+        <div slot="store-locator">
+          Find a Store
         </div>
-      </sh-nav-item>
-
-      <sh-nav-item has-arrow>
-        <div slot="reference" id="giftcards-link">
-          Gift Cards
-        </div>
-        <div slot="content" id="giftcards-menu">
-          Belk Rewards Cards
-        </div>
-      </sh-nav-item>
-    </div>
-
-    <div slot="icon-bar">
-
-      <a href="coupons" class="icon-bar-action">
-        <belk-icon width="30" name="coupon"></belk-icon>
-        <div class="icon-bar-context">Coupons</div>
-      </a>
-
-      <sh-nav-item class="icon-bar-action" variant="primary" has-arrow>
-        <a slot="reference" id="signin-link" href="#" class="highlight-quinary">
-          <belk-icon width="30" name="person"></belk-icon>
-          <div class="icon-bar-context">
-            <div class="greet">Hi, <span class="data-user-name">Sign In</span></div>
-            <div><span>My&nbsp;</span>Account</div>
-          </div>
-        </a>
-        <div id="signin-menu" class="icon-bar-context">
-          <sh-button variant="primary">Sign in</sh-button>
-          <sh-button>Create an Account</sh-button>
-        </div>
-      </sh-nav-item>
-
-      <sh-nav-item class="icon-bar-action" variant="primary">
-        <belk-bag slot="reference" id="bag-link" ref="bag" count="10" price="1234.53"></belk-bag>
-        <div id="bag-menu">
-          ... bag ...
-        </div>
-      </sh-nav-item>
-    </div>
-
-    <div slot="pre-header">
-      <sh-banner variant="primary">
-        <!-- DEFAULT -->
-        <sh-adapt-content>
-          <div>
-            <div class="px16 lh30 highlight-primary bold uppercase text-center">
-              50% off <span class="normal accent-tertiary">all components</span>
+        <div class="primary-utility">
+          <sh-nav-item has-arrow>
+            <div slot="reference" id="rewards-link">
+              Belk <span class="data-user-tier"></span> Rewards
             </div>
-          </div>
-          <div slot="md">
-            <div class="px18 lh30 highlight-primary bold uppercase text-center">
-              extra 50% off <span class="normal accent-tertiary">all vue components</span>
-            </div>
-          </div>
-          <div slot="lg">
-            <div class="px20 lh30 highlight-primary bold uppercase text-center">
-              get an extra 50% off <span class="normal accent-tertiary">all vue components</span>
-            </div>
-          </div>
-        </sh-adapt-content>
-      </sh-banner>
-    </div>
-    <!-- <nav slot="tertiary-nav">
-      <ul>
-        <li>
-          <sh-nav-item variant="primary" delay-on-mouse-over="400" delay-on-mouse-out="400">
-            <a slot="reference" id="lorem-link" href="#">
-              Lorem
-            </a>
-            <div id="lorem-menu">
-              <h3>Header one</h3>
-              <ul>
-                <li>
-                  <a href="#">Lorem</a>
-                </li>
-                <li>
-                  <a href="#">Ipsum</a>
-                </li>
-                <li>
-                  <a href="#">Doler</a>
-                </li>
-              </ul>
-              <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsam, architecto? Blanditiis nesciunt earum dolor numquam facere labore doloribus aspernatur natus assumenda, officia aut fuga dolorum officiis sapiente. Similique, dicta a?</p>
+            <div slot="content" id="rewards-menu">
+              Belk Rewards Cards
             </div>
           </sh-nav-item>
-        </li>
-        <li>
-          <sh-nav-item variant="primary" delay-on-mouse-over="400" delay-on-mouse-out="400">
-            <a slot="reference" id="ipsum-link" href="#">
-              Ipsum
-            </a>
-            <div id="ipsum-menu">
-              <h3>Header Two</h3>
-              <ul>
-                <li>
-                  <a href="#">Lorem</a>
-                </li>
-                <li>
-                  <a href="#">Ipsum</a>
-                </li>
-                <li>
-                  <a href="#">Doler</a>
-                </li>
-                <li>
-                  Sit
-                </li>
-                <li>
-                  Amet
-                </li>
-              </ul>
+          <sh-nav-item has-arrow>
+            <div slot="reference" id="giftcards-link">
+              Gift Cards
+            </div>
+            <div slot="content" id="giftcards-menu">
+              Belk Rewards Cards
             </div>
           </sh-nav-item>
-        </li>
-
-        <li>
-          <sh-nav-item variant="primary" delay-on-mouse-over="400" delay-on-mouse-out="400">
-            <a slot="reference" id="doler-link" href="#">
-              Doler
-            </a>
-            <div id="doler-menu">
-              <h3>Header third</h3>
-              <ul>
-                <li>
-                  <a href="#">Lorem</a>
-                </li>
-                <li>
-                  <a href="#">Ipsum</a>
-                </li>
-                <li>
-                  <a href="#">Doler</a>
-                </li>
-              </ul>
-
-              <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsam, architecto? Blanditiis nesciunt earum dolor numquam facere labore doloribus aspernatur natus assumenda, officia aut fuga dolorum officiis sapiente. Similique, dicta a?</p>
-            </div>
-          </sh-nav-item>
-        </li>
-        <li>
-          <sh-nav-item variant="primary" delay-on-mouse-over="400" delay-on-mouse-out="400">
-            <a slot="reference" id="sit-link" href="#" class="highlight-quinary">
-              Sit
-            </a>
-            <div id="sit-menu">
-              <h3>Header four</h3>
-              <ul>
-                <li>
-                  <a href="#">Lorem</a>
-                </li>
-                <li>
-                  <a href="#">Ipsum</a>
-                </li>
-                <li>
-                  <a href="#">Doler</a>
-                </li>
-                <li>
-                  Sit
-                </li>
-                <li>
-                  Amet
-                </li>
-              </ul>
-            </div>
-          </sh-nav-item>
-        </li>
-      </ul>
-    </nav> -->
-    <div slot="secondary-nav">
-      <sh-button nav-trigger>
-        <belk-icon name="menu"></belk-icon>
-      </sh-button>
-      <belk-logo class="logo" width="60" color="highlight-primary"></belk-logo>
-      <belk-search></belk-search>
+        </div>
+      </div>
     </div>
-  </belk-header>
-  <main id="main" class="baseline30" style="flex-grow: 1; width: 100%; max-width:128rem; margin: 0 auto; overflow-y: auto">
 
-      <div slot="icon-bar">
+    <div class="secondary">
+      <div class="contain">
+        <belk-search></belk-search>
 
+        <sh-button class="nav-trigger" v-hammer:tap="menuHandler">
+          <i class="material-icons-round">menu</i>
+        </sh-button>
+
+        <belk-logo class="logo" width="60"></belk-logo>
+
+        <div class="icon-bar">
           <a href="coupons" class="icon-bar-action">
             <belk-icon width="30" name="coupon"></belk-icon>
             <div class="icon-bar-context">Coupons</div>
           </a>
-    
+
           <sh-nav-item class="icon-bar-action" variant="primary" has-arrow>
-            <a slot="reference" id="signin-link" href="#" class="highlight-quinary">
+            <a
+              slot="reference"
+              id="signin-link"
+              href="#"
+              class="highlight-quinary"
+            >
               <belk-icon width="30" name="person"></belk-icon>
               <div class="icon-bar-context">
-                <div class="greet">Hi, <span class="data-user-name">Sign In</span></div>
+                <div class="greet">
+                  Hi, <span class="data-user-name">Sign In</span>
+                </div>
                 <div><span>My&nbsp;</span>Account</div>
               </div>
             </a>
-            <div slot="content" id="signin-menu" class="icon-bar-context">
+            <div id="signin-menu" class="icon-bar-context">
               <sh-button variant="primary">Sign in</sh-button>
               <sh-button>Create an Account</sh-button>
             </div>
           </sh-nav-item>
-    
+
           <sh-nav-item class="icon-bar-action" variant="primary">
-            <belk-bag slot="reference" id="bag-link" ref="bag" count="10" price="1234.53"></belk-bag>
-            <div slot="content" id="bag-menu">
+            <belk-bag
+              slot="reference"
+              id="bag-link"
+              count="10"
+              price="1234.53"
+            ></belk-bag>
+            <div id="bag-menu">
               ... bag ...
             </div>
           </sh-nav-item>
         </div>
-    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Asperiores saepe obcaecati cupiditate debitis corporis, maxime corrupti eaque itaque harum id possimus perferendis sequi dolore nemo mollitia pariatur? Repellat, quae enim?</p>
-    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Asperiores saepe obcaecati cupiditate debitis corporis, maxime corrupti eaque itaque harum id possimus perferendis sequi dolore nemo mollitia pariatur? Repellat, quae enim?</p>
-    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Asperiores saepe obcaecati cupiditate debitis corporis, maxime corrupti eaque itaque harum id possimus perferendis sequi dolore nemo mollitia pariatur? Repellat, quae enim?</p>
-    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Asperiores saepe obcaecati cupiditate debitis corporis, maxime corrupti eaque itaque harum id possimus perferendis sequi dolore nemo mollitia pariatur? Repellat, quae enim?</p>
-    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Asperiores saepe obcaecati cupiditate debitis corporis, maxime corrupti eaque itaque harum id possimus perferendis sequi dolore nemo mollitia pariatur? Repellat, quae enim?</p>
-    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Asperiores saepe obcaecati cupiditate debitis corporis, maxime corrupti eaque itaque harum id possimus perferendis sequi dolore nemo mollitia pariatur? Repellat, quae enim?</p>
+      </div>
+    </div>
+  </div>
+
+  <main
+    id="main"
+    class="baseline30"
+    style="flex-grow: 1; width: 100%; max-width:128rem; margin: 0 auto; overflow-y: auto"
+  >
+    <p>
+      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Asperiores saepe
+      obcaecati cupiditate debitis corporis, maxime corrupti eaque itaque harum
+      id possimus perferendis sequi dolore nemo mollitia pariatur? Repellat,
+      quae enim?
+    </p>
+    <p>
+      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Asperiores saepe
+      obcaecati cupiditate debitis corporis, maxime corrupti eaque itaque harum
+      id possimus perferendis sequi dolore nemo mollitia pariatur? Repellat,
+      quae enim?
+    </p>
+    <p>
+      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Asperiores saepe
+      obcaecati cupiditate debitis corporis, maxime corrupti eaque itaque harum
+      id possimus perferendis sequi dolore nemo mollitia pariatur? Repellat,
+      quae enim?
+    </p>
+    <p>
+      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Asperiores saepe
+      obcaecati cupiditate debitis corporis, maxime corrupti eaque itaque harum
+      id possimus perferendis sequi dolore nemo mollitia pariatur? Repellat,
+      quae enim?
+    </p>
+    <p>
+      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Asperiores saepe
+      obcaecati cupiditate debitis corporis, maxime corrupti eaque itaque harum
+      id possimus perferendis sequi dolore nemo mollitia pariatur? Repellat,
+      quae enim?
+    </p>
+    <p>
+      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Asperiores saepe
+      obcaecati cupiditate debitis corporis, maxime corrupti eaque itaque harum
+      id possimus perferendis sequi dolore nemo mollitia pariatur? Repellat,
+      quae enim?
+    </p>
   </main>
 </div>
-
 <sh-curtain vce-cloak id="curtain"></sh-curtain>

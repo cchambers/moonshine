@@ -1,43 +1,5 @@
 <template>
-  <div class="belk-header">
-    <div ref="pre" class="pre">
-      <slot name="pre-header"></slot>
-    </div>
-
-    <div ref="primary" class="primary">
-      <div class="contain">
-        <div class="primary-promo">
-          <slot name="promo"></slot>          
-        </div>
-        <!-- <div>
-          <slot name="store-locator"></slot>          
-        </div> -->
-        <div class="primary-utility">
-          <slot name="utility"></slot>    
-        </div>
-      </div>
-    </div>
-
-    <div ref="secondary" class="secondary">
-      <div class="contain">
-        <belk-search></belk-search>
-
-        <sh-button class="nav-trigger" v-hammer:tap="menuHandler">
-          <i class="material-icons-round">menu</i>
-        </sh-button>
-
-        <belk-logo class="logo" width="60"></belk-logo>
-
-        <div class="icon-bar">
-          <slot name="icon-bar"></slot>
-        </div>
-      </div>
-    </div>
-
-    <!-- <div ref="post" class="post">
-      <slot name="post-header"></slot>
-    </div> -->
-  </div>
+<div></div>
 </template>
 
 <script>
@@ -68,7 +30,7 @@ export default {
     this.navEl = this.$refs.meganav;
     // this.data = window.pageData;
   },
-  
+
   methods: {
     events() {
       this.$bus.$on('mega-nav-opening');

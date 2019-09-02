@@ -1,6 +1,7 @@
 /* default styling */
 
 belk-icon {
+  pointer-events: none;
   display: inline-flex;
   .belk-icon {
     display: flex;
