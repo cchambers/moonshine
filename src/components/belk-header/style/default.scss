@@ -20,7 +20,7 @@
     display: none;
   }
 
-  .icon-bar {
+  .iconbar {
     display: flex;
     align-items: center;
     order: 3;
@@ -28,7 +28,7 @@
     belk-icon.arrow-down {
       align-self: flex-end;
     }
-    .icon-bar-action {
+    .iconbar-action {
       padding: 1rem;
       height: 6rem;
       display: flex;
@@ -38,7 +38,7 @@
         background: $highlight-secondary;
       }
     }
-    .icon-bar-context {
+    .iconbar-context {
       display: none;
       margin-left: 1rem;
     }
@@ -163,8 +163,8 @@
       max-width: 0;
     }
 
-    .icon-bar {
-      .icon-bar-context,
+    .iconbar {
+      .iconbar-context,
       .bag-total {
         display: block;
       }
