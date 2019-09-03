@@ -146,12 +146,7 @@
       max-width: 0;
     }
 
-    .icon-bar>div>div {
-      display: block;
-      order: 3;
-    }
-
-    .icon-bar-context {
+    .icon-bar .icon-bar-context {
       display: block;
     }
   }
