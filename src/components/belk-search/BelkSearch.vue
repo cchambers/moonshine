@@ -29,7 +29,7 @@
         <belk-icon name="close" width="24">Clear Input</belk-icon>
       </button>
       <button aria-role="button" aria-label="perform search" ref="search" v-hammer:tap="doSearch">
-        <i class="material-icons-round">search</i>
+        <belk-icon name="search" width="24">Perform Search Action</belk-icon>
       </button>
     </div>
     <div ref="loading" class="search-loading">

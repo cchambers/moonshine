@@ -4,7 +4,8 @@
   display: flex;
   flex-direction: column;
   background: $highlight-primary;
-  border-bottom: 1px solid $lowlight-tertiary;
+  color: $lowlight-primary;
+  border-bottom: 1px solid $lowlight-quaternary;
   .contain {
     width: 100%;
     max-width: 128rem;
@@ -17,15 +18,6 @@
   .pre:empty,
   .post:empty {
     display: none;
-  }
-
-  .close-trigger {
-    display: flex;
-    justify-content: flex-end;
-    background-color: $lowlight-tertiary;
-    color: $highlight-primary;
-    padding: 1rem;
-    cursor: pointer;
   }
 
   .icon-bar {
@@ -51,6 +43,9 @@
     .icon-bar-context {
       display: none;
       margin-left: 1rem;
+    }
+    .bag-total {
+      display: none;
     }
     .greet {
       font-size: 1.2rem;
@@ -131,14 +126,25 @@
     }
   }
 
+  .store-locator {
+    margin-left: auto;
+    padding-right: 1rem;
+    margin-right: 1rem;
+    border-right: 1px solid $lowlight-quaternary;
+  }
+
   @media (min-width: breakpoint("lg")) {
     .primary {
       display: flex;
+    }
+    .contain {
+      padding: 0 1rem;
     }
 
     .secondary {
       .contain {
         justify-content: flex-start;
+        padding-right: 0;
       }
     }
 
@@ -146,8 +152,11 @@
       max-width: 0;
     }
 
-    .icon-bar .icon-bar-context {
-      display: block;
+    .icon-bar {
+      .icon-bar-context,
+      .bag-total {
+        display: block;
+      }
     }
   }
 }

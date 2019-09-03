@@ -6,7 +6,7 @@
     </div>
 
     <div class="primary">
-      <div class="contain">
+      <div id="primary-nav" class="contain">
         <div class="primary-promo">
           <strong>FREE SHIPPING YO</strong>
         </div>
@@ -14,20 +14,26 @@
           Find a Store
         </div>
         <div class="primary-utility">
-          <sh-nav-item has-arrow>
+          <sh-nav-item boundaries-selector="#primary-nav" variant="primary" vce-cloak has-arrow>
             <div slot="reference" id="rewards-link">
-              Belk <span class="data-user-tier"></span> Rewards
+              <a href="#">
+                Belk <span fill-data="user-tier">&nbsp;</span> Rewards
+              </a>
             </div>
             <div slot="content" id="rewards-menu">
-              Belk Rewards Cards
+              Reward Card Content
+              <div style="height: 300px; width: 200px; background: tomato"></div>
             </div>
           </sh-nav-item>
-          <sh-nav-item has-arrow>
+          <sh-nav-item boundaries-selector="#primary-nav" variant="primary" vce-cloak has-arrow>
             <div slot="reference" id="giftcards-link">
-              Gift Cards
+              <a href="#">
+                Gift Cards
+              </a>
             </div>
             <div slot="content" id="giftcards-menu">
-              Belk Rewards Cards
+              Gift Card Content
+              <div style="height: 300px; width: 200px; background: tomato"></div>
             </div>
           </sh-nav-item>
         </div>
@@ -36,7 +42,7 @@
 
     <div class="secondary">
       <div class="contain">
-        <belk-search></belk-search>
+        <belk-search vce-cloak></belk-search>
 
         <sh-button class="nav-trigger" v-hammer:tap="menuHandler">
           <i class="material-icons-round">menu</i>
@@ -50,7 +56,7 @@
             <div class="icon-bar-context">Coupons</div>
           </a>
 
-          <sh-nav-item class="icon-bar-action" variant="primary" has-arrow>
+          <sh-nav-item vce-cloak class="icon-bar-action" variant="primary" has-arrow>
             <a
               slot="reference"
               id="signin-link"
@@ -71,7 +77,7 @@
             </div>
           </sh-nav-item>
 
-          <sh-nav-item class="icon-bar-action" variant="primary">
+          <sh-nav-item vce-cloak class="icon-bar-action" variant="primary">
             <belk-bag
               slot="reference"
               id="bag-link"

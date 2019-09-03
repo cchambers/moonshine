@@ -1,5 +1,5 @@
-$arrowHeight: 1.5rem;
-$arrowWidth: 4rem;
+$arrowHeight: 0.8rem;
+$arrowWidth: 2.5rem;
 $_aw: $arrowWidth/2;
 
 sh-nav-item {
@@ -9,6 +9,11 @@ sh-nav-item {
   .sh-nav-item {
     display: inline-block;
     color: $lowlight-primary;
+    &:hover {
+      .reference a {
+        background: $highlight-secondary;
+      }
+    }
   }
   
   .popper-target {

@@ -113,7 +113,7 @@
             },
             preventOverflow: {
               padding: 0,
-              priority: ['left']
+              priority: ['left', 'right']
             }
           }
         }
@@ -123,12 +123,12 @@
     watch: {
       showPopper(value) {
         if (value) {
-          this.$emit('show-mega-nav', this);
+          this.$emit('show-curtain', this);
           if (this.popperJS) this.popperJS.enableEventListeners();
           this.updatePopper();
         } else {
           if (this.popperJS) this.popperJS.disableEventListeners();
-          this.$emit('hide-mega-nav', this);
+          this.$emit('hide-curtain', this);
         }
       },
 
@@ -147,6 +147,7 @@
     },
 
     mounted() {
+      console.log(this.boundariesSelector)
       this.referenceElm = this.$refs.target;
       this.popper = this.$refs.popper;
       this.link = this.referenceElm.querySelector('a');
@@ -230,7 +231,7 @@
 
           if (this.boundariesSelector) {
             const boundariesElement = document.querySelector(this.boundariesSelector) || document.querySelector('#main');
-
+            console.log(boundariesElement, this.boundariesSelector)
             if (boundariesElement) {
               this.popperOptions.modifiers = Object.assign({
 
