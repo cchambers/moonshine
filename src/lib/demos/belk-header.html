@@ -8,10 +8,12 @@
         <div class="primary-promo">
           FREE SHIPPING on orders over $49
         </div>
-        <div class="store-locator">
-          Find a Store
-        </div>
+
         <div class="primary-utility">
+          <div class="store-locator">
+            Find a Store
+          </div>
+
           <sh-nav-item boundaries-selector="#primary-nav" variant="primary" vce-cloak has-arrow>
             <div slot="reference" id="rewards-link">
               <a href="#">
@@ -23,6 +25,7 @@
               <div style="height: 300px; width: 200px; background: tomato"></div>
             </div>
           </sh-nav-item>
+
           <sh-nav-item boundaries-selector="#primary-nav" variant="primary" vce-cloak has-arrow>
             <div slot="reference" id="giftcards-link">
               <a href="#">
@@ -43,10 +46,10 @@
         <belk-search vce-cloak></belk-search>
 
         <sh-button class="nav-trigger" v-hammer:tap="menuHandler">
-          <i class="material-icons-round">menu</i>
+          <belk-icon width="30" name="menu"></belk-icon>
         </sh-button>
 
-        <belk-logo class="logo" width="60"></belk-logo>
+        <belk-logo class="logo" variant="header" width="96"></belk-logo>
 
         <div class="iconbar">
           <a href="coupons" class="iconbar-action">

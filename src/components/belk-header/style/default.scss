@@ -5,7 +5,6 @@
   flex-direction: column;
   background: $highlight-primary;
   color: $lowlight-primary;
-  border-bottom: 1px solid $lowlight-quaternary;
   .contain {
     width: 100%;
     max-width: 128rem;
@@ -13,6 +12,7 @@
     flex-grow: 0;
     flex-shrink: 0;
     flex-basis: auto;
+    padding: 0 20px;
   }
 
   .pre:empty,
@@ -29,19 +29,22 @@
       align-self: flex-end;
     }
     .iconbar-action {
-      padding: 1rem;
+      padding: 10px;
       height: 6rem;
       display: flex;
       align-items: center;
       cursor: pointer;
+      margin-left: 10px;
       &:hover {
         background: $highlight-secondary;
       }
     }
+
     .iconbar-context {
       display: none;
       margin-left: 1rem;
     }
+
     .bag-total {
       display: none;
     }
@@ -54,50 +57,63 @@
   .secondary {
     .contain {
       display: flex;
-      justify-content: space-between;
       align-items: center;
     }
   }
 
   .primary {
+    height: 48px;
+    align-items: center;
+    display: flex;
+
     .contain {
-      padding: 0 1rem;
+      justify-content: center;
     }
+
     .primary-utility {
       display: none;
-      margin-left: 1rem;
       padding-left: 1rem;
-      border-left: 1px solid $lowlight-quaternary;
     }
     .primary-promo {
       font-weight: bold;
     }
   }
 
-  .contain {
-    justify-content: space-between;
+  .secondary {
+    height: 50px;
+    display: flex;
+    align-items: center;
+
+    .contain {
+      justify-content: space-between;
+    }
   }
 
   belk-logo {
-    margin: 1rem 1rem 1rem 0;
+    margin-left: 20px;
     order: 0;
     flex-shrink: 0;
   }
 
   belk-search {
-    width: 60%;
+    width: 100%;
     order: 1;
-    margin-left: auto;
+    max-width: 580px;
+    margin-left: 20px;
   }
 
   sh-button.nav-trigger {
-
+    max-width: 100vw;
+    overflow: hidden;
+    transition: max-width 250ms $ease;
     flex-shrink: 0;
 
     .sh-button {
       background: transparent !important;
       padding: 0;
       height: 4.5rem;
+      border: 2px solid currentColor;
+      border-radius: 4px;
 
       i {
         font-size: 3rem;
@@ -109,65 +125,99 @@
 
   /* default styling */
 
-  sh-button.nav-trigger {
-    max-width: 100vw;
-    overflow: hidden;
-    transition: max-width 250ms $ease;
-
-    .sh-button {
-      background: transparent !important;
-      padding: 0;
-      height: 4.5rem;
-
-      i {
-        font-size: 3rem;
-        padding: 0;
-        margin: 0;
-      }
-
-      .mobile-links {
-        flex-grow: 1;
-      }
-    }
-  }
-
   .tertiary {
     nav {
       display: block;
     }
   }
 
-  .store-locator {
-    margin-left: auto;
-  }
+  // Media Queries
+  @media (min-width: 768px ) {
+    belk-logo {
+      margin-left: 0px;
+      margin-right: 20px;
+    }
 
-  @media (min-width: breakpoint("lg")) {
+    .primary, 
+    .secondary {
+      .contain {
+        justify-content: space-between;
+      }
+    }
+
     .primary {
       display: flex;
       .primary-utility {
-        display: block;
+        display: flex;
+        
+        .store-locator {
+          padding-right: 0px;
+          border-right: none;
+        }
+
+        .sh-nav-item {
+          display: none;
+        }
+
       }
-    }
-    .contain {
-      padding: 0 1rem;
     }
 
     .secondary {
-      .contain {
-        justify-content: flex-start;
-        padding-right: 0;
-      }
+      height: 68px;
+      display: flex;
+      align-items: center;
+    }
+    
+    belk-search {
+      margin: 0 auto;
     }
 
     sh-button.nav-trigger {
       max-width: 0;
     }
+    
+  }
 
+  @media (min-width: 960px ) {
+    .primary {
+      display: flex;
+      .primary-utility {
+        display: flex;
+        
+        .store-locator {
+          padding-right: 16px;
+          border-right: 1px solid #979797;
+        }
+
+        .sh-nav-item {
+          display: inline-block;
+          margin-left: 16px;
+        }
+
+      }
+    }
     .iconbar {
       .iconbar-context,
       .bag-total {
         display: block;
       }
     }
+  
   }
+
+  @media (min-width: 1280px ) {
+    .contain {
+      padding: 0 20px;
+    }
+
+
+
+    .secondary {
+      .contain {
+        justify-content: flex-start;
+      }
+    }
+  }
+
+
 }

@@ -10,3 +10,4 @@
 
 <script src="../script/BelkLogo.js"></script>
 <style lang="scss" src="../style/default.scss"></style>
+<style lang="scss" src="../style/header.scss"></style>
