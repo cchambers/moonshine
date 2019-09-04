@@ -88,7 +88,7 @@
       },
       foregroundSelector: {
         type: String,
-        default: false
+        default: ''
       },
       options: {
         type: Object,
@@ -133,6 +133,7 @@
           this.$bus.$emit('show-curtain', this.foreground);
           if (this.link) this.link.setAttribute('aria-expanded', true);
         } else {
+          this.$bus.$emit('hide-curtain', this);
           if (this.popperJS) this.popperJS.disableEventListeners();
           if (this.link) this.link.setAttribute('aria-expanded', false);
         }

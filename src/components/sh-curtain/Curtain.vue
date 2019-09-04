@@ -19,8 +19,13 @@ export default {
     },
 
     show(el) {
+      console.log(el);
       if (el) {
         let _z = el.style.zIndex || 0;
+        let pos = el.style.position;
+        if (pos != "absolute" && pos != "relative") {
+          el.style.pos = "relative";
+        }
         if (_z < 8) {
           this.targetEl = el;
           el.style.zIndex = 9;
@@ -34,6 +39,7 @@ export default {
     hide() {
       if (this.targetEl) {
         this.targetEl.style.zIndex = '';
+        this.targetEl.style.position = '';
         this.targetEl = null;
       }
       this.$bus.$emit('curtain-hiding');

@@ -1,99 +1,97 @@
 <div id="page">
-
-  <belk-header></belk-header>
-
-  <div class="belk-header">
-    <div class="primary">
-      <div id="primary-nav" class="contain">
-        <div class="primary-promo">
-          FREE SHIPPING on orders over $49
-        </div>
-
-        <div class="primary-utility">
-          <div class="store-locator">
-            Find a Store
+  <header id="header">
+    <belk-header></belk-header>
+    <div class="belk-header">
+      <div class="primary">
+        <div id="primary-nav" class="contain">
+          <div class="primary-promo">
+            FREE SHIPPING on orders over $49
           </div>
 
-          <sh-nav-item boundaries-selector="#primary-nav" variant="primary" vce-cloak has-arrow>
-            <div slot="reference" id="rewards-link">
-              <a href="#">
-                Belk <span fill-data="user-tier">&nbsp;</span> Rewards
-              </a>
+          <div class="primary-utility">
+            <div class="store-locator">
+              Find a Store
             </div>
-            <div slot="content" id="rewards-menu">
-              Reward Card Content
-              <div style="height: 300px; width: 200px; background: tomato"></div>
-            </div>
-          </sh-nav-item>
 
-          <sh-nav-item boundaries-selector="#primary-nav" variant="primary" vce-cloak has-arrow>
-            <div slot="reference" id="giftcards-link">
-              <a href="#">
-                Gift Cards
-              </a>
-            </div>
-            <div slot="content" id="giftcards-menu">
-              Gift Card Content
-              <div style="height: 300px; width: 200px; background: tomato"></div>
-            </div>
-          </sh-nav-item>
-        </div>
-      </div>
-    </div>
-
-    <div class="secondary">
-      <div class="contain">
-        <belk-search vce-cloak></belk-search>
-
-        <sh-button class="nav-trigger" v-hammer:tap="menuHandler">
-          <belk-icon width="30" name="menu"></belk-icon>
-        </sh-button>
-
-        <belk-logo class="logo" variant="header" width="96"></belk-logo>
-
-        <div class="iconbar">
-          <a href="coupons" class="iconbar-action">
-            <belk-icon width="30" name="coupon"></belk-icon>
-            <div class="iconbar-context">Coupons</div>
-          </a>
-
-          <sh-nav-item vce-cloak class="iconbar-action" variant="primary" has-arrow>
-            <a
-              slot="reference"
-              id="signin-link"
-              href="#"
-              class="highlight-quinary"
-            >
-              <belk-icon width="30" name="person"></belk-icon>
-              <div class="iconbar-context">
-                <div class="greet">
-                  Hi, <span class="data-user-name">Sign In</span>
-                </div>
-                <div><span>My&nbsp;</span>Account</div>
+            <sh-nav-item boundaries-selector="#primary-nav" variant="primary" vce-cloak has-arrow foreground-selector="#header .primary">
+              <div slot="reference" id="rewards-link">
+                <a href="#">
+                  Belk <span fill-data="user-tier">&nbsp;</span> Rewards
+                </a>
               </div>
-            </a>
-            <div id="signin-menu" class="iconbar-context">
-              <sh-button variant="primary">Sign in</sh-button>
-              <sh-button>Create an Account</sh-button>
-            </div>
-          </sh-nav-item>
+              <div slot="content" id="rewards-menu">
+                Reward Card Content
+                <div style="height: 300px; width: 200px; background: tomato"></div>
+              </div>
+            </sh-nav-item>
 
-          <sh-nav-item vce-cloak class="iconbar-action" variant="primary">
-            <belk-bag
-              slot="reference"
-              id="bag-link"
-              count="10"
-              price="1234.53"
-            ></belk-bag>
-            <div id="bag-menu">
-              ... bag ...
-            </div>
-          </sh-nav-item>
+            <sh-nav-item boundaries-selector="#primary-nav" variant="primary" vce-cloak has-arrow foreground-selector="#header .primary">
+              <div slot="reference" id="giftcards-link">
+                <a href="#">
+                  Gift Cards
+                </a>
+              </div>
+              <div slot="content" id="giftcards-menu">
+                Gift Card Content
+                <div style="height: 300px; width: 200px; background: tomato"></div>
+              </div>
+            </sh-nav-item>
+          </div>
+        </div>
+      </div>
+
+      <div class="secondary">
+        <div class="contain">
+          <belk-search vce-cloak></belk-search>
+
+          <sh-button class="nav-trigger" v-hammer:tap="menuHandler">
+            <belk-icon width="30" name="menu"></belk-icon>
+          </sh-button>
+
+          <belk-logo class="logo" variant="header" width="96"></belk-logo>
+
+          <div class="iconbar">
+            <a href="coupons" class="iconbar-action">
+              <belk-icon width="30" name="coupon"></belk-icon>
+              <div class="iconbar-context">Coupons</div>
+            </a>
+
+            <sh-nav-item vce-cloak class="iconbar-action" variant="primary" has-arrow foreground-selector="#header .belk-header">
+              <a
+                slot="reference"
+                id="signin-link"
+                href="#"
+                class="highlight-quinary"
+              >
+                <belk-icon width="30" name="person"></belk-icon>
+                <div class="iconbar-context">
+                  <div class="greet">
+                    Hi, <span class="data-user-name">Sign In</span>
+                  </div>
+                  <div><span>My&nbsp;</span>Account</div>
+                </div>
+              </a>
+              <div id="signin-menu" class="iconbar-context">
+                <sh-button variant="primary">Sign in</sh-button>
+                <sh-button>Create an Account</sh-button>
+              </div>
+            </sh-nav-item>
+
+            <sh-nav-item vce-cloak class="iconbar-action" variant="primary" foreground-selector="#header .belk-header">
+              <belk-bag
+                slot="reference"
+                id="bag-link"
+                count="10"
+                price="1234.53"
+              ></belk-bag>
+              <div id="bag-menu">
+                ... bag ...
+              </div>
+            </sh-nav-item>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-
-   
+  </header>
 </div>
 <sh-curtain vce-cloak id="curtain"></sh-curtain>
