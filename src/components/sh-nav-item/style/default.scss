@@ -147,6 +147,27 @@ sh-nav-item {
     color: $lowlight-primary;
     padding: 1rem;
     border: 1px solid $lowlight-primary;
+
+    ul {
+      margin: 0;
+      padding: 0;
+      
+      li {
+        list-style: none; 
+        white-space: nowrap;
+        
+
+        a {
+          display: block;
+          color: currentColor;
+          padding: .6rem;
+
+          &:hover {
+            background-color: $highlight-secondary;
+          }
+        }
+      }
+    }
   }
 
   .fade-enter-active, .fade-leave-active {

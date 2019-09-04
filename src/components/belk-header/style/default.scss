@@ -41,6 +41,10 @@
       align-items: center;
       cursor: pointer;
 
+      &.coupon-action {
+        display:none;
+      }
+
       &:hover {
         background: $highlight-secondary;
       }
@@ -125,8 +129,6 @@
       background: transparent !important;
       padding: 0;
       height: 4.5rem;
-      border: 2px solid currentColor;
-      border-radius: .4rem;
 
       i {
         font-size: 3rem;
@@ -146,6 +148,8 @@
 
   // Media Queries
   @media (min-width: breakpoint("md") ) {
+    border-bottom: 0;
+
     belk-logo {
       margin-left: 0;
       margin-right: 2rem;
@@ -166,12 +170,24 @@
         .store-locator {
           padding-right: 0;
           border-right: none;
+          display: flex;
+          align-items: center;
+
+          & + sh-nav-item {
+            margin-left: 8px;
+          }
         }
 
         .sh-nav-item {
           display: none;
         }
 
+      }
+    }
+
+    .iconbar .iconbar-action {
+      &.coupon-action {
+        display:flex;
       }
     }
 
@@ -204,7 +220,10 @@
 
         .sh-nav-item {
           display: inline-block;
-          margin-left: 1.6rem;
+
+          a {
+            padding: .8rem;
+          }
         }
 
       }
