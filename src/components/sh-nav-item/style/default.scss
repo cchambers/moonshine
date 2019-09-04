@@ -3,6 +3,7 @@ $arrowWidth: 2.5rem;
 $_aw: $arrowWidth/2;
 
 sh-nav-item {
+  position: relative;
   i {
     pointer-events: none;
   }

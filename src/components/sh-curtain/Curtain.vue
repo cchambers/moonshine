@@ -1,3 +1,8 @@
+<template> 
+  <div class="sh-curtain" v-bind:class="{ 'active': active }" v-hammer:tap="hide"></div>
+</template>
+
+<script>
 export default {
   name: 'Curtain',
 
@@ -15,7 +20,7 @@ export default {
 
     show(el) {
       if (el) {
-        let _z = el.style.zIndex;
+        let _z = el.style.zIndex || 0;
         if (_z < 8) {
           this.targetEl = el;
           el.style.zIndex = 9;
@@ -47,6 +52,7 @@ export default {
     clickHanlder() {
       this.hide();
     }
-  },
-
+  }
 }
+</script>
+<style lang="scss" src="./style/default.scss"></style>

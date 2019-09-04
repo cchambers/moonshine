@@ -4,7 +4,6 @@
 require('./components/sh-accordion');
 require('./components/sh-adapt-content');
 require('./components/sh-banner');
-require('./components/sh-button');
 require('./components/sh-carousel');
 require('./components/sh-combo');
 require('./components/sh-dropnav');

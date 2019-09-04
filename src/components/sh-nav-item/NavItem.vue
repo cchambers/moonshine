@@ -86,6 +86,10 @@
         type: Boolean,
         default: false
       },
+      foregroundSelector: {
+        type: String,
+        default: false
+      },
       options: {
         type: Object,
         default() {
@@ -97,6 +101,7 @@
     data() {
       return {
         active: false,
+        foreground: null,
         referenceElm: null,
         popperJS: null,
         showPopper: false,
@@ -123,12 +128,13 @@
     watch: {
       showPopper(value) {
         if (value) {
-          this.$emit('show-curtain', this);
           if (this.popperJS) this.popperJS.enableEventListeners();
           this.updatePopper();
+          this.$bus.$emit('show-curtain', this.foreground);
+          if (this.link) this.link.setAttribute('aria-expanded', true);
         } else {
           if (this.popperJS) this.popperJS.disableEventListeners();
-          this.$emit('hide-curtain', this);
+          if (this.link) this.link.setAttribute('aria-expanded', false);
         }
       },
 
@@ -147,12 +153,16 @@
     },
 
     mounted() {
-      console.log(this.boundariesSelector)
       this.referenceElm = this.$refs.target;
       this.popper = this.$refs.popper;
       this.link = this.referenceElm.querySelector('a');
-      if (this.link && this.hasArrow) {
-        this.link.innerHTML += '<belk-icon name="arrow-down" width="20"></belk-icon>';
+      if (this.foregroundSelector) this.foreground = document.querySelector(this.foregroundSelector);
+
+      if (this.link) {
+        this.link.setAttribute('aria-haspopup', true);
+        this.link.setAttribute('aria-expanded', false);
+        if (this.hasArrow) this.link.innerHTML += '<belk-icon name="arrow-down" width="20"></belk-icon>';
+        
       }
 
       this.initPopper();
@@ -160,18 +170,23 @@
 
     methods: {
       events() {
+        let self = this;
         this.$bus.$on('show-nav', (which) => {
-          if (which !== this.uuid) this.close();
+          if (which !== self.uuid) self.close();
         });
 
         this.$bus.$on('breakpoint-mobile', () => {
-          this.mobile = true;
+          self.mobile = true;
         });
 
         this.$bus.$on('breakpoint-desktop', () => {
-          this.mobile = false;
+          self.mobile = false;
         });
 
+        this.$bus.$on('navitem-opening', (el) => {
+          if (el == this) return;
+          if (self._closingTimer) clearTimeout(self._closingTimer);
+        });
       },
 
       initPopper() {
@@ -207,6 +222,7 @@
 
       show() {
         this.showPopper = true;
+        this.$bus.$emit('navitem-opening', this);
       },
 
       close() {
@@ -231,7 +247,6 @@
 
           if (this.boundariesSelector) {
             const boundariesElement = document.querySelector(this.boundariesSelector) || document.querySelector('#main');
-            console.log(boundariesElement, this.boundariesSelector)
             if (boundariesElement) {
               this.popperOptions.modifiers = Object.assign({
 
