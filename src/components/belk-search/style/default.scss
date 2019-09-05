@@ -2,7 +2,7 @@ belk-search {
   display: flex;
   position: relative;
   max-width: 60rem;
-  height: 4rem;
+  height: 3.2rem;
 }
 
 .belk-search {
@@ -19,8 +19,8 @@ belk-search {
   overflow: hidden;
   border: 2px solid $lowlight-primary;
   border-radius: 1rem;
-  z-index: 1;
   transition: box-shadow 250ms $ease;
+  z-index: 7;
 
   &.active {
     @include box-shadow(1);
@@ -43,8 +43,8 @@ belk-search {
     background: none;
     border: none;
     outline: 0;
-    height: 3.6rem;
-    min-width: 3.6rem;
+    height: 2.8rem;
+    min-width: 2.8rem;
     transition: background 250ms $ease;
     color: $lowlight-primary;
     &:hover {
@@ -172,4 +172,18 @@ belk-search {
       text-decoration: none;
     }
   }
+}
+
+@media (min-width: breakpoint("md") ) {
+  belk-search {
+    height: 4rem;
+  }
+  .belk-search {
+    button, 
+    input {
+      height: 3.6rem;
+      min-width: 3.6rem;
+    }
+  }
+  
 }
