@@ -108,12 +108,22 @@ import BelkProducts from "../belk-products/BelkProducts";
 export default {
   name: "BelkSearch",
 
+  props: {
+
+      lowerPlaceholder: {
+        type: String,
+        default: 'Search'
+      },
+      upperPlaceholder: {
+        type: String,
+        default: 'What can we help you find?'
+      },
+  },
+
   data() {
     return {
       value: '',
       searchValue: '',
-      lowerPlaceholder: 'Search',
-      upperPlaceholder: 'What can we help you find?',
       placeholder: '',
       valueLength: 0,
       triggerResults: 1,
@@ -143,7 +153,7 @@ export default {
       count: 0,
       preloaded: false,
       fullyloaded: false,
-      belkProducts: BelkProducts
+      belkProducts: BelkProducts,
     };
   },
 
@@ -305,7 +315,9 @@ export default {
 
       window.addEventListener('resize', self.placeholderHandler);
 
-      this.$on('active-descendant', self.activeDescendantHandler)
+      self.$on('active-descendant', self.activeDescendantHandler)
+
+      self.$bus.$on('navitem-opening', self.forceBlur)
     },
 
     configureAria() {
@@ -355,7 +367,7 @@ export default {
       let self = this;
       clearTimeout(self._placeholderTimer);
       self._placeholderTimer = setTimeout(() => {
-        let text = (window.innerWidth < 768) ? this.lowerPlaceholder : this.upperPlaceholder;
+        let text = (window.innerWidth < 768) ? self.lowerPlaceholder : self.upperPlaceholder;
         self.placeholder = text;
       }, 100);
     },

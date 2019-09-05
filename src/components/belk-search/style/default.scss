@@ -20,8 +20,10 @@ belk-search {
   border: 2px solid $lowlight-primary;
   border-radius: 1rem;
   z-index: 1;
+  transition: box-shadow 250ms $ease;
 
   &.active {
+    @include box-shadow(1);
     .search-input {
       &:after {
         opacity: 1;
