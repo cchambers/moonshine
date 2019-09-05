@@ -46,8 +46,8 @@ export default {
         url = Urls.headerInfo;
         brdurl = Urls.getBrdDetailsForHeader;
       } else {
-        url = 'https://dev29-web-belk.demandware.net/on/demandware.store/Sites-Belk-Site/default/Home-HeaderInfo?format=ajax';
-        brdurl = 'https://dev29-web-belk.demandware.net/on/demandware.store/Sites-Belk-Site/default/BRD-GetBRDDetailsForHeader';
+        url = '//dev29-web-belk.demandware.net/on/demandware.store/Sites-Belk-Site/default/Home-HeaderInfo?format=ajax';
+        brdurl = '//dev29-web-belk.demandware.net/on/demandware.store/Sites-Belk-Site/default/BRD-GetBRDDetailsForHeader';
       }
       let xhr = new XMLHttpRequest();
       xhr.open('GET', url);
