@@ -170,7 +170,7 @@
       }
 
       if (this.trigger == 'click') {
-        let ref = this.querySelector('.reference a');
+        let ref = this.$el.querySelector('.reference a');
         if (ref) ref.addEventListener('click', function (e) {
           e.preventDefault();
         });
