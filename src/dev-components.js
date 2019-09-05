@@ -1,4 +1,5 @@
 
+require('./components/belk-price');
 // require('./components/belk-mega-nav');
 
 require('./components/sh-accordion');

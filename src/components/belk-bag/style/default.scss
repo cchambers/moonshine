@@ -53,3 +53,29 @@ belk-bag {
     }
   }
 }
+
+.belk-header .minibag-action {
+  .is-empty-not-signed-in,
+  .is-empty-signed-in,
+  .has-products {
+    display: none;
+  }
+}
+
+.belk-header {
+  &[bag-state="0"] {
+    .is-empty-not-signed-in {
+      display: block;
+    }
+  }
+  &[bag-state="1"] {
+    .is-empty-signed-in {
+      display: block;
+    }
+  }
+  &[bag-state="2"] {
+    .has-products {
+      display: block;
+    }
+  }
+}

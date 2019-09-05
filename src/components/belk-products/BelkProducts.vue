@@ -22,6 +22,8 @@
 </template>
 
 <script>
+
+import BelkPrice from '../belk-price/BelkPrice'
 export default {
   name: 'BelkProducts',
   props: {

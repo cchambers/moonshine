@@ -10,6 +10,7 @@ export default {
     return {
       bagEl: {},
       navEl: {},
+      loggedIn: false,
       data: {
         name: 'Sign In',
         brd: 0, // dollars
@@ -26,18 +27,36 @@ export default {
   },
 
   mounted() {
-    this.bagEl = this.$refs.bag;
-    this.navEl = this.$refs.meganav;
+    this.actual = document.querySelector('#header .belk-header');
+    this.bagEl = document.querySelector('belk-bag');
+    // this.navEl = this.$refs.meganav;
     // this.data = window.pageData;
   },
 
   methods: {
     events() {
       this.$bus.$on('mega-nav-opening');
+      this.$bus.$on('bag-update', this.bagupdateHandler);
     },
 
     menuHandler() {
       this.navEl.show();
+    },
+
+    bagupdateHandler(data) {
+      if (!this.loggedIn) {
+        this.bagState(0);
+      } else {
+        if (data.count == 0) {
+          this.bagState(1);
+        } else {
+          this.bagState(2);
+        }
+      }
+    },
+
+    bagState(num) {
+      this.actual.setAttribute('bag-state', num)
     },
 
     updateUsername(name) {
