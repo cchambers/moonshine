@@ -95,6 +95,10 @@
         default() {
           return {};
         }
+      },
+      trigger: {
+        type: String,
+        default: 'click'
       }
     },
 
@@ -163,7 +167,13 @@
         this.link.setAttribute('aria-haspopup', true);
         this.link.setAttribute('aria-expanded', false);
         if (this.hasArrow) this.link.innerHTML += '<belk-icon name="arrow-down" width="20"></belk-icon>';
-        
+      }
+
+      if (this.trigger == 'click') {
+        let ref = this.querySelector('.reference a');
+        if (ref) ref.addEventListener('click', function (e) {
+          e.preventDefault();
+        });
       }
 
       this.initPopper();
@@ -191,16 +201,25 @@
       },
 
       initPopper() {
-          on(this.referenceElm, 'click', this.doToggle);
-          on(document, 'click', this.handleDocumentClick);
-          on(this.referenceElm, 'mouseover', this.mouseoverHandler);
-          on(this.referenceElm, 'focus', this.mouseoverHandler);
-          on(this.popper, 'mouseover', this.mouseoverHandler);
-          on(this.popper, 'focus', this.mouseoverHandler);
-          on(this.referenceElm, 'mouseout', this.mouseoutHandler);
-          on(this.referenceElm, 'blur', this.mouseoutHandler);
-          on(this.popper, 'mouseout', this.mouseoutHandler);
-          on(this.popper, 'blur', this.mouseoutHandler);
+        switch (this.trigger) {
+          case 'click':
+            on(this.referenceElm, 'click', this.doToggle);
+            on(document, 'click', this.handleDocumentClick);
+            break;
+          case 'hover':
+            on(this.referenceElm, 'mouseover', this.mouseoverHandler);
+            on(this.referenceElm, 'focus', this.mouseoverHandler);
+            on(this.popper, 'mouseover', this.mouseoverHandler);
+            on(this.popper, 'focus', this.mouseoverHandler);
+            on(this.referenceElm, 'mouseout', this.mouseoutHandler);
+            on(this.referenceElm, 'blur', this.mouseoutHandler);
+            on(this.popper, 'mouseout', this.mouseoutHandler);
+            on(this.popper, 'blur', this.mouseoutHandler);
+            break;
+          case 'default': 
+            // do nothing
+            break;
+        }
       },
 
       activate() {

@@ -43,6 +43,7 @@ export default {
     content: String,
     contentUrl: String,
     contentSelector: String,
+    dynamicHTML: String,
     noHistory: Boolean,
     header: String,
     footer: String,
@@ -92,15 +93,14 @@ export default {
   },
 
   methods: {
-
     focusFirst() {
       let el = this.$el.querySelectorAll('a, input, button, [tabindex]');
-      if (el) el[0].focus()
+      if (el) el[0].focus();
     },
 
     focusLast() {
       let el = this.$el.querySelectorAll('a, input, button, [tabindex]');
-      if (el) el[el.length].focus()
+      if (el) el[el.length].focus();
     },
 
     events() {
@@ -269,7 +269,7 @@ export default {
       /* Generate background colors for every bg */
       @each $name, $hex in $colors {
         &[overlay="#{$name}"] {
-          @include background-opacity($hex, 0.9);
+          @include background-opacity($hex, 0.75);
         }
       }
     }

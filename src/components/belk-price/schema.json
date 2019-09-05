@@ -1,0 +1,7 @@
+{
+  "name": "Belk Price",
+  "element": "belk-price",
+  "description": "Demonstration component.",
+  "tags": ["utilities", "demo"],
+  "requirements": []
+}
