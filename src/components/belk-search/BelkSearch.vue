@@ -297,7 +297,6 @@ export default {
     this.resultsEl = this.$refs.results;
     this.productsEl = this.$refs.suggestedProducts;
     this.headerEl = document.querySelector('belk-header');
-    console.log(this.headerEl)
 
     this.configureAria();
     this.placeholderHandler();

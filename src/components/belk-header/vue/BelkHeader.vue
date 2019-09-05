@@ -41,6 +41,7 @@ export default {
 
     getData() {
       let url, brdurl;
+      let self = this;
       if (window.Urls) {
         url = Urls.headerInfo;
         brdurl = Urls.getBrdDetailsForHeader;
