@@ -109,7 +109,6 @@ export default {
   name: "BelkSearch",
 
   props: {
-
       lowerPlaceholder: {
         type: String,
         default: 'Search'
@@ -137,6 +136,7 @@ export default {
       ariaIDResults: '',
       activeDescendant: false,
       allProducts: [],
+      headerEl: false,
       products: [],
       productsLimited: [],
       productsLimit: 3,
@@ -169,6 +169,7 @@ export default {
       if (this.count > 0 && this.isFocused) state = 2;
       if (this.count == 0 && this.noResults && this.searchValue != "" && this.isFocused) state = 3;
       this.activeDescendantHandler();
+      this.stateHandler(state);
       return state;
     },
 
@@ -295,6 +296,9 @@ export default {
     this.inputEl = this.$refs.input;
     this.resultsEl = this.$refs.results;
     this.productsEl = this.$refs.suggestedProducts;
+    this.headerEl = document.querySelector('belk-header');
+    console.log(this.headerEl)
+
     this.configureAria();
     this.placeholderHandler();
     this.recentSearches();
@@ -319,6 +323,16 @@ export default {
 
       self.$bus.$on('navitem-opening', self.navitemHandler);
       window.addEventListener('navitem-opening', self.navitemHandler);
+    },
+
+    stateHandler(val) {
+      if (this.headerEl) {
+        if (val > 0) {
+          this.headerEl.classList.add('search-active');
+        } else {
+          this.headerEl.classList.remove('search-active');
+        }
+      }
     },
 
     configureAria() {

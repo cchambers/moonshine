@@ -42,7 +42,7 @@ export default {
 
   watch: {
     data(val) {
-      console.log(val)
+      // console.log(val)
       if (val.price) this.actualPrice = val.price
     }
   },

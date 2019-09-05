@@ -15,6 +15,7 @@ export default {
         name: 'Sign In',
         brd: 0, // dollars
         brc: 0, // tier
+        cartQty: 0,
       }
     }
   },
@@ -29,14 +30,59 @@ export default {
   mounted() {
     this.actual = document.querySelector('#header .belk-header');
     this.bagEl = document.querySelector('belk-bag');
-    // this.navEl = this.$refs.meganav;
-    // this.data = window.pageData;
+    this.getData();
   },
 
   methods: {
     events() {
       this.$bus.$on('mega-nav-opening');
       this.$bus.$on('bag-update', this.bagupdateHandler);
+    },
+
+    getData() {
+      let url, brdurl;
+      if (window.Urls) {
+        url = Urls.headerInfo;
+        brdurl = Urls.getBrdDetailsForHeader;
+      } else {
+        url = 'https://dev29-web-belk.demandware.net/on/demandware.store/Sites-Belk-Site/default/Home-HeaderInfo?format=ajax';
+        brdurl = 'https://dev29-web-belk.demandware.net/on/demandware.store/Sites-Belk-Site/default/BRD-GetBRDDetailsForHeader';
+      }
+      let xhr = new XMLHttpRequest();
+      xhr.open('GET', url);
+      xhr.send(null);
+      xhr.onreadystatechange = function() {
+        let DONE = 4;
+        let OK = 200;
+        if (xhr.readyState === DONE) {
+          if (xhr.status === OK) {
+            let res = JSON.parse(xhr.responseText);
+            self.handleHeader(res);
+          }
+        }
+      };
+      
+      let brdxhr = new XMLHttpRequest();
+      brdxhr.open('GET', brdurl);
+      brdxhr.send(null);
+      brdxhr.onreadystatechange = function() {
+        let DONE = 4;
+        let OK = 200;
+        if (brdxhr.readyState === DONE) {
+          if (brdxhr.status === OK) {
+            let res = JSON.parse(brdxhr.responseText);
+            self.handleBRD(res);
+          }
+        }
+      };
+    },
+
+    handleHeader(data) {
+      console.log("HEADER", data)
+    },
+
+    handleBRD(data) {
+      console.log("BRD", data)
     },
 
     menuHandler() {
@@ -60,7 +106,7 @@ export default {
     },
 
     updateUsername(name) {
-      let els = this.querySelectorAll('.data-user-name');
+      let els = this.querySelectorAll('[fill="name"]');
       this.$el.classList.add('is-user');
       els.forEach(element => {
         element.innerText = name;
@@ -70,5 +116,3 @@ export default {
 }
 </script>
 <style lang="scss" src="../style/default.scss"></style>
-<style lang="scss" src="../style/primary.scss"></style>
-
