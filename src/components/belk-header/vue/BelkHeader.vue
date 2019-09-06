@@ -43,8 +43,8 @@ export default {
       let url, brdurl;
       let self = this;
       if (window.Urls) {
-        url = Urls.headerInfo;
-        brdurl = Urls.getBrdDetailsForHeader;
+        url = window.Urls.headerInfo;
+        brdurl = window.Urls.getBrdDetailsForHeader;
       } else {
         url = '//dev29-web-belk.demandware.net/on/demandware.store/Sites-Belk-Site/default/Home-HeaderInfo?format=ajax';
         brdurl = '//dev29-web-belk.demandware.net/on/demandware.store/Sites-Belk-Site/default/BRD-GetBRDDetailsForHeader';
