@@ -46,13 +46,12 @@ export default {
     },
 
     getData(forceUpdate) {
+      let self = this;
       let sessionData = self.getItem('belkUserData', true);
       if (sessionData && !forceUpdate) {
         self.data = self.sessionData;
       } else {
-
         let url, brdurl;
-        let self = this;
         if (window.Urls) {
           url = window.Urls.headerInfo;
           brdurl = window.Urls.getBrdDetailsForHeader;
