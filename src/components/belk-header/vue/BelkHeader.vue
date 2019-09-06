@@ -10,6 +10,7 @@ export default {
     return {
       bagEl: {},
       navEl: {},
+      searchEl: {},
       loggedIn: false,
       data: {
         name: 'Sign In',

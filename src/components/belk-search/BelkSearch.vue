@@ -316,11 +316,11 @@ export default {
         self.isFocused = false;
       });
 
-      window.addEventListener('resize', self.placeholderHandler);
-
-      self.$on('active-descendant', self.activeDescendantHandler)
-
+      self.$on('active-descendant', self.activeDescendantHandler);
       self.$bus.$on('navitem-opening', self.forceBlur);
+      self.$bus.$on('close-search', self.forceBlur);
+      
+      window.addEventListener('resize', self.placeholderHandler);
       window.addEventListener('navitem-opening', self.forceBlur);
     },
 
@@ -435,9 +435,11 @@ export default {
     },
 
     forceBlur(e) {
-      let key = e.charCode || e.keyCode;
       let clear = false;
-      if (key == 27 || e.target == this.$refs.clear) clear = true;
+      if (typeof e == "object") {
+        let key = e.charCode || e.keyCode;
+        if (key == 27 || e.target == this.$refs.clear) clear = true;
+      }
       if (document.activeElement == this.inputEl) this.inputEl.blur();
       this.isFocused = false;
 
@@ -511,7 +513,7 @@ export default {
         this.recentSearches(val);
         let url = this.buildSearchLink(val);
         window.location.href = url;
-        this.forceBlur(true);
+        this.forceBlur();
       } else {
         this.inputEl.focus();
       }

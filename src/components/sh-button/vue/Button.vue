@@ -35,8 +35,10 @@ export default {
     tapHandler(e) {
       this.ripple(e);
       if (this.toggle) this.doToggle();
-
-      if (this.clickEvent) this.emit(this.clickEvent);
+      if (this.clickEvent) {
+        this.$bus.$emit(this.clickEvent);
+        e.preventDefault();
+      }
     },
     
     ripple(e) {
