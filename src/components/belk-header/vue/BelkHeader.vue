@@ -12,6 +12,7 @@ export default {
       navEl: {},
       searchEl: {},
       loggedIn: false,
+      _dataDebounce: 0,
       data: {
         name: 'Sign In',
         brd: false, // dollars
@@ -53,11 +54,14 @@ export default {
     getData(forceUpdate) {
       let self = this;
       let sessionData = self.getItem('belkUserData', true);
+        console.log("GETTING DATA");
       if (sessionData && !forceUpdate) {
         self.data = self.sessionData;
+        console.log("HAVE SESSION DATA");
       } else {
         let url, brdurl;
         if (window.Urls) {
+          console.log("HAVE URLS");
           url = window.Urls.headerInfo;
           brdurl = window.Urls.getBrdDetailsForHeader;
         } else {
@@ -75,6 +79,7 @@ export default {
           let OK = 200;
           if (xhr.readyState === DONE) {
             if (xhr.status === OK) {
+              console.log("Got response from header call");
               let res = JSON.parse(xhr.responseText);
               self.handleHeader(res);
             }
@@ -89,6 +94,7 @@ export default {
           let OK = 200;
           if (brdxhr.readyState === DONE) {
             if (brdxhr.status === OK) {
+              console.log("Got response from BRD call");
               let res = JSON.parse(brdxhr.responseText);
               self.handleBRD(res);
             }
@@ -105,17 +111,18 @@ export default {
     },
 
     handleHeader(data) {
-      this.data.name = data.userDetails.firstName;
-      this.data.auth = data.userDetails.authenticated;
-      this.data.qty = data.cartQty;
-      this.data.total = data.subTotal;
-      this.data.store = data.storeName;
+      console.log("header handler")
+      this.$set(this.data, 'name', data.userDetails.firstName);
+      this.$set(this.data, 'auth', data.userDetails.authenticated);
+      this.$set(this.data, 'qty', data.cartQty);
+      this.$set(this.data, 'total', data.subTotal);
+      this.$set(this.data, 'store', data.storeName);
       if (this.data.auth) this.$el.classList.add('is-user');
     },
 
     handleBRD(data) {
-      this.data.brc = data.customerType;
-      this.data.brd = data.availableBRDValue;
+      this.$set(this.data, 'brc', data.customerType);
+      this.$set(this.data, 'brd', data.availableBRDValue);
     },
 
     bagUpdateHandler(data) {
@@ -135,7 +142,6 @@ export default {
     },
 
     updateContainers(data) {
-      console.log(data);
       for (var item in data) {
         let val = data[item];
         if (val) {
