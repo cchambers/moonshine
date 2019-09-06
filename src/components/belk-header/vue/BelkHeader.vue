@@ -110,7 +110,7 @@ export default {
       this.data.qty = data.cartQty;
       this.data.total = data.subTotal;
       this.data.store = data.storeName;
-      if (data.auth) this.$el.classList.add('is-user');
+      if (this.data.auth) this.$el.classList.add('is-user');
     },
 
     handleBRD(data) {
