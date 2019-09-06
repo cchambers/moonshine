@@ -35,7 +35,8 @@ export default {
 
   data() {
     return {
-      itemCount: 0
+      itemCount: false,
+      subTotal: false
     };
   },
 
@@ -44,8 +45,17 @@ export default {
   },
 
   methods: {
+    events() {
+      this.$bus.$on('user-data', this.handleUserData)
+    },
+
+    handleUserData(data) {
+      this.count = data.cartQty;
+      this.subTotal = data.subTotal;
+    },
+
     emitUpdate() {
-      this.$bus.$emit("value-changed", {
+      this.$bus.$emit('value-changed', {
         itemCount: this.itemCount,
         totalPrice: this.totalPrice
       });
