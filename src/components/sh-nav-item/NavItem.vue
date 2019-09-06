@@ -136,6 +136,7 @@
           if (this.popperJS) this.popperJS.enableEventListeners();
           this.updatePopper();
           this.$bus.$emit('show-curtain', this.foreground);
+          console.log(this.foreground);
           if (this.link) this.link.setAttribute('aria-expanded', true);
         } else {
           this.$bus.$emit('hide-curtain', this);

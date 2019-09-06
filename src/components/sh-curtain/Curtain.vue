@@ -9,6 +9,8 @@ export default {
   data() {
     return {
       active: false,
+      targetEl: false,
+      lastTargetEl: false,
     }
   },
 
@@ -26,6 +28,7 @@ export default {
           el.style.pos = "relative";
         }
         if (_z < 8) {
+          this.lastTargetEl = this.targetEl;
           this.targetEl = el;
           el.style.zIndex = 9;
         }
@@ -38,10 +41,10 @@ export default {
     },
 
     hide() {
-      if (this.targetEl) {
-        this.targetEl.style.zIndex = '';
-        this.targetEl.style.position = '';
-        this.targetEl = null;
+      if (this.lastTargetEl) {
+        this.lastTargetEl.style.zIndex = '';
+        this.lastTargetEl.style.position = '';
+        this.lastTargetEl = null;
       }
       this.$bus.$emit('curtain-hiding');
       this.active = false;
