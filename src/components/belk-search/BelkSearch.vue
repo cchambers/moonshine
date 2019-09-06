@@ -320,8 +320,8 @@ export default {
 
       self.$on('active-descendant', self.activeDescendantHandler)
 
-      self.$bus.$on('navitem-opening', self.navitemHandler);
-      window.addEventListener('navitem-opening', self.navitemHandler);
+      self.$bus.$on('navitem-opening', self.forceBlur);
+      window.addEventListener('navitem-opening', self.forceBlur);
     },
 
     stateHandler(val) {
@@ -384,10 +384,6 @@ export default {
         let text = (window.innerWidth < 768) ? self.lowerPlaceholder : self.upperPlaceholder;
         self.placeholder = text;
       }, 100);
-    },
-
-    navitemHandler() {
-      this.forceBlur();
     },
 
     selectInput() {
