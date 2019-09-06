@@ -14,6 +14,16 @@ export default {
     }
   },
 
+  watch: {
+    targetEl(val, old) {
+      if (val !== old) {
+        this.lastTargetEl = old;
+      } else {
+        this.lastTargetEl = val;
+      }
+    }
+  },
+
   methods: {
     events() {
       this.$bus.$on('show-curtain', this.show);
@@ -28,7 +38,6 @@ export default {
           el.style.pos = "relative";
         }
         if (_z < 8) {
-          this.lastTargetEl = this.targetEl;
           this.targetEl = el;
           el.style.zIndex = 9;
         }
