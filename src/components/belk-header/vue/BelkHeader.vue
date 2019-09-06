@@ -26,6 +26,7 @@ export default {
   watch: {
     data(val) {
       let self = this;
+      clearTimeout(self._dataDebounce);
       self._dataDebounce = setTimeout(() => {
         self.setItem('belkUserData', val, true);
         self.$bus.$emit('user-data', val);
