@@ -130,13 +130,13 @@ belk-search {
 
   .search-suggestions {
     display: none;
+    flex-direction: column;
     &.active {
       display: flex;
     }
 
     > div {
-      width: 50%;
-      flex-grow: 2;
+      width: 100%;
     }
 
     .keywords {
@@ -153,6 +153,7 @@ belk-search {
         margin-bottom: 0;
       }
     }
+
   }
 
   .highlight {
@@ -185,6 +186,16 @@ belk-search {
       height: 3.6rem;
       min-width: 3.6rem;
     }
+  }
+
+  .search-suggestions {
+    flex-direction: row;
+    
+    > div {
+      width: 50%;
+      flex-grow: 2;
+    }
+
   }
   
 }

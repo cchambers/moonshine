@@ -174,7 +174,7 @@
           align-items: center;
 
           & + sh-nav-item {
-            margin-left: 8px;
+            margin-left: .8rem;
           }
         }
 
@@ -242,8 +242,6 @@
       padding: 0 2rem;
     }
 
-
-
     .secondary {
       .contain {
         justify-content: flex-start;
@@ -252,4 +250,33 @@
   }
 
 
+}
+
+
+//State Changes
+belk-header.search-active ~ .belk-header {
+  @media (max-width: breakpoint("md") ) {
+    .primary {
+      max-height: 0;
+      overflow: hidden;
+    }
+    .secondary {
+      .contain {
+        belk-search {
+          & ~ * {
+            max-width: 0;
+            overflow: hidden;
+          }
+          .search-results {
+            position:fixed;
+            top: 5.1rem;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: calc(100vh - 5.1rem);
+          }
+        }
+      }
+    }
+  }
 }
