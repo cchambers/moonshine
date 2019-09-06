@@ -13,84 +13,105 @@ export default {
       loggedIn: false,
       data: {
         name: 'Sign In',
-        brd: 0, // dollars
-        brc: 0, // tier
-        cartQty: 0,
+        brd: false, // dollars
+        brc: false, // tier
+        cartQty: false,
+        subTotal: false,
       }
     }
   },
 
   watch: {
     data(val) {
-      this.$bus.$emit('user-data', val);
-      if (val.name) this.updateUsername(val.name)
+      let self = this;
+      self._dataDebounce = setTimeout(() => {
+        self.setItem('belkUserData', val, true);
+        self.$bus.$emit('user-data', val);
+        self.updateContainers(val);
+      }, 50);
     }
   },
 
   mounted() {
-    this.actual = document.querySelector('#header .belk-header');
-    this.bagEl = document.querySelector('belk-bag');
-    this.getData();
+    let self = this;
+    self.actual = document.querySelector('#header .belk-header');
+    self.bagEl = document.querySelector('belk-bag');
+    self.getData();
   },
 
   methods: {
     events() {
       this.$bus.$on('mega-nav-opening');
-      this.$bus.$on('bag-update', this.bagupdateHandler);
+      this.$bus.$on('bag-update', this.bagUpdateHandler);
     },
 
-    getData() {
-      let url, brdurl;
-      let self = this;
-      if (window.Urls) {
-        url = window.Urls.headerInfo;
-        brdurl = window.Urls.getBrdDetailsForHeader;
+    getData(forceUpdate) {
+      let sessionData = self.getItem('belkUserData', true);
+      if (sessionData && !forceUpdate) {
+        self.data = self.sessionData;
       } else {
-        url = '//dev29-web-belk.demandware.net/on/demandware.store/Sites-Belk-Site/default/Home-HeaderInfo?format=ajax';
-        brdurl = '//dev29-web-belk.demandware.net/on/demandware.store/Sites-Belk-Site/default/BRD-GetBRDDetailsForHeader';
+
+        let url, brdurl;
+        let self = this;
+        if (window.Urls) {
+          url = window.Urls.headerInfo;
+          brdurl = window.Urls.getBrdDetailsForHeader;
+        } else {
+          url = `${location.origin}/on/demandware.store/Sites-Belk-Site/default/Home-HeaderInfo?format=ajax`;
+          brdurl = `${location.origin}/on/demandware.store/Sites-Belk-Site/default/BRD-GetBRDDetailsForHeader?format=ajax`;
+          // self.recheckUrls();
+        }
+        let xhr = new XMLHttpRequest();
+        xhr.open('GET', url);
+        xhr.send(null);
+        xhr.onreadystatechange = function() {
+          let DONE = 4;
+          let OK = 200;
+          if (xhr.readyState === DONE) {
+            if (xhr.status === OK) {
+              let res = JSON.parse(xhr.responseText);
+              self.handleHeader(res);
+            }
+          }
+        };
+        
+        let brdxhr = new XMLHttpRequest();
+        brdxhr.open('GET', brdurl);
+        brdxhr.send(null);
+        brdxhr.onreadystatechange = function() {
+          let DONE = 4;
+          let OK = 200;
+          if (brdxhr.readyState === DONE) {
+            if (brdxhr.status === OK) {
+              let res = JSON.parse(brdxhr.responseText);
+              self.handleBRD(res);
+            }
+          }
+        };
       }
-      let xhr = new XMLHttpRequest();
-      xhr.open('GET', url);
-      xhr.send(null);
-      xhr.onreadystatechange = function() {
-        let DONE = 4;
-        let OK = 200;
-        if (xhr.readyState === DONE) {
-          if (xhr.status === OK) {
-            let res = JSON.parse(xhr.responseText);
-            self.handleHeader(res);
-          }
-        }
-      };
-      
-      let brdxhr = new XMLHttpRequest();
-      brdxhr.open('GET', brdurl);
-      brdxhr.send(null);
-      brdxhr.onreadystatechange = function() {
-        let DONE = 4;
-        let OK = 200;
-        if (brdxhr.readyState === DONE) {
-          if (brdxhr.status === OK) {
-            let res = JSON.parse(brdxhr.responseText);
-            self.handleBRD(res);
-          }
-        }
-      };
+    },
+
+    recheckUrls() {
+      let self = this;
+      setTimeout(() => {
+        if (window.Urls) self.getData();
+      }, 500);
     },
 
     handleHeader(data) {
-      console.log("HEADER", data)
+      data.name = data.userDetails.firstName;
+      data.auth = data.userDetails.authenticated;
+      data.qty = data.cartQty;
+      data.total = data.subTotal;
+      if (data.auth) this.$el.classList.add('is-user');
     },
 
     handleBRD(data) {
-      console.log("BRD", data)
+      data.brc = data.customerType;
+      data.brd = data.availableBRDValue;
     },
 
-    menuHandler() {
-      this.navEl.show();
-    },
-
-    bagupdateHandler(data) {
+    bagUpdateHandler(data) {
       if (!this.loggedIn) {
         this.bagState(0);
       } else {
@@ -106,12 +127,14 @@ export default {
       this.actual.setAttribute('bag-state', num)
     },
 
-    updateUsername(name) {
-      let els = this.querySelectorAll('[fill="name"]');
-      this.$el.classList.add('is-user');
-      els.forEach(element => {
-        element.innerText = name;
-      });
+    updateContainers(data) {
+      for (var item in data) {
+        let val = data[item];
+        let els = document.querySelectorAll(`[fill="${item}"]`)
+        els.forEach(el => {
+          el.innerText = val;
+        });
+      }
     }
   },
 }

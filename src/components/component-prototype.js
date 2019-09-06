@@ -21,13 +21,22 @@ const ComponentPrototype = {
       });
     },
     
-    getItem(which) {
-      let val = localStorage.getItem(which);
+    getItem(which, session) {
+      let val;
+      if (session) {
+        val = sessionStorage.getItem(which);
+      } else {
+        val = localStorage.getItem(which);
+      }
       return JSON.parse(val)
     },
 
-    setItem(which, val) {
-      localStorage.setItem(which, JSON.stringify(val));
+    setItem(which, val, session) {
+      if (session) {
+        sessionStorage.setItem(which, JSON.stringify(val));
+      } else {
+        localStorage.setItem(which, JSON.stringify(val));
+      }
       return true
     },
     
