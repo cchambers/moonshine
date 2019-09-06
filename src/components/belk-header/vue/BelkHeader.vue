@@ -56,8 +56,10 @@ export default {
           url = window.Urls.headerInfo;
           brdurl = window.Urls.getBrdDetailsForHeader;
         } else {
-          url = `${location.origin}/on/demandware.store/Sites-Belk-Site/default/Home-HeaderInfo?format=ajax`;
-          brdurl = `${location.origin}/on/demandware.store/Sites-Belk-Site/default/BRD-GetBRDDetailsForHeader?format=ajax`;
+          let origin = location.origin;
+          if (origin.indexOf('localhost') >= 0) origin = '//dev29-web-belk.demandware.net';
+          url = `${origin}/on/demandware.store/Sites-Belk-Site/default/Home-HeaderInfo?format=ajax`;
+          brdurl = `${origin}/on/demandware.store/Sites-Belk-Site/default/BRD-GetBRDDetailsForHeader?format=ajax`;
           // self.recheckUrls();
         }
         let xhr = new XMLHttpRequest();
