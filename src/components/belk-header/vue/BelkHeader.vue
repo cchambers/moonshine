@@ -26,6 +26,8 @@ export default {
   watch: {
     data(val) {
       let self = this;
+      console.log("DATA UPDATED")
+
       clearTimeout(self._dataDebounce);
       self._dataDebounce = setTimeout(() => {
         self.setItem('belkUserData', val, true);
@@ -103,17 +105,17 @@ export default {
     },
 
     handleHeader(data) {
-      data.name = data.userDetails.firstName;
-      data.auth = data.userDetails.authenticated;
-      data.qty = data.cartQty;
-      data.total = data.subTotal;
-      data.store = data.storeName;
+      this.data.name = data.userDetails.firstName;
+      this.data.auth = data.userDetails.authenticated;
+      this.data.qty = data.cartQty;
+      this.data.total = data.subTotal;
+      this.data.store = data.storeName;
       if (data.auth) this.$el.classList.add('is-user');
     },
 
     handleBRD(data) {
-      data.brc = data.customerType;
-      data.brd = data.availableBRDValue;
+      this.data.brc = data.customerType;
+      this.data.brd = data.availableBRDValue;
     },
 
     bagUpdateHandler(data) {
