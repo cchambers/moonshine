@@ -129,6 +129,7 @@ export default {
     },
 
     updateContainers(data) {
+      console.log(data);
       for (var item in data) {
         let val = data[item];
         let els = document.querySelectorAll(`[fill="${item}"]`)
