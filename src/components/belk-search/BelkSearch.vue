@@ -326,7 +326,7 @@ export default {
 
     stateHandler(val) {
       if (this.headerEl) {
-        if (val > 0) {
+        if (val > 0 || this.isFocused ) {
           this.headerEl.classList.add('search-active');
         } else {
           this.headerEl.classList.remove('search-active');

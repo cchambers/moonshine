@@ -10,7 +10,7 @@
 
           <div class="primary-utility">
             <div class="store-locator">
-              <a href="/stores/" fill="store">Find a Store</a>
+              Find a Store
             </div>
 
             <sh-nav-item boundaries-selector="#primary-nav" variant="primary" vce-cloak has-arrow foreground-selector="#header .primary">
@@ -48,7 +48,12 @@
 
       <div class="secondary">
         <div class="contain">
+
           <belk-search vce-cloak></belk-search>
+
+          <sh-button class="close-search" click-event="close-search">
+            Close
+          </sh-button>
 
           <sh-button class="nav-trigger" v-hammer:tap="menuHandler">
             <belk-icon width="30" name="menu"></belk-icon>
@@ -98,6 +103,7 @@
                 ... bag ...
               </div>
             </sh-nav-item>
+
           </div>
         </div>
       </div>
