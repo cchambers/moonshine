@@ -4,9 +4,6 @@ belk-bag {
   display: inline-flex;
   font-size: 1.4rem;
   color: $lowlight-primary;
-  rect.bag-background {
-    fill: red;
-  }
   .belk-bag {
     // color: $highlight-primary;
     display: flex;
@@ -15,11 +12,16 @@ belk-bag {
     align-items: center;
     belk-icon {
       margin: 0;
+      color: transparent;
     }
     .bag-background {
       fill: transparent;
     }
     &.active {
+      belk-icon {
+        margin: 0;
+        color: $lowlight-primary;
+      }
       .bag-background {
         fill: $lowlight-primary;
       }

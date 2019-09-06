@@ -19,7 +19,6 @@ export default {
     },
 
     show(el) {
-      console.log(el);
       if (el) {
         let _z = el.style.zIndex || 0;
         let pos = el.style.position;
@@ -31,9 +30,11 @@ export default {
           el.style.zIndex = 9;
         }
       }
-      this.$bus.$emit('curtain-showing');
-      this.active = true;
-      this.$bus.$emit('curtain-shown');
+      setTimeout( () => {
+        this.$bus.$emit('curtain-showing');
+        this.active = true;
+        this.$bus.$emit('curtain-shown');
+      })
     },
 
     hide() {

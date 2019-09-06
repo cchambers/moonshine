@@ -15,6 +15,7 @@ export default {
         name: 'Sign In',
         brd: false, // dollars
         brc: false, // tier
+        store: false,
         cartQty: false,
         subTotal: false,
       }
@@ -104,6 +105,7 @@ export default {
       data.auth = data.userDetails.authenticated;
       data.qty = data.cartQty;
       data.total = data.subTotal;
+      data.store = data.storeName;
       if (data.auth) this.$el.classList.add('is-user');
     },
 
@@ -132,10 +134,13 @@ export default {
       console.log(data);
       for (var item in data) {
         let val = data[item];
-        let els = document.querySelectorAll(`[fill="${item}"]`)
-        els.forEach(el => {
-          el.innerText = val;
-        });
+        if (val) {
+          let els = document.querySelectorAll(`[fill="${item}"]`)
+          els.forEach(el => {
+            el.innerText = val;
+            el.setAttribute('filled', true);
+          });
+        }
       }
     }
   },

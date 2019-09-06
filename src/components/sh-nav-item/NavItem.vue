@@ -70,6 +70,10 @@
         type: String,
         default: '.documentation'
       },
+      offset: {
+        type: String,
+        default: '0'
+      },
       forceShow: {
         type: Boolean,
         default: false
@@ -90,12 +94,6 @@
         type: String,
         default: ''
       },
-      options: {
-        type: Object,
-        default() {
-          return {};
-        }
-      },
       trigger: {
         type: String,
         default: 'click'
@@ -114,6 +112,9 @@
         content: 'empty',
         popperOptions: {
           modifiers: {
+            offset: {
+              offset: '0, -3px'
+            },
             flip: {
               behavior: ['bottom']
             },
@@ -271,6 +272,7 @@
               this.popperOptions.modifiers = Object.assign({
 
               }, this.popperOptions.modifiers);
+              this.popperOptions.modifiers.offset.offset = this.offset;
               this.popperOptions.modifiers.preventOverflow = Object.assign({}, this.popperOptions.modifiers.preventOverflow);
               this.popperOptions.modifiers.preventOverflow.boundariesElement = boundariesElement;
             }

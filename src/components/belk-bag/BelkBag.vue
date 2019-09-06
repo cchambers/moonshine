@@ -50,7 +50,7 @@ export default {
     },
 
     handleUserData(data) {
-      this.count = data.cartQty;
+      this.itemCount = data.cartQty;
       this.subTotal = data.subTotal;
     },
 
