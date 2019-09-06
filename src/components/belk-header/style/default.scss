@@ -99,6 +99,22 @@
     .contain {
       justify-content: space-between;
     }
+
+    sh-button.close-search {
+      max-width: 0;
+      order: 2;
+      overflow: hidden;
+      padding: 0;
+
+      button {
+        background-color: transparent;
+        font-size: 1.2rem;
+        font-weight: 400;
+        line-height: 3.2rem;
+        text-decoration: underline;
+        text-transform: capitalize;
+      }
+    }
   }
 
   .logo-link {
@@ -275,6 +291,9 @@ belk-header.search-active ~ .belk-header {
             bottom: 0;
             height: calc(100vh - 5.1rem);
           }
+        }
+        sh-button.close-search {
+          max-width: initial;
         }
       }
     }
