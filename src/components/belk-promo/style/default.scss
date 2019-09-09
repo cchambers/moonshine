@@ -1,0 +1,22 @@
+/* default styling */
+
+belk-promo {
+  .belk-promo {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    div {
+      text-align: center;
+    }
+    .line-combinator {
+      display: none;
+    }
+    @media screen and (min-width: breakpoint("lg")) {
+      justify-content: flex-start;
+      flex-direction: row;
+      .line-combinator {
+        display: inline;
+      }
+    }
+  }
+}
