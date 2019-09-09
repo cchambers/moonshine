@@ -23,7 +23,7 @@
         stateActual: 0,
         data: {
           brd: 12,
-          brc: 'Elite'
+          brc: ''
         }
       }
     },
@@ -48,7 +48,7 @@
           if (this.data.brd == 0) {
             string = `<span class="uppercase">Free shipping</span> @ ${this.freeShipping}`;
           } else {
-            string = `Free Shipping @ ${this.freeShipping}`;
+            string = `Free Shipping @ $${this.freeShipping}`;
           }
         }
         return string;
