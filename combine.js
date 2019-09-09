@@ -7,8 +7,11 @@ let promise = concat(['./dist/js/chunk-vendors.js', './dist/js/index.js'], './di
 
 function moveFile(dir, dest) {
     fs.copyFile(dir, dest, (err) => {
-        if (err) throw err;
-        console.log('Shine.js copied to main repo.');
+        if (err) {
+            console.log(`File copy error; ${dest} may not exist... check your .env file.`)
+        } else {
+            console.log('File successfully copied to destination.');
+        }
     });
 }
 
@@ -16,6 +19,12 @@ promise.then(function() {
     if (envConfig.SHINE_SCRIPT_PATH) {
         let dest = envConfig.SHINE_SCRIPT_PATH;
         let dir = path.join(__dirname, '/dist/js/shine.js');
+        moveFile(dir, dest);
+    }
+    if (envConfig.SHINE_STYLE_PATH) {
+        let dest = envConfig.SHINE_STYLE_PATH;
+        let dir = path.join(__dirname, '/dist/css/index.css');
+        console.log(dest)
         moveFile(dir, dest);
     }
 });
