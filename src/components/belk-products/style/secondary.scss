@@ -9,6 +9,10 @@
     font-size: 1.4rem;
     overflow: hidden;
     margin-bottom: 1rem;
+    border-bottom: 1px solid $highlight-tertiary;
+    &:last-child {
+      border-bottom: none;
+    }
   }
 
   a {
