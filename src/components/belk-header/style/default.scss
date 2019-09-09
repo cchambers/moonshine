@@ -36,7 +36,6 @@
     }
     .iconbar-action {
       padding: 1rem;
-      height: 6rem;
       display: flex;
       align-items: center;
       cursor: pointer;
@@ -115,6 +114,21 @@
         text-transform: capitalize;
       }
     }
+    sh-nav-item.account-action {
+      #signin-link {
+        belk-icon[name="person"] {
+          width: 2rem;
+        }
+        belk-icon[name="arrow-down"] {
+          display: none;
+        }
+      }
+    }
+    sh-nav-item.minibag-action .belk-icon {
+      max-width: 22px;
+      height: auto;  
+    }
+    
   }
 
   .logo-link {
@@ -140,6 +154,7 @@
     overflow: hidden;
     transition: max-width 250ms $ease;
     flex-shrink: 0;
+    margin-left: 0;
 
     .sh-button {
       background: transparent !important;
@@ -211,6 +226,19 @@
       height: 6.8rem;
       display: flex;
       align-items: center;
+
+      sh-nav-item.minibag-action .belk-icon{
+        max-width: initial;
+        height: auto;  
+      }
+    }
+
+    sh-nav-item.account-action {
+      #signin-link {
+        belk-icon[name="arrow-down"] {
+          display: block;
+        }
+      }
     }
     
     belk-search {
@@ -264,7 +292,6 @@
       }
     }
   }
-
 
 }
 

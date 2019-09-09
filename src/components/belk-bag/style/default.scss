@@ -44,7 +44,7 @@ belk-bag {
 
   .bag-icon {
     position: relative;
-    height: 3rem;
+    height: 2.3rem;
     .belk-icon {
       display: flex;
     }
@@ -80,4 +80,11 @@ belk-bag {
       display: block;
     }
   }
+  
+  @media (min-width: breakpoint("md") )  {
+    .bag-icon {
+      height: 3rem; 
+    }
+  }
 }
+
