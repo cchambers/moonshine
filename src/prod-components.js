@@ -11,5 +11,6 @@ require('./components/component-template');
 require('./components/belk-icon');
 require('./components/belk-logo');
 require('./components/belk-products');
+require('./components/belk-promo');
 require('./components/belk-search');
 require('./components/belk-takeover');

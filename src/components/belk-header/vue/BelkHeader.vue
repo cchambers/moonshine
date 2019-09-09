@@ -12,7 +12,6 @@ export default {
       navEl: {},
       searchEl: {},
       loggedIn: false,
-      _dataDebounce: 0,
       data: {
         name: 'Sign In',
         brd: false, // dollars
@@ -27,8 +26,6 @@ export default {
   watch: {
     data(val) {
       let self = this;
-      console.log("DATA UPDATED")
-
       clearTimeout(self._dataDebounce);
       self._dataDebounce = setTimeout(() => {
         self.setItem('belkUserData', val, true);
@@ -54,14 +51,11 @@ export default {
     getData(forceUpdate) {
       let self = this;
       let sessionData = self.getItem('belkUserData', true);
-        console.log("GETTING DATA");
       if (sessionData && !forceUpdate) {
         self.data = self.sessionData;
-        console.log("HAVE SESSION DATA");
       } else {
         let url, brdurl;
         if (window.Urls) {
-          console.log("HAVE URLS");
           url = window.Urls.headerInfo;
           brdurl = window.Urls.getBrdDetailsForHeader;
         } else {
@@ -79,7 +73,6 @@ export default {
           let OK = 200;
           if (xhr.readyState === DONE) {
             if (xhr.status === OK) {
-              console.log("Got response from header call");
               let res = JSON.parse(xhr.responseText);
               self.handleHeader(res);
             }
@@ -94,7 +87,6 @@ export default {
           let OK = 200;
           if (brdxhr.readyState === DONE) {
             if (brdxhr.status === OK) {
-              console.log("Got response from BRD call");
               let res = JSON.parse(brdxhr.responseText);
               self.handleBRD(res);
             }
@@ -111,7 +103,6 @@ export default {
     },
 
     handleHeader(data) {
-      console.log("header handler")
       this.$set(this.data, 'name', data.userDetails.firstName);
       this.$set(this.data, 'auth', data.userDetails.authenticated);
       this.$set(this.data, 'qty', data.cartQty);
@@ -152,7 +143,11 @@ export default {
           });
         }
       }
-    }
+    },
+
+    updatePromo() {
+      // ...
+    },
   },
 }
 </script>

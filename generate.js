@@ -59,7 +59,7 @@ function copyTemplate(names) {
 
 function replaceNames(dir, names) {
   // cycle through each file
-  let newTemplate = `${dir}/vue/${names.script}.vue`;
+  let newTemplate = `${dir}/${names.script}.vue`;
   fs.rename(`${dir}/ComponentTemplate.vue`, newTemplate, (err) => {
     if (err) throw err;
   })
