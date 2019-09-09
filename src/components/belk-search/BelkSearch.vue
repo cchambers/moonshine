@@ -36,10 +36,10 @@
       <div class="loading-bar"></div>
     </div>
     <div class="search-results" :id="ariaIDResults" :aria-label="ariaListLabel">
-      <!-- <div ref="noresults" v-bind:class="{ active: state == 3 }" class="search-noresults">
+      <div ref="noresults" v-bind:class="{ active: state == 3 }" class="search-noresults">
         <ul>
           <li>
-            <a :href="buildSearchLink(searchValue)">{{ searchValue }}</a>
+            <a :href="buildSearchLink(value)">{{ value }}</a>
           </li>
             <li
               v-for="(item, index) in previousSuggestions"
@@ -49,7 +49,7 @@
               <a :href="buildSearchLink(item.q)" v-html="emphasizeText(item.q)"></a>
             </li>
           </ul>
-      </div> -->
+      </div>
 
       <div ref="recent" v-bind:class="{ active: state == 1 }" class="search-recent">
         <div class="flex space-between align-center">
@@ -128,6 +128,7 @@ export default {
       triggerResults: 1,
       highlightIndex: -1,
       noResults: false,
+      filled: false,
       isFocused: false,
       inputEl: {},
       ignoreKeys: [37,39,91,16,13],
@@ -194,8 +195,8 @@ export default {
   watch: {
     response(val) {
       if (val.response.suggestions) {
-        this.suggestions = val.response.suggestions;
-        this.products = val.response.products || {};
+        this.suggestions = val.response.suggestions || [];
+        this.products = val.response.products || [];
         this.suggestTerm = this.searchValue;
 
         this.count = this.suggestions.length || 0;
@@ -269,11 +270,11 @@ export default {
         }
 
         if (currentValueExists < 0) {
-          let obj = { q: this.searchValue, highlighted: true, id: 'filled-0' };
+          let obj = { q: this.value, highlighted: true, id: 'filled-0' };
           arr.unshift(obj);
           if (arr.length > this.suggestionsLimit) arr.pop();
           highlight = 0;
-          this.$emit('active-descendant', 'filled-0')
+          this.$emit('active-descendant', 'filled-0');
         } else {
           arr[currentValueExists].highlighted = true;
           highlight = currentValueExists;
@@ -443,15 +444,19 @@ export default {
       if (document.activeElement == this.inputEl) this.inputEl.blur();
       this.isFocused = false;
 
-      if (clear) this.clearSearch(false);
+      if (clear) this.clearSearch(clear);
     },
 
     clearSearch(focus = true) {
       this.inputEl.value = '';
       this.value = '';
       this.searchValue = '';
-      this.response = { response: {} };
+      this.clearResponse();
       if (focus) setTimeout(() => { this.inputEl.focus()});
+    },
+
+    clearResponse() {
+      this.response = { response: { products: [], suggestions: [] } };
     },
 
     doRequest() {
@@ -568,16 +573,23 @@ export default {
     },
 
     suggestionHoverHandler(val) {
-      this.showSuggestedProducts(val);
+    if (this.filled) val++;
+        this.showSuggestedProducts(val);
     },
 
     showSuggestedProducts(which = 0) {
       this.suggestTerm = this.suggestionsLimited[which].q;
-      if (typeof this.allProducts[which] == "undefined") {
+      if (typeof this.allProducts[which] == 'undefined') {
         this.$once(`products-loaded.${which}`, (arr) => {
+          console.log(`products-loaded.${which} FOUND`)
           this.products = arr;
+          this.showSuggestedProducts(which)
         });
       } else {
+        if (this.filled) { 
+          console.log("WAS FORCE FILLED");
+          which = 1;
+        }
         if (this.allProducts[which]) this.products = this.allProducts[which].products;
       }
     }

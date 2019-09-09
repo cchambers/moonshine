@@ -126,7 +126,7 @@ sh-button {
   }
 
   &[outline] button:hover {
-    background-color: $highlight-secondary;
+    background-color: $highlight-tertiary;
   }
 
   &:not([variant]) {

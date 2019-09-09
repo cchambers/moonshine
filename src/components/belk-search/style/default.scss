@@ -176,7 +176,7 @@ belk-search {
       .products {
         ul {
           @media (min-width: breakpoint("md")) {
-            border-left: 1px solid $highlight-tertiary;
+            border-left: 1px solid $lowlight-quaternary;
           }
         }
 
