@@ -12,7 +12,7 @@ export default {
       navEl: {},
       searchEl: {},
       loggedIn: false,
-      data: {
+      headerData: {
         name: 'Sign In',
         brd: false, // dollars
         brc: false, // tier
