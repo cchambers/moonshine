@@ -540,7 +540,7 @@ export default {
     },
 
     buildSearchLink(q) {
-      return `https://www.belk.com/search/?q=${q}&lang=default`;
+      return `${window.location.origin}/search/?q=${q}&lang=default`;
     },
 
     getAllProducts(arr) {
