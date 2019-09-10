@@ -35,7 +35,7 @@ export default {
 
   data() {
     return {
-      itemCount: false,
+      itemCount: 0,
       subTotal: false
     };
   },
@@ -50,8 +50,8 @@ export default {
     },
 
     handleUserData(data) {
-      this.itemCount = data.cartQty;
-      this.subTotal = data.subTotal;
+      if (data.cartQty) this.itemCount = data.cartQty;
+      if (data.subTotal) this.subTotal = data.subTotal;
     },
 
     emitUpdate() {

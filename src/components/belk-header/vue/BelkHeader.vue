@@ -52,7 +52,7 @@ export default {
       let self = this;
       let sessionData = self.getItem('belkUserData', true);
       if (sessionData && !forceUpdate) {
-        self.data = self.sessionData;
+        self.headerData = self.sessionData;
       } else {
         let url, brdurl;
         if (window.Urls) {
@@ -103,17 +103,17 @@ export default {
     },
 
     handleHeader(data) {
-      this.$set(this.data, 'name', data.userDetails.firstName);
-      this.$set(this.data, 'auth', data.userDetails.authenticated);
-      this.$set(this.data, 'qty', data.cartQty);
-      this.$set(this.data, 'total', data.subTotal);
-      this.$set(this.data, 'store', data.storeName);
-      if (this.data.auth) this.$el.classList.add('is-user');
+      this.$set(this.headerData, 'name', data.userDetails.firstName);
+      this.$set(this.headerData, 'auth', data.userDetails.authenticated);
+      this.$set(this.headerData, 'qty', data.cartQty);
+      this.$set(this.headerData, 'total', data.subTotal);
+      this.$set(this.headerData, 'store', data.storeName);
+      if (this.headerData.auth) this.$el.classList.add('is-user');
     },
 
     handleBRD(data) {
-      this.$set(this.data, 'brc', data.customerType);
-      this.$set(this.data, 'brd', data.availableBRDValue);
+      this.$set(this.headerData, 'brc', data.customerType);
+      this.$set(this.headerData, 'brd', data.availableBRDValue);
     },
 
     bagUpdateHandler(data) {

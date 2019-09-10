@@ -46,6 +46,28 @@ const ComponentPrototype = {
       }
 
       return false;
+    },
+
+    log() {
+      let args = arguments;
+      window.sh.log = window.sh.log || [];   // store logs to an array for reference
+      window.sh.log.push(args);
+      let dev = (window.location.href.indexOf('web-belk.demand') > 0);
+      
+      let level = args[args.length-1];
+      level = (typeof level == 'number') ? args.pop() : 0;
+      if (dev) {
+        let style = 'font-size: 20px;';
+        switch(level) {
+          default:
+            style += 'color: #018786;'
+            break;
+        }
+        let message = args.join(' ');
+
+        // eslint-disable-next-line 
+        console.log(`%c ${message}`, style);
+      }
     }
   },
 

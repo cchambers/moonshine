@@ -242,6 +242,7 @@ export default {
       } else {
         this.productsLimited = [];
       }
+      this.log('PRODUCTS', val)
       this.productsEl.products = this.productsLimited;
     },
 
@@ -271,11 +272,13 @@ export default {
 
         if (currentValueExists < 0) {
           let obj = { q: this.value, highlighted: true, id: 'filled-0' };
+          this.filled = true;
           arr.unshift(obj);
           if (arr.length > this.suggestionsLimit) arr.pop();
           highlight = 0;
           this.$emit('active-descendant', 'filled-0');
         } else {
+          this.filled = false;
           arr[currentValueExists].highlighted = true;
           highlight = currentValueExists;
           this.$emit('active-descendant', arr[currentValueExists].id)
@@ -573,24 +576,21 @@ export default {
     },
 
     suggestionHoverHandler(val) {
-    if (this.filled) val++;
-        this.showSuggestedProducts(val);
+      this.showSuggestedProducts(val);
     },
 
     showSuggestedProducts(which = 0) {
-      this.suggestTerm = this.suggestionsLimited[which].q;
-      if (typeof this.allProducts[which] == 'undefined') {
-        this.$once(`products-loaded.${which}`, (arr) => {
-          console.log(`products-loaded.${which} FOUND`)
-          this.products = arr;
-          this.showSuggestedProducts(which)
+      let self = this;
+      if (self.filled && which == 0) which = 1;
+      self.suggestTerm = self.suggestionsLimited[which].q;
+      if (typeof self.allProducts[which] == 'undefined') {
+        self.$once(`products-loaded.${which}`, (arr) => {
+          self.log(`products-loaded.${which} FOUND`);
+          self.products = arr;
+          self.showSuggestedProducts(which)
         });
       } else {
-        if (this.filled) { 
-          console.log("WAS FORCE FILLED");
-          which = 1;
-        }
-        if (this.allProducts[which]) this.products = this.allProducts[which].products;
+        if (self.allProducts[which]) self.products = self.allProducts[which].products;
       }
     }
   }
