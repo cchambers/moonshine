@@ -63,7 +63,7 @@ const ComponentPrototype = {
             style += 'color: #018786;'
             break;
         }
-        let message = args.join(' ');
+        let message = args.join();
 
         // eslint-disable-next-line 
         console.log(`%c ${message}`, style);
