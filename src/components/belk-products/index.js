@@ -1,4 +1,4 @@
 import Vue from 'vue'
-import BelkProducts from './vue/BelkProducts';
+import BelkProducts from './BelkProducts';
 
 Vue.customElement('belk-products', BelkProducts);

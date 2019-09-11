@@ -1,4 +1,4 @@
 import Vue from 'vue'
-import Curtain from './vue/Curtain';
+import Curtain from './Curtain';
 
 Vue.customElement('sh-curtain', Curtain);

@@ -3,5 +3,7 @@
   "element": "belk-bag",
   "description": "Demonstration component.",
   "tags": ["utilities", "demo"],
-  "requirements": []
+  "requirements": [
+    ""
+  ]
 }

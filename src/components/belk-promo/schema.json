@@ -1,0 +1,7 @@
+{
+  "name": "Component Template",
+  "element": "belk-promo",
+  "description": "Promotional content display component.",
+  "tags": ["promo", "content"],
+  "requirements": []
+}

@@ -1,8 +1,13 @@
 /* default styling */
 
 belk-icon {
+  pointer-events: none;
   display: inline-flex;
-  .belk-icon { 
-    //...
-   }
+  .belk-icon {
+    display: flex;
+  }
+  svg {
+    height: auto;
+    pointer-events: none;
+  }
 }

@@ -12,6 +12,7 @@ export default {
   },
 
   created() {
+    this.setUUID();
     this.ariaControlsId = `ac-${this.uuid}`;
     this.headerId = `ah-${this.uuid}`;
   },

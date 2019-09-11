@@ -7,6 +7,7 @@
  */
 function themeLoader(content) {
   let data = content.match(/([^\s]*:(\s.*)[$][A-z]*-[A-z]*);/g);
+  // TODO: https://regexr.com/4k3tf  
   if (data) {
     data = [...new Set(data)];
 
@@ -26,7 +27,7 @@ function themeLoader(content) {
       newString = newString.replace(theVar[0], `var(--${noDollar})`);
 
       // concatenate old value with new value:
-      // color: $accent-primary; color: var(--accent-primary);
+      // ex: color: $accent-primary; color: var(--accent-primary);
       newString = `${scss} ${newString}`;
 
       // find/replace all occurances

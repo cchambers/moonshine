@@ -4,7 +4,14 @@
     <h2>Usage</h2>
     <pre>
       <code class="language-html">
-          &lt;sh-nav-item&gt;&lt;/sh-nav-item&gt;
+          &lt;sh-nav-item&gt;
+            &lt;div&gt; &lt;!-- content slot--&gt;
+              &lt;...&gt;
+                html
+              &lt;...&gt;
+            &lt;/div&gt;
+            &lt;a slot="reference"&gt;call to action&lt;/a&gt;
+          &lt;/sh-nav-item&gt;
       </code>
     </pre>
 
@@ -87,12 +94,19 @@
     <h2>Examples</h2>
     <h3>Default</h3>
     <!-- <lib-toolbar> -->
-      <sh-nav-item>
+      <sh-nav-item variant="primary" fill>
         <div>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum ullam ex aperiam aut quos, molestiae accusamus est numquam architecto distinctio doloremque. Vitae amet nobis iusto possimus natus temporibus quas similique?</p>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum ullam ex aperiam aut quos, molestiae accusamus est numquam architecto distinctio doloremque. Vitae amet nobis iusto possimus natus temporibus quas similique?</p>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum ullam ex aperiam aut quos, molestiae accusamus est numquam architecto distinctio doloremque. Vitae amet nobis iusto possimus natus temporibus quas similique?</p>
-
+          <ul>
+            <li>One</li>
+            <li>Two</li>
+            <li>Three</li>
+          </ul>
+        </div>
+        <a slot="reference">Hover here!</a>
+      </sh-nav-item>
+      <sh-nav-item variant="secondary" has-arrow>
+        <div>
+          <p>Content-width based.</p>
         </div>
         <a slot="reference">Hover here!</a>
       </sh-nav-item>

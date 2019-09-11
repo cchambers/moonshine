@@ -69,6 +69,7 @@ export default {
       let self = this;
       return {
         placement: pos,
+        postionFixed: true,
         modifiers: {
           preventOverflow: {
             boundariesElement: self.scrollingEl,

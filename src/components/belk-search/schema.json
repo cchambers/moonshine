@@ -1,7 +1,79 @@
 {
   "name": "Belk Search",
   "element": "belk-search",
-  "description": "Demonstration component.",
-  "tags": ["utilities", "demo"],
-  "requirements": []
+  "description": "Gives user access to recent searches, suggested keywords, suggested products... and performs site searches.",
+  "tags": ["search", "input"],
+  "requirements": {
+    "Container": [
+      "Should grow to match height of whichever data panel is displayed the time",
+      "Should switch to 'open' state when data is available for display while input is focused"
+    ],
+
+    "Input (element)": [
+      "Should begin searching after 1 character is input",
+      "Should blur on keyup.esc",
+      "Should perform search on keyup.enter",
+      "Should highlight next search term on keydown.down, loop to first at end of list",
+      "Should highlight previous search term on keydown.down, loop to end at beginning of list",
+      "Should pre-load data from location.param.q parameter",
+      "Should show [Clear] button (cancel icon) when character count is greater than 0",
+      "Should perform total text selection when focused"
+    ],
+
+    "Recent Searches (container)": [
+      "Should only show when input is empty and focused and user has recent searches",
+      "Should list 10 most recent searches",
+      "Should prepend most recent search that is performed",
+      "Should hoist re-searched items to the top of the list",
+      "Should present user with a [Clear] button that clears the recent searches when triggered"
+    ],
+
+    "Suggested Keywords (container)": [
+      "Should list 9 keyword suggestions and whatever the user is typing currently at the top",
+      "Should show users current input highlighted as first suggestion",
+      "Should emphasize the text match in bold",
+      "Should update the input with the value of the highlighted element during keyboard navigation (should not not trigger an ajax call)",
+      "Should update Popular Products container with new data when item is hovered or highlighted with keyboard controls",
+      "Should show previous results if keyword+letter returns 0 results"
+    ],
+
+    "Popular Products (container)": [
+      "Should list no more than 3 items",
+      "Should show first set of matches when no matches for typed suggestion",
+      "Should update to show different products when suggestion is highlighted via keyboard or mouse interaction"
+    ]
+  },
+
+  "aria": [
+    "Should have a label, currently matches placeholder",
+    "Should have all appropriate ARIA roles for combobox 1.0",
+    "Should update activedescendant based oncurrently active item"
+  ],
+
+  "states": {
+    "0": {
+      "name": "Closed/inactive state",
+      "case": "No interaction has taken place",
+      "result": "Nothing is visible but the input and search button"
+    },
+
+    "1": {
+      "name": "Recent Searches",
+      "case": "Input is active and empty",
+      "result": "Recent searches displayed"
+    },
+
+    "2": {
+      "name": "Suggested Keywords and Products",
+      "case": "user has typed something that returned a result",
+      "result": "Suggested keywords should load with associated products"
+    },
+
+    "3": {
+      "name": "No Results Scenario",
+      "case": "User has inserted a search term that returns no results",
+      "result": "Entered term is shown alone as first keyword suggestion"
+    }
+  }
+  
 }

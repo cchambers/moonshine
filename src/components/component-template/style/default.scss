@@ -4,7 +4,6 @@ component-template {
   display: inline-flex;
   .component-template {
 
-
     /** DELETE THIS EXAMPLE SECTION **/
     cursor: pointer;
     display: flex;
@@ -23,6 +22,7 @@ component-template {
     
     &.snap-state {
       color: transparent;
+      background-size: contain;
       background-image: url(../../../assets/img/snap.gif);
       border: 1px solid $accent-primary;
     }
@@ -33,9 +33,6 @@ component-template {
       color: $highlight-primary;
     }
     /** END EXAMPLE SECTION **/
-
-
-    
 
   }
 }

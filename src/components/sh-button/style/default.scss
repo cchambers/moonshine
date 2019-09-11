@@ -126,7 +126,7 @@ sh-button {
   }
 
   &[outline] button:hover {
-    background-color: $lowlight-primary;
+    background-color: $highlight-tertiary;
   }
 
   &:not([variant]) {
@@ -140,7 +140,6 @@ sh-button {
         color: $lowlight-primary;
         text-decoration-color: $lowlight-primary;
         text-decoration: none;
-        background: rgba(0,0,0,0.1);
       }
     }
   }

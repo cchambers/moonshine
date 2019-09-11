@@ -2,35 +2,88 @@
 
 belk-bag {
   display: inline-flex;
-
+  font-size: 1.4rem;
+  color: $lowlight-primary;
   .belk-bag {
     // color: $highlight-primary;
     display: flex;
     flex-direction: row;
     align-content: flex-start;
     align-items: center;
+    belk-icon {
+      margin: 0;
+      color: transparent;
+    }
+    .bag-background {
+      fill: transparent;
+    }
+    &.active {
+      belk-icon {
+        margin: 0;
+        color: $lowlight-primary;
+      }
+      .bag-background {
+        fill: $lowlight-primary;
+      }
+      .bag-count {
+        color: $highlight-primary;
+      }
+    }
   }
-  .bag-text {
-    font-size: 1.6rem;
-    margin-top: .4rem;
+
+  .bag-count {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+  }
+
+  .bag-total {
+    margin-left: 1rem;
   }
 
   .bag-icon {
     position: relative;
-    width: 2.8rem;
-    margin-right: .8rem;
+    height: 2.3rem;
+    .belk-icon {
+      display: flex;
+    }
     svg {
       position: absolute;
       bottom: 0;
       left: 0;
     }
-    span {
-      font-size: 1.1rem;
-      display: flex;
-      height: 2.8rem;
-      align-items: center;
-      justify-content: center;
-      margin-top: .4rem;
+  }
+}
+
+.belk-header .minibag-action {
+  .is-empty-not-signed-in,
+  .is-empty-signed-in,
+  .has-products {
+    display: none;
+  }
+}
+
+.belk-header {
+  &[bag-state="0"] {
+    .is-empty-not-signed-in {
+      display: block;
+    }
+  }
+  &[bag-state="1"] {
+    .is-empty-signed-in {
+      display: block;
+    }
+  }
+  &[bag-state="2"] {
+    .has-products {
+      display: block;
+    }
+  }
+  
+  @media (min-width: breakpoint("md") )  {
+    .bag-icon {
+      height: 3rem; 
     }
   }
 }
