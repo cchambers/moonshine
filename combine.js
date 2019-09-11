@@ -24,7 +24,6 @@ promise.then(function() {
     if (envConfig.SHINE_STYLE_PATH) {
         let dest = envConfig.SHINE_STYLE_PATH;
         let dir = path.join(__dirname, '/dist/css/index.css');
-        console.log(dest)
         moveFile(dir, dest);
     }
 });

@@ -13,7 +13,7 @@
           <slot name="header">{{ header }}</slot>
         </h3>
         <div close-trigger v-hammer:tap="close">
-          <belk-icon name="close" width="30"></belk-icon>
+          <belk-icon name="close" width="32"></belk-icon>
         </div>
       </div>
       <div class="body" ref="body" :id="ariaDescID">
@@ -203,6 +203,10 @@ export default {
       this.container.appendChild(this.$el);
     },
 
+    doError() {
+      this.$refs.body.innerHTML = `<p class="error">There was a problem loading content from <a href='${window.location.host}${this.contentUrl}'>${window.location.host}${this.contentUrl}</a>.</p>`;
+    },
+
     ajax() {
       let self = this;
       let xhr = new XMLHttpRequest();
@@ -227,12 +231,13 @@ export default {
               html = contentTarget;
             }
 
-            self.$refs.body.appendChild(html);
+            if (!html) {
+              self.doError();
+            } else {
+              self.$refs.body.appendChild(html);
+            }
           } else {
-            // eslint-disable-next-line
-            self.$refs.body.innerHTML = `<p class="error">
-              There was a problem loading content from <a href='${window.location.host}${this.contentUrl}'>${window.location.host}${this.contentUrl}</a>.
-            </p>`;
+            self.doError();
           }
         }
       }

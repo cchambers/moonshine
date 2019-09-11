@@ -26,7 +26,7 @@
   }
 
   .body {
-    padding: 1.5rem;
+    padding: 0 2rem 2rem 2rem;
   }
 
   &.active {
@@ -37,6 +37,7 @@
   .header {
     display: flex;
     justify-content: space-between;
+    height: 3rem;
     div, h3 {
       display: flex;
       align-items: center;
@@ -59,8 +60,8 @@
 
   .header [close-trigger] {
     display: flex;
-    height: 4.5rem;
-    width: 4.5rem;
+    height: 5rem;
+    width: 5rem;
     align-content: center;
     justify-content: center;
     opacity: 0.7;

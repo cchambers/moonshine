@@ -2,14 +2,14 @@
   <div class="belk-products" :variant="variant">
     <ul>
       <li v-for="product in products" v-bind:key="product.index">
-        <a :href="product.url">
+        <a :href="product.url" :data-pid="product.pid">
           <div class="image" :style="{ backgroundImage: 'url('+product.thumb_image+')' }"></div>
           <div class="data">
             <div class="name">
               <div class="brand">{{ product.brand }}</div>
               <div class="title">{{ product.title }}</div>
             </div>
-            <div class="price" is='belk-price'>{{ format(product.price) }}</div>
+            <div class="price" is='belk-price' :pid="product.pid" :data-price="product"></div>
             <div class="rating"><sh-rating :level="product.reviews"></sh-rating></div>
             <div class="quick-view">
               <sh-button v-hammer:tap="quickView">Quick View</sh-button>
@@ -42,17 +42,11 @@ export default {
   methods: {
     quickView(e) {
       e.preventDefault();
-    },
-
-    format(price) {
-      let formatter = new Intl.NumberFormat('en-US', {
-        style: 'currency',
-        currency: 'USD',
-        minimumFractionDigits: 2
-      });
-
-      return formatter.format(price);
     }
+  },
+  
+  components: {
+    BelkPrice
   }
 }
 </script>
