@@ -40,15 +40,15 @@
         // else: return "Free Shipping @ ${this.freeShipping}"
         if (this.data.brc.toLowerCase() == "elite") {
           if (this.data.brd == 0) {
-            string = `Elites get <span class="uppercase">free shipping</span> every day`;
+            string = `Elites get <span class="uppercase">free shipping</span> every day!`;
           } else {
             string = `Free Shipping for Elites`;
           }
         } else { // NOT ELITE
           if (this.data.brd == 0) {
-            string = `<span class="uppercase">Free shipping</span> @ ${this.freeShipping}`;
+            string = `<span class="uppercase">Free shipping</span> @ ${this.freeShipping}!`;
           } else {
-            string = `Free Shipping @ $${this.freeShipping}`;
+            string = `Free Shipping @ $${this.freeShipping}!`;
           }
         }
         return string;
