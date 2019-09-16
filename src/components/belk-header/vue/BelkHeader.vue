@@ -46,6 +46,11 @@ export default {
     events() {
       this.$bus.$on('mega-nav-opening');
       this.$bus.$on('bag-update', this.bagUpdateHandler);
+      this.$bus.$on('get-user-data', this.emitUserData)
+    },
+
+    emitUserData() {
+        this.$bus.$emit('user-data', this.headerData);
     },
 
     getData(forceUpdate) {

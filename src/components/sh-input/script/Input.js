@@ -17,7 +17,7 @@ export default {
   methods: {
     keyupHandler(e){
       let val = e.target.value;
-      // eslint-disable-next-line
+      this.log(val);
     }
   }
 }

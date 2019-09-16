@@ -54,6 +54,10 @@
         return string;
       }
     },
+
+    mounted() {
+      this.$bus.$emit('get-user-data');
+    },
     
     methods: {
       events() {
