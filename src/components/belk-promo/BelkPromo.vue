@@ -32,11 +32,6 @@
     },
 
     computed: {
-      state() {
-        let state = 0;
-        return state;
-      },
-
       shipping() {
         let string;
         let brd = this.data.brd || 0;
