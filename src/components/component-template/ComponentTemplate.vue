@@ -8,10 +8,10 @@
 </template>
 
 <script>
-  //import ComponentPrototype from '../../components/component-prototype';
+  import ComponentPrototype from '../component-prototype';
 
   export default {
-    //mixins: [ComponentPrototype],
+    mixins: [ComponentPrototype],
     name: 'ComponentTemplate',
     props: {
       msg: {

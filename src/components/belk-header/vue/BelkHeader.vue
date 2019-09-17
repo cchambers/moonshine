@@ -3,10 +3,10 @@
 </template>
 
 <script>
-//import ComponentPrototype from '../../../components/component-prototype';
+  import ComponentPrototype from '../../component-prototype';
 
-export default {
-  //mixins: [ComponentPrototype],
+  export default {
+    mixins: [ComponentPrototype],
 
   name: 'BelkHeader',
 
@@ -28,7 +28,7 @@ export default {
   },
 
   watch: {
-    data(val) {
+    headerData(val) {
       let self = this;
       clearTimeout(self._dataDebounce);
       self._dataDebounce = setTimeout(() => {

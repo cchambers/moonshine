@@ -32,10 +32,10 @@
 </template>
   
 <script>
-//import ComponentPrototype from '../../components/component-prototype';
+  import ComponentPrototype from '../component-prototype';
 
-export default {
-  //mixins: [ComponentPrototype],
+  export default {
+    mixins: [ComponentPrototype],
 
   name: 'Modal',
 

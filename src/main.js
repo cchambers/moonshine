@@ -6,9 +6,10 @@ require('./assets/script/core.js');
 import Vue from 'vue';
 Vue.config.productionTip = false;
 
-/* SH-COMPONENT PROTOTYPE */
+/* SH-COMPONENT PROTOTYPE 
 import ComponentPrototype from './components/component-prototype';
 Vue.mixin(ComponentPrototype);
+*/
 
 /* IE-11 Polyfills */
 import 'document-register-element/build/document-register-element';

@@ -105,10 +105,10 @@
 <script>
 import BelkProducts from "../belk-products/BelkProducts";
 
-//import ComponentPrototype from '../../components/component-prototype';
+  import ComponentPrototype from '../component-prototype';
 
-export default {
-  //mixins: [ComponentPrototype],
+  export default {
+    mixins: [ComponentPrototype],
 
   name: "BelkSearch",
 

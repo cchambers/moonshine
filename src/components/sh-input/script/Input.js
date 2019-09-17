@@ -1,12 +1,11 @@
-import InputPrototype from './../../input-prototype'
-
-//import ComponentPrototype from '../../../components/component-prototype';
+import InputPrototype from '../../input-prototype'
+import ComponentPrototype from '../../component-prototype';
 
 export default {
-  //mixins: [ComponentPrototype],
+  mixins: [ComponentPrototype, InputPrototype],
 
   name: 'Input',
-  mixins: [InputPrototype],
+
   props: {
     label: String,
     defaultValue: String,
