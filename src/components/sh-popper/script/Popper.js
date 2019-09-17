@@ -12,7 +12,11 @@ function off(element, event, handler) {
   }
 }
 
+//import ComponentPrototype from '../../../components/component-prototype';
+
 export default {
+  //mixins: [ComponentPrototype],
+
   props: {
     tagName: {
       type: String,

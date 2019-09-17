@@ -24,7 +24,11 @@
 <script>
 
 import BelkPrice from '../belk-price/BelkPrice'
+//import ComponentPrototype from '../../components/component-prototype';
+
 export default {
+  //mixins: [ComponentPrototype],
+
   name: 'BelkProducts',
   props: {
     priceAPI: {

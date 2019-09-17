@@ -9,7 +9,11 @@
 </template>
 
 <script>
-  export default {
+  //import ComponentPrototype from '../../components/component-prototype';
+
+export default {
+  //mixins: [ComponentPrototype],
+
     name: 'Svglib',
     data() {
       return {

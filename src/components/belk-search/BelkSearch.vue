@@ -105,7 +105,11 @@
 <script>
 import BelkProducts from "../belk-products/BelkProducts";
 
+//import ComponentPrototype from '../../components/component-prototype';
+
 export default {
+  //mixins: [ComponentPrototype],
+
   name: "BelkSearch",
 
   props: {
