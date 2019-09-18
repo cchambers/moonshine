@@ -1,4 +1,8 @@
-export default {
+  import ComponentPrototype from '../../component-prototype';
+
+  export default {
+    mixins: [ComponentPrototype],
+
   name: 'Dropnav',
   props: {
     noActiveText: Boolean,

@@ -17,6 +17,7 @@ require('./components/sh-slider');
 require('./components/sh-tabs');
 require('./components/sh-tooltip');
 
+
 /* Documentation Library */
 require('./assets/script/prism.js');
 require('./assets/style/prism.css');
@@ -28,3 +29,5 @@ require('./lib/components/lib-content');
 require('./lib/components/lib-section-links');
 require('./lib/components/lib-notify');
 require('./lib/components/lib-toolbar');
+
+require('./components/component-template');

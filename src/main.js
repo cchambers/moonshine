@@ -6,6 +6,11 @@ require('./assets/script/core.js');
 import Vue from 'vue';
 Vue.config.productionTip = false;
 
+/* SH-COMPONENT PROTOTYPE 
+import ComponentPrototype from './components/component-prototype';
+Vue.mixin(ComponentPrototype);
+*/
+
 /* IE-11 Polyfills */
 import 'document-register-element/build/document-register-element';
 import './assets/script/polyfills.js'
@@ -18,9 +23,6 @@ Vue.use(VueHammer);
 import vueCustomElement from 'vue-custom-element';
 Vue.use(vueCustomElement);
 
-/* SH-COMPONENT PROTOTYPE */
-import ComponentPrototype from './components/component-prototype';
-Vue.mixin(ComponentPrototype);
 
 /* This disables warnings caused by 'undefined vue components' that are actually defined. vce-workaround */
 Vue.config.ignoredElements = [ /.*/ ]

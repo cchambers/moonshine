@@ -39,7 +39,11 @@
     }
   }
 
+    import ComponentPrototype from '../component-prototype';
+
   export default {
+    mixins: [ComponentPrototype],
+
     name: 'NavItem',
     props: {
       variant: {

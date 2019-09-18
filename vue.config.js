@@ -100,10 +100,10 @@ module.exports = {
         'vue$': 'vue/dist/vue.esm.js'
       }
     },
-    optimization: {
-      // We no not want to minimize our code.
-      minimize: false
-    }
+  //   optimization: {
+  //     // We no not want to minimize our code.
+  //     minimize: false
+  //   }
   },
 
   chainWebpack: config => {

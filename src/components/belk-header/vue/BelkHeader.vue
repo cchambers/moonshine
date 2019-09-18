@@ -3,7 +3,11 @@
 </template>
 
 <script>
+import ComponentPrototype from '../../component-prototype';
+
 export default {
+  mixins: [ComponentPrototype],
+
   name: 'BelkHeader',
 
   data() {
@@ -24,7 +28,7 @@ export default {
   },
 
   watch: {
-    data(val) {
+    headerData(val) {
       let self = this;
       clearTimeout(self._dataDebounce);
       self._dataDebounce = setTimeout(() => {
@@ -46,18 +50,23 @@ export default {
     events() {
       this.$bus.$on('mega-nav-opening');
       this.$bus.$on('bag-update', this.bagUpdateHandler);
+      this.$bus.$on('get-user-data', this.emitUserData)
+    },
+
+    emitUserData() {
+        this.$bus.$emit('user-data', this.headerData);
     },
 
     getData(forceUpdate) {
       let self = this;
-      let sessionData = self.getItem('belkUserData', true);
-      if (sessionData && !forceUpdate) {
-        self.headerData = self.sessionData;
-      } else {
+      // let sessionData = self.getItem('belkUserData', true);
+      // if (sessionData && !forceUpdate) {
+      //   self.headerData = self.sessionData;
+      // } else {
         let url, brdurl;
         if (window.Urls) {
           url = window.Urls.headerInfo;
-          brdurl = window.Urls.getBrdDetailsForHeader;
+          brdurl = window.Urls.getBRDDetailsForHeader;
         } else {
           let origin = location.origin;
           if (origin.indexOf('localhost') >= 0) origin = '//dev29-web-belk.demandware.net';
@@ -92,7 +101,7 @@ export default {
             }
           }
         };
-      }
+      // }
     },
 
     recheckUrls() {

@@ -8,7 +8,11 @@
 </template>
 
 <script>
-export default {
+  import ComponentPrototype from '../component-prototype';
+
+  export default {
+    mixins: [ComponentPrototype],
+
   name: 'BelkPrice',
 
   props: {

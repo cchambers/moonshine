@@ -1,5 +1,9 @@
 
-export default {
+  import ComponentPrototype from '../../component-prototype';
+
+  export default {
+    mixins: [ComponentPrototype],
+
   name: 'BelkMegaNav',
   props: {
     disableCurtain: Boolean

@@ -1,9 +1,17 @@
+import ComponentPrototype from '../../component-prototype';
 import Popper from '../../../assets/script/popper';
 
 export default {
+  mixins: [ComponentPrototype],
+
   name: 'BelkTakeover',
 
   props: {
+    variant: {
+      type: String,
+      default: 'default'
+    },
+
     placement: {
       type: String,
       default: 'left-start'
@@ -43,17 +51,28 @@ export default {
     this.popperLeft = this.$refs.popperLeft;
     this.popperRight = this.$refs.popperRight;
 
-    this.poppers.push(new Popper(this.referenceEl, this.popperLeft, this.opts('left-start')));
-    this.poppers.push(new Popper(this.referenceEl, this.popperRight, this.opts('right-start')));
+    if (this.variant != 'sticky') {
+        
+      this.poppers.push(new Popper(this.referenceEl, this.popperLeft, this.opts('left-start')));
+      this.poppers.push(new Popper(this.referenceEl, this.popperRight, this.opts('right-start')));
 
-    setTimeout(() => {
-      self.$el.classList.add('active');
-      self.$nextTick(self.updatePopper);
-    }, this.delay);
+      setTimeout(() => {
+        self.$el.classList.add('active');
+        self.$nextTick(self.updatePopper);
+      }, this.delay);
 
-    this.poppers.forEach((el) => {
-      el.enableEventListeners();
-    })
+      this.poppers.forEach((el) => {
+        el.enableEventListeners();
+      })
+    } else {
+      // move/stick elements
+      this.popperLeft.classList.add('is-sticky', 'popper-left');
+      this.popperRight.classList.add('is-sticky', 'popper-right');
+
+      setTimeout(() => {
+        self.$el.classList.add('active');
+      }, this.delay);
+    }
   },
 
   methods: {
@@ -69,7 +88,6 @@ export default {
       let self = this;
       return {
         placement: pos,
-        postionFixed: true,
         modifiers: {
           preventOverflow: {
             boundariesElement: self.scrollingEl,

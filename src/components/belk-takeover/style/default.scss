@@ -11,5 +11,23 @@ belk-takeover {
       max-height: 100vh;
       opacity: 1;
     }
+
+    .is-sticky {
+      position: sticky;
+    }
+
+    .popper-left {
+      left: -200px;
+      width: 200px;
+      height: 100vh;
+      background: red;
+    }
+
+    .popper-right {
+      right: -200px;
+      width: 200px;
+      height: 100vh;
+      background: green;
+    }
   }
 }
