@@ -77,10 +77,6 @@ const ComponentPrototype = {
     }
   },
 
-  created() {
-    
-  },
-
   mounted() {
     let self = this;
     if (typeof self.events == 'function') setTimeout(self.events);

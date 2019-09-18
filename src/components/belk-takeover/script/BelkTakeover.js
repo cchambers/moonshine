@@ -12,13 +12,18 @@ export default {
       default: 'default'
     },
 
+    sticky: {
+      type: Boolean,
+      default: false
+    },
+
     placement: {
       type: String,
       default: 'left-start'
     },
     delay: {
       type: Number,
-      default: 2000
+      default: 0
     },
     attachTo: {
       type: String,
@@ -50,9 +55,30 @@ export default {
     this.scrollingEl = document.querySelector(this.scrollWith) || 'viewport';
     this.popperLeft = this.$refs.popperLeft;
     this.popperRight = this.$refs.popperRight;
+    let IE11 = document.getElementsByTagName('html')[0].classList.contains('IE11');
 
-    if (this.variant != 'sticky') {
-        
+    if (this.sticky && !IE11) {
+
+      // move/stick elements
+      this.popperLeft.classList.add('is-sticky', 'popper-left');
+      this.popperRight.classList.add('is-sticky', 'popper-right');
+
+      let leftAnchor = document.createElement('div');
+      leftAnchor.classList.add('takeover-anchor-left')
+      leftAnchor.append(this.popperLeft);
+
+      let rightAnchor = document.createElement('div');
+      rightAnchor.classList.add('takeover-anchor-right');
+      rightAnchor.append(this.popperRight);
+
+      this.referenceEl.prepend(leftAnchor);
+      this.referenceEl.prepend(rightAnchor);
+      
+
+      setTimeout(() => {
+        self.$el.classList.add('active');
+      }, this.delay);
+    } else {
       this.poppers.push(new Popper(this.referenceEl, this.popperLeft, this.opts('left-start')));
       this.poppers.push(new Popper(this.referenceEl, this.popperRight, this.opts('right-start')));
 
@@ -64,15 +90,9 @@ export default {
       this.poppers.forEach((el) => {
         el.enableEventListeners();
       })
-    } else {
-      // move/stick elements
-      this.popperLeft.classList.add('is-sticky', 'popper-left');
-      this.popperRight.classList.add('is-sticky', 'popper-right');
 
-      setTimeout(() => {
-        self.$el.classList.add('active');
-      }, this.delay);
     }
+
   },
 
   methods: {
@@ -105,5 +125,6 @@ export default {
       }
     }
   },
+
 
 }
