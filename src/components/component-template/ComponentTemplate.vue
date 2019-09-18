@@ -12,7 +12,9 @@
 
   export default {
     mixins: [ComponentPrototype],
+    
     name: 'ComponentTemplate',
+
     props: {
       msg: {
         type: String,
