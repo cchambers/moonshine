@@ -3,10 +3,10 @@
 </template>
 
 <script>
-  import ComponentPrototype from '../../component-prototype';
+import ComponentPrototype from '../../component-prototype';
 
-  export default {
-    mixins: [ComponentPrototype],
+export default {
+  mixins: [ComponentPrototype],
 
   name: 'BelkHeader',
 
@@ -59,14 +59,14 @@
 
     getData(forceUpdate) {
       let self = this;
-      let sessionData = self.getItem('belkUserData', true);
-      if (sessionData && !forceUpdate) {
-        self.headerData = self.sessionData;
-      } else {
+      // let sessionData = self.getItem('belkUserData', true);
+      // if (sessionData && !forceUpdate) {
+      //   self.headerData = self.sessionData;
+      // } else {
         let url, brdurl;
         if (window.Urls) {
           url = window.Urls.headerInfo;
-          brdurl = window.Urls.getBrdDetailsForHeader;
+          brdurl = window.Urls.getBRDDetailsForHeader;
         } else {
           let origin = location.origin;
           if (origin.indexOf('localhost') >= 0) origin = '//dev29-web-belk.demandware.net';
@@ -101,7 +101,7 @@
             }
           }
         };
-      }
+      // }
     },
 
     recheckUrls() {

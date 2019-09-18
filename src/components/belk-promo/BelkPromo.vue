@@ -8,10 +8,10 @@
 </template>
 
 <script>
-  //import ComponentPrototype from '../../components/component-prototype';
+  import ComponentPrototype from '../component-prototype';
 
   export default {
-    //mixins: [ComponentPrototype],
+    mixins: [ComponentPrototype],
 
     name: 'BelkPromo',
 
@@ -70,7 +70,8 @@
       },
 
       handleData(data) {
-        this.$set(this, this.data, data);
+        if (data.brd) this.$set(this.data, 'brd', data.brd);
+        if (data.brc) this.$set(this.data, 'brc', data.brc);
       }
     }
   }

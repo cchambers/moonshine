@@ -1,8 +1,8 @@
-//import ComponentPrototype from '../../../components/component-prototype';
+import ComponentPrototype from '../../component-prototype';
 import Popper from '../../../assets/script/popper';
 
 export default {
-  //mixins: [ComponentPrototype],
+  mixins: [ComponentPrototype],
 
   name: 'BelkTakeover',
 
