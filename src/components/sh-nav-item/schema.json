@@ -3,5 +3,5 @@
   "element": "sh-popper",
   "description": "Demonstration component.",
   "tags": ["utilities", "demo"],
-  "requirements": []
+  "requirements": {}
 }

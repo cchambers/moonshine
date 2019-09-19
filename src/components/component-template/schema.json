@@ -3,5 +3,5 @@
   "element": "component-template",
   "description": "Demonstration component.",
   "tags": ["utilities", "demo"],
-  "requirements": []
+  "requirements": {}
 }

@@ -3,5 +3,5 @@
   "element": "sh-accordion",
   "description": "Collapsing accordion component.",
   "tags": ["utilities", "demo"],
-  "requirements": []
+  "requirements": {}
 }

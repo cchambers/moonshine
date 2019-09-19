@@ -3,5 +3,5 @@
   "element": "sh-adapt-content",
   "description": "Demonstration component.",
   "tags": ["utilities", "demo"],
-  "requirements": []
+  "requirements": {}
 }

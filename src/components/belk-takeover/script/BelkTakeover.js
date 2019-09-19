@@ -23,7 +23,7 @@ export default {
     },
     delay: {
       type: Number,
-      default: 0
+      default: 200
     },
     attachTo: {
       type: String,
@@ -78,7 +78,9 @@ export default {
       setTimeout(() => {
         self.$el.classList.add('active');
       }, this.delay);
+
     } else {
+      
       this.poppers.push(new Popper(this.referenceEl, this.popperLeft, this.opts('left-start')));
       this.poppers.push(new Popper(this.referenceEl, this.popperRight, this.opts('right-start')));
 

@@ -3,5 +3,5 @@
   "element": "sh-tag",
   "description": "Demonstration component.",
   "tags": ["utilities", "demo"],
-  "requirements": []
+  "requirements": {}
 }
