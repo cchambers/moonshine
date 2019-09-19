@@ -2,6 +2,11 @@
   "name": "Belk Takeover",
   "element": "belk-takeover",
   "description": "Demonstration component.",
-  "tags": ["utilities", "demo"],
-  "requirements": []
+  "tags": ["advertising", "marketing"],
+  "requirements": {
+    "Container": [
+      "Should distribute a header and left/right rail image for advertising campaigns.",
+      "Rails should stick to the top of the scrolling container on scroll"
+    ]
+  }
 }

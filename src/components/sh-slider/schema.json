@@ -3,5 +3,5 @@
   "element": "sh-slider",
   "description": "Demonstration component.",
   "tags": ["utilities", "demo"],
-  "requirements": []
+  "requirements": {}
 }

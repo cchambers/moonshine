@@ -3,5 +3,5 @@
   "element": "sh-dropnav",
   "description": "Demonstration component.",
   "tags": ["utilities", "demo"],
-  "requirements": []
+  "requirements": {}
 }

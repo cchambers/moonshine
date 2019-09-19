@@ -3,5 +3,5 @@
   "element": "sh-rating",
   "description": "Demonstration component.",
   "tags": ["utilities", "demo"],
-  "requirements": []
+  "requirements": {}
 }

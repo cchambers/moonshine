@@ -48,7 +48,7 @@ export default {
 
   methods: {
     events() {
-      this.$bus.$on('mega-nav-opening');
+      // this.$bus.$on('mega-nav-opening');
       this.$bus.$on('bag-update', this.bagUpdateHandler);
       this.$bus.$on('get-user-data', this.emitUserData)
     },
@@ -57,7 +57,7 @@ export default {
         this.$bus.$emit('user-data', this.headerData);
     },
 
-    getData(forceUpdate) {
+    getData() {
       let self = this;
       // let sessionData = self.getItem('belkUserData', true);
       // if (sessionData && !forceUpdate) {

@@ -3,5 +3,5 @@
   "element": "sh-tabs",
   "description": "Tab component.",
   "tags": ["utilities", "demo"],
-  "requirements": []
+  "requirements": {}
 }
