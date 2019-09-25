@@ -58,7 +58,7 @@ yarn install
 ```
 yarn dev
 ```
-** IF YOU HAVE A CORE-JS DEPENDENCY ERROR AT THIS POINT: ** `yarn install core-js@2`
+**IF YOU HAVE A CORE-JS DEPENDENCY ERROR AT THIS POINT, RUN** `yarn install core-js@2`
 
 ### Compiles and minifies for production
 ```
