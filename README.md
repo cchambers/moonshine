@@ -1,5 +1,5 @@
 # Shine
-## vue web components
+## Vue Web Components
 
 
 [![Node](https://img.shields.io/badge/Node-v10+-red.svg)](https://bitbucket.org/belk_ecom/shine/src/master/)
@@ -164,9 +164,4 @@ Any contributions you make are **greatly appreciated**.
 2. Commit your Changes (`git commit -m 'Add some Amazing Feature`)
 3. Push to the Branch (`git push origin feature/amazing-feature`)
 4. Open a Pull Request
-
-
-
-
-
 
