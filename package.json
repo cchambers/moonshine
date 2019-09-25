@@ -5,7 +5,7 @@
   "scripts": {
     "prestart": "nvm use 10",
     "serve": "vue-cli-service serve",
-    "generate": "node generate.js",
+    "gen": "node generate.js",
     "dev": "node --max_old_space_size=6000 node_modules/@vue/cli-service/bin/vue-cli-service.js serve --open",
     "build": "NODE_ENV=production vue-cli-service build",
     "postbuild": "node combine",
