@@ -1,7 +1,7 @@
 # Shine: re-usable vue components
 
 [![Node](https://img.shields.io/badge/Node-v10+-red.svg)](https://bitbucket.org/belk_ecom/shine/src/master/)
-[![Test](https://img.shields.io/badge/Framework-Vue-orange.svg)](https://bitbucket.org/belk_ecom/shine/src/master/)
+[![Vue](https://img.shields.io/badge/Framework-Vue-orange.svg)](https://bitbucket.org/belk_ecom/shine/src/master/)
 [![Contrib](https://img.shields.io/badge/Contributors-2-yellow.svg)](https://bitbucket.org/belk_ecom/shine/src/master/)
 [![Maintenance](https://img.shields.io/badge/Maintained-yes-green.svg)](https://bitbucket.org/belk_ecom/shine/src/master/)
 [![Webpack](https://img.shields.io/badge/Bundle-Webpack-blue.svg)](https://bitbucket.org/belk_ecom/shine/src/master/)
