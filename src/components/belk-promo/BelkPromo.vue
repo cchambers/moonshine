@@ -8,7 +8,11 @@
 </template>
 
 <script>
+  import ComponentPrototype from '../component-prototype';
+
   export default {
+    mixins: [ComponentPrototype],
+
     name: 'BelkPromo',
 
     props: {
@@ -20,37 +24,38 @@
 
     data() {
       return {
-        stateActual: 0,
         data: {
-          brd: 12,
+          brd: null,
           brc: ''
         }
       }
     },
 
     computed: {
-      state() {
-        let state = 0;
-        return state;
-      },
-
       shipping() {
         let string;
-        // if elite: return "Free Shipping every day"
-        // else: return "Free Shipping @ ${this.freeShipping}"
-        if (this.data.brc.toLowerCase() == "elite") {
-          if (this.data.brd == 0) {
-            string = `Elites get <span class="uppercase">free shipping</span> every day!`;
-          } else {
-            string = `Free Shipping for Elites`;
-          }
-        } else { // NOT ELITE
-          if (this.data.brd == 0) {
-            string = `<span class="uppercase">Free shipping</span> @ ${this.freeShipping}!`;
-          } else {
-            string = `Free Shipping @ $${this.freeShipping}!`;
-          }
+        let brd = this.data.brd || 0;
+        let brc = this.data.brc || '';
+        brc = brc.toLowerCase();
+        switch (brc) {
+
+          case 'elite': 
+            if (brd == 0) {
+              string = `Elites get <span class="uppercase">free shipping</span> every day!`;
+            } else {
+              string = `Free Shipping for Elites`;
+            }
+          break;
+
+          default:
+            if (!this.data.brd) {
+              string = `<span class="uppercase">Free shipping</span> @ $${this.freeShipping}!`;
+            } else {
+              string = `Free Shipping @ $${this.freeShipping}!`;
+            }
+          break;
         }
+
         return string;
       }
     },
@@ -65,7 +70,8 @@
       },
 
       handleData(data) {
-        this.$set(this, this.data, data);
+        if (data.brd) this.$set(this.data, 'brd', data.brd);
+        if (data.brc) this.$set(this.data, 'brc', data.brc);
       }
     }
   }

@@ -6,6 +6,11 @@ require('./assets/script/core.js');
 import Vue from 'vue';
 Vue.config.productionTip = false;
 
+/* SH-COMPONENT PROTOTYPE 
+import ComponentPrototype from './components/component-prototype';
+Vue.mixin(ComponentPrototype);
+*/
+
 /* IE-11 Polyfills */
 import 'document-register-element/build/document-register-element';
 import './assets/script/polyfills.js'
@@ -18,9 +23,6 @@ Vue.use(VueHammer);
 import vueCustomElement from 'vue-custom-element';
 Vue.use(vueCustomElement);
 
-/* SH-COMPONENT PROTOTYPE */
-import ComponentPrototype from './components/component-prototype';
-Vue.mixin(ComponentPrototype);
 
 /* This disables warnings caused by 'undefined vue components' that are actually defined. vce-workaround */
 Vue.config.ignoredElements = [ /.*/ ]
@@ -31,4 +33,19 @@ require('./assets/style/common/utility.scss');
 require('./assets/style/themes/custom-props.scss');
 
 require('./prod-components');
-if (process.env.NODE_ENV != 'production') require('./dev-components')
+if (process.env.NODE_ENV != 'production')  {
+    require('./dev-components')
+    /* Documentation Library */
+    require('./assets/script/prism.js');
+    require('./assets/style/prism.css');
+    require('./assets/style/docs.scss');
+    require('./lib/components/lib-control-panel');
+    require('./lib/components/lib-nav');
+    require('./lib/components/lib-header');
+    require('./lib/components/lib-content');
+    require('./lib/components/lib-section-links');
+    require('./lib/components/lib-notify');
+    require('./lib/components/lib-toolbar');
+
+    require('./components/component-template');
+}

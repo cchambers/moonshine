@@ -3,5 +3,5 @@
   "element": "belk-header",
   "description": "Demonstration component.",
   "tags": ["utilities", "demo"],
-  "requirements": []
+  "requirements": {}
 }

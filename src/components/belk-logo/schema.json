@@ -1,7 +1,12 @@
 {
   "name": "Belk Logo",
   "element": "belk-logo",
-  "description": "Demonstration component.",
-  "tags": ["utilities", "demo"],
-  "requirements": []
+  "description": "Smart logo display component.",
+  "tags": ["logo", "header"],
+  "requirements": {
+    "Container": [
+      "Should display SVG version of Belk logo",
+      "Should adapt to whatever color it is used on on to match brand style guide"
+    ]
+  }
 }

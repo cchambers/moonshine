@@ -11,5 +11,41 @@ belk-takeover {
       max-height: 100vh;
       opacity: 1;
     }
+
+    .is-sticky {
+      position: sticky;
+    }
   }
+}
+
+[class^='takeover-anchor-'] {
+  position: sticky;
+  top: 0;
+  height: 0;
+  width: 0;
+}
+.takeover-anchor-left {
+  transform: translateX(-100%);
+}
+.takeover-anchor-right {
+  left: 100%;
+}
+
+.popper-left > div {
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translateX(-100%);
+  min-width: 20rem;
+  width: fit-content;
+}
+
+.popper-right > div {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  min-width: 20rem;
+  width: fit-content;
 }

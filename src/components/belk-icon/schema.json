@@ -3,5 +3,5 @@
   "element": "belk-icon",
   "description": "Icon display component.",
   "tags": ["icons", "svgs", "imagery"],
-  "requirements": []
+  "requirements": {}
 }

@@ -1,7 +1,7 @@
 {
   "name": "Belk Products",
   "element": "belk-products",
-  "description": "Demonstration component.",
-  "tags": ["utilities", "demo"],
-  "requirements": []
+  "description": "Product data display.",
+  "tags": ["utilities", "products"],
+  "requirements": {}
 }

@@ -1,7 +1,13 @@
 {
-  "name": "Component Template",
+  "name": "Belk Promo",
   "element": "belk-promo",
   "description": "Promotional content display component.",
   "tags": ["promo", "content"],
-  "requirements": []
+  "requirements": {
+    "Container": [
+      "Should display a message telling the user their current BRD amount",
+      "Should display a message telling the user when Free Shipping begins",
+      "Should display a special message combination for Elite users"
+    ]
+  }
 }

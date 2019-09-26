@@ -43,7 +43,9 @@ let app = {
 
   urlParamsToObj() {
     let search = location.search.substr(1);
-    let result = JSON.parse('{"' + search.replace(/&/g, '","').replace(/=/g,'":"') + '"}', function(key, value) { return key===""?value:decodeURIComponent(value) })
+    search = search.replace('&&', '&');
+    search = search.replace('&&&', '&');
+    let result = JSON.parse('{"' + search.replace(/(&)\1{4,}/g, '","').replace(/=/g,'":"') + '"}', function(key, value) { return key===""?value:decodeURIComponent(value) })
     location.params = result;
   }
 }
