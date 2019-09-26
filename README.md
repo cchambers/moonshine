@@ -38,6 +38,13 @@ Shine creates a local component library that can be managed and deployed as temp
 
 ### Getting Started
 
+Configuring your system to work with Shine is simple. We use yarn instead of npm because it flat-packs NPM modules. This saves space on dependencies and is just faster in general. `brew install yarn`
+
+After yarn is installed, navigate to the Shine project folder and run `yarn install`
+
+Once the packages are installed, raise your local dev environment and documentation by running `yarn dev`
+
+
 #### Prerequisites
 * [yarn](https://yarnpkg.com/lang/en/docs/install)
 * [node 10+](https://nodejs.org/en/)
@@ -101,16 +108,6 @@ The framework is a distillation of these forward-looking and scalable principles
 
 **Perk: Shine components can even be exported for use in mobile environments like Android and iOS! This means 70-80% code re-use cross platform!**
 
-
----
-
-### Getting Started
-
-Configuring your system to work with Shine is simple. We use yarn instead of npm because it flat-packs NPM modules. This saves space on dependencies and is just faster in general. `brew install yarn`
-
-After yarn is installed, navigate to the Shine project folder and run `yarn install`
-
-Once the packages are installed, raise your local dev environment and documentation by running `yarn dev`
 
 ---
 
