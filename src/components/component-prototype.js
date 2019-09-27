@@ -52,7 +52,7 @@ const ComponentPrototype = {
       let args = Array.from(arguments);
       window.sh.log = window.sh.log || [];   // store logs to an array for reference
       
-      let dev = (window.location.href.indexOf('web-belk.demand') >= 0) || (window.location.href.indexOf('localhost') >= 0);
+      let dev = (window.location.href.indexOf('belk.demand') >= 0) || (window.location.href.indexOf('localhost') >= 0);
       
       let level = args[args.length-1];
       level = (typeof level == 'number') ? args.pop() : 0;
