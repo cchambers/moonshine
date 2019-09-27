@@ -31,6 +31,7 @@ export default {
     headerData(val) {
       let self = this;
       clearTimeout(self._dataDebounce);
+      console.log("data", val)
       self._dataDebounce = setTimeout(() => {
         self.setItem('belkUserData', val, true);
         self.$bus.$emit('user-data', val);
@@ -43,14 +44,16 @@ export default {
     let self = this;
     self.actual = document.querySelector('#header .belk-header');
     self.bagEl = document.querySelector('belk-bag');
+    self.setupEvents();
     self.getData();
   },
 
   methods: {
-    events() {
-      // this.$bus.$on('mega-nav-opening');
-      this.$bus.$on('bag-update', this.bagUpdateHandler);
-      this.$bus.$on('get-user-data', this.emitUserData)
+    setupEvents() {
+      console.log("EVENTS")
+      let self = this;
+      self.$bus.$on('get-user-data', self.emitUserData);
+      self.$bus.$on('bag-update', self.bagUpdateHandler);
     },
 
     emitUserData() {
