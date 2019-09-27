@@ -43,14 +43,15 @@ export default {
     let self = this;
     self.actual = document.querySelector('#header .belk-header');
     self.bagEl = document.querySelector('belk-bag');
+    self.setupEvents();
     self.getData();
   },
 
   methods: {
-    events() {
-      // this.$bus.$on('mega-nav-opening');
-      this.$bus.$on('bag-update', this.bagUpdateHandler);
-      this.$bus.$on('get-user-data', this.emitUserData)
+    setupEvents() {
+      let self = this;
+      self.$bus.$on('get-user-data', self.emitUserData);
+      self.$bus.$on('bag-update', self.bagUpdateHandler);
     },
 
     emitUserData() {
@@ -152,10 +153,6 @@ export default {
           });
         }
       }
-    },
-
-    updatePromo() {
-      // ...
     },
   },
 }
