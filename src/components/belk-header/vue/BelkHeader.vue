@@ -154,10 +154,6 @@ export default {
         }
       }
     },
-
-    updatePromo() {
-      // ...
-    },
   },
 }
 </script>
