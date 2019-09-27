@@ -49,7 +49,6 @@ export default {
 
   methods: {
     setupEvents() {
-      console.log("EVENTS")
       let self = this;
       self.$bus.$on('get-user-data', self.emitUserData);
       self.$bus.$on('bag-update', self.bagUpdateHandler);
