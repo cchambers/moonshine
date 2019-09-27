@@ -31,7 +31,6 @@ export default {
     headerData(val) {
       let self = this;
       clearTimeout(self._dataDebounce);
-      console.log("data", val)
       self._dataDebounce = setTimeout(() => {
         self.setItem('belkUserData', val, true);
         self.$bus.$emit('user-data', val);

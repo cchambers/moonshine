@@ -80,7 +80,6 @@ const ComponentPrototype = {
   mounted() {
     let self = this;
     if (typeof self.events == 'function') setTimeout(self.events);
-    console.log("TEST1")
     self.$bus.$emit('component-ready', self);
   }
 };
