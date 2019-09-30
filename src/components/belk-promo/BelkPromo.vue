@@ -65,7 +65,7 @@
       self.setupEvents();
       setTimeout( () => {
         self.$bus.$emit('get-user-data');
-      }, 10)
+      }, 10);
     },
     
     methods: {
