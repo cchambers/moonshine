@@ -37,8 +37,8 @@ export default {
     },
 
     windowWatcher() {
-      const _w = window.innerWidth;
-      if (_w < 768) {
+      const winWidth = window.innerWidth;
+      if (winWidth < 768) {
         if (!this.mobile) {
           this.mobile = true;
           this.$bus.$emit('breakpoint-mobile');
@@ -56,8 +56,8 @@ export default {
 
     mouseleaveHandler() {
       if (this.curtain && !this.mobile) {
-        clearTimeout(this._timer);
-        this._timer = setTimeout(() => {
+        clearTimeout(this.timer);
+        this.timer = setTimeout(() => {
           this.$bus.$emit('hide-curtain');
         }, 400);
       }

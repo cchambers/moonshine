@@ -153,15 +153,16 @@ export default {
     },
 
     updateContainers(data) {
-      for (const item in data) {
-        const val = data[item];
-        if (val) {
-          const els = document.querySelectorAll(`[fill="${item}"]`);
-          els.forEach((el) => {
-            el.innerText = val;
-            el.setAttribute('filled', true);
-          });
-        }
+      const keys = Object.keys(data);
+      const values = Object.values(data);
+      for (let i = 0; i < keys.length; i += 1) {
+        const val = values[i];
+        const els = document.querySelectorAll(`[fill="${keys[i]}"]`);
+        els.forEach((el) => {
+          const target = el;
+          target.innerText = val;
+          target.setAttribute('filled', true);
+        });
       }
     },
   },

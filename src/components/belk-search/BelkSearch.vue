@@ -114,8 +114,7 @@
 <style lang="scss" src="./style/default.scss"></style>
 
 <script>
-import BelkProducts from '../belk-products/BelkProducts';
-
+import BelkProducts from '../belk-products/BelkProducts.vue';
 import ComponentPrototype from '../component-prototype';
 
 export default {

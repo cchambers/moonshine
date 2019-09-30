@@ -22,8 +22,7 @@
 </template>
 
 <script>
-
-import BelkPrice from '../belk-price/BelkPrice';
+import BelkPrice from '../belk-price/BelkPrice.vue';
 import ComponentPrototype from '../component-prototype';
 
 export default {
@@ -53,6 +52,7 @@ export default {
     BelkPrice,
   },
 };
+
 </script>
 <style lang="scss" src="./style/default.scss"></style>
 <style lang="scss" src="./style/primary.scss"></style>

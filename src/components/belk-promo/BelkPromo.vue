@@ -1,7 +1,8 @@
 <template>
   <div class="belk-promo">
     <div v-if="data.brd > 0" class="rewards-dollars">
-      You have ${{data.brd}} Belk Reward Dollars<span class="line-combinator" aria-hidden="true">&nbsp;+&nbsp;</span>
+      You have ${{data.brd}} Belk Reward Dollars<span class="line-combinator"
+      aria-hidden="true">&nbsp;+&nbsp;</span>
     </div>
     <div class="free-shipping" v-html="shipping"></div>
   </div>

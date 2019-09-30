@@ -30,8 +30,9 @@ export default {
 
   methods: {
     setup(el) {
-      el.viewbox = this.icons[el.name].viewbox;
-      el.configured = true;
+      const target = el;
+      target.viewbox = this.icons[target.name].viewbox;
+      target.configured = true;
     },
   },
 };
