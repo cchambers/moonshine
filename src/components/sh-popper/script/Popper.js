@@ -144,8 +144,12 @@ export default {
   methods: {
 
     ready() {
-      if (typeof this.reference === 'string') this.referenceElm = document.querySelector(this.reference);
-      if (this.$slots.reference) this.referenceElm = this.referenceElm || this.$slots.reference[0].elm;
+      if (typeof this.reference === 'string') {
+        this.referenceElm = document.querySelector(this.reference);
+      }
+      if (this.$slots.reference) {
+        this.referenceElm = this.referenceElm || this.$slots.reference[0].elm;
+      }
       this.popper = this.$refs.popper;
       switch (this.trigger) {
         case 'click':

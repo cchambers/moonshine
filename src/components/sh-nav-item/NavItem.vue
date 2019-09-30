@@ -283,6 +283,7 @@ export default {
           if (boundariesElement) {
             this.popperOptions.modifiers = { ...this.popperOptions.modifiers };
             this.popperOptions.modifiers.offset.offset = this.offset;
+            /* eslint-disable-next-line */
             this.popperOptions.modifiers.preventOverflow = { ...this.popperOptions.modifiers.preventOverflow };
             this.popperOptions.modifiers.preventOverflow.boundariesElement = boundariesElement;
           }
@@ -312,7 +313,11 @@ export default {
     },
 
     updatePopper() {
-      this.popperJS ? this.popperJS.scheduleUpdate() : this.createPopper();
+      if (this.popperJS) {
+        this.popperJS.scheduleUpdate();
+      } else {
+        this.createPopper();
+      }
     },
 
     mouseoverHandler() {

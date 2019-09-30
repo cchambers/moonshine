@@ -1,7 +1,7 @@
 const app = {
   init() {
     app.setup();
-    if (location.search) app.urlParamsToObj();
+    if (window.location.search) app.urlParamsToObj();
   },
 
   setup() {

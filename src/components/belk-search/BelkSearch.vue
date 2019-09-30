@@ -25,10 +25,17 @@
         v-on:keydown.up="highlightHandler"
         :placeholder="placeholder"
         @focus="focusHandler"/>
-      <button aria-role="button" aria-label="clear search field" ref="clear" v-if="valueLength>0" v-hammer:tap="forceBlur">
+      <button aria-role="button"
+        aria-label="clear search field"
+        ref="clear"
+        v-if="valueLength>0"
+        v-hammer:tap="forceBlur">
         <belk-icon name="close" width="24">Clear Input</belk-icon>
       </button>
-      <button aria-role="button" aria-label="perform search" ref="search" v-hammer:tap="doSearch">
+      <button aria-role="button"
+        aria-label="perform search"
+        ref="search"
+        v-hammer:tap="doSearch">
         <belk-icon name="search" width="24">Perform Search Action</belk-icon>
       </button>
     </div>
@@ -69,7 +76,9 @@
         </ul>
       </div>
 
-      <div ref="actual" v-bind:class="{ active: state === 2 || state === 3 }" class="search-suggestions">
+      <div ref="actual"
+        v-bind:class="{ active: state === 2 || state === 3 }"
+        class="search-suggestions">
         <div class="keywords">
           <ul>
             <li v-for="(item, index) in suggestionsLimited"
@@ -93,7 +102,9 @@
             variant="secondary"
             :limit="3"
           ></component>
-          <a class="view-more" :href="buildSearchLink(suggestTerm)">View more results for "{{ suggestTerm }}"</a>
+          <a class="view-more" :href="buildSearchLink(suggestTerm)">
+            View more results for "{{ suggestTerm }}"
+          </a>
         </div>
       </div>
     </div>
@@ -189,6 +200,7 @@ export default {
           label = 'Recent Searches';
           break;
         case 0:
+        default:
           label = this.placeholder;
           break;
       }
@@ -254,15 +266,15 @@ export default {
 
     suggestions(val, old) {
       if (val === old) return;
-      const { length } = val;
+      const { value } = val;
       const arr = [];
       let highlight;
       const searchVal = this.searchValue.toLowerCase().trim();
 
-      if (length) {
-        for (let x = 0, l = Math.min(length, this.suggestionsLimit); x < l; x += 1) {
-          val[x].id = `suggestion-${x}`;
-          arr.push(val[x]);
+      if (value) {
+        for (let x = 0, l = Math.min(value, this.suggestionsLimit); x < l; x += 1) {
+          value[x].id = `suggestion-${x}`;
+          arr.push(value[x]);
         }
 
         let currentValueExists = -1;
@@ -312,8 +324,8 @@ export default {
     this.placeholderHandler();
     this.recentSearches();
 
-    if (location.params) {
-      const query = location.params.q;
+    if (window.location.params) {
+      const query = window.location.params.q;
       if (query) this.fillSearch(query);
     }
   },
@@ -388,8 +400,8 @@ export default {
 
     placeholderHandler() {
       const self = this;
-      clearTimeout(self._placeholderTimer);
-      self._placeholderTimer = setTimeout(() => {
+      clearTimeout(self.placeholderTimer);
+      self.placeholderTimer = setTimeout(() => {
         const text = (window.innerWidth < 768) ? self.lowerPlaceholder : self.upperPlaceholder;
         self.placeholder = text;
       }, 100);
@@ -433,6 +445,8 @@ export default {
         case 1:
           length = this.recents.length;
           break;
+        default:
+          break;
       }
 
 
@@ -474,7 +488,7 @@ export default {
       const url = this.buildBloomreachURL(value);
       xhr.open('GET', url);
       xhr.send(null);
-      xhr.onreadystatechange = function () {
+      xhr.onreadystatechange = () => {
         const DONE = 4;
         const OK = 200;
         if (xhr.readyState === DONE) {
@@ -557,7 +571,7 @@ export default {
         const url = self.buildBloomreachURL(value);
         xhr.open('GET', url);
         xhr.send(null);
-        xhr.onreadystatechange = function () {
+        xhr.onreadystatechange = () => {
           const DONE = 4;
           const OK = 200;
           if (xhr.readyState === DONE) {

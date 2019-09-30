@@ -1,7 +1,7 @@
-const fs = require('fs-extra');
-
-let names;
 /* eslint-disable */
+
+const fs = require('fs-extra');
+let names;
 let prompt = require('prompt');
 let schema = {
   properties: {
