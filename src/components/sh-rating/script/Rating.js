@@ -36,7 +36,7 @@ export default {
     },
 
     rateHandler(e) {
-      if (!this.chosen && this.count) this.ratecount++;
+      if (!this.chosen && this.count) this.ratecount += 1;
       this.chosen = e.target.value;
       this.$bus.$emit('rating-chosen', this.chosen);
     },

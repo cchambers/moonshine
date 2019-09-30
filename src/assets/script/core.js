@@ -12,7 +12,7 @@ const app = {
     if (IE11Check) document.getElementsByTagName('html')[0].classList.add('IE11');
 
     // let demos = document.querySelectorAll('lib-toolbar');
-    // for (let x = 0, l = demos.length; x < l; x++) {
+    // for (let x = 0, l = demos.length; x < l; x += 1) {
     //   demos[x].setAttribute('base-code', demos[x].innerHTML);
     //   demos[x].innerHTML = '';
     // }

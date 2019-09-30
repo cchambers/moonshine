@@ -14,26 +14,26 @@ const pages = {
   },
 };
 
-if (process.env.NODE_ENV != 'production') {
-  glob.sync('./src/components/**/docs/data/*.html').forEach((path) => {
-    const component = path.split('/')[3];
-    let filename = path.split('/');
+if (process.env.NODE_ENV !== 'production') {
+  glob.sync('./src/components/**/docs/data/*.html').forEach((dir) => {
+    const component = dir.split('/')[3];
+    let filename = dir.split('/');
     filename = filename[filename.length - 1];
     const name = component + filename;
 
     pages[name] = {
       entry: 'src/blank.js',
-      template: path,
+      template: dir,
       filename: `components/${component}/data/${filename}`,
     };
   });
 
-  glob.sync('./src/components/**/docs/*.html').forEach((path) => {
-    const component = path.split('/')[3];
-    let filename = path.split('/');
+  glob.sync('./src/components/**/docs/*.html').forEach((dir) => {
+    const component = dir.split('/')[3];
+    let filename = dir.split('/');
     filename = filename[filename.length - 1];
     const name = component + filename;
-    const content = fs.readFileSync(path, 'utf8');
+    const content = fs.readFileSync(dir, 'utf8');
 
     pages[name] = {
       entry: 'src/main.js',
@@ -45,11 +45,11 @@ if (process.env.NODE_ENV != 'production') {
     };
   });
 
-  glob.sync('./src/lib/utilities/*.html').forEach((path) => {
-    let filename = path.split('/');
+  glob.sync('./src/lib/utilities/*.html').forEach((dir) => {
+    let filename = dir.split('/');
     filename = filename[filename.length - 1];
     const name = filename.split('.')[0];
-    const content = fs.readFileSync(path, 'utf8');
+    const content = fs.readFileSync(dir, 'utf8');
 
     pages[name] = {
       entry: 'src/main.js',
@@ -61,11 +61,11 @@ if (process.env.NODE_ENV != 'production') {
     };
   });
 
-  glob.sync('./src/lib/demos/*.html').forEach((path) => {
-    let filename = path.split('/');
+  glob.sync('./src/lib/demos/*.html').forEach((dir) => {
+    let filename = dir.split('/');
     filename = filename[filename.length - 1];
     const name = filename.split('.')[0];
-    const content = fs.readFileSync(path, 'utf8');
+    const content = fs.readFileSync(dir, 'utf8');
 
     pages[name] = {
       entry: 'src/main.js',

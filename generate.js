@@ -92,7 +92,7 @@ var walkSync = function(dir, filelist) {
 };
 
 function updateFiles(files) {
-  for (let x = 0, l = files.length; x < l; x++)  {
+  for (let x = 0, l = files.length; x < l; x += 1)  {
     writeUpdates(`${files[x].dir}/${files[x].filename}`);
   }
   console.log('Your new component was created.');

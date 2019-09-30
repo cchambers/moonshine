@@ -1,3 +1,5 @@
+/* eslint-disable */ 
+
 (function () {
   function CustomEvent(event, params) {
     params = params || { bubbles: false, cancelable: false, detail: null };
@@ -80,7 +82,7 @@
           callback.call(T, kValue, k, O);
         }
         // d. Increase k by 1.
-        k++;
+        k += 1;
       }
       // 8. return undefined.
     };

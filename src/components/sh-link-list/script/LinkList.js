@@ -33,7 +33,7 @@ export default {
       if (this.eventOnly) e.preventDefault();
       const { key } = e.target.dataset;
       if (key) {
-        for (let x = 0, l = this.items.length; x < l; x++) {
+        for (let x = 0, l = this.items.length; x < l; x += 1) {
           const item = this.items[x];
           if (item.active) this.deactivate(x);
         }

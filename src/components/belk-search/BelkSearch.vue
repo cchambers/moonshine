@@ -103,24 +103,24 @@
 <style lang="scss" src="./style/default.scss"></style>
 
 <script>
-import BelkProducts from "../belk-products/BelkProducts";
+import BelkProducts from '../belk-products/BelkProducts';
 
-  import ComponentPrototype from '../component-prototype';
+import ComponentPrototype from '../component-prototype';
 
-  export default {
-    mixins: [ComponentPrototype],
+export default {
+  mixins: [ComponentPrototype],
 
-  name: "BelkSearch",
+  name: 'BelkSearch',
 
   props: {
-      lowerPlaceholder: {
-        type: String,
-        default: 'Search'
-      },
-      upperPlaceholder: {
-        type: String,
-        default: 'What can we help you find?'
-      },
+    lowerPlaceholder: {
+      type: String,
+      default: 'Search',
+    },
+    upperPlaceholder: {
+      type: String,
+      default: 'What can we help you find?',
+    },
   },
 
   data() {
@@ -135,8 +135,8 @@ import BelkProducts from "../belk-products/BelkProducts";
       filled: false,
       isFocused: false,
       inputEl: {},
-      ignoreKeys: [37,39,91,16,13],
-      navKeys: [38,40],
+      ignoreKeys: [37, 39, 91, 16, 13],
+      navKeys: [38, 40],
       resultsEl: {},
       ariaIDResults: '',
       activeDescendant: false,
@@ -164,7 +164,7 @@ import BelkProducts from "../belk-products/BelkProducts";
 
   computed: {
     isActive() {
-      let active = this.state > 0;
+      const active = this.state > 0;
       return active;
     },
 
@@ -172,7 +172,7 @@ import BelkProducts from "../belk-products/BelkProducts";
       let state = 0;
       if (this.recents.length && this.count == 0 && this.isFocused) state = 1;
       if (this.count > 0 && this.isFocused) state = 2;
-      if (this.count == 0 && this.noResults && this.searchValue != "" && this.isFocused) state = 3;
+      if (this.count == 0 && this.noResults && this.searchValue != '' && this.isFocused) state = 3;
       this.activeDescendantHandler();
       this.stateHandler(state);
       return state;
@@ -180,20 +180,20 @@ import BelkProducts from "../belk-products/BelkProducts";
 
     ariaListLabel() {
       let label;
-      switch(this.state) {
+      switch (this.state) {
         case 3:
         case 2:
           label = 'Suggested Keywords';
-          break
+          break;
         case 1:
           label = 'Recent Searches';
-          break
+          break;
         case 0:
           label = this.placeholder;
-          break
+          break;
       }
       return label;
-    }
+    },
   },
 
   watch: {
@@ -204,7 +204,7 @@ import BelkProducts from "../belk-products/BelkProducts";
         this.suggestTerm = this.searchValue;
 
         this.count = this.suggestions.length || 0;
-        if (this.count == 0) {
+        if (this.count === 0) {
           this.noResults = true;
         } else {
           this.noResults = false;
@@ -213,7 +213,7 @@ import BelkProducts from "../belk-products/BelkProducts";
     },
 
     highlightIndex(val, oldVal) {
-      switch(this.state) {
+      switch (this.state) {
         case 2: // suggested keywords and products
           if (this.suggestionsLimited[oldVal]) this.$set(this.suggestionsLimited[oldVal], 'highlighted', false);
           this.$set(this.suggestionsLimited[val], 'highlighted', true);
@@ -226,13 +226,15 @@ import BelkProducts from "../belk-products/BelkProducts";
           this.$set(this.recents[val], 'highlighted', true);
           this.$emit('active-descendant', this.recents[val].id);
           this.value = this.recents[val].q;
-        break;
+          break;
+        default:
+          break;
       }
       // this.selectInput();
     },
 
     value(val) {
-      if (this.inputEl.value != val) this.inputEl.value = val;
+      if (this.inputEl.value !== val) this.inputEl.value = val;
       this.valueLength = val.length;
     },
 
@@ -246,28 +248,28 @@ import BelkProducts from "../belk-products/BelkProducts";
       } else {
         this.productsLimited = [];
       }
-      this.log('PRODUCTS', val)
+      this.log('PRODUCTS', val);
       this.productsEl.products = this.productsLimited;
     },
 
     suggestions(val, old) {
-      if (val == old) return;
-      let length = val.length;
-      let arr = [];
+      if (val === old) return;
+      const { length } = val;
+      const arr = [];
       let highlight;
-      let searchVal = this.searchValue.toLowerCase().trim();
+      const searchVal = this.searchValue.toLowerCase().trim();
 
       if (length) {
-        for (let x = 0, l = Math.min(length, this.suggestionsLimit); x < l; x++) {
-          val[x].id = `suggestion-${x}`
+        for (let x = 0, l = Math.min(length, this.suggestionsLimit); x < l; x += 1) {
+          val[x].id = `suggestion-${x}`;
           arr.push(val[x]);
         }
 
         let currentValueExists = -1;
 
-        for (let x = 0, l = arr.length; x < l; x++) {
-          let arrVal = arr[x].q.toLowerCase();
-          let match = (arrVal === searchVal);
+        for (let x = 0, l = arr.length; x < l; x += 1) {
+          const arrVal = arr[x].q.toLowerCase();
+          const match = (arrVal === searchVal);
           if (match) {
             currentValueExists = x;
             break;
@@ -275,7 +277,7 @@ import BelkProducts from "../belk-products/BelkProducts";
         }
 
         if (currentValueExists < 0) {
-          let obj = { q: this.value, highlighted: true, id: 'filled-0' };
+          const obj = { q: this.value, highlighted: true, id: 'filled-0' };
           this.filled = true;
           arr.unshift(obj);
           if (arr.length > this.suggestionsLimit) arr.pop();
@@ -285,7 +287,7 @@ import BelkProducts from "../belk-products/BelkProducts";
           this.filled = false;
           arr[currentValueExists].highlighted = true;
           highlight = currentValueExists;
-          this.$emit('active-descendant', arr[currentValueExists].id)
+          this.$emit('active-descendant', arr[currentValueExists].id);
         }
       }
 
@@ -293,7 +295,7 @@ import BelkProducts from "../belk-products/BelkProducts";
       this.getAllProducts(arr);
       if (arr.length) this.$set(this, 'previousSuggestions', arr);
       this.highlightIndex = highlight || 0;
-    }
+    },
   },
 
   created() {
@@ -311,30 +313,30 @@ import BelkProducts from "../belk-products/BelkProducts";
     this.recentSearches();
 
     if (location.params) {
-      let query = location.params.q;
+      const query = location.params.q;
       if (query) this.fillSearch(query);
     }
   },
 
   methods: {
     events() {
-      let self = this;
-      document.addEventListener('click', e => {
-        if ( !self.$el || self.elementContains(self.$el, e.target) ) return;
+      const self = this;
+      document.addEventListener('click', (e) => {
+        if (!self.$el || self.elementContains(self.$el, e.target)) return;
         self.isFocused = false;
       });
 
       self.$on('active-descendant', self.activeDescendantHandler);
       self.$bus.$on('navitem-opening', self.forceBlur);
       self.$bus.$on('close-search', self.forceBlur);
-      
+
       window.addEventListener('resize', self.placeholderHandler);
       window.addEventListener('navitem-opening', self.forceBlur);
     },
 
     stateHandler(val) {
       if (this.headerEl) {
-        if (val > 0 || this.isFocused ) {
+        if (val > 0 || this.isFocused) {
           this.headerEl.classList.add('search-active');
         } else {
           this.headerEl.classList.remove('search-active');
@@ -347,30 +349,29 @@ import BelkProducts from "../belk-products/BelkProducts";
     },
 
     activeDescendantHandler(id) {
-      this.activeDescendant = (id) ? id : false;
+      this.activeDescendant = (id) || false;
     },
 
     keydownHandler(e) {
-      let key = e.charCode || e.keyCode;
-      let nav = this.navKeys.indexOf(key) >= 0; // up/down arrows
-      let ignore = this.ignoreKeys.indexOf(key) >= 0; // left/right arrows, enter
+      const key = e.charCode || e.keyCode;
+      const nav = this.navKeys.indexOf(key) >= 0; // up/down arrows
+      const ignore = this.ignoreKeys.indexOf(key) >= 0; // left/right arrows, enter
       if (ignore || nav) {
         if (nav) e.preventDefault();
-        return;
       }
     },
 
     keyupHandler(e) {
-      let key = e.charCode || e.keyCode;
-      let nav = this.navKeys.indexOf(key) >= 0; // up/down arrows
-      let ignore = this.ignoreKeys.indexOf(key) >= 0; // left/right arrows
+      const key = e.charCode || e.keyCode;
+      const nav = this.navKeys.indexOf(key) >= 0; // up/down arrows
+      const ignore = this.ignoreKeys.indexOf(key) >= 0; // left/right arrows
       if (ignore || nav) {
         if (nav) e.preventDefault();
         return;
       }
 
       this.value = this.inputEl.value;
-      let len = this.value.length;
+      const len = this.value.length;
 
       if (len >= this.triggerResults) {
         clearTimeout(this.timer);
@@ -386,23 +387,23 @@ import BelkProducts from "../belk-products/BelkProducts";
     },
 
     placeholderHandler() {
-      let self = this;
+      const self = this;
       clearTimeout(self._placeholderTimer);
       self._placeholderTimer = setTimeout(() => {
-        let text = (window.innerWidth < 768) ? self.lowerPlaceholder : self.upperPlaceholder;
+        const text = (window.innerWidth < 768) ? self.lowerPlaceholder : self.upperPlaceholder;
         self.placeholder = text;
       }, 100);
     },
 
     selectInput() {
-      let self = this;
-      setTimeout( function() {
+      const self = this;
+      setTimeout(() => {
         self.inputEl.setSelectionRange(0, self.value.length);
-      }, 10)
+      }, 10);
     },
 
     removeHighlight(arr) {
-      for (let x = 0, l = arr.length; x < l; x++) {
+      for (let x = 0, l = arr.length; x < l; x += 1) {
         if (arr[x].highlighted) this.$set(arr[x], 'highlighted', false);
       }
     },
@@ -410,10 +411,10 @@ import BelkProducts from "../belk-products/BelkProducts";
     highlightHandler(e) {
       let length;
       let choose;
-      let key = e.charCode || e.keyCode;
+      const key = e.charCode || e.keyCode;
       let which = this.highlightIndex;
 
-      switch(key) {
+      switch (key) {
         case 38:
           choose = -1;
           break;
@@ -433,7 +434,7 @@ import BelkProducts from "../belk-products/BelkProducts";
           length = this.recents.length;
           break;
       }
-        
+
 
       which += choose;
       if (which >= length) which = 0;
@@ -444,8 +445,8 @@ import BelkProducts from "../belk-products/BelkProducts";
 
     forceBlur(e) {
       let clear = false;
-      if (typeof e == "object") {
-        let key = e.charCode || e.keyCode;
+      if (typeof e === 'object') {
+        const key = e.charCode || e.keyCode;
         if (key == 27 || e.target == this.$refs.clear) clear = true;
       }
       if (document.activeElement == this.inputEl) this.inputEl.blur();
@@ -459,7 +460,7 @@ import BelkProducts from "../belk-products/BelkProducts";
       this.value = '';
       this.searchValue = '';
       this.clearResponse();
-      if (focus) setTimeout(() => { this.inputEl.focus()});
+      if (focus) setTimeout(() => { this.inputEl.focus(); });
     },
 
     clearResponse() {
@@ -467,18 +468,18 @@ import BelkProducts from "../belk-products/BelkProducts";
     },
 
     doRequest() {
-      let self = this;
-      let xhr = new XMLHttpRequest();
-      let value = this.inputEl.value;
-      let url = this.buildBloomreachURL(value);
+      const self = this;
+      const xhr = new XMLHttpRequest();
+      const { value } = this.inputEl;
+      const url = this.buildBloomreachURL(value);
       xhr.open('GET', url);
       xhr.send(null);
-      xhr.onreadystatechange = function() {
-        let DONE = 4;
-        let OK = 200;
+      xhr.onreadystatechange = function () {
+        const DONE = 4;
+        const OK = 200;
         if (xhr.readyState === DONE) {
           if (xhr.status === OK) {
-            let res = JSON.parse(xhr.responseText);
+            const res = JSON.parse(xhr.responseText);
             self.searchValue = value.trim();
             self.response = res;
           }
@@ -487,15 +488,15 @@ import BelkProducts from "../belk-products/BelkProducts";
     },
 
     buildBloomreachURL(val) {
-      let url = `https://brm-suggest-0.brsrvr.com/api/v1/suggest/?account_id=6082&auth_key=&domain_key=belk&request_type=suggest&q=${val}`;
-      return url
+      const url = `https://brm-suggest-0.brsrvr.com/api/v1/suggest/?account_id=6082&auth_key=&domain_key=belk&request_type=suggest&q=${val}`;
+      return url;
     },
 
     recentSearches(val) {
       let rec = this.getItem('recentSearches') || [];
 
       if (val) {
-        let exists = rec.indexOf(val);
+        const exists = rec.indexOf(val);
         if (exists > -1) rec.splice(exists, 1);
         rec.unshift(val);
         if (rec.length > 10) rec = rec.slice(0, 10);
@@ -503,13 +504,13 @@ import BelkProducts from "../belk-products/BelkProducts";
       }
       this.recentCount = rec.length;
 
-      let arr = [];
-      for (let x = 0, l = rec.length; x < l; x++) {
+      const arr = [];
+      for (let x = 0, l = rec.length; x < l; x += 1) {
         arr.push({
           q: rec[x],
           highlighted: false,
-          id: `recommended-${x}`
-        })
+          id: `recommended-${x}`,
+        });
       }
       this.recents = arr;
     },
@@ -520,10 +521,10 @@ import BelkProducts from "../belk-products/BelkProducts";
     },
 
     doSearch(e) {
-      let val = e.target.value || this.value;
+      const val = e.target.value || this.value;
       if (val.length > 0) {
         this.recentSearches(val);
-        let url = this.buildSearchLink(val);
+        const url = this.buildSearchLink(val);
         window.location.href = url;
         this.forceBlur();
       } else {
@@ -537,8 +538,8 @@ import BelkProducts from "../belk-products/BelkProducts";
     },
 
     emphasizeText(text) {
-      let val = this.searchValue.trim();
-      let arr = text.split(val);
+      const val = this.searchValue.trim();
+      const arr = text.split(val);
       if (arr.length > 1) arr.splice(1, 0, `<span class="bold">${val}</span>`);
       return arr.join('');
     },
@@ -548,32 +549,32 @@ import BelkProducts from "../belk-products/BelkProducts";
     },
 
     getAllProducts(arr) {
-      let self = this;
+      const self = this;
 
       function doReq(which) {
-        let xhr = new XMLHttpRequest();
-        let value = arr[which].q;
-        let url = self.buildBloomreachURL(value);
+        const xhr = new XMLHttpRequest();
+        const value = arr[which].q;
+        const url = self.buildBloomreachURL(value);
         xhr.open('GET', url);
         xhr.send(null);
-        xhr.onreadystatechange = function() {
-          let DONE = 4;
-          let OK = 200;
+        xhr.onreadystatechange = function () {
+          const DONE = 4;
+          const OK = 200;
           if (xhr.readyState === DONE) {
             if (xhr.status === OK) {
-              let res = JSON.parse(xhr.responseText);
-              let arr = res.response.products;
+              const res = JSON.parse(xhr.responseText);
+              const arr = res.response.products;
               self.$set(self.allProducts[which], 'products', arr);
-              let event = `products-loaded.${which}`;
+              const event = `products-loaded.${which}`;
               self.$emit(event, arr);
             }
           }
         };
       }
 
-      let length = arr.length;
+      const { length } = arr;
       self.allProducts = [];
-      for (let x = 0, l = length; x < l; x++) {
+      for (let x = 0, l = length; x < l; x += 1) {
         self.allProducts[x] = { products: false };
         doReq(x);
       }
@@ -584,19 +585,17 @@ import BelkProducts from "../belk-products/BelkProducts";
     },
 
     showSuggestedProducts(which = 0) {
-      let self = this;
+      const self = this;
       if (self.filled && which == 0) which = 1;
       self.suggestTerm = self.suggestionsLimited[which].q;
-      if (typeof self.allProducts[which] == 'undefined') {
+      if (typeof self.allProducts[which] === 'undefined') {
         self.$once(`products-loaded.${which}`, (arr) => {
           self.log(`products-loaded.${which} FOUND`);
           self.products = arr;
-          self.showSuggestedProducts(which)
+          self.showSuggestedProducts(which);
         });
-      } else {
-        if (self.allProducts[which]) self.products = self.allProducts[which].products;
-      }
-    }
-  }
+      } else if (self.allProducts[which]) self.products = self.allProducts[which].products;
+    },
+  },
 };
 </script>

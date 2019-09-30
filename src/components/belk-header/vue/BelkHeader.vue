@@ -23,24 +23,24 @@ export default {
         store: false,
         cartQty: false,
         subTotal: false,
-      }
-    }
+      },
+    };
   },
 
   watch: {
     headerData(val) {
-      let self = this;
+      const self = this;
       clearTimeout(self._dataDebounce);
       self._dataDebounce = setTimeout(() => {
         self.setItem('belkUserData', val, true);
         self.$bus.$emit('user-data', val);
         self.updateContainers(val);
       }, 50);
-    }
+    },
   },
 
   mounted() {
-    let self = this;
+    const self = this;
     self.actual = document.querySelector('#header .belk-header');
     self.bagEl = document.querySelector('belk-bag');
     self.setupEvents();
@@ -49,75 +49,76 @@ export default {
 
   methods: {
     setupEvents() {
-      let self = this;
+      const self = this;
       self.$bus.$on('get-user-data', self.emitUserData);
       self.$bus.$on('bag-update', self.bagUpdateHandler);
     },
 
     emitUserData() {
-        this.$bus.$emit('user-data', this.headerData);
+      this.$bus.$emit('user-data', this.headerData);
     },
 
     getData() {
-      let self = this;
+      const self = this;
       // let sessionData = self.getItem('belkUserData', true);
       // if (sessionData && !forceUpdate) {
       //   self.headerData = self.sessionData;
       // } else {
-        let url, brdurl;
-        if (window.Urls) {
-          url = window.Urls.headerInfo;
-          brdurl = window.Urls.getBRDDetailsForHeader;
-        } else {
-          let origin = location.origin;
-          if (origin.indexOf('localhost') >= 0) origin = '//dev29-web-belk.demandware.net';
-          url = `${origin}/on/demandware.store/Sites-Belk-Site/default/Home-HeaderInfo?format=ajax`;
-          brdurl = `${origin}/on/demandware.store/Sites-Belk-Site/default/BRD-GetBRDDetailsForHeader?format=ajax`;
-          // self.recheckUrls();
-        }
-        let xhr = new XMLHttpRequest();
-        xhr.open('GET', url);
-        xhr.send(null);
-        xhr.onreadystatechange = function() {
-          let DONE = 4;
-          let OK = 200;
-          if (xhr.readyState === DONE) {
-            if (xhr.status === OK) {
-              let res;
-              try {
-                res = JSON.parse(xhr.responseText);
-              } catch (e) {
-                // Oh well, but whatever...
-              }
+      let url; let
+        brdurl;
+      if (window.Urls) {
+        url = window.Urls.headerInfo;
+        brdurl = window.Urls.getBRDDetailsForHeader;
+      } else {
+        let { origin } = location;
+        if (origin.indexOf('localhost') >= 0) origin = '//dev29-web-belk.demandware.net';
+        url = `${origin}/on/demandware.store/Sites-Belk-Site/default/Home-HeaderInfo?format=ajax`;
+        brdurl = `${origin}/on/demandware.store/Sites-Belk-Site/default/BRD-GetBRDDetailsForHeader?format=ajax`;
+        // self.recheckUrls();
+      }
+      const xhr = new XMLHttpRequest();
+      xhr.open('GET', url);
+      xhr.send(null);
+      xhr.onreadystatechange = function () {
+        const DONE = 4;
+        const OK = 200;
+        if (xhr.readyState === DONE) {
+          if (xhr.status === OK) {
+            let res;
+            try {
+              res = JSON.parse(xhr.responseText);
+            } catch (e) {
+              // Oh well, but whatever...
+            }
 
-              self.handleHeader(res);
-            }
+            self.handleHeader(res);
           }
-        };
-        
-        let brdxhr = new XMLHttpRequest();
-        brdxhr.open('GET', brdurl);
-        brdxhr.send(null);
-        brdxhr.onreadystatechange = function() {
-          let DONE = 4;
-          let OK = 200;
-          if (brdxhr.readyState === DONE) {
-            if (brdxhr.status === OK) {
-              let res;
-              try {
-                res = JSON.parse(brdxhr.responseText)
-              } catch (e) {
-                // Oh well, but whatever...
-              }
-              self.handleBRD(res);
+        }
+      };
+
+      const brdxhr = new XMLHttpRequest();
+      brdxhr.open('GET', brdurl);
+      brdxhr.send(null);
+      brdxhr.onreadystatechange = function () {
+        const DONE = 4;
+        const OK = 200;
+        if (brdxhr.readyState === DONE) {
+          if (brdxhr.status === OK) {
+            let res;
+            try {
+              res = JSON.parse(brdxhr.responseText);
+            } catch (e) {
+              // Oh well, but whatever...
             }
+            self.handleBRD(res);
           }
-        };
+        }
+      };
       // }
     },
 
     recheckUrls() {
-      let self = this;
+      const self = this;
       setTimeout(() => {
         if (window.Urls) self.getData();
       }, 500);
@@ -140,25 +141,23 @@ export default {
     bagUpdateHandler(data) {
       if (!this.loggedIn) {
         this.bagState(0);
+      } else if (data.count == 0) {
+        this.bagState(1);
       } else {
-        if (data.count == 0) {
-          this.bagState(1);
-        } else {
-          this.bagState(2);
-        }
+        this.bagState(2);
       }
     },
 
     bagState(num) {
-      this.actual.setAttribute('bag-state', num)
+      this.actual.setAttribute('bag-state', num);
     },
 
     updateContainers(data) {
-      for (var item in data) {
-        let val = data[item];
+      for (const item in data) {
+        const val = data[item];
         if (val) {
-          let els = document.querySelectorAll(`[fill="${item}"]`)
-          els.forEach(el => {
+          const els = document.querySelectorAll(`[fill="${item}"]`);
+          els.forEach((el) => {
             el.innerText = val;
             el.setAttribute('filled', true);
           });
@@ -166,6 +165,6 @@ export default {
       }
     },
   },
-}
+};
 </script>
 <style lang="scss" src="../style/default.scss"></style>

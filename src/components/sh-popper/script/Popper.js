@@ -257,19 +257,20 @@ export default {
     },
 
     updatePopper() {
-      this.popperJS ? this.popperJS.scheduleUpdate() : this.createPopper();
+      const test = this.popperJS ? this.popperJS.scheduleUpdate() : this.createPopper();
+      return test;
     },
 
     onMouseOver() {
-      clearTimeout(this._timer);
-      this._timer = setTimeout(() => {
+      clearTimeout(this.mousetimer);
+      this.mousetimer = setTimeout(() => {
         this.showPopper = true;
       }, this.delayOnMouseOver);
     },
 
     onMouseOut() {
-      clearTimeout(this._timer);
-      this._timer = setTimeout(() => {
+      clearTimeout(this.mousetimer);
+      this.mousetimer = setTimeout(() => {
         this.showPopper = false;
       }, this.delayOnMouseOut);
     },

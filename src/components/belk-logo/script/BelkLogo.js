@@ -32,7 +32,7 @@ export default {
         node = this.$el;
       let cycles = 0;
       while (!parent && cycles < 5) {
-        cycles++;
+        cycles += 1;
         node = node.parentElement;
         let bg = getComputedStyle(node).backgroundColor;
         if (bg.match('0, 0, 0, 0')) bg = false;
@@ -45,7 +45,7 @@ export default {
         }
       }
       C = [R / 255, G / 255, B / 255];
-      for (let i = 0; i < C.length; ++i) {
+      for (let i = 0; i < C.length; i += 1) {
         if (C[i] <= 0.03928) {
           C[i] = C[i] / 12.92;
         } else {

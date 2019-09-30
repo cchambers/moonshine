@@ -11,6 +11,6 @@
     </div>
   </header>
 </template>
-  
+
 <script src="../script/LibHeader.js"></script>
 <style lang="scss" src="../style/default.scss" scoped></style>

@@ -23,36 +23,36 @@
 
 <script>
 
-import BelkPrice from '../belk-price/BelkPrice'
-  import ComponentPrototype from '../component-prototype';
+import BelkPrice from '../belk-price/BelkPrice';
+import ComponentPrototype from '../component-prototype';
 
-  export default {
-    mixins: [ComponentPrototype],
+export default {
+  mixins: [ComponentPrototype],
 
   name: 'BelkProducts',
   props: {
     priceAPI: {
       type: String,
-      default: 'https://www.belk.com/on/demandware.store/Sites-Belk-Site/default/Certona-ProductPricingJSON'
-    }
+      default: 'https://www.belk.com/on/demandware.store/Sites-Belk-Site/default/Certona-ProductPricingJSON',
+    },
   },
 
   data() {
     return {
-      products: []
-    }
+      products: [],
+    };
   },
 
   methods: {
     quickView(e) {
       e.preventDefault();
-    }
+    },
   },
-  
+
   components: {
-    BelkPrice
-  }
-}
+    BelkPrice,
+  },
+};
 </script>
 <style lang="scss" src="./style/default.scss"></style>
 <style lang="scss" src="./style/primary.scss"></style>

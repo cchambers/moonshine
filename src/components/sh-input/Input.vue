@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import InputPrototype from '../input-prototype'
+import InputPrototype from '../input-prototype';
 import ComponentPrototype from '../component-prototype';
 import ValidationBehavior from '../validation-behavior';
 
@@ -28,16 +28,16 @@ export default {
   data() {
     return {
       test: 'ok',
-    }
+    };
   },
 
   methods: {
-    keyupHandler(e){
-      let val = e.target.value;
+    keyupHandler(e) {
+      const val = e.target.value;
       this.log(val);
-    }
-  }
-}
+    },
+  },
+};
 </script>
 <style lang="scss" src="./style/default.scss"></style>
 <style lang="scss" src="./style/primary.scss"></style>

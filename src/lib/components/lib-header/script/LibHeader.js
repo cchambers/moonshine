@@ -28,8 +28,8 @@ export default {
     let ticking = false;
     const main = document.querySelector('main');
 
-    function updateHeader(scroll_pos) {
-      if (scroll_pos > 100) {
+    function updateHeader(scrollPos) {
+      if (scrollPos > 100) {
         if (!self.pageNameActive) self.pageNameActive = true;
       } else if (self.pageNameActive) self.pageNameActive = false;
     }

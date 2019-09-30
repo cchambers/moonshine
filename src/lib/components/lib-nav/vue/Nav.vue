@@ -1,7 +1,11 @@
 <template>
   <nav>
     <div id="nav-search">
-      <input v-model="search" @keyup="doSearch" type="text" ref="search" placeholder="Looking for something? Just type.">
+      <input v-model="search"
+      @keyup="doSearch"
+      type="text"
+      ref="search"
+      placeholder="Looking for something? Just type.">
     </div>
     <div class="primary" ref="primary">
       <div v-hammer:tap="closeNav" class="go-back">
@@ -24,7 +28,7 @@
     </div>
   </nav>
 </template>
-  
+
 <script src="../script/Nav.js"></script>
 <style lang="scss" src="../style/default.scss"></style>
 
