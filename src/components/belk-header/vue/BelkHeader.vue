@@ -83,7 +83,13 @@ export default {
           let OK = 200;
           if (xhr.readyState === DONE) {
             if (xhr.status === OK) {
-              let res = JSON.parse(xhr.responseText);
+              let res;
+              try {
+                res = JSON.parse(xhr.responseText);
+              } catch (e) {
+                // Oh well, but whatever...
+              }
+
               self.handleHeader(res);
             }
           }
@@ -97,7 +103,12 @@ export default {
           let OK = 200;
           if (brdxhr.readyState === DONE) {
             if (brdxhr.status === OK) {
-              let res = JSON.parse(brdxhr.responseText);
+              let res;
+              try {
+                res = JSON.parse(brdxhr.responseText)
+              } catch (e) {
+                // Oh well, but whatever...
+              }
               self.handleBRD(res);
             }
           }
