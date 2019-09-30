@@ -35,15 +35,16 @@ export default {
     },
 
     show(el) {
-      if (el) {
-        const zIndex = el.style.zIndex || 0;
-        const pos = el.style.position;
+      const target = el;
+      if (target) {
+        const zIndex = target.style.zIndex || 0;
+        const pos = target.style.position;
         if (pos !== 'absolute' && pos !== 'relative') {
-          el.style.pos = 'relative';
+          target.style.pos = 'relative';
         }
         if (zIndex < 8) {
-          this.targetEl = el;
-          el.style.zIndex = 9;
+          this.targetEl = target;
+          target.style.zIndex = 9;
         }
       }
       setTimeout(() => {

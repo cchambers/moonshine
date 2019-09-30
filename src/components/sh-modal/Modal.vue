@@ -225,6 +225,7 @@ export default {
             let response = xhr.responseText;
             const pattern = /<body[^>]*>((.|[\n\r])*)<\/body>/im;
             const arr = pattern.exec(response);
+            // eslint-disable-next-line
             if (arr[1].length) response = arr[1];
             let html = document.createElement('div');
             html.innerHTML = response;
