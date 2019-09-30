@@ -1,21 +1,21 @@
 import Popper from '../../../assets/script/popper';
 
+import ComponentPrototype from '../../component-prototype';
+
 function on(element, event, handler) {
   if (element && event && handler) {
-    document.addEventListener ? element.addEventListener(event, handler, false) : element.attachEvent('on' + event, handler);
+    document.addEventListener ? element.addEventListener(event, handler, false) : element.attachEvent(`on${event}`, handler);
   }
 }
 
 function off(element, event, handler) {
   if (element && event) {
-    document.removeEventListener ? element.removeEventListener(event, handler, false) : element.detachEvent('on' + event, handler)
+    document.removeEventListener ? element.removeEventListener(event, handler, false) : element.detachEvent(`on${event}`, handler);
   }
 }
 
-  import ComponentPrototype from '../../component-prototype';
-
-  export default {
-    mixins: [ComponentPrototype],
+export default {
+  mixins: [ComponentPrototype],
 
   props: {
     tagName: {
@@ -25,7 +25,7 @@ function off(element, event, handler) {
     trigger: {
       type: String,
       default: 'hover',
-      validator: value => ['click', 'hover'].indexOf(value) > -1
+      validator: (value) => ['click', 'hover'].indexOf(value) > -1,
     },
     delayOnMouseOver: {
       type: Number,
@@ -37,7 +37,7 @@ function off(element, event, handler) {
     },
     disabled: {
       type: Boolean,
-      default: false
+      default: false,
     },
     enterActiveClass: String,
     leaveActiveClass: String,
@@ -45,37 +45,37 @@ function off(element, event, handler) {
     reference: {},
     forceShow: {
       type: Boolean,
-      default: false
+      default: false,
     },
     dataValue: {
       default: null,
     },
     appendToBody: {
       type: Boolean,
-      default: false
+      default: false,
     },
     visibleArrow: {
       type: Boolean,
-      default: true
+      default: true,
     },
     transition: {
       type: String,
-      default: ''
+      default: '',
     },
     stopPropagation: {
       type: Boolean,
-      default: false
+      default: false,
     },
     preventDefault: {
       type: Boolean,
-      default: false
+      default: false,
     },
     options: {
       type: Object,
       default() {
         return {};
-      }
-    }
+      },
+    },
   },
 
   data() {
@@ -88,9 +88,9 @@ function off(element, event, handler) {
       popperOptions: {
         placement: 'bottom',
         computeStyle: {
-          gpuAcceleration: false
-        }
-      }
+          gpuAcceleration: false,
+        },
+      },
     };
   },
 
@@ -114,14 +114,14 @@ function off(element, event, handler) {
       handler(value) {
         this[value ? 'doShow' : 'doClose']();
       },
-      immediate: true
+      immediate: true,
     },
 
     disabled(value) {
       if (value) {
         this.showPopper = false;
       }
-    }
+    },
   },
 
   created() {
@@ -136,7 +136,7 @@ function off(element, event, handler) {
   methods: {
 
     ready() {
-      if (typeof this.reference == 'string') this.referenceElm = document.querySelector(this.reference);
+      if (typeof this.reference === 'string') this.referenceElm = document.querySelector(this.reference);
       if (this.$slots.reference) this.referenceElm = this.referenceElm || this.$slots.reference[0].elm;
       this.popper = this.$refs.popper;
       switch (this.trigger) {
@@ -214,8 +214,8 @@ function off(element, event, handler) {
           const boundariesElement = document.querySelector(this.boundariesSelector);
 
           if (boundariesElement) {
-            this.popperOptions.modifiers = Object.assign({}, this.popperOptions.modifiers);
-            this.popperOptions.modifiers.preventOverflow = Object.assign({}, this.popperOptions.modifiers.preventOverflow);
+            this.popperOptions.modifiers = { ...this.popperOptions.modifiers };
+            this.popperOptions.modifiers.preventOverflow = { ...this.popperOptions.modifiers.preventOverflow };
             this.popperOptions.modifiers.preventOverflow.boundariesElement = boundariesElement;
           }
         }
@@ -275,10 +275,10 @@ function off(element, event, handler) {
     },
 
     handleDocumentClick(e) {
-      if (!this.$el || !this.referenceElm ||
-        this.elementContains(this.$el, e.target) ||
-        this.elementContains(this.referenceElm, e.target) ||
-        !this.popper || this.elementContains(this.popper, e.target)
+      if (!this.$el || !this.referenceElm
+        || this.elementContains(this.$el, e.target)
+        || this.elementContains(this.referenceElm, e.target)
+        || !this.popper || this.elementContains(this.popper, e.target)
       ) {
         return;
       }
@@ -298,10 +298,10 @@ function off(element, event, handler) {
       }
 
       return false;
-    }
+    },
   },
 
   destroyed() {
     this.destroyPopper();
-  }
-}
+  },
+};

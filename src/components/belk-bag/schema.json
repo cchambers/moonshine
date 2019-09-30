@@ -1,9 +1,19 @@
 {
   "name": "Belk Bag",
   "element": "belk-bag",
-  "description": "Demonstration component.",
-  "tags": ["utilities", "demo"],
-  "requirements": [
-    ""
-  ]
+  "description": "Shopping cart component.",
+  "tags": ["cart", "header"],
+  "requirements": {
+    "Container": [
+      "Should emit events to the bus when changes take place."
+    ],
+    "Bag": [
+      "Should show with white background and black text when empty.",
+      "Should show with black background and white text when items present."
+    ],
+    "Text": [
+      "Should say 'Bag' when no items are present.",
+      "Should show the total when items are present."
+    ]
+  }
 }

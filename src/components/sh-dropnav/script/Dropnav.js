@@ -1,32 +1,32 @@
-  import ComponentPrototype from '../../component-prototype';
+import ComponentPrototype from '../../component-prototype';
 
-  export default {
-    mixins: [ComponentPrototype],
+export default {
+  mixins: [ComponentPrototype],
 
   name: 'Dropnav',
   props: {
     noActiveText: Boolean,
-    listVariant: String
+    listVariant: String,
   },
 
   data() {
     return {
       activeItem: 'Choose Something!',
       list: Object,
-      isOpen: false
-    }
+      isOpen: false,
+    };
   },
 
   mounted() {
     this.list = this.$refs.list;
   },
-  
+
   methods: {
     events() {
       this.$bus.$on('selected', (data) => {
         this.setActive(data.text);
         this.closeList();
-      })
+      });
     },
 
     setActive(text) {
@@ -47,7 +47,7 @@
 
     closeList() {
       this.isOpen = false;
-    }
+    },
   },
 
-}
+};

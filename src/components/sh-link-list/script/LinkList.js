@@ -1,11 +1,11 @@
-  import ComponentPrototype from '../../component-prototype';
+import ComponentPrototype from '../../component-prototype';
 
-  export default {
-    mixins: [ComponentPrototype],
+export default {
+  mixins: [ComponentPrototype],
 
   name: 'ShLinkList',
   props: {
-    eventOnly: Boolean
+    eventOnly: Boolean,
   },
 
   data() {
@@ -14,7 +14,7 @@
       items: [
         {
           text: 'test 1',
-          link: '#link1'
+          link: '#link1',
         },
         {
           text: 'test 2',
@@ -23,18 +23,18 @@
         {
           text: 'test 3',
           link: '#link3',
-        }
-      ]
-    }
+        },
+      ],
+    };
   },
-  
+
   methods: {
     clickHandler(e) {
       if (this.eventOnly) e.preventDefault();
-      let key = e.target.dataset.key;
+      const { key } = e.target.dataset;
       if (key) {
         for (let x = 0, l = this.items.length; x < l; x++) {
-          let item = this.items[x];
+          const item = this.items[x];
           if (item.active) this.deactivate(x);
         }
       }
@@ -42,7 +42,7 @@
     },
 
     activate(key) {
-      let item = this.items[key];
+      const item = this.items[key];
       this.$set(item, 'active', true);
       this.$bus.$emit('selected', item);
     },
@@ -52,4 +52,4 @@
     },
   },
 
-}
+};

@@ -1,7 +1,7 @@
-  import ComponentPrototype from '../../component-prototype';
+import ComponentPrototype from '../../component-prototype';
 
-  export default {
-    mixins: [ComponentPrototype],
+export default {
+  mixins: [ComponentPrototype],
 
   name: 'AdaptContent',
   props: {
@@ -10,7 +10,7 @@
     lg: String,
     xl: String,
     elementLevel: Boolean,
-    uniqueId: String
+    uniqueId: String,
   },
 
   data() {
@@ -21,23 +21,23 @@
       mdContent: '',
       lgContent: '',
       xlContent: '',
-      resizeTimer: 0
-    }
+      resizeTimer: 0,
+    };
   },
-  
+
   methods: {
     resizeHandler() {
-      let self = this;
+      const self = this;
       clearTimeout(self.resizeTimer);
       this.resizeTimer = setTimeout(self.checkState, 50);
     },
 
     checkState() {
       if (this.elementLevel) {
-        let width = this.$el.parentNode.outerWidth;
+        const width = this.$el.parentNode.outerWidth;
         return width;
-      } 
-    }
+      }
+    },
   },
 
   mounted() {
@@ -58,5 +58,5 @@
     if (!this.mdContent) this.mdContent = this.md || this.smContent;
     if (!this.lgContent) this.lgContent = this.lg || this.mdContent;
     if (!this.xlContent) this.xlContent = this.xl || this.lgContent;
-  }
-}
+  },
+};

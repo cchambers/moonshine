@@ -4,9 +4,9 @@ const ValidationBehavior = {
   },
 
   computed: {
-    hasError () {
-      return this.errors.length > 0
-    }
+    hasError() {
+      return this.errors.length > 0;
+    },
   },
 
   data() {
@@ -14,12 +14,12 @@ const ValidationBehavior = {
       errors: Array,
       validators: {
         required: {
-          pattern: '*'
+          pattern: '*',
 
-        }
-      }
-    }
+        },
+      },
+    };
   },
 };
 
-export default ValidationBehavior
+export default ValidationBehavior;

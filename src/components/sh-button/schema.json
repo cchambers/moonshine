@@ -1,0 +1,7 @@
+{
+  "name": "Button",
+  "element": "sh-button",
+  "description": "Call to action.",
+  "tags": ["marketing"],
+  "requirements": {}
+}

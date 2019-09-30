@@ -1,7 +1,12 @@
 {
   "name": "Belk Header",
   "element": "belk-header",
-  "description": "Demonstration component.",
-  "tags": ["utilities", "demo"],
-  "requirements": {}
+  "description": "Global header component.",
+  "tags": ["header"],
+  "requirements": {
+    "Container": [
+      "Should manage layout of nav rows for desktop and mobile.",
+      "Should collect and emit user data to other components."
+    ]
+  }
 }
