@@ -1,14 +1,14 @@
-let app = {
+const app = {
   init() {
     app.setup();
-    if (location.search) app.urlParamsToObj()
+    if (location.search) app.urlParamsToObj();
   },
 
   setup() {
-    let iOSCheck = navigator.userAgent.indexOf('Safari') > -1 && navigator.userAgent.indexOf('Chrome') < 0;
+    const iOSCheck = navigator.userAgent.indexOf('Safari') > -1 && navigator.userAgent.indexOf('Chrome') < 0;
     if (iOSCheck) document.getElementsByTagName('html')[0].classList.add('iOS');
-  
-    let IE11Check = !(window.ActiveXObject) && 'ActiveXObject' in window
+
+    const IE11Check = !(window.ActiveXObject) && 'ActiveXObject' in window;
     if (IE11Check) document.getElementsByTagName('html')[0].classList.add('IE11');
 
     // let demos = document.querySelectorAll('lib-toolbar');
@@ -19,21 +19,21 @@ let app = {
 
     app.interaction = 'keyboard';
 
-    document.addEventListener('keydown', ()=> {
+    document.addEventListener('keydown', () => {
       if (app.interaction != 'keyboard') {
         app.interaction = 'keyboard';
         document.documentElement.setAttribute('interaction', app.interaction);
       }
     });
 
-    document.addEventListener('click', ()=> {
+    document.addEventListener('click', () => {
       if (app.interaction != 'mouse') {
         app.interaction = 'mouse';
         document.documentElement.setAttribute('interaction', app.interaction);
       }
     });
 
-    document.addEventListener('touchstart', ()=> {
+    document.addEventListener('touchstart', () => {
       if (app.interaction != 'touch') {
         app.interaction = 'touch';
         document.documentElement.setAttribute('interaction', app.interaction);
@@ -45,10 +45,9 @@ let app = {
     let search = location.search.substr(1);
     search = search.replace('&&', '&');
     search = search.replace('&&&', '&');
-    let result = JSON.parse('{"' + search.replace(/(&)\1{4,}/g, '","').replace(/=/g,'":"') + '"}', function(key, value) { return key===""?value:decodeURIComponent(value) })
+    const result = JSON.parse(`{"${search.replace(/(&)\1{4,}/g, '","').replace(/=/g, '":"')}"}`, (key, value) => (key === '' ? value : decodeURIComponent(value)));
     location.params = result;
-  }
-}
+  },
+};
 
 app.init();
-

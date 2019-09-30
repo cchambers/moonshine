@@ -1,18 +1,18 @@
-  import ComponentPrototype from '../../component-prototype';
+import ComponentPrototype from '../../component-prototype';
 
-  export default {
-    mixins: [ComponentPrototype],
+export default {
+  mixins: [ComponentPrototype],
 
   name: 'Tooltip',
   props: {
-    tip: String
+    tip: String,
   },
 
   data() {
     return {
       tipId: String,
-      ariaHidden: true
-    }
+      ariaHidden: true,
+    };
   },
 
   created() {
@@ -22,5 +22,5 @@
 
   mounted() {
     this.html = this.$slots.default[0].elm.innerHTML;
-  }
-}
+  },
+};

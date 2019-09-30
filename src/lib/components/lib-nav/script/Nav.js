@@ -1,34 +1,34 @@
- import ComponentPrototype from '../../../../components/component-prototype';
+import ComponentPrototype from '../../../../components/component-prototype';
 
- export default {
+export default {
   mixins: [ComponentPrototype],
 
   name: 'Nav',
-  
+
   data() {
     return {
       search: '',
       results: [],
       filteredResults: [],
-    }
+    };
   },
 
   mounted() {
     this.buildSearchResults();
-    setTimeout( function() {
+    setTimeout(() => {
       document.body.classList.add('ready');
     });
   },
 
   methods: {
     events() {
-      let self = this;
+      const self = this;
 
-      self.$bus.$on('hashchange', this.closeNav)
+      self.$bus.$on('hashchange', this.closeNav);
 
-      let links = this.$el.querySelectorAll('a[href^="#"]');
+      const links = this.$el.querySelectorAll('a[href^="#"]');
       for (let x = 0, l = links.length; x < l; x++) {
-        let link = links[x];
+        const link = links[x];
         link.addEventListener('click', (e) => {
           e.preventDefault();
         });
@@ -36,14 +36,14 @@
         link.addEventListener('mouseover', () => {
           this.navToggledHandler();
           link.classList.add('active');
-          let target = link.getAttribute('href');
-          let targetEl = self.$el.querySelector(target);
+          const target = link.getAttribute('href');
+          const targetEl = self.$el.querySelector(target);
           if (targetEl) targetEl.classList.add('active');
         });
 
         window.addEventListener('keydown', (e) => {
           if (document.documentElement.classList.contains('nav-shown')) {
-            let key = e.keyCode;
+            const key = e.keyCode;
             if (key == 192) {
               e.preventDefault();
               return;
@@ -52,7 +52,7 @@
           }
         });
       }
-      
+
       this.$bus.$on('nav-closed', this.navToggledHandler);
       this.$bus.$on('nav-toggled', this.navToggledHandler);
     },
@@ -62,22 +62,22 @@
     },
 
     buildSearchResults() {
-      let links = this.$refs.secondary.querySelectorAll('a');
-      let results = [];
+      const links = this.$refs.secondary.querySelectorAll('a');
+      const results = [];
       for (let x = 0, l = links.length; x < l; x++) {
-        let link = links[x];
+        const link = links[x];
         results.push({
-          'link': link.href,
-          'name': link.innerText,
-          'reset': link.innerText,
-          'category': link.closest('div').id,
-          'show': false
-        })
+          link: link.href,
+          name: link.innerText,
+          reset: link.innerText,
+          category: link.closest('div').id,
+          show: false,
+        });
       }
       this.results = results;
     },
 
-      /* eslint-disable */
+    /* eslint-disable */
     doSearch(e) {
       let value = this.search;
       if (value == "") {

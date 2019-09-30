@@ -1,12 +1,12 @@
 
-  import ComponentPrototype from '../../component-prototype';
+import ComponentPrototype from '../../component-prototype';
 
-  export default {
-    mixins: [ComponentPrototype],
+export default {
+  mixins: [ComponentPrototype],
 
   name: 'BelkMegaNav',
   props: {
-    disableCurtain: Boolean
+    disableCurtain: Boolean,
   },
 
   data() {
@@ -14,17 +14,17 @@
       root: {},
       active: false,
       mobile: false,
-      curtain: true
-    }
+      curtain: true,
+    };
   },
 
   mounted() {
-    this.root = this.$el.closest('belk-header')
+    this.root = this.$el.closest('belk-header');
     this.windowWatcher();
 
     if (this.disableCurtain) this.curtain = false;
   },
-  
+
   methods: {
     events() {
       this.$bus.$on('curtain-hiding', () => {
@@ -37,18 +37,16 @@
     },
 
     windowWatcher() {
-      let _w = window.innerWidth;
+      const _w = window.innerWidth;
       if (_w < 768) {
         if (!this.mobile) {
           this.mobile = true;
           this.$bus.$emit('breakpoint-mobile');
         }
-      } else {
-        if (this.mobile) {
-          this.mobile = false;
-          if (this.active) this.hide();
-          this.$bus.$emit('breakpoint-desktop');
-        }
+      } else if (this.mobile) {
+        this.mobile = false;
+        if (this.active) this.hide();
+        this.$bus.$emit('breakpoint-desktop');
       }
     },
 
@@ -58,7 +56,7 @@
 
     mouseleaveHandler() {
       if (this.curtain && !this.mobile) {
-        clearTimeout(this._timer)
+        clearTimeout(this._timer);
         this._timer = setTimeout(() => {
           this.$bus.$emit('hide-curtain');
         }, 400);
@@ -72,16 +70,16 @@
         this.show();
       }
     },
-    
+
     hide() {
       this.active = false;
       if (this.curtain) this.$bus.$emit('hide-curtain');
     },
-    
+
     show() {
       this.active = true;
       if (this.curtain) this.$bus.$emit('show-curtain');
-    }
+    },
   },
 
-}
+};

@@ -1,30 +1,30 @@
 import ComponentPrototype from '../../../../components/component-prototype';
 
 export default {
- mixins: [ComponentPrototype],
+  mixins: [ComponentPrototype],
 
   name: 'ControlPanel',
 
   data() {
     return {
-      theme: 'default'
-    }
+      theme: 'default',
+    };
   },
 
   watch: {
-    theme: function (val) {
+    theme(val) {
       document.documentElement.setAttribute('theme', val);
-    }
+    },
   },
 
   methods: {
     events() {
-      let self = this;
+      const self = this;
       self.$bus.$on('close-nav', self.closeNav);
       self.$bus.$on('toggle-nav', self.toggleNav);
 
       window.addEventListener('keyup', (e) => {
-        let key = e.keyCode;
+        const key = e.keyCode;
         if (key == 192) {
           self.$bus.$emit('close-modals');
           self.$bus.$emit('toggle-nav');
@@ -42,7 +42,7 @@ export default {
     toggleNav() {
       document.documentElement.classList.toggle('nav-shown');
       this.$bus.$emit('nav-toggled');
-      let isActive = document.documentElement.classList.contains('nav-shown');
+      const isActive = document.documentElement.classList.contains('nav-shown');
       if (isActive) {
         this.$bus.$emit('show-curtain');
       } else {
@@ -61,11 +61,11 @@ export default {
     toggleTheme() {
       this.theme = (this.theme == 'default') ? 'dark' : 'default';
       window.localStorage.setItem('docs-theme', this.theme);
-    }
+    },
   },
 
   mounted() {
-    let theme = window.localStorage.getItem('docs-theme');
+    const theme = window.localStorage.getItem('docs-theme');
     if (theme) this.theme = theme;
   },
-}
+};

@@ -2,6 +2,10 @@
   "name": "Belk Products",
   "element": "belk-products",
   "description": "Product data display.",
-  "tags": ["utilities", "products"],
-  "requirements": {}
+  "tags": ["marketing", "products"],
+  "requirements": {
+    "Container": [
+      "Should display product data in a consumable format."
+    ]
+  }
 }

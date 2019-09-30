@@ -8,7 +8,7 @@ export default {
 
   props: {
     baseCode: String,
-    demo: String
+    demo: String,
   },
 
   data() {
@@ -21,17 +21,17 @@ export default {
       html: 'Loading...',
       updateTimer: 0,
       uniqueId: '',
-      editor: {}
-    }
+      editor: {},
+    };
   },
-  
+
   mounted() {
-    let self = this;
-    this.uniqueId = 'sh' + this.uuid;
+    const self = this;
+    this.uniqueId = `sh${this.uuid}`;
     if (this.demo) {
       this.$el.addEventListener('click', () => {
         window.open(`${location.origin}/${this.demo}`, 'demo');
-      })
+      });
     }
     if (this.baseCode) {
       this.code = this.baseCode;
@@ -50,30 +50,29 @@ export default {
       showGutter: false,
       wrap: true,
       showPrintMargin: false,
-      indentedSoftWrap: false
+      indentedSoftWrap: false,
     });
-    
-    setTimeout( function () {
-      let len = self.editor.getSession().getDocument().getLength();
-      self.$refs.editor.style.height = Math.max(200, Math.min(len*21, 600)) + "px";
-      self.$refs.editor.style.width = "100%";
+
+    setTimeout(() => {
+      const len = self.editor.getSession().getDocument().getLength();
+      self.$refs.editor.style.height = `${Math.max(200, Math.min(len * 21, 600))}px`;
+      self.$refs.editor.style.width = '100%';
       self.editor.resize();
       self.editor.getSession().selection.clearSelection();
-      
-      self.editor.getSession().on('change', function() {
-        let value = self.editor.getSession().getValue();
+
+      self.editor.getSession().on('change', () => {
+        const value = self.editor.getSession().getValue();
         self.editorCode = value;
         self.html = self.editorCode;
       });
-    })
-    
+    });
   },
 
   methods: {
     renderDebounce(code) {
-      let self = this;
+      const self = this;
       clearTimeout(this.updateTimer);
-      this.updateTimer = setTimeout( function () {
+      this.updateTimer = setTimeout(() => {
         self.renderCode(code);
       }, 300);
     },
@@ -87,7 +86,7 @@ export default {
     renderCode(code) {
       this.html = code;
     },
-    
+
     toggleActive() {
       this.active = !this.active;
     },
@@ -103,10 +102,10 @@ export default {
 
     copyEditor() {
       // console.log("COPY")
-    }
+    },
   },
 
   updated() {
-    this.isActive = this.active
-  }
-}
+    this.isActive = this.active;
+  },
+};

@@ -2,78 +2,78 @@ const glob = require('glob');
 const fs = require('fs-extra');
 const path = require('path');
 
-let nav = fs.readFileSync('./src/lib/incl-nav.html', 'utf8');
-let footer = fs.readFileSync('./src/lib/incl-footer.html', 'utf8');
+const nav = fs.readFileSync('./src/lib/incl-nav.html', 'utf8');
+const footer = fs.readFileSync('./src/lib/incl-footer.html', 'utf8');
 
-let pages = {
+const pages = {
   index: {
     entry: 'src/main.js',
-    nav: nav,
-    footer: footer,
-    template: 'src/lib/docs-index.html'
-  }
-}
+    nav,
+    footer,
+    template: 'src/lib/docs-index.html',
+  },
+};
 
 if (process.env.NODE_ENV != 'production') {
-  glob.sync('./src/components/**/docs/data/*.html').forEach(path => {  
-    let component = path.split('/')[3];
+  glob.sync('./src/components/**/docs/data/*.html').forEach((path) => {
+    const component = path.split('/')[3];
     let filename = path.split('/');
-    filename = filename[filename.length-1];
-    let name = component+filename;
-    
+    filename = filename[filename.length - 1];
+    const name = component + filename;
+
     pages[name] = {
       entry: 'src/blank.js',
       template: path,
-      filename: `components/${component}/data/${filename}`
-    }
-  })
+      filename: `components/${component}/data/${filename}`,
+    };
+  });
 
-  glob.sync('./src/components/**/docs/*.html').forEach(path => {  
-    let component = path.split('/')[3];
+  glob.sync('./src/components/**/docs/*.html').forEach((path) => {
+    const component = path.split('/')[3];
     let filename = path.split('/');
-    filename = filename[filename.length-1];
-    let name = component+filename;
-    let content = fs.readFileSync(path, 'utf8');
+    filename = filename[filename.length - 1];
+    const name = component + filename;
+    const content = fs.readFileSync(path, 'utf8');
 
     pages[name] = {
       entry: 'src/main.js',
       template: 'src/lib/docs-component.html',
-      content: content,
-      nav: nav,
-      footer: footer,
-      filename: `components/${component}/${filename}`
-    }
-  })
+      content,
+      nav,
+      footer,
+      filename: `components/${component}/${filename}`,
+    };
+  });
 
-  glob.sync('./src/lib/utilities/*.html').forEach(path => {  
+  glob.sync('./src/lib/utilities/*.html').forEach((path) => {
     let filename = path.split('/');
-    filename = filename[filename.length-1];
-    let name = filename.split('.')[0];
-    let content = fs.readFileSync(path, 'utf8');
+    filename = filename[filename.length - 1];
+    const name = filename.split('.')[0];
+    const content = fs.readFileSync(path, 'utf8');
 
     pages[name] = {
       entry: 'src/main.js',
       template: 'src/lib/docs-component.html',
-      content: content,
-      nav: nav,
-      footer: footer,
-      filename: `utilities/${name}/index.html`
-    }
-  })
+      content,
+      nav,
+      footer,
+      filename: `utilities/${name}/index.html`,
+    };
+  });
 
-  glob.sync('./src/lib/demos/*.html').forEach(path => {  
+  glob.sync('./src/lib/demos/*.html').forEach((path) => {
     let filename = path.split('/');
-    filename = filename[filename.length-1];
-    let name = filename.split('.')[0];
-    let content = fs.readFileSync(path, 'utf8');
+    filename = filename[filename.length - 1];
+    const name = filename.split('.')[0];
+    const content = fs.readFileSync(path, 'utf8');
 
     pages[name] = {
       entry: 'src/main.js',
       template: 'src/lib/docs-demonstration.html',
-      content: content,
-      filename: `demo/${name}/index.html`
-    }
-  })
+      content,
+      filename: `demo/${name}/index.html`,
+    };
+  });
 }
 
 
@@ -89,16 +89,16 @@ module.exports = {
           @import "@/assets/style/common/_functions.scss";
           @import "@/assets/style/common/_mixins.scss";
           @import "@/assets/style/themes/default/_variables.scss";
-        `
-      }
-    }
+        `,
+      },
+    },
   },
 
   configureWebpack: {
     resolve: {
       alias: {
-        'vue$': 'vue/dist/vue.esm.js'
-      }
+        vue$: 'vue/dist/vue.esm.js',
+      },
     },
   //   optimization: {
   //     // We no not want to minimize our code.
@@ -106,7 +106,7 @@ module.exports = {
   //   }
   },
 
-  chainWebpack: config => {
+  chainWebpack: (config) => {
     const themeLoader = path.resolve('theme-loader.js');
 
     const vueRule = config.module.rule('scss').oneOf('vue');
@@ -120,9 +120,8 @@ module.exports = {
 
     const normalModules = config.module.rule('scss').oneOf('normal-modules');
     normalModules.use('shine-theme-loader').loader(themeLoader).end();
-
   },
 
-  pages: pages,
-  
-}
+  pages,
+
+};

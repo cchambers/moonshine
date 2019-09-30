@@ -1,13 +1,12 @@
 (function () {
-
-  function CustomEvent ( event, params ) {
+  function CustomEvent(event, params) {
     params = params || { bubbles: false, cancelable: false, detail: null };
-    var evt = document.createEvent( 'CustomEvent' );
-    evt.initCustomEvent( event, params.bubbles, params.cancelable, params.detail );
+    const evt = document.createEvent('CustomEvent');
+    evt.initCustomEvent(event, params.bubbles, params.cancelable, params.detail);
     return evt;
   }
 
-  if ( typeof window.CustomEvent !== 'function' ) {
+  if (typeof window.CustomEvent !== 'function') {
     window.CustomEvent = CustomEvent;
   }
 
@@ -17,8 +16,8 @@
   }
 
   if (!Element.prototype.closest) {
-    Element.prototype.closest = function(s) {
-      var el = this;
+    Element.prototype.closest = function (s) {
+      let el = this;
 
       do {
         if (el.matches(s)) return el;
@@ -29,10 +28,9 @@
   }
 
   if (!Array.prototype.forEach) {
-
-    Array.prototype.forEach = function(callback/*, thisArg*/) {
-
-      var T, k;
+    Array.prototype.forEach = function (callback/* , thisArg */) {
+      let T; let
+        k;
 
       if (this == null) {
         throw new TypeError('this is null or not defined');
@@ -40,17 +38,17 @@
 
       // 1. Let O be the result of calling toObject() passing the
       // |this| value as the argument.
-      var O = Object(this);
+      const O = Object(this);
 
       // 2. Let lenValue be the result of calling the Get() internal
       // method of O with the argument "length".
       // 3. Let len be toUint32(lenValue).
-      var len = O.length >>> 0;
+      const len = O.length >>> 0;
 
       // 4. If isCallable(callback) is false, throw a TypeError exception.
       // See: http://es5.github.com/#x9.11
       if (typeof callback !== 'function') {
-        throw new TypeError(callback + ' is not a function');
+        throw new TypeError(`${callback} is not a function`);
       }
 
       // 5. If thisArg was supplied, let T be thisArg; else let
@@ -64,7 +62,6 @@
 
       // 7. Repeat while k < len.
       while (k < len) {
-
         var kValue;
 
         // a. Let Pk be ToString(k).
@@ -74,7 +71,6 @@
         //    This step can be combined with c.
         // c. If kPresent is true, then
         if (k in O) {
-
           // i. Let kValue be the result of calling the Get internal
           // method of O with argument Pk.
           kValue = O[k];
@@ -89,5 +85,4 @@
       // 8. return undefined.
     };
   }
-
-})();
+}());

@@ -6,14 +6,14 @@ export default {
       pageData: {
         type: Object,
         default: {
-          name: 'NO'
-        }
-      }
-    }
+          name: 'NO',
+        },
+      },
+    };
   },
 
   mounted() {
-    let self = this;
+    const self = this;
     self.docEvents();
     self.sectionLinks();
 
@@ -24,20 +24,20 @@ export default {
     //   let xhr = new XMLHttpRequest();
     //   xhr.open('GET', url);
     //   xhr.send(null);
-      
+
     //   xhr.onreadystatechange = function () {
     //     let DONE = 4; // readyState 4 means the request is done.
     //     let OK = 200; // status 200 is a successful return.
     //     if (xhr.readyState === DONE) {
     //       if (xhr.status === OK) {
     //         let response = xhr.responseText;
-            
+
     //         if (response.match('<html')) {
     //           // do nothing
     //         } else {
     //           let html = response.split('</head>')[1];
     //           html = html.split('<script')[0];
-              
+
     //           let updateCode = document.createElement('div');
     //           updateCode.innerHTML = html;
 
@@ -54,11 +54,11 @@ export default {
     //           //   render: res.render,
     //           //   staticRenderFns: res.staticRenderFns
     //           // }).$mount('#library-content');
-              
+
     //           self.docEvents();
     //           self.sectionLinks();
-              
-    //           // eslint-disable-next-line 
+
+    //           // eslint-disable-next-line
     //           console.info('%cdistilling components', 'border-radius: 15px; margin: 10px; background: #121212; color: white; font-family: sans-serif; font-size: 14px; padding: 5px 10px;');
     //           setTimeout(window.Prism.highlightAll,20);
     //         }
@@ -74,48 +74,49 @@ export default {
 
   methods: {
     copyText(el) {
-      let win = window;
-      let doc = win.document, sel, range;
+      const win = window;
+      const doc = win.document; let sel; let
+        range;
       if (win.getSelection && doc.createRange) {
-          sel = win.getSelection();
-          range = doc.createRange();
-          range.selectNodeContents(el);
-          sel.removeAllRanges();
-          sel.addRange(range);
+        sel = win.getSelection();
+        range = doc.createRange();
+        range.selectNodeContents(el);
+        sel.removeAllRanges();
+        sel.addRange(range);
       } else if (doc.body.createTextRange) {
-          range = doc.body.createTextRange();
-          range.moveToElementText(el);
-          range.select();
+        range = doc.body.createTextRange();
+        range.moveToElementText(el);
+        range.select();
       }
       document.execCommand('copy');
-      this.$bus.$emit('notify', { type: 'default', message: 'Copied to clipboard.' })
+      this.$bus.$emit('notify', { type: 'default', message: 'Copied to clipboard.' });
     },
 
-    docEvents() { 
-      let self = this;
-      let tds = document.querySelectorAll('td:nth-child(1)');
-      
+    docEvents() {
+      const self = this;
+      const tds = document.querySelectorAll('td:nth-child(1)');
+
       for (let x = 0, l = tds.length; x < l; x++) {
-        tds[x].addEventListener('click', function () {
+        tds[x].addEventListener('click', () => {
           self.copyText(tds[x]);
-        })
+        });
       }
-      let pageName = document.querySelector('h1')
+      let pageName = document.querySelector('h1');
       if (pageName) pageName = pageName.innerText;
       this.$bus.$emit('header-page-name', pageName);
     },
 
     sectionLinks() {
-      let self = this;
+      const self = this;
       let links = [];
-      let els = document.querySelectorAll('section[id]');
+      const els = document.querySelectorAll('section[id]');
       for (let x = 0, l = els.length; x < l; x++) {
-        let href = els[x].id;
-        let text = href.replace('-', ' ');
-        links.push(`<a href='#${href}'>${text}</a>`)
+        const href = els[x].id;
+        const text = href.replace('-', ' ');
+        links.push(`<a href='#${href}'>${text}</a>`);
       }
       links = links.join('');
-      setTimeout(function() { self.$bus.$emit('section-links', links) });
-    }
-  }
-}
+      setTimeout(() => { self.$bus.$emit('section-links', links); });
+    },
+  },
+};

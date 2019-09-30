@@ -1,4 +1,4 @@
-'use strict';
+
 /**
  * The sass-loader makes node-sass available to webpack modules.
  *
@@ -7,21 +7,21 @@
  */
 function themeLoader(content) {
   let data = content.match(/([^\s]*:(\s.*)[$][A-z]*-[A-z]*);/g);
-  // TODO: https://regexr.com/4k3tf  
+  // TODO: https://regexr.com/4k3tf
   if (data) {
     data = [...new Set(data)];
 
     for (let x = 0, l = data.length; x < l; x++) {
-      let scss = data[x];
-      
+      const scss = data[x];
+
       // make a new string from the SCSS variable: (color: $accent-primary;)
       let newString = `${scss}`;
 
       // pull the actual variable: ($accent-primary)
-      let theVar = newString.match(/([$][A-z]*-[A-z]*)/g);
+      const theVar = newString.match(/([$][A-z]*-[A-z]*)/g);
 
       // lop off the dollar sign: (accent-primary)
-      let noDollar = theVar[0].substr(1);
+      const noDollar = theVar[0].substr(1);
 
       // replace the variable with custom prop: var(--accent-primary)
       newString = newString.replace(theVar[0], `var(--${noDollar})`);
@@ -31,9 +31,9 @@ function themeLoader(content) {
       newString = `${scss} ${newString}`;
 
       // find/replace all occurances
-      var regStr = `(?<!-)${scss}`;
-      regStr = regStr.replace(/\$/, String.fromCharCode(92) + '$');
-      var regEx = new RegExp(regStr, 'g');
+      let regStr = `(?<!-)${scss}`;
+      regStr = regStr.replace(/\$/, `${String.fromCharCode(92)}$`);
+      const regEx = new RegExp(regStr, 'g');
 
       content = content.replace(regEx, newString);
     }
