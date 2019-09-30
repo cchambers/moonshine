@@ -42,6 +42,11 @@
       display: flex;
       align-items: center;
     }
+
+    h3 {
+      margin: 0;
+      padding-left: 2rem;
+    }
   }
 
   .footer:not(:empty) {
@@ -49,10 +54,6 @@
     margin-top: 0;
   }
 
-  h3 {
-    margin: 0 !important;
-    padding-left: $rem;
-  }
 
   [close-trigger] {
     cursor: pointer;

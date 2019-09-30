@@ -11,11 +11,11 @@ let app = {
     let IE11Check = !(window.ActiveXObject) && 'ActiveXObject' in window
     if (IE11Check) document.getElementsByTagName('html')[0].classList.add('IE11');
 
-    let demos = document.querySelectorAll('lib-toolbar');
-    for (let x = 0, l = demos.length; x < l; x++) {
-      demos[x].setAttribute('base-code', demos[x].innerHTML);
-      demos[x].innerHTML = '';
-    }
+    // let demos = document.querySelectorAll('lib-toolbar');
+    // for (let x = 0, l = demos.length; x < l; x++) {
+    //   demos[x].setAttribute('base-code', demos[x].innerHTML);
+    //   demos[x].innerHTML = '';
+    // }
 
     app.interaction = 'keyboard';
 

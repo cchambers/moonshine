@@ -18,7 +18,7 @@
       </div>
       <div class="body" ref="body" :id="ariaDescID">
         <div v-if="contentUrl && !loaded" class="loading-anim" v-html="loadHtml"></div>
-        <div v-html="dynamicHTML">
+        <div>
           <slot>{{ content }}</slot>
         </div>
         
