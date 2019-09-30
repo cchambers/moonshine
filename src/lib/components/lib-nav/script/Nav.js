@@ -82,7 +82,7 @@ export default {
     /* eslint-disable */
     doSearch(e) {
       let value = this.search;
-      if (value == "") {
+      if (value === "") {
         this.filteredResults = [];
       } else {
         let filteredResults = [];
@@ -108,7 +108,7 @@ export default {
     navToggledHandler() {
       this.clearSecondaries();
       this.search = "";
-      if (document.activeElement == this.$refs.search) this.$refs.search.blur();
+      if (document.activeElement === this.$refs.search) this.$refs.search.blur();
     },
 
     clearSecondaries() {

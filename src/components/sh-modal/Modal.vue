@@ -118,16 +118,16 @@ export default {
 
       window.addEventListener('keyup', (e) => {
         const key = e.keyCode;
-        if (key == 27) self.$bus.$emit('close-modals'); // esc
+        if (key === 27) self.$bus.$emit('close-modals'); // esc
       });
 
       self.$bus.$on('hashchange', this.hashHandler);
     },
 
     hashHandler(id) {
-      if (id == '') {
+      if (id === '') {
         if (this.active) this.close(false);
-      } else if (id == this.uniqueId) {
+      } else if (id === this.uniqueId) {
         this.open();
       }
     },
@@ -195,7 +195,7 @@ export default {
       document.body.appendChild(container);
       this.container = container;
       this.container.addEventListener('click', (e) => {
-        if (e.target == this.container) self.$bus.$emit('close-modals');
+        if (e.target === this.container) self.$bus.$emit('close-modals');
       });
       this.mountToContainer();
     },
@@ -216,7 +216,7 @@ export default {
       const xhr = new XMLHttpRequest();
       xhr.open('GET', this.contentUrl);
       xhr.send(null);
-      xhr.onreadystatechange = function () {
+      xhr.onreadystatechange = () => {
         const DONE = 4; // readyState 4 means the request is done.
         const OK = 200; // status 200 is a successful return.
         if (xhr.readyState === DONE) {

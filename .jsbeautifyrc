@@ -1,0 +1,7 @@
+{
+    "html": {
+        "defaultFormatter": "HookyQR.beautify",
+        "wrapLineLength": 100,
+        "indent_with_tabs": true
+    }
+}

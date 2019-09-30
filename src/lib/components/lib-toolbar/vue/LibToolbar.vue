@@ -7,7 +7,7 @@
           <sh-button class="min" v-hammer:tap="copyEditor">
             <i class="material-icons px20">file_copy</i>
           </sh-button>
-        </div> -->
+        </div>-->
         <sh-button round variant="secondary" scale="60" v-hammer:tap="toggleFullscreen">
           <i class="material-icons px20">fullscreen</i>
         </sh-button>

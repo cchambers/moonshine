@@ -32,7 +32,7 @@ require('./assets/style/common/base.scss');
 require('./assets/style/common/utility.scss');
 require('./assets/style/themes/custom-props.scss');
 
-if (process.env.NODE_ENV != 'production')  {
+if (process.env.NODE_ENV !== 'production')  {
     require('./dev-components')
     /* Documentation Library */
     require('./assets/script/prism.js');

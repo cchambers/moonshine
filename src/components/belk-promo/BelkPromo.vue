@@ -39,7 +39,7 @@ export default {
       brc = brc.toLowerCase();
       switch (brc) {
         case 'elite':
-          if (brd == 0) {
+          if (brd === 0) {
             string = 'Elites get <span class="uppercase">free shipping</span> every day!';
           } else {
             string = 'Free Shipping for Elites';

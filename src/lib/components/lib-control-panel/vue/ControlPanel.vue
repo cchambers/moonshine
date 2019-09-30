@@ -11,7 +11,7 @@
     </div>
 
     <div class="theme-toggle" v-hammer:tap="toggleTheme">
-      <i v-if="theme == 'dark'" class="material-icons nav-icon">toggle_on</i>
+      <i v-if="theme === 'dark'" class="material-icons nav-icon">toggle_on</i>
       <i v-else class="material-icons nav-icon">toggle_off</i>
     </div>
   </div>

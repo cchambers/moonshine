@@ -36,7 +36,7 @@
       <div class="loading-bar"></div>
     </div>
     <div class="search-results" :id="ariaIDResults" :aria-label="ariaListLabel">
-      <div ref="noresults" v-bind:class="{ active: state == 3 }" class="search-noresults">
+      <div ref="noresults" v-bind:class="{ active: state === 3 }" class="search-noresults">
         <ul>
           <li>
             <a :href="buildSearchLink(value)">{{ value }}</a>
@@ -51,7 +51,7 @@
           </ul>
       </div>
 
-      <div ref="recent" v-bind:class="{ active: state == 1 }" class="search-recent">
+      <div ref="recent" v-bind:class="{ active: state === 1 }" class="search-recent">
         <div class="flex space-between align-center">
           <div class="heading">Recent Searches</div>
           <div>
@@ -69,7 +69,7 @@
         </ul>
       </div>
 
-      <div ref="actual" v-bind:class="{ active: state == 2 || state == 3 }" class="search-suggestions">
+      <div ref="actual" v-bind:class="{ active: state === 2 || state === 3 }" class="search-suggestions">
         <div class="keywords">
           <ul>
             <li v-for="(item, index) in suggestionsLimited"
@@ -170,9 +170,9 @@ export default {
 
     state() {
       let state = 0;
-      if (this.recents.length && this.count == 0 && this.isFocused) state = 1;
+      if (this.recents.length && this.count === 0 && this.isFocused) state = 1;
       if (this.count > 0 && this.isFocused) state = 2;
-      if (this.count == 0 && this.noResults && this.searchValue != '' && this.isFocused) state = 3;
+      if (this.count === 0 && this.noResults && this.searchValue !== '' && this.isFocused) state = 3;
       this.activeDescendantHandler();
       this.stateHandler(state);
       return state;
@@ -447,9 +447,9 @@ export default {
       let clear = false;
       if (typeof e === 'object') {
         const key = e.charCode || e.keyCode;
-        if (key == 27 || e.target == this.$refs.clear) clear = true;
+        if (key === 27 || e.target === this.$refs.clear) clear = true;
       }
-      if (document.activeElement == this.inputEl) this.inputEl.blur();
+      if (document.activeElement === this.inputEl) this.inputEl.blur();
       this.isFocused = false;
 
       if (clear) this.clearSearch(clear);
@@ -563,10 +563,10 @@ export default {
           if (xhr.readyState === DONE) {
             if (xhr.status === OK) {
               const res = JSON.parse(xhr.responseText);
-              const arr = res.response.products;
-              self.$set(self.allProducts[which], 'products', arr);
+              const array = res.response.products;
+              self.$set(self.allProducts[which], 'products', array);
               const event = `products-loaded.${which}`;
-              self.$emit(event, arr);
+              self.$emit(event, array);
             }
           }
         };
@@ -584,9 +584,10 @@ export default {
       this.showSuggestedProducts(val);
     },
 
-    showSuggestedProducts(which = 0) {
+    showSuggestedProducts(index = 0) {
       const self = this;
-      if (self.filled && which == 0) which = 1;
+      let which = index;
+      if (self.filled && which === 0) which = 1;
       self.suggestTerm = self.suggestionsLimited[which].q;
       if (typeof self.allProducts[which] === 'undefined') {
         self.$once(`products-loaded.${which}`, (arr) => {

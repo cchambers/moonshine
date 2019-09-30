@@ -23,7 +23,7 @@ export default {
   computed: {
     totalPrice() {
       const { price } = this;
-      if (this.price == 0) {
+      if (this.price === 0) {
         return 'Bag';
       }
       const formatter = new Intl.NumberFormat('en-US', {

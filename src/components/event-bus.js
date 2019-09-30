@@ -18,7 +18,7 @@ setTimeout(function () {
 const baseEmit = EventBus.$emit;
 EventBus.$emit = (...args) => {
 	let event = args[0];
-	if (preload && event != 'component-ready') batch.push(event);
+	if (preload && event !== 'component-ready') batch.push(event);
   baseEmit.apply(EventBus, args);
 };
 
@@ -70,7 +70,7 @@ function setupEvent(event) {
 }
 
 function listen(event, target, handler, options) {
-	if (!event || !target || typeof handler != 'function') {
+	if (!event || !target || typeof handler !== 'function') {
 		return false;
 	}
 

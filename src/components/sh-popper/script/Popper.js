@@ -4,13 +4,21 @@ import ComponentPrototype from '../../component-prototype';
 
 function on(element, event, handler) {
   if (element && event && handler) {
-    document.addEventListener ? element.addEventListener(event, handler, false) : element.attachEvent(`on${event}`, handler);
+    if (document.addEventListener) {
+      element.addEventListener(event, handler, false);
+    } else {
+      element.attachEvent(`on${event}`, handler);
+    }
   }
 }
 
 function off(element, event, handler) {
   if (element && event) {
-    document.removeEventListener ? element.removeEventListener(event, handler, false) : element.detachEvent(`on${event}`, handler);
+    if (document.removeEventListener) {
+      element.removeEventListener(event, handler, false);
+    } else {
+      element.detachEvent(`on${event}`, handler);
+    }
   }
 }
 
@@ -154,6 +162,8 @@ export default {
           on(this.popper, 'mouseout', this.onMouseOut);
           on(this.popper, 'blur', this.onMouseOut);
           break;
+        default:
+          break;
       }
     },
 
@@ -214,8 +224,12 @@ export default {
           const boundariesElement = document.querySelector(this.boundariesSelector);
 
           if (boundariesElement) {
-            this.popperOptions.modifiers = { ...this.popperOptions.modifiers };
-            this.popperOptions.modifiers.preventOverflow = { ...this.popperOptions.modifiers.preventOverflow };
+            this.popperOptions.modifiers = {
+              ...this.popperOptions.modifiers,
+            };
+            this.popperOptions.modifiers.preventOverflow = {
+              ...this.popperOptions.modifiers.preventOverflow,
+            };
             this.popperOptions.modifiers.preventOverflow.boundariesElement = boundariesElement;
           }
         }
@@ -277,9 +291,9 @@ export default {
 
     handleDocumentClick(e) {
       if (!this.$el || !this.referenceElm
-        || this.elementContains(this.$el, e.target)
-        || this.elementContains(this.referenceElm, e.target)
-        || !this.popper || this.elementContains(this.popper, e.target)
+                || this.elementContains(this.$el, e.target)
+                || this.elementContains(this.referenceElm, e.target)
+                || !this.popper || this.elementContains(this.popper, e.target)
       ) {
         return;
       }

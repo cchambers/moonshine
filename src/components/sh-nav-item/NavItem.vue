@@ -26,18 +26,25 @@
 
 <script>
 import Popper from '../../assets/script/popper';
-
 import ComponentPrototype from '../component-prototype';
 
 function on(element, event, handler) {
   if (element && event && handler) {
-    document.addEventListener ? element.addEventListener(event, handler, false) : element.attachEvent(`on${event}`, handler);
+    if (document.addEventListener) {
+      element.addEventListener(event, handler, false);
+    } else {
+      element.attachEvent(`on${event}`, handler);
+    }
   }
 }
 
 function off(element, event, handler) {
   if (element && event) {
-    document.removeEventListener ? element.removeEventListener(event, handler, false) : element.detachEvent(`on${event}`, handler);
+    if (document.removeEventListener) {
+      element.removeEventListener(event, handler, false);
+    } else {
+      element.detachEvent(`on${event}`, handler);
+    }
   }
 }
 
@@ -174,7 +181,7 @@ export default {
       if (this.hasArrow) this.link.innerHTML += '<belk-icon name="arrow-down" width="20"></belk-icon>';
     }
 
-    if (this.trigger == 'click') {
+    if (this.trigger === 'click') {
       const ref = this.$el.querySelector('.reference a');
       if (ref) {
         ref.addEventListener('click', (e) => {
@@ -202,8 +209,8 @@ export default {
       });
 
       this.$bus.$on('navitem-opening', (el) => {
-        if (el == this) return;
-        if (self._closingTimer) clearTimeout(self._closingTimer);
+        if (el === this) return;
+        if (self.closingTimer) clearTimeout(self.closingTimer);
       });
     },
 
@@ -223,7 +230,7 @@ export default {
           on(this.popper, 'mouseout', this.mouseoutHandler);
           on(this.popper, 'blur', this.mouseoutHandler);
           break;
-        case 'default':
+        default:
           // do nothing
           break;
       }
@@ -310,8 +317,8 @@ export default {
 
     mouseoverHandler() {
       if (!this.mobile) {
-        clearTimeout(this._timer);
-        this._timer = setTimeout(() => {
+        clearTimeout(this.timer);
+        this.timer = setTimeout(() => {
           this.$bus.$emit('show-nav', this.uuid);
           this.showPopper = true;
         }, this.delayOnMouseOver);
@@ -320,8 +327,8 @@ export default {
 
     mouseoutHandler() {
       if (!this.mobile) {
-        clearTimeout(this._timer);
-        this._timer = setTimeout(() => {
+        clearTimeout(this.timer);
+        this.timer = setTimeout(() => {
           this.showPopper = false;
         }, this.delayOnMouseOut);
       }

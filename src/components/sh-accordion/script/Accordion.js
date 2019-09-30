@@ -45,10 +45,10 @@ export default {
     },
 
     events() {
-      if (typeof this.group !== undefined) {
+      if (this.group) {
         this.$bus.$on('accordion-opening', (data) => {
           if (data.group) {
-            if (data.group == this.group && !this.active) this.close();
+            if (data.group === this.group && !this.active) this.close();
           }
         });
       }

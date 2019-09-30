@@ -36,12 +36,12 @@ export default {
 
     show(el) {
       if (el) {
-        const _z = el.style.zIndex || 0;
+        const zIndex = el.style.zIndex || 0;
         const pos = el.style.position;
-        if (pos != 'absolute' && pos != 'relative') {
+        if (pos !== 'absolute' && pos !== 'relative') {
           el.style.pos = 'relative';
         }
-        if (_z < 8) {
+        if (zIndex < 8) {
           this.targetEl = el;
           el.style.zIndex = 9;
         }

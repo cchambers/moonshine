@@ -30,8 +30,8 @@ export default {
   watch: {
     headerData(val) {
       const self = this;
-      clearTimeout(self._dataDebounce);
-      self._dataDebounce = setTimeout(() => {
+      clearTimeout(self.dataDebounce);
+      self.dataDebounce = setTimeout(() => {
         self.setItem('belkUserData', val, true);
         self.$bus.$emit('user-data', val);
         self.updateContainers(val);
@@ -70,7 +70,7 @@ export default {
         url = window.Urls.headerInfo;
         brdurl = window.Urls.getBRDDetailsForHeader;
       } else {
-        let { origin } = location;
+        let origin = window.location;
         if (origin.indexOf('localhost') >= 0) origin = '//dev29-web-belk.demandware.net';
         url = `${origin}/on/demandware.store/Sites-Belk-Site/default/Home-HeaderInfo?format=ajax`;
         brdurl = `${origin}/on/demandware.store/Sites-Belk-Site/default/BRD-GetBRDDetailsForHeader?format=ajax`;
@@ -79,7 +79,7 @@ export default {
       const xhr = new XMLHttpRequest();
       xhr.open('GET', url);
       xhr.send(null);
-      xhr.onreadystatechange = function () {
+      xhr.onreadystatechange = () => {
         const DONE = 4;
         const OK = 200;
         if (xhr.readyState === DONE) {
@@ -99,7 +99,7 @@ export default {
       const brdxhr = new XMLHttpRequest();
       brdxhr.open('GET', brdurl);
       brdxhr.send(null);
-      brdxhr.onreadystatechange = function () {
+      brdxhr.onreadystatechange = () => {
         const DONE = 4;
         const OK = 200;
         if (brdxhr.readyState === DONE) {
@@ -141,7 +141,7 @@ export default {
     bagUpdateHandler(data) {
       if (!this.loggedIn) {
         this.bagState(0);
-      } else if (data.count == 0) {
+      } else if (data.count === 0) {
         this.bagState(1);
       } else {
         this.bagState(2);
