@@ -32,7 +32,6 @@ require('./assets/style/common/base.scss');
 require('./assets/style/common/utility.scss');
 require('./assets/style/themes/custom-props.scss');
 
-require('./prod-components');
 if (process.env.NODE_ENV != 'production')  {
     require('./dev-components')
     /* Documentation Library */
@@ -45,7 +44,10 @@ if (process.env.NODE_ENV != 'production')  {
     require('./lib/components/lib-content');
     require('./lib/components/lib-section-links');
     require('./lib/components/lib-notify');
-    require('./lib/components/lib-toolbar');
+    // require('./lib/components/lib-toolbar');
 
     require('./components/component-template');
 }
+
+require('./prod-components');
+
