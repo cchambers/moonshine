@@ -8,10 +8,11 @@
 function themeLoader(content) {
   let data = content.match(/([^\s]*:(\s.*)[$][A-z]*-[A-z]*);/g);
   // TODO: https://regexr.com/4k3tf
+  let str = content;
   if (data) {
     data = [...new Set(data)];
 
-    for (let x = 0, l = data.length; x < l; x++) {
+    for (let x = 0, l = data.length; x < l; x += 1) {
       const scss = data[x];
 
       // make a new string from the SCSS variable: (color: $accent-primary;)
@@ -35,10 +36,10 @@ function themeLoader(content) {
       regStr = regStr.replace(/\$/, `${String.fromCharCode(92)}$`);
       const regEx = new RegExp(regStr, 'g');
 
-      content = content.replace(regEx, newString);
+      str = content.replace(regEx, newString);
     }
   }
-  return content;
+  return str;
 }
 
 module.exports = themeLoader;

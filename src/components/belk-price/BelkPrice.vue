@@ -8,17 +8,17 @@
 </template>
 
 <script>
-  import ComponentPrototype from '../component-prototype';
+import ComponentPrototype from '../component-prototype';
 
-  export default {
-    mixins: [ComponentPrototype],
+export default {
+  mixins: [ComponentPrototype],
 
   name: 'BelkPrice',
 
   props: {
     dataPrice: {
-      type: Object
-    }
+      type: Object,
+    },
   },
 
   data() {
@@ -30,15 +30,15 @@
       salePrice: 5,
       originalPrice: 10,
       coupon: false,
-    }
+    };
   },
 
   watch: {
     data(val) {
-      this.log(val)
+      this.log(val);
       if (val.price_range.length > 1) {
         if (val.price_range[0] !== val.price_range[1]) {
-          this.originalPrice = `${this.format(val.price_range[0])} - ${this.format(val.price_range[1])}`
+          this.originalPrice = `${this.format(val.price_range[0])} - ${this.format(val.price_range[1])}`;
         }
       } else {
         this.originalPrice = this.format(this.price);
@@ -46,30 +46,30 @@
 
       if (val.sale_price_range.length > 1) {
         if (val.sale_price_range[0] !== val.sale_price_range[1]) {
-          this.salePrice = `${this.format(val.sale_price_range[0])} - ${this.format(val.sale_price_range[1])}`
+          this.salePrice = `${this.format(val.sale_price_range[0])} - ${this.format(val.sale_price_range[1])}`;
         }
       } else {
-        this.salePrice = this.format(this.sale)
+        this.salePrice = this.format(this.sale);
       }
-    }
+    },
   },
 
   mounted() {
-    this.log("HERE")
+    this.log('HERE');
     this.data = this.dataPrice;
   },
 
   methods: {
     format(price) {
-      let formatter = new Intl.NumberFormat('en-US', {
+      const formatter = new Intl.NumberFormat('en-US', {
         style: 'currency',
         currency: 'USD',
-        minimumFractionDigits: 2
+        minimumFractionDigits: 2,
       });
       return formatter.format(price);
-    }
-  }
-}
+    },
+  },
+};
 
 
 /*

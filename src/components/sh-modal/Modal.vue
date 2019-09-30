@@ -1,10 +1,10 @@
 <template>
-  <div class="sh-modal" role="dialog" 
-    :variant="variant" 
-    :class="{ active: active }" 
+  <div class="sh-modal" role="dialog"
+    :variant="variant"
+    :class="{ active: active }"
     :reveal="reveal"
-    :id="uniqueId" 
-    :aria-labelledby="ariaID" 
+    :id="uniqueId"
+    :aria-labelledby="ariaID"
     :aria-describedby="ariaDescID">
     <div class="content">
       <div class="tab-lock" v-on:focus="focusLast()" tabindex="0"></div>
@@ -21,7 +21,7 @@
         <div>
           <slot>{{ content }}</slot>
         </div>
-        
+
       </div>
       <div class="footer">
         <slot name="footer">{{ footer }}</slot>
@@ -30,19 +30,19 @@
     </div>
   </div>
 </template>
-  
-<script>
-  import ComponentPrototype from '../component-prototype';
 
-  export default {
-    mixins: [ComponentPrototype],
+<script>
+import ComponentPrototype from '../component-prototype';
+
+export default {
+  mixins: [ComponentPrototype],
 
   name: 'Modal',
 
   props: {
     uniqueId: {
       type: String,
-      required: true
+      required: true,
     },
     content: String,
     contentUrl: String,
@@ -53,7 +53,7 @@
     footer: String,
     reveal: String,
     variant: String,
-    overlay: String
+    overlay: String,
   },
 
   data() {
@@ -77,7 +77,7 @@
                 <div class="bar"></div>
                 <div class="bar"></div>
                 <div class="bar"></div>
-                <div class="bar"></div>`
+                <div class="bar"></div>`,
     };
   },
 
@@ -86,55 +86,55 @@
     this.ariaID = `aria-${this.uniqueId}`;
     this.ariaHeaderID = `aria-header-${this.uniqueId}`;
     this.ariaDescID = `aria-desc-${this.uniqueId}`;
-    let container = document.querySelector('#sh-modals');
+    const container = document.querySelector('#sh-modals');
     if (container) {
       this.container = container;
       this.mountToContainer();
     } else {
       this.createContainer();
     }
-    if (window.location.hash) this.hashHandler(window.location.hash.substr(1))
+    if (window.location.hash) this.hashHandler(window.location.hash.substr(1));
   },
 
   methods: {
     focusFirst() {
-      let el = this.$el.querySelectorAll('a, input, button, [tabindex]');
+      const el = this.$el.querySelectorAll('a, input, button, [tabindex]');
       if (el) el[0].focus();
     },
 
     focusLast() {
-      let el = this.$el.querySelectorAll('a, input, button, [tabindex]');
+      const el = this.$el.querySelectorAll('a, input, button, [tabindex]');
       if (el) el[el.length].focus();
     },
 
     events() {
-      let self = this;
+      const self = this;
       this.configureTriggers();
 
       self.$bus.$on('close-modals', this.close);
-      self.$bus.$on('modal-opening', function() {
+      self.$bus.$on('modal-opening', () => {
         self.close(false);
       });
 
       window.addEventListener('keyup', (e) => {
-        let key = e.keyCode;
-        if (key == 27) self.$bus.$emit('close-modals'); // esc
+        const key = e.keyCode;
+        if (key === 27) self.$bus.$emit('close-modals'); // esc
       });
 
-      self.$bus.$on('hashchange', this.hashHandler)
+      self.$bus.$on('hashchange', this.hashHandler);
     },
 
     hashHandler(id) {
-      if (id == '') {
+      if (id === '') {
         if (this.active) this.close(false);
-      } else if (id == this.uniqueId) {
+      } else if (id === this.uniqueId) {
         this.open();
       }
     },
 
     open() {
-      let self = this;
-      if (!self.loaded && self.contentUrl) self.loadContent()
+      const self = this;
+      if (!self.loaded && self.contentUrl) self.loadContent();
 
       if (self.overlay) {
         self.container.setAttribute('overlay', self.overlay);
@@ -152,7 +152,7 @@
     },
 
     close(clearHash = true) {
-      let self = this;
+      const self = this;
       if (this.active) {
         self.$bus.$emit('modal-closing', this.uniqueId);
         document.documentElement.classList.remove('sh-modal-open');
@@ -168,41 +168,41 @@
     },
 
     configureTriggers() {
-      let self = this;
-      let selector = `[modal-trigger="${this.uniqueId}"]`;
+      const self = this;
+      const selector = `[modal-trigger="${this.uniqueId}"]`;
       this.triggers = document.querySelectorAll(selector);
-      for (let x = 0; x < this.triggers.length; x++) {
-        let el = this.triggers[x];
-        el.addEventListener('click', function(e) {
+      for (let x = 0; x < this.triggers.length; x += 1) {
+        const el = this.triggers[x];
+        el.addEventListener('click', (e) => {
           e.preventDefault();
           window.location.hash = `#${self.uniqueId}`;
         });
       }
 
-      let closeSelector = `[close-trigger]`;
+      const closeSelector = '[close-trigger]';
       this.closeTriggers = this.$el.querySelectorAll(closeSelector);
 
-      for (let y = 0; y < this.closeTriggers.length; y++) {
-        let el = this.closeTriggers[y];
+      for (let y = 0; y < this.closeTriggers.length; y += 1) {
+        const el = this.closeTriggers[y];
         el.addEventListener('click', self.close);
       }
     },
 
     createContainer() {
-      let self = this;
-      let container = document.createElement('div');
+      const self = this;
+      const container = document.createElement('div');
       container.id = 'sh-modals';
       document.body.appendChild(container);
       this.container = container;
       this.container.addEventListener('click', (e) => {
-        if (e.target == this.container) self.$bus.$emit('close-modals');
-      })
+        if (e.target === this.container) self.$bus.$emit('close-modals');
+      });
       this.mountToContainer();
     },
 
     mountToContainer() {
-      let id = this.uniqueId;
-      let exists = document.querySelector(`#sh-modals #${id}`);
+      const id = this.uniqueId;
+      const exists = document.querySelector(`#sh-modals #${id}`);
       if (exists) exists.remove();
       this.container.appendChild(this.$el);
     },
@@ -212,25 +212,26 @@
     },
 
     ajax() {
-      let self = this;
-      let xhr = new XMLHttpRequest();
+      const self = this;
+      const xhr = new XMLHttpRequest();
       xhr.open('GET', this.contentUrl);
       xhr.send(null);
-      xhr.onreadystatechange = function () {
-        let DONE = 4; // readyState 4 means the request is done.
-        let OK = 200; // status 200 is a successful return.
+      xhr.onreadystatechange = () => {
+        const DONE = 4; // readyState 4 means the request is done.
+        const OK = 200; // status 200 is a successful return.
         if (xhr.readyState === DONE) {
           if (xhr.status === OK) {
             self.loaded = true;
             let response = xhr.responseText;
-            var pattern = /<body[^>]*>((.|[\n\r])*)<\/body>/im
-            var arr = pattern.exec(response);
+            const pattern = /<body[^>]*>((.|[\n\r])*)<\/body>/im;
+            const arr = pattern.exec(response);
+            // eslint-disable-next-line
             if (arr[1].length) response = arr[1];
             let html = document.createElement('div');
             html.innerHTML = response;
 
             if (self.contentSelector) {
-              let contentTarget = html.querySelector(self.contentSelector)
+              const contentTarget = html.querySelector(self.contentSelector);
               if (contentTarget) html = contentTarget;
               html = contentTarget;
             }
@@ -244,9 +245,9 @@
             self.doError();
           }
         }
-      }
-    }
-  }
+      };
+    },
+  },
 };
 </script>
 

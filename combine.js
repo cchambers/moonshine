@@ -1,3 +1,4 @@
+/* eslint-disable */ 
 const concat = require('concat');
 const fs = require('fs');
 const path = require('path');

@@ -1,5 +1,7 @@
+/* eslint-disable */ 
+
 import Vue from 'vue';
-import { EventBus } from './event-bus.js';
+import { EventBus } from './event-bus';
 
 Vue.prototype.$bus = EventBus;
 Vue.prototype.$appName = 'Shine';
@@ -16,8 +18,8 @@ const ComponentPrototype = {
   methods: {
     setUUID() {
       this.uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
-        const r = Math.random() * 16 | 0; const
-          v = c == 'x' ? r : (r & 0x3 | 0x8);
+        const r = Math.random() * 16 || 0; const
+          v = c === 'x' ? r : (r & 0x3 || 0x8);
         return v.toString(16);
       });
     },
@@ -49,8 +51,7 @@ const ComponentPrototype = {
       return false;
     },
 
-    log() {
-      const args = Array.from(arguments);
+    log(...args) {
       window.sh.log = window.sh.log || []; // store logs to an array for reference
 
       const dev = (window.location.href.indexOf('belk.demand') >= 0) || (window.location.href.indexOf('localhost') >= 0);

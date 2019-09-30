@@ -33,10 +33,11 @@ export default {
     },
 
     checkState() {
+      let width = 0;
       if (this.elementLevel) {
-        const width = this.$el.parentNode.outerWidth;
-        return width;
+        width = this.$el.parentNode.outerWidth;
       }
+      return width;
     },
   },
 

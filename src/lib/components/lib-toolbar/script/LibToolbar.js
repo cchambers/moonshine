@@ -30,7 +30,7 @@ export default {
     this.uniqueId = `sh${this.uuid}`;
     if (this.demo) {
       this.$el.addEventListener('click', () => {
-        window.open(`${location.origin}/${this.demo}`, 'demo');
+        window.open(`${window.location.origin}/${this.demo}`, 'demo');
       });
     }
     if (this.baseCode) {

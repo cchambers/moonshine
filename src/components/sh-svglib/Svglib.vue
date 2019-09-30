@@ -9,29 +9,32 @@
 </template>
 
 <script>
-  import ComponentPrototype from '../component-prototype';
+import ComponentPrototype from '../component-prototype';
 
-  export default {
-    mixins: [ComponentPrototype],
+const iconJSON = require('./svg/icons.json');
 
-    name: 'Svglib',
-    data() {
-      return {
-        icons: require('./svg/icons.json')
-      }
+export default {
+  mixins: [ComponentPrototype],
+
+  name: 'Svglib',
+  data() {
+    return {
+      icons: iconJSON,
+    };
+  },
+
+  mounted() {
+    this.$bus.$on('icon-setup', this.setup);
+    this.$bus.$emit('icons-ready');
+  },
+
+  methods: {
+    setup(el) {
+      const target = el;
+      target.viewbox = this.icons[target.name].viewbox;
+      target.configured = true;
     },
-
-    mounted() {
-      this.$bus.$on('icon-setup', this.setup);
-      this.$bus.$emit('icons-ready');
-    },
-
-    methods: {
-      setup(el) {
-        el.viewbox = this.icons[el.name].viewbox;
-        el.configured = true;
-      }
-    }
-  }
+  },
+};
 </script>
 <style lang="scss" src="./style/default.scss"></style>

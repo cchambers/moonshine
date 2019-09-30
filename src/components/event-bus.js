@@ -18,7 +18,7 @@ setTimeout(function () {
 const baseEmit = EventBus.$emit;
 EventBus.$emit = (...args) => {
 	let event = args[0];
-	if (preload && event != 'component-ready') batch.push(event);
+	if (preload && event !== 'component-ready') batch.push(event);
   baseEmit.apply(EventBus, args);
 };
 
@@ -58,7 +58,7 @@ function setupEvent(event) {
 	document.addEventListener(event, function(e) {
 		let arr = delegations[event];
 		// for every item that needs to be watched on *event*
-		for (let x = 0, l = arr.length; x < l; x++) {
+		for (let x = 0, l = arr.length; x < l; x += 1) {
 			if (e.target.matches) {
 				if (e.target.matches(arr[x].target)) arr[x].handler(e)
 			} else if (e.target.msMatchesSelector) {
@@ -70,7 +70,7 @@ function setupEvent(event) {
 }
 
 function listen(event, target, handler, options) {
-	if (!event || !target || typeof handler != 'function') {
+	if (!event || !target || typeof handler !== 'function') {
 		return false;
 	}
 

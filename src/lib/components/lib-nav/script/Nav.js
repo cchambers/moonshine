@@ -27,7 +27,7 @@ export default {
       self.$bus.$on('hashchange', this.closeNav);
 
       const links = this.$el.querySelectorAll('a[href^="#"]');
-      for (let x = 0, l = links.length; x < l; x++) {
+      for (let x = 0, l = links.length; x < l; x += 1) {
         const link = links[x];
         link.addEventListener('click', (e) => {
           e.preventDefault();
@@ -44,11 +44,13 @@ export default {
         window.addEventListener('keydown', (e) => {
           if (document.documentElement.classList.contains('nav-shown')) {
             const key = e.keyCode;
-            if (key == 192) {
+            if (key === 192) {
               e.preventDefault();
               return;
             }
-            if (document.activeElement != self.$refs.search && key != 9) self.$refs.search.focus();
+            if (document.activeElement !== self.$refs.search && key !== 9) {
+              self.$refs.search.focus();
+            }
           }
         });
       }
@@ -64,7 +66,7 @@ export default {
     buildSearchResults() {
       const links = this.$refs.secondary.querySelectorAll('a');
       const results = [];
-      for (let x = 0, l = links.length; x < l; x++) {
+      for (let x = 0, l = links.length; x < l; x += 1) {
         const link = links[x];
         results.push({
           link: link.href,
@@ -80,11 +82,11 @@ export default {
     /* eslint-disable */
     doSearch(e) {
       let value = this.search;
-      if (value == "") {
+      if (value === "") {
         this.filteredResults = [];
       } else {
         let filteredResults = [];
-        for (let x = 0, l = this.results.length; x < l; x++) {
+        for (let x = 0, l = this.results.length; x < l; x += 1) {
           let item = JSON.parse(JSON.stringify(this.results[x]));
           let name = item.reset.toLowerCase();
           let match = name.indexOf(value.toLowerCase());
@@ -106,13 +108,13 @@ export default {
     navToggledHandler() {
       this.clearSecondaries();
       this.search = "";
-      if (document.activeElement == this.$refs.search) this.$refs.search.blur();
+      if (document.activeElement === this.$refs.search) this.$refs.search.blur();
     },
 
     clearSecondaries() {
       let others = this.$el.querySelectorAll('.active');
       if (others) {
-        for (let y = 0, m = others.length; y < m; y++) {
+        for (let y = 0, m = others.length; y < m; y += 1) {
           others[y].classList.remove('active');
         }
       }

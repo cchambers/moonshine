@@ -1,3 +1,5 @@
+/* eslint-disable */ 
+
 (function () {
   function CustomEvent(event, params) {
     params = params || { bubbles: false, cancelable: false, detail: null };
@@ -32,7 +34,7 @@
       let T; let
         k;
 
-      if (this == null) {
+      if (this === null) {
         throw new TypeError('this is null or not defined');
       }
 
@@ -80,7 +82,7 @@
           callback.call(T, kValue, k, O);
         }
         // d. Increase k by 1.
-        k++;
+        k += 1;
       }
       // 8. return undefined.
     };

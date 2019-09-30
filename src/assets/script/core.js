@@ -1,7 +1,7 @@
 const app = {
   init() {
     app.setup();
-    if (location.search) app.urlParamsToObj();
+    if (window.location.search) app.urlParamsToObj();
   },
 
   setup() {
@@ -12,7 +12,7 @@ const app = {
     if (IE11Check) document.getElementsByTagName('html')[0].classList.add('IE11');
 
     // let demos = document.querySelectorAll('lib-toolbar');
-    // for (let x = 0, l = demos.length; x < l; x++) {
+    // for (let x = 0, l = demos.length; x < l; x += 1) {
     //   demos[x].setAttribute('base-code', demos[x].innerHTML);
     //   demos[x].innerHTML = '';
     // }
@@ -20,21 +20,21 @@ const app = {
     app.interaction = 'keyboard';
 
     document.addEventListener('keydown', () => {
-      if (app.interaction != 'keyboard') {
+      if (app.interaction !== 'keyboard') {
         app.interaction = 'keyboard';
         document.documentElement.setAttribute('interaction', app.interaction);
       }
     });
 
     document.addEventListener('click', () => {
-      if (app.interaction != 'mouse') {
+      if (app.interaction !== 'mouse') {
         app.interaction = 'mouse';
         document.documentElement.setAttribute('interaction', app.interaction);
       }
     });
 
     document.addEventListener('touchstart', () => {
-      if (app.interaction != 'touch') {
+      if (app.interaction !== 'touch') {
         app.interaction = 'touch';
         document.documentElement.setAttribute('interaction', app.interaction);
       }
@@ -42,11 +42,11 @@ const app = {
   },
 
   urlParamsToObj() {
-    let search = location.search.substr(1);
+    let search = window.location.search.substr(1);
     search = search.replace('&&', '&');
     search = search.replace('&&&', '&');
     const result = JSON.parse(`{"${search.replace(/(&)\1{4,}/g, '","').replace(/=/g, '":"')}"}`, (key, value) => (key === '' ? value : decodeURIComponent(value)));
-    location.params = result;
+    window.location.params = result;
   },
 };
 
