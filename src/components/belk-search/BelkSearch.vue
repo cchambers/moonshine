@@ -264,22 +264,22 @@ export default {
 
     suggestions(val, old) {
       if (val == old) return;
-      let length = val.length;
+      const { length } = val;
       let arr = [];
       let highlight;
-      let searchVal = this.searchValue.toLowerCase().trim();
+      const searchVal = this.searchValue.toLowerCase().trim();
 
       if (length) {
         for (let x = 0, l = Math.min(length, this.suggestionsLimit); x < l; x++) {
-          val[x].id = `suggestion-${x}`
+          val[x].id = `suggestion-${x}`;
           arr.push(val[x]);
         }
 
         let currentValueExists = -1;
 
         for (let x = 0, l = arr.length; x < l; x++) {
-          let arrVal = arr[x].q.toLowerCase();
-          let match = (arrVal === searchVal);
+          const arrVal = arr[x].q.toLowerCase();
+          const match = (arrVal === searchVal);
           if (match) {
             currentValueExists = x;
             break;
@@ -287,7 +287,7 @@ export default {
         }
 
         if (currentValueExists < 0) {
-          let obj = { q: this.value, highlighted: true, id: 'filled-0' };
+          const obj = { q: this.value, highlighted: true, id: 'filled-0' };
           this.filled = true;
           arr.unshift(obj);
           if (arr.length > this.suggestionsLimit) arr.pop();
@@ -297,7 +297,7 @@ export default {
           this.filled = false;
           arr[currentValueExists].highlighted = true;
           highlight = currentValueExists;
-          this.$emit('active-descendant', arr[currentValueExists].id)
+          this.$emit('active-descendant', arr[currentValueExists].id);
         }
       }
 
