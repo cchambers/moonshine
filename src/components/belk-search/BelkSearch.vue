@@ -259,19 +259,19 @@ export default {
       } else {
         this.productsLimited = [];
       }
-      this.log('PRODUCTS', val);
       this.productsEl.products = this.productsLimited;
     },
 
     suggestions(val, old) {
-      if (val === old) return;
-      const { value } = val;
+      const value = val;
+      if (value === old) return;
+      const { length } = val;
       const arr = [];
       let highlight;
       const searchVal = this.searchValue.toLowerCase().trim();
 
-      if (value) {
-        for (let x = 0, l = Math.min(value, this.suggestionsLimit); x < l; x += 1) {
+      if (length) {
+        for (let x = 0, l = Math.min(length, this.suggestionsLimit); x < l; x += 1) {
           value[x].id = `suggestion-${x}`;
           arr.push(value[x]);
         }
@@ -604,7 +604,6 @@ export default {
       self.suggestTerm = self.suggestionsLimited[which].q;
       if (typeof self.allProducts[which] === 'undefined') {
         self.$once(`products-loaded.${which}`, (arr) => {
-          self.log(`products-loaded.${which} FOUND`);
           self.products = arr;
           self.showSuggestedProducts(which);
         });

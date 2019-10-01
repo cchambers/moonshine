@@ -45,7 +45,7 @@ const app = {
     let search = window.location.search.substr(1);
     search = search.replace('&&', '&');
     search = search.replace('&&&', '&');
-    const result = JSON.parse(`{"${search.replace(/(&)\1{4,}/g, '","').replace(/=/g, '":"')}"}`, (key, value) => (key === '' ? value : decodeURIComponent(value)));
+    const result = JSON.parse(`{"${search.replace(/(&)/g, '","').replace(/=/g, '":"')}"}`, (key, value) => (key === '' ? value : decodeURIComponent(value)));
     window.location.params = result;
   },
 };
