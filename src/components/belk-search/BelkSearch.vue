@@ -263,21 +263,22 @@ export default {
     },
 
     suggestions(val, old) {
-      if (val == old) return;
+      const value = val;
+      if (value === old) return;
       const { length } = val;
-      let arr = [];
+      const arr = [];
       let highlight;
       const searchVal = this.searchValue.toLowerCase().trim();
 
       if (length) {
-        for (let x = 0, l = Math.min(length, this.suggestionsLimit); x < l; x++) {
-          val[x].id = `suggestion-${x}`;
-          arr.push(val[x]);
+        for (let x = 0, l = Math.min(length, this.suggestionsLimit); x < l; x += 1) {
+          value[x].id = `suggestion-${x}`;
+          arr.push(value[x]);
         }
 
         let currentValueExists = -1;
 
-        for (let x = 0, l = arr.length; x < l; x++) {
+        for (let x = 0, l = arr.length; x < l; x += 1) {
           const arrVal = arr[x].q.toLowerCase();
           const match = (arrVal === searchVal);
           if (match) {
