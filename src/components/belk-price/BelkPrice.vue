@@ -35,7 +35,6 @@ export default {
 
   watch: {
     data(val) {
-      this.log(val);
       if (val.price_range.length > 1) {
         if (val.price_range[0] !== val.price_range[1]) {
           this.originalPrice = `${this.format(val.price_range[0])} - ${this.format(val.price_range[1])}`;
@@ -55,7 +54,6 @@ export default {
   },
 
   mounted() {
-    this.log('HERE');
     this.data = this.dataPrice;
   },
 

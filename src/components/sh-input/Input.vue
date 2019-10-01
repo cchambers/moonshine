@@ -34,7 +34,6 @@ export default {
   methods: {
     keyupHandler(e) {
       const val = e.target.value;
-      this.log(val);
     },
   },
 };

@@ -259,28 +259,27 @@ export default {
       } else {
         this.productsLimited = [];
       }
-      this.log('PRODUCTS', val);
       this.productsEl.products = this.productsLimited;
     },
 
     suggestions(val, old) {
-      if (val === old) return;
-      const { value } = val;
-      const arr = [];
+      if (val == old) return;
+      let length = val.length;
+      let arr = [];
       let highlight;
-      const searchVal = this.searchValue.toLowerCase().trim();
+      let searchVal = this.searchValue.toLowerCase().trim();
 
-      if (value) {
-        for (let x = 0, l = Math.min(value, this.suggestionsLimit); x < l; x += 1) {
-          value[x].id = `suggestion-${x}`;
-          arr.push(value[x]);
+      if (length) {
+        for (let x = 0, l = Math.min(length, this.suggestionsLimit); x < l; x++) {
+          val[x].id = `suggestion-${x}`
+          arr.push(val[x]);
         }
 
         let currentValueExists = -1;
 
-        for (let x = 0, l = arr.length; x < l; x += 1) {
-          const arrVal = arr[x].q.toLowerCase();
-          const match = (arrVal === searchVal);
+        for (let x = 0, l = arr.length; x < l; x++) {
+          let arrVal = arr[x].q.toLowerCase();
+          let match = (arrVal === searchVal);
           if (match) {
             currentValueExists = x;
             break;
@@ -288,7 +287,7 @@ export default {
         }
 
         if (currentValueExists < 0) {
-          const obj = { q: this.value, highlighted: true, id: 'filled-0' };
+          let obj = { q: this.value, highlighted: true, id: 'filled-0' };
           this.filled = true;
           arr.unshift(obj);
           if (arr.length > this.suggestionsLimit) arr.pop();
@@ -298,7 +297,7 @@ export default {
           this.filled = false;
           arr[currentValueExists].highlighted = true;
           highlight = currentValueExists;
-          this.$emit('active-descendant', arr[currentValueExists].id);
+          this.$emit('active-descendant', arr[currentValueExists].id)
         }
       }
 
@@ -604,7 +603,6 @@ export default {
       self.suggestTerm = self.suggestionsLimited[which].q;
       if (typeof self.allProducts[which] === 'undefined') {
         self.$once(`products-loaded.${which}`, (arr) => {
-          self.log(`products-loaded.${which} FOUND`);
           self.products = arr;
           self.showSuggestedProducts(which);
         });
