@@ -70,7 +70,7 @@ export default {
         url = window.Urls.headerInfo;
         brdurl = window.Urls.getBRDDetailsForHeader;
       } else {
-        let origin = window.location;
+        let origin = window.location.origin;
         if (origin.indexOf('localhost') >= 0) origin = '//dev29-web-belk.demandware.net';
         url = `${origin}/on/demandware.store/Sites-Belk-Site/default/Home-HeaderInfo?format=ajax`;
         brdurl = `${origin}/on/demandware.store/Sites-Belk-Site/default/BRD-GetBRDDetailsForHeader?format=ajax`;
