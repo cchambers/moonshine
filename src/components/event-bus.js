@@ -19,7 +19,7 @@ const baseEmit = EventBus.$emit;
 EventBus.$emit = (...args) => {
 	let event = args[0];
 	if (preload && event !== 'component-ready') batch.push(event);
-  baseEmit.apply(EventBus, args);
+	baseEmit.apply(EventBus, args);
 };
 
 let delegations = {
@@ -42,7 +42,6 @@ let delegations = {
 };
 
 function bindAll() {
-	let self = this;
 	for (let event in delegations) {
 		setupEvent(event);
 	}
