@@ -1,7 +1,16 @@
 <template>
   <div class="belk-swatch"
     :variant="variant">
-    <slot></slot>
+    <div class="swatch-name"><strong>{{ prefix }}:</strong> {{ selectedName }}</div>
+    <ul class="swatch-list">
+      <li v-for="item in items" v-bind:key="item.id"
+        v-bind:class="{ highlight: item.selected }"
+        role="option"
+        :id="item.id"
+        :aria-selected="item.highlighted">
+        <a :href="buildSearchLink(item.q)">{{ item.q }}</a>
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -14,15 +23,13 @@ export default {
   name: 'BelkSwatch',
 
   props: {
-    msg: {
-      type: String,
-      default: 'new component',
-    },
   },
 
   data() {
     return {
-      snapping: false,
+      prefix: 'Color',
+      selectedName: 'none',
+      items: [],
     };
   },
 

@@ -16,7 +16,9 @@ export default {
   },
 
   created() {
+    console.log("CREATED PROTOTYPE")
     this.setUUID();
+    console.log(this.uuid)
     this.ariaControlsId = `ac-${this.uuid}`;
     this.headerId = `ah-${this.uuid}`;
   },

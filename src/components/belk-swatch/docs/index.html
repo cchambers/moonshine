@@ -1,13 +1,12 @@
 <div class="documentation contain">
-  <h1>Component Template</h1>
+  <h1>Swatch</h1>
   <section id="usage">
     <h2>Usage</h2>
     <pre>
       <code class="language-html">
-          &lt;component-template&gt;new component&lt;/component-template&gt;
+          &lt;belk-swatch&gt;...&lt;/belk-swatch&gt;
       </code>
     </pre>
-
   </section>
 
   <section id="reference" class="baseline30">
@@ -24,9 +23,9 @@
       </thead>
       <tbody>
         <tr>
-          <td>hidden</td>
-          <td>Boolean</td>
-          <td>Hide from view.</td>
+          <td>variant</td>
+          <td>String</td>
+          <td>Swatch has two variants</td>
         </tr>
       </tbody>
     </table>
@@ -44,7 +43,7 @@
         <tr>
           <td>default</td>
           <td>
-            Text content.
+            Collection of html elements with swatch data.
           </td>
         </tr>
       </tbody>
@@ -89,12 +88,12 @@
       </thead>
       <tbody>
         <tr>
-          <td>event-name</td>
+          <td>swatch-activated/td>
           <td>
             Type
           </td>
           <td>
-            Fires when something happens.
+            Fires when a swatch is activated.
           </td>
         </tr>
       </tbody>
@@ -105,9 +104,9 @@
     <h2>Examples</h2>
     <h3>Default</h3>
     <lib-toolbar>
-      <component-template>
+      <belk-swatch>
         TEXT THAT IS EVEN AND STILL EXISTS
-      </component-template>
+      </belk-swatch>
     </lib-toolbar>
   </section>
 

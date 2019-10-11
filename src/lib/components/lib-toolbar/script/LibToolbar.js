@@ -2,8 +2,10 @@ import * as ace from 'brace';
 import 'brace/mode/html';
 import 'brace/theme/monokai';
 import Pretty from 'pretty';
+import ComponentPrototype from '../../../../components/component-prototype';
 
 export default {
+  mixins: [ComponentPrototype],
   name: 'LibToolbar',
 
   props: {
@@ -25,6 +27,10 @@ export default {
     };
   },
 
+  created() {
+    this.setUUID();
+  },
+
   mounted() {
     const self = this;
     this.uniqueId = `sh${this.uuid}`;
@@ -36,7 +42,7 @@ export default {
     if (this.baseCode) {
       this.code = this.baseCode;
       this.renderCode(this.baseCode);
-      this.$el.parentNode.removeAttribute('base-code');
+      // this.$el.parentNode.removeAttribute('base-code');
     }
     this.$refs.editor.id = `editor-${this.uniqueId}`;
     this.editor = ace.edit(this.$refs.editor.id);
