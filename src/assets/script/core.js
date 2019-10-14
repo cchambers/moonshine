@@ -11,11 +11,12 @@ const app = {
     const IE11Check = !(window.ActiveXObject) && 'ActiveXObject' in window;
     if (IE11Check) document.getElementsByTagName('html')[0].classList.add('IE11');
 
-    // let demos = document.querySelectorAll('lib-toolbar');
-    // for (let x = 0, l = demos.length; x < l; x += 1) {
-    //   demos[x].setAttribute('base-code', demos[x].innerHTML);
-    //   demos[x].innerHTML = '';
-    // }
+    const demos = document.querySelectorAll('lib-toolbar');
+    for (let x = 0, l = demos.length; x < l; x += 1) {
+      const html = demos[x].innerHTML;
+      demos[x].setAttribute('base-code', html);
+      demos[x].innerHTML = '';
+    }
 
     app.interaction = 'keyboard';
 
@@ -39,6 +40,18 @@ const app = {
         document.documentElement.setAttribute('interaction', app.interaction);
       }
     });
+  },
+
+  cookieParamsToObj() {
+    let str = document.cookie;
+    str = str.split(', ');
+    const result = {};
+    for (let i = 0; i < str.length; i += 1) {
+      const cur = str[i].split('=');
+      // eslint-disable-next-line prefer-destructuring
+      result[cur[0]] = cur[1];
+    }
+    return result;
   },
 
   urlParamsToObj() {

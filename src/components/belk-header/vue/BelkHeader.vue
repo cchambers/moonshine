@@ -70,7 +70,7 @@ export default {
         url = window.Urls.headerInfo;
         brdurl = window.Urls.getBRDDetailsForHeader;
       } else {
-        let origin = window.location;
+        let { origin } = window.location;
         if (origin.indexOf('localhost') >= 0) origin = '//dev29-web-belk.demandware.net';
         url = `${origin}/on/demandware.store/Sites-Belk-Site/default/Home-HeaderInfo?format=ajax`;
         brdurl = `${origin}/on/demandware.store/Sites-Belk-Site/default/BRD-GetBRDDetailsForHeader?format=ajax`;
@@ -88,7 +88,7 @@ export default {
             try {
               res = JSON.parse(xhr.responseText);
             } catch (e) {
-              // Oh well, but whatever...
+              // Oh well...
             }
 
             self.handleHeader(res);
@@ -125,6 +125,7 @@ export default {
     },
 
     handleHeader(data) {
+      this.updateWindow(data);
       this.$set(this.headerData, 'name', data.userDetails.firstName);
       this.$set(this.headerData, 'auth', data.userDetails.authenticated);
       this.$set(this.headerData, 'qty', data.cartQty);
@@ -134,6 +135,7 @@ export default {
     },
 
     handleBRD(data) {
+      this.updateWindow(data);
       this.$set(this.headerData, 'brc', data.customerType);
       this.$set(this.headerData, 'brd', data.availableBRDValue);
     },
@@ -145,6 +147,14 @@ export default {
         this.bagState(1);
       } else {
         this.bagState(2);
+      }
+    },
+
+    updateWindow(data) {
+      if (window.headerInfo) {
+        window.headerInfo = { ...window.headerInfo, ...data };
+      } else {
+        window.headerInfo = { ...data };
       }
     },
 

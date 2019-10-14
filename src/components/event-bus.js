@@ -19,20 +19,27 @@ const baseEmit = EventBus.$emit;
 EventBus.$emit = (...args) => {
 	let event = args[0];
 	if (preload && event !== 'component-ready') batch.push(event);
-  baseEmit.apply(EventBus, args);
+	baseEmit.apply(EventBus, args);
+
+	// Re-emit events as native for other components.
+	
+	// let data = args.slice(1);
+	// data = data[0];
+	// let nativeEvent = (typeof data === 'object') ? new CustomEvent(event, data) : nativeEvent = new CustomEvent(event);
+	// document.dispatchEvent(nativeEvent);
 };
 
 let delegations = {
 	click: [
 		{
-			target: "[close-trigger]",
+			target: '[close-trigger]',
 			priority: 1,
 			handler() {
 				EventBus.$emit('close-modals');
 			}
 		},
 		{
-			target: "[nav-trigger]",
+			target: '[nav-trigger]',
 			handler() {
 				EventBus.$emit('show-nav');
 				this.$bus.$emit('show-curtain');
@@ -42,7 +49,6 @@ let delegations = {
 };
 
 function bindAll() {
-	let self = this;
 	for (let event in delegations) {
 		setupEvent(event);
 	}

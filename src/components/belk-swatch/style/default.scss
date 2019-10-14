@@ -1,0 +1,44 @@
+/* default styling */
+
+belk-swatch {
+  display: block;
+  .belk-swatch {
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-wrap: wrap;
+      margin-left: -1rem;
+    }
+
+    .belk-swatch-actual {
+      border-radius: 50%;
+      overflow: hidden;
+      height: 4.5rem;
+      width: 4.5rem;
+      background-size: cover;
+      margin-left: 1rem;
+      border: 2px solid transparent;
+
+      &:hover,
+      &.active {
+        border: 2px solid $lowlight-primary;
+      }
+    }
+
+    button {
+      display: block;
+      height: 100%;
+      width: 100%;
+      outline: 0;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .highlight {
+      border: 3px solid red
+    }
+  }
+}
