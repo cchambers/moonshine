@@ -22,9 +22,10 @@ EventBus.$emit = (...args) => {
 	baseEmit.apply(EventBus, args);
 
 	// Re-emit events as native for other components.
-	let nativeEvent,
-		data = args.shift();
-	// nativeEvent = (data) ? new CustomEvent(event, data) : nativeEvent = new CustomEvent(event);
+	
+	// let data = args.slice(1);
+	// data = data[0];
+	// let nativeEvent = (typeof data === 'object') ? new CustomEvent(event, data) : nativeEvent = new CustomEvent(event);
 	// document.dispatchEvent(nativeEvent);
 };
 
