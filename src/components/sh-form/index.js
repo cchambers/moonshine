@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import Form from './vue/Form';
+import Form from './Form';
 
 Vue.customElement('sh-form', Form);
 

@@ -61,11 +61,15 @@
     },
 
     mounted() {
-      this.$bus.$emit('get-user-data');
+      let self = this;
+      self.setupEvents();
+      setTimeout( () => {
+        self.$bus.$emit('get-user-data');
+      }, 10)
     },
     
     methods: {
-      events() {
+      setupEvents() {
         this.$bus.$on('user-data', this.handleData);
       },
 

@@ -95,6 +95,8 @@ export default {
 
     }
 
+    document.documentElement.classList.add('takeover-active');
+
   },
 
   methods: {

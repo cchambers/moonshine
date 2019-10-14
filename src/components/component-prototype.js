@@ -49,10 +49,10 @@ const ComponentPrototype = {
     },
 
     log() {
-      let args = arguments;
+      let args = Array.from(arguments);
       window.sh.log = window.sh.log || [];   // store logs to an array for reference
-      window.sh.log.push(args);
-      let dev = (window.location.href.indexOf('web-belk.demand') > 0);
+      
+      let dev = (window.location.href.indexOf('web-belk.demand') >= 0) || (window.location.href.indexOf('localhost') >= 0);
       
       let level = args[args.length-1];
       level = (typeof level == 'number') ? args.pop() : 0;
@@ -60,11 +60,11 @@ const ComponentPrototype = {
         let style = 'font-size: 20px;';
         switch(level) {
           default:
-            style += 'color: #018786;'
+            style += ' color: #0667a0;'
             break;
         }
         let message = args.join();
-
+        window.sh.log.push(message);
         // eslint-disable-next-line 
         console.log(`%c ${message}`, style);
       }
