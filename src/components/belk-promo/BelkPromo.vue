@@ -62,10 +62,11 @@ export default {
 
   mounted() {
     const self = this;
+    self.log('promo: live on page');
     self.setupEvents();
     setTimeout(() => {
       self.$bus.$emit('get-user-data');
-    }, 10);
+    }, 200);
   },
 
   methods: {
@@ -74,6 +75,7 @@ export default {
     },
 
     handleData(data) {
+      this.log('promo: got data');
       if (data.brd) this.$set(this.data, 'brd', data.brd);
       if (data.brc) this.$set(this.data, 'brc', data.brc);
     },
