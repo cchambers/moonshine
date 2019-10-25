@@ -56,8 +56,10 @@ const app = {
 
   urlParamsToObj() {
     let search = window.location.search.substr(1);
-    search = search.replace('&&', '&');
-    search = search.replace('&&&', '&');
+    search = search.replace(/\?&/g, '?');
+    search = search.replace(/=&/g, '&');
+    search = search.replace(/&&/g, '&');
+    search = search.replace(/&&&/g, '&');
     const result = JSON.parse(`{"${search.replace(/(&)/g, '","').replace(/=/g, '":"')}"}`, (key, value) => (key === '' ? value : decodeURIComponent(value)));
     window.location.params = result;
   },

@@ -75,8 +75,9 @@ export default {
 
     activate(id) {
       const which = parseInt(id, 0);
+
       for (let x = 0, l = this.items.length; x < l; x += 1) {
-        if (x === which) {
+        if (x === which || parseInt(this.items[x].colorValue, 0) === which) {
           this.$set(this.items[x], 'active', true);
           this.selectedName = this.items[x].name;
         } else if (this.items[x].active) {
