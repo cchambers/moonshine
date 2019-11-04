@@ -15,13 +15,15 @@ let buildTag;
 
 (async () => {
   gitName = await fullName();
-  buildTag = `/*
-// +-+-+-+-+-+-+-+-+
-// |s|h|i|n|e|.|j|s|
-// +-+-+-+-+-+-+-+-+
-// built by: ${gitName}
-// from: ${branchActual}
-// at: ${dateNow}
+  buildTag = `/*!
+  *         __     __                 __        
+  * .-----.|  |--.|__|.-----.-----.  |__|.-----.
+  * |__ --||     ||  ||     |  -__|__|  ||__ --|
+  * |_____||__|__||__||__|__|_____|__|  ||_____|
+  *                                  |___|       
+  * built by ${gitName}
+  * from ${branchActual}
+  * at ${dateNow}
 */\n\n`;
 })();
 
@@ -133,6 +135,7 @@ module.exports = {
         vue$: 'vue/dist/vue.esm.js',
       },
     },
+    optimization: optimizationSetting,
     plugins: [
       new WrapperPlugin({
         header() {
@@ -140,7 +143,6 @@ module.exports = {
         },
       }),
     ],
-    optimization: optimizationSetting,
   },
 
   chainWebpack: (config) => {
