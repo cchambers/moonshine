@@ -22,7 +22,7 @@ let buildTag;
   * |_____||__|__||__||__|__|_____|__|  ||_____|
   *                                  |___|       
   * built by: ${gitName}
-  * branch: `${branchActual}`
+  * branch: \`${branchActual}\`
   * timestamp: ${dateNow}
 */\n\n`;
 })();
