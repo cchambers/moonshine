@@ -1,5 +1,8 @@
 <template>
-  <div class="sh-accordion" v-bind:class="{ 'active': ariaExpanded }" v-hammer:tap="toggleActive">
+  <div class="sh-accordion"
+    :id="uniqueId"
+    v-bind:class="{ 'active': ariaExpanded }"
+    v-hammer:tap="toggleActive">
     <div class="header" :id="headerId" :aria-controls="ariaControlsId">
       <slot name="header"></slot>
     </div>
