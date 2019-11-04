@@ -21,9 +21,9 @@ let buildTag;
   * |__ --||     ||  ||     |  -__|__|  ||__ --|
   * |_____||__|__||__||__|__|_____|__|  ||_____|
   *                                  |___|       
-  * built by ${gitName}
-  * from ${branchActual}
-  * at ${dateNow}
+  * built by: ${gitName}
+  * branch: \`${branchActual}\`
+  * timestamp: ${dateNow}
 */\n\n`;
 })();
 
