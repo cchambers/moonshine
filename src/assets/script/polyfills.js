@@ -8,6 +8,10 @@
     return evt;
   }
 
+  if (window.NodeList && !NodeList.prototype.forEach) {
+    NodeList.prototype.forEach = Array.prototype.forEach;
+  }
+
   if (typeof window.CustomEvent !== 'function') {
     window.CustomEvent = CustomEvent;
   }

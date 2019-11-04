@@ -40,18 +40,18 @@ export default {
       brc = brc.toLowerCase();
       switch (brc) {
         case 'elite':
-          if (brd === 0) {
-            string = 'Elites get <span class="uppercase">free shipping</span> every day!';
+          if (parseInt(brd, 10) === 0) {
+            string = 'Elites get <span class="uppercase">Free</span> Shipping every day';
           } else {
-            string = 'Free Shipping for Elites';
+            string = '<span class="uppercase">Free</span> Shipping for Elites';
           }
           break;
 
         default:
-          if (!this.data.brd) {
-            string = `<span class="uppercase">Free shipping</span> @ $${this.freeShipping}!`;
+          if (parseInt(this.freeShipping, 10) === 0) {
+            string = '<span class="uppercase">Free</span> Shipping on all orders!';
           } else {
-            string = `Free Shipping @ $${this.freeShipping}!`;
+            string = `<span class="uppercase">Free</span> Shipping @ $${this.freeShipping}`;
           }
           break;
       }
@@ -65,7 +65,7 @@ export default {
     self.setupEvents();
     setTimeout(() => {
       self.$bus.$emit('get-user-data');
-    }, 10);
+    }, 200);
   },
 
   methods: {

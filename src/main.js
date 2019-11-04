@@ -31,7 +31,6 @@ Vue.config.ignoredElements = [ /.*/ ]
 require('./assets/style/common/base.scss');
 require('./assets/style/common/utility.scss');
 require('./assets/style/themes/custom-props.scss');
-require('./lib/components/lib-toolbar');
 
 if (process.env.NODE_ENV !== 'production')  {
     require('./dev-components')
@@ -45,7 +44,7 @@ if (process.env.NODE_ENV !== 'production')  {
     require('./lib/components/lib-content');
     require('./lib/components/lib-section-links');
     require('./lib/components/lib-notify');
-
+    require('./lib/components/lib-toolbar');
     require('./components/component-template');
 }
 

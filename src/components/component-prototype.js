@@ -53,23 +53,22 @@ const ComponentPrototype = {
 
     log(...args) {
       window.sh.log = window.sh.log || []; // store logs to an array for reference
-
-      const dev = (window.location.href.indexOf('belk.demand') >= 0) || (window.location.href.indexOf('localhost') >= 0);
-
       let level = args[args.length - 1];
       level = (typeof level === 'number') ? args.pop() : 0;
+      const dev = (window.location.href.indexOf('belk.demand') >= 0) || (window.location.href.indexOf('localhost') >= 0);
+      const message = args.join();
       if (dev) {
-        let style = 'font-size: 20px;';
+        let style = 'font-size: 18px;';
         switch (level) {
           default:
             style += ' color: #0667a0;';
             break;
         }
-        const message = args.join();
-        window.sh.log.push(message);
         // eslint-disable-next-line
         console.log(`%c ${message}`, style);
       }
+
+      window.sh.log.push(message);
     },
   },
 

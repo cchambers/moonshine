@@ -1,6 +1,39 @@
 const glob = require('glob');
 const fs = require('fs-extra');
 const path = require('path');
+const branch = require('git-branch');
+const fullName = require('fullname');
+const WrapperPlugin = require('wrapper-webpack-plugin');
+const dateFormat = require('dateformat');
+
+const dateNow = new Date();
+dateFormat(dateNow, 'dddd, mmmm dS, yyyy, h:MM:ss TT');
+
+const branchActual = branch.sync();
+let gitName = 'unset';
+let buildTag;
+
+(async () => {
+  gitName = await fullName();
+  buildTag = `/*
+// +-+-+-+-+-+-+-+-+
+// |s|h|i|n|e|.|j|s|
+// +-+-+-+-+-+-+-+-+
+// built by: ${gitName}
+// from: ${branchActual}
+// at: ${dateNow}
+*/\n\n`;
+})();
+
+let optimizationSetting = {
+  minimize: false,
+};
+
+if (branchActual === 'master') {
+  optimizationSetting = {
+    minimize: true,
+  };
+}
 
 const nav = fs.readFileSync('./src/lib/incl-nav.html', 'utf8');
 const footer = fs.readFileSync('./src/lib/incl-footer.html', 'utf8');
@@ -100,10 +133,14 @@ module.exports = {
         vue$: 'vue/dist/vue.esm.js',
       },
     },
-  //   optimization: {
-  //     // We no not want to minimize our code.
-  //     minimize: false
-  //   }
+    plugins: [
+      new WrapperPlugin({
+        header() {
+          return buildTag;
+        },
+      }),
+    ],
+    optimization: optimizationSetting,
   },
 
   chainWebpack: (config) => {

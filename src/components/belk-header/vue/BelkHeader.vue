@@ -24,7 +24,15 @@ export default {
         cartQty: false,
         subTotal: false,
       },
+      baseData: false,
+      brdData: false,
     };
+  },
+
+  computed: {
+    hasAllData() {
+      return (this.baseData && this.brdData);
+    },
   },
 
   watch: {
@@ -33,14 +41,15 @@ export default {
       clearTimeout(self.dataDebounce);
       self.dataDebounce = setTimeout(() => {
         self.setItem('belkUserData', val, true);
-        self.$bus.$emit('user-data', val);
         self.updateContainers(val);
-      }, 50);
+        self.clearForEmit();
+      }, 20);
     },
   },
 
   mounted() {
     const self = this;
+    self.log('header: live on page');
     self.actual = document.querySelector('#header .belk-header');
     self.bagEl = document.querySelector('belk-bag');
     self.setupEvents();
@@ -50,12 +59,18 @@ export default {
   methods: {
     setupEvents() {
       const self = this;
-      self.$bus.$on('get-user-data', self.emitUserData);
+      self.$bus.$on('get-user-data', self.clearForEmit);
       self.$bus.$on('bag-update', self.bagUpdateHandler);
     },
 
-    emitUserData() {
-      this.$bus.$emit('user-data', this.headerData);
+    clearForEmit() {
+      const self = this;
+      if (self.hasAllData) {
+        clearTimeout(self.emitTimer);
+        self.$bus.$emit('user-data', self.headerData);
+      } else {
+        self.emitTimer = setTimeout(self.clearForEmit, 50);
+      }
     },
 
     getData() {
@@ -64,8 +79,8 @@ export default {
       // if (sessionData && !forceUpdate) {
       //   self.headerData = self.sessionData;
       // } else {
-      let url; let
-        brdurl;
+      let url;
+      let brdurl;
       if (window.Urls) {
         url = window.Urls.headerInfo;
         brdurl = window.Urls.getBRDDetailsForHeader;
@@ -132,12 +147,14 @@ export default {
       this.$set(this.headerData, 'total', data.subTotal);
       this.$set(this.headerData, 'store', data.storeName);
       if (this.headerData.auth) this.$el.classList.add('is-user');
+      this.baseData = true;
     },
 
     handleBRD(data) {
       this.updateWindow(data);
       this.$set(this.headerData, 'brc', data.customerType);
       this.$set(this.headerData, 'brd', data.availableBRDValue);
+      this.brdData = true;
     },
 
     bagUpdateHandler(data) {

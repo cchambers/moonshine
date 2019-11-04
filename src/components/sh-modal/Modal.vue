@@ -9,7 +9,7 @@
     <div class="content">
       <div class="tab-lock" v-on:focus="focusLast()" tabindex="0"></div>
       <div class="header">
-        <h3 :id="ariaHeaderID">
+        <h3 v-if="header" :id="ariaHeaderID">
           <slot name="header">{{ header }}</slot>
         </h3>
         <div close-trigger v-hammer:tap="close">
