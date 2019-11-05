@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import ComponentPrototype from '../../component-prototype';
 
 export default {
@@ -64,10 +65,12 @@ export default {
     },
 
     hashHandler(id) {
+      const self = this;
       if (id === '') {
-        if (this.active) this.close();
-      } else if (id === this.uniqueId) {
-        this.open();
+        if (self.active) self.close();
+      } else if (id === self.uniqueId) {
+        self.open();
+        self.$el.scrollIntoView();
       }
     },
   },
