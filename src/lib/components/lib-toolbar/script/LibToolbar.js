@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import * as ace from 'brace';
 import 'brace/mode/html';
 import 'brace/theme/monokai';

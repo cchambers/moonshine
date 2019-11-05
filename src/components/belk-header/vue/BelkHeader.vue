@@ -151,10 +151,12 @@ export default {
     },
 
     handleBRD(data) {
-      this.updateWindow(data);
-      this.$set(this.headerData, 'brc', data.customerType);
-      this.$set(this.headerData, 'brd', data.availableBRDValue);
-      this.brdData = true;
+      if (data) {
+        this.updateWindow(data);
+        this.$set(this.headerData, 'brc', data.customerType);
+        this.$set(this.headerData, 'brd', data.availableBRDValue);
+        this.brdData = true;
+      }
     },
 
     bagUpdateHandler(data) {
