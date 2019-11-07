@@ -10,17 +10,16 @@ const dateNow = new Date();
 dateFormat(dateNow, 'dddd, mmmm dS, yyyy, h:MM:ss TT');
 
 const branchActual = branch.sync();
-let gitName = 'unset';
-let buildTag;
+let buildTag = '';
 
 (async () => {
-  gitName = await fullName();
+  const gitName = await fullName();
   buildTag = `/*!
-  *         __     __                 __        
-  * .-----.|  |--.|__|.-----.-----.  |__|.-----.
-  * |__ --||     ||  ||     |  -__|__|  ||__ --|
-  * |_____||__|__||__||__|__|_____|__|  ||_____|
-  *                                 |___|       
+  *         __     __
+  * .-----.|  |--.|__|.-----.-----.
+  * |__ --||     ||  ||     |  -__|
+  * |_____||__|__||__||__|__|_____|
+  * 
   * built by: ${gitName}
   * branch: \`${branchActual}\`
   * timestamp: ${dateNow}

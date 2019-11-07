@@ -3,7 +3,7 @@
     :variant="variant">
     <div class="original" v-bind:class="{ 'is-range': priceRange }">{{ originalPrice }}</div>
     <div class="actual" v-bind:class="{ 'is-range': saleRange }">{{ salePrice }}</div>
-    <div v-if="coupon" class="w-coupon">With Coupon</div>
+    <div v-if="coupon" class="coupon">after coupon</div>
   </div>
 </template>
 

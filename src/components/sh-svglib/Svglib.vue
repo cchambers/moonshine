@@ -1,3 +1,4 @@
+
 <template>
   <div class="sh-svglib">
     <svg>
@@ -9,6 +10,7 @@
 </template>
 
 <script>
+/* eslint-disable */
 import ComponentPrototype from '../component-prototype';
 
 const iconJSON = {
