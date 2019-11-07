@@ -89,7 +89,7 @@ export default {
         if (origin.indexOf('localhost') >= 0) origin = '//dev29-web-belk.demandware.net';
         url = `${origin}/on/demandware.store/Sites-Belk-Site/default/Home-HeaderInfo?format=ajax`;
         brdurl = `${origin}/on/demandware.store/Sites-Belk-Site/default/BRD-GetBRDDetailsForHeader?format=ajax`;
-        // self.recheckUrls();
+        self.recheckUrls();
       }
       const xhr = new XMLHttpRequest();
       xhr.open('GET', url);

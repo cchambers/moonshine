@@ -47,9 +47,9 @@ export default {
   methods: {
     process(el) {
       const data = [];
-      for (const child of el.children) {
+      el.children.forEach((child) => {
         data.push(this.makeData(child));
-      }
+      });
       this.items = data;
     },
 
