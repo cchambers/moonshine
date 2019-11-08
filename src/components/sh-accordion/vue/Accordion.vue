@@ -4,7 +4,10 @@
     v-bind:class="{ 'active': ariaExpanded }">
     <button class="header" :id="headerId" :aria-controls="ariaControlsId"
       v-hammer:tap="toggleActive">
-      <slot name="header"></slot>
+      <div>
+        <slot name="header"></slot>
+        <i class="material-icons-round">{{ iconHandler }}</i>
+      </div>
     </button>
     <div :aria-expanded="ariaExpanded" :aria-labelled-by="headerId" role="region">
       <div :id="ariaControlsId" class="collapse">

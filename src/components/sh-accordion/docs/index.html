@@ -1,154 +1,194 @@
 <div class="documentation contain">
-  <h1>Accordion</h1>
-  <section id="usage">
-    <h2>Usage</h2>
-    <pre>
+	<h1>Accordion</h1>
+	<section id="usage">
+		<h2>Usage</h2>
+		<pre>
       <code class="language-html">
           &lt;sh-accordion&gt;new component&lt;/sh-accordion&gt;
       </code>
     </pre>
 
-  </section>
+	</section>
 
-  <section id="reference" class="baseline30">
-    <h2>Reference</h2>
-    <h3 id="attributes">Attributes</h3>
+	<section id="reference" class="baseline30">
+		<h2>Reference</h2>
+		<h3 id="attributes">Attributes</h3>
 
-    <table class="attributes">
-      <thead>
-        <tr>
-          <th>Attribute</th>
-          <th>Type</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>hidden</td>
-          <td>Boolean</td>
-          <td>Hide from view.</td>
-        </tr>
-      </tbody>
-    </table>
+		<table class="attributes">
+			<thead>
+				<tr>
+					<th>Attribute</th>
+					<th>Type</th>
+					<th>Description</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>hidden</td>
+					<td>Boolean</td>
+					<td>Hide from view.</td>
+				</tr>
+			</tbody>
+		</table>
 
-    <h3 id="slots">Slots</h3>
+		<h3 id="slots">Slots</h3>
 
-    <table class="slots">
-      <thead>
-        <tr>
-          <th>Slot</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>default</td>
-          <td>
-            Text content.
-          </td>
-        </tr>
-      </tbody>
-    </table>
+		<table class="slots">
+			<thead>
+				<tr>
+					<th>Slot</th>
+					<th>Description</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>default</td>
+					<td>
+						Text content.
+					</td>
+				</tr>
+			</tbody>
+		</table>
 
-    <h3 id="methods">Public Methods</h3>
+		<h3 id="methods">Public Methods</h3>
 
-    <table class="methods">
-      <thead>
-        <tr>
-          <th>Function</th>
-          <th>Params</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>snap</td>
-          <td>
-            <ul>
-              <li>
-                none
-              </li>
-            </ul>
-          </td>
-          <td>
-            Perform snap animation and half text.
-          </td>
-        </tr>
-      </tbody>
-    </table>
+		<table class="methods">
+			<thead>
+				<tr>
+					<th>Function</th>
+					<th>Params</th>
+					<th>Description</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>open</td>
+					<td>
+						<ul>
+							<li>
+								none
+							</li>
+						</ul>
+					</td>
+					<td>
+						Open the accordion's content.
+					</td>
+				</tr>
+				<tr>
+					<td>close</td>
+					<td>
+						<ul>
+							<li>
+								none
+							</li>
+						</ul>
+					</td>
+					<td>
+						Close the accordion's content.
+					</td>
+				</tr>
+			</tbody>
+		</table>
 
-    <h3 id="events">Events</h3>
+		<h3 id="events">Events</h3>
 
-    <table class="events">
-      <thead>
-        <tr>
-          <th>Event</th>
-          <th>Payload Type</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>event-name</td>
-          <td>
-            Type
-          </td>
-          <td>
-            Fires when something happens.
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </section>
+		<table class="events">
+			<thead>
+				<tr>
+					<th>Event</th>
+					<th>Payload Type</th>
+					<th>Description</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>accordion-opening</td>
+					<td>
+						Element
+					</td>
+					<td>
+						Fires before accordion opens.
+					</td>
+				</tr>
+				<tr>
+					<td>accordion-opened</td>
+					<td>
+						Element
+					</td>
+					<td>
+						Fires after accordion opens.
+					</td>
+				</tr>
+				<tr>
+					<td>accordion-closing</td>
+					<td>
+						Element
+					</td>
+					<td>
+						Fires before accordion closes.
+					</td>
+				</tr>
+				<tr>
+					<td>accordion-closed</td>
+					<td>
+						Element
+					</td>
+					<td>
+						Fires after accordion closes.
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</section>
 
-  <section id="examples">
-    <h2>Examples</h2>
-    <h3>Default</h3>
-    <lib-toolbar>
-      <sh-accordion unique-id="accord-1">
-        <div slot="header">
-          <h4>First Example</h4>
-        </div>
-        <div slot="body">
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur laborum aspernatur, tempore omnis, est ad animi voluptatem facilis itaque, totam beatae architecto sed. Ipsum veritatis sed, obcaecati dolorem perspiciatis esse.</p>
-        </div>
-      </sh-accordion>
-      <sh-accordion>
-          <div slot="header">
-            <h4>Second Example</h4>
-          </div>
-          <div slot="body">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur laborum aspernatur, tempore omnis, est ad animi voluptatem facilis itaque, totam beatae architecto sed. Ipsum veritatis sed, obcaecati dolorem perspiciatis esse.</p>
-          </div>
-        </sh-accordion>
-    </lib-toolbar>
+	<section id="examples">
+		<h2>Examples</h2>
+		<h3>Default</h3>
+		<lib-toolbar>
+			<sh-accordion variant="primary" unique-id="accord-1">
+				<div slot="header">
+					<h4>First Example</h4>
+				</div>
+				<div slot="body">
+					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur laborum aspernatur, tempore omnis, est ad animi voluptatem facilis itaque, totam beatae architecto sed. Ipsum veritatis sed, obcaecati dolorem perspiciatis esse.</p>
+				</div>
+			</sh-accordion>
+			<sh-accordion variant="primary">
+				<div slot="header">
+					<h4>Second Example</h4>
+				</div>
+				<div slot="body">
+					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur laborum aspernatur, tempore omnis, est ad animi voluptatem facilis itaque, totam beatae architecto sed. Ipsum veritatis sed, obcaecati dolorem perspiciatis esse.</p>
+				</div>
+			</sh-accordion>
+		</lib-toolbar>
 
-    <h3 id="auto-collapsing">Auto Collapsing</h3>
-    <lib-toolbar>
-        <sh-accordion group="demo-group">
-          <div slot="header">
-            <h4>First Example</h4>
-          </div>
-          <div slot="body">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur laborum aspernatur, tempore omnis, est ad animi voluptatem facilis itaque, totam beatae architecto sed. Ipsum veritatis sed, obcaecati dolorem perspiciatis esse.</p>
-          </div>
-        </sh-accordion>
-        <sh-accordion group="demo-group">
-            <div slot="header">
-              <h4>Second Example</h4>
-            </div>
-            <div slot="body">
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur laborum aspernatur, tempore omnis, est ad animi voluptatem facilis itaque, totam beatae architecto sed. Ipsum veritatis sed, obcaecati dolorem perspiciatis esse.</p>
-            </div>
-          </sh-accordion>
-      </lib-toolbar>
-  </section>
+		<h3 id="auto-collapsing">Auto Collapsing</h3>
+		<lib-toolbar>
+			<sh-accordion variant="secondary" group="demo-group">
+				<div slot="header">
+					<h4>First Example</h4>
+				</div>
+				<div slot="body">
+					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur laborum aspernatur, tempore omnis, est ad animi voluptatem facilis itaque, totam beatae architecto sed. Ipsum veritatis sed, obcaecati dolorem perspiciatis esse.</p>
+				</div>
+			</sh-accordion>
+			<sh-accordion variant="secondary" group="demo-group">
+				<div slot="header">
+					<h4>Second Example</h4>
+				</div>
+				<div slot="body">
+					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur laborum aspernatur, tempore omnis, est ad animi voluptatem facilis itaque, totam beatae architecto sed. Ipsum veritatis sed, obcaecati dolorem perspiciatis esse.</p>
+				</div>
+			</sh-accordion>
+		</lib-toolbar>
+	</section>
 
-  <section id="changelog">
-    <h2>Changelog</h2>
-    <dl>
-      <dt>1.0.0</dt>
-      <dd>Accordion was created.</dd>
-    </dl>
-  </section>
+	<section id="changelog">
+		<h2>Changelog</h2>
+		<dl>
+			<dt>1.0.0</dt>
+			<dd>Accordion was created.</dd>
+		</dl>
+	</section>
 </div>

@@ -5,6 +5,12 @@ sh-accordion {
 
   .sh-accordion {
 
+    button > div {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
     .header,
     .body {
       padding: 0.5rem 1.5rem;
