@@ -33,9 +33,9 @@ export default {
     iconHandler() {
       let icon;
       if (this.ariaExpanded) {
-        icon = 'add';
-      } else {
         icon = 'remove';
+      } else {
+        icon = 'add';
       }
       return icon;
     },

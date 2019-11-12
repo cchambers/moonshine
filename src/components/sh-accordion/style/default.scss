@@ -13,7 +13,7 @@ sh-accordion {
 
     .header,
     .body {
-      padding: 0.5rem 1.5rem;
+      padding: 1rem 1.5rem;
     }
 
     .header {
@@ -22,17 +22,17 @@ sh-accordion {
       outline: 0;
       border: 0;
       cursor: pointer;
-      background: $highlight-secondary;
+      background: $highlight-primary;
       transition: all 250ms $ease;
       font-size: 1.6rem;
       text-align: left;
       color: $lowlight-secondary;
+      border: 1px solid $lowlight-quaternary;
       h1,h2,h3,h4,h5,h6 {
         margin: 0 !important;
       }
       &:hover {
-        color: $accent-primary;
-        background: $highlight-primary;
+        background: $accent-tertiary;
       }
     }
 
@@ -47,12 +47,8 @@ sh-accordion {
     }
 
     &.active {
-      .header {
-        background-color: $accent-tertiary;
-      }
-
       .body {
-        border-color: $accent-tertiary;
+        border-color: $lowlight-quaternary;
       }
 
       .collapse {
