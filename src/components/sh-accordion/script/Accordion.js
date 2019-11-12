@@ -29,6 +29,18 @@ export default {
     if (window.location.hash) this.hashHandler(window.location.hash.substr(1));
   },
 
+  computed: {
+    iconHandler() {
+      let icon;
+      if (this.ariaExpanded) {
+        icon = 'remove';
+      } else {
+        icon = 'add';
+      }
+      return icon;
+    },
+  },
+
   methods: {
     toggleActive() {
       if (this.ariaExpanded) {
