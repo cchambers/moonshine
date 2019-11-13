@@ -6,6 +6,8 @@ const fullName = require('fullname');
 const WrapperPlugin = require('wrapper-webpack-plugin');
 const dateFormat = require('dateformat');
 
+const themeLoader = path.resolve('theme-loader.js');
+
 const dateNow = new Date();
 dateFormat(dateNow, 'dddd, mmmm dS, yyyy, h:MM:ss TT');
 
@@ -145,19 +147,12 @@ module.exports = {
   },
 
   chainWebpack: (config) => {
-    const themeLoader = path.resolve('theme-loader.js');
+    function addStyleResource(rule) {
+      rule.use('shine-theme-loader').loader(themeLoader);
+    }
 
-    const vueRule = config.module.rule('scss').oneOf('vue');
-    vueRule.use('shine-theme-loader').loader(themeLoader).end();
-
-    const normalRule = config.module.rule('scss').oneOf('normal');
-    normalRule.use('shine-theme-loader').loader(themeLoader).end();
-
-    const vueModules = config.module.rule('scss').oneOf('vue-modules');
-    vueModules.use('shine-theme-loader').loader(themeLoader).end();
-
-    const normalModules = config.module.rule('scss').oneOf('normal-modules');
-    normalModules.use('shine-theme-loader').loader(themeLoader).end();
+    const types = ['vue-modules', 'vue', 'normal-modules', 'normal'];
+    types.forEach((type) => addStyleResource(config.module.rule('scss').oneOf(type)));
   },
 
   pages,

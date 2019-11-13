@@ -460,6 +460,7 @@ a:hover {
     padding-bottom: 6rem;
     padding: 0 $rem $rem $rem;
     background-color: $highlight-quaternary;
+    test: here;
     @include box-shadow(1);
     &:last-of-type {
       border-bottom: none;
@@ -965,8 +966,6 @@ body {
     padding: $rem 0;
     line-height: 3rem;
     flex-shrink: 0;
-    background: $accent-primary;
-    color: $highlight-primary;
   }
 
   > main {
@@ -974,7 +973,6 @@ body {
     flex-direction: column;
     justify-content: space-between;
     flex: 1 auto;
-    background: $highlight-primary;
     scroll-behavior: smooth;
     @include scroll-y;
   }

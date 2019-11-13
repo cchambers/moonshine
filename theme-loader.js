@@ -1,3 +1,4 @@
+let prompt = require('prompt');
 
 /**
  * The sass-loader makes node-sass available to webpack modules.
@@ -6,9 +7,10 @@
  * @param {string} content
  */
 function themeLoader(content) {
-  let data = content.match(/([^\s]*:(\s.*)[$][A-z]*-[A-z]*);/g);
-  // TODO: https://regexr.com/4k3tf
   let str = content;
+  // TODO: https://regexr.com/4k3tf
+  let data = str.match(/([^\s]*:(\s.*)[$][A-z]*-[A-z]*);/g);
+
   if (data) {
     data = [...new Set(data)];
 
@@ -21,22 +23,26 @@ function themeLoader(content) {
       // pull the actual variable: ($accent-primary)
       const theVar = newString.match(/([$][A-z]*-[A-z]*)/g);
 
-      // lop off the dollar sign: (accent-primary)
-      const noDollar = theVar[0].substr(1);
+      for (let y = 0, m = theVar.length; y < m; y += 1) {
+        const it = theVar[y];
 
-      // replace the variable with custom prop: var(--accent-primary)
-      newString = newString.replace(theVar[0], `var(--${noDollar})`);
+        // lop off the dollar sign: (accent-primary)
+        const noDollar = it.substr(1);
 
-      // concatenate old value with new value:
-      // ex: color: $accent-primary; color: var(--accent-primary);
-      newString = `${scss} ${newString}`;
+        // replace the variable with custom prop: var(--accent-primary)
+        newString = newString.replace(it, `var(--${noDollar})`);
 
-      // find/replace all occurances
-      let regStr = `(?<!-)${scss}`;
-      regStr = regStr.replace(/\$/, `${String.fromCharCode(92)}$`);
-      const regEx = new RegExp(regStr, 'g');
+        // concatenate old value with new value:
+        // ex: color: $accent-primary; color: var(--accent-primary);
+        newString = `${scss} ${newString}`;
 
-      str = content.replace(regEx, newString);
+        // find/replace all occurances
+        let regStr = `(?<!-)${scss}`;
+        regStr = regStr.replace(/\$/, `${String.fromCharCode(92)}$`);
+        const regEx = new RegExp(regStr, 'g');
+
+        str = str.replace(regEx, newString);
+      }
     }
   }
   return str;
