@@ -1,8 +1,15 @@
 /* default styling */
-
-belk-product {
-  display: inline-flex;
-  .belk-product {
-
+.belk-product {
+  &.is-on-sale {
+    .original {
+      text-decoration: line-through;
+      font-weight: normal;
+      color: $lowlight-quinary;
+    }
+  }
+  .price {
+    .sale {
+      color: red;
+    }
   }
 }

@@ -97,10 +97,10 @@
           <div class="heading">Popular in "{{ suggestTerm }}"</div>
           <component
             ref="suggestedProducts"
-            v-bind:is="belkProducts"
+            v-bind:is="belkProductList"
             v-bind:product-array="productsLimited"
             variant="secondary"
-            :limit="3"
+            :item-limit="3"
           ></component>
           <a class="view-more" :href="buildSearchLink(suggestTerm)">
             View more results for "{{ suggestTerm }}"
@@ -114,7 +114,7 @@
 <style lang="scss" src="./style/default.scss"></style>
 
 <script>
-import BelkProducts from '../belk-products/BelkProducts.vue';
+import BelkProductList from '../belk-product-list/BelkProductList.vue';
 import ComponentPrototype from '../component-prototype';
 
 export default {
@@ -168,7 +168,7 @@ export default {
       count: 0,
       preloaded: false,
       fullyloaded: false,
-      belkProducts: BelkProducts,
+      belkProductList: BelkProductList,
     };
   },
 
@@ -226,8 +226,8 @@ export default {
     suggestTerm(val) {
       this.$bus.$emit('search-term', {
         el: this.uuid,
-        term: this.searchTerm
-      })
+        term: val,
+      });
     },
 
     highlightIndex(val, oldVal) {
@@ -349,14 +349,14 @@ export default {
       self.$on('active-descendant', self.activeDescendantHandler);
       self.$bus.$on('navitem-opening', self.forceBlur);
       self.$bus.$on('close-search', self.forceBlur);
-      self.$bus.$on('search-term', searchTermHandler);
+      self.$bus.$on('search-term', self.searchTermHandler);
 
       window.addEventListener('resize', self.placeholderHandler);
       window.addEventListener('navitem-opening', self.forceBlur);
     },
 
     searchTermHandler(data) {
-      if (this.uuid == data.uuid) return;
+      if (this.uuid === data.uuid) return;
       this.value = data.term;
     },
 
@@ -623,7 +623,10 @@ export default {
           self.products = arr;
           self.showSuggestedProducts(which);
         });
-      } else if (self.allProducts[which]) self.products = self.allProducts[which].products;
+      } else if (self.allProducts[which]) {
+        self.$set(self, 'products', self.allProducts[which].products);
+        this.$bus.$emit('search-suggestions-loaded');
+      }
     },
   },
 };

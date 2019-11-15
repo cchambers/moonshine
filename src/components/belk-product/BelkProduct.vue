@@ -1,6 +1,7 @@
 <template>
   <div class="belk-product"
-    :variant="variant">
+    :variant="variant"
+    v-bind:class=" { 'is-on-sale': onSale } ">
     <a :href="url" :data-pid="pid">
       <div class="image" :style="{ backgroundImage: 'url('+thumb_image+')' }"></div>
       <div class="data">
@@ -8,10 +9,12 @@
           <div class="brand">{{ brand }}</div>
           <div class="title">{{ title }}</div>
         </div>
-        <div class="price" >
-          <div class="original" v-bind:class="{ 'is-range': priceRange }">{{ originalPrice }}</div>
-          <div class="actual" v-bind:class="{ 'is-range': saleRange }">{{ salePrice }}</div>
-          <div v-if="coupon" class="coupon">after coupon</div>
+        <div class="price">
+          <span v-if="onSale" class="sale"
+          v-bind:class="{ 'is-range': saleRange }">{{ salePrice }} </span>
+          <span class="original"
+          v-bind:class="{ 'is-range': priceRange }">{{ originalPrice }}</span>
+          <span v-if="coupon" class="coupon">after coupon</span>
         </div>
         <div class="rating"><sh-rating :level="reviews"></sh-rating></div>
         <div class="quick-view">
@@ -31,25 +34,20 @@ export default {
   name: 'BelkProduct',
 
   props: {
-    productData: {
-      type: Object,
-    },
+    title: null,
+    url: null,
+    price: null,
+    pid: null,
+    reviews: null,
+    brand: null,
+    sale_price_range: null,
+    sale_price: null,
+    price_range: null,
+    thumb_image: null,
   },
 
   data() {
     return {
-      dataActual: {},
-      title: null,
-      url: null,
-      price: null,
-      pid: null,
-      reviews: null,
-      brand: null,
-      sale_price_range: null,
-      sale_price: null,
-      price_range: null,
-      thumb_image: null,
-
       saleRange: false,
       priceRange: false,
       onSale: false,
@@ -59,35 +57,49 @@ export default {
     };
   },
 
-  watch: {
-    dataActual(val) {
-      console.log(val);
-      if (val.price_range.length > 1) {
-        if (val.price_range[0] !== val.price_range[1]) {
-          this.originalPrice = `${this.format(val.price_range[0])} - ${this.format(val.price_range[1])}`;
-        }
-      } else {
-        this.originalPrice = this.format(this.price);
-      }
-
-      if (val.sale_price_range.length > 1) {
-        if (val.sale_price_range[0] !== val.sale_price_range[1]) {
-          this.salePrice = `${this.format(val.sale_price_range[0])} - ${this.format(val.sale_price_range[1])}`;
-        }
-      } else {
-        this.salePrice = this.format(this.sale);
-      }
-    },
-  },
-
   methods: {
+    events() {
+      this.$bus.$on('search-suggestions-loaded', this.processProps);
+    },
+
     quickView(e) {
       return e;
+    },
+
+    processProps() {
+      if (this.price_range.length > 1) {
+        if (this.price_range[0] !== this.price_range[1]) {
+          this.originalPrice = `${this.format(this.price_range[0])} - ${this.format(this.price_range[1])}`;
+          this.priceRange = true;
+        } else {
+          this.originalPrice = this.format(this.price);
+        }
+      }
+
+      if (this.sale_price_range.length > 1) {
+        if (this.sale_price_range[0] !== this.sale_price_range[1]) {
+          this.salePrice = `${this.format(this.sale_price_range[0])} - ${this.format(this.sale_price_range[1])}`;
+          this.saleRange = true;
+        } else {
+          this.salePrice = this.format(this.sale_price_range[0]);
+        }
+      }
+
+      if (this.originalPrice !== this.salePrice) this.onSale = true;
+    },
+
+    format(price) {
+      const formatter = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+        minimumFractionDigits: 2,
+      });
+      return formatter.format(price);
     },
   },
 
   mounted() {
-    if (this.productData) this.dataActual = this.productData;
+    this.processProps();
   },
 
 };

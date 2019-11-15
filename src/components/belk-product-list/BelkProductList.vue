@@ -1,33 +1,27 @@
 <template>
-  <div class="belk-products" :variant="variant">
+  <div class="belk-product-list" :variant="variant">
     <ul>
       <li v-for="product in products" v-bind:key="product.index">
-        <belk-product v-bind:product-data="product"></belk-product>
+        <component :is="belkProduct" v-bind="product"></component>
       </li>
     </ul>
   </div>
 </template>
 
 <script>
-import BelkPrice from '../belk-price/BelkPrice.vue';
+import BelkProduct from '../belk-product/BelkProduct.vue';
 import ComponentPrototype from '../component-prototype';
 
 export default {
   mixins: [ComponentPrototype],
 
-  name: 'BelkProducts',
+  name: 'BelkProductList',
 
   data() {
     return {
       products: [],
+      belkProduct: BelkProduct,
     };
-  },
-
-  watch: {
-    data(val) {
-      // eslint-disable-next-line
-      console.log(val);
-    },
   },
 
   methods: {
@@ -37,7 +31,7 @@ export default {
   },
 
   components: {
-    BelkPrice,
+    BelkProduct,
   },
 };
 

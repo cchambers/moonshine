@@ -10,7 +10,7 @@ require('./components/belk-header');
 require('./components/belk-icon');
 require('./components/belk-logo');
 require('./components/belk-product');
-require('./components/belk-products');
+require('./components/belk-product-list');
 require('./components/belk-promo');
 require('./components/belk-search');
 require('./components/belk-swatch');
