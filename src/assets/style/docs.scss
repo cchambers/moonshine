@@ -460,7 +460,6 @@ a:hover {
     padding-bottom: 6rem;
     padding: 0 $rem $rem $rem;
     background-color: $highlight-quaternary;
-    test: here;
     @include box-shadow(1);
     &:last-of-type {
       border-bottom: none;
