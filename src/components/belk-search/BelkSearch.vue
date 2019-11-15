@@ -318,7 +318,6 @@ export default {
   },
 
   mounted() {
-    console.log(this.uuid);
     this.inputEl = this.$refs.input;
     this.resultsEl = this.$refs.results;
     this.productsEl = this.$refs.suggestedProducts;
