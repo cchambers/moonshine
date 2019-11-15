@@ -209,25 +209,22 @@ export default {
 
   watch: {
     response(val) {
+      const self = this;
       if (val.response.suggestions) {
-        this.suggestions = val.response.suggestions || [];
-        this.products = val.response.products || [];
-        this.suggestTerm = this.searchValue;
-
-        this.count = this.suggestions.length || 0;
-        if (this.count === 0) {
-          this.noResults = true;
+        self.suggestions = val.response.suggestions || [];
+        self.products = val.response.products || [];
+        self.suggestTerm = self.searchValue;
+        self.$bus.$emit('search-term', {
+          el: self.uuid,
+          term: val.response.q,
+        });
+        self.count = self.suggestions.length || 0;
+        if (self.count === 0) {
+          self.noResults = true;
         } else {
-          this.noResults = false;
+          self.noResults = false;
         }
       }
-    },
-
-    suggestTerm(val) {
-      this.$bus.$emit('search-term', {
-        el: this.uuid,
-        term: val,
-      });
     },
 
     highlightIndex(val, oldVal) {
@@ -321,13 +318,11 @@ export default {
   },
 
   mounted() {
+    console.log(this.uuid);
     this.inputEl = this.$refs.input;
     this.resultsEl = this.$refs.results;
     this.productsEl = this.$refs.suggestedProducts;
     this.headerEl = document.querySelector('belk-header');
-
-    this.uuid = this.setUUID();
-
     this.configureAria();
     this.placeholderHandler();
     this.recentSearches();
@@ -356,8 +351,8 @@ export default {
     },
 
     searchTermHandler(data) {
-      if (this.uuid === data.uuid) return;
-      this.value = data.term;
+      if (data.el === this.uuid) return;
+      this.fillSearch(data.term, false);
     },
 
     stateHandler(val) {
@@ -612,20 +607,27 @@ export default {
       this.showSuggestedProducts(val);
     },
 
+    setupReceive(which) {
+      const self = this;
+      self.$once(`products-loaded.${which}`, (arr) => {
+        self.products = arr;
+        self.showSuggestedProducts(which);
+      });
+    },
+
     showSuggestedProducts(index = 0) {
-      // TODO: make better
       const self = this;
       let which = index;
       if (self.filled && which === 0) which = 1;
       self.suggestTerm = self.suggestionsLimited[which].q;
-      if (typeof self.allProducts[which] === 'undefined') {
-        self.$once(`products-loaded.${which}`, (arr) => {
-          self.products = arr;
-          self.showSuggestedProducts(which);
-        });
+      if ((typeof self.allProducts[which] === 'undefined')) {
+        self.setupReceive(which);
       } else if (self.allProducts[which]) {
-        self.$set(self, 'products', self.allProducts[which].products);
-        this.$bus.$emit('search-suggestions-loaded');
+        if (self.allProducts[which].products === false) {
+          self.setupReceive(which);
+        } else {
+          self.$set(self, 'products', self.allProducts[which].products);
+        }
       }
     },
   },
