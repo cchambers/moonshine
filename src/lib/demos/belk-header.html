@@ -1,9 +1,11 @@
 <div id="page">
   <header id="header">
     <belk-header></belk-header>
+
     <div class="belk-header">
       <div class="primary">
         <div id="primary-nav" class="contain">
+
           <div class="primary-promo">
             <belk-promo free-shipping="49"></belk-promo>
           </div>
@@ -52,9 +54,12 @@
 
           <belk-search vce-cloak></belk-search>
 
-          <sh-button class="close-search" click-event="close-search">
-            Close
-          </sh-button>
+          <sh-modal unique-id="search-modal">
+            <belk-search vce-cloak variant="mobile"></belk-search>
+            <sh-button class="close-search" click-event="close-search" close-trigger>
+              Cancel
+            </sh-button>
+          </sh-modal>
 
           <sh-button class="nav-trigger" v-hammer:tap="menuHandler">
             <belk-icon width="30" name="menu"></belk-icon>
@@ -107,6 +112,7 @@
           </div>
         </div>
       </div>
+    
     </div>
   </header>
 </div>

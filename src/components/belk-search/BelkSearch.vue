@@ -4,6 +4,7 @@
     :count="count"
     :state="state"
     v-bind:class="{ active: isActive, focused: isFocused }">
+
     <!-- Input -->
     <div class="search-input">
       <input
@@ -393,8 +394,16 @@ export default {
     },
 
     focusHandler() {
+      this.modalSearch = document.querySelector('#search-modal .search-input input');
       this.isFocused = true;
       this.selectInput();
+
+      if (window.app.isMobile()) {
+        window.location.hash = 'search-modal';
+        this.modalSearch.focus();
+        this.log(this.modalSearch);
+        // this.$bus.$emit('search-modal');
+      }
     },
 
     placeholderHandler() {
