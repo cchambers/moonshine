@@ -49,6 +49,7 @@ export default {
     contentSelector: String,
     dynamicHTML: String,
     noHistory: Boolean,
+    triggerEvent: String,
     header: String,
     footer: String,
     reveal: String,
@@ -82,18 +83,21 @@ export default {
   },
 
   mounted() {
-    this.modals = this.$el.querySelectorAll('.modal');
-    this.ariaID = `aria-${this.uniqueId}`;
-    this.ariaHeaderID = `aria-header-${this.uniqueId}`;
-    this.ariaDescID = `aria-desc-${this.uniqueId}`;
+    const self = this;
+    self.modals = self.$el.querySelectorAll('.modal');
+    self.ariaID = `aria-${self.uniqueId}`;
+    self.ariaHeaderID = `aria-header-${self.uniqueId}`;
+    self.ariaDescID = `aria-desc-${self.uniqueId}`;
     const container = document.querySelector('#sh-modals');
     if (container) {
-      this.container = container;
-      this.mountToContainer();
+      self.container = container;
+      self.mountToContainer();
     } else {
-      this.createContainer();
+      self.createContainer();
     }
-    if (window.location.hash) this.hashHandler(window.location.hash.substr(1));
+    if (window.location.hash) self.hashHandler(window.location.hash.substr(1));
+
+    if (self.triggerEvent) self.$bus.$on(self.triggerEvent, self.open);
   },
 
   methods: {
@@ -159,7 +163,7 @@ export default {
         this.active = false;
         self.$bus.$emit('modal-closed', this.uniqueId);
       }
-      if (clearHash) window.location.hash = '';
+      if (clearHash) window.location.hash = 'close-modals';
     },
 
     loadContent() {

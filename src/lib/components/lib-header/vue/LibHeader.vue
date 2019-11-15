@@ -1,4 +1,4 @@
-<template>
+v<template>
   <header class="lib-header">
     <div class="contain relative flex start">
       <div v-if="nav" class="toggle-nav" v-hammer:tap="toggleNav">

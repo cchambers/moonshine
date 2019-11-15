@@ -1,6 +1,9 @@
 .sh-modal[variant="secondary"] {
   .content {
-    background: $lowlight-secondary;
-    color: $highlight-primary;
+    background: $highlight-primary;
+    width: 100vw;
+    max-width: 1020rem;
+    min-height: 100vh;
+    margin: 1.5rem;
   }
 }
