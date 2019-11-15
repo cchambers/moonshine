@@ -2,5 +2,8 @@
   .content {
     background: $lowlight-secondary;
     color: $highlight-primary;
+    width: 100vw;
+    max-width: 1020rem;
+    min-height: 100vh;
   }
 }

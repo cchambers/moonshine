@@ -223,6 +223,13 @@ export default {
       }
     },
 
+    suggestTerm(val) {
+      this.$bus.$emit('search-term', {
+        el: this.uuid,
+        term: this.searchTerm
+      })
+    },
+
     highlightIndex(val, oldVal) {
       switch (this.state) {
         case 2: // suggested keywords and products
@@ -319,6 +326,8 @@ export default {
     this.productsEl = this.$refs.suggestedProducts;
     this.headerEl = document.querySelector('belk-header');
 
+    this.uuid = this.setUUID();
+
     this.configureAria();
     this.placeholderHandler();
     this.recentSearches();
@@ -340,9 +349,15 @@ export default {
       self.$on('active-descendant', self.activeDescendantHandler);
       self.$bus.$on('navitem-opening', self.forceBlur);
       self.$bus.$on('close-search', self.forceBlur);
+      self.$bus.$on('search-term', searchTermHandler);
 
       window.addEventListener('resize', self.placeholderHandler);
       window.addEventListener('navitem-opening', self.forceBlur);
+    },
+
+    searchTermHandler(data) {
+      if (this.uuid == data.uuid) return;
+      this.value = data.term;
     },
 
     stateHandler(val) {
@@ -598,6 +613,7 @@ export default {
     },
 
     showSuggestedProducts(index = 0) {
+      // TODO: make better
       const self = this;
       let which = index;
       if (self.filled && which === 0) which = 1;

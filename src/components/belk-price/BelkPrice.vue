@@ -27,8 +27,8 @@ export default {
       priceRange: false,
       onSale: false,
       data: {},
-      salePrice: 5,
-      originalPrice: 10,
+      salePrice: null,
+      originalPrice: null,
       coupon: false,
     };
   },
@@ -54,6 +54,11 @@ export default {
   },
 
   mounted() {
+    this.setUUID();
+    // eslint-disable-next-line
+    console.log(this.uuid);
+    // eslint-disable-next-line
+    console.log(this.dataPrice);
     this.data = this.dataPrice;
   },
 

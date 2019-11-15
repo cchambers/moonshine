@@ -1,0 +1,7 @@
+{
+  "name": "Belk Product",
+  "element": "belk-product",
+  "description": "Demonstration component.",
+  "tags": ["utilities", "demo"],
+  "requirements": {}
+}

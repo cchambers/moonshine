@@ -655,12 +655,24 @@ a:hover {
       font-weight: bold;
       font-family: "Menlo", monospace;
       padding: 0 1.5rem;
+      margin-top: 1.5rem;
+      &:first-of-type {
+        margin-top: 0;
+      }
     }
 
     dd {
       border: 1px solid $accent-tertiary;
-      margin-bottom: 3rem;
       padding: 0 1.5rem;
+      line-height: 3rem;
+      &:nth-child(odd) {
+        background: $highlight-secondary;
+        border-top: none;
+      }
+    }
+    
+    code {
+      color: $accent-primary;
     }
   }
 
@@ -704,9 +716,9 @@ pre[class*="language-"] {
 
 pre[class*="language-"]>code {
   position: relative;
-  border-left: 10px solid #358ccb;
-  box-shadow: -1px 0px 0px 0px #358ccb, 0px 0px 0px 1px #dfdfdf;
-  background-color: #fdfdfd;
+  border-left: 10px solid $accent-primary;
+  box-shadow: -1px 0px 0px 0px $accent-primary, 0px 0px 0px 1px $highlight-secondary;
+  background-color: $highlight-primary;
   background-image: linear-gradient(transparent 50%, rgba(69, 142, 209, 0.04) 50%);
   background-size: 3em 3em;
   background-origin: content-box;
@@ -724,7 +736,7 @@ code[class*="language"] {
 /* Margin bottom to accommodate shadow */
 :not(pre)>code[class*="language-"],
 pre[class*="language-"] {
-  background-color: #fdfdfd;
+  background-color: $highlight-primary;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
