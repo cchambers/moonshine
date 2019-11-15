@@ -98,10 +98,10 @@
           <div class="heading">Popular in "{{ suggestTerm }}"</div>
           <component
             ref="suggestedProducts"
-            v-bind:is="belkProducts"
+            v-bind:is="belkProductList"
             v-bind:product-array="productsLimited"
             variant="secondary"
-            :limit="3"
+            :item-limit="3"
           ></component>
           <a class="view-more" :href="buildSearchLink(suggestTerm)">
             View more results for "{{ suggestTerm }}"
@@ -115,7 +115,7 @@
 <style lang="scss" src="./style/default.scss"></style>
 
 <script>
-import BelkProducts from '../belk-products/BelkProducts.vue';
+import BelkProductList from '../belk-product-list/BelkProductList.vue';
 import ComponentPrototype from '../component-prototype';
 
 export default {
@@ -169,7 +169,7 @@ export default {
       count: 0,
       preloaded: false,
       fullyloaded: false,
-      belkProducts: BelkProducts,
+      belkProductList: BelkProductList,
     };
   },
 
@@ -210,16 +210,20 @@ export default {
 
   watch: {
     response(val) {
+      const self = this;
       if (val.response.suggestions) {
-        this.suggestions = val.response.suggestions || [];
-        this.products = val.response.products || [];
-        this.suggestTerm = this.searchValue;
-
-        this.count = this.suggestions.length || 0;
-        if (this.count === 0) {
-          this.noResults = true;
+        self.suggestions = val.response.suggestions || [];
+        self.products = val.response.products || [];
+        self.suggestTerm = self.searchValue;
+        self.$bus.$emit('search-term', {
+          el: self.uuid,
+          term: val.response.q,
+        });
+        self.count = self.suggestions.length || 0;
+        if (self.count === 0) {
+          self.noResults = true;
         } else {
-          this.noResults = false;
+          self.noResults = false;
         }
       }
     },
@@ -319,7 +323,6 @@ export default {
     this.resultsEl = this.$refs.results;
     this.productsEl = this.$refs.suggestedProducts;
     this.headerEl = document.querySelector('belk-header');
-
     this.configureAria();
     this.placeholderHandler();
     this.recentSearches();
@@ -341,9 +344,15 @@ export default {
       self.$on('active-descendant', self.activeDescendantHandler);
       self.$bus.$on('navitem-opening', self.forceBlur);
       self.$bus.$on('close-search', self.forceBlur);
+      self.$bus.$on('search-term', self.searchTermHandler);
 
       window.addEventListener('resize', self.placeholderHandler);
       window.addEventListener('navitem-opening', self.forceBlur);
+    },
+
+    searchTermHandler(data) {
+      if (data.el === this.uuid) return;
+      this.fillSearch(data.term, false);
     },
 
     stateHandler(val) {
@@ -606,17 +615,28 @@ export default {
       this.showSuggestedProducts(val);
     },
 
+    setupReceive(which) {
+      const self = this;
+      self.$once(`products-loaded.${which}`, (arr) => {
+        self.products = arr;
+        self.showSuggestedProducts(which);
+      });
+    },
+
     showSuggestedProducts(index = 0) {
       const self = this;
       let which = index;
       if (self.filled && which === 0) which = 1;
       self.suggestTerm = self.suggestionsLimited[which].q;
-      if (typeof self.allProducts[which] === 'undefined') {
-        self.$once(`products-loaded.${which}`, (arr) => {
-          self.products = arr;
-          self.showSuggestedProducts(which);
-        });
-      } else if (self.allProducts[which]) self.products = self.allProducts[which].products;
+      if ((typeof self.allProducts[which] === 'undefined')) {
+        self.setupReceive(which);
+      } else if (self.allProducts[which]) {
+        if (self.allProducts[which].products === false) {
+          self.setupReceive(which);
+        } else {
+          self.$set(self, 'products', self.allProducts[which].products);
+        }
+      }
     },
   },
 };

@@ -84,12 +84,6 @@ export default {
       }, 300);
     },
 
-    events() {
-      // this.$bus.$on('hashchange', () => {
-      //   // console.log("got it")
-      // })
-    },
-
     renderCode(code) {
       this.html = code;
     },
@@ -105,10 +99,6 @@ export default {
       } else {
         document.documentElement.classList.remove('toolbar-fullscreen');
       }
-    },
-
-    copyEditor() {
-      // console.log("COPY")
     },
   },
 

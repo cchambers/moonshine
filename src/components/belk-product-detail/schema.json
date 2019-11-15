@@ -1,7 +1,0 @@
-{
-  "name": "Belk Product Detail",
-  "element": "belk-product-detail",
-  "description": "Demonstration component.",
-  "tags": ["product details", "quick view"],
-  "requirements": {}
-}
