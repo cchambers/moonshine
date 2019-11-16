@@ -53,8 +53,8 @@ export default {
     noHistory: Boolean,
     hideHeader: Boolean,
     fullscreen: Boolean,
-    openTriggerEvent: String,
-    closeTriggerEvent: String,
+    openTrigger: String,
+    closeTrigger: String,
     header: String,
     footer: String,
     reveal: String,
@@ -102,8 +102,8 @@ export default {
     }
     if (window.location.hash) self.hashHandler(window.location.hash.substr(1));
 
-    if (self.openTriggerEvent) self.$bus.$on(self.openTriggerEvent, self.open);
-    if (self.closeTriggerEvent) self.$bus.$on(self.closeTriggerEvent, self.close);
+    if (self.openTrigger) self.$bus.$on(self.openTrigger, self.open);
+    if (self.closeTrigger) self.$bus.$on(self.closeTrigger, self.close);
   },
 
   methods: {
