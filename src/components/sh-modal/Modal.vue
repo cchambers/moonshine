@@ -15,7 +15,7 @@
           </h3>
         </div>
         <div close-trigger v-hammer:tap="close">
-          <belk-icon name="close" width="32"></belk-icon>
+          <belk-icon :name="closeIcon" width="32"></belk-icon>
         </div>
       </div>
       <div class="body" ref="body" :id="ariaDescID">
@@ -45,6 +45,10 @@ export default {
     uniqueId: {
       type: String,
       required: true,
+    },
+    closeIcon: {
+      type: String,
+      default: 'close',
     },
     content: String,
     contentUrl: String,
