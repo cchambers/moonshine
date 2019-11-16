@@ -76,13 +76,14 @@ export default {
       this.$bus.$on('hashchange', this.hashHandler);
     },
 
-    hashHandler(id) {
-      const self = this;
-      if (id === '') {
-        if (self.active) self.close();
-      } else if (id === self.uniqueId) {
-        self.open();
-        self.$el.scrollIntoView();
+    hashHandler(data) {
+      const { hash, event } = data;
+      if (hash === '') {
+        if (this.active) this.close();
+      } else if (hash === this.uniqueId) {
+        event.preventDefault();
+        this.open();
+        this.$el.scrollIntoView();
       }
     },
   },

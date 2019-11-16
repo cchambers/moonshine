@@ -88,6 +88,16 @@
     transform: translateY(200%);
   }
 
+  &[fullscreen] {
+    .content {
+      $fullscreenMargin: 1.5rem;
+      width: calc(100vw - ($fullscreenMargin * 2));
+      max-width: 1020rem;
+      min-height: calc(100vh - ($fullscreenMargin * 2));
+      margin: 0;
+    }
+  }
+
 
   .loading-anim {
     height: 30rem;

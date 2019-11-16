@@ -17,9 +17,20 @@
   --accent-quaternary: rgb(129, 177, 210);
   --accent-quinary: rgb(59,221,174);
 
+
+  --padding-triple: var(--padding-base) * 3;
+  --padding-double: var(--padding-base) * 2;
+  --padding-base: 30rem;
+  --padding-half: var(--padding-base) / 2;
+  --padding-quarter: var(--padding-base) / 4;
+
+  --state-success: green;
+  --state-error: red;
+
+
   --belkblue: #0033a1;
   --wildfuscia: #df1783;
-  --classicblue: #0071ce;
+  --classicblue: ;
   --deepteal: #00afa8;
   --festivelime: #c2d500;
   --goldenhour: #ffda00;
@@ -45,5 +56,8 @@
   --accent-secondary:#4e1b96;
   --accent-tertiary: rgb(59,221,174);
   --accent-quaternary: #3700B3;
+
+  --state-success: darkgreen;
+  --state-error: darkred;
 }
 

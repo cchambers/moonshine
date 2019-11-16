@@ -8,10 +8,12 @@
     :aria-describedby="ariaDescID">
     <div class="content">
       <div class="tab-lock" v-on:focus="focusLast()" tabindex="0"></div>
-      <div class="header">
-        <h3 v-if="header" :id="ariaHeaderID">
-          <slot name="header">{{ header }}</slot>
-        </h3>
+      <div v-if="!hideHeader" class="header">
+        <div class="title">
+          <h3 v-if="header" :id="ariaHeaderID">
+            <slot name="header">{{ header }}</slot>
+          </h3>
+        </div>
         <div close-trigger v-hammer:tap="close">
           <belk-icon name="close" width="32"></belk-icon>
         </div>
@@ -49,6 +51,7 @@ export default {
     contentSelector: String,
     dynamicHTML: String,
     noHistory: Boolean,
+    hideHeader: Boolean,
     triggerEvent: String,
     header: String,
     footer: String,
@@ -128,10 +131,12 @@ export default {
       self.$bus.$on('hashchange', this.hashHandler);
     },
 
-    hashHandler(id) {
-      if (id === '') {
+    hashHandler(data) {
+      const { hash, event } = data;
+      if (hash === '') {
         if (this.active) this.close(false);
-      } else if (id === this.uniqueId) {
+      } else if (hash === this.uniqueId) {
+        event.preventDefault();
         this.open();
       }
     },
@@ -163,7 +168,7 @@ export default {
         this.active = false;
         self.$bus.$emit('modal-closed', this.uniqueId);
       }
-      if (clearHash) window.location.hash = 'close-modals';
+      if (clearHash) window.location.hash = '';
     },
 
     loadContent() {
@@ -272,7 +277,7 @@ export default {
     left: 0;
     z-index: 90;
     opacity: 0;
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(0, 0, 0, 0.8);
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
     will-change: scroll-position;
@@ -283,7 +288,7 @@ export default {
       /* Generate background colors for every bg */
       @each $name, $hex in $colors {
         &[overlay="#{$name}"] {
-          @include background-opacity($hex, 0.75);
+          @include background-opacity($hex, 0.8);
         }
       }
     }
