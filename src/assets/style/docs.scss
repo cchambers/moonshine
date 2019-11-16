@@ -4,6 +4,14 @@
 .material-icons-round { font-family: 'Material Icons Round' !important; }
 .material-icons { font-family: 'Material Icons' !important; }
 
+@mixin vartype {
+  font-family: "Menlo",
+  monospace;
+  color: $accent-primary;
+  text-transform: capitalize;
+  text-align: center;
+  font-size: 1.4rem;
+}
 
 *, 
 *::before, 
@@ -25,7 +33,7 @@ body {
   font-size: 1.6rem;
   font-family: "Open Sans";
   background-color: $highlight-primary;
-  color: #222;
+  color: $lowlight-primary;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -557,11 +565,7 @@ a:hover {
       }
 
       td:nth-child(2) {
-        font-family: "Menlo", monospace;
-        color: $accent-primary;
-        text-transform: capitalize;
-        text-align: center;
-        font-size: 1.2rem;
+        @include vartype;
       }
     }
 
@@ -638,10 +642,7 @@ a:hover {
       }
 
       td:nth-child(2) {
-        font-family: "Menlo", monospace;
-        color: $accent-primary;
-        text-transform: capitalize;
-        text-align: center;
+        @include vartype;
       }
     }
   }
