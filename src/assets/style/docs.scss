@@ -533,7 +533,7 @@ a:hover {
       }
 
       th:nth-child(2) {
-        width: 10rem
+        width: 10rem;
       }
 
       td:nth-child(1) {
@@ -561,6 +561,7 @@ a:hover {
         color: $accent-primary;
         text-transform: capitalize;
         text-align: center;
+        font-size: 1.2rem;
       }
     }
 
