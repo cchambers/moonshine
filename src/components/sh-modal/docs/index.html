@@ -65,6 +65,13 @@
 					</td>
 				</tr>
 				<tr>
+					<td>fullscreen</td>
+					<td>Boolean</td>
+					<td>
+						Configures the modal to fill the users viewport.
+					</td>
+				</tr>
+				<tr>
 					<td>footer</td>
 					<td>String</td>
 					<td>
@@ -282,20 +289,8 @@
 		<sh-button modal-trigger="demo-variant-primary">Primary</sh-button>
 		<sh-modal variant="primary" unique-id="demo-variant-primary">
 			<p>"Primary" variant.</p>
-		</sh-modal>
-
-		<sh-button modal-trigger="demo-variant-secondary">Secondary</sh-button>
-		<sh-modal variant="secondary" unique-id="demo-variant-secondary">
-			<p>"Secondary" variant.</p>
-		</sh-modal>
-    </lib-toolbar>
+    </sh-modal>
     
-    <sh-button modal-trigger="demo-variant-fullscreen">Fullscreen</sh-button>
-		<sh-modal fullscreen unique-id="demo-variant-fullscreen">
-			<p>"Fullscreen" variant.</p>
-		</sh-modal>
-		</lib-toolbar>
-
 		<h3 class="margin-b-quarter">Remote Content (Ajax)</h3>
 		<lib-toolbar>
 			<sh-button modal-trigger="demo-ajax">Basic</sh-button>
@@ -317,7 +312,14 @@
 					</div>
 				</div>
 			</sh-modal>
-		</lib-toolbar>
+    </lib-toolbar>
+    
+    <h3 class="margin-b-quarter">Attributes</h3>
+    <sh-button modal-trigger="demo-variant-fullscreen">Fullscreen</sh-button>
+    <sh-modal fullscreen unique-id="demo-variant-fullscreen">
+      <p>"Fullscreen" attribute.</p>
+    </sh-modal>
+    </lib-toolbar>
 
 		<h3 class="margin-b-quarter">Reveal Animations</h3>
 		<lib-toolbar>
