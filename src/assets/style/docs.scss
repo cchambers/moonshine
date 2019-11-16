@@ -684,7 +684,7 @@ a:hover {
 
 code[class*="language-"],
 pre[class*="language-"] {
-  color: black;
+  color: $lowlight-primary;
   background: none;
   font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
   font-size: 1em;

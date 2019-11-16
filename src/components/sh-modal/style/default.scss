@@ -88,12 +88,17 @@
     transform: translateY(200%);
   }
 
-  &[fullscreen] {
+  &[reveal='zoom'] {
+      transform: scale(0.7) translateY(-20%);
+      opacity: 0;
+  }
+
+  &.fullscreen {
     .content {
       $fullscreenMargin: 1.5rem;
-      width: calc(100vw - ($fullscreenMargin * 2));
+      width: 100vw;
       max-width: 1020rem;
-      min-height: calc(100vh - ($fullscreenMargin * 2));
+      min-height: 100vh;
       margin: 0;
     }
   }
