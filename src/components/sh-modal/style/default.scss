@@ -97,9 +97,15 @@
     .content {
       $fullscreenMargin: 1.5rem;
       width: 100vw;
-      max-width: 1020rem;
+      max-width: initial;
       min-height: 100vh;
       margin: 0;
+    }
+
+    .body {
+      width: 100%;
+      max-width: 102rem;
+      margin: 0 auto;
     }
   }
 
