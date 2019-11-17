@@ -23,7 +23,7 @@ belk-mega-nav {
       transition: all 150ms $decel;
     }
 
-    >nav>ul {
+    > nav > ul {
       display: flex;
       flex-direction: column;
       width: 100%;
@@ -73,16 +73,16 @@ belk-mega-nav {
       min-width: 100%;
       transform: none;
 
-      >nav>ul {
+      > nav > ul {
         width: 100%;
       }
 
-      .popper-target>a {
+      .popper-target > a {
         width: 100%;
       }
     }
 
-    .belk-mega-nav>nav>ul {
+    .belk-mega-nav > nav > ul {
       flex-direction: row;
     }
   }

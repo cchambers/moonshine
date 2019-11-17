@@ -5,15 +5,19 @@ belk-promo {
     display: flex;
     justify-content: center;
     flex-direction: column;
+
     div {
       text-align: center;
     }
+
     .line-combinator {
       display: none;
     }
+
     @media screen and (min-width: breakpoint("md")) {
       justify-content: flex-start;
       flex-direction: row;
+
       .line-combinator {
         display: inline;
       }

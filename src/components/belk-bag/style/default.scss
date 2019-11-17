@@ -4,27 +4,33 @@ belk-bag {
   display: inline-flex;
   font-size: 1.4rem;
   color: $lowlight-primary;
+
   .belk-bag {
     // color: $highlight-primary;
     display: flex;
     flex-direction: row;
     align-content: flex-start;
     align-items: center;
+
     belk-icon {
       margin: 0;
       color: transparent;
     }
+
     .bag-background {
       fill: transparent;
     }
+
     &.active {
       belk-icon {
         margin: 0;
         color: $lowlight-primary;
       }
+
       .bag-background {
         fill: $lowlight-primary;
       }
+
       .bag-count {
         color: $highlight-primary;
       }
@@ -45,9 +51,11 @@ belk-bag {
   .bag-icon {
     position: relative;
     height: 2.3rem;
+
     .belk-icon {
       display: flex;
     }
+
     svg {
       position: absolute;
       bottom: 0;
@@ -70,20 +78,22 @@ belk-bag {
       display: block;
     }
   }
+
   &[bag-state="1"] {
     .is-empty-signed-in {
       display: block;
     }
   }
+
   &[bag-state="2"] {
     .has-products {
       display: block;
     }
   }
-  
-  @media (min-width: breakpoint("md") )  {
+
+  @media (min-width: breakpoint("md")) {
     .bag-icon {
-      height: 3rem; 
+      height: 3rem;
     }
   }
 }

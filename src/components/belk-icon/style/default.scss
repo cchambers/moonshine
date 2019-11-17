@@ -3,9 +3,11 @@
 belk-icon {
   pointer-events: none;
   display: inline-flex;
+
   .belk-icon {
     display: flex;
   }
+
   svg {
     height: auto;
     pointer-events: none;

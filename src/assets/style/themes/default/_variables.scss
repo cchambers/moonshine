@@ -1,21 +1,21 @@
 
-$highlight-primary: rgb(254,254,254);
-$highlight-secondary: rgb(245,245,245);
-$highlight-tertiary: rgb(220,220,220);
-$highlight-quaternary: rgb(255,255,255);
+$highlight-primary: rgb(254, 254, 254);
+$highlight-secondary: rgb(245, 245, 245);
+$highlight-tertiary: rgb(220, 220, 220);
+$highlight-quaternary: rgb(255, 255, 255);
 $highlight-quinary: tomato;
 
-$lowlight-primary: rgb(25,25,25);
-$lowlight-secondary: rgb(39,40,34);
+$lowlight-primary: rgb(25, 25, 25);
+$lowlight-secondary: rgb(39, 40, 34);
 $lowlight-tertiary: rgb(41, 57, 115);
-$lowlight-quaternary: rgb(100,100,100);
+$lowlight-quaternary: rgb(100, 100, 100);
 $lowlight-quinary: tomato;
 
 $accent-primary: rgb(0, 115, 207);
 $accent-secondary: rgb(6, 103, 160);
 $accent-tertiary: rgb(157, 208, 230);
 $accent-quaternary: rgb(129, 177, 210);
-$accent-quinary: rgb(0,131,186);
+$accent-quinary: rgb(0, 131, 186);
 
 $colors: (
   "highlight-primary": $highlight-primary,
@@ -23,13 +23,11 @@ $colors: (
   "highlight-tertiary": $highlight-tertiary,
   "highlight-quaternary": $highlight-quaternary,
   "highlight-quinary": $highlight-quinary,
-
   "lowlight-primary": $lowlight-primary,
   "lowlight-secondary": $lowlight-secondary,
   "lowlight-tertiary": $lowlight-tertiary,
   "lowlight-quaternary": $lowlight-quaternary,
   "lowlight-quinary": $lowlight-quinary,
-
   "accent-primary": $accent-primary,
   "accent-secondary": $accent-secondary,
   "accent-tertiary": $accent-tertiary,
@@ -50,7 +48,7 @@ $breakpoints: (
 );
 
 $box-model-mods: ( "pad": "padding", "margin": "margin" );
-$edges: ( 
+$edges: (
   "y": ("top", "bottom"),
   "x": ("left", "right"),
   "t": "top",
@@ -63,15 +61,23 @@ $base: 3;
 
 $rem: #{$base}rem;
 
-$mod-amounts: ( 
+$mod-amounts: (
   "quarter": #{$base/4}rem,
   "half": #{$base/2}rem,
   "default": $rem,
   "double": #{$base*2}rem,
   "quad": #{$base*4}rem
-  );
+);
 
 
-$ease: cubic-bezier(0.4, 0.0, 0.2, 1);
-$decel: cubic-bezier(0.0, 0.0, 0.2, 1);
-$accel: cubic-bezier(0.4, 0.0, 1, 1);
+$ease: cubic-bezier(0.4, 0, 0.2, 1);
+$decel: cubic-bezier(0, 0, 0.2, 1);
+$accel: cubic-bezier(0.4, 0, 1, 1);
+
+// Font Treatments
+
+@mixin header-primary() {
+  font-family: proxima-nova;
+  font-weight: 800;
+  font-style: normal;
+}

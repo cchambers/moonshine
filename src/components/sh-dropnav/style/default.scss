@@ -39,12 +39,14 @@ sh-dropnav {
       background: $highlight-primary;
       max-height: 50vh;
       overflow-y: auto;
+
       @include box-shadow(1);
 
       a {
         display: flex;
         height: 3rem;
         padding: 0 1.5rem;
+
         &:hover {
           background: $accent-secondary;
         }

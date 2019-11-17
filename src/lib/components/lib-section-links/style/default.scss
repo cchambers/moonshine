@@ -1,15 +1,18 @@
 .lib-section-links {
   background: $highlight-secondary;
+
   .contain {
     display: flex;
     justify-content: flex-end;
   }
+
   a {
     color: $accent-primary;
     display: block;
     text-transform: capitalize;
     line-height: $rem;
     margin-left: $rem;
+
     &:hover {
       color: $accent-tertiary;
     }

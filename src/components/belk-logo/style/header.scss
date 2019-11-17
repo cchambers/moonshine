@@ -1,16 +1,14 @@
 belk-logo[variant="header"] {
-    .belk-logo {
-        width: 57px;
+  .belk-logo {
+    width: 57px;
 
-        // Media Queries
-        @media (min-width: 768px ) {
-            width: 72px;
-        }
-
-        @media (min-width: 960px ) {
-            width: 96px;
-        }
-
+    // Media Queries
+    @media (min-width: 768px) {
+      width: 72px;
     }
+
+    @media (min-width: 960px) {
+      width: 96px;
+    }
+  }
 }
-  

@@ -4,7 +4,6 @@ sh-accordion {
   display: block;
 
   .sh-accordion {
-
     button > div {
       display: flex;
       justify-content: space-between;
@@ -28,9 +27,16 @@ sh-accordion {
       text-align: left;
       color: $lowlight-secondary;
       border: 1px solid $lowlight-quaternary;
-      h1,h2,h3,h4,h5,h6 {
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
         margin: 0 !important;
       }
+
       &:hover {
         background: $accent-tertiary;
       }

@@ -37,6 +37,7 @@ a {
   .search-highlight {
     color: $accent-primary;
   }
+
   &:hover {
     .search-highlight {
       color: inherit;
