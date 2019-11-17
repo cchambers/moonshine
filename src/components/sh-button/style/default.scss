@@ -142,8 +142,8 @@ sh-button {
       &:hover,
       &.active {
         color: $lowlight-primary;
-        text-decoration-color: $lowlight-primary;
         text-decoration: none;
+        text-decoration-color: $lowlight-primary;
       }
     }
   }

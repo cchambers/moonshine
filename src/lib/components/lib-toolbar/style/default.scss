@@ -2,26 +2,25 @@
 $z-level: 8;
 
 lib-toolbar {
+  .control-wrap {
+    position: relative;
+    opacity: 0.2;
+    transition: all 400ms $ease;
+    transition-delay: 0.1s;
+
+    i {
+      font-size: 2rem !important;
+      margin: 0 !important;
+    }
+  }
+
   .control {
     position: absolute;
     right: 0;
     bottom: 0;
     display: flex;
     z-index: $z-level;
-  }
 
-  .component {
-    background: $highlight-primary;
-  }
-
-  .editor {
-    min-height: 10rem;
-    margin-top: 0.5rem;
-    width: 100% !important;
-  }
-
-
-  .control {
     sh-button {
       font-size: 0.6rem;
 
@@ -34,6 +33,16 @@ lib-toolbar {
         }
       }
     }
+  }
+
+  .component {
+    background: $highlight-primary;
+  }
+
+  .editor {
+    min-height: 10rem;
+    margin-top: 0.5rem;
+    width: 100% !important;
   }
 
   &[demo] {
@@ -76,6 +85,22 @@ lib-toolbar {
       flex-grow: 2;
     }
 
+    .editor {
+      display: none;
+    }
+
+    &.active {
+      background: $lowlight-secondary;
+
+      .component {
+        padding: 1rem;
+      }
+
+      .editor {
+        display: block;
+      }
+    }
+
     &.fullscreen {
       position: fixed;
       top: 9rem;
@@ -116,38 +141,10 @@ lib-toolbar {
         transition-delay: 0;
       }
     }
-
-    .editor {
-      display: none;
-    }
-
-    &.active {
-      background: $lowlight-secondary;
-
-      .component {
-        padding: 1rem;
-      }
-
-      .editor {
-        display: block;
-      }
-    }
   }
 
   .ace_content,
   .ace_editor {
     font-size: 16px !important;
-  }
-
-  .control-wrap {
-    position: relative;
-    opacity: 0.2;
-    transition: all 400ms $ease;
-    transition-delay: 0.1s;
-
-    i {
-      font-size: 2rem !important;
-      margin: 0 !important;
-    }
   }
 }

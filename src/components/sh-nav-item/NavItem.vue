@@ -372,5 +372,3 @@ export default {
 };
 </script>
 <style lang="scss" src="./style/default.scss"></style>
-<style lang="scss" src="./style/primary.scss"></style>
-<style lang="scss" src="./style/secondary.scss"></style>

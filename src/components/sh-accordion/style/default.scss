@@ -19,7 +19,6 @@ sh-accordion {
       display: block;
       width: 100%;
       outline: 0;
-      border: 0;
       cursor: pointer;
       background: $highlight-primary;
       transition: all 250ms $ease;
@@ -64,4 +63,3 @@ sh-accordion {
     }
   }
 }
-

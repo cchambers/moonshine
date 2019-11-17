@@ -1,4 +1,3 @@
-
 $highlight-primary: rgb(254, 254, 254);
 $highlight-secondary: rgb(245, 245, 245);
 $highlight-tertiary: rgb(220, 220, 220);
@@ -69,15 +68,13 @@ $mod-amounts: (
   "quad": #{$base*4}rem
 );
 
-
 $ease: cubic-bezier(0.4, 0, 0.2, 1);
 $decel: cubic-bezier(0, 0, 0.2, 1);
 $accel: cubic-bezier(0.4, 0, 1, 1);
 
 // Font Treatments
-
 @mixin header-primary() {
-  font-family: proxima-nova;
+  font-family: proxima-nova, sans-serif;
   font-weight: 800;
   font-style: normal;
 }

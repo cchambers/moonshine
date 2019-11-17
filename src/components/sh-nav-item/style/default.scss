@@ -22,6 +22,11 @@ sh-nav-item {
 
   .popper-target {
     border-bottom: none;
+    display: inline-flex;
+
+    button {
+      display: none;
+    }
 
     .reference {
       position: relative;
@@ -142,14 +147,6 @@ sh-nav-item {
     }
   }
 
-  .popper-target {
-    display: inline-flex;
-
-    button {
-      display: none;
-    }
-  }
-
   .popper-content {
     background: $highlight-primary;
     color: $lowlight-primary;
@@ -163,7 +160,6 @@ sh-nav-item {
       li {
         list-style: none;
         white-space: nowrap;
-
 
         a {
           display: block;

@@ -75,15 +75,12 @@ belk-mega-nav {
 
       > nav > ul {
         width: 100%;
+        flex-direction: row;
       }
 
       .popper-target > a {
         width: 100%;
       }
-    }
-
-    .belk-mega-nav > nav > ul {
-      flex-direction: row;
     }
   }
 }
