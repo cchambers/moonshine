@@ -5,11 +5,13 @@
     justify-content: space-between;
     flex-direction: column;
   }
+
   li {
     font-size: 1.4rem;
     overflow: hidden;
     margin-bottom: 1rem;
     border-bottom: 1px solid $highlight-tertiary;
+
     &:last-child {
       border-bottom: none;
     }
@@ -57,8 +59,9 @@
 
   .name > div {
     display: inline;
+
     &.title {
-      &:before {
+      &::before {
         content: ' ';
       }
     }

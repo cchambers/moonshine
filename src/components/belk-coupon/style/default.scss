@@ -2,9 +2,8 @@
 
 belk-coupon {
   display: inline-block;
+
   .belk-coupon {
-
-
     /** DELETE THIS EXAMPLE SECTION **/
     cursor: pointer;
     display: flex;
@@ -20,7 +19,7 @@ belk-coupon {
     &:hover {
       border: 1px solid $accent-primary;
     }
-    
+
     &.snap-state {
       color: transparent;
       background-image: url(../../../assets/img/snap.gif);
@@ -32,10 +31,7 @@ belk-coupon {
       background: $accent-primary;
       color: $highlight-primary;
     }
+
     /** END EXAMPLE SECTION **/
-
-
-    
-
   }
 }

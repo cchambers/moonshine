@@ -2,8 +2,8 @@
 
 component-template {
   display: inline-flex;
-  .component-template {
 
+  .component-template {
     /** DELETE THIS EXAMPLE SECTION **/
     cursor: pointer;
     display: flex;
@@ -19,7 +19,7 @@ component-template {
     &:hover {
       border: 1px solid $accent-primary;
     }
-    
+
     &.snap-state {
       color: transparent;
       background-size: contain;
@@ -32,7 +32,7 @@ component-template {
       background: $accent-primary;
       color: $highlight-primary;
     }
-    /** END EXAMPLE SECTION **/
 
+    /** END EXAMPLE SECTION **/
   }
 }

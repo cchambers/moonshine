@@ -288,10 +288,12 @@ export default {
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
     will-change: scroll-position;
+
     &[overlay] {
       &[overlay="none"] {
         background: transparent;
       }
+
       /* Generate background colors for every bg */
       @each $name, $hex in $colors {
         &[overlay="#{$name}"] {
@@ -299,7 +301,6 @@ export default {
         }
       }
     }
-
   }
 
   html {
@@ -307,15 +308,19 @@ export default {
       > * {
         overflow: hidden !important;
       }
+
       #close-modal {
         transform: translateZ(0);
       }
+
       #close-curtain {
         transform: translateY(-10rem) translateZ(0) !important;
       }
+
       #sh-modals {
         pointer-events: initial;
         opacity: 1;
+
         .sh-modal.active {
           transform: translateY(0);
           height: auto;

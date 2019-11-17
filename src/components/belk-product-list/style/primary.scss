@@ -1,18 +1,21 @@
 /* primary variant */
 
-belk-products[variant="primary"] { 
+belk-products[variant="primary"] {
   .belk-product-list {
     ul {
       justify-content: space-between;
     }
+
     li {
       font-size: 1.4rem;
       overflow: hidden;
       width: 10rem;
+
       a {
         color: $lowlight-primary;
       }
     }
+
     li > div {
       margin-bottom: 1rem;
     }

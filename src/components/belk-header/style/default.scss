@@ -31,9 +31,11 @@
     align-items: center;
     order: 3;
     font-size: 1.4rem;
+
     belk-icon[name="arrow-down"] {
       align-self: flex-end;
     }
+
     .iconbar-action {
       padding: 1rem;
       display: flex;
@@ -41,7 +43,7 @@
       cursor: pointer;
 
       &.coupon-action {
-        display:none;
+        display: none;
       }
 
       &:hover {
@@ -57,12 +59,13 @@
     .bag-total {
       display: none;
     }
+
     .greet {
       font-size: 1.2rem;
     }
   }
 
-  .primary, 
+  .primary,
   .secondary {
     .contain {
       display: flex;
@@ -85,6 +88,7 @@
       display: none;
       padding-left: 1rem;
     }
+
     .primary-promo {
       font-weight: bold;
     }
@@ -114,6 +118,7 @@
         text-transform: capitalize;
       }
     }
+
     sh-nav-item.account-action {
       #signin-link {
         belk-icon[name="person"] {
@@ -123,16 +128,17 @@
             max-width: 100%;
           }
         }
+
         belk-icon[name="arrow-down"] {
           display: none;
         }
       }
     }
+
     sh-nav-item.minibag-action .belk-icon {
       max-width: 2.2rem;
-      height: auto;  
+      height: auto;
     }
-    
   }
 
   .logo-link {
@@ -182,7 +188,7 @@
   }
 
   // Media Queries
-  @media (min-width: breakpoint("md") ) {
+  @media (min-width: breakpoint("md")) {
     border-bottom: 0;
 
     belk-logo {
@@ -190,7 +196,7 @@
       margin-right: 2rem;
     }
 
-    .primary, 
+    .primary,
     .secondary {
       .contain {
         justify-content: space-between;
@@ -199,9 +205,10 @@
 
     .primary {
       display: flex;
+
       .primary-utility {
         display: flex;
-        
+
         .store-locator {
           padding-right: 0;
           border-right: none;
@@ -209,20 +216,19 @@
           align-items: center;
 
           & + sh-nav-item {
-            margin-left: .8rem;
+            margin-left: 0.8rem;
           }
         }
 
         .sh-nav-item {
           display: none;
         }
-
       }
     }
 
     .iconbar .iconbar-action {
       &.coupon-action {
-        display:flex;
+        display: flex;
       }
     }
 
@@ -231,9 +237,9 @@
       display: flex;
       align-items: center;
 
-      sh-nav-item.minibag-action .belk-icon{
+      sh-nav-item.minibag-action .belk-icon {
         max-width: initial;
-        height: auto;  
+        height: auto;
       }
     }
 
@@ -244,7 +250,7 @@
         }
       }
     }
-    
+
     belk-search {
       margin: 0 auto;
     }
@@ -252,15 +258,15 @@
     sh-button.nav-trigger {
       max-width: 0;
     }
-    
   }
 
   @media (min-width: breakpoint("lg")) {
     .primary {
       display: flex;
+
       .primary-utility {
         display: flex;
-        
+
         .store-locator {
           padding-right: 1.6rem;
           border-right: 1px solid #979797;
@@ -270,22 +276,21 @@
           display: inline-block;
 
           a {
-            padding: .8rem;
+            padding: 0.8rem;
           }
         }
-
       }
     }
+
     .iconbar {
       .iconbar-context,
       .bag-total {
         display: block;
       }
     }
-  
   }
 
-  @media (min-width: breakpoint("xl") ) {
+  @media (min-width: breakpoint("xl")) {
     .contain {
       padding: 0 2rem;
     }
@@ -296,17 +301,16 @@
       }
     }
   }
-
 }
-
 
 //State Changes
 belk-header.search-active ~ .belk-header {
-  @media (max-width: breakpoint("md") ) {
+  @media (max-width: breakpoint("md")) {
     .primary {
       max-height: 0;
       overflow: hidden;
     }
+
     .secondary {
       .contain {
         belk-search {
@@ -316,8 +320,9 @@ belk-header.search-active ~ .belk-header {
             max-width: 0;
             overflow: hidden;
           }
+
           .search-results {
-            position:fixed;
+            position: fixed;
             top: 5.1rem;
             left: 0;
             right: 0;
@@ -325,6 +330,7 @@ belk-header.search-active ~ .belk-header {
             height: calc(100vh - 5.1rem);
           }
         }
+
         sh-button.close-search {
           max-width: initial;
         }

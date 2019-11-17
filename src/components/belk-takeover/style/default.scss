@@ -2,11 +2,13 @@
 
 belk-takeover {
   display: block;
+
   .belk-takeover {
     overflow: hidden;
     opacity: 0;
     max-height: 0;
     transition: opacity 1s $decel;
+
     &.active {
       max-height: 100vh;
       opacity: 1;
@@ -24,9 +26,11 @@ belk-takeover {
   height: 0;
   width: 0;
 }
+
 .takeover-anchor-left {
   transform: translateX(-100%);
 }
+
 .takeover-anchor-right {
   left: 100%;
 }
