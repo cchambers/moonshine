@@ -9,12 +9,14 @@
     <div class="content">
       <div class="tab-lock" v-on:focus="focusLast()" tabindex="0"></div>
       <div v-if="!hideHeader" class="header">
-        <div class="title">
-          <h3 v-if="header" :id="ariaHeaderID">
+        <div v-if="header" class="title">
+          <h3 :id="ariaHeaderID">
             <slot name="header">{{ header }}</slot>
           </h3>
         </div>
-        <div close-trigger v-hammer:tap="close">
+        <div close-trigger tabindex="0"
+        v-hammer:tap="close"
+        v-on:keyup.enter="close">
           <belk-icon :name="closeIcon" width="32"></belk-icon>
         </div>
       </div>
@@ -25,7 +27,7 @@
         </div>
 
       </div>
-      <div class="footer">
+      <div class="footer" v-if="footer">
         <slot name="footer">{{ footer }}</slot>
       </div>
       <div class="tab-lock" v-on:focus="focusFirst()" tabindex="0"></div>
@@ -112,13 +114,17 @@ export default {
 
   methods: {
     focusFirst() {
-      const el = this.$el.querySelectorAll('a, input, button, [tabindex]');
-      if (el) el[0].focus();
+      const { filter } = Array.prototype;
+      const els = this.$el.querySelectorAll('a, input, button, [tabindex], [close-trigger]');
+      const filtered = filter.call(els, (node) => !node.classList.contains('tab-lock'));
+      if (filtered) filtered[0].focus();
     },
 
     focusLast() {
-      const el = this.$el.querySelectorAll('a, input, button, [tabindex]');
-      if (el) el[el.length].focus();
+      const { filter } = Array.prototype;
+      const els = this.$el.querySelectorAll('a, input, button, [tabindex], [close-trigger]');
+      const filtered = filter.call(els, (node) => !node.classList.contains('tab-lock'));
+      if (filtered) filtered[filtered.length - 1].focus();
     },
 
     events() {
