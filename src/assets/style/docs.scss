@@ -512,10 +512,6 @@ a:hover {
       margin-bottom: 3rem;
     }
 
-    > pre[class*="language-"] {
-      margin-bottom: 0;
-    }
-
     > h2,
     > h3 {
       font-family: "Menlo", monospace;
@@ -572,6 +568,10 @@ a:hover {
         width: 10rem;
       }
 
+      td:nth-child(2) {
+        @include vartype;
+      }
+
       td:nth-child(1) {
         &::before,
         &::after {
@@ -590,10 +590,6 @@ a:hover {
             content: "] file_copy";
           }
         }
-      }
-
-      td:nth-child(2) {
-        @include vartype;
       }
     }
 

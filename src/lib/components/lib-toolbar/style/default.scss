@@ -2,6 +2,40 @@
 $z-level: 8;
 
 lib-toolbar {
+  .control {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    z-index: $z-level;
+  }
+
+  .component {
+    background: $highlight-primary;
+  }
+
+  .editor {
+    min-height: 10rem;
+    margin-top: 0.5rem;
+    width: 100% !important;
+  }
+
+
+  .control {
+    sh-button {
+      font-size: 0.6rem;
+
+      button {
+        background: $lowlight-tertiary;
+        font-size: 8px;
+
+        &:hover {
+          background: $accent-secondary;
+        }
+      }
+    }
+  }
+
   &[demo] {
     .lib-toolbar::before {
       @include fill;
@@ -114,40 +148,6 @@ lib-toolbar {
     i {
       font-size: 2rem !important;
       margin: 0 !important;
-    }
-  }
-
-  .control {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    display: flex;
-    z-index: $z-level;
-  }
-
-  .component {
-    background: $highlight-primary;
-  }
-
-  .editor {
-    min-height: 10rem;
-    margin-top: 0.5rem;
-    width: 100% !important;
-  }
-
-
-  .control {
-    sh-button {
-      font-size: 0.6rem;
-
-      button {
-        background: $lowlight-tertiary;
-        font-size: 8px;
-
-        &:hover {
-          background: $accent-secondary;
-        }
-      }
     }
   }
 }

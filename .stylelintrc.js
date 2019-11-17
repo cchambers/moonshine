@@ -1,4 +1,3 @@
-
 module.exports = {
   extends: 'stylelint-config-recommended',
   rules: {
@@ -11,6 +10,7 @@ module.exports = {
     }],
     'at-rule-name-case': 'lower',
     'at-rule-name-space-after': 'always-single-line',
+    'at-rule-no-unknown': 'never',
     'at-rule-semicolon-newline-after': 'always',
     'block-closing-brace-empty-line-before': 'never',
     'block-closing-brace-newline-after': 'always',
@@ -99,6 +99,9 @@ module.exports = {
     'selector-pseudo-element-case': 'lower',
     'selector-pseudo-element-colon-notation': 'double',
     'selector-type-case': 'lower',
+    'selector-type-no-unknown': ['always', {
+      ignore: ['custom-elements'],
+    }],
     'unit-case': 'lower',
     'value-list-comma-newline-after': 'always-multi-line',
     'value-list-comma-space-after': 'always-single-line',
