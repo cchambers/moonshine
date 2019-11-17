@@ -24,17 +24,19 @@ lib-nav {
   ul {
     list-style: none;
     padding: 0;
-    margin: 0;
+    margin: 0 !important;
   }
 
   .go-back {
     display: flex;
     justify-content: flex-start;
-    padding: $rem;
+    align-items: center;
+    padding: 0 $rem;
     transition: all 100ms linear;
     cursor: pointer;
     background: $accent-primary;
     top: 0;
+    height: 9rem;
 
     &:hover {
       background: $accent-primary;
