@@ -31,7 +31,7 @@
   }
 
   &.active {
-    transform: translateX(0) translateY(0) translateZ(0);
+    transform: translateX(0) translateY(0) translateZ(0) scale(1);
     opacity: 1;
   }
 
@@ -100,14 +100,12 @@
   }
 
   &[reveal='zoom'] {
-    transform: scale(0.7) translateY(-20%);
-    opacity: 0;
+    transform: scale(0.7) rotateX(-60deg) translateY(20%);
   }
 
   &.fullscreen {
     .content {
       $fullscreenMargin: 1.5rem;
-
       width: 100vw;
       max-width: initial;
       min-height: 100vh;

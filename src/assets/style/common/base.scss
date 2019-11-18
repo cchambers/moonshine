@@ -1776,3 +1776,7 @@ ol.lower-alpha {
   transition: none;
   display: none !important;
 }
+
+[interaction='keyboard'] *:focus {
+  outline: 1px solid $accent-primary;
+}

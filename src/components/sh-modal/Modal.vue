@@ -298,6 +298,9 @@ export default {
     &[overlay] {
       &[overlay="none"] {
         background: transparent;
+        .content {
+          @include box-shadow(2);
+        }
       }
 
       /* Generate background colors for every bg */
