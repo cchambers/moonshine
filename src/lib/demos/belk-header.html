@@ -52,15 +52,6 @@
       <div class="secondary">
         <div class="contain">
 
-          <belk-search vce-cloak></belk-search>
-
-          <sh-modal unique-id="search-modal">
-            <belk-search vce-cloak variant="mobile"></belk-search>
-            <sh-button class="close-search" click-event="close-search" close-trigger>
-              Cancel
-            </sh-button>
-          </sh-modal>
-
           <sh-button class="nav-trigger" v-hammer:tap="menuHandler">
             <belk-icon width="30" name="menu"></belk-icon>
           </sh-button>
@@ -68,6 +59,17 @@
           <a class="logo-link" href="#">
             <belk-logo class="logo" variant="header" width="96"></belk-logo>
           </a>
+
+          <belk-search vce-cloak></belk-search>
+
+          <sh-modal unique-id="search-modal" variant="secondary" fullscreen hide-header>
+            <div class="flex sticky cross-middle">
+                <belk-search vce-cloak variant="mobile" class="flex-item double"></belk-search>
+                <sh-button class="close-search" click-event="close-search" close-trigger>
+                  Cancel
+                </sh-button>
+            </div>
+          </sh-modal>
 
           <div class="iconbar">
 
