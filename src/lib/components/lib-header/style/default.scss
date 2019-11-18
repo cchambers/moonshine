@@ -7,7 +7,6 @@ lib-header {
 
   .logo {
     color: $highlight-primary;
-    font-weight: bold;
     font-size: 3rem;
     font-family: "Menlo", monospace;
     font-weight: 100;
@@ -29,6 +28,7 @@ lib-header {
       transform: translateZ(0) translateY(35%);
       opacity: 1;
     }
+
     @media screen and (min-width: $break-xl) {
       margin-right: 0;
     }

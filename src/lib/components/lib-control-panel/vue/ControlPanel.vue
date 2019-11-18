@@ -25,27 +25,33 @@ html {
     .show-nav {
       transform: translateX(30rem) translateZ(0) !important;
     }
+
     .close-curtain {
       transform: translateY(0) translateZ(0) !important;
     }
+
     #page {
       transform: translateX(15rem) translateZ(0) !important;
       transition: transform 300ms $ease;
     }
+
     lib-nav {
       transform: translateX(0) translateZ(0) !important;
       transition: transform 300ms $ease;
     }
+
     sh-curtain {
       opacity: 1;
       transform: translateY(0%);
     }
   }
+
   &.sh-modal-open {
     .close-modal {
-      transform: translateX(0rem) translateZ(0) !important;
+      transform: translateX(0) translateZ(0) !important;
       opacity: 1;
     }
+
     .show-nav {
       transform: translateX(30rem) translateZ(0) !important;
     }

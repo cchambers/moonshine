@@ -1,15 +1,15 @@
-
-
-@function is-list($var){
+@function is-list($var) {
   @return type-of($var) == 'list';
 }
 
 @each $name, $hex in $colors {
   $var: map-get($colors, $name);
+
   .#{$name} {
     color: $var;
     color: var(--#{$name});
   }
+
   .back-#{$name} {
     background-color: $var;
     background-color: var(--#{$name});
@@ -20,6 +20,7 @@
   .#{$name} {
     #{$mod}: #{$rem};
   }
+
   @each $edge, $actual in $edges {
     @if is-list($actual) {
       .#{$name}-#{$edge} {
@@ -27,7 +28,9 @@
           #{$mod}-#{$side}: #{$rem};
         }
       }
-    } @else {
+    }
+
+    @else {
       .#{$name}-#{$edge} {
         #{$mod}-#{$actual}: #{$rem};
       }
@@ -44,7 +47,9 @@
         .#{$l}-only {
           display: initial;
         }
-      } @else {
+      }
+
+      @else {
         .#{$l}-only {
           display: none;
         }
@@ -52,4 +57,3 @@
     }
   }
 }
-

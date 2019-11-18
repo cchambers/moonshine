@@ -1,5 +1,3 @@
-let prompt = require('prompt');
-
 /**
  * The sass-loader makes node-sass available to webpack modules.
  *

@@ -14,6 +14,7 @@
   flex-direction: column;
 
   .content {
+    position: relative;
     background: $highlight-primary;
     pointer-events: all;
     height: 100%;
@@ -26,19 +27,25 @@
   }
 
   .body {
-    padding: 2rem;
+    padding: 3rem 2rem;
   }
 
   &.active {
-    transform: translateX(0) translateY(0) translateZ(0);
+    transform: translateX(0) translateY(0) translateZ(0) scale(1);
     opacity: 1;
   }
 
   .header {
     display: flex;
     justify-content: space-between;
-    height: 3rem;
-    div, h3 {
+    height: 0;
+
+    .title {
+      height: 3rem;
+    }
+
+    div,
+    h3 {
       display: flex;
       align-items: center;
     }
@@ -54,7 +61,6 @@
     margin-top: 0;
   }
 
-
   [close-trigger] {
     cursor: pointer;
   }
@@ -63,10 +69,15 @@
     display: flex;
     height: 5rem;
     width: 5rem;
+    position: sticky;
+    top: 0;
+    left: 100%;
     align-content: center;
     justify-content: center;
     opacity: 0.7;
     transition: opacity 250ms $ease;
+    background: rgba(255,255,255,0.5);
+
     &:hover {
       opacity: 1;
     }
@@ -88,6 +99,25 @@
     transform: translateY(200%);
   }
 
+  &[reveal='zoom'] {
+    transform: scale(0.7) rotateX(-60deg) translateY(20%);
+  }
+
+  &.fullscreen {
+    .content {
+      $fullscreenMargin: 1.5rem;
+      width: 100vw;
+      max-width: initial;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    .body {
+      width: 100%;
+      max-width: 102rem;
+      margin: 0 auto;
+    }
+  }
 
   .loading-anim {
     height: 30rem;
@@ -97,59 +127,59 @@
       height: 9%;
       margin-top: 1%;
       background: $lowlight-primary;
-      opacity: .05;
+      opacity: 0.05;
       animation: loading 500ms infinite alternate backwards $ease;
       transform: translateZ(0);
     }
 
     .bar:nth-child(1) {
       -webkit-animation-delay: 100ms;
-      animation-delay: 100ms
+      animation-delay: 100ms;
     }
 
     .bar:nth-child(2) {
       -webkit-animation-delay: 200ms;
-      animation-delay: 200ms
+      animation-delay: 200ms;
     }
 
     .bar:nth-child(3) {
       -webkit-animation-delay: 300ms;
-      animation-delay: 300ms
+      animation-delay: 300ms;
     }
 
     .bar:nth-child(4) {
       -webkit-animation-delay: 400ms;
-      animation-delay: 400ms
+      animation-delay: 400ms;
     }
 
     .bar:nth-child(5) {
       -webkit-animation-delay: 500ms;
-      animation-delay: 500ms
+      animation-delay: 500ms;
     }
 
     .bar:nth-child(6) {
       -webkit-animation-delay: 600ms;
-      animation-delay: 600ms
+      animation-delay: 600ms;
     }
 
     .bar:nth-child(7) {
       -webkit-animation-delay: 700ms;
-      animation-delay: 700ms
+      animation-delay: 700ms;
     }
 
     .bar:nth-child(8) {
       -webkit-animation-delay: 800ms;
-      animation-delay: 800ms
+      animation-delay: 800ms;
     }
 
     .bar:nth-child(9) {
       -webkit-animation-delay: 900ms;
-      animation-delay: 900ms
+      animation-delay: 900ms;
     }
 
     .bar:nth-child(10) {
       -webkit-animation-delay: 1000ms;
-      animation-delay: 1000ms
+      animation-delay: 1000ms;
     }
 
     @keyframes loading {
@@ -158,7 +188,7 @@
       }
 
       100% {
-        opacity: .05;
+        opacity: 0.05;
       }
     }
   }

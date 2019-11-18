@@ -2,7 +2,7 @@ sh-button {
   display: inline-flex;
   font-size: 1rem;
 
-  &~sh-button {
+  & ~ sh-button {
     margin-left: 1.5em;
   }
 
@@ -33,6 +33,8 @@ sh-button {
     font-size: 1em;
     cursor: pointer;
     overflow: hidden;
+    background-color: transparent;
+
     span,
     i {
       position: relative;
@@ -65,7 +67,6 @@ sh-button {
       &:last-of-type {
         margin-left: 0.5em;
       }
-
     }
 
     &.min {
@@ -120,6 +121,7 @@ sh-button {
     border-style: solid;
     border-color: inherit;
     color: $lowlight-primary;
+
     &:hover {
       color: $highlight-primary;
     }
@@ -131,15 +133,17 @@ sh-button {
 
   &:not([variant]) {
     background-color: transparent;
+
     span {
       text-decoration: underline;
     }
+
     button {
       &:hover,
       &.active {
         color: $lowlight-primary;
-        text-decoration-color: $lowlight-primary;
         text-decoration: none;
+        text-decoration-color: $lowlight-primary;
       }
     }
   }

@@ -2,10 +2,9 @@
 
 sh-tag-list {
   display: inline-block;
+
   .sh-tag-list {
-
-
-    /** DELETE THIS SECTION**/
+    /** DELETE THIS SECTION **/
     cursor: pointer;
     display: flex;
     flex-direction: column;
@@ -20,14 +19,13 @@ sh-tag-list {
     &:hover {
       border: 1px solid purple;
     }
-    
+
     &.snap-state {
       color: transparent;
       background-image: url(../../../assets/img/snap.gif);
       border: 1px solid purple;
     }
+
     /** END DELETE SECTION **/
-
-
   }
 }

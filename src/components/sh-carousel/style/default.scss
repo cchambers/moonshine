@@ -2,9 +2,8 @@
 
 sh-carousel {
   display: inline-block;
+
   .sh-carousel {
-
-
     /** DELETE THIS EXAMPLE SECTION **/
     cursor: pointer;
     display: flex;
@@ -20,14 +19,11 @@ sh-carousel {
     &:hover {
       border: 1px solid $accent-primary;
     }
-    
+
     &.snap-state {
       color: transparent;
       background-image: url(../../../assets/img/snap.gif);
       border: 1px solid $accent-primary;
     }
-
-    
-
   }
 }

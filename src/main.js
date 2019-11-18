@@ -42,6 +42,7 @@ if (process.env.NODE_ENV !== 'production')  {
     require('./lib/components/lib-control-panel');
     require('./lib/components/lib-nav');
     require('./lib/components/lib-header');
+    require('./lib/components/lib-icons');
     require('./lib/components/lib-content');
     require('./lib/components/lib-section-links');
     require('./lib/components/lib-notify');

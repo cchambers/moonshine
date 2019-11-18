@@ -1,11 +1,11 @@
 belk-takeover[variant="demo"] {
-
   .takeover {
     max-height: 0;
     overflow: hidden;
     opacity: 0;
     transition: opacity 250ms ease-in;
   }
+
   .takeover.active {
     max-height: 600px;
     opacity: 1;
@@ -20,11 +20,11 @@ belk-takeover[variant="demo"] {
     background: rgba(0, 0, 255, 0.05);
   }
 
-  .top:before,
-  .top:after,
-  .pres:before,
-  .pres:after,
-  .popper:before {
+  .top::before,
+  .top::after,
+  .pres::before,
+  .pres::after,
+  .popper::before {
     position: absolute;
     content: "";
     display: block;
@@ -34,14 +34,14 @@ belk-takeover[variant="demo"] {
     top: 0;
   }
 
-  .top:after,
-  .pres:after {
+  .top::after,
+  .pres::after {
     left: auto;
     right: 0;
   }
 
-  .pres:before,
-  .pres:after {
+  .pres::before,
+  .pres::after {
     top: auto;
     bottom: 0;
   }
@@ -79,7 +79,8 @@ belk-takeover[variant="demo"] {
     border-right: 1px solid red;
     background: rgba(255, 0, 0, 0.05);
   }
-  .demo-one:before {
+
+  .demo-one::before {
     background: red;
     right: 0;
   }
@@ -89,9 +90,9 @@ belk-takeover[variant="demo"] {
     border-left: 1px solid green;
     background: rgba(0, 255, 0, 0.05);
   }
-  .demo-two:before {
+
+  .demo-two::before {
     background: green;
     left: 0;
   }
-
 }
