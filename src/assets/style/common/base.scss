@@ -284,6 +284,11 @@ ol.lower-alpha {
   position: relative;
 }
 
+.sticky {
+  position: sticky;
+  top: 0;
+}
+
 .fixed {
   display: block;
   position: fixed;
