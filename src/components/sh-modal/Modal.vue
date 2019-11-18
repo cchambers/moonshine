@@ -304,6 +304,7 @@ export default {
     &[overlay] {
       &[overlay="none"] {
         background: transparent;
+
         .content {
           @include box-shadow(2);
         }
