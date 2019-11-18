@@ -61,6 +61,7 @@ export default {
     fullscreen: Boolean,
     openTriggerEvent: String,
     closeTriggerEvent: String,
+    focusTarget: String,
     header: String,
     footer: String,
     reveal: String,
@@ -170,6 +171,11 @@ export default {
         self.active = true;
         self.$el.focus();
         self.$bus.$emit('modal-opened', self.uniqueId);
+      }
+
+      if (self.focusTarget) {
+        const target = self.$el.querySelector(self.focusTarget);
+        if (target) target.focus();
       }
     },
 
