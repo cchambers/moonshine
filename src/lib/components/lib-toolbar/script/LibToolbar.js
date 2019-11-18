@@ -88,6 +88,17 @@ export default {
       this.html = code;
     },
 
+    copyEditor() {
+      const copyTextarea = document.querySelector('#copy-editor');
+      copyTextarea.value = this.editor.getValue();
+      copyTextarea.select();
+      document.execCommand('copy');
+      this.$bus.$emit('notify', {
+        type: 'default',
+        message: 'Copied to clipboard.',
+      });
+    },
+
     toggleActive() {
       this.active = !this.active;
     },

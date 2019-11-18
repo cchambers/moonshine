@@ -3,6 +3,7 @@
 sh-tabs {
   display: inline-block;
 }
+
 .sh-tabs {
   cursor: pointer;
   display: flex;
@@ -14,9 +15,11 @@ sh-tabs {
   background-size: cover;
   border: 1px solid transparent;
   transition: all 200ms linear;
+
   &:hover {
     border: 1px solid purple;
   }
+
   &.snap-state {
     color: transparent;
     background-image: url(../../../assets/img/snap.gif);

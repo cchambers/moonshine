@@ -67,13 +67,21 @@ if (process.env.NODE_ENV !== 'production') {
   glob.sync('./src/components/**/docs/*.html').forEach((dir) => {
     const component = dir.split('/')[3];
     let filename = dir.split('/');
+    let schemaDir = dir.replace(/(docs\/)([a-zA-Z0-9\s_\\.\-():])+(.html)$/, '');
+    schemaDir = `${schemaDir}schema.json`;
     filename = filename[filename.length - 1];
     const name = component + filename;
     const content = fs.readFileSync(dir, 'utf8');
+    let schema = fs.readFileSync(schemaDir, 'utf8');
+    schema = JSON.parse(schema);
 
     pages[name] = {
       entry: 'src/main.js',
       template: 'src/lib/docs-component.html',
+      title: schema.name || 'configure schema.json',
+      description: schema.description || {},
+      tags: schema.tags || {},
+      reqs: schema.reqs || {},
       content,
       nav,
       footer,
@@ -116,6 +124,7 @@ if (process.env.NODE_ENV !== 'production') {
 module.exports = {
   runtimeCompiler: false,
   filenameHashing: false,
+
   // transpileDependencies: ['vue2-hammer', 'vue-custom-element'],
 
   css: {
@@ -157,4 +166,8 @@ module.exports = {
 
   pages,
 
+  pluginOptions: {
+    lintStyleOnBuild: false,
+    stylelint: {},
+  },
 };

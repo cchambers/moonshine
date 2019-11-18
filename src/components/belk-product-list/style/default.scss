@@ -17,17 +17,18 @@ belk-product-list {
 
     img {
       max-width: 100%;
-      height: auto
+      height: auto;
     }
-  
+
     .image {
       display: flex;
       align-content: center;
     }
 
-    @media screen and ( min-width: breakpoint("lg") ) {
+    @media screen and (min-width: breakpoint("lg")) {
       //
     }
+
     /** END EXAMPLE SECTION **/
   }
 }

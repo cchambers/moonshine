@@ -13,9 +13,10 @@ lib-nav {
   z-index: 9;
   -webkit-overflow-scrolling: touch;
   will-change: scroll-position;
- 
+
   nav {
     display: flex;
+
     a {
       color: $highlight-primary;
     }
@@ -24,17 +25,19 @@ lib-nav {
   ul {
     list-style: none;
     padding: 0;
-    margin: 0;
+    margin: 0 !important;
   }
 
   .go-back {
     display: flex;
     justify-content: flex-start;
-    padding: $rem;
+    align-items: center;
+    padding: 0 $rem;
     transition: all 100ms linear;
     cursor: pointer;
     background: $accent-primary;
     top: 0;
+    height: 9rem;
 
     &:hover {
       background: $accent-primary;
@@ -65,7 +68,7 @@ lib-nav {
         z-index: 2;
       }
 
-      &:before {
+      &::before {
         display: block;
         content: '';
         position: absolute;
@@ -80,7 +83,7 @@ lib-nav {
 
   .secondary {
     position: relative;
-    background: rgba(0,0,0,.75);
+
     #nav-search-results {
       // column-count: 3;
       // column-rule: 1px solid $highlight-primary;
@@ -101,6 +104,7 @@ lib-nav {
 
       @media (max-width: $libBreak) {
         flex-wrap: nowrap;
+
         @include scroll-y;
       }
 
@@ -110,7 +114,7 @@ lib-nav {
     }
   }
 
-  .secondary>div {
+  .secondary > div {
     width: calc(100vw - 26rem);
     position: relative;
     font-size: 1.8rem;
@@ -127,12 +131,12 @@ lib-nav {
       line-height: $rem;
 
       &:hover {
-        color: $accent-secondary;
-        background: rgba(255, 255, 255, 0.02)
+        color: $accent-tertiary;
+        background: rgba(255, 255, 255, 0.02);
       }
     }
 
-    >div {
+    > div {
       // lol, will fix
       display: flex;
       flex-direction: row;
@@ -165,7 +169,7 @@ lib-nav {
     }
 
     ul {
-      &:before {
+      &::before {
         display: block;
         content: attr(category);
         font-family: "Menlo", monospace;
@@ -205,7 +209,7 @@ lib-nav {
   a[note] {
     display: flex !important;
 
-    &:after {
+    &::after {
       content: "("attr(note) ")";
       display: inline-block;
       font-size: 1.4rem;
@@ -218,7 +222,6 @@ lib-nav {
     opacity: 0.2;
     pointer-events: none;
   }
-
 
   #nav-search {
     position: absolute;
