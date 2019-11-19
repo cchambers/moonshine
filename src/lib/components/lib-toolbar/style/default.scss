@@ -7,7 +7,9 @@ lib-toolbar {
     opacity: 0.2;
     transition: all 400ms $ease;
     transition-delay: 0.1s;
-
+    bottom: -2rem;
+    right: 3rem;
+    z-index: 2;
     i {
       font-size: 2rem !important;
       margin: 0 !important;
@@ -74,7 +76,7 @@ lib-toolbar {
     display: flex;
     flex-direction: column;
     padding: 0.5rem;
-    margin: 0 -0.5rem;
+    margin: 0 -0.5rem 3rem -0.5rem;
     border: 1px solid transparent;
     border-radius: 0 0 1rem 1rem;
     background: transparent;
@@ -98,6 +100,11 @@ lib-toolbar {
 
       .editor {
         display: block;
+      }
+      
+      .control-wrap {
+        bottom: -3rem;
+        opacity: 1;
       }
     }
 

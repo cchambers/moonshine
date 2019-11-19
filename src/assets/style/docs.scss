@@ -8,7 +8,6 @@
     "Menlo",
     monospace;
   color: $accent-primary;
-  text-transform: capitalize;
   text-align: center;
   font-size: 1.4rem;
 }
@@ -568,6 +567,7 @@ a:hover {
 
       td:nth-child(2) {
         @include vartype;
+        text-transform: capitalize;
       }
 
       td:nth-child(1) {
