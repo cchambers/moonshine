@@ -4,10 +4,16 @@ sh-accordion {
   display: block;
 
   .sh-accordion {
+    border: 1px solid $lowlight-quinary;
     button > div {
       display: flex;
       justify-content: space-between;
       align-items: center;
+    }
+
+    button {
+      outline: none;
+      border: none;
     }
 
     .header,
@@ -20,12 +26,11 @@ sh-accordion {
       width: 100%;
       outline: 0;
       cursor: pointer;
+      color: $accent-primary;
       background: $highlight-primary;
       transition: all 250ms $ease;
       font-size: 1.6rem;
       text-align: left;
-      color: $lowlight-secondary;
-      border: 1px solid $lowlight-quaternary;
 
       h1,
       h2,
@@ -41,10 +46,6 @@ sh-accordion {
       }
     }
 
-    .body {
-      border: 1px solid transparent;
-    }
-
     .collapse {
       max-height: 0;
       overflow: hidden;
@@ -52,14 +53,19 @@ sh-accordion {
     }
 
     &.active {
-      .body {
-        border-color: $lowlight-quaternary;
+      .header {
+        border-bottom: 1px solid $lowlight-quinary;
       }
-
       .collapse {
         max-height: 200vh;
         transition: all 250ms $ease;
       }
+    }
+  }
+
+  &+sh-accordion {
+    .sh-accordion {
+      border-top: none;
     }
   }
 }

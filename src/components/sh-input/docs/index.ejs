@@ -1,10 +1,14 @@
-<div class="documentation">
-  <h1>header</h1>
+<%- htmlWebpackPlugin.options.docsHead %>
+
+<title><%= htmlWebpackPlugin.options.title %></title>
+
+<div class="documentation contain">
+  <h1>Input</h1>
   <section id="usage">
     <h2>Usage</h2>
     <pre>
       <code class="language-html">
-          &lt;sh-header id="header"&gt;shine&lt;/sh-header&gt;
+          &lt;sh-input&gt;&lt;/sh-input&gt;
       </code>
     </pre>
 
@@ -12,9 +16,8 @@
 
   <section id="reference" class="baseline30">
     <h2>Reference</h2>
-
     <h3 id="attributes">Attributes</h3>
-
+    
     <table class="attributes">
       <thead>
         <tr>
@@ -25,9 +28,9 @@
       </thead>
       <tbody>
         <tr>
-          <td>nav</td>
+          <td>hidden</td>
           <td>Boolean</td>
-          <td>Turn on/off the mobile nav button.</td>
+          <td>Hide from view.</td>
         </tr>
       </tbody>
     </table>
@@ -43,21 +46,9 @@
       </thead>
       <tbody>
         <tr>
-          <td>pre</td>
+          <td>default</td>
           <td>
-            HTML content that comes before the logo.
-          </td>
-        </tr>
-        <tr>
-          <td>logo-url</td>
-          <td>
-            Image tag for logo.
-          </td>
-        </tr>
-        <tr>
-          <td>post</td>
-          <td>
-            HTML content that comes after the logo.
+            Text content.
           </td>
         </tr>
       </tbody>
@@ -75,7 +66,7 @@
       </thead>
       <tbody>
         <tr>
-          <td>openNav</td>
+          <td>snap</td>
           <td>
             <ul>
               <li>
@@ -84,7 +75,7 @@
             </ul>
           </td>
           <td>
-            Open the header navigation.
+            Perform snap animation and halve text.
           </td>
         </tr>
       </tbody>
@@ -102,12 +93,12 @@
       </thead>
       <tbody>
         <tr>
-          <td>logo-clicked</td>
+          <td>event-name</td>
           <td>
-            String
+            Type
           </td>
           <td>
-            Fires when the logo is clicked.
+            Fires when something happens.
           </td>
         </tr>
       </tbody>
@@ -116,61 +107,17 @@
 
   <section id="examples">
     <h2>Examples</h2>
-
     <h3>Default</h3>
     <lib-toolbar>
-      <sh-header>words</sh-header>
+      <sh-input label="Label Example" default-value="default value"></sh-input>
     </lib-toolbar>
-
-    <h3>variant="dark"</h3>
-    <sh-header variant="dark">words</sh-header>
-    <pre>
-      <code class="language-html">
-        &lt;sh-header id="header" variant="dark"&gt;words&lt;/sh-header&gt;
-      </code>
-    </pre>
-
-    <h3>variant="secondary"</h3>
-    <sh-header variant="secondary">words</sh-header>
-    <pre>
-      <code class="language-html">
-        &lt;sh-header id="header" variant="secondary"&gt;words&lt;/sh-header&gt;
-      </code>
-    </pre>
-
   </section>
 
   <section id="changelog">
     <h2>Changelog</h2>
     <dl>
       <dt>1.0.0</dt>
-      <dd>Component was created.</dd>
-      <dt>1.0.1</dt>
-      <dd>Hotfix created for some issue.</dd>
-      <dt>1.2.0</dt>
-      <dd>
-        Minor style or functionality was added or updated.
-        <ul>
-          <li>
-            Change information...
-          </li>
-          <li>
-            Change information...
-          </li>
-        </ul>
-      </dd>
-      <dt>2.0.0</dt>
-      <dd>
-        Major change. Anyone using this component may need to update their code.
-        <ul>
-          <li>
-            Change information...
-          </li>
-          <li>
-            Change information...
-          </li>
-        </ul>
-      </dd>
+      <dd>Input was created.</dd>
     </dl>
   </section>
 </div>

@@ -8,7 +8,6 @@
     "Menlo",
     monospace;
   color: $accent-primary;
-  text-transform: capitalize;
   text-align: center;
   font-size: 1.4rem;
 }
@@ -555,6 +554,7 @@ a:hover {
 
     td:nth-child(1) {
       cursor: pointer;
+      white-space: pre;
     }
 
     &.attributes {
@@ -568,6 +568,7 @@ a:hover {
 
       td:nth-child(2) {
         @include vartype;
+        text-transform: capitalize;
       }
 
       td:nth-child(1) {
@@ -997,7 +998,7 @@ html.iOS {
 
   main > footer {
     display: block;
-    color: $lowlight-tertiary;
+    color: $accent-primary;
     background: $lowlight-secondary;
   }
 }

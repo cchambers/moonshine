@@ -24,7 +24,9 @@
           variant="primary"
           scale="60"
           v-hammer:tap="toggleActive"
-          v-on:keyup.enter="toggleActive">toggle code</sh-button>
+          v-on:keyup.enter="toggleActive">
+          <i class="material-icons px20">code</i>
+        </sh-button>
       </div>
     </div>
     <div class="editor" ref="editor"></div>
