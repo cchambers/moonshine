@@ -554,6 +554,7 @@ a:hover {
 
     td:nth-child(1) {
       cursor: pointer;
+      white-space: pre;
     }
 
     &.attributes {
@@ -997,7 +998,7 @@ html.iOS {
 
   main > footer {
     display: block;
-    color: $lowlight-tertiary;
+    color: $accent-primary;
     background: $lowlight-secondary;
   }
 }

@@ -5,6 +5,7 @@ const branch = require('git-branch');
 const fullName = require('fullname');
 const WrapperPlugin = require('wrapper-webpack-plugin');
 const dateFormat = require('dateformat');
+const ejs = require('ejs');
 
 const themeLoader = path.resolve('theme-loader.js');
 
@@ -37,17 +38,19 @@ if (branchActual === 'master') {
     minimize: true,
   };
 }
-const docsHead = fs.readFileSync('./src/lib/incl-head.html', 'utf8');
+
+const headTemplate = fs.readFileSync('./src/lib/incl-head.ejs', 'utf8');
+const docsHead = ejs.render(headTemplate, {
+  dirname: __dirname,
+});
 const docsFoot = fs.readFileSync('./src/lib/incl-foot.html', 'utf8');
-const nav = fs.readFileSync('./src/lib/incl-nav.html', 'utf8');
-const footer = fs.readFileSync('./src/lib/incl-footer.html', 'utf8');
+const nav = fs.readFileSync('./src/lib/incl-nav.ejs', 'utf8');
 
 const pages = {
   index: {
     entry: 'src/main.js',
     nav,
-    footer,
-    template: 'src/lib/docs-index.html',
+    template: 'src/lib/docs-index.ejs',
   },
 };
 
@@ -74,7 +77,6 @@ if (process.env.NODE_ENV !== 'production') {
       filename = filename[filename.length - 1];
       const name = `${component}/${filename}`;
       let schema = fs.readFileSync(schemaDir, 'utf8');
-      
       const url = `components/${component}/${filename.split('.')[0]}.html`;
       schema = JSON.parse(schema);
       pages[name] = {
@@ -102,7 +104,6 @@ if (process.env.NODE_ENV !== 'production') {
         template: 'src/lib/docs-component.html',
         content,
         nav,
-        footer,
         filename: `utilities/${name}/index.html`,
       };
     });
@@ -112,12 +113,10 @@ if (process.env.NODE_ENV !== 'production') {
       let filename = dir.split('/');
       filename = filename[filename.length - 1];
       const name = filename.split('.')[0];
-      const content = fs.readFileSync(dir, 'utf8');
 
       pages[name] = {
         entry: 'src/main.js',
-        template: 'src/lib/docs-demonstration.html',
-        content,
+        template: dir,
         filename: `demo/${name}/index.html`,
       };
     });
