@@ -71,10 +71,3 @@ $mod-amounts: (
 $ease: cubic-bezier(0.4, 0, 0.2, 1);
 $decel: cubic-bezier(0, 0, 0.2, 1);
 $accel: cubic-bezier(0.4, 0, 1, 1);
-
-// Font Treatments
-@mixin header-primary() {
-  font-family: proxima-nova, sans-serif;
-  font-weight: 800;
-  font-style: normal;
-}

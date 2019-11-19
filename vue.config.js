@@ -43,7 +43,7 @@ const headTemplate = fs.readFileSync('./src/lib/incl-head.ejs', 'utf8');
 const docsHead = ejs.render(headTemplate, {
   dirname: __dirname,
 });
-const docsFoot = fs.readFileSync('./src/lib/incl-foot.html', 'utf8');
+const docsFoot = fs.readFileSync('./src/lib/incl-foot.ejs', 'utf8');
 const nav = fs.readFileSync('./src/lib/incl-nav.ejs', 'utf8');
 
 const pages = {
@@ -92,18 +92,18 @@ if (process.env.NODE_ENV !== 'production') {
       };
     });
 
-  glob.sync('src/lib/utilities/*.html')
+  glob.sync('src/lib/utilities/*.ejs')
     .forEach((dir) => {
       let filename = dir.split('/');
       filename = filename[filename.length - 1];
       const name = filename.split('.')[0];
-      const content = fs.readFileSync(dir, 'utf8');
 
       pages[name] = {
         entry: 'src/main.js',
-        template: 'src/lib/docs-component.html',
-        content,
-        nav,
+        template: dir,
+        docsHead,
+        title: 'Shine Utility',
+        docsFoot,
         filename: `utilities/${name}/index.html`,
       };
     });
