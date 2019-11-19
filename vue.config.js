@@ -37,7 +37,8 @@ if (branchActual === 'master') {
     minimize: true,
   };
 }
-
+const docsHead = fs.readFileSync('./src/lib/incl-head.html', 'utf8');
+const docsFoot = fs.readFileSync('./src/lib/incl-foot.html', 'utf8');
 const nav = fs.readFileSync('./src/lib/incl-nav.html', 'utf8');
 const footer = fs.readFileSync('./src/lib/incl-footer.html', 'utf8');
 
@@ -51,73 +52,74 @@ const pages = {
 };
 
 if (process.env.NODE_ENV !== 'production') {
-  glob.sync('./src/components/**/docs/data/*.html').forEach((dir) => {
-    const component = dir.split('/')[3];
-    let filename = dir.split('/');
-    filename = filename[filename.length - 1];
-    const name = component + filename;
+  glob.sync('src/components/**/docs/data/*.html')
+    .forEach((dir) => {
+      const component = dir.split('/')[3];
+      let filename = dir.split('/');
+      filename = filename[filename.length - 1];
+      const name = component + filename;
+      pages[name] = {
+        entry: 'src/blank.js',
+        template: dir,
+        filename: `components/${component}/data/${filename}`,
+      };
+    });
 
-    pages[name] = {
-      entry: 'src/blank.js',
-      template: dir,
-      filename: `components/${component}/data/${filename}`,
-    };
-  });
+  glob.sync('src/components/**/docs/*.html')
+    .forEach((dir) => {
+      const component = dir.split('/')[2];
+      let filename = dir.split('/');
+      let schemaDir = dir.replace(/(docs\/)([a-zA-Z0-9\s_\\.\-():])+(.html|.ejs)$/, '');
+      schemaDir = `${schemaDir}schema.json`;
+      filename = filename[filename.length - 1];
+      const name = `${component}/${filename}`;
+      let schema = fs.readFileSync(schemaDir, 'utf8');
+      const url = `components/${component}/${filename.split('.')[0]}.html`;
+      schema = JSON.parse(schema);
+      pages[name] = {
+        entry: 'src/main.js',
+        template: dir,
+        filename: url,
+        title: schema.name || 'configure schema.json',
+        description: schema.description || {},
+        tags: schema.tags || {},
+        reqs: schema.reqs || {},
+        docsHead,
+        docsFoot,
+      };
+    });
 
-  glob.sync('./src/components/**/docs/*.html').forEach((dir) => {
-    const component = dir.split('/')[3];
-    let filename = dir.split('/');
-    let schemaDir = dir.replace(/(docs\/)([a-zA-Z0-9\s_\\.\-():])+(.html)$/, '');
-    schemaDir = `${schemaDir}schema.json`;
-    filename = filename[filename.length - 1];
-    const name = component + filename;
-    const content = fs.readFileSync(dir, 'utf8');
-    let schema = fs.readFileSync(schemaDir, 'utf8');
-    schema = JSON.parse(schema);
+  glob.sync('src/lib/utilities/*.html')
+    .forEach((dir) => {
+      let filename = dir.split('/');
+      filename = filename[filename.length - 1];
+      const name = filename.split('.')[0];
+      const content = fs.readFileSync(dir, 'utf8');
 
-    pages[name] = {
-      entry: 'src/main.js',
-      template: 'src/lib/docs-component.html',
-      title: schema.name || 'configure schema.json',
-      description: schema.description || {},
-      tags: schema.tags || {},
-      reqs: schema.reqs || {},
-      content,
-      nav,
-      footer,
-      filename: `components/${component}/${filename}`,
-    };
-  });
+      pages[name] = {
+        entry: 'src/main.js',
+        template: 'src/lib/docs-component.html',
+        content,
+        nav,
+        footer,
+        filename: `utilities/${name}/index.html`,
+      };
+    });
 
-  glob.sync('./src/lib/utilities/*.html').forEach((dir) => {
-    let filename = dir.split('/');
-    filename = filename[filename.length - 1];
-    const name = filename.split('.')[0];
-    const content = fs.readFileSync(dir, 'utf8');
+  glob.sync('src/lib/demos/*.html')
+    .forEach((dir) => {
+      let filename = dir.split('/');
+      filename = filename[filename.length - 1];
+      const name = filename.split('.')[0];
+      const content = fs.readFileSync(dir, 'utf8');
 
-    pages[name] = {
-      entry: 'src/main.js',
-      template: 'src/lib/docs-component.html',
-      content,
-      nav,
-      footer,
-      filename: `utilities/${name}/index.html`,
-    };
-  });
-
-  glob.sync('./src/lib/demos/*.html').forEach((dir) => {
-    let filename = dir.split('/');
-    filename = filename[filename.length - 1];
-    const name = filename.split('.')[0];
-    const content = fs.readFileSync(dir, 'utf8');
-
-    pages[name] = {
-      entry: 'src/main.js',
-      template: 'src/lib/docs-demonstration.html',
-      content,
-      filename: `demo/${name}/index.html`,
-    };
-  });
+      pages[name] = {
+        entry: 'src/main.js',
+        template: 'src/lib/docs-demonstration.html',
+        content,
+        filename: `demo/${name}/index.html`,
+      };
+    });
 }
 
 
@@ -157,11 +159,20 @@ module.exports = {
 
   chainWebpack: (config) => {
     function addStyleResource(rule) {
-      rule.use('shine-theme-loader').loader(themeLoader);
+      rule.use('shine-theme-loader')
+        .loader(themeLoader);
     }
 
     const types = ['vue-modules', 'vue', 'normal-modules', 'normal'];
-    types.forEach((type) => addStyleResource(config.module.rule('scss').oneOf(type)));
+    types.forEach((type) => addStyleResource(config.module.rule('scss')
+      .oneOf(type)));
+
+    config.module
+      .rule('ejs')
+      .test(/\.ejs|.html$/)
+      .use('ejs-compiled-loader')
+      .loader('ejs-compiled-loader')
+      .end();
   },
 
   pages,

@@ -36,6 +36,8 @@
     "concat": "^1.0.3",
     "dateformat": "^3.0.3",
     "dotenv": "^8.1.0",
+    "ejs-compiled-loader": "^1.1.0",
+    "ejs-loader": "^0.3.5",
     "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.18.2",
