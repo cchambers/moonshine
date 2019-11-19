@@ -32,6 +32,7 @@ Vue.config.ignoredElements = [ /.*/ ]
 require('./assets/style/common/base.scss');
 require('./assets/style/common/utility.scss');
 require('./assets/style/themes/custom-props.scss');
+require('./assets/style/themes/default/belk.scss');
 
 if (process.env.NODE_ENV !== 'production')  {
   require('./dev-components')

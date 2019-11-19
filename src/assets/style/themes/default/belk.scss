@@ -1,5 +1,14 @@
 @import url("https://use.typekit.net/kav8pvx.css");
 
+// Font Treatments
+@mixin font-primary() {
+  font-family: proxima-nova, sans-serif;
+}
+
+.font-primary {
+  @include font-primary;
+}
+
 // Proxima Nova Black
 // font-family: proxima-nova,
 // sans-serif;
