@@ -1,6 +1,6 @@
-v<template>
+<template>
   <header class="lib-header">
-    <div class="contain relative flex start">
+    <div class="contain relative flex start pad-x">
       <div v-if="nav" class="toggle-nav" v-hammer:tap="toggleNav">
         <i class="material-icons nav-icon">menu</i>
       </div>
