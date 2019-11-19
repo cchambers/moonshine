@@ -65,7 +65,7 @@ if (process.env.NODE_ENV !== 'production') {
       };
     });
 
-  glob.sync('src/components/**/docs/*.html')
+  glob.sync('src/components/**/docs/*.ejs')
     .forEach((dir) => {
       const component = dir.split('/')[2];
       let filename = dir.split('/');
@@ -74,6 +74,7 @@ if (process.env.NODE_ENV !== 'production') {
       filename = filename[filename.length - 1];
       const name = `${component}/${filename}`;
       let schema = fs.readFileSync(schemaDir, 'utf8');
+      
       const url = `components/${component}/${filename.split('.')[0]}.html`;
       schema = JSON.parse(schema);
       pages[name] = {
