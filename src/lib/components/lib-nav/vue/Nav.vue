@@ -1,19 +1,22 @@
 <template>
   <nav>
-    <div id="nav-search">
+    <!-- <div id="nav-search">
       <input v-model="search"
       @keyup="doSearch"
       type="text"
       ref="search"
       placeholder="Looking for something? Just type.">
-    </div>
+    </div> -->
     <div class="primary" ref="primary">
       <div v-hammer:tap="closeNav" class="go-back">
-        <i class="material-icons nav-icon">arrow_back</i>
       </div>
-      <slot name="primary"></slot>
+      <ul>
+        <li v-for="item in items" v-bind:key="item.id">
+          <a :href="'/components/' + item.element" :title="item.description">{{item.name}}</a>
+        </li>
+      </ul>
     </div>
-    <div class="secondary" ref="secondary">
+    <!-- <div class="secondary" ref="secondary">
       <div id="nav-search-results" ref="results">
         <ul>
           <li v-for="item in filteredResults" v-bind:key="item.id">
@@ -22,10 +25,7 @@
         </ul>
       </div>
       <slot name="secondary"></slot>
-    </div>
-    <div class="ad-space">
-      <slot name="tertiary"></slot>
-    </div>
+    </div> -->
   </nav>
 </template>
 

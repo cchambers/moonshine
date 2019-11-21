@@ -49,6 +49,7 @@ if (process.env.NODE_ENV !== 'production')  {
   require('./lib/components/lib-notify');
   require('./lib/components/lib-toolbar');
   require('./components/component-template');
+  window.schema = require('./components/all.json');
 }
 
 require('./prod-components');

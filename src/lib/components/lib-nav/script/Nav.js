@@ -10,12 +10,14 @@ export default {
       search: '',
       results: [],
       filteredResults: [],
+      items: {},
     };
   },
 
   mounted() {
-    this.buildSearchResults();
+    const self = this;
     setTimeout(() => {
+      self.items = window.schema;
       document.body.classList.add('ready');
     });
   },

@@ -8,12 +8,21 @@ export default {
   data() {
     return {
       theme: 'default',
+      navShown: false,
     };
   },
 
   watch: {
     theme(val) {
       document.documentElement.setAttribute('theme', val);
+    },
+
+    navShown(val) {
+      if (val) {
+        document.documentElement.classList.add('nav-shown');
+      } else {
+        document.documentElement.classList.remove('nav-shown');
+      }
     },
   },
 
@@ -27,7 +36,7 @@ export default {
         const key = e.keyCode;
         if (key === 192) {
           self.$bus.$emit('close-modals');
-          self.$bus.$emit('toggle-nav');
+          self.toggleNav();
         }
       });
     },
@@ -35,27 +44,16 @@ export default {
       window.history.back();
     },
     openNav() {
-      document.documentElement.classList.add('nav-shown');
       this.$bus.$emit('nav-shown');
-      this.$bus.$emit('show-curtain');
     },
     toggleNav() {
-      document.documentElement.classList.toggle('nav-shown');
+      this.navShown = !this.navShown;
       this.$bus.$emit('nav-toggled');
-      const isActive = document.documentElement.classList.contains('nav-shown');
-      if (isActive) {
-        this.$bus.$emit('show-curtain');
-      } else {
-        this.$bus.$emit('hide-curtain');
-      }
     },
     closeNav() {
-      document.documentElement.classList.remove('nav-shown');
       this.$bus.$emit('nav-closed');
-      this.$bus.$emit('hide-curtain');
     },
     closeModal() {
-      document.documentElement.classList.remove('modal-shown');
       this.$bus.$emit('close-modals');
     },
     toggleTheme() {
