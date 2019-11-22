@@ -1,6 +1,6 @@
 {
   "name": "Tabs",
-  "category": "uncategorized",
+  "category": "components",
   "element": "sh-tabs",
   "description": "Tab component.",
   "tags": ["utilities", "demo"],

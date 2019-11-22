@@ -20,11 +20,14 @@ glob.sync('src/components/**/schema.json')
   Object.entries(schema).forEach((item) => {
     const key = item[0];
     const value = item[1];
-    const cat = value.category;
-    if (!sorted[cat]) {
-      sorted[cat] = {};
+    const cat = value.category.toLowerCase();
+    console.log(key);
+    if (key !== "component-template") {
+      if (!sorted[cat]) {
+        sorted[cat] = {};
+      }
+      sorted[cat][key] = value;
     }
-    sorted[cat][key] = value;
   });
 
 const data = JSON.stringify(sorted);

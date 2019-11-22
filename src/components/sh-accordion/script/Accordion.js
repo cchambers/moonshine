@@ -9,6 +9,8 @@ export default {
   props: {
     group: String,
     uniqueId: String,
+    closedIcon: String,
+    openIcon: String,
   },
 
   data() {
@@ -57,6 +59,7 @@ export default {
 
     addIcon() {
       let icon;
+      if (this.closedIcon) return this.closedIcon;
       switch (this.variant) {
         case 'tertiary':
           icon = 'more_vert';

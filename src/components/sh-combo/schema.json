@@ -1,6 +1,6 @@
 {
   "name": "Combo",
-  "category": "uncategorized",
+  "category": "components",
   "element": "sh-combo",
   "description": "Demonstration component.",
   "tags": ["utilities", "demo"],

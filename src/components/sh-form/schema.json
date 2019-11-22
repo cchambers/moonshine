@@ -1,6 +1,6 @@
 {
   "name": "Form",
-  "category": "uncategorized",
+  "category": "components",
   "element": "sh-form",
   "description": "Demonstration component.",
   "tags": ["utilities", "demo"],

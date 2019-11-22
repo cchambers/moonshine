@@ -1,6 +1,6 @@
 {
   "name": "Belk Coupon",
-  "category": "Templates",
+  "category": "features",
   "element": "belk-coupon",
   "description": "Demonstration component.",
   "tags": ["marketing", "tile"],

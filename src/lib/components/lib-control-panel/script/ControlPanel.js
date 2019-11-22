@@ -16,29 +16,12 @@ export default {
     theme(val) {
       document.documentElement.setAttribute('theme', val);
     },
-
-    navShown(val) {
-      if (val) {
-        document.documentElement.classList.add('nav-shown');
-      } else {
-        document.documentElement.classList.remove('nav-shown');
-      }
-    },
   },
 
   methods: {
     events() {
       const self = this;
       self.$bus.$on('close-nav', self.closeNav);
-      self.$bus.$on('toggle-nav', self.toggleNav);
-
-      window.addEventListener('keyup', (e) => {
-        const key = e.keyCode;
-        if (key === 192) {
-          self.$bus.$emit('close-modals');
-          self.toggleNav();
-        }
-      });
     },
     back() {
       window.history.back();

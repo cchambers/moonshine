@@ -1,6 +1,6 @@
 {
   "name": "Modal",
-  "category": "Popups",
+  "category": "components",
   "element": "sh-modal",
   "description": "Modal component.",
   "tags": ["utilities", "demo"],

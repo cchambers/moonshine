@@ -1,6 +1,6 @@
 {
   "name": "Header",
-  "category": "uncategorized",
+  "category": "components",
   "element": "sh-header",
   "description": "Demonstration component.",
   "tags": ["utilities", "demo"],

@@ -1,6 +1,6 @@
 {
   "name": "Dropnav",
-  "category": "uncategorized",
+  "category": "components",
   "element": "sh-dropnav",
   "description": "Demonstration component.",
   "tags": ["utilities", "demo"],

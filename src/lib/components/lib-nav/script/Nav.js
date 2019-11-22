@@ -11,7 +11,22 @@ export default {
       results: [],
       filteredResults: [],
       items: {},
+      navShown: false,
     };
+  },
+
+  watch: {
+    items() {
+      this.handleActive();
+    },
+    navShown(val) {
+      if (val) {
+        document.documentElement.classList.add('nav-shown');
+        this.handleActive();
+      } else {
+        document.documentElement.classList.remove('nav-shown');
+      }
+    },
   },
 
   mounted() {
@@ -25,6 +40,14 @@ export default {
   methods: {
     events() {
       const self = this;
+
+      window.addEventListener('keyup', (e) => {
+        const key = e.keyCode;
+        if (key === 192) {
+          self.$bus.$emit('close-modals');
+          self.toggleNav();
+        }
+      });
 
       self.$bus.$on('hashchange', this.closeNav);
 
@@ -59,6 +82,16 @@ export default {
 
       this.$bus.$on('nav-closed', this.navToggledHandler);
       this.$bus.$on('nav-toggled', this.navToggledHandler);
+    },
+
+    handleActive() {
+      const activePage = window.location.pathname.split('/').pop();
+      const activeEl = document.querySelector(`[href$="${activePage}"]`);
+      if (activeEl) activeEl.classList.add('active');
+    },
+
+    toggleNav() {
+      this.navShown = !this.navShown;
     },
 
     closeNav() {
@@ -120,6 +153,13 @@ export default {
           others[y].classList.remove('active');
         }
       }
+    },
+
+    isCurrent(element) {
+      const index = window.location.pathname;
+      const test = (index.indexOf(element) > -1);
+      console.log(test);
+      return test;
     }
   }
 }

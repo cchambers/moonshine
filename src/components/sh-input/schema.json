@@ -1,6 +1,6 @@
 {
-"name": "Input",
-"category": "Forms",
+"name": "Form Input",
+"category": "components",
 "element": "sh-input",
 "description": "Demonstration component.",
 "tags": ["utilities", "demo"],

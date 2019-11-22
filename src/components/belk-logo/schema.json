@@ -1,6 +1,6 @@
 {
   "name": "Belk Logo",
-  "category": "Presentation",
+  "category": "features",
   "element": "belk-logo",
   "description": "Smart logo display component.",
   "tags": ["logo", "header"],

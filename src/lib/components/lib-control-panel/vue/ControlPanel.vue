@@ -1,9 +1,5 @@
 <template>
   <div>
-    <div class="show-nav nav-icon" v-hammer:tap="toggleNav">
-      <i class="material-icons-round" :class="{ active: !navShown }">menu</i>
-      <i class="material-icons-round" :class="{ active: navShown }">arrow_back</i>
-    </div>
     <!-- <div class="close-curtain" v-hammer:tap="closeNav">
       <i class="material-icons-round nav-icon">close</i>
     </div> -->

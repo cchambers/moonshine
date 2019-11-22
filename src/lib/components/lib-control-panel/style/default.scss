@@ -21,38 +21,6 @@ lib-control-panel {
     }
   }
 
-  .show-nav {
-    position: fixed;
-    top: 1.5rem;
-    left: 1.5rem;
-    transition: all 200ms $ease;
-    background: linear-gradient(45deg, #00afa8, #0071ce);
-    background-size: 200% auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 5rem;
-    width: 5rem;
-    border-radius: 50%;
-    &:hover {
-      background-position: 50% 0;
-    }
-
-    i {
-      font-size: 3rem;
-      color: $lowlight-quaternary;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translateX(-50%) translateY(-50%) scale(0.4);
-      opacity: 0;
-      transition: all 300ms $ease;
-      &.active {
-        opacity: 1;
-        transform: translateX(-50%) translateY(-50%) rotate(0);
-      }
-    }
-  }
 
   // .close-curtain {
   //   position: fixed;
@@ -85,15 +53,6 @@ lib-control-panel {
 
     &:hover i {
       color: $lowlight-tertiary;
-    }
-  }
-}
-
-.nav-shown {
-  .show-nav {
-    background: $lowlight-quaternary;
-    i {
-      color: $accent-tertiary;
     }
   }
 }

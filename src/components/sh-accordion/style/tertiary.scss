@@ -13,22 +13,10 @@ sh-accordion[variant="tertiary"] {
       i { 
         color: $lowlight-quaternary;
       }
-      &:hover {
-        background: $accent-tertiary;
-        color: $lowlight-tertiary;
-      }
     }
 
     .body {
       background-size: 300% auto;
-      border: 1px solid $lowlight-quaternary;
-    }
-
-    &.active {
-      button {
-        color: $highlight-primary;
-        background: $lowlight-quaternary;
-      }
     }
   }
 }
