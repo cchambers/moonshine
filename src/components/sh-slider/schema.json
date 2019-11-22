@@ -1,5 +1,6 @@
 {
   "name": "Slider",
+  "category": "uncategorized",
   "element": "sh-slider",
   "description": "Demonstration component.",
   "tags": ["utilities", "demo"],

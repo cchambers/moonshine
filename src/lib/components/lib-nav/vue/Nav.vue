@@ -1,18 +1,25 @@
 <template>
   <nav>
-    <!-- <div id="nav-search">
-      <input v-model="search"
-      @keyup="doSearch"
-      type="text"
-      ref="search"
-      placeholder="Looking for something? Just type.">
-    </div> -->
     <div class="primary" ref="primary">
-      <div v-hammer:tap="closeNav" class="go-back">
+      <!-- <div v-hammer:tap="closeNav" class="go-back">
+      </div> -->
+      <div id="nav-search">
+        <input v-model="search"
+        @keyup="doSearch"
+        type="text"
+        ref="search"
+        placeholder="Search">
       </div>
       <ul>
-        <li v-for="item in items" v-bind:key="item.id">
-          <a :href="'/components/' + item.element" :title="item.description">{{item.name}}</a>
+        <li v-for="(item, key) in items" v-bind:key="item.id">
+          <sh-accordion variant="tertiary">
+            <div slot="header">{{key}}</div>
+            <ul slot="body">
+              <li v-for="(component, element) in item" v-bind:key="component.id">
+                <a :href="'/components/' + element">{{ component.name }}</a>
+              </li>
+            </ul>
+          </sh-accordion>
         </li>
       </ul>
     </div>

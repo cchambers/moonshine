@@ -3,7 +3,7 @@ $libBreak: 800px;
 lib-nav {
   display: flex;
   position: fixed;
-  top: 3rem;
+  top: 0;
   left: 0;
   bottom: 0;
   width: 26rem;
@@ -36,21 +36,19 @@ lib-nav {
     padding: 0 1.5rem;
     transition: all 100ms linear;
     cursor: pointer;
-    background: $accent-primary;
+    background: $highlight-tertiary;
     top: 0;
-    height: 6rem;
+    height: 8rem;
     z-index: 1;
-    i {
-      font-size: 3rem;
-    }
-    &:hover {
-      background: $accent-primary;
-    }
+  }
+
+  sh-accordion {
+    margin: 0.75rem;
   }
 
   .primary {
     width: 26rem;
-    background: $lowlight-secondary;
+    background: linear-gradient(180deg, #007991, #78ffd6);
     min-height: 100vh;
     // padding-top: 9rem;
     @include scroll-y;
@@ -61,31 +59,39 @@ lib-nav {
       font-weight: 400;
     }
 
+    li {
+      margin-top: 0.5rem;
+      li {
+        margin: 0;
+      }
+    }
+
     a {
       padding: 0 1.5rem;
       height: 3rem;
       display: flex;
       align-items: center;
       font-size: 1.6rem;
-      transition: all 100ms linear;
+      transition: all 150ms $ease;
       position: relative;
-
+      color: $lowlight-quaternary;
+      background: rgba(255, 255, 255, 0.15);
+      text-shadow: 0 0 0 rgba(0,0,0,0.5);
       &:hover,
       &.active {
-        color: $highlight-primary;
-        background: $lowlight-quaternary;
+        background: rgba(255, 255, 255, 0);
       }
 
-      &::before {
-        display: block;
-        content: '';
-        position: absolute;
-        height: 20rem;
-        width: 20rem;
-        transform: rotate(45deg) translateY(-50%);
-        right: -4rem;
-        top: 50%;
-      }
+      // &::before {
+      //   display: block;
+      //   content: '';
+      //   position: absolute;
+      //   height: 20rem;
+      //   width: 20rem;
+      //   transform: rotate(45deg) translateY(-50%);
+      //   right: -4rem;
+      //   top: 50%;
+      // }
     }
   }
 
@@ -214,12 +220,6 @@ lib-nav {
     }
   }
 
-  .ad-space {
-    display: none;
-    padding: 10rem $rem;
-    width: 20rem;
-  }
-
   a[note] {
     display: flex !important;
 
@@ -238,29 +238,22 @@ lib-nav {
   }
 
   #nav-search {
-    position: absolute;
-    z-index: 2;
-    background: rgba(255, 255, 255, 0.25);
-    width: calc(100% - 36rem);
-    right: 9rem;
-    top: 0;
-    left: 26rem;
-
+    background: $lowlight-quaternary;
     input {
       display: block;
       font-family: "Menlo", monospace;
-      font-size: $rem;
+      font-size: 1.8rem;
       width: 100%;
-      line-height: 6rem;
-      height: 6rem;
+      line-height: 8rem;
+      height: 8rem;
       background: transparent;
-      color: $highlight-primary;
+      color: $highlight-tertiary;
       text-shadow: 1px 1px 2px rgba(0,0,0,.5);
       border: 0;
       outline: 0;
-      padding: 0 $rem;
+      padding: 0.5rem 1.5rem 0.5rem 9rem;
       &::placeholder {
-        color: $accent-tertiary;
+        color: rgba(255,255,255,0.5);
         text-shadow: none;
       }
     }

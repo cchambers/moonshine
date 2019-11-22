@@ -1,5 +1,6 @@
 {
-  "name": "Belk Products",
+  "name": "Belk Product List",
+  "category": "Features",
   "element": "belk-product-list",
   "description": "Product data display.",
   "tags": ["marketing", "products"],

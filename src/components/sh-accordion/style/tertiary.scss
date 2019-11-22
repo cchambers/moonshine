@@ -1,0 +1,34 @@
+sh-accordion[variant="tertiary"] {
+  display: block;
+  .sh-accordion {
+    button {
+      padding: 0 0 0 1.5rem;
+      line-height: 3rem;
+      display: flex;
+      align-items: center;
+      font-size: 1.6rem;
+      transition: background 200ms $ease;
+      color: $lowlight-quaternary;
+      font-weight: normal;
+      i { 
+        color: $lowlight-quaternary;
+      }
+      &:hover {
+        background: $accent-tertiary;
+        color: $lowlight-tertiary;
+      }
+    }
+
+    .body {
+      background-size: 300% auto;
+      border: 1px solid $lowlight-quaternary;
+    }
+
+    &.active {
+      button {
+        color: $highlight-primary;
+        background: $lowlight-quaternary;
+      }
+    }
+  }
+}

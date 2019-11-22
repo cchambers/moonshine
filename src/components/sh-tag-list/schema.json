@@ -1,5 +1,6 @@
 {
   "name": "Tag",
+  "category": "uncategorized",
   "element": "sh-tag",
   "description": "Demonstration component.",
   "tags": ["utilities", "demo"],

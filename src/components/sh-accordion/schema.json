@@ -1,5 +1,6 @@
 {
   "name": "Accordion",
+  "category": "uncategorized",
   "element": "sh-accordion",
   "description": "Collapsing accordion component.",
   "tags": ["collapse"],

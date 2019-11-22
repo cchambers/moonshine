@@ -1,5 +1,6 @@
 {
   "name": "Lib Icons",
+  "category": "uncategorized",
   "element": "lib-icons",
   "description": "Automatically lists all icons.",
   "tags": ["utilities", "demo", "icon"],

@@ -1,5 +1,6 @@
 {
   "name": "Popper",
+  "category": "uncategorized",
   "element": "sh-popper",
   "description": "Demonstration component.",
   "tags": ["utilities", "demo"],

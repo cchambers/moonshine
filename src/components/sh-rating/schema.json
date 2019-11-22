@@ -1,5 +1,6 @@
 {
   "name": "Rating",
+  "category": "uncategorized",
   "element": "sh-rating",
   "description": "Demonstration component.",
   "tags": ["utilities", "demo"],

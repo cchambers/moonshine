@@ -1,5 +1,6 @@
 {
   "name": "Belk Takeover",
+  "category": "uncategorized",
   "element": "belk-takeover",
   "description": "Demonstration component.",
   "tags": ["advertising", "marketing"],

@@ -1,5 +1,6 @@
 {
   "name": "Belk Bag",
+  "category": "Header",
   "element": "belk-bag",
   "description": "Shopping cart component.",
   "tags": ["cart", "header"],

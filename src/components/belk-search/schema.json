@@ -1,5 +1,6 @@
 {
   "name": "Belk Search",
+  "category": "uncategorized",
   "element": "belk-search",
   "description": "Gives user access to recent searches, suggested keywords, suggested products... and performs site searches.",
   "tags": ["search", "input"],

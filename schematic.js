@@ -13,6 +13,20 @@ glob.sync('src/components/**/schema.json')
     schema[component] = data;
   });
 
-const data = JSON.stringify(schema);
+  // iterate and split into categories
+
+  const sorted = {};
+
+  Object.entries(schema).forEach((item) => {
+    const key = item[0];
+    const value = item[1];
+    const cat = value.category;
+    if (!sorted[cat]) {
+      sorted[cat] = {};
+    }
+    sorted[cat][key] = value;
+  });
+
+const data = JSON.stringify(sorted);
 fs.writeFileSync('src/components/all.json', data);
 console.log(`${count} component schemas bundled...`);

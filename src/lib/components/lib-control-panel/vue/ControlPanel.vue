@@ -28,8 +28,9 @@ html {
       transform: translateY(0) translateZ(0) !important;
     }
 
-    main {
+    #page {
       max-width: calc(100vw - 26rem);
+      border-left: none;
     }
 
     lib-nav {

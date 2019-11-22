@@ -1,5 +1,6 @@
 {
   "name": "Button",
+  "category": "uncategorized",
   "element": "sh-button",
   "description": "Call to action.",
   "tags": ["marketing"],

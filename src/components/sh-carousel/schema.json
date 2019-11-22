@@ -1,5 +1,6 @@
 {
   "name": "Carousel",
+  "category": "uncategorized",
   "element": "sh-carousel",
   "description": "Demonstration component.",
   "tags": ["utilities", "demo"],

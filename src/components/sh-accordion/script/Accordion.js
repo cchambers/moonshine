@@ -33,15 +33,41 @@ export default {
     iconHandler() {
       let icon;
       if (this.ariaExpanded) {
-        icon = 'remove';
+        icon = this.removeIcon();
       } else {
-        icon = 'add';
+        icon = this.addIcon();
       }
       return icon;
     },
   },
 
   methods: {
+    removeIcon() {
+      let icon;
+      switch (this.variant) {
+        case 'tertiary':
+          icon = 'more_vert';
+          break;
+        default:
+          icon = 'remove';
+          break;
+      }
+      return icon;
+    },
+
+    addIcon() {
+      let icon;
+      switch (this.variant) {
+        case 'tertiary':
+          icon = 'more_vert';
+          break;
+        default:
+          icon = 'add';
+          break;
+      }
+      return icon;
+    },
+
     toggleActive() {
       if (this.ariaExpanded) {
         this.close();

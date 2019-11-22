@@ -1,5 +1,6 @@
 {
   "name": "Belk Promo",
+  "category": "uncategorized",
   "element": "belk-promo",
   "description": "Promotional content display component.",
   "tags": ["promo", "content"],
