@@ -34,7 +34,11 @@ require('./assets/style/common/utility.scss');
 require('./assets/style/themes/custom-props.scss');
 require('./assets/style/themes/default/belk.scss');
 
-if (process.env.NODE_ENV !== 'production')  {
+const devServer = process.env.NODE_ENV !== 'production';
+const schema = require('./components/all.json');
+
+
+if (devServer)  {
   require('./dev-components')
   /* Documentation Library */
   require('./assets/script/prism.js');
@@ -49,8 +53,14 @@ if (process.env.NODE_ENV !== 'production')  {
   require('./lib/components/lib-notify');
   require('./lib/components/lib-toolbar');
   require('./components/component-template');
-  window.schema = require('./components/all.json');
+  window.schema = schema;
 }
 
-require('./prod-components');
+// Object.keys(schema)
+//   .forEach(function (item) {
+//     const prod = schema[item].production; // value
+//     if (!devServer && !prod) return;
+//     require(`./components/${item}`);
+//   });
 
+require('./prod-components');

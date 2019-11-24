@@ -1,6 +1,7 @@
 {
   "name": "Svglib",
   "category": "components",
+  "production": false,
   "element": "sh-svglib",
   "description": "Demonstration component.",
   "tags": ["utilities", "demo"],

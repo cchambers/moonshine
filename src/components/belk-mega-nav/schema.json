@@ -1,8 +1,0 @@
-{
-  "name": "Belk Mega Nav",
-  "category": "features",
-  "element": "belk-mega-nav",
-  "description": "Nav item container for header.",
-  "tags": ["navigation", "header"],
-  "requirements": {}
-}

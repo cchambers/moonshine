@@ -1,6 +1,7 @@
 {
   "name": "Adapt Content",
   "category": "components",
+  "production": false,
   "element": "sh-adapt-content",
   "description": "Demonstration component.",
   "tags": ["utilities", "demo"],

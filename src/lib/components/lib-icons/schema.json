@@ -1,6 +1,7 @@
 {
   "name": "Lib Icons",
   "category": "library",
+  "production": false,
   "element": "lib-icons",
   "description": "Automatically lists all icons.",
   "tags": ["utilities", "demo", "icon"],

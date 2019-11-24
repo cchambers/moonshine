@@ -1,6 +1,7 @@
 {
   "name": "Link List",
   "category": "components",
+  "production": false,
   "element": "sh-link-list",
   "description": "Data driven link list.",
   "tags": ["utilities", "demo"],

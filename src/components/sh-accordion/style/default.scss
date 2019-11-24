@@ -3,14 +3,11 @@
 sh-accordion {
   display: block;
   .sh-accordion {
-    button {
+    button.header {
       outline: none;
       border: none;
       background: transparent;
       cursor: pointer;
-    }
-
-    .header {
       display: flex;
       width: 100%;
       justify-content: space-between;

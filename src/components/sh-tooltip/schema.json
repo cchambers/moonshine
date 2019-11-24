@@ -1,6 +1,7 @@
 {
   "name": "Tooltip",
   "category": "components",
+  "production": false,
   "element": "sh-tooltip",
   "description": "Demonstration component.",
   "tags": ["utilities", "demo"],

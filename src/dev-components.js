@@ -1,6 +1,5 @@
 
 require('./components/belk-swatch');
-// require('./components/belk-mega-nav');
 
 require('./components/sh-accordion');
 require('./components/sh-adapt-content');

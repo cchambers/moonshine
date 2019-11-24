@@ -1,6 +1,7 @@
 {
   "name": "Belk Bag",
   "category": "features",
+  "production": false,
   "element": "belk-bag",
   "description": "Shopping cart component.",
   "tags": ["cart", "header"],

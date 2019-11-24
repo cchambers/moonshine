@@ -49,7 +49,6 @@ lib-nav {
     width: 26rem;
     background: $lowlight-secondary;
     min-height: 100vh;
-    padding-bottom: 24rem;
     // padding-top: 9rem;
     @include scroll-y;
     @include no-scroll-bar;
@@ -76,6 +75,7 @@ lib-nav {
       margin-top: 3rem;
       font-size: 1.4rem;
       line-height: 3rem;
+      color: $highlight-quaternary;
       + ul {
         margin: 0;
       }

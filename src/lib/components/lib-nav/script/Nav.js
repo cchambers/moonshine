@@ -79,6 +79,10 @@ export default {
       this.$bus.$emit('close-nav');
     },
 
+    goHome() {
+      window.location.pathname = '/';
+    },
+
     /* eslint-disable */
     doSearch(e) {
       let value = this.search;

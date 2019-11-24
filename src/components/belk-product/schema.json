@@ -1,6 +1,7 @@
 {
   "name": "Belk Product",
   "category": "Features",
+  "production": false,
   "element": "belk-product",
   "description": "Single product display.",
   "tags": ["marketing", "product tile"],

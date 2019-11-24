@@ -44,12 +44,10 @@ const docsHead = ejs.render(headTemplate, {
   dirname: __dirname,
 });
 const docsFoot = fs.readFileSync('./src/lib/incl-foot.ejs', 'utf8');
-const nav = fs.readFileSync('./src/lib/incl-nav.ejs', 'utf8');
 
 const pages = {
   index: {
     entry: 'src/main.js',
-    nav,
     template: 'src/lib/docs-index.ejs',
   },
 };

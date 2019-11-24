@@ -1,6 +1,7 @@
 {
   "name": "Belk Swatch",
   "category": "features",
+  "production": false,
   "element": "belk-swatch",
   "description": "Demonstration component.",
   "tags": ["utilities", "demo"],
