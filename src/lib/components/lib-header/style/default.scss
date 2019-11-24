@@ -16,11 +16,10 @@ lib-header {
     font-size: 3rem;
     font-family: "Menlo", monospace;
     font-weight: 100;
-    display: inline-flex;
-    margin-left: 3rem;
 
     h1 {
       margin: 0 !important;
+      display: inline-flex;
       line-height: 4.5rem;
     }
   }

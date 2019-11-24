@@ -1,7 +1,7 @@
 <template>
   <header class="lib-header">
-    <div class="contain relative">
-      <div class="logo gradient-text">
+    <div class="contain documentation relative">
+      <div class="logo">
         <slot></slot>
       </div>
       <div v-html="pageName" class="page-name" v-bind:class="{ active: pageNameActive }"></div>
