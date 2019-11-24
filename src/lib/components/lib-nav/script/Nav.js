@@ -71,15 +71,12 @@ export default {
     },
 
     handleActive() {
-      const activePage = window.location.pathname.split('/')
-        .pop();
-      const activeEl = document.querySelector(`[href$="${activePage}"]`);
+      const activeEl = document.querySelector(`nav [href$="${window.location.pathname}"]`);
       if (activeEl) activeEl.classList.add('active');
     },
 
     toggleNav() {
       this.navShown = !this.navShown;
-      console.log('AYY');
     },
 
     toggleFilter() {
