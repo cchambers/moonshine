@@ -1,7 +1,7 @@
 {
   "name": "Belk Promo",
   "category": "features",
-  "production": false,
+  "production": true,
   "element": "belk-promo",
   "description": "Promotional content display component.",
   "tags": ["promo", "content"],

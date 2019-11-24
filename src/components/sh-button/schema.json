@@ -1,7 +1,7 @@
 {
   "name": "Button",
   "category": "components",
-  "production": false,
+  "production": true,
   "element": "sh-button",
   "description": "Call to action.",
   "tags": ["marketing"],

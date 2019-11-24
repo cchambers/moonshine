@@ -116,140 +116,28 @@ lib-nav {
     }
   }
 
-  .secondary {
-    position: relative;
-
-    #nav-search-results {
-      // column-count: 3;
-      // column-rule: 1px solid $highlight-primary;
-      // column-gap: 10rem;
-      display: flex;
-      flex-direction: column;
-      flex-wrap: wrap;
-      justify-content: flex-start;
-      align-items: flex-start;
-      align-content: flex-start;
-      position: absolute;
-      top: 9rem;
-      left: 0;
-      right: 0;
-      height: calc(100vh - 18rem);
-      transform: translateX(-300vw);
-      overflow: hidden;
-
-      @media (max-width: $libBreak) {
-        flex-wrap: nowrap;
-
-        @include scroll-y;
-      }
-
-      ul {
-        padding: 0;
-        width: calc(100% - 10rem);
-      }
-
-      &.active {
-        transform: translateX(0);
-      }
+  #prod-toggle {
+    right: 3rem;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    color: $lowlight-quaternary;
+    cursor: pointer;
+    transition: all 200ms $ease;
+    &:hover {
+      color: $highlight-quaternary;
     }
-  }
-
-  .secondary > div {
-    width: calc(100vw - 26rem);
-    position: relative;
-    font-size: 1.8rem;
-
-    &.active {
-      // for later
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    a {
-      color: $highlight-primary;
+    &::before {
+      content: 'all';
       display: block;
-      line-height: $rem;
-
-      &:hover {
-        color: $accent-tertiary;
-        background: rgba(255, 255, 255, 0.02);
-      }
+      font-size: 1rem;
+      margin-right: 1rem;
     }
-
-    > div {
-      // lol, will fix
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      justify-content: flex-start;
-      align-items: flex-start;
-      align-content: flex-start;
-      position: absolute;
-      top: 9rem;
-      left: 0;
-      right: 0;
-      height: calc(100vh - 18rem);
-      transform: translateX(-300vw);
-      overflow: hidden;
-
-      @media (max-width: $libBreak) {
-        @include scroll-y;
-      }
-
-      &.active {
-        transform: translateX(0);
-      }
-    }
-
-    h2 {
-      font-size: 2rem;
-      break-after: avoid;
-      padding-top: $rem;
-      break-before: auto;
-    }
-
-    ul {
+    &.active {
+      color: $accent-tertiary;
       &::before {
-        display: block;
-        content: attr(category);
-        font-family: "Menlo", monospace;
-        font-weight: bold;
-        text-transform: uppercase;
-        font-size: 3rem;
-        padding-left: 1.5rem;
-        line-height: 3rem;
-        color: $accent-primary;
+        content: 'prod only';
       }
-
-      flex-grow: 0;
-      flex-shrink: 0;
-      width: 28rem;
-      line-height: $rem;
-      padding-top: $rem;
-      break-before: avoid;
-      break-inside: avoid;
-      margin-right: 1.5rem;
-    }
-
-    li {
-      break-inside: avoid;
-
-      a {
-        padding: 1.5rem 3rem;
-        line-height: 3rem;
-      }
-    }
-  }
-
-  a[note] {
-    display: flex !important;
-
-    &::after {
-      content: "("attr(note) ")";
-      display: inline-block;
-      font-size: 1.4rem;
-      margin-left: auto;
-      color: $lowlight-quaternary;
     }
   }
 

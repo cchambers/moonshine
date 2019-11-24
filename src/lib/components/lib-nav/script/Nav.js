@@ -12,6 +12,7 @@ export default {
       filteredResults: [],
       items: {},
       navShown: false,
+      prodFilter: false,
     };
   },
 
@@ -64,6 +65,11 @@ export default {
       this.$bus.$on('nav-toggled', this.navToggledHandler);
     },
 
+    shouldHide(prod) {
+      const hide = (this.prodFilter && !prod);
+      return hide;
+    },
+
     handleActive() {
       const activePage = window.location.pathname.split('/')
         .pop();
@@ -73,6 +79,11 @@ export default {
 
     toggleNav() {
       this.navShown = !this.navShown;
+      console.log('AYY');
+    },
+
+    toggleFilter() {
+      this.prodFilter = !this.prodFilter;
     },
 
     closeNav() {
@@ -90,28 +101,12 @@ export default {
         this.filteredResults = [];
       } else {
         let filteredResults = [];
-        for (let x = 0, l = this.results.length; x < l; x += 1) {
-          let item = JSON.parse(JSON.stringify(this.results[x]));
-          let name = item.reset.toLowerCase();
-          let match = name.indexOf(value.toLowerCase());
-          if (match >= 0) {
-            item.show = true;
-            let actual = item.name.substr(match, value.length);
-            let highlighted = item.name.split(actual);
-            highlighted = highlighted.join(`<span class="search-highlight">${actual}</span>`);
-            item.name = highlighted;
-            filteredResults.push(item);
-          }
-        }
-        this.$refs.results.classList.add('active');
-        this.filteredResults = filteredResults;
       }
     },
 
     isCurrent(element) {
       const index = window.location.pathname;
       const test = (index.indexOf(element) > -1);
-      console.log(test);
       return test;
     }
   }

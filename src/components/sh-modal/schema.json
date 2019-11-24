@@ -1,7 +1,7 @@
 {
   "name": "Modal",
   "category": "components",
-  "production": false,
+  "production": true,
   "element": "sh-modal",
   "description": "Modal component.",
   "tags": ["utilities", "demo"],

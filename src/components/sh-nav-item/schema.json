@@ -1,7 +1,7 @@
 {
   "name": "Popper",
   "category": "components",
-  "production": false,
+  "production": true,
   "element": "sh-popper",
   "description": "Demonstration component.",
   "tags": ["utilities", "demo"],

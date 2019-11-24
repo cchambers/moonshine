@@ -24,7 +24,6 @@ Vue.use(VueHammer);
 import vueCustomElement from 'vue-custom-element';
 Vue.use(vueCustomElement);
 
-
 /* This disables warnings caused by 'undefined vue components' that are actually defined. vce-workaround */
 Vue.config.ignoredElements = [ /.*/ ]
 
@@ -36,10 +35,9 @@ require('./assets/style/themes/default/belk.scss');
 
 const devServer = process.env.NODE_ENV !== 'production';
 const schema = require('./components/all.json');
-
+let build = [];
 
 if (devServer)  {
-  require('./dev-components')
   /* Documentation Library */
   require('./assets/script/prism.js');
   require('./assets/style/prism.css');
@@ -52,15 +50,17 @@ if (devServer)  {
   require('./lib/components/lib-section-links');
   require('./lib/components/lib-notify');
   require('./lib/components/lib-toolbar');
-  require('./components/component-template');
   window.schema = schema;
 }
 
-// Object.keys(schema)
-//   .forEach(function (item) {
-//     const prod = schema[item].production; // value
-//     if (!devServer && !prod) return;
-//     require(`./components/${item}`);
-//   });
+Object.keys(schema)
+  .forEach(function (cat) {
+    Object.keys(schema[cat])
+      .forEach(function (item) {
+        const prod = item.production; // value
+        if (!devServer && !prod) return;
+        require(`./components/${item}`);
+      });
+  });
 
-require('./prod-components');
+window.build = build;

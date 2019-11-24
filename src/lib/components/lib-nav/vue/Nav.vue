@@ -14,13 +14,23 @@
             @keyup="doSearch"
             type="text"
             ref="search"
+            disabled
             placeholder="Search">
+          </div>
+          <div id="prod-toggle" class="absolute"
+          style="right: 3rem;"
+          :class="{ active: prodFilter }" v-hammer:tap="toggleFilter">
+            <div class="px30">
+              <i v-if="prodFilter" class="material-icons-round nav-icon">toggle_on</i>
+              <i v-else class="material-icons-round nav-icon">toggle_off</i>
+            </div>
           </div>
           <ul>
             <li v-for="(item, key) in items" v-bind:key="item.id">
               <div class="header">{{key}}</div>
               <ul>
-                <li v-for="(component, element) in item" v-bind:key="component.id">
+                <li v-for="(component, element) in item"
+                :hidden="shouldHide(component.production)" v-bind:key="component.id">
                   <a :href="'/components/' + element">{{ component.name }}</a>
                 </li>
               </ul>
