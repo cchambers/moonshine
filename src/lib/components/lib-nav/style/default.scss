@@ -49,6 +49,9 @@ lib-nav {
     width: 26rem;
     background: $lowlight-secondary;
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-content: flex-start;
     // padding-top: 9rem;
     @include scroll-y;
     @include no-scroll-bar;
@@ -59,7 +62,8 @@ lib-nav {
     }
 
     > ul {
-      margin-top: 3rem;
+      margin: 0;
+      flex-grow: 1;
     }
 
     li {
@@ -117,7 +121,8 @@ lib-nav {
   }
 
   #prod-toggle {
-    right: 3rem;
+    right: 1.5rem;
+    top: 5rem;
     position: absolute;
     display: flex;
     align-items: center;
