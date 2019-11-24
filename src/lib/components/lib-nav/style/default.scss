@@ -75,7 +75,7 @@ lib-nav {
       margin-top: 3rem;
       font-size: 1.4rem;
       line-height: 3rem;
-      color: $highlight-quaternary;
+      color: $accent-tertiary;
       + ul {
         margin: 0;
       }
@@ -138,6 +138,9 @@ lib-nav {
       &::before {
         content: 'prod only';
       }
+    }
+    div {
+      display: flex;
     }
   }
 

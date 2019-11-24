@@ -35,6 +35,9 @@ export default {
     });
 
     if (window.location.pathname === '/') this.navShown = true;
+
+    const prodFilter = window.localStorage.getItem('prod-filter');
+    if (prodFilter) this.prodFilter = prodFilter;
   },
 
   methods: {
@@ -81,6 +84,7 @@ export default {
 
     toggleFilter() {
       this.prodFilter = !this.prodFilter;
+      window.localStorage.setItem('prod-filter', this.prodFilter);
     },
 
     closeNav() {

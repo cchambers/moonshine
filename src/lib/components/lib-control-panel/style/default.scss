@@ -48,11 +48,17 @@ lib-control-panel {
 
   .theme-toggle {
     position: fixed;
-    bottom: 3rem;
-    right: 3rem;
+    top: -0.2rem;
+    right: 1rem;
 
     &:hover i {
       color: $lowlight-tertiary;
     }
+  }
+}
+
+.home-page {
+  .theme-toggle {
+    top: 0.5rem;
   }
 }
