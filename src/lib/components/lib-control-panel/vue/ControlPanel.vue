@@ -29,7 +29,7 @@ html {
       border-left: none;
     }
 
-    lib-nav {
+    .lib-nav {
       transform: translateX(0) translateZ(0) !important;
       transition: transform 300ms $ease;
     }

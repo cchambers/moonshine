@@ -1,18 +1,21 @@
 $libBreak: 800px;
 
 lib-nav {
-  display: flex;
-  position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  width: 26rem;
-  transition: all 300ms $ease;
-  transform: translateX(-100%) translateZ(0);
-  color: $highlight-primary;
-  z-index: 9;
-  -webkit-overflow-scrolling: touch;
-  will-change: scroll-position;
+
+  .lib-nav {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 26rem;
+    transition: all 300ms $ease;
+    transform: translateX(-100%) translateZ(0);
+    color: $highlight-primary;
+    z-index: 9;
+    -webkit-overflow-scrolling: touch;
+    will-change: scroll-position;
+  }
 
   nav {
     display: flex;
@@ -20,12 +23,12 @@ lib-nav {
     a {
       color: $highlight-primary;
     }
-  }
 
-  ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
   }
 
   .go-back {
@@ -38,15 +41,15 @@ lib-nav {
     cursor: pointer;
     background: $highlight-tertiary;
     top: 0;
-    height: 8rem;
+    height: 4.5rem;
     z-index: 1;
   }
-
 
   .primary {
     width: 26rem;
     background: $lowlight-secondary;
     min-height: 100vh;
+    padding-bottom: 24rem;
     // padding-top: 9rem;
     @include scroll-y;
     @include no-scroll-bar;
@@ -54,6 +57,10 @@ lib-nav {
 
     .category {
       font-weight: 400;
+    }
+
+    > ul {
+      margin-top: 3rem;
     }
 
     li {
@@ -64,11 +71,14 @@ lib-nav {
     }
 
     .header {
-      text-transform: capitalize;
-      line-height: 3rem;
+      text-transform: uppercase;
       padding: 0 1.5rem;
-      margin: 0 5px;
-      font-weight: bold;
+      margin-top: 3rem;
+      font-size: 1.4rem;
+      line-height: 3rem;
+      + ul {
+        margin: 0;
+      }
     }
 
     a {
@@ -249,20 +259,22 @@ lib-nav {
   }
 
   #nav-search {
-    background: $lowlight-quaternary;
+    background: $docsGradient;
+    position: sticky;
+    top: 0;
+    z-index: 1;
     input {
       display: block;
       font-family: "Menlo", monospace;
       font-size: 1.8rem;
       width: 100%;
-      line-height: 8rem;
-      height: 8rem;
+      height: 4.5rem;
       background: transparent;
       color: $highlight-tertiary;
       text-shadow: 1px 1px 2px rgba(0,0,0,.5);
       border: 0;
       outline: 0;
-      padding: 0.5rem 1.5rem 0.5rem 9rem;
+      padding: 0.5rem 1.5rem 0.5rem 8rem;
       &::placeholder {
         color: rgba(255,255,255,0.5);
         text-shadow: none;
@@ -275,7 +287,7 @@ lib-nav {
     top: 1.5rem;
     left: 1.5rem;
     transition: all 200ms $ease;
-    background: linear-gradient(45deg, #00afa8, #0071ce);
+    background: $docsGradient;
     background-size: 200% auto;
     display: flex;
     align-items: center;
@@ -283,13 +295,15 @@ lib-nav {
     height: 5rem;
     width: 5rem;
     border-radius: 50%;
+    z-index: 10;
+    font-size: 3rem;
+    cursor: pointer;
 
     &:hover {
       background-position: 50% 0;
     }
 
     i {
-      font-size: 3rem;
       color: rgba(255, 255, 255, 0.5);
       position: absolute;
       top: 50%;
@@ -303,17 +317,5 @@ lib-nav {
         transform: translateX(-50%) translateY(-50%) rotate(0);
       }
     }
-  }
-}
-
-[theme="dark"] {
-  lib-nav .secondary > div a {
-    color: $lowlight-quaternary;
-  }
-}
-
-.nav-shown {
-  .show-nav {
-    background: $lowlight-quaternary;
   }
 }

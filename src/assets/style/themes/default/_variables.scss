@@ -34,7 +34,7 @@ $colors: (
   "accent-quinary": $accent-quinary,
 );
 
-$break-sm: 0;
+$break-sm: 480px;
 $break-md: 768px;
 $break-lg: 960px;
 $break-xl: 1200px;
@@ -71,3 +71,5 @@ $mod-amounts: (
 $ease: cubic-bezier(0.4, 0, 0.2, 1);
 $decel: cubic-bezier(0, 0, 0.2, 1);
 $accel: cubic-bezier(0.4, 0, 1, 1);
+
+$docsGradient: linear-gradient(45deg, var(--classicblue), var(--deepteal));

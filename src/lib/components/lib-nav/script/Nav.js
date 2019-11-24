@@ -16,9 +16,6 @@ export default {
   },
 
   watch: {
-    items() {
-      this.handleActive();
-    },
     navShown(val) {
       if (val) {
         document.documentElement.classList.add('nav-shown');
@@ -35,6 +32,8 @@ export default {
       self.items = window.schema;
       document.body.classList.add('ready');
     });
+
+    if (window.location.pathname === '/') this.navShown = true;
   },
 
   methods: {
@@ -49,43 +48,25 @@ export default {
         }
       });
 
-      self.$bus.$on('hashchange', this.closeNav);
-
-      const links = this.$el.querySelectorAll('a[href^="#"]');
-      for (let x = 0, l = links.length; x < l; x += 1) {
-        const link = links[x];
-        link.addEventListener('click', (e) => {
-          e.preventDefault();
-        });
-
-        link.addEventListener('mouseover', () => {
-          this.navToggledHandler();
-          link.classList.add('active');
-          const target = link.getAttribute('href');
-          const targetEl = self.$el.querySelector(target);
-          if (targetEl) targetEl.classList.add('active');
-        });
-
-        window.addEventListener('keydown', (e) => {
-          if (document.documentElement.classList.contains('nav-shown')) {
-            const key = e.keyCode;
-            if (key === 192) {
-              e.preventDefault();
-              return;
-            }
-            if (document.activeElement !== self.$refs.search && key !== 9) {
-              self.$refs.search.focus();
-            }
+      window.addEventListener('keydown', (e) => {
+        if (document.documentElement.classList.contains('nav-shown')) {
+          const key = e.keyCode;
+          if (key === 192) {
+            e.preventDefault();
+            return;
           }
-        });
-      }
-
+          if (document.activeElement !== self.$refs.search && key !== 9) {
+            self.$refs.search.focus();
+          }
+        }
+      });
       this.$bus.$on('nav-closed', this.navToggledHandler);
       this.$bus.$on('nav-toggled', this.navToggledHandler);
     },
 
     handleActive() {
-      const activePage = window.location.pathname.split('/').pop();
+      const activePage = window.location.pathname.split('/')
+        .pop();
       const activeEl = document.querySelector(`[href$="${activePage}"]`);
       if (activeEl) activeEl.classList.add('active');
     },
@@ -96,22 +77,6 @@ export default {
 
     closeNav() {
       this.$bus.$emit('close-nav');
-    },
-
-    buildSearchResults() {
-      const links = this.$refs.secondary.querySelectorAll('a');
-      const results = [];
-      for (let x = 0, l = links.length; x < l; x += 1) {
-        const link = links[x];
-        results.push({
-          link: link.href,
-          name: link.innerText,
-          reset: link.innerText,
-          category: link.closest('div').id,
-          show: false,
-        });
-      }
-      this.results = results;
     },
 
     /* eslint-disable */
@@ -134,24 +99,8 @@ export default {
             filteredResults.push(item);
           }
         }
-        this.clearSecondaries();
         this.$refs.results.classList.add('active');
         this.filteredResults = filteredResults;
-      }
-    },
-
-    navToggledHandler() {
-      this.clearSecondaries();
-      this.search = "";
-      if (document.activeElement === this.$refs.search) this.$refs.search.blur();
-    },
-
-    clearSecondaries() {
-      let others = this.$el.querySelectorAll('.active');
-      if (others) {
-        for (let y = 0, m = others.length; y < m; y += 1) {
-          others[y].classList.remove('active');
-        }
       }
     },
 

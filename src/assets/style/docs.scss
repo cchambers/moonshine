@@ -113,7 +113,7 @@ a:hover {
   max-width: 128rem;
   margin: 0 1.5rem;
   @media screen and (min-width: $libBreak) {
-    margin: 0 9rem;
+    margin: 0 6rem;
   }
 }
 
@@ -1011,9 +1011,16 @@ html.iOS {
   }
 }
 
-i.material-icons {
+i.material-icons,
+i.material-icons-round {
   display: inline-flex;
   vertical-align: middle;
   line-height: 1em;
   font-size: inherit;
+}
+
+.gradient-text {
+  background: $docsGradient;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
