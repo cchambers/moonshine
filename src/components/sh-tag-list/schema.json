@@ -1,5 +1,7 @@
 {
   "name": "Tag",
+  "category": "components",
+  "production": false,
   "element": "sh-tag",
   "description": "Demonstration component.",
   "tags": ["utilities", "demo"],

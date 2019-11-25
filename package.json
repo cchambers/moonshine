@@ -11,6 +11,8 @@
     "dev": "node --max_old_space_size=8000 node_modules/@vue/cli-service/bin/vue-cli-service.js serve --open",
     "gen": "node generate.js",
     "lint:style": "vue-cli-service lint:style",
+    "prebuild": "NODE_ENV=production node schematic",
+    "predev": "NODE_ENV=dev node schematic",
     "postbuild": "node combine",
     "prestart": "nvm use 10"
   },

@@ -1,5 +1,7 @@
 {
   "name": "Belk Logo",
+  "category": "features",
+  "production": true,
   "element": "belk-logo",
   "description": "Smart logo display component.",
   "tags": ["logo", "header"],

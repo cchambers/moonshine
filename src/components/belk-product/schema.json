@@ -1,7 +1,9 @@
 {
   "name": "Belk Product",
+  "category": "Features",
+  "production": true,
   "element": "belk-product",
-  "description": "Demonstration component.",
-  "tags": ["utilities", "demo"],
+  "description": "Single product display.",
+  "tags": ["marketing", "product tile"],
   "requirements": {}
 }

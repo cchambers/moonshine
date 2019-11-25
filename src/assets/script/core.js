@@ -58,13 +58,21 @@ const app = {
     let { search } = window.location;
     search = search.replace(/\?&/g, '');
     search = search.replace(/\?/g, '');
-    search = search.replace(/=&/g, '&');
-    search = search.replace(/&&/g, '&');
-    search = search.replace(/&&&/g, '&');
-    search = search.replace(/(&)/g, '","');
-    search = search.replace(/=/g, '":"');
-    const result = JSON.parse(`{"${search}"}`, (key, value) => (key === '' ? value : decodeURIComponent(value)));
-    window.location.params = result;
+    search = search.replace(/=/g, ':');
+    search = search.split('&');
+    const params = {};
+    search.forEach((param) => {
+      let str = param;
+      str = str.replace(/('|")/g, '')
+        .trim();
+      const split = str.split(':');
+      if (split.length) {
+        if (split[1]) {
+          params[split[0].trim()] = split[1].trim();
+        }
+      }
+    });
+    if (params) window.location.params = params;
   },
 };
 

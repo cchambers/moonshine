@@ -1,0 +1,22 @@
+sh-accordion[variant="tertiary"] {
+  display: block;
+  .sh-accordion {
+    button {
+      padding: 0 0 0 1.5rem;
+      line-height: 3rem;
+      display: flex;
+      align-items: center;
+      font-size: 1.6rem;
+      transition: background 200ms $ease;
+      color: $lowlight-quaternary;
+      font-weight: normal;
+      i { 
+        color: $lowlight-quaternary;
+      }
+    }
+
+    .body {
+      background-size: 300% auto;
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "name": "Curtain",
+  "category": "components",
+  "production": true,
+  "element": "sh-curtain",
+  "description": "Dynamic overlay.",
+  "tags": ["utilities", "overlay"],
+  "requirements": {}
+}
