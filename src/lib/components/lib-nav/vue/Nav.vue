@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="show-nav nav-icon" v-hammer:tap="toggleNav">
+    <div class="show-nav nav-icon" v-hammer:tap="toggleNav" v-bind:class="{ tip: !usedShortcut }">
       <i class="material-icons-round" :class="{ active: !navShown }">menu</i>
       <i class="material-icons-round" :class="{ active: navShown }">arrow_back</i>
     </div>

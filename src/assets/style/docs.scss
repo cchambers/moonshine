@@ -107,14 +107,19 @@ a {
 a:hover {
   color: #115f91;
 }
-
+$containMargin: 8rem;
 /* grid */
 .contain {
-  $containMargin: 4rem;
   width: calc(100% - #{$containMargin});
   max-width: 128rem;
   margin: 0 auto;
   margin-left: $containMargin;
+}
+
+.nav-shown {
+  .contain {
+    margin-left: calc(#{$containMargin} / 2);
+  }
 }
 
 .row {

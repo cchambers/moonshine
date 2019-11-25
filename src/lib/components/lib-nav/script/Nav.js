@@ -13,6 +13,7 @@ export default {
       items: {},
       navShown: false,
       prodFilter: false,
+      usedShortcut: false,
     };
   },
 
@@ -38,6 +39,9 @@ export default {
 
     const prodFilter = window.localStorage.getItem('prod-filter');
     if (prodFilter) this.prodFilter = prodFilter;
+
+    const usedShortcut = window.localStorage.getItem('used-shortcut');
+    if (usedShortcut) this.usedShortcut = usedShortcut;
   },
 
   methods: {
@@ -47,23 +51,12 @@ export default {
       window.addEventListener('keyup', (e) => {
         const key = e.keyCode;
         if (key === 192) {
+          window.localStorage.setItem('used-shortcut', true);
           self.$bus.$emit('close-modals');
           self.toggleNav();
         }
       });
 
-      window.addEventListener('keydown', (e) => {
-        if (document.documentElement.classList.contains('nav-shown')) {
-          const key = e.keyCode;
-          if (key === 192) {
-            e.preventDefault();
-            return;
-          }
-          if (document.activeElement !== self.$refs.search && key !== 9) {
-            self.$refs.search.focus();
-          }
-        }
-      });
       this.$bus.$on('nav-closed', this.navToggledHandler);
       this.$bus.$on('nav-toggled', this.navToggledHandler);
     },

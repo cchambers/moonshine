@@ -214,4 +214,26 @@ lib-nav {
       }
     }
   }
+
+  .tip::after {
+    position: absolute;
+    background: rgba(0,0,0,.5);
+    color: $accent-tertiary;
+    content: 'Also `~` on your keyboard!';
+    display: block;
+    left: calc(100% + 1.5rem);
+    top: 50%;
+    font-size: 1.6rem;
+    white-space: pre;
+    padding: 0.05rem 0.5rem;
+    transform: translateX(0) translateY(-50%);
+    pointer-events: none;
+    opacity: 0;
+    border-radius: 1rem;
+    border: 1px solid $lowlight-tertiary;
+  }
+
+  .tip:hover::after {
+    opacity: 1;
+  }
 }
