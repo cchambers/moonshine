@@ -33,7 +33,6 @@ require('./assets/style/common/utility.scss');
 require('./assets/style/themes/custom-props.scss');
 require('./assets/style/themes/default/belk.scss');
 
-const production = (process.env.NODE_ENV === 'production') ? true : false;
 const schema = require('./components/all.json');
 
 if (process.env.NODE_ENV !== 'production') {
@@ -56,8 +55,6 @@ Object.keys(schema)
   .forEach(function (cat) {
     Object.keys(schema[cat])
       .forEach(function (item) {
-        const inDev = !(schema[cat][item].production);
-        if (production && inDev) return;
         require(`./components/${item}`);
       });
   });

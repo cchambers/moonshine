@@ -3,6 +3,8 @@ const glob = require('glob');
 const fs = require('fs-extra');
 
 const schema = {};
+
+const prod = process.env.NODE_ENV === 'production';
 let count = 0;
 
 glob.sync('src/utilities/**/schema.json')
@@ -32,10 +34,11 @@ Object.entries(schema)
 
 glob.sync('src/components/**/schema.json')
   .forEach((dir) => {
-    count += 1;
     const name = dir.split('/')[2];
     const data = JSON.parse(fs.readFileSync(dir, 'utf8'));
+    if (prod && !data.production) return;
     schema[name] = data;
+    count += 1;
   });
 
   // iterate and split into categories
