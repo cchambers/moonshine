@@ -37,10 +37,10 @@ export default {
 
     if (window.location.pathname === '/') this.navShown = true;
 
-    const prodFilter = window.localStorage.getItem('prod-filter');
+    const prodFilter = this.getItem('prod-filter');
     if (prodFilter) this.prodFilter = prodFilter;
 
-    const usedShortcut = window.localStorage.getItem('used-shortcut');
+    const usedShortcut = this.getItem('used-shortcut');
     if (usedShortcut) this.usedShortcut = usedShortcut;
   },
 
@@ -51,7 +51,8 @@ export default {
       window.addEventListener('keyup', (e) => {
         const key = e.keyCode;
         if (key === 192) {
-          window.localStorage.setItem('used-shortcut', true);
+          this.setItem('used-shortcut', true);
+          this.usedShortcut = true;
           self.$bus.$emit('close-modals');
           self.toggleNav();
         }
@@ -77,7 +78,7 @@ export default {
 
     toggleFilter() {
       this.prodFilter = !this.prodFilter;
-      window.localStorage.setItem('prod-filter', this.prodFilter);
+      this.setItem('prod-filter', this.prodFilter);
     },
 
     closeNav() {

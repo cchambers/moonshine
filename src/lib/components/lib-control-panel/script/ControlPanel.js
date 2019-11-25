@@ -26,27 +26,17 @@ export default {
     back() {
       window.history.back();
     },
-    openNav() {
-      this.$bus.$emit('nav-shown');
-    },
-    toggleNav() {
-      this.navShown = !this.navShown;
-      this.$bus.$emit('nav-toggled');
-    },
-    closeNav() {
-      this.$bus.$emit('nav-closed');
-    },
     closeModal() {
       this.$bus.$emit('close-modals');
     },
     toggleTheme() {
       this.theme = (this.theme === 'default') ? 'dark' : 'default';
-      window.localStorage.setItem('docs-theme', this.theme);
+      this.setItem('docs-theme', this.theme);
     },
   },
 
   mounted() {
-    const theme = window.localStorage.getItem('docs-theme');
+    const theme = this.getItem('docs-theme');
     if (theme) this.theme = theme;
   },
 };

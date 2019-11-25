@@ -25,6 +25,14 @@
             </div>
           </div>
           <ul>
+            <li>
+              <div class="header">Tools</div>
+              <ul>
+                <li>
+                  <a href="#bannerBuilder">Banner Builder</a>
+                </li>
+              </ul>
+            </li>
             <li v-for="(item, key) in items" v-bind:key="item.id">
               <div class="header">{{key}}</div>
               <ul>
