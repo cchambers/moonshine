@@ -141,7 +141,7 @@ lib-nav {
     &.active {
       color: $accent-tertiary;
       &::before {
-        content: 'prod only';
+        content: 'released';
       }
     }
     div {
