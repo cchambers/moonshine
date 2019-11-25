@@ -7,7 +7,7 @@ export default {
 
   data() {
     return {
-      theme: 'default',
+      theme: '"default"',
       navShown: false,
     };
   },
