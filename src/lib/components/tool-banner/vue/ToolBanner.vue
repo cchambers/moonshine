@@ -9,18 +9,20 @@
         <sh-button toggle group="breakpoint"
           click-event="code-focus" default-value="code-all" active>ALL</sh-button>
         <sh-button toggle group="breakpoint"
+          click-event="code-focus" default-value="code-xs">XS</sh-button>
+        <sh-button toggle group="breakpoint"
           click-event="code-focus" default-value="code-sm">SM</sh-button>
         <sh-button toggle group="breakpoint"
           click-event="code-focus" default-value="code-md">MD</sh-button>
         <sh-button toggle group="breakpoint"
           click-event="code-focus" default-value="code-lg">LG</sh-button>
-        <sh-button toggle group="breakpoint"
-          click-event="code-focus" default-value="code-xl">XL</sh-button>
         <div class="sep"></div>
       </div>
     </div>
     <div class="tool">
-      <div ref="component" class="component" v-html="html"></div>
+      <div ref="component" class="component">
+        <div class="constrain" v-html="html"></div>
+      </div>
       <div class="editors">
         <div class="editor" ref="editor"></div>
       </div>

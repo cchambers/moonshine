@@ -8,6 +8,7 @@ tool-banner {
   left: 0;
   right: 0;
   bottom: 0;
+
   .detail {
     background: $highlight-quinary;
     sh-button {
@@ -72,7 +73,6 @@ tool-banner {
     height: 8rem;
   }
 
-
   .control-wrap {
     position: relative;
     transition: all 400ms $ease;
@@ -111,6 +111,39 @@ tool-banner {
   .component {
     background: $highlight-primary;
     flex-grow: 1;
+    .constrain {
+      width: 100%;
+      max-width: 128rem;
+      border: 1px solid red;
+      margin: 0 auto;
+    }
+  }
+
+  .tool-banner {
+    &[code-focus="xs"] {
+      .constrain {
+        max-width: 48rem;
+        border-color: green;
+      }
+    }
+
+    &[code-focus="sm"] {
+      .constrain {
+        max-width: 76.8rem;
+      }
+    }
+
+    &[code-focus="md"] {
+      .constrain {
+        max-width: 76rem;
+      }
+    }
+
+    &[code-focus="lg"] {
+      .constrain {
+        max-width: 128rem;
+      }
+    }
   }
 
   .editor {

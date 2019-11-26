@@ -1,5 +1,6 @@
 <template>
   <button ref="button" :class="{ active: isActive }"
+    v-on:keyup.enter="tapHandler"
     :close-trigger="closeTrigger"
     v-hammer:tap="tapHandler"
     :value="defaultValue"
@@ -83,8 +84,8 @@ export default {
       const ripple = document.createElement('div');
       ripple.classList.add('ripple');
       const rect = e.target.getBoundingClientRect();
-      const x = e.center.x - rect.left - 5; // x position within the element.
-      const y = e.center.y - rect.top - 5;
+      const x = (e.center) ? e.center.x - rect.left - 5 : this.$el.outerWidth / 2;
+      const y = (e.center) ? e.center.y - rect.top - 5 : this.$el.outerHeight / 2;
       ripple.style.left = `${x}px`;
       ripple.style.top = `${y}px`;
       this.$el.prepend(ripple);
