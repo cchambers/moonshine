@@ -1,7 +1,8 @@
 <template>
-  <button :class="{ active: active }"
+  <button ref="button" :class="{ active: isActive }"
     :close-trigger="closeTrigger"
     v-hammer:tap="tapHandler"
+    :value="defaultValue"
     class="sh-button">
     <slot name="before-text"></slot>
     <slot></slot>
@@ -22,26 +23,59 @@ export default {
       type: String,
       default: 'default',
     },
+    group: String,
     closeTrigger: Boolean,
     toggle: Boolean,
     round: String,
     outline: Boolean,
     clickEvent: String,
+    defaultValue: String,
+    active: Boolean,
   },
 
   data() {
     return {
-      active: false,
+      isActive: false,
+      emitData: null,
+      buttonEl: this.$refs.button,
     };
   },
 
+  mounted() {
+    this.buttonEl = this.$refs.button;
+    if (this.active) this.isActive = true;
+  },
+
   methods: {
+    events() {
+      const self = this;
+      if (self.group) {
+        self.$bus.$on('group-toggle', (data) => {
+          if (data.group === self.group) self.groupHandler(data);
+        });
+      }
+    },
+
+    groupHandler(data) {
+      if (data.el === this) return;
+      this.isActive = false;
+    },
+
     tapHandler(e) {
       this.ripple(e);
       if (this.toggle) this.doToggle();
       if (this.clickEvent) {
-        this.$bus.$emit(this.clickEvent);
+        this.$bus.$emit(this.clickEvent, {
+          el: this,
+          value: this.buttonEl.value,
+        });
         e.preventDefault();
+      }
+      if (this.group) {
+        this.$bus.$emit('group-toggle', {
+          el: this,
+          group: this.group,
+        });
       }
     },
 
@@ -60,7 +94,8 @@ export default {
     },
 
     doToggle() {
-      this.active = !this.active;
+      if (this.group && this.isActive) return;
+      this.isActive = !this.isActive;
     },
   },
 

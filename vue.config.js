@@ -94,7 +94,7 @@ if (process.env.NODE_ENV !== 'production') {
       };
     });
 
-    glob.sync('src/components/**/docs/*.ejs')
+  glob.sync('src/components/**/docs/*.ejs')
     .forEach((dir) => {
       const component = dir.split('/')[2];
       let filename = dir.split('/');
