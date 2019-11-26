@@ -24,17 +24,17 @@
               <i v-else class="material-icons-round nav-icon">toggle_off</i>
             </div>
           </div>
-          <ul>
+          <ul class="nav-list">
             <li>
-              <div class="header">Tools</div>
+              <div class="header" cat="tools">Tools</div>
               <ul>
                 <li>
-                  <a href="#bannerBuilder">Banner Builder</a>
+                  <a href="/tools/banner-builder">Banner Builder</a>
                 </li>
               </ul>
             </li>
             <li v-for="(item, key) in items" v-bind:key="item.id">
-              <div class="header">{{key}}</div>
+              <div class="header" :cat="key">{{key}}</div>
               <ul>
                 <li v-for="(component, element) in item"
                 :hidden="shouldHide(component.production)" v-bind:key="component.id">
@@ -52,9 +52,118 @@
   </div>
 </template>
 
-<script src="../script/Nav.js"></script>
-<style lang="scss" src="../style/default.scss"></style>
+<script>
+import ComponentPrototype from '../../../../components/component-prototype';
 
+export default {
+  mixins: [ComponentPrototype],
+
+  name: 'Nav',
+
+  data() {
+    return {
+      search: '',
+      results: [],
+      filteredResults: [],
+      items: {},
+      navShown: false,
+      prodFilter: false,
+      usedShortcut: false,
+    };
+  },
+
+  watch: {
+    navShown(val) {
+      if (val) {
+        document.documentElement.classList.add('nav-shown');
+        this.handleActive();
+      } else {
+        document.documentElement.classList.remove('nav-shown');
+      }
+    },
+  },
+
+  mounted() {
+    const self = this;
+    setTimeout(() => {
+      self.items = window.schema;
+      document.body.classList.add('ready');
+    });
+
+    if (window.location.pathname === '/') this.navShown = true;
+
+    const prodFilter = this.getItem('prod-filter');
+    if (prodFilter) this.prodFilter = prodFilter;
+
+    const usedShortcut = this.getItem('used-shortcut');
+    if (usedShortcut) this.usedShortcut = usedShortcut;
+  },
+
+  methods: {
+    events() {
+      const self = this;
+
+      window.addEventListener('keyup', (e) => {
+        const key = e.keyCode;
+        if (key === 192) {
+          this.setItem('used-shortcut', true);
+          this.usedShortcut = true;
+          self.$bus.$emit('close-modals');
+          self.toggleNav();
+        }
+      });
+
+      this.$bus.$on('nav-closed', this.navToggledHandler);
+      this.$bus.$on('nav-toggled', this.navToggledHandler);
+    },
+
+    shouldHide(prod) {
+      const hide = (this.prodFilter && !prod);
+      return hide;
+    },
+
+    handleActive() {
+      const activeEl = document.querySelector(`nav [href$="${window.location.pathname}"]`);
+      if (activeEl) activeEl.classList.add('active');
+    },
+
+    toggleNav() {
+      this.navShown = !this.navShown;
+    },
+
+    toggleFilter() {
+      this.prodFilter = !this.prodFilter;
+      this.setItem('prod-filter', this.prodFilter);
+    },
+
+    closeNav() {
+      this.$bus.$emit('close-nav');
+    },
+
+    goHome() {
+      window.location.pathname = '/';
+    },
+
+    /* eslint-disable */
+    doSearch(e) {
+      let value = this.search;
+      if (value === "") {
+        this.filteredResults = [];
+      } else {
+        let filteredResults = [];
+      }
+    },
+
+    isCurrent(element) {
+      const index = window.location.pathname;
+      const test = (index.indexOf(element) > -1);
+      return test;
+    }
+  }
+}
+</script>
+
+<style lang="scss" src="../style/default.scss"></style>
 <style lang="scss">
 a {
   .search-highlight {
