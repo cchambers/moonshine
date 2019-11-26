@@ -6,17 +6,19 @@ const fullName = require('fullname');
 const WrapperPlugin = require('wrapper-webpack-plugin');
 const dateFormat = require('dateformat');
 const ejs = require('ejs');
+const ua = require('universal-analytics');
 
 const themeLoader = path.resolve('theme-loader.js');
-
+const user = ua('UA-148739944-1');
 const dateNow = new Date();
 dateFormat(dateNow, 'dddd, mmmm dS, yyyy, h:MM:ss TT');
 
 const branchActual = branch.sync();
 let buildTag = '';
+let gitName;
 
 (async () => {
-  const gitName = await fullName();
+  gitName = await fullName();
   buildTag = `/*!
   *         __     __
   * .-----.|  |--.|__|.-----.-----.
@@ -27,6 +29,8 @@ let buildTag = '';
   * branch: \`${branchActual}\`
   * timestamp: ${dateNow}
 */\n\n`;
+  const type = (process.env.NODE_ENV === 'production') ? 'Prod' : 'Development';
+  user.event(`${type} Build`, gitName).send();
 })();
 
 let optimizationSetting = {
@@ -118,6 +122,7 @@ if (process.env.NODE_ENV !== 'production') {
         filename: `demo/${name}/index.html`,
       };
     });
+
 }
 
 

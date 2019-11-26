@@ -10,6 +10,7 @@ lib-toolbar {
     bottom: -2rem;
     right: 3rem;
     z-index: 2;
+
     i {
       font-size: 2rem !important;
       margin: 0 !important;
@@ -101,7 +102,7 @@ lib-toolbar {
       .editor {
         display: block;
       }
-      
+
       .control-wrap {
         bottom: -3rem;
         opacity: 1;

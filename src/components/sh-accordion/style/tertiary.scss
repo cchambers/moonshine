@@ -1,5 +1,6 @@
 sh-accordion[variant="tertiary"] {
   display: block;
+
   .sh-accordion {
     button {
       padding: 0 0 0 1.5rem;
@@ -10,7 +11,8 @@ sh-accordion[variant="tertiary"] {
       transition: background 200ms $ease;
       color: $lowlight-quaternary;
       font-weight: normal;
-      i { 
+
+      i {
         color: $lowlight-quaternary;
       }
     }

@@ -2,6 +2,7 @@
 
 sh-accordion {
   display: block;
+
   .sh-accordion {
     button.header {
       outline: none;
@@ -19,7 +20,7 @@ sh-accordion {
         transition: all 250ms $ease;
       }
     }
-    
+
     .collapse {
       max-height: 0;
       overflow: hidden;
