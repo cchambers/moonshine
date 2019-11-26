@@ -35,6 +35,10 @@ sh-button {
     overflow: hidden;
     background-color: transparent;
 
+    &.active {
+      background: $accent-quaternary;
+    }
+
     span,
     i {
       position: relative;

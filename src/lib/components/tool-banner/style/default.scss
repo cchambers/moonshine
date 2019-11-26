@@ -11,25 +11,26 @@ tool-banner {
 
   .detail {
     background: $highlight-quinary;
+    @media screen and (min-width: $libBreak) {
+      padding-left: 8rem;
+    }
     sh-button {
       height: 100%;
       span {
         text-decoration: none;
       }
     }
-    button.active {
-      color: $highlight-secondary !important;
-      background: $lowlight-quaternary;
-    }
+
     .bar {
       max-width: 128rem;
       margin: 0 auto;
       display: flex;
       align-items: center;
       align-content: center;
-      height: 8rem;
+      height: 4.5rem;
       justify-items: flex-start;
     }
+
     .sep {
       height: 100%;
       width: 2px;
@@ -111,35 +112,41 @@ tool-banner {
   .component {
     background: $highlight-primary;
     flex-grow: 1;
+    position: relative;
     .constrain {
       width: 100%;
       max-width: 128rem;
       border: 1px solid red;
       margin: 0 auto;
+      transition: all 50ms linear;
+      position: absolute;
+      top: 3rem;
+      left: 50%;
+      transform: translateX(-50%) translateY(-50%);
     }
   }
 
   .tool-banner {
-    &[code-focus="xs"] {
+    &[code-focus="code-xs"] {
       .constrain {
         max-width: 48rem;
         border-color: green;
       }
     }
 
-    &[code-focus="sm"] {
+    &[code-focus="code-sm"] {
       .constrain {
         max-width: 76.8rem;
       }
     }
 
-    &[code-focus="md"] {
+    &[code-focus="code-md"] {
       .constrain {
-        max-width: 76rem;
+        max-width: 96rem;
       }
     }
 
-    &[code-focus="lg"] {
+    &[code-focus="code-lg"] {
       .constrain {
         max-width: 128rem;
       }
