@@ -2,9 +2,22 @@
   <div class="tool-banner active" :layout="layout" :code-focus="codeFocus">
     <div class="detail">
       <div class="bar">
-        <sh-button>
-          Orient
-        </sh-button>
+        <sh-dropnav event-only>
+          <ul>
+            <li>
+              <a href="#" data-value="t">Top</a>
+            </li>
+            <li>
+              <a href="#" data-value="r">Right</a>
+            </li>
+            <li>
+              <a href="#" data-value="b">Bottom</a>
+            </li>
+            <li>
+              <a href="#" data-value="l">Left</a>
+            </li>
+          </ul>
+        </sh-dropnav>
         <div class="sep"></div>
         <sh-button toggle group="breakpoint"
           click-event="code-focus" default-value="code-all" active>ALL</sh-button>
