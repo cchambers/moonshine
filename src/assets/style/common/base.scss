@@ -1577,7 +1577,7 @@ ol.lower-alpha {
   align-items: flex-start;
 }
 
-.flex.align-top {
+.flex.align-bottom {
   align-items: flex-end;
 }
 
@@ -1594,23 +1594,23 @@ ol.lower-alpha {
 }
 
 .flex.content-top {
-  align-content: flex-start
+  align-content: flex-start;
 }
 
 .flex.content-bottom {
-  align-content: flex-end
+  align-content: flex-end;
 }
 
 .flex.content-middle {
-  align-content: center
+  align-content: center;
 }
 
 .flex.content-stretch {
-  align-content: stretch
+  align-content: stretch;
 }
 
 .flex.content-baseline {
-  align-content: baseline
+  align-content: baseline;
 }
 
 .flex-item {

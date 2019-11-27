@@ -2,7 +2,7 @@ sh-accordion {
   .sh-accordion[variant="primary"] {
     border: 1px solid $lowlight-quinary;
 
-    button>div {
+    button > div {
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -44,7 +44,7 @@ sh-accordion {
     }
   }
 
-  &+sh-accordion {
+  & + sh-accordion {
     .sh-accordion {
       border-top: none;
     }

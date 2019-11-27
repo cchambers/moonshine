@@ -1,16 +1,11 @@
 /* eslint-disable */
-import "core-js/stable";
-import "regenerator-runtime/runtime";
+import 'core-js/stable';
+import 'regenerator-runtime/runtime';
 
 require('./assets/script/core.js');
 
 import Vue from 'vue';
 Vue.config.productionTip = false;
-
-/* SH-COMPONENT PROTOTYPE 
-import ComponentPrototype from './components/component-prototype';
-Vue.mixin(ComponentPrototype);
-*/
 
 /* IE-11 Polyfills */
 import 'document-register-element/build/document-register-element';
@@ -48,6 +43,7 @@ if (process.env.NODE_ENV !== 'production') {
   require('./lib/components/lib-section-links');
   require('./lib/components/lib-notify');
   require('./lib/components/lib-toolbar');
+  require('./lib/components/tool-banner');
   window.schema = schema;
 }
 

@@ -6,17 +6,19 @@ const fullName = require('fullname');
 const WrapperPlugin = require('wrapper-webpack-plugin');
 const dateFormat = require('dateformat');
 const ejs = require('ejs');
+const ua = require('universal-analytics');
 
 const themeLoader = path.resolve('theme-loader.js');
-
+const user = ua('UA-148739944-1');
 const dateNow = new Date();
 dateFormat(dateNow, 'dddd, mmmm dS, yyyy, h:MM:ss TT');
 
 const branchActual = branch.sync();
 let buildTag = '';
+let gitName;
 
 (async () => {
-  const gitName = await fullName();
+  gitName = await fullName();
   buildTag = `/*!
   *         __     __
   * .-----.|  |--.|__|.-----.-----.
@@ -27,6 +29,8 @@ let buildTag = '';
   * branch: \`${branchActual}\`
   * timestamp: ${dateNow}
 */\n\n`;
+  const type = (process.env.NODE_ENV === 'production') ? 'Prod' : 'Development';
+  user.event(`${type} Build`, gitName).send();
 })();
 
 let optimizationSetting = {
@@ -90,6 +94,56 @@ if (process.env.NODE_ENV !== 'production') {
       };
     });
 
+  glob.sync('src/components/**/docs/*.ejs')
+    .forEach((dir) => {
+      const component = dir.split('/')[2];
+      let filename = dir.split('/');
+      let schemaDir = dir.replace(/(docs\/)([a-zA-Z0-9\s_\\.\-():])+(.html|.ejs)$/, '');
+      schemaDir = `${schemaDir}schema.json`;
+      filename = filename[filename.length - 1];
+      const name = `${component}/${filename}`;
+      let schema = fs.readFileSync(schemaDir, 'utf8');
+      const url = `components/${component}/${filename.split('.')[0]}.html`;
+      schema = JSON.parse(schema);
+      pages[name] = {
+        entry: 'src/main.js',
+        template: dir,
+        filename: url,
+        title: schema.name || 'configure schema.json',
+        description: schema.description || {},
+        tags: schema.tags || {},
+        reqs: schema.reqs || {},
+        docsHead,
+        docsFoot,
+      };
+    });
+
+  glob.sync('src/lib/tools/**/*.ejs')
+    .forEach((dir) => {
+      const name = dir.split('/')[3];
+      let filename = dir.split('/');
+      filename = filename[filename.length - 1];
+      const test = dir.split('/');
+      test.pop();
+      let schemaDir = test.join('/');
+      schemaDir = `${schemaDir}/schema.json`;
+      let schema = fs.readFileSync(schemaDir, 'utf8');
+      schema = JSON.parse(schema);
+      const tool = `${name}/${filename}`;
+      const url = `tools/${schema.url}/${filename.split('.')[0]}.html`;
+      pages[tool] = {
+        entry: 'src/main.js',
+        template: dir,
+        filename: url,
+        title: schema.name || 'configure schema.json',
+        description: schema.description || {},
+        tags: schema.tags || {},
+        reqs: schema.reqs || {},
+        docsHead,
+        docsFoot,
+      };
+    });
+
   glob.sync('src/lib/utilities/*.ejs')
     .forEach((dir) => {
       let filename = dir.split('/');
@@ -118,6 +172,7 @@ if (process.env.NODE_ENV !== 'production') {
         filename: `demo/${name}/index.html`,
       };
     });
+
 }
 
 

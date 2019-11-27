@@ -1,7 +1,4 @@
-$libBreak: 800px;
-
 lib-nav {
-
   .lib-nav {
     display: flex;
     position: fixed;
@@ -25,6 +22,9 @@ lib-nav {
     }
 
     ul {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
       list-style: none;
       padding: 0;
       margin: 0;
@@ -68,6 +68,7 @@ lib-nav {
 
     li {
       margin-top: 0.5rem;
+
       li {
         margin: 0;
       }
@@ -76,10 +77,11 @@ lib-nav {
     .header {
       text-transform: uppercase;
       padding: 0 1.5rem;
-      margin-top: 3rem;
+      margin-top: 1.5rem;
       font-size: 1.4rem;
       line-height: 3rem;
       color: $accent-tertiary;
+
       + ul {
         margin: 0;
       }
@@ -94,7 +96,8 @@ lib-nav {
       transition: all 150ms $ease;
       position: relative;
       color: $lowlight-quaternary;
-      text-shadow: 0 0 0 rgba(0,0,0,0.5);
+      text-shadow: 0 0 0 rgba(0, 0, 0, 0.5);
+
       &:hover {
         color: $highlight-tertiary;
         background: rgba(255, 255, 255, 0);
@@ -124,26 +127,32 @@ lib-nav {
     right: 1.5rem;
     top: 5rem;
     position: absolute;
+    z-index: 2;
     display: flex;
     align-items: center;
     color: $lowlight-quaternary;
     cursor: pointer;
     transition: all 200ms $ease;
+
     &:hover {
       color: $highlight-quaternary;
     }
+
     &::before {
       content: 'all';
       display: block;
       font-size: 1rem;
       margin-right: 1rem;
     }
+
     &.active {
       color: $accent-tertiary;
+
       &::before {
         content: 'released';
       }
     }
+
     div {
       display: flex;
     }
@@ -159,6 +168,7 @@ lib-nav {
     position: sticky;
     top: 0;
     z-index: 1;
+
     input {
       display: block;
       font-family: "Menlo", monospace;
@@ -167,12 +177,13 @@ lib-nav {
       height: 4.5rem;
       background: transparent;
       color: $highlight-tertiary;
-      text-shadow: 1px 1px 2px rgba(0,0,0,.5);
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
       border: 0;
       outline: 0;
       padding: 0.5rem 1.5rem 0.5rem 8rem;
+
       &::placeholder {
-        color: rgba(255,255,255,0.5);
+        color: rgba(255, 255, 255, 0.5);
         text-shadow: none;
       }
     }
@@ -217,7 +228,7 @@ lib-nav {
 
   .tip::after {
     position: absolute;
-    background: rgba(0,0,0,.5);
+    background: rgba(0, 0, 0, 0.5);
     color: $accent-tertiary;
     content: 'Also `~` on your keyboard!';
     display: block;
@@ -235,5 +246,23 @@ lib-nav {
 
   .tip:hover::after {
     opacity: 1;
+  }
+}
+
+.nav-shown {
+  .show-nav {
+    background: $lowlight-quaternary;
+  }
+}
+
+[interaction="mouse"] {
+  lib-nav {
+    .show-nav {
+      top: 0.5rem;
+      left: 0.5rem;
+      font-size: 1.8rem;
+      height: 3.5rem;
+      width: 3.5rem;
+    }
   }
 }

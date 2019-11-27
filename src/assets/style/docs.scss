@@ -1,5 +1,3 @@
-$libBreak: 800px;
-
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700,800,400italic,700italic,800italic);
 @import url(https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Round);
 .material-icons-round { font-family: 'Material Icons Round' !important; }
@@ -108,6 +106,7 @@ a:hover {
   color: #115f91;
 }
 $containMargin: 8rem;
+
 /* grid */
 .contain {
   width: calc(100% - #{$containMargin});
@@ -266,10 +265,6 @@ $containMargin: 8rem;
 .push-2-3 {
   margin-left: 66.66%;
   width: calc(100% / 2.99999);
-}
-
-.documentation {
-  transition: all 200ms $ease;
 }
 
 @media screen and (max-width: 800px) {
@@ -493,6 +488,8 @@ $containMargin: 8rem;
 }
 
 .documentation {
+  transition: all 200ms $ease;
+
   > h1 {
     font-family: "Menlo", monospace;
     font-weight: 100;
@@ -573,6 +570,7 @@ $containMargin: 8rem;
 
       td:nth-child(2) {
         @include vartype;
+
         text-transform: capitalize;
       }
 

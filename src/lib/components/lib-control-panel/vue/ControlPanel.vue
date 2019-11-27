@@ -19,7 +19,6 @@
 <style lang="scss">
 html {
   &.nav-shown {
-
     .close-curtain {
       transform: translateY(0) translateZ(0) !important;
     }

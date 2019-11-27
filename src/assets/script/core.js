@@ -1,6 +1,9 @@
+/* eslint-disable func-names */
 const app = {
+  interaction: 'keyboard',
+
   init() {
-    app.setup();
+    app.setup().events();
     if (window.location.search) app.urlParamsToObj();
   },
 
@@ -17,29 +20,39 @@ const app = {
       demos[x].setAttribute('base-code', html);
       demos[x].innerHTML = '';
     }
+    return this;
+  },
 
-    app.interaction = 'keyboard';
-
-    document.addEventListener('keydown', () => {
-      if (app.interaction !== 'keyboard') {
-        app.interaction = 'keyboard';
-        document.documentElement.setAttribute('interaction', app.interaction);
-      }
+  events() {
+    document.addEventListener('keypress', (e) => {
+      if (e.altKey || e.ctrlKey) return;
+      app.interactionHandler('keyboard');
     });
 
     document.addEventListener('click', () => {
-      if (app.interaction !== 'mouse') {
-        app.interaction = 'mouse';
-        document.documentElement.setAttribute('interaction', app.interaction);
-      }
+      app.interactionHandler('mouse');
     });
 
+    const scrollDebounced = app.debounce(() => {
+      app.interactionHandler('mouse');
+    }, 100);
+    window.addEventListener('scroll', scrollDebounced, true);
+
+    const touchDebounced = app.debounce(() => {
+      app.interactionHandler('touch');
+    }, 100);
+    window.addEventListener('touchmove', touchDebounced, true);
+
     document.addEventListener('touchstart', () => {
-      if (app.interaction !== 'touch') {
-        app.interaction = 'touch';
-        document.documentElement.setAttribute('interaction', app.interaction);
-      }
+      app.interactionHandler('touch');
     });
+  },
+
+  interactionHandler(type) {
+    if (app.interaction !== type) {
+      app.interaction = type;
+      document.documentElement.setAttribute('interaction', type);
+    }
   },
 
   cookieParamsToObj() {
@@ -54,6 +67,16 @@ const app = {
     return result;
   },
 
+  debounce(func, wait = 100) {
+    let timeout;
+    return function (...args) {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => {
+        func.apply(this, args);
+      }, wait);
+    };
+  },
+
   urlParamsToObj() {
     let { search } = window.location;
     search = search.replace(/\?&/g, '');
@@ -62,9 +85,7 @@ const app = {
     search = search.split('&');
     const params = {};
     search.forEach((param) => {
-      let str = param;
-      str = str.replace(/('|")/g, '')
-        .trim();
+      const str = param.replace(/('|")/g, '').trim();
       const split = str.split(':');
       if (split.length) {
         if (split[1]) {

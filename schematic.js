@@ -1,6 +1,7 @@
 /* eslint-disable */
 const glob = require('glob');
 const fs = require('fs-extra');
+const chalk = require('chalk');
 
 const schema = {};
 
@@ -24,7 +25,7 @@ Object.entries(schema)
     const key = item[0];
     const value = item[1];
     const cat = value.category.toLowerCase();
-    if (key !== "component-template") {
+    if (key !== 'component-template') {
       if (!sorted[cat]) {
         sorted[cat] = {};
       }
@@ -48,7 +49,7 @@ glob.sync('src/components/**/schema.json')
     const key = item[0];
     const value = item[1];
     const cat = value.category.toLowerCase();
-    if (key !== "component-template") {
+    if (key !== 'component-template') {
       if (!sorted[cat]) {
         sorted[cat] = {};
       }
@@ -58,4 +59,4 @@ glob.sync('src/components/**/schema.json')
 
 const data = JSON.stringify(sorted);
 fs.writeFileSync('src/components/all.json', data);
-console.log(`${count} component schemas bundled...`);
+console.log(chalk.black.bgGreen(' SHINE '), `${count} component schemas bundled...`);

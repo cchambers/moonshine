@@ -1,0 +1,190 @@
+$z-level: 8;
+
+tool-banner {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  .detail {
+    background: $highlight-quinary;
+    @media screen and (min-width: $libBreak) {
+      padding-left: 8rem;
+    }
+    sh-button {
+      height: 100%;
+      span {
+        text-decoration: none;
+      }
+    }
+
+    .bar {
+      max-width: 128rem;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      align-content: center;
+      height: 4.5rem;
+      justify-items: flex-start;
+    }
+
+    .sep {
+      height: 100%;
+      width: 2px;
+      background: rgba(0,0,0,0.2);
+      border-left: 1px solid rgba(255, 255, 255, 0.5);
+    }
+  }
+
+  .tool-banner {
+    flex-grow: 1;
+
+    &[layout="t"] {
+      .tool {
+        flex-direction: column;
+      }
+      .component {
+        order: 1;
+      }
+      .editors {
+        order: 0;
+        min-width: 100rem;
+      }
+    }
+  }
+
+  .tool {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-grow: 0;
+    flex-direction: column;
+  }
+
+  .editors {
+    display: flex;
+    flex-grow: 1;
+  }
+
+  .details {
+    background: $lowlight-quaternary;
+    height: 8rem;
+  }
+
+  .control-wrap {
+    position: relative;
+    transition: all 400ms $ease;
+    transition-delay: 0.1s;
+    bottom: -2rem;
+    right: 3rem;
+    z-index: 2;
+
+    i {
+      font-size: 2rem !important;
+      margin: 0 !important;
+    }
+  }
+
+  .control {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    z-index: $z-level;
+
+    sh-button {
+      font-size: 0.6rem;
+
+      button {
+        background: $lowlight-tertiary;
+        font-size: 8px;
+
+        &:hover {
+          background: $accent-secondary;
+        }
+      }
+    }
+  }
+
+  .component {
+    background: $highlight-primary;
+    flex-grow: 1;
+    position: relative;
+    .constrain {
+      width: 100%;
+      max-width: 128rem;
+      border: 1px solid red;
+      margin: 0 auto;
+      transition: all 50ms linear;
+      position: absolute;
+      top: 3rem;
+      left: 50%;
+      transform: translateX(-50%) translateY(-50%);
+    }
+  }
+
+  .tool-banner {
+    &[code-focus="code-xs"] {
+      .constrain {
+        max-width: 48rem;
+        border-color: green;
+      }
+    }
+
+    &[code-focus="code-sm"] {
+      .constrain {
+        max-width: 76.8rem;
+      }
+    }
+
+    &[code-focus="code-md"] {
+      .constrain {
+        max-width: 96rem;
+      }
+    }
+
+    &[code-focus="code-lg"] {
+      .constrain {
+        max-width: 128rem;
+      }
+    }
+  }
+
+  .editor {
+    flex-grow: 0;
+    min-height: 10rem;
+    width: 100% !important;
+  }
+
+  &[demo] {
+    .lib-toolbar::before {
+      @include fill;
+
+      display: flex;
+      align-content: center;
+      justify-content: center;
+      align-items: center;
+      background: rgba(0, 0, 0, 0.8);
+      content: 'click for demo';
+      z-index: 5;
+      color: #ccc;
+      opacity: 0;
+      transform: opacity 250ms $ease;
+      cursor: pointer;
+    }
+
+    &:hover {
+      .lib-toolbar::before {
+        opacity: 1;
+      }
+    }
+  }
+
+  .ace_content,
+  .ace_editor {
+    font-size: 16px !important;
+  }
+}
