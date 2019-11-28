@@ -1726,7 +1726,8 @@ ol.lower-alpha {
   font-size: 15px;
 }
 
-[vce-cloak] {
+[vce-cloak],
+[v-cloak] {
   opacity: 0;
   transition: none;
   display: none !important;

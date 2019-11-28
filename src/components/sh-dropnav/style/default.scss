@@ -1,14 +1,19 @@
 /* default styling */
-
-sh-dropnav {
+.sh-dropnav {
   display: inline-block;
   position: relative;
   min-width: 4.5rem;
   min-height: 4.5rem;
-  max-width: 26rem;
+  max-width: 16rem;
   width: 100%;
 
-  .sh-dropnav {
+  &.is-open {
+    .item-container {
+      display: block !important;
+    }
+  }
+
+  .wrapper {
     position: absolute;
     top: 0;
     right: 0;
@@ -17,25 +22,21 @@ sh-dropnav {
     display: flex;
     flex-direction: column;
     background: $accent-tertiary;
-    &.is-open {
-      .item-container {
-        display: block;
-      }
-    }
 
-    button {
+    > button {
       display: flex;
       padding: 0 1.5rem;
       line-height: 4.5rem;
       font-weight: normal;
-      font-size: 1.8rem;
+      font-size: 1.6rem;
       background: transparent;
       outline: 0;
       border: 0;
       color: $accent-primary;
+      cursor: pointer;
     }
 
-    ul.item-container {
+    .item-container {
       display: none;
       top: 4.5rem;
       left: 0;

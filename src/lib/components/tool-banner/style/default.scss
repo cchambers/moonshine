@@ -11,6 +11,8 @@ tool-banner {
 
   .detail {
     background: $highlight-quinary;
+    position: relative;
+    z-index: 4;
     @media screen and (min-width: $libBreak) {
       padding-left: 8rem;
     }

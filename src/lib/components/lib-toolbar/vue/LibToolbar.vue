@@ -34,7 +34,7 @@
 </template>
 
 <script src="../script/LibToolbar.js"></script>
-<style lang="scss" src="../style/default.scss" scoped></style>
+<style lang="scss" src="../style/default.scss"></style>
 <style lang="scss">
 .ace_text-input {
   position: absolute !important;

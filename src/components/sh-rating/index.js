@@ -1,4 +1,6 @@
 import Vue from 'vue';
+import wrap from '../wrapper';
 import Rating from './vue/Rating.vue';
 
-Vue.customElement('sh-rating', Rating);
+const Wrapped = wrap(Vue, Rating);
+window.customElements.define('sh-rating', Wrapped);

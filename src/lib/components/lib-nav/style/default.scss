@@ -1,4 +1,4 @@
-lib-nav {
+
   .lib-nav {
     display: flex;
     position: fixed;
@@ -247,7 +247,6 @@ lib-nav {
   .tip:hover::after {
     opacity: 1;
   }
-}
 
 .nav-shown {
   .show-nav {

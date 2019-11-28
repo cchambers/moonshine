@@ -1,4 +1,6 @@
 import Vue from 'vue';
+import wrap from '../wrapper';
 import BelkProductList from './BelkProductList.vue';
 
-Vue.customElement('belk-product-list', BelkProductList);
+const Wrapped = wrap(Vue, BelkProductList);
+window.customElements.define('belk-product-list', Wrapped);

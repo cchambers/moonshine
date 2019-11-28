@@ -15,7 +15,7 @@
 </template>
 
 <script src="../script/ControlPanel.js"></script>
-<style lang="scss" src="../style/default.scss" scoped></style>
+<style lang="scss" src="../style/default.scss"></style>
 <style lang="scss">
 html {
   &.nav-shown {

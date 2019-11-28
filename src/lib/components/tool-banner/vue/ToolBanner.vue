@@ -2,7 +2,7 @@
   <div class="tool-banner active" :layout="layout" :code-focus="codeFocus">
     <div class="detail">
       <div class="bar">
-        <sh-dropnav event-only>
+        <component v-bind:is="dropnav" id="toolbar-orient" event-only>
           <ul>
             <li>
               <a href="#" data-value="t">Top</a>
@@ -17,7 +17,7 @@
               <a href="#" data-value="l">Left</a>
             </li>
           </ul>
-        </sh-dropnav>
+        </component>
         <div class="sep"></div>
         <sh-button toggle group="breakpoint"
           click-event="code-focus" default-value="code-all" active>ALL</sh-button>
@@ -68,6 +68,7 @@ import 'brace/mode/html';
 import 'brace/theme/monokai';
 import Pretty from 'pretty';
 import ComponentPrototype from '../../../../components/component-prototype';
+import ShDropnav from '../../../../components/sh-dropnav/Dropnav.vue';
 
 export default {
   mixins: [ComponentPrototype],
@@ -90,6 +91,7 @@ export default {
       editor: {},
       layout: 't',
       codeFocus: 'all',
+      dropnav: ShDropnav,
     };
   },
 
@@ -136,6 +138,11 @@ export default {
   methods: {
     events() {
       this.$bus.$on('code-focus', this.codeFocusHandler);
+      this.$bus.$on('dropnav-value-changed', (data) => {
+        if (data.el.id === 'toolbar-orient') {
+          // console.log(`Orient to: ${data.value}`);
+        }
+      });
     },
 
     codeFocusHandler(data) {
