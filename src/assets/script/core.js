@@ -20,7 +20,7 @@ const app = {
     for (let x = 0, l = demos.length; x < l; x += 1) {
       const html = demos[x].innerHTML;
       demos[x].setAttribute('base-code', html);
-      demos[x].innerHTML = '';
+      // demos[x].innerHTML = '';
     }
     return this;
   },

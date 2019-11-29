@@ -74,6 +74,7 @@ function toVNode(h, node) {
         innerHTML: node.innerHTML,
       },
     };
+
     if (data.attrs.slot) {
       data.slot = data.attrs.slot;
       delete data.attrs.slot;
@@ -169,7 +170,7 @@ function wrap(Vue, Component) {
       // });
 
       const wrapper = this._wrapper = new Vue({
-        name: 'vue-custom',
+        name: 'custom-element',
         customElement: this,
         data() {
           return {
@@ -185,7 +186,8 @@ function wrap(Vue, Component) {
         },
       });
 
-      // Use MutationObserver to react to future attribute & slot content change
+
+      // // Use MutationObserver to react to future attribute & slot content change
       const observer = new MutationObserver((mutations) => {
         let hasChildrenChange = false;
         for (let i = 0; i < mutations.length; i++) {
@@ -196,12 +198,13 @@ function wrap(Vue, Component) {
             hasChildrenChange = true;
           }
         }
-        if (hasChildrenChange) {
-          wrapper.slotChildren = Object.freeze(toVNodes(
-            wrapper.$createElement,
-            this.childNodes,
-          ));
-        }
+        // if (hasChildrenChange) {
+        //   console.log('CHILD CHANGE');
+        // //   wrapper.slotChildren = Object.freeze(toVNodes(
+        // //     wrapper.$createElement,
+        // //     this.childNodes,
+        // //   ));
+        // }
       });
       observer.observe(this, {
         childList: true,
@@ -245,7 +248,8 @@ function wrap(Vue, Component) {
           this.childNodes,
         ));
         wrapper.$mount();
-        this.vueComponent.$el.appendChild(wrapper.$el);
+        this.innerHTML = '';
+        this.appendChild(wrapper.$el);
       } else {
         callHooks(this.vueComponent, 'activated');
       }

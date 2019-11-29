@@ -6,7 +6,11 @@ export default {
   name: 'BelkLogo',
   props: {
     smart: Boolean,
-    width: Number,
+    width: {
+      type: String,
+      required: true,
+      default: '120',
+    },
     color: {
       type: String,
       default: 'lowlight-primary',

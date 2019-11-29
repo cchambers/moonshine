@@ -1,4 +1,4 @@
-
+lib-nav {
   .lib-nav {
     display: flex;
     position: fixed;
@@ -61,7 +61,7 @@
       font-weight: 400;
     }
 
-    > ul {
+    >ul {
       margin: 0;
       flex-grow: 1;
     }
@@ -82,7 +82,7 @@
       line-height: 3rem;
       color: $accent-tertiary;
 
-      + ul {
+      +ul {
         margin: 0;
       }
     }
@@ -247,6 +247,7 @@
   .tip:hover::after {
     opacity: 1;
   }
+}
 
 .nav-shown {
   .show-nav {
