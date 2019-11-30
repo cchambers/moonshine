@@ -1,10 +1,10 @@
 <template>
-  <div class="lib-nav" v-cloak>
+  <div v-cloak>
     <div class="show-nav nav-icon" v-hammer:tap="toggleNav" v-bind:class="{ tip: !usedShortcut }">
       <i class="material-icons-round" :class="{ active: !navShown }">menu</i>
       <i class="material-icons-round" :class="{ active: navShown }">arrow_back</i>
     </div>
-    <div>
+    <div class="lib-nav">
       <nav>
         <div class="primary" ref="primary">
           <!-- <div v-hammer:tap="closeNav" class="go-back">
