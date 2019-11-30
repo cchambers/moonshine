@@ -22,9 +22,6 @@ lib-nav {
     }
 
     ul {
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
       list-style: none;
       padding: 0;
       margin: 0;
@@ -48,15 +45,15 @@ lib-nav {
   .primary {
     width: 26rem;
     background: $lowlight-secondary;
-    min-height: 100vh;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     align-content: flex-start;
     // padding-top: 9rem;
+    @include box-shadow(2);
     @include scroll-y;
     @include no-scroll-bar;
-    @include box-shadow(2);
-
+    
     .category {
       font-weight: 400;
     }
