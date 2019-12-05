@@ -1,5 +1,7 @@
 {
   "name": "Belk Header",
+  "category": "features",
+  "production": false,
   "element": "belk-header",
   "description": "Global header component.",
   "tags": ["header"],

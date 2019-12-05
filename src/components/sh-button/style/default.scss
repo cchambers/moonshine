@@ -3,7 +3,7 @@ sh-button {
   font-size: 1rem;
 
   & ~ sh-button {
-    margin-left: 1.5em;
+    margin-left: 1.5rem;
   }
 
   &[scale] {
@@ -34,6 +34,10 @@ sh-button {
     cursor: pointer;
     overflow: hidden;
     background-color: transparent;
+
+    &.active {
+      background: $accent-tertiary;
+    }
 
     span,
     i {
@@ -147,4 +151,8 @@ sh-button {
       }
     }
   }
+}
+
+sh-button[group] {
+  margin-left: 0;
 }

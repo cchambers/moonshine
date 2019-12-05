@@ -1,7 +1,0 @@
-{
-  "name": "Link List",
-  "element": "sh-link-list",
-  "description": "Data driven link list.",
-  "tags": ["utilities", "demo"],
-  "requirements": {}
-}

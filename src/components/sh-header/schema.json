@@ -1,7 +1,0 @@
-{
-  "name": "Header",
-  "element": "sh-header",
-  "description": "Demonstration component.",
-  "tags": ["utilities", "demo"],
-  "requirements": {}
-}

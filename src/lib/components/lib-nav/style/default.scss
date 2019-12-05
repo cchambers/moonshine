@@ -1,18 +1,18 @@
-$libBreak: 800px;
-
 lib-nav {
-  display: flex;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  transition: all 300ms $ease;
-  transform: translateX(-100%) translateZ(0);
-  color: $highlight-primary;
-  z-index: 9;
-  -webkit-overflow-scrolling: touch;
-  will-change: scroll-position;
+  .lib-nav {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 26rem;
+    transition: all 300ms $ease;
+    transform: translateX(-100%) translateZ(0);
+    color: $highlight-primary;
+    z-index: 9;
+    -webkit-overflow-scrolling: touch;
+    will-change: scroll-position;
+  }
 
   nav {
     display: flex;
@@ -20,201 +20,141 @@ lib-nav {
     a {
       color: $highlight-primary;
     }
-  }
 
-  ul {
-    list-style: none;
-    padding: 0;
-    margin: 0 !important;
+    ul {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
   }
 
   .go-back {
     display: flex;
+    position: sticky;
     justify-content: flex-start;
     align-items: center;
-    padding: 0 $rem;
+    padding: 0 1.5rem;
     transition: all 100ms linear;
     cursor: pointer;
-    background: $accent-primary;
+    background: $highlight-tertiary;
     top: 0;
-    height: 9rem;
-
-    &:hover {
-      background: $accent-primary;
-    }
+    height: 4.5rem;
+    z-index: 1;
   }
 
   .primary {
     width: 26rem;
-    background: $lowlight-tertiary;
+    background: $lowlight-secondary;
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-content: flex-start;
     // padding-top: 9rem;
     @include scroll-y;
     @include no-scroll-bar;
     @include box-shadow(2);
 
-    a {
-      display: block;
-      line-height: 6.5rem;
-      padding: 0 $rem;
-      font-size: 1.8rem;
-      transition: all 100ms linear;
-      position: relative;
-
-      &:hover,
-      &.active {
-        color: $highlight-primary;
-        background: $accent-primary;
-        z-index: 2;
-      }
-
-      &::before {
-        display: block;
-        content: '';
-        position: absolute;
-        height: 20rem;
-        width: 20rem;
-        transform: rotate(45deg) translateY(-50%);
-        right: -4rem;
-        top: 50%;
-      }
-    }
-  }
-
-  .secondary {
-    position: relative;
-
-    #nav-search-results {
-      // column-count: 3;
-      // column-rule: 1px solid $highlight-primary;
-      // column-gap: 10rem;
-      display: flex;
-      flex-direction: column;
-      flex-wrap: wrap;
-      justify-content: flex-start;
-      align-items: flex-start;
-      align-content: flex-start;
-      position: absolute;
-      top: 9rem;
-      left: $rem;
-      right: $rem;
-      height: calc(100vh - 18rem);
-      transform: translateX(-300vw);
-      overflow: hidden;
-
-      @media (max-width: $libBreak) {
-        flex-wrap: nowrap;
-
-        @include scroll-y;
-      }
-
-      &.active {
-        transform: translateX(0);
-      }
-    }
-  }
-
-  .secondary > div {
-    width: calc(100vw - 26rem);
-    position: relative;
-    font-size: 1.8rem;
-
-    &.active {
-      // for later
-      opacity: 1;
-      pointer-events: auto;
+    .category {
+      font-weight: 400;
     }
 
-    a {
-      color: $highlight-primary;
-      display: block;
-      line-height: $rem;
-
-      &:hover {
-        color: $accent-tertiary;
-        background: rgba(255, 255, 255, 0.02);
-      }
-    }
-
-    > div {
-      // lol, will fix
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      justify-content: flex-start;
-      align-items: flex-start;
-      align-content: flex-start;
-      position: absolute;
-      top: 9rem;
-      left: $rem;
-      right: $rem;
-      height: calc(100vh - 18rem);
-      transform: translateX(-300vw);
-      overflow: hidden;
-
-      @media (max-width: $libBreak) {
-        @include scroll-y;
-      }
-
-      &.active {
-        transform: translateX(0);
-      }
-    }
-
-    h2 {
-      font-size: 2rem;
-      break-after: avoid;
-      padding-top: $rem;
-      break-before: auto;
-    }
-
-    ul {
-      &::before {
-        display: block;
-        content: attr(category);
-        font-family: "Menlo", monospace;
-        font-weight: bold;
-        text-transform: uppercase;
-        font-size: 3rem;
-        line-height: 3rem;
-        color: $accent-primary;
-      }
-
-      flex-grow: 0;
-      flex-shrink: 0;
-      width: 28rem;
-      line-height: $rem;
-      padding-top: $rem;
-      break-before: avoid;
-      break-inside: avoid;
-      margin-right: 1.5rem;
+    > ul {
+      margin: 0;
+      flex-grow: 1;
     }
 
     li {
-      break-inside: avoid;
+      margin-top: 0.5rem;
 
-      a {
-        padding: 1.5rem 3rem;
-        line-height: 3rem;
+      li {
+        margin: 0;
       }
+    }
+
+    .header {
+      text-transform: uppercase;
+      padding: 0 1.5rem;
+      margin-top: 1.5rem;
+      font-size: 1.4rem;
+      line-height: 3rem;
+      color: $accent-tertiary;
+
+      + ul {
+        margin: 0;
+      }
+    }
+
+    a {
+      padding: 0 1.5rem;
+      height: 3rem;
+      display: flex;
+      align-items: center;
+      font-size: 1.6rem;
+      transition: all 150ms $ease;
+      position: relative;
+      color: $lowlight-quaternary;
+      text-shadow: 0 0 0 rgba(0, 0, 0, 0.5);
+
+      &:hover {
+        color: $highlight-tertiary;
+        background: rgba(255, 255, 255, 0);
+      }
+
+      &.active {
+        color: $highlight-primary;
+        background: $accent-primary;
+        margin-left: 0.75rem;
+        padding-left: 0.75rem;
+      }
+
+      // &::before {
+      //   display: block;
+      //   content: '';
+      //   position: absolute;
+      //   height: 20rem;
+      //   width: 20rem;
+      //   transform: rotate(45deg) translateY(-50%);
+      //   right: -4rem;
+      //   top: 50%;
+      // }
     }
   }
 
-  .ad-space {
-    display: none;
-    padding: 10rem $rem;
-    width: 20rem;
-  }
+  #prod-toggle {
+    right: 1.5rem;
+    top: 5rem;
+    position: absolute;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    color: $lowlight-quaternary;
+    cursor: pointer;
+    transition: all 200ms $ease;
 
-  a[note] {
-    display: flex !important;
+    &:hover {
+      color: $highlight-quaternary;
+    }
 
-    &::after {
-      content: "("attr(note) ")";
-      display: inline-block;
-      font-size: 1.4rem;
-      margin-left: auto;
-      color: $lowlight-quaternary;
+    &::before {
+      content: 'all';
+      display: block;
+      font-size: 1rem;
+      margin-right: 1rem;
+    }
+
+    &.active {
+      color: $accent-tertiary;
+
+      &::before {
+        content: 'released';
+      }
+    }
+
+    div {
+      display: flex;
     }
   }
 
@@ -224,32 +164,105 @@ lib-nav {
   }
 
   #nav-search {
-    position: absolute;
-    z-index: 2;
-    background: rgba(255, 255, 255, 0.02);
-    width: calc(100% - 36rem);
-    right: 9rem;
+    background: $docsGradient;
+    position: sticky;
     top: 0;
-    left: 26rem;
-    padding: 0 $rem;
+    z-index: 1;
 
     input {
       display: block;
       font-family: "Menlo", monospace;
-      font-size: $rem;
+      font-size: 1.8rem;
       width: 100%;
-      line-height: 6rem;
-      height: 9rem;
+      height: 4.5rem;
       background: transparent;
-      color: $highlight-primary;
+      color: $highlight-tertiary;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
       border: 0;
       outline: 0;
+      padding: 0.5rem 1.5rem 0.5rem 8rem;
+
+      &::placeholder {
+        color: rgba(255, 255, 255, 0.5);
+        text-shadow: none;
+      }
     }
+  }
+
+  .show-nav {
+    position: fixed;
+    top: 1.5rem;
+    left: 1.5rem;
+    transition: all 200ms $ease;
+    background: $docsGradient;
+    background-size: 200% auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 5rem;
+    width: 5rem;
+    border-radius: 50%;
+    z-index: 10;
+    font-size: 3rem;
+    cursor: pointer;
+
+    &:hover {
+      background-position: 50% 0;
+    }
+
+    i {
+      color: rgba(255, 255, 255, 0.5);
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translateX(-50%) translateY(-50%) scale(0.4);
+      opacity: 0;
+      transition: all 300ms $ease;
+
+      &.active {
+        opacity: 1;
+        transform: translateX(-50%) translateY(-50%) rotate(0);
+      }
+    }
+  }
+
+  .tip::after {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.5);
+    color: $accent-tertiary;
+    content: 'Also `~` on your keyboard!';
+    display: block;
+    left: calc(100% + 1.5rem);
+    top: 50%;
+    font-size: 1.6rem;
+    white-space: pre;
+    padding: 0.05rem 0.5rem;
+    transform: translateX(0) translateY(-50%);
+    pointer-events: none;
+    opacity: 0;
+    border-radius: 1rem;
+    border: 1px solid $lowlight-tertiary;
+  }
+
+  .tip:hover::after {
+    opacity: 1;
   }
 }
 
-[theme="dark"] {
-  lib-nav .secondary > div a {
-    color: $lowlight-quaternary;
+.nav-shown {
+  .show-nav {
+    background: $lowlight-quaternary;
+  }
+}
+
+[interaction="mouse"] {
+  lib-nav {
+    .show-nav {
+      top: 0.5rem;
+      left: 0.5rem;
+      font-size: 1.8rem;
+      height: 3.5rem;
+      width: 3.5rem;
+    }
   }
 }

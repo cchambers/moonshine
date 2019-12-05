@@ -1,5 +1,7 @@
 {
   "name": "Component Template",
+  "category": "uncategorized",
+  "production": false,
   "element": "component-template",
   "description": "Demonstration component.",
   "tags": ["utilities", "demo"],

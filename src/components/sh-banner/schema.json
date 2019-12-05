@@ -1,5 +1,7 @@
 {
   "name": "Banner",
+  "category": "components",
+  "production": false,
   "element": "sh-banner",
   "description": "Demonstration component.",
   "tags": ["marketing"],

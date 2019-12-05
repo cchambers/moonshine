@@ -1,0 +1,75 @@
+<%- htmlWebpackPlugin.options.docsHead %>
+
+<title><%= htmlWebpackPlugin.options.title %></title>
+
+<div class="documentation contain">
+  <h1>Search</h1>
+  <section id="usage">
+    <h2>Usage</h2>
+    <pre>
+      <code class="language-html">
+          &lt;belk-search&gt;&lt;/belk-search&gt;
+      </code>
+    </pre>
+  </section>
+
+  <section id="reference" class="baseline30">
+    <h2>Reference</h2>
+  
+    <h3 id="methods">Public Methods</h3>
+    <table class="methods">
+      <thead>
+        <tr>
+          <th>Function</th>
+          <th>Params</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>clearSearch</td>
+          <td>
+            <ul>
+              <li>
+                Boolean
+              </li>
+            </ul>
+          </td>
+          <td>
+            Clear the search bar. Boolean property is for forcing a focus after clear. 
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    
+  </section>
+
+  <section id="examples">
+    <h2>Examples</h2>
+    <h3>Default</h3>
+    <lib-toolbar>
+      <belk-search></belk-search>
+    </lib-toolbar>
+    <h3>Another</h3>
+    <sh-modal unique-id="test">
+      <belk-search></belk-search> 
+    </sh-modal>
+  </section>
+
+  <section id="changelog">
+    <h2>Changelog</h2>
+    <dl>
+      <dt>0.1.0</dt>
+      <dd>Belk Search is under development.</dd>
+      <dt>1.0.0</dt>
+      <dd>Belk Search is ready for use.</dd>
+    </dl>
+  </section>
+
+  <section id="requirements">
+    <h2>Requirements</h2>
+    <lib-reqs></lib-reqs>
+  </section>
+</div>
+
+<%- htmlWebpackPlugin.options.docsFoot %>

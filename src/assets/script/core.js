@@ -1,6 +1,10 @@
-window.app = {
+/* eslint-disable func-names */
+const app = {
+  interaction: 'keyboard',
+
   init() {
-    window.app.setup();
+    app.setup().events();
+    if (window.location.search) app.urlParamsToObj();
   },
 
   setup() {
@@ -16,8 +20,77 @@ window.app = {
     return this;
   },
 
-  isMobile() {
-    return window.matchMedia('screen and (max-width: 767px)').matches;
+  events() {
+    document.addEventListener('keypress', (e) => {
+      if (e.altKey || e.ctrlKey) return;
+      app.interactionHandler('keyboard');
+    });
+
+    document.addEventListener('click', () => {
+      app.interactionHandler('mouse');
+    });
+
+    const scrollDebounced = app.debounce(() => {
+      app.interactionHandler('mouse');
+    }, 100);
+    window.addEventListener('scroll', scrollDebounced, true);
+
+    const touchDebounced = app.debounce(() => {
+      app.interactionHandler('touch');
+    }, 100);
+    window.addEventListener('touchmove', touchDebounced, true);
+
+    document.addEventListener('touchstart', () => {
+      app.interactionHandler('touch');
+    });
+  },
+
+  interactionHandler(type) {
+    if (app.interaction !== type) {
+      app.interaction = type;
+      document.documentElement.setAttribute('interaction', type);
+    }
+  },
+
+  cookieParamsToObj() {
+    let str = document.cookie;
+    str = str.split(', ');
+    const result = {};
+    for (let i = 0; i < str.length; i += 1) {
+      const cur = str[i].split('=');
+      // eslint-disable-next-line prefer-destructuring
+      result[cur[0]] = cur[1];
+    }
+    return result;
+  },
+
+  debounce(func, wait = 100) {
+    let timeout;
+    return function (...args) {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => {
+        func.apply(this, args);
+      }, wait);
+    };
+  },
+
+  urlParamsToObj() {
+    let { search } = window.location;
+    search = search.replace(/\?&/g, '');
+    search = search.replace(/\?/g, '');
+    search = search.replace(/=/g, ':');
+    search = search.split('&');
+    const params = {};
+    search.forEach((param) => {
+      const str = param.replace(/('|")/g, '').trim();
+      const split = str.split(':');
+      if (split.length) {
+        if (split[1]) {
+          params[split[0].trim()] = split[1].trim();
+        }
+      }
+    });
+    if (params) window.location.params = params;
   },
 };
 
