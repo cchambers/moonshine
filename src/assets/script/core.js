@@ -9,12 +9,15 @@ const app = {
 
   setup() {
     const iOSCheck = navigator.userAgent.indexOf('Safari') > -1 && navigator.userAgent.indexOf('Chrome') < 0;
-
     if (iOSCheck) document.getElementsByTagName('html')[0].classList.add('iOS');
+
+    const IE11Check = !(window.ActiveXObject) && 'ActiveXObject' in window;
+    if (IE11Check) document.getElementsByTagName('html')[0].classList.add('IE11');
 
     const demos = document.querySelectorAll('lib-toolbar');
     for (let x = 0, l = demos.length; x < l; x += 1) {
-      demos[x].setAttribute('base-code', demos[x].innerHTML);
+      const html = demos[x].innerHTML;
+      demos[x].setAttribute('base-code', html);
       demos[x].innerHTML = '';
     }
     return this;
@@ -94,4 +97,4 @@ const app = {
   },
 };
 
-window.app.init();
+app.init();
