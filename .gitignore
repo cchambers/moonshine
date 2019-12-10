@@ -16,6 +16,7 @@ yarn-error.log*
 
 stuff.todo
 README.md
+src/components/all.json
 
 # Editor directories and files
 .idea

@@ -153,6 +153,7 @@ function wrap(Vue, Component) {
   }
 
   function syncAttribute(el, key) {
+    console.log(el, key);
     const camelized = camelize(key);
     const value = el.hasAttribute(key) ? el.getAttribute(key) : undefined;
     el._wrapper.props[camelized] = convertAttributeValue(
