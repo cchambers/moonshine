@@ -108,12 +108,24 @@
   <section id="examples">
     <h2>Examples</h2>
     <h3>Default</h3>
-    <!-- <lib-toolbar> -->
+    <lib-toolbar>
       <sh-popper>
-        This is the content!
-        <div slot="reference">Hover here!</div>
+        <div slot="content">
+          This is the content!
+        </div>
+        <span slot="reference">Hover here!</span>
       </sh-popper>
-    <!-- </lib-toolbar> -->
+    </lib-toolbar>
+
+    <h3>Click Trigger</h3>
+    <lib-toolbar>
+      <sh-popper trigger="click">
+        <div slot="content">
+          This is the content!
+        </div>
+        <span slot="reference">Click here!</span>
+      </sh-popper>
+    </lib-toolbar>
   </section>
 
   <section id="changelog">

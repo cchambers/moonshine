@@ -25,6 +25,7 @@ function off(element, event, handler) {
 export default {
   mixins: [ComponentPrototype],
 
+
   props: {
     tagName: {
       type: String,

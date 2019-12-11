@@ -1,18 +1,21 @@
 <template>
   <div class="sh-popper">
+    <div class="popper-target reference" ref="target">
+      <slot name="reference"></slot>
+    </div>
     <transition
     :name="transition"
-    :enter-active-class="enterActiveClass"
-    :leave-active-class="leaveActiveClass"
     @after-leave="doDestroy">
-      <span
-        class="actual"
+      <div
+        class="popper-actual"
+        :fill="fill"
         ref="popper"
         v-show="!disabled && showPopper">
-          <slot>{{ content }}</slot>
-      </span>
+        <div class="popper-content">
+          <slot name="content">{{ content }}</slot>
+        </div>
+      </div>
     </transition>
-    <slot name="reference"></slot>
   </div>
 </template>
 
