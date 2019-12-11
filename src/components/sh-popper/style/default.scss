@@ -1,7 +1,9 @@
 /* default styling */
 
 sh-popper {
-  .actual > * {
+  display: inline-block;
+  border: 1px solid red;
+  .actual {
     background: $lowlight-primary;
     color: $highlight-primary;
   }

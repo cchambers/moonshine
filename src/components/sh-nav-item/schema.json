@@ -1,8 +1,8 @@
 {
-  "name": "Popper",
+  "name": "Nav Item",
   "category": "components",
   "production": true,
-  "element": "sh-popper",
+  "element": "sh-nav-item",
   "description": "Demonstration component.",
   "tags": ["utilities", "demo"],
   "requirements": {}

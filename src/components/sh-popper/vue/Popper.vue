@@ -9,7 +9,7 @@
         class="actual"
         ref="popper"
         v-show="!disabled && showPopper">
-          <slot>{{ content }}</slot>
+          <slot name="content">{{ content }}</slot>
       </span>
     </transition>
     <slot name="reference"></slot>

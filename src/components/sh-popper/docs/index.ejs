@@ -8,10 +8,16 @@
     <h2>Usage</h2>
     <pre>
       <code class="language-html">
-          &lt;sh-popper&gt;new component&lt;/sh-popper&gt;
+        &lt;sh-popper&gt;
+          &lt;span slot="reference"&gt;
+            Hover me!
+          &lt;/span&gt;
+          &lt;div slot="content"&gt;
+            Something interesting.
+          &lt;/div&gt;
+        &lt;/sh-popper&gt;
       </code>
     </pre>
-
   </section>
 
   <section id="reference" class="baseline30">
@@ -46,15 +52,21 @@
       </thead>
       <tbody>
         <tr>
-          <td>default</td>
+          <td>reference</td>
           <td>
-            Text content.
+            The trigger element.
+          </td>
+        </tr>
+        <tr>
+          <td>content</td>
+          <td>
+            Popper content.
           </td>
         </tr>
       </tbody>
     </table>
 
-    <h3 id="methods">Public Methods</h3>
+    <!-- <h3 id="methods">Public Methods</h3>
 
     <table class="methods">
       <thead>
@@ -102,7 +114,7 @@
           </td>
         </tr>
       </tbody>
-    </table>
+    </table> -->
   </section>
 
   <section id="examples">
@@ -110,7 +122,9 @@
     <h3>Default</h3>
     <!-- <lib-toolbar> -->
       <sh-popper>
-        This is the content!
+        <div slot="content">
+          This is the content!
+        </div>
         <div slot="reference">Hover here!</div>
       </sh-popper>
     <!-- </lib-toolbar> -->
@@ -121,14 +135,6 @@
     <dl>
       <dt>0.1.0</dt>
       <dd>Popper is under development.</dd>
-      <dt>1.0.0</dt>
-      <dd>Popper is ready for use.</dd>
-      <dt>1.0.1</dt>
-      <dd><strong>PATCH</strong> version when you make backwards-compatible bug fixes.</dd>
-      <dt>1.1.0</dt>
-      <dd><strong>MINOR</strong> version when you add functionality in a backwards-compatible manner.</dd>
-      <dt>2.0.0</dt>
-      <dd><strong>MAJOR</strong> version when you make incompatible API changes.</dd>
     </dl>
   </section>
 </div>
