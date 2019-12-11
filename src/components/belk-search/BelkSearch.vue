@@ -113,6 +113,7 @@
 </template>
 
 <style lang="scss" src="./style/default.scss"></style>
+<style lang="scss" src="./style/variant-modal.scss"></style>
 
 <script>
 import BelkProductList from '../belk-product-list/BelkProductList.vue';
@@ -407,7 +408,7 @@ export default {
       this.isFocused = true;
       this.selectInput();
 
-      if (window.app.isMobile()) {
+      if (this.isMobile()) {
         window.location.hash = 'search-modal';
         this.modalSearch.focus();
         this.log(this.modalSearch);
@@ -609,6 +610,10 @@ export default {
         self.allProducts[x] = { products: false };
         doReq(x);
       }
+    },
+
+    isMobile() {
+      return window.matchMedia('(max-width: 959px)');
     },
 
     suggestionHoverHandler(val) {
