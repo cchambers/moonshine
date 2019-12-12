@@ -146,6 +146,7 @@ export default {
       noResults: false,
       filled: false,
       isFocused: false,
+      id: '',
       inputEl: {},
       ignoreKeys: [37, 39, 91, 16, 13],
       navKeys: [38, 40],
@@ -353,9 +354,10 @@ export default {
     },
 
     focusSearchHandler(data) {
-      if (data.id !== this.id) return;
       this.log(this.id);
-      // this.focusHandler();
+      this.log(data.id);
+      if (data.id !== this.id) return;
+      this.focusHandler(false);
     },
 
     searchTermHandler(data) {
@@ -410,11 +412,11 @@ export default {
       }
     },
 
-    focusHandler() {
+    focusHandler(mobileCheck = true) {
       this.isFocused = true;
       this.selectInput();
 
-      if (this.isMobile()) {
+      if (this.isMobile() && mobileCheck) {
         this.triggerModalSearch();
       }
     },
@@ -474,7 +476,6 @@ export default {
         default:
           break;
       }
-
 
       which += choose;
       if (which >= length) which = 0;
