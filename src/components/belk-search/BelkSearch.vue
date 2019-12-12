@@ -346,9 +346,16 @@ export default {
       self.$bus.$on('navitem-opening', self.forceBlur);
       self.$bus.$on('close-search', self.forceBlur);
       self.$bus.$on('search-term', self.searchTermHandler);
+      self.$bus.$on('focus-search', self.focusSearchHandler);
 
       window.addEventListener('resize', self.placeholderHandler);
       window.addEventListener('navitem-opening', self.forceBlur);
+    },
+
+    focusSearchHandler(data) {
+      if (data.id !== this.id) return;
+      this.log(this.id);
+      // this.focusHandler();
     },
 
     searchTermHandler(data) {
@@ -404,16 +411,17 @@ export default {
     },
 
     focusHandler() {
-      this.modalSearch = document.querySelector('#search-modal .search-input input');
       this.isFocused = true;
       this.selectInput();
 
       if (this.isMobile()) {
-        window.location.hash = 'search-modal';
-        this.modalSearch.focus();
-        this.log(this.modalSearch);
-        // this.$bus.$emit('search-modal');
+        this.triggerModalSearch();
       }
+    },
+
+    triggerModalSearch() {
+      window.location.hash = 'search-modal';
+      this.$bus.$emit('focus-search', 'mobile-search');
     },
 
     placeholderHandler() {

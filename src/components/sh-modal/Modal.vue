@@ -171,10 +171,6 @@ export default {
         self.active = true;
         self.$el.focus();
         self.$bus.$emit('modal-opened', self.uniqueId);
-        const inputEl = this.$el.querySelector('input');
-        if (inputEl) {
-          inputEl.focus();
-        }
       }
 
       if (self.focusTarget) {
