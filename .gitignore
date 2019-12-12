@@ -1,7 +1,6 @@
 .DS_Store
 node_modules
 /dist
-src/components/all.json
 .yarn.lock
 .package.json
 .env
@@ -26,3 +25,4 @@ README.md
 *.njsproj
 *.sln
 *.sw?
+src/components/all.json

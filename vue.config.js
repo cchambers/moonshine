@@ -172,7 +172,6 @@ if (process.env.NODE_ENV !== 'production') {
         filename: `demo/${name}/index.html`,
       };
     });
-
 }
 
 
