@@ -32,6 +32,19 @@
           <td>Boolean</td>
           <td>Hide from view.</td>
         </tr>
+        <tr>
+          <td>trigger</td>
+          <td>String</td>
+          <td>
+            <ul>
+              <li>
+                Configures the default trigger mode for this popper.
+              </li>
+              <li>Options are <code>hover</code> and <code>click</code></li>
+              <li>Defaults to <code>hover</code></li>
+            </ul>
+          </td>
+        </tr>
       </tbody>
     </table>
 
@@ -46,9 +59,15 @@
       </thead>
       <tbody>
         <tr>
-          <td>default</td>
+          <td>reference</td>
           <td>
-            Text content.
+            Trigger element.
+          </td>
+        </tr>
+        <tr>
+          <td>content</td>
+          <td>
+            Popper content.
           </td>
         </tr>
       </tbody>
@@ -109,11 +128,11 @@
     <h2>Examples</h2>
     <h3>Default</h3>
     <lib-toolbar>
-      <sh-popper>
+      <sh-popper reference-id="someid">
+        <span slot="reference">Hover here!</span>
         <div slot="content">
           This is the content!
         </div>
-        <span slot="reference">Hover here!</span>
       </sh-popper>
     </lib-toolbar>
 
@@ -133,14 +152,6 @@
     <dl>
       <dt>0.1.0</dt>
       <dd>Popper is under development.</dd>
-      <dt>1.0.0</dt>
-      <dd>Popper is ready for use.</dd>
-      <dt>1.0.1</dt>
-      <dd><strong>PATCH</strong> version when you make backwards-compatible bug fixes.</dd>
-      <dt>1.1.0</dt>
-      <dd><strong>MINOR</strong> version when you add functionality in a backwards-compatible manner.</dd>
-      <dt>2.0.0</dt>
-      <dd><strong>MAJOR</strong> version when you make incompatible API changes.</dd>
     </dl>
   </section>
 </div>
