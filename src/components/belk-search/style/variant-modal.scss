@@ -12,16 +12,14 @@ belk-search[variant="modal"] {
         -webkit-overflow-scrolling: touch;
     }
 
-    & + sh-button .sh-button {
+    & + .sh-button {
+        color: #000;
         margin-right: 9px;
         min-width: unset;
         padding: 0;
         text-transform: unset;
-
-        span {
-            font-size: 12px;
-            font-weight: 400;
-            text-decoration: none;
-        }
+        font-size: 12px;
+        font-weight: 400;
+        text-decoration: none;
     }
 }
