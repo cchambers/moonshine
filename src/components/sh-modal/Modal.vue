@@ -107,7 +107,12 @@ export default {
     } else {
       self.createContainer();
     }
-    if (window.location.hash) self.hashHandler(window.location.hash.substr(1));
+    if (window.location.hash) {
+      self.hashHandler({
+        hash: window.location.hash.substr(1),
+        event: false,
+      });
+    }
 
     if (self.openTriggerEvent) self.$bus.$on(self.openTriggerEvent, self.open);
     if (self.closeTriggerEvent) self.$bus.$on(self.closeTriggerEvent, self.close);
@@ -150,7 +155,7 @@ export default {
       if (hash === '') {
         if (this.active) this.close(false);
       } else if (hash === this.uniqueId) {
-        event.preventDefault();
+        if (event) event.preventDefault();
         this.open();
       }
     },
@@ -225,7 +230,7 @@ export default {
       this.container.addEventListener('click', (e) => {
         if (e.target === this.container) self.$bus.$emit('close-modals');
       });
-      this.mountToContainer();
+      setTimeout(this.mountToContainer);
     },
 
     mountToContainer() {

@@ -59,7 +59,8 @@ function convertAttributeValue(value, name, {
 function toVNodes(h, children) {
   const res = [];
   for (let i = 0, l = children.length; i < l; i++) {
-    res.push(toVNode(h, children[i]));
+    let item = children[i];
+    res.push(toVNode(h, item));
   }
   return res;
 }
@@ -67,7 +68,10 @@ function toVNodes(h, children) {
 function toVNode(h, node) {
   if (node.nodeType === 3) {
     return node.data.trim() ? node.data : null;
-  } if (node.nodeType === 1) {
+  }
+
+
+  if (node.nodeType === 1) {
     const data = {
       attrs: getAttributes(node),
       domProps: {
@@ -153,7 +157,6 @@ function wrap(Vue, Component) {
   }
 
   function syncAttribute(el, key) {
-    console.log(el, key);
     const camelized = camelize(key);
     const value = el.hasAttribute(key) ? el.getAttribute(key) : undefined;
     el._wrapper.props[camelized] = convertAttributeValue(
@@ -169,7 +172,6 @@ function wrap(Vue, Component) {
       // this.attachShadow({
       //   mode: 'open',
       // });
-
       const wrapper = this._wrapper = new Vue({
         name: 'custom-element',
         customElement: this,
@@ -221,6 +223,7 @@ function wrap(Vue, Component) {
 
     connectedCallback() {
       const wrapper = this._wrapper;
+      console.log('mounted', wrapper._isMounted)
       if (!wrapper._isMounted) {
         // initialize attributes
         const syncInitialAttributes = () => {
@@ -250,6 +253,7 @@ function wrap(Vue, Component) {
         ));
         wrapper.$mount();
         this.innerHTML = '';
+        console.log(wrapper.$el)
         this.appendChild(wrapper.$el);
       } else {
         callHooks(this.vueComponent, 'activated');
