@@ -108,21 +108,21 @@ export default {
       });
     }
     this.$refs.editor.id = `editor-${this.uniqueId}`;
-    this.editor = ace.edit(this.$refs.editor.id);
-    this.editor.getSession().setMode('ace/mode/html');
-    this.editor.setTheme('ace/theme/monokai');
-    this.code = Pretty(this.code);
-    this.editor.setValue(this.code);
-    this.editor.setOptions({
-      wrapBehavioursEnabled: true,
-      showLineNumbers: false,
-      showGutter: false,
-      wrap: true,
-      showPrintMargin: false,
-      indentedSoftWrap: false,
-    });
-
     setTimeout(() => {
+      this.editor = ace.edit(this.$refs.editor.id);
+      this.editor.getSession().setMode('ace/mode/html');
+      this.editor.setTheme('ace/theme/monokai');
+      this.code = Pretty(this.code);
+      this.editor.setValue(this.code);
+      this.editor.setOptions({
+        wrapBehavioursEnabled: true,
+        showLineNumbers: false,
+        showGutter: false,
+        wrap: true,
+        showPrintMargin: false,
+        indentedSoftWrap: false,
+      });
+
       self.$refs.editor.style.width = '100%';
       self.editor.resize();
       self.editor.getSession().selection.clearSelection();
