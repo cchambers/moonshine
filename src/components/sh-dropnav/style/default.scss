@@ -3,6 +3,7 @@
 sh-dropnav {
   display: inline-block;
   position: relative;
+  z-index: 2;
   min-width: 4.5rem;
   min-height: 4.5rem;
   max-width: 26rem;

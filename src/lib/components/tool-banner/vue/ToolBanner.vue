@@ -99,6 +99,7 @@ export default {
 
   mounted() {
     const self = this;
+
     this.uniqueId = `sh${this.uuid}`;
     if (this.demo) {
       this.$el.addEventListener('click', () => {
@@ -109,6 +110,8 @@ export default {
     this.editor = ace.edit(this.$refs.editor.id);
     this.editor.getSession().setMode('ace/mode/html');
     this.editor.setTheme('ace/theme/monokai');
+    const data = this.getItem('tool-banner-data');
+    if (data) this.code = data;
     this.code = Pretty(this.code);
     this.editor.setValue(this.code);
     this.editor.setOptions({
@@ -124,18 +127,20 @@ export default {
       self.$refs.editor.style.width = '100%';
       self.editor.resize();
       self.editor.getSession().selection.clearSelection();
-
-      self.editor.getSession().on('change', () => {
-        const value = self.editor.getSession().getValue();
-        self.editorCode = value;
-        self.html = self.editorCode;
-      });
-    });
+      self.editor.getSession().on('change', this.handleChange);
+    }, 200);
   },
 
   methods: {
     events() {
       this.$bus.$on('code-focus', this.codeFocusHandler);
+    },
+
+    handleChange() {
+      const value = this.editor.getSession().getValue();
+      this.editorCode = value;
+      this.html = this.editorCode;
+      this.setItem('tool-banner-data', value);
     },
 
     codeFocusHandler(data) {

@@ -3,10 +3,40 @@
 // Font Treatments
 @mixin font-primary() {
   font-family: proxima-nova, sans-serif;
+  font-style: normal;
+  font-weight: 300;
 }
 
 .font-primary {
   @include font-primary;
+}
+
+.wt900 {
+  font-weight: 900;
+}
+
+.wt800 {
+  font-weight: 800;
+}
+
+.wt700 {
+  font-weight: 700;
+}
+
+.wt600 {
+  font-weight: 600;
+}
+
+.wt500 {
+  font-weight: 500;
+}
+
+.wt400 {
+  font-weight: 400;
+}
+
+.wt300 {
+  font-weight: 300;
 }
 
 // Proxima Nova Black
