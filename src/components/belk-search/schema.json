@@ -46,7 +46,7 @@
     ]
   },
 
-  "aria": [
+  "a11y": [
     "Should have a label, currently matches placeholder",
     "Should have all appropriate ARIA roles for combobox 1.0",
     "Should update activedescendant based oncurrently active item"

@@ -3,7 +3,48 @@
   "category": "components",
   "production": false,
   "element": "sh-popper",
-  "description": "Demonstration component.",
-  "tags": ["utilities", "demo"],
-  "requirements": {}
+  "description": "Popper.js based popover component.",
+  "tags": ["callout", "dropdown", "popover"],
+  "requirements": {
+    "Reference (click item)": [
+      "Should appear as an obviously-clickable element",
+      "When inactive, click should trigger popper content to display",
+      "When inactive, click should close other poppers and activate self",
+      "When active, click should close self"
+    ],
+
+    "Popper (content)": [
+      "Should appear after clicked",
+      "Should emit `opening` event when triggered, and `opened` after fully displaying",
+      "Should emit `closing` event before closing, and `closed` after fully closing",
+      "Should close if anything outside of the popper is clicked",
+      "Should be configurable to be constrained to the active area",
+      "Should have arrow that moves to point to reference element",
+      "Should be configurable to "
+    ],
+
+    "Component Dependencies": [
+      "sh-curtain completes the effect by overlaying the page content UOC"
+    ]
+  },
+
+  "a11y": [
+    "We use the role `alertdialog` so that the contents are read when the user opens the content",
+    "When opened, focus transfers to the header of the popper",
+    "Similar to a modal, tab focus should be locked to the dialog until it is closed"
+  ],
+
+  "states": {
+    "0": {
+      "name": "Closed/inactive",
+      "case": "No interaction has taken place",
+      "result": "Only the reference element is visible."
+    },
+
+    "1": {
+      "name": "Open/active",
+      "case": "Reference element has been clicked",
+      "result": "Content container is displayed above all elements."
+    }
+  }
 }

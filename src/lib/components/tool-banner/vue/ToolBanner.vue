@@ -34,28 +34,82 @@
     </div>
     <div class="tool">
       <div ref="component" class="component">
+        <div class="panel">
+          <h2>
+            Rows
+          </h2>
+          <ul>
+            <li>
+              <a href="#">r1</a>
+            </li>
+            <li>
+              <a href="#">r2</a>
+            </li>
+            <li>
+              <a href="#">r3</a>
+            </li>
+            <li>
+              <a href="#">r4</a>
+            </li>
+            <li>
+              <a href="#">+ Add Row</a>
+            </li>
+          </ul>
+
+          <h2>
+            Selection
+          </h2>
+          <ul>
+            <li ref="colors">
+              <div class="swatches">
+                <div class="swatch foreground"
+                v-hammer:tap="openPalette"
+                :style="{ background: selection.foreground }"></div>
+                <div class="swatch background"
+                v-hammer:tap="openPalette"
+                :style="{ background: selection.background }"></div>
+              </div>
+              <div class="options">
+                <div v-for="(category, val) in colors"
+                v-bind:key="category" class="cat">
+                  <div class="name">{{ val }}</div>
+                  <div v-for="color in category"
+                  v-bind:key="color" :class="'ex back-'+color"></div>
+                </div>
+              </div>
+            </li>
+            <li ref="typography">
+              Typopgrahy
+              <div class="options">
+                <div class="cat">Name</div>
+                <div class="cat">Size</div>
+                <div class="cat">Weight</div>
+                <div class="cat">Style</div>
+                <div class="cat">Casing</div>
+              </div>
+            </li>
+            <li>
+              <a href="#">Box Model</a>
+              <div class="options">
+                <div class="cat">Padding</div>
+                <div class="cat">Margin</div>
+                <div class="cat">Border</div>
+              </div>
+            </li>
+            <li>
+              <a href="#">Position</a>
+              <div class="options">
+                <div class="cat">Static</div>
+                <div class="cat">Relative</div>
+                <div class="cat">Absolute</div>
+              </div>
+            </li>
+          </ul>
+        </div>
         <div class="constrain" v-html="html"></div>
       </div>
       <div class="editors">
         <div class="editor" ref="editor"></div>
-      </div>
-    </div>
-    <div class="control-wrap">
-      <div class="control">
-        <sh-button round
-        variant="tertiary"
-        scale="60"
-        v-hammer:tap="copyEditor"
-        v-on:keyup.enter="copyEditor">
-          <i class="material-icons px20">file_copy</i>
-        </sh-button>
-        <sh-button round
-          variant="secondary"
-          scale="60"
-          v-hammer:tap="toggleFullscreen"
-          v-on:keyup.enter="toggleFullscreen">
-          <i class="material-icons px20">fullscreen</i>
-        </sh-button>
       </div>
     </div>
   </div>
@@ -92,6 +146,42 @@ export default {
       layout: 't',
       codeFocus: 'all',
       dropnav: ShDropnav,
+      focused: null,
+      selection: {
+        foreground: 'green',
+        background: 'red',
+      },
+      colors: {
+        highlights: [
+          'highlight-primary',
+          'highlight-secondary',
+          'highlight-tertiary',
+          'highlight-quaternary',
+          'highlight-quinary',
+        ],
+        lowlights: [
+          'lowlight-primary',
+          'lowlight-secondary',
+          'lowlight-tertiary',
+          'lowlight-quaternary',
+          'lowlight-quinary',
+        ],
+        accents: [
+          'accent-primary',
+          'accent-secondary',
+          'accent-tertiary',
+          'accent-quaternary',
+          'accent-quinary',
+          'belkblue',
+          'wildfuscia',
+          'classicblue',
+          'deepteal',
+          'festivelime',
+          'goldenhour',
+          'peachyred',
+          'mysticpurple',
+        ],
+      },
     };
   },
 
@@ -101,14 +191,32 @@ export default {
 
   mounted() {
     const self = this;
+
     this.uniqueId = `sh${this.uuid}`;
     if (this.demo) {
       this.$el.addEventListener('click', () => {
         window.open(`${window.location.origin}/${this.demo}`, 'demo');
       });
     }
-    this.$refs.editor.id = `editor-${this.uniqueId}`;
+
     setTimeout(() => {
+      this.$refs.editor.id = `editor-${this.uniqueId}`;
+      this.editor = ace.edit(this.$refs.editor.id);
+      this.editor.getSession().setMode('ace/mode/html');
+      this.editor.setTheme('ace/theme/monokai');
+      const data = this.getItem('tool-banner-data');
+      if (data) this.code = data;
+      this.code = Pretty(this.code);
+      this.editor.setValue(this.code);
+      this.editor.setOptions({
+        wrapBehavioursEnabled: true,
+        showLineNumbers: false,
+        showGutter: false,
+        wrap: true,
+        showPrintMargin: false,
+        indentedSoftWrap: false,
+      });
+
       this.editor = ace.edit(this.$refs.editor.id);
       this.editor.getSession().setMode('ace/mode/html');
       this.editor.setTheme('ace/theme/monokai');
@@ -126,13 +234,9 @@ export default {
       self.$refs.editor.style.width = '100%';
       self.editor.resize();
       self.editor.getSession().selection.clearSelection();
-
-      self.editor.getSession().on('change', () => {
-        const value = self.editor.getSession().getValue();
-        self.editorCode = value;
-        self.html = self.editorCode;
-      });
-    });
+      self.editor.getSession().on('change', this.handleChange);
+      this.handleChange();
+    }, 200);
   },
 
   methods: {
@@ -143,6 +247,25 @@ export default {
           // console.log(`Orient to: ${data.value}`);
         }
       });
+
+      const constrain = document.querySelector('.constrain');
+
+      document.addEventListener('click', (e) => {
+        if (constrain.contains(e.target)) {
+          e.stopPropagation();
+          const active = document.querySelector('[banner-row].active');
+          if (active) active.classList.remove('active');
+          const crow = e.target.closest('[banner-row]');
+          if (crow) crow.classList.add('active');
+        }
+      });
+    },
+
+    handleChange() {
+      const value = this.editor.getSession().getValue();
+      this.editorCode = value;
+      this.html = this.editorCode;
+      this.setItem('tool-banner-data', value);
     },
 
     codeFocusHandler(data) {
@@ -183,6 +306,10 @@ export default {
       } else {
         document.documentElement.classList.remove('toolbar-fullscreen');
       }
+    },
+
+    openPalette() {
+      console.log('open');
     },
   },
 

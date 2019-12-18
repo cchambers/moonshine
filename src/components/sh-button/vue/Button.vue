@@ -42,7 +42,12 @@ export default {
     };
   },
 
+  created() {
+    console.log('BUTTON CREATED');
+  },
+
   mounted() {
+    console.log('BUTTON MOUNTED');
     this.buttonEl = this.$refs.button;
     if (this.active) this.isActive = true;
   },

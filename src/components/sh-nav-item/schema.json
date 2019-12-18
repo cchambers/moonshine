@@ -1,6 +1,6 @@
 {
   "name": "Nav Item",
-  "category": "components",
+  "category": "features",
   "production": true,
   "element": "sh-nav-item",
   "description": "Demonstration component.",

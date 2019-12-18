@@ -2,10 +2,10 @@
   <span :id="id" class="sh-adapt-content"
     :variant="variant">
     <span hidden><slot name="default"></slot></span>
-    <span class="sm-only" ref="smContent" v-html="smContent"><slot name="sm">{{ sm }}</slot></span>
-    <span class="md-only" ref="mdContent" v-html="mdContent"><slot name="md">{{ md }}</slot></span>
-    <span class="lg-only" ref="lgContent" v-html="lgContent"><slot name="lg">{{ lg }}</slot></span>
-    <span class="xl-only" ref="xlContent" v-html="xlContent"><slot name="xl">{{ xl }}</slot></span>
+    <div ref="smContent" v-html="smContent"><slot name="sm">{{ sm }}</slot></div>
+    <div ref="mdContent" v-html="mdContent"><slot name="md">{{ md }}</slot></div>
+    <div ref="lgContent" v-html="lgContent"><slot name="lg">{{ lg }}</slot></div>
+    <div ref="xlContent" v-html="xlContent"><slot name="xl">{{ xl }}</slot></div>
   </span>
 </template>
 
@@ -34,22 +34,38 @@ export default {
       lgContent: '',
       xlContent: '',
       resizeTimer: 0,
+      width: 0,
     };
+  },
+
+  computed: {
+    state() {
+      let state = 'def';
+      if (this.width < 480) {
+        state = 'sm';
+      }
+      return state;
+    },
   },
 
   methods: {
     resizeHandler() {
-      const self = this;
-      clearTimeout(self.resizeTimer);
-      this.resizeTimer = setTimeout(self.checkState, 50);
+      this.checkState();
     },
 
     checkState() {
       let width = 0;
       if (this.elementLevel) {
-        width = this.$el.parentNode.outerWidth;
+        width = this.$el.parentElement.offsetWidth;
+      } else {
+        width = window.innerWidth;
       }
       return width;
+    },
+
+    events() {
+      const resizeDebounced = this.debounce(this.resizeHandler, 100);
+      window.addEventListener('resize', resizeDebounced, true);
     },
   },
 
@@ -62,7 +78,7 @@ export default {
     }
 
     if (this.$slots.default) this.defaultContent = this.$slots.default[0].elm.innerHTML;
-    if (this.$slots.sm) this.sm = this.$slots.sm[0].elm.innerHTML;
+    if (this.$slots.sm) this.smContent = this.$slots.sm[0].elm.innerHTML;
     if (this.$slots.md) this.mdContent = this.$slots.md[0].elm.innerHTML;
     if (this.$slots.lg) this.lgContent = this.$slots.lg[0].elm.innerHTML;
     if (this.$slots.xl) this.xlContent = this.$slots.xl[0].elm.innerHTML;
@@ -74,3 +90,10 @@ export default {
   },
 };
 </script>
+
+
+<style type="text/css">
+  sh-adapt-content {
+    display: inline-block;
+  }
+</style>

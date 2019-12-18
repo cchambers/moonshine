@@ -1,5 +1,5 @@
 $arrowHeight: 0.8rem;
-$arrowWidth: 2.5rem;
+$arrowWidth: 2.4rem;
 $_aw: $arrowWidth/2;
 
 sh-nav-item {
@@ -23,6 +23,7 @@ sh-nav-item {
   .popper-target {
     border-bottom: none;
     display: inline-flex;
+    cursor: pointer;
 
     button {
       display: none;

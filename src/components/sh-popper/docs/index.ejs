@@ -38,6 +38,19 @@
           <td>Boolean</td>
           <td>Hide from view.</td>
         </tr>
+        <tr>
+          <td>trigger</td>
+          <td>String</td>
+          <td>
+            <ul>
+              <li>
+                Configures the default trigger mode for this popper.
+              </li>
+              <li>Options are <code>hover</code> and <code>click</code></li>
+              <li>Defaults to <code>hover</code></li>
+            </ul>
+          </td>
+        </tr>
       </tbody>
     </table>
 
@@ -54,7 +67,7 @@
         <tr>
           <td>reference</td>
           <td>
-            The trigger element.
+            Trigger element.
           </td>
         </tr>
         <tr>
@@ -120,14 +133,24 @@
   <section id="examples">
     <h2>Examples</h2>
     <h3>Default</h3>
-    <!-- <lib-toolbar> -->
-      <sh-popper>
+    <lib-toolbar>
+      <sh-popper reference-id="someid">
+        <span slot="reference">Hover here!</span>
         <div slot="content">
           This is the content!
         </div>
-        <div slot="reference">Hover here!</div>
       </sh-popper>
-    <!-- </lib-toolbar> -->
+    </lib-toolbar>
+
+    <h3>Click Trigger</h3>
+    <lib-toolbar>
+      <sh-popper trigger="click">
+        <div slot="content">
+          This is the content!
+        </div>
+        <span slot="reference">Click here!</span>
+      </sh-popper>
+    </lib-toolbar>
   </section>
 
   <section id="changelog">
