@@ -967,27 +967,33 @@ ol.lower-alpha {
   font-weight: 800;
 }
 
-.normalcase {
+.normalcase,
+.case-normal {
   text-transform: normal;
 }
 
-.uppercase {
+.uppercase,
+.case-upper {
   text-transform: uppercase;
 }
 
-.lowercase {
+.lowercase,
+.case-lower {
   text-transform: lowercase;
 }
 
-.titlecase {
+.titlecase,
+.case-title {
   text-transform: capitalize;
 }
 
-.strike {
+.strike,
+.deco-strike {
   text-decoration: line-through;
 }
 
-.italic {
+.italic,
+.deco-italic {
   font-style: italic;
 }
 

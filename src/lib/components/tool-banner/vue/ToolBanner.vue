@@ -63,18 +63,28 @@
             <li ref="colors">
               <div class="swatches">
                 <div class="swatch foreground"
-                v-hammer:tap="openPalette"
+                @click="toggleOptions"
                 :style="{ background: selection.foreground }"></div>
+                <div class="options panel">
+                  foreground
+                  <div v-for="(category, val) in colors"
+                  v-bind:key="val.id" class="cat">
+                    <div class="name">{{ val }}</div>
+                    <div v-for="color in category"
+                    v-bind:key="color" :class="'ex back-'+color"></div>
+                  </div>
+                </div>
                 <div class="swatch background"
-                v-hammer:tap="openPalette"
+                @click="toggleOptions"
                 :style="{ background: selection.background }"></div>
-              </div>
-              <div class="options">
-                <div v-for="(category, val) in colors"
-                v-bind:key="category" class="cat">
-                  <div class="name">{{ val }}</div>
-                  <div v-for="color in category"
-                  v-bind:key="color" :class="'ex back-'+color"></div>
+                <div class="options panel">
+                  background
+                  <div v-for="(category, val) in colors"
+                  v-bind:key="val.id" class="cat">
+                    <div class="name">{{ val }}</div>
+                    <div v-for="color in category"
+                    v-bind:key="color" :class="'ex back-'+color"></div>
+                  </div>
                 </div>
               </div>
             </li>
@@ -270,6 +280,9 @@ export default {
 
     codeFocusHandler(data) {
       this.codeFocus = data.value;
+      setTimeout(() => {
+        this.$bus.$emit('resize-occurred');
+      }, 100);
     },
 
     renderDebounce(code) {
@@ -308,8 +321,13 @@ export default {
       }
     },
 
-    openPalette() {
-      console.log('open');
+    toggleOptions(e) {
+      document.querySelectorAll('.options.active').forEach((el) => {
+        el.classList.remove('active');
+      });
+      const opt = e.target;
+      console.log(opt, opt.closest('div.options'));
+      opt.classList.add('active');
     },
   },
 

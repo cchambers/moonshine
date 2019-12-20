@@ -223,7 +223,7 @@ function wrap(Vue, Component) {
 
     connectedCallback() {
       const wrapper = this._wrapper;
-      console.log('mounted', wrapper._isMounted)
+      // console.log('mounted', wrapper._isMounted)
       if (!wrapper._isMounted) {
         // initialize attributes
         const syncInitialAttributes = () => {
@@ -253,7 +253,7 @@ function wrap(Vue, Component) {
         ));
         wrapper.$mount();
         this.innerHTML = '';
-        console.log(wrapper.$el)
+        // console.log(wrapper.$el)
         this.appendChild(wrapper.$el);
       } else {
         callHooks(this.vueComponent, 'activated');

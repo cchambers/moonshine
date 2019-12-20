@@ -125,6 +125,8 @@ tool-banner {
       width: 100%;
       max-width: 128rem;
       margin: 0 auto;
+      margin-top: 3rem;
+      margin-bottom: 3rem;
       transition: all 50ms linear;
       flex-grow: 1;
       overflow-y: auto;
@@ -142,6 +144,9 @@ tool-banner {
           line-height: 3rem;
           padding: 0.5rem 1.5rem;
         }
+        li {
+          position: relative;
+        }
       }
     }
     .swatches {
@@ -154,10 +159,16 @@ tool-banner {
       border: 1px solid white;
     }
     .options {
-      // position: absolute;
+      position: absolute;
       background: $highlight-secondary;
       padding: 1.5rem;
       max-width: 15rem;
+      left: 100%;
+      top: 0;
+      display: none;
+      &.active {
+        display: block;
+      }
     }
     .cat {
       display: flex;
@@ -185,10 +196,6 @@ tool-banner {
         flex-shrink: 0;
         cursor: pointer;
         transition: all 100ms linear;
-
-        &:nth-child(5n+6) {
-          margin: 0;
-        }
       }
     }
   }
