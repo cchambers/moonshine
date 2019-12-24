@@ -56,7 +56,7 @@ module.exports = {
         'inside-single-line-block',
       ],
     }],
-    // 'font-family-no-missing-generic-family-keyword': false,
+    'font-family-no-missing-generic-family-keyword': false,
     'function-comma-newline-after': 'always-multi-line',
     'function-comma-space-after': 'always-single-line',
     'function-comma-space-before': false,

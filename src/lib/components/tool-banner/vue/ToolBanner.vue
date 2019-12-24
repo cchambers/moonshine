@@ -19,68 +19,50 @@
           </ul>
         </component>
         <div class="sep"></div>
+        <sh-button
+          toggle
+          group="breakpoint"
+          click-event="code-focus"
+          default-value="code-all"
+          active
+        >ALL</sh-button>
         <sh-button toggle group="breakpoint"
-          click-event="code-focus" default-value="code-all" active>ALL</sh-button>
+        click-event="code-focus" default-value="code-xs">XS</sh-button>
         <sh-button toggle group="breakpoint"
-          click-event="code-focus" default-value="code-xs">XS</sh-button>
+        click-event="code-focus" default-value="code-sm">SM</sh-button>
         <sh-button toggle group="breakpoint"
-          click-event="code-focus" default-value="code-sm">SM</sh-button>
+        click-event="code-focus" default-value="code-md">MD</sh-button>
         <sh-button toggle group="breakpoint"
-          click-event="code-focus" default-value="code-md">MD</sh-button>
-        <sh-button toggle group="breakpoint"
-          click-event="code-focus" default-value="code-lg">LG</sh-button>
+        click-event="code-focus" default-value="code-lg">LG</sh-button>
         <div class="sep"></div>
       </div>
     </div>
     <div class="tool">
       <div ref="component" class="component">
         <div class="panel">
-          <h2>
-            Rows
-          </h2>
-          <ul>
-            <li>
-              <a href="#">r1</a>
-            </li>
-            <li>
-              <a href="#">r2</a>
-            </li>
-            <li>
-              <a href="#">r3</a>
-            </li>
-            <li>
-              <a href="#">r4</a>
-            </li>
-            <li>
-              <a href="#">+ Add Row</a>
-            </li>
-          </ul>
-
-          <h2>
-            Selection
-          </h2>
+          <h2>Selection</h2>
           <ul>
             <li ref="colors">
               <div class="swatches">
-                <div class="swatch foreground"
-                @click="toggleOptions"
-                :style="{ background: selection.foreground }"></div>
+                <div
+                  class="swatch foreground"
+                  :class="'back-'+selection.foreground"
+                ></div>
                 <div class="options panel">
                   foreground
-                  <div v-for="(category, val) in colors"
-                  v-bind:key="val.id" class="cat">
+                  <div v-for="(category, val) in colors" v-bind:key="val.id" class="cat">
                     <div class="name">{{ val }}</div>
                     <div v-for="color in category"
                     v-bind:key="color" :class="'ex back-'+color"></div>
                   </div>
                 </div>
-                <div class="swatch background"
-                @click="toggleOptions"
-                :style="{ background: selection.background }"></div>
+                <div
+                  class="swatch background"
+                  :class="selection.background"
+                ></div>
                 <div class="options panel">
                   background
-                  <div v-for="(category, val) in colors"
-                  v-bind:key="val.id" class="cat">
+                  <div v-for="(category, val) in colors" v-bind:key="val.id" class="cat">
                     <div class="name">{{ val }}</div>
                     <div v-for="color in category"
                     v-bind:key="color" :class="'ex back-'+color"></div>
@@ -89,7 +71,7 @@
               </div>
             </li>
             <li ref="typography">
-              Typopgrahy
+              Typograhy
               <div class="options">
                 <div class="cat">Name</div>
                 <div class="cat">Size</div>
@@ -138,13 +120,10 @@ export default {
   mixins: [ComponentPrototype],
   name: 'ToolBanner',
 
-  props: {
-    demo: String,
-  },
-
   data() {
     return {
       active: false,
+      activeEl: {},
       fullscreen: false,
       isActive: false,
       code: '',
@@ -157,9 +136,50 @@ export default {
       codeFocus: 'all',
       dropnav: ShDropnav,
       focused: null,
+      struct: [{
+        element: 'sh-banner',
+        attributes: {
+          variant: 'primary',
+          className: 'test highlight-primary',
+        },
+        children: [{
+          element: 'div',
+          attributes: {
+            className: 'wt-600 back-wildfuscia color-mysticpurple',
+          },
+          children: [{
+            element: 'p',
+            contentKey: 'p-1',
+          }],
+        },
+        {
+          element: 'div',
+          attributes: {
+            className: 'wt-600 back-classicblue color-highlight-secondary',
+          },
+          children: [{
+            element: 'p',
+            contentKey: 'p-1',
+          }],
+        }],
+      }],
+      content: {
+        'p-1': 'Test content...',
+      },
+      config: {
+        adaptive: false,
+        adaptiveCode: {
+          def: null,
+          sm: null,
+          md: null,
+          lg: null,
+          xl: null,
+        },
+        variant: 'default',
+      },
       selection: {
-        foreground: 'green',
-        background: 'red',
+        foreground: 'none',
+        background: 'none',
       },
       colors: {
         highlights: [
@@ -195,6 +215,12 @@ export default {
     };
   },
 
+  watch: {
+    struct(val) {
+      console.log('STRUCTURE UPDATED', val);
+    },
+  },
+
   created() {
     this.setUUID();
   },
@@ -203,49 +229,21 @@ export default {
     const self = this;
 
     this.uniqueId = `sh${this.uuid}`;
-    if (this.demo) {
-      this.$el.addEventListener('click', () => {
-        window.open(`${window.location.origin}/${this.demo}`, 'demo');
-      });
-    }
-
+    // const data = self.getItem('tool-banner-data');
+    // if (data) self.code = data;
     setTimeout(() => {
-      this.$refs.editor.id = `editor-${this.uniqueId}`;
-      this.editor = ace.edit(this.$refs.editor.id);
-      this.editor.getSession().setMode('ace/mode/html');
-      this.editor.setTheme('ace/theme/monokai');
-      const data = this.getItem('tool-banner-data');
-      if (data) this.code = data;
-      this.code = Pretty(this.code);
-      this.editor.setValue(this.code);
-      this.editor.setOptions({
-        wrapBehavioursEnabled: true,
-        showLineNumbers: false,
-        showGutter: false,
-        wrap: true,
-        showPrintMargin: false,
-        indentedSoftWrap: false,
-      });
-
-      this.editor = ace.edit(this.$refs.editor.id);
-      this.editor.getSession().setMode('ace/mode/html');
-      this.editor.setTheme('ace/theme/monokai');
-      this.code = Pretty(this.code);
-      this.editor.setValue(this.code);
-      this.editor.setOptions({
-        wrapBehavioursEnabled: true,
-        showLineNumbers: false,
-        showGutter: false,
-        wrap: true,
-        showPrintMargin: false,
-        indentedSoftWrap: false,
-      });
-
+      self.$refs.editor.id = `editor-${self.uniqueId}`;
+      self.editor = ace.edit(self.$refs.editor.id);
+      self.editor.getSession().setMode('ace/mode/html');
+      self.editor.setTheme('ace/theme/monokai');
       self.$refs.editor.style.width = '100%';
       self.editor.resize();
-      self.editor.getSession().selection.clearSelection();
-      self.editor.getSession().on('change', this.handleChange);
-      this.handleChange();
+
+      self.updateEditor();
+
+      // self.editor.getSession().on('change', self.handleChange);
+      const code = self.markup(self.struct);
+      self.renderCode(code);
     }, 200);
   },
 
@@ -263,12 +261,34 @@ export default {
       document.addEventListener('click', (e) => {
         if (constrain.contains(e.target)) {
           e.stopPropagation();
-          const active = document.querySelector('[banner-row].active');
-          if (active) active.classList.remove('active');
-          const crow = e.target.closest('[banner-row]');
-          if (crow) crow.classList.add('active');
+          const active = document.querySelector('div.active');
+          if (active) {
+            active.classList.remove('active');
+            this.activeEl = {};
+          }
+          const crow = e.target.closest('div');
+          if (crow) {
+            crow.classList.add('active');
+            this.activeEl = crow;
+            this.panelData(crow.classList);
+          }
         }
       });
+    },
+
+    updateEditor() {
+      const self = this;
+      self.code = Pretty(self.code);
+      self.editor.setValue(self.code);
+      self.editor.setOptions({
+        wrapBehavioursEnabled: true,
+        showLineNumbers: false,
+        showGutter: false,
+        wrap: true,
+        showPrintMargin: false,
+        indentedSoftWrap: false,
+      });
+      self.editor.getSession().selection.clearSelection();
     },
 
     handleChange() {
@@ -294,6 +314,8 @@ export default {
     },
 
     renderCode(code) {
+      this.code = code;
+      this.updateEditor();
       this.html = code;
     },
 
@@ -326,8 +348,66 @@ export default {
         el.classList.remove('active');
       });
       const opt = e.target;
-      console.log(opt, opt.closest('div.options'));
       opt.classList.add('active');
+    },
+
+    markup(obj) {
+      let html = '';
+      const self = this;
+      obj.forEach((item) => {
+        html += self.make(item);
+      });
+      return html;
+    },
+
+    make(item) {
+      const self = this;
+      let innerHTML = '';
+      let attributes = '';
+      console.log(item);
+      innerHTML = (item.contentKey) ? self.content[item.contentKey] : self.markup(item.children);
+      if (item.attributes) attributes = ` ${self.attribute(item.attributes)}`;
+      return `<${item.element}${attributes}>${innerHTML}</${item.element}>`;
+    },
+
+    panelData(classes) {
+      const data = {};
+      classes.forEach((thing) => {
+        const split = thing.split('-');
+        if (split.length > 1) {
+          let which = split[0];
+          if (which !== 'active') {
+            let mod = thing;
+            switch (which) {
+              case 'back':
+                which = 'background';
+                break;
+              case 'color':
+                which = 'foreground';
+                split.shift();
+                mod = split.join('-');
+                break;
+              default:
+                break;
+            }
+            console.log(split);
+            if (which) data[which] = mod;
+          }
+        }
+      });
+      console.log(data);
+      this.$set(this, 'selection', data);
+      console.log(this.selection);
+    },
+
+    attribute(arr) {
+      let attr = '';
+      Object.keys(arr).forEach((item) => {
+        const prop = (item === 'className') ? 'class' : item;
+        console.log(item, arr[item]);
+        attr += ` ${prop}="${arr[item]}"`;
+      });
+      return attr;
     },
   },
 

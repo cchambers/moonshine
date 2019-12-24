@@ -43,7 +43,7 @@ tool-banner {
 
   .tool-banner {
     flex-grow: 1;
-    &[layout="t"] {
+    // &[layout="t"] {
       .tool {
         flex-direction: column;
       }
@@ -55,9 +55,8 @@ tool-banner {
       .editors {
         order: 0;
         min-width: 100rem;
-        min-height: 40vh;
       }
-    }
+    // }
   }
 
   .tool {
@@ -123,7 +122,6 @@ tool-banner {
     display: flex;
     .constrain {
       width: 100%;
-      max-width: 128rem;
       margin: 0 auto;
       margin-top: 3rem;
       margin-bottom: 3rem;
@@ -233,7 +231,7 @@ tool-banner {
     width: 100% !important;
   }
 
-  [banner-row]:hover {
+  .constrain div:hover {
     cursor: crosshair;
     outline: 2px solid lime;
     [class*='col-'] {
@@ -241,7 +239,7 @@ tool-banner {
     }
   }
 
-  [banner-row].active {
+  .constrain div.active {
     outline: 2px dashed yellow;
     [class*='col-'] {
       outline: 1px dashed white;

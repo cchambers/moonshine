@@ -5,7 +5,8 @@
 @each $name, $hex in $colors {
   $var: map-get($colors, $name);
 
-  .#{$name} {
+  .#{$name},
+  .color-#{$name} {
     color: $var;
     color: var(--#{$name});
   }
