@@ -12,8 +12,6 @@
       <div class="arrow previous" @click="previous">
         previous slide
       </div>
-
-      <div class="reload" @click="reload"></div>
       <!-- Control layer. Dots/arrows, etc. -->
     </div>
   </div>
