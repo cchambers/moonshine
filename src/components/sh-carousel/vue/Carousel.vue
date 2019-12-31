@@ -1,9 +1,13 @@
 <template>
   <div class="sh-carousel"
-    :variant="variant"
-    v-bind:class="{ 'snap-state': snapping }"
-    v-hammer:tap="snap">
-    <slot>{{ msg }}</slot>
+    :variant="variant">
+    <div class="carousel-spacer"></div>
+    <div ref="slides" slot="slides" class="slides">
+      <slot name="slides"></slot>
+    </div>
+    <div ref="control">
+      <!-- Control layer. Dots/arrows, etc. -->
+    </div>
   </div>
 </template>
 

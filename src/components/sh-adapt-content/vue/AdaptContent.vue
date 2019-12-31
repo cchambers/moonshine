@@ -58,7 +58,6 @@ export default {
       if (w >= 768) state = 'md';
       if (w >= 960) state = 'lg';
       if (w >= 1200) state = 'xl';
-      console.log('State Check', state, w);
       this.state = state;
       return state;
     },

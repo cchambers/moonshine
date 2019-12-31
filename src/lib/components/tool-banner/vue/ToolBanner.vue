@@ -35,13 +35,13 @@
         <sh-button toggle group="breakpoint"
         click-event="code-focus" default-value="code-lg">LG</sh-button>
         <div class="sep"></div>
-        <sh-button @click="renderEditorCode">RENDER</sh-button>
-        <sh-button @click="loadFromLocal">LOAD LS</sh-button>
+        <sh-button :disabled="!changedNotRendered" @click="renderEditorCode">RENDER</sh-button>
+        <!-- <sh-button @click="loadFromLocal">LOAD LS</sh-button> -->
       </div>
     </div>
     <div class="tool">
       <div ref="component" class="component">
-        <div class="panel" hidden>
+        <div class="panel">
           <h2>Selection</h2>
           <ul>
             <li ref="colors">
@@ -130,6 +130,7 @@ export default {
     return {
       active: false,
       activeEl: {},
+      changedNotRendered: false,
       fullscreen: false,
       isActive: false,
       editorCode: '',
@@ -231,9 +232,9 @@ export default {
       self.editor.setTheme('ace/theme/monokai');
       self.$refs.editor.style.width = '100%';
       self.editor.resize();
-      // self.editor.getSession().on('change', () => {
-      //   self.log('editor changed');
-      // });
+      self.editor.getSession().on('change', () => {
+        this.changedNotRendered = true;
+      });
       if (self.checkLocalStorage()) this.loadFromLocal();
     }, 200);
   },
@@ -307,6 +308,7 @@ export default {
         const code = this.markup(this.struct);
         this.renderCode(code);
       }
+      this.changedNotRendered = false;
     },
 
     renderCode(code) {

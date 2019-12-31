@@ -48,7 +48,7 @@
         <tr>
           <td>default</td>
           <td>
-            Text content.
+            Slides in HTML.
           </td>
         </tr>
       </tbody>
@@ -109,7 +109,14 @@
     <h2>Examples</h2>
     <h3>Default</h3>
     <lib-toolbar>
-      <sh-carousel>TEXT THAT IS EVEN AND STILL EXISTS</sh-carousel>
+      <sh-carousel>
+        <ul slot="slides">
+          <li style="background-image: url(http://lorempixel.com/400/200/sports/1); background-size: cover;"></li>
+          <li style="background-image: url(http://lorempixel.com/400/200/sports/2?1); background-size: cover;"></li>
+          <li style="background-image: url(http://lorempixel.com/400/200/sports/3?2); background-size: cover;"></li>
+          <li style="background-image: url(http://lorempixel.com/400/200/sports/4?3); background-size: cover;"></li>
+        </ul>
+      </sh-carousel>
     </lib-toolbar>
   </section>
 
