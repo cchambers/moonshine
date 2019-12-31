@@ -156,18 +156,6 @@ tool-banner {
       width: 4.5rem;
       border: 1px solid white;
     }
-    .options {
-      position: absolute;
-      background: $highlight-secondary;
-      padding: 1.5rem;
-      max-width: 15rem;
-      left: 100%;
-      top: 0;
-      display: none;
-      &.active {
-        display: block;
-      }
-    }
     .cat {
       display: flex;
       flex-direction: row;
@@ -239,7 +227,7 @@ tool-banner {
     }
   }
 
-  .constrain div.active {
+  .constrain div.bt-active {
     outline: 2px dashed yellow;
     [class*='col-'] {
       outline: 1px dashed white;

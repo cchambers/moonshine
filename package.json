@@ -52,6 +52,7 @@
     "fullname": "^4.0.1",
     "git-branch": "^2.0.1",
     "glob": "^7.1.4",
+    "lowdb": "^1.0.0",
     "node-sass": "^4.13.0",
     "pretty": "^2.0.0",
     "prompt": "^1.0.0",

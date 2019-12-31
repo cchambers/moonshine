@@ -58,3 +58,13 @@
     }
   }
 }
+
+@for $i from 1 through 100 {
+  $rem: (0.1 * $i);
+  .px-#{$i} {
+    font-size: #{$rem}rem;
+  }
+  .lh-#{$i} {
+    line-height: #{$rem}rem;
+  }
+}

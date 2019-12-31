@@ -35,11 +35,13 @@
         <sh-button toggle group="breakpoint"
         click-event="code-focus" default-value="code-lg">LG</sh-button>
         <div class="sep"></div>
+        <sh-button @click="renderEditorCode">RENDER</sh-button>
+        <sh-button @click="loadFromLocal">LOAD LS</sh-button>
       </div>
     </div>
     <div class="tool">
       <div ref="component" class="component">
-        <div class="panel">
+        <div class="panel" hidden>
           <h2>Selection</h2>
           <ul>
             <li ref="colors">
@@ -48,44 +50,44 @@
                   class="swatch foreground"
                   :class="'back-'+selection.foreground"
                 ></div>
-                <div class="options panel">
-                  foreground
-                  <div v-for="(category, val) in colors" v-bind:key="val.id" class="cat">
-                    <div class="name">{{ val }}</div>
-                    <div v-for="color in category"
-                    v-bind:key="color" :class="'ex back-'+color"></div>
-                  </div>
-                </div>
                 <div
                   class="swatch background"
                   :class="selection.background"
                 ></div>
-                <div class="options panel">
-                  background
-                  <div v-for="(category, val) in colors" v-bind:key="val.id" class="cat">
-                    <div class="name">{{ val }}</div>
-                    <div v-for="color in category"
-                    v-bind:key="color" :class="'ex back-'+color"></div>
-                  </div>
-                </div>
               </div>
+              <div v-for="(category, val) in colors" v-bind:key="val.id" class="cat">
+                  <div class="name">{{ val }}</div>
+                  <div v-for="color in category"
+                  v-bind:key="color" :class="'ex back-'+color"></div>
+                </div>
             </li>
             <li ref="typography">
               Typograhy
               <div class="options">
-                <div class="cat">Name</div>
-                <div class="cat">Size</div>
-                <div class="cat">Weight</div>
-                <div class="cat">Style</div>
-                <div class="cat">Casing</div>
+                <div class="cat">Name: {{ selection.fontname }}</div>
+                <div class="cat">Size: {{ selection.fontsize }}</div>
+                <div class="cat">Line-Height: {{ selection.lineheight }}</div>
+                <div class="cat">Weight: {{ selection.fontweight }}</div>
+                <div class="cat">
+                  Style: <div class="options">
+                    <sh-button toggle group="style" variant="primary">
+                      [none]
+                    </sh-button>
+                    <sh-button toggle group="style" variant="primary">
+                      <em>italic</em>
+                    </sh-button>
+                  </div>
+                </div>
+                <div class="cat">Deco: {{ selection.decoration }}</div>
+                <div class="cat">Casing: {{ selection.casing }}</div>
               </div>
             </li>
             <li>
               <a href="#">Box Model</a>
               <div class="options">
-                <div class="cat">Padding</div>
-                <div class="cat">Margin</div>
-                <div class="cat">Border</div>
+                <div class="cat">Padding: {{ selection.padding }}</div>
+                <div class="cat">Margin: {{ selection.margin }}</div>
+                <div class="cat">Border: {{ selection.border }}</div>
               </div>
             </li>
             <li>
@@ -115,6 +117,10 @@ import 'brace/theme/monokai';
 import Pretty from 'pretty';
 import ComponentPrototype from '../../../../components/component-prototype';
 import ShDropnav from '../../../../components/sh-dropnav/Dropnav.vue';
+// const low = require('lowdb')
+// const FileSync = require('lowdb/adapters/FileSync')
+// const adapter = new FileSync('db.json')
+// const db = low(adapter)
 
 export default {
   mixins: [ComponentPrototype],
@@ -126,46 +132,16 @@ export default {
       activeEl: {},
       fullscreen: false,
       isActive: false,
-      code: '',
       editorCode: '',
       html: '...',
       updateTimer: 0,
       uniqueId: '',
+      key: 0,
       editor: {},
       layout: 't',
       codeFocus: 'all',
       dropnav: ShDropnav,
       focused: null,
-      struct: [{
-        element: 'sh-banner',
-        attributes: {
-          variant: 'primary',
-          className: 'test highlight-primary',
-        },
-        children: [{
-          element: 'div',
-          attributes: {
-            className: 'wt-600 back-wildfuscia color-mysticpurple',
-          },
-          children: [{
-            element: 'p',
-            contentKey: 'p-1',
-          }],
-        },
-        {
-          element: 'div',
-          attributes: {
-            className: 'wt-600 back-classicblue color-highlight-secondary',
-          },
-          children: [{
-            element: 'p',
-            contentKey: 'p-1',
-          }],
-        }],
-      }],
-      content: {
-        'p-1': 'Test content...',
-      },
       config: {
         adaptive: false,
         adaptiveCode: {
@@ -177,6 +153,8 @@ export default {
         },
         variant: 'default',
       },
+      struct: [],
+      content: {},
       selection: {
         foreground: 'none',
         background: 'none',
@@ -217,7 +195,17 @@ export default {
 
   watch: {
     struct(val) {
-      console.log('STRUCTURE UPDATED', val);
+      // update localStorage when this variable changes
+      this.setItem('tool-banner-data', val);
+    },
+
+    content(val) {
+      // update localStorage when this variable changes
+      this.setItem('tool-banner-content', { ...val });
+    },
+
+    html() {
+      this.updateEditor();
     },
   },
 
@@ -227,23 +215,26 @@ export default {
 
   mounted() {
     const self = this;
-
-    this.uniqueId = `sh${this.uuid}`;
-    // const data = self.getItem('tool-banner-data');
-    // if (data) self.code = data;
+    self.uniqueId = `sh${self.uuid}`;
     setTimeout(() => {
       self.$refs.editor.id = `editor-${self.uniqueId}`;
       self.editor = ace.edit(self.$refs.editor.id);
+      self.editor.setOptions({
+        wrapBehavioursEnabled: true,
+        // showLineNumbers: false,
+        // showGutter: false,
+        wrap: true,
+        showPrintMargin: false,
+        indentedSoftWrap: false,
+      });
       self.editor.getSession().setMode('ace/mode/html');
       self.editor.setTheme('ace/theme/monokai');
       self.$refs.editor.style.width = '100%';
       self.editor.resize();
-
-      self.updateEditor();
-
-      // self.editor.getSession().on('change', self.handleChange);
-      const code = self.markup(self.struct);
-      self.renderCode(code);
+      // self.editor.getSession().on('change', () => {
+      //   self.log('editor changed');
+      // });
+      if (self.checkLocalStorage()) this.loadFromLocal();
     }, 200);
   },
 
@@ -257,18 +248,17 @@ export default {
       });
 
       const constrain = document.querySelector('.constrain');
-
       document.addEventListener('click', (e) => {
         if (constrain.contains(e.target)) {
           e.stopPropagation();
-          const active = document.querySelector('div.active');
+          const active = document.querySelector('div.bt-active');
           if (active) {
-            active.classList.remove('active');
+            active.classList.remove('bt-active');
             this.activeEl = {};
           }
           const crow = e.target.closest('div');
           if (crow) {
-            crow.classList.add('active');
+            crow.classList.add('bt-active');
             this.activeEl = crow;
             this.panelData(crow.classList);
           }
@@ -276,26 +266,24 @@ export default {
       });
     },
 
-    updateEditor() {
-      const self = this;
-      self.code = Pretty(self.code);
-      self.editor.setValue(self.code);
-      self.editor.setOptions({
-        wrapBehavioursEnabled: true,
-        showLineNumbers: false,
-        showGutter: false,
-        wrap: true,
-        showPrintMargin: false,
-        indentedSoftWrap: false,
-      });
-      self.editor.getSession().selection.clearSelection();
+    checkLocalStorage() {
+      const content = this.getItem('tool-banner-content');
+      if (content) this.content = content;
+      const data = this.getItem('tool-banner-data');
+      if (data) this.struct = data;
+      return (content && data);
     },
 
-    handleChange() {
-      const value = this.editor.getSession().getValue();
-      this.editorCode = value;
-      this.html = this.editorCode;
-      this.setItem('tool-banner-data', value);
+    loadFromLocal() {
+      if (this.checkLocalStorage()) {
+        const code = this.markup(this.struct);
+        this.renderCode(code);
+      }
+    },
+
+    updateEditor() {
+      this.editor.setValue(Pretty(this.html));
+      this.editor.getSession().selection.clearSelection();
     },
 
     codeFocusHandler(data) {
@@ -305,17 +293,23 @@ export default {
       }, 100);
     },
 
-    renderDebounce(code) {
-      const self = this;
-      clearTimeout(this.updateTimer);
-      this.updateTimer = setTimeout(() => {
-        self.renderCode(code);
-      }, 300);
+    // renderDebounce(code) {
+    //   const self = this;
+    //   clearTimeout(this.updateTimer);
+    //   this.updateTimer = setTimeout(self.renderCode, 300);
+    // },
+
+    renderEditorCode() {
+      const value = this.editor.getSession().getValue();
+      const compiles = this.json(value);
+      if (compiles) {
+        this.struct = compiles;
+        const code = this.markup(this.struct);
+        this.renderCode(code);
+      }
     },
 
     renderCode(code) {
-      this.code = code;
-      this.updateEditor();
       this.html = code;
     },
 
@@ -351,23 +345,88 @@ export default {
       opt.classList.add('active');
     },
 
-    markup(obj) {
-      let html = '';
-      const self = this;
-      obj.forEach((item) => {
-        html += self.make(item);
-      });
-      return html;
+    markup(arr) {
+      let str = '';
+      if (arr) {
+        const self = this;
+        arr.forEach((item) => {
+          str += self.makeHTML(item);
+        });
+      }
+      return str;
     },
 
-    make(item) {
+    makeHTML(item) {
       const self = this;
-      let innerHTML = '';
       let attributes = '';
-      console.log(item);
-      innerHTML = (item.contentKey) ? self.content[item.contentKey] : self.markup(item.children);
-      if (item.attributes) attributes = ` ${self.attribute(item.attributes)}`;
+
+      const innerHTML = (item.contentKey) ? self.content[item.contentKey]
+        : self.markup(item.children);
+
+      if (item.attributes) attributes = self.attributeHTML(item.attributes);
       return `<${item.element}${attributes}>${innerHTML}</${item.element}>`;
+    },
+
+    json(markup) {
+      const element = document.createElement('div');
+      element.innerHTML = markup;
+      const json = element.children;
+      this.key = 0;
+      this.content = [];
+      const structure = this.makeJSON(json);
+      // console.log('STRUCT', structure);
+      return structure;
+    },
+
+    makeJSON(array) {
+      const newArray = [];
+      array.forEach((el) => {
+        const data = {
+          element: el.tagName.toLowerCase(),
+        };
+        const attr = this.attributeJSON(el.attributes);
+        if (attr) data.attributes = attr;
+        if (el.children.length) {
+          const inline = this.hasInlineChildren(el.children);
+          if (inline) {
+            data.contentKey = this.keyContent(el.innerHTML);
+          } else {
+            data.children = this.makeJSON(el.children);
+          }
+        } else if (el.innerText) {
+          data.contentKey = this.keyContent(el.innerText);
+        }
+        newArray.push(data);
+      });
+      return newArray;
+    },
+
+    attributeJSON(arr) {
+      const newArray = [];
+      arr.forEach((item) => {
+        const obj = {};
+        const key = (item.name === 'class') ? 'className' : item.name;
+        obj[key] = item.value;
+        newArray.push(obj);
+      });
+      const toReturn = (newArray.length) ? newArray : false;
+      return toReturn;
+    },
+
+    keyContent(str) {
+      let theKey = false;
+      Object.keys(this.content).forEach((item) => {
+        if (this.content[item] === str) {
+          theKey = item;
+        }
+      });
+      if (!theKey) {
+        this.key += 1;
+        theKey = this.key;
+      }
+      const key = `key-${theKey}`;
+      this.$set(this.content, key, str);
+      return key;
     },
 
     panelData(classes) {
@@ -382,33 +441,67 @@ export default {
               case 'back':
                 which = 'background';
                 break;
+              case 'wt':
+                which = 'fontweight';
+                break;
+              case 'px':
+                which = 'fontsize';
+                break;
+              case 'lh':
+                which = 'lineheight';
+                break;
+              case 'case':
+                which = 'casing';
+                break;
+              case 'ration':
+                which = 'rationration';
+                break;
+              case 'style':
+                which = 'style';
+                break;
               case 'color':
                 which = 'foreground';
                 split.shift();
                 mod = split.join('-');
                 break;
+              case 'pad':
+                which = 'padding';
+                break;
               default:
                 break;
             }
-            console.log(split);
             if (which) data[which] = mod;
           }
         }
       });
-      console.log(data);
       this.$set(this, 'selection', data);
-      console.log(this.selection);
     },
 
-    attribute(arr) {
+    attributeHTML(arr) {
       let attr = '';
-      Object.keys(arr).forEach((item) => {
+      const test = arr[0];
+      Object.keys(test).forEach((item) => {
         const prop = (item === 'className') ? 'class' : item;
-        console.log(item, arr[item]);
-        attr += ` ${prop}="${arr[item]}"`;
+        attr += ` ${prop}="${test[item]}"`;
       });
-      return attr;
+      return (attr.length) ? attr : false;
     },
+
+    hasInlineChildren(children) {
+      let inline = false;
+      const inlines = ['span', 'strong', 'em', 'img'];
+      children.forEach((child) => {
+        const isInline = (inlines.indexOf(child.tagName.toLowerCase()) > -1);
+        if (isInline) inline = true;
+      });
+      return inline;
+    },
+
+    getDisplayStyle(element) {
+      const cStyle = element.currentStyle || window.getComputedStyle(element, '');
+      return cStyle.display;
+    },
+
   },
 
   updated() {
