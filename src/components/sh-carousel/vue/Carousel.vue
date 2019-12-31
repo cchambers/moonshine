@@ -6,10 +6,10 @@
       <slot name="slides"></slot>
     </div>
     <div class="controls">
-      <div class="arrow next" @click="next">
+      <div class="arrow next" v-hammer:tap="next">
         next slide
       </div>
-      <div class="arrow previous" @click="previous">
+      <div class="arrow previous" v-hammer:tap="previous">
         previous slide
       </div>
       <!-- Control layer. Dots/arrows, etc. -->
