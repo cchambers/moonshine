@@ -10,6 +10,10 @@ export default {
       type: Number,
       default: 0,
     },
+    perNext: {
+      type: Number,
+      default: 1,
+    }
   },
 
   data() {
@@ -22,24 +26,39 @@ export default {
   mounted() {
     const slides = this.$slots.slides[0];
     this.slides = slides.elm.children;
-    this.activate(this.startAt);
+    setTimeout(() => { this.activate(this.startAt); });
+  },
+
+  watch: {
+    active(val) {
+      console.log('ACTIVE CHANGED');
+      this.slides.forEach((slide, index) => {
+        if (index === val) {
+          slide.classList.add('active');
+        } else if (slide.classList.contains('active')) slide.classList.remove('active');
+      });
+      console.log(val);
+    },
   },
 
   methods: {
     next() {
-      console.log('next');
+      let which = this.active + this.perNext;
+      if (which > this.slides.length) which = 0;
+      this.active = which;
+      console.log(which);
     },
 
     previous() {
-      console.log('previous');
+      let which = this.active - this.perNext;
+      if (which < 0) which = this.slides.length - 1;
+      this.active = which;
+      console.log(which);
     },
 
     activate(which = 0) {
-      this.slides.forEach((slide, index) => {
-        if (index === which) {
-          slide.classList.add('active');
-        } else if (slide.classList.contains('active')) slide.classList.remove('active');
-      });
+      console.log(which);
+      this.active = which;
     },
   },
 
