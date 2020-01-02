@@ -22,6 +22,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    autoplay: {
+      type: String,
+      default: false,
+    },
   },
 
   data() {
@@ -39,6 +43,7 @@ export default {
     const slides = this.$slots.slides[0];
     this.slides = slides.elm.children;
     this.active = this.startAt;
+    if (this.autoplay) this.play(parseInt(this.autoplay, 10));
   },
 
   watch: {
@@ -54,6 +59,13 @@ export default {
   methods: {
     mousePause(bool = true) {
       this.paused = bool;
+    },
+
+    play(delay) {
+      setTimeout(() => {
+        if (!this.paused) this.next();
+        this.play(delay);
+      }, delay);
     },
 
     next() {
