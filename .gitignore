@@ -4,6 +4,7 @@ node_modules
 .yarn.lock
 .package.json
 .env
+.gitignore
 
 # local env files
 .env.local
@@ -26,4 +27,3 @@ src/components/all.json
 *.njsproj
 *.sln
 *.sw?
-src/components/all.json
