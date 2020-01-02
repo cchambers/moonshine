@@ -16,6 +16,15 @@ $accent-tertiary: rgb(157, 208, 230);
 $accent-quaternary: rgb(129, 177, 210);
 $accent-quinary: rgb(0, 131, 186);
 
+$brand-belkblue: #0033a1;
+$brand-wildfuscia: #df1783;
+$brand-classicblue: #0071ce;
+$brand-deepteal: #00afa8;
+$brand-festivelime: #c2d500;
+$brand-goldenhour: #ffda00;
+$brand-peachyred: #fd495c;
+$brand-mysticpurple: #773dbd;
+
 $colors: (
   "highlight-primary": $highlight-primary,
   "highlight-secondary": $highlight-secondary,
@@ -32,14 +41,14 @@ $colors: (
   "accent-tertiary": $accent-tertiary,
   "accent-quaternary": $accent-quaternary,
   "accent-quinary": $accent-quinary,
-  "belkblue": #0033a1,
-  "wildfuscia": #df1783,
-  "classicblue": #0071ce,
-  "deepteal": #00afa8,
-  "festivelime": #c2d500,
-  "goldenhour": #ffda00,
-  "peachyred": #fd495c,
-  "mysticpurple": #773dbd,
+  "brand-belkblue": #0033a1,
+  "brand-wildfuscia": #df1783,
+  "brand-classicblue": #0071ce,
+  "brand-deepteal": #00afa8,
+  "brand-festivelime": #c2d500,
+  "brand-goldenhour": #ffda00,
+  "brand-peachyred": #fd495c,
+  "brand-mysticpurple": #773dbd,
 );
 
 $break-sm: 480px;
