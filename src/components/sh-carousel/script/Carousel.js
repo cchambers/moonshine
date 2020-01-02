@@ -83,6 +83,10 @@ export default {
     activate(which) {
       this.active = which;
     },
+
+    swipeHandler(e) {
+      console.log(e.direction);
+    },
   },
 
 };

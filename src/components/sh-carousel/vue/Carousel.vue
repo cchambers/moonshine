@@ -2,7 +2,9 @@
   <div class="sh-carousel"
     :variant="variant"
     @mouseenter="mousePause(true, true)"
-    @mouseleave="mousePause(false, true)">
+    @mouseleave="mousePause(false, true)"
+    v-hammer:swipe.horizontal="swipeHandler"
+    v-hammer:swipe.vertical="swipeHandler">
     <div class="carousel-spacer"></div>
     <div ref="slides" slot="slides" class="slides">
       <slot name="slides"></slot>
