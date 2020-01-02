@@ -252,14 +252,14 @@ export default {
       document.addEventListener('click', (e) => {
         if (constrain.contains(e.target)) {
           e.stopPropagation();
-          const active = document.querySelector('div.bt-active');
+          const active = document.querySelector('[banner-block="active"]');
           if (active) {
-            active.classList.remove('bt-active');
+            active.setAttribute('banner-block', '');
             this.activeEl = {};
           }
-          const crow = e.target.closest('div');
+          const crow = e.target.closest('[banner-block]');
           if (crow) {
-            crow.classList.add('bt-active');
+            crow.setAttribute('banner-block', 'active');
             this.activeEl = crow;
             this.panelData(crow.classList);
           }
@@ -366,7 +366,8 @@ export default {
         : self.markup(item.children);
 
       if (item.attributes) attributes = self.attributeHTML(item.attributes);
-      return `<${item.element}${attributes}>${innerHTML}</${item.element}>`;
+      console.log(item.bannerBlock);
+      return `<${item.element}${attributes}${(item.bannerBlock) ? ' banner-block' : ''}>${innerHTML}</${item.element}>`;
     },
 
     json(markup) {
@@ -398,6 +399,7 @@ export default {
         } else if (el.innerText) {
           data.contentKey = this.keyContent(el.innerText);
         }
+        if (el.hasAttribute('banner-block')) data.bannerBlock = true;
         newArray.push(data);
       });
       return newArray;
@@ -406,6 +408,7 @@ export default {
     attributeJSON(arr) {
       const newArray = [];
       arr.forEach((item) => {
+        if (item.name === 'banner-block') return;
         const obj = {};
         const key = (item.name === 'class') ? 'className' : item.name;
         obj[key] = item.value;

@@ -219,23 +219,34 @@ tool-banner {
     width: 100% !important;
   }
 
-  .constrain div:hover {
+  .constrain [banner-block]:hover {
     cursor: crosshair;
-    outline: 2px solid lime;
+    background-image: linear-gradient(45deg, rgba(255,255,255,0.25) 25%, rgba(0,0,0,.05) 25%),
+    linear-gradient(-45deg, rgba(255,255,255,0.25) 25%, rgba(0,0,0,.05) 25%),
+    linear-gradient(45deg, rgba(0,0,0,.05) 75%, rgba(255,255,255,0.25) 75%),
+    linear-gradient(-45deg, rgba(0,0,0,.05) 75%, rgba(255,255,255,0.25) 75%);
+    background-size: 20px 20px;
+    background-position: 0 0,
+    0 10px,
+    10px -10px,
+    -10px 0px;
     [class*='col-'] {
       outline: 1px dashed white;
     }
   }
 
-  .constrain div.bt-active {
+  .constrain [banner-block="active"] {
     outline: 2px dashed yellow;
     [class*='col-'] {
-      outline: 1px dashed white;
+      outline: 1px dotted white;
     }
   }
 
   [banner-row]:empty {
     min-height: 10px;
+    &:before {
+      content: '[ empty row ]';
+    }
   }
   // &[demo] {
   //   .lib-toolbar::before {
