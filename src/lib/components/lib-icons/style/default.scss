@@ -1,0 +1,10 @@
+/* default styling */
+
+lib-icons {
+  display: block;
+
+  .lib-icons {
+    display: flex;
+    flex-direction: column;
+  }
+}

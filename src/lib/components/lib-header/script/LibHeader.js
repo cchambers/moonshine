@@ -29,9 +29,7 @@ export default {
     const main = document.querySelector('main');
 
     function updateHeader(scrollPos) {
-      if (scrollPos > 100) {
-        if (!self.pageNameActive) self.pageNameActive = true;
-      } else if (self.pageNameActive) self.pageNameActive = false;
+      self.pageNameActive = (scrollPos > 100);
     }
 
     main.addEventListener('scroll', () => {

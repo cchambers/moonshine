@@ -1,6 +1,8 @@
 {
-  "name": "Component Template",
-  "element": "component-template",
+  "name": "Belk Swatch",
+  "category": "features",
+  "production": true,
+  "element": "belk-swatch",
   "description": "Demonstration component.",
   "tags": ["utilities", "demo"],
   "requirements": {}

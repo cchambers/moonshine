@@ -1,33 +1,76 @@
 /* default styling */
 
 sh-carousel {
-  display: inline-block;
+  display: block;
+
   .sh-carousel {
-
-
-    /** DELETE THIS EXAMPLE SECTION **/
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    text-align: center;
-    height: 15rem;
-    width: 15rem;
-    background-size: cover;
-    border: 1px solid transparent;
-    transition: all 200ms linear;
-
-    &:hover {
-      border: 1px solid $accent-primary;
+    position: relative;
+    .slides {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
     }
-    
-    &.snap-state {
-      color: transparent;
-      background-image: url(../../../assets/img/snap.gif);
-      border: 1px solid $accent-primary;
+    ul {
+      padding: 0;
+      margin: 0;
+      list-style: none;
+      > * {
+        display: block;
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        transition: all 300ms $ease;
+        opacity: 0;
+        overflow: hidden;
+        pointer-events: none;
+        &.active {
+          pointer-events: initial;
+          opacity: 1;
+        }
+      }
     }
 
-    
+    .controls {
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      .arrow {
+        position: absolute;
+        top: 50%;
+        height: 4.5rem;
+        width: 4.5rem;
+        display: flex;
+        text-align: center;
+        align-content: center;
+        background: cyan;
+        cursor: pointer;
+        &.next {
+          right: 0;
+        }
+        &.previous {
+          left: 0;
+        }
+      }
+    }
+    .carousel-spacer {
 
+      padding-top: 56.25%;
+    }
+  }
+
+  &[vertical] {
+    .controls {
+      .arrow {
+        .next{
+          color: red;
+        }
+        .previous {
+          color: red;
+        }
+      }
+    }
   }
 }

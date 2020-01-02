@@ -1,7 +1,9 @@
 <template>
-  <button :class="{ active: active }"
+  <button ref="button" :class="{ active: isActive }"
+    v-on:keyup.enter="tapHandler"
     :close-trigger="closeTrigger"
     v-hammer:tap="tapHandler"
+    :value="defaultValue"
     class="sh-button">
     <slot name="before-text"></slot>
     <slot></slot>
@@ -22,26 +24,64 @@ export default {
       type: String,
       default: 'default',
     },
+    group: String,
     closeTrigger: Boolean,
     toggle: Boolean,
     round: String,
     outline: Boolean,
     clickEvent: String,
+    defaultValue: String,
+    active: Boolean,
   },
 
   data() {
     return {
-      active: false,
+      isActive: false,
+      emitData: null,
+      buttonEl: this.$refs.button,
     };
   },
 
+  created() {
+    // console.log('BUTTON CREATED');
+  },
+
+  mounted() {
+    // console.log('BUTTON MOUNTED');
+    this.buttonEl = this.$refs.button;
+    if (this.active) this.isActive = true;
+  },
+
   methods: {
+    events() {
+      const self = this;
+      if (self.group) {
+        self.$bus.$on('group-toggle', (data) => {
+          if (data.group === self.group) self.groupHandler(data);
+        });
+      }
+    },
+
+    groupHandler(data) {
+      if (data.el === this) return;
+      this.isActive = false;
+    },
+
     tapHandler(e) {
       this.ripple(e);
       if (this.toggle) this.doToggle();
       if (this.clickEvent) {
-        this.$bus.$emit(this.clickEvent);
+        this.$bus.$emit(this.clickEvent, {
+          el: this,
+          value: this.buttonEl.value,
+        });
         e.preventDefault();
+      }
+      if (this.group) {
+        this.$bus.$emit('group-toggle', {
+          el: this,
+          group: this.group,
+        });
       }
     },
 
@@ -49,8 +89,8 @@ export default {
       const ripple = document.createElement('div');
       ripple.classList.add('ripple');
       const rect = e.target.getBoundingClientRect();
-      const x = e.center.x - rect.left - 5; // x position within the element.
-      const y = e.center.y - rect.top - 5;
+      const x = (e.center) ? e.center.x - rect.left - 5 : this.$el.outerWidth / 2;
+      const y = (e.center) ? e.center.y - rect.top - 5 : this.$el.outerHeight / 2;
       ripple.style.left = `${x}px`;
       ripple.style.top = `${y}px`;
       this.$el.prepend(ripple);
@@ -60,7 +100,8 @@ export default {
     },
 
     doToggle() {
-      this.active = !this.active;
+      if (this.group && this.isActive) return;
+      this.isActive = !this.isActive;
     },
   },
 

@@ -1,5 +1,7 @@
 {
   "name": "Belk Header",
+  "category": "features",
+  "production": false,
   "element": "belk-header",
   "description": "Global header component.",
   "tags": ["header"],
@@ -7,6 +9,16 @@
     "Container": [
       "Should manage layout of nav rows for desktop and mobile.",
       "Should collect and emit user data to other components."
+    ],
+    "Scroll Controller": [
+      "Should retain mobile gesture controls (tap to top, pull to reload, scrolling reduces locationbar, etc)",
+      "On SORT event, should return to PRIMARY CONTENT HEADER",
+      "On FILTER event, should return to PRIMARY CONTENT HEADER",
+      "On NAVIGATION/LOAD event, do nothing (load normally at top)",
+      "On PAGINATE event, load at top",
+      "On HISTORY event, keep user at their previous location",
+      "On MODAL open/close, keep user at the current location",
+      "On BAG EDIT, load at top"
     ]
   }
 }

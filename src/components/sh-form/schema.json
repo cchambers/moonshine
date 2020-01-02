@@ -1,5 +1,7 @@
 {
   "name": "Form",
+  "category": "components",
+  "production": false,
   "element": "sh-form",
   "description": "Demonstration component.",
   "tags": ["utilities", "demo"],

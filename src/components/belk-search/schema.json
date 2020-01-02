@@ -1,5 +1,7 @@
 {
   "name": "Belk Search",
+  "category": "features",
+  "production": true,
   "element": "belk-search",
   "description": "Gives user access to recent searches, suggested keywords, suggested products... and performs site searches.",
   "tags": ["search", "input"],
@@ -44,7 +46,7 @@
     ]
   },
 
-  "aria": [
+  "a11y": [
     "Should have a label, currently matches placeholder",
     "Should have all appropriate ARIA roles for combobox 1.0",
     "Should update activedescendant based oncurrently active item"

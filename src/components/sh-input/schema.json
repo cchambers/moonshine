@@ -1,7 +1,8 @@
 {
-  "name": "Input",
-  "element": "sh-input",
-  "description": "Demonstration component.",
-  "tags": ["utilities", "demo"],
-  "requirements": {}
+"name": "Form Input",
+"category": "components",
+"element": "sh-input",
+"description": "Demonstration component.",
+"tags": ["utilities", "demo"],
+"requirements": {}
 }

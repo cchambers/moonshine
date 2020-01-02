@@ -1,48 +1,51 @@
 :root {
-  --highlight-primary: rgb(254,254,254);
-  --highlight-secondary: rgb(245,245,245);
-  --highlight-tertiary: rgb(220,220,220);
-  --highlight-quaternary: rgb(255,255,255);
-  --highlight-quinary: tomato;
-
-  --lowlight-primary: rgb(25,25,25);
-  --lowlight-secondary: rgb(39,40,34);
-  --lowlight-tertiary: rgb(0,51,129);
-  --lowlight-quaternary: rgb(100,100,100);
-  --lowlight-quinary: tomato;
-
+  --highlight-primary: rgb(254, 254, 254);
+  --highlight-secondary: rgb(245, 245, 245);
+  --highlight-tertiary: rgb(220, 220, 220);
+  --highlight-quaternary: rgb(255, 255, 255);
+  --highlight-quinary: rgb(230, 230, 230);
+  --lowlight-primary: rgb(25, 25, 25);
+  --lowlight-secondary: rgb(39, 40, 34);
+  --lowlight-tertiary: rgb(0, 51, 129);
+  --lowlight-quaternary: rgb(100, 100, 100);
+  --lowlight-quinary: rgb(118, 118, 118);
   --accent-primary: rgb(0, 115, 207);
   --accent-secondary: rgb(6, 103, 160);
   --accent-tertiary: rgb(157, 208, 230);
   --accent-quaternary: rgb(129, 177, 210);
-  --accent-quinary: rgb(59,221,174);
+  --accent-quinary: rgb(59, 221, 174);
+  --state-success: green;
+  --state-error: red;
 
-  --belkblue: #0033a1;
-  --wildfuscia: #df1783;
-  --classicblue: #0071ce;
-  --deepteal: #00afa8;
-  --festivelime: #c2d500;
-  --goldenhour: #ffda00;
-  --peachyred: #fd495c; 
-  --mysticpurple: #773dbd;
-  --white: --highlight-primary;
-  --black: --lowlight-primary;
-  --grey: --lowlight-quaternary;;
+  // --padding-triple: var(--padding-base) * 3;
+  // --padding-double: var(--padding-base) * 2;
+  // --padding-base: 30rem;
+  // --padding-half: var(--padding-base) / 2;
+  // --padding-quarter: var(--padding-base) / 4;
+  --brand-belkblue: #0033a1;
+  --brand-wildfuscia: #df1783;
+  --brand-classicblue: #0071ce;
+  --brand-deepteal: #00afa8;
+  --brand-festivelime: #c2d500;
+  --brand-goldenhour: #ffda00;
+  --brand-peachyred: #fd495c;
+  --brand-mysticpurple: #773dbd;
 }
 
 [theme="dark"] {
-  --highlight-primary: rgb(25,25,25);
-  --highlight-secondary: rgb(39,40,34);
-  --highlight-tertiary: #3700B3;
-  --highlight-quaternary: #4e1b96;
-
-  --lowlight-primary: #BB86FC;
+  --highlight-primary: rgb(25, 25, 25);
+  --highlight-secondary: rgb(39, 40, 34);
+  --highlight-tertiary: rgb(61, 62, 56);
+  --highlight-quaternary: #111;
+  --highlight-quinary: #222;
+  --lowlight-primary: #bb86fc;
   --lowlight-secondary: #4e1b96;
   --lowlight-tertiary: #018786;
-  --lowlight-quaternary: rgb(59,221,174);
-
-  --accent-primary: #BB86FC;
-  --accent-secondary:#4e1b96;
-  --accent-tertiary: rgb(59,221,174);
-  --accent-quaternary: #3700B3;
+  --lowlight-quaternary: rgb(59, 221, 174);
+  --accent-primary: #bb86fc;
+  --accent-secondary: #3700b3;
+  --accent-tertiary: rgb(59, 221, 174);
+  --accent-quaternary: #4e1b96;
+  --state-success: darkgreen;
+  --state-error: darkred;
 }

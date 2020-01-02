@@ -9,6 +9,8 @@ export default {
   props: {
     group: String,
     uniqueId: String,
+    closedIcon: String,
+    openIcon: String,
   },
 
   data() {
@@ -29,7 +31,46 @@ export default {
     if (window.location.hash) this.hashHandler(window.location.hash.substr(1));
   },
 
+  computed: {
+    iconHandler() {
+      let icon;
+      if (this.ariaExpanded) {
+        icon = this.removeIcon();
+      } else {
+        icon = this.addIcon();
+      }
+      return icon;
+    },
+  },
+
   methods: {
+    removeIcon() {
+      let icon;
+      switch (this.variant) {
+        case 'tertiary':
+          icon = 'more_vert';
+          break;
+        default:
+          icon = 'remove';
+          break;
+      }
+      return icon;
+    },
+
+    addIcon() {
+      let icon;
+      if (this.closedIcon) return this.closedIcon;
+      switch (this.variant) {
+        case 'tertiary':
+          icon = 'more_vert';
+          break;
+        default:
+          icon = 'add';
+          break;
+      }
+      return icon;
+    },
+
     toggleActive() {
       if (this.ariaExpanded) {
         this.close();
@@ -64,13 +105,14 @@ export default {
       this.$bus.$on('hashchange', this.hashHandler);
     },
 
-    hashHandler(id) {
-      const self = this;
-      if (id === '') {
-        if (self.active) self.close();
-      } else if (id === self.uniqueId) {
-        self.open();
-        self.$el.scrollIntoView();
+    hashHandler(data) {
+      const { hash, event } = data;
+      if (hash === '') {
+        if (this.active) this.close();
+      } else if (hash === this.uniqueId) {
+        event.preventDefault();
+        this.open();
+        this.$el.scrollIntoView();
       }
     },
   },

@@ -6,7 +6,8 @@ sh-tooltip {
     position: relative;
     perspective: 800px;
     cursor: help;
-    &:after {
+
+    &::after {
       content: '';
       display: block;
       position: absolute;
@@ -14,9 +15,11 @@ sh-tooltip {
       width: 100%;
       border-bottom: 1px dashed $accent-primary;
     }
+
     a {
       cursor: pointer;
     }
+
     .tip {
       position: absolute;
       width: 200%;
@@ -34,10 +37,12 @@ sh-tooltip {
       background: $lowlight-secondary;
       padding: 0.5rem 1.5rem;
       text-align: center;
+
       &:hover {
         opacity: 1 !important;
       }
-      &:after {
+
+      &::after {
         content: '';
         display: block;
         position: absolute;
@@ -51,6 +56,7 @@ sh-tooltip {
         border-color: $lowlight-secondary transparent transparent transparent;
       }
     }
+
     &:hover {
       .tip {
         opacity: 0.9;
@@ -59,4 +65,3 @@ sh-tooltip {
     }
   }
 }
-

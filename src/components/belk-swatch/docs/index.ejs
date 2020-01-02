@@ -1,0 +1,177 @@
+<%- htmlWebpackPlugin.options.docsHead %>
+
+<title><%= htmlWebpackPlugin.options.title %></title>
+
+<div class="documentation contain">
+	<h1>Swatch</h1>
+	<section id="usage">
+		<h2>Usage</h2>
+		<pre>
+      <code class="language-html">
+          &lt;belk-swatch&gt;...&lt;/belk-swatch&gt;
+      </code>
+    </pre>
+	</section>
+
+	<section id="reference" class="baseline30">
+		<h2>Reference</h2>
+		<h3 id="attributes">Attributes</h3>
+
+		<table class="attributes">
+			<thead>
+				<tr>
+					<th>Attribute</th>
+					<th>Type</th>
+					<th>Description</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>variant</td>
+					<td>String</td>
+					<td>Swatch has two variants</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<h3 id="slots">Slots</h3>
+
+		<table class="slots">
+			<thead>
+				<tr>
+					<th>Slot</th>
+					<th>Description</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>default</td>
+					<td>
+						Collection of html elements with swatch data.
+					</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<h3 id="methods">Public Methods</h3>
+
+		<table class="methods">
+			<thead>
+				<tr>
+					<th>Function</th>
+					<th>Params</th>
+					<th>Description</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>select</td>
+					<td>
+						<ul>
+							<li>
+								index *or* color value
+							</li>
+						</ul>
+					</td>
+					<td>
+						Activates a swatch and emits event.
+					</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<h3 id="events">Events</h3>
+
+		<table class="events">
+			<thead>
+				<tr>
+					<th>Event Name</th>
+					<th>Payload Type</th>
+					<th>Description</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>swatch-activated</td>
+					<td>
+						Object
+					</td>
+					<td>
+						Fires when a swatch is activated.
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</section>
+
+	<section id="examples">
+		<h2>Examples</h2>
+		<h3>Default</h3>
+		<lib-toolbar>
+			<belk-swatch>
+				<ul class="swatch-list">
+					<li data-colorvalue="332334735429">
+            <div href="https://belk.scene7.com/is/image/Belk?layer=0&amp;src=3201550_3553827_B_332_T10L00&amp;crop=1070,594,250,250&amp;layer=comp&amp;" data-product="332334735429" class="swatch selected" style="cursor:pointer;" title="Dewy Moss">
+              <img data-thumb="{&quot;src&quot;:&quot;https://belk.scene7.com/is/image/Belk?layer=0&amp;src=3201550_3553827_A_332_T10L00&amp;layer=comp&amp;&quot;,&quot;srcalt&quot;:&quot;https://belk.scene7.com/is/image/Belk?layer=0&amp;src=3201550_3553827_B_332_T10L00&amp;layer=comp&amp;&quot;}" class="vjs_dri swatch-image" id="dri-IMG2019101108491859100861" src="//belk.scene7.com/is/image/Belk?layer=0&amp;src=3201550_3553827_B_332_T10L00&amp;crop=1070,594,250,250&amp;layer=comp&amp;$DWP_COLOR_PLP$" alt="Dewy Moss">
+            </div>
+					</li>
+					<li data-colorvalue="770334735429">
+            <div href="https://belk.scene7.com/is/image/Belk?layer=0&amp;src=3201550_3553827_B_770_T10L00&amp;crop=840,1903,250,250&amp;layer=comp&amp;" data-product="770334735429" class="swatch" style="cursor:pointer;" title="Tent Yllow">
+              <img data-thumb="{&quot;src&quot;:&quot;https://belk.scene7.com/is/image/Belk?layer=0&amp;src=3201550_3553827_A_770_T10L00&amp;layer=comp&amp;&quot;,&quot;srcalt&quot;:&quot;https://belk.scene7.com/is/image/Belk?layer=0&amp;src=3201550_3553827_B_770_T10L00&amp;layer=comp&amp;&quot;}" class="vjs_dri swatch-image" id="dri-IMG2019101108491859100862" src="//belk.scene7.com/is/image/Belk?layer=0&amp;src=3201550_3553827_B_770_T10L00&amp;crop=840,1903,250,250&amp;layer=comp&amp;$DWP_COLOR_PLP$" alt="Tent Yllow">
+            </div>
+					</li>
+					<li data-colorvalue="421334735429">
+            <div href="https://belk.scene7.com/is/image/Belk?layer=0&amp;src=3201550_3553827_B_421_T10L00&amp;crop=570,644,250,250&amp;layer=comp&amp;" data-product="421334735429" class="swatch" style="cursor:pointer;" title="Hobar Teal">
+              <img data-thumb="{&quot;src&quot;:&quot;https://belk.scene7.com/is/image/Belk?layer=0&amp;src=3201550_3553827_A_421_T10L00&amp;layer=comp&amp;&quot;,&quot;srcalt&quot;:&quot;https://belk.scene7.com/is/image/Belk?layer=0&amp;src=3201550_3553827_B_421_T10L00&amp;layer=comp&amp;&quot;}" class="vjs_dri swatch-image" id="dri-IMG2019101108491859100863" src="//belk.scene7.com/is/image/Belk?layer=0&amp;src=3201550_3553827_B_421_T10L00&amp;crop=570,644,250,250&amp;layer=comp&amp;$DWP_COLOR_PLP$" alt="Hobar Teal">
+            </div>
+					</li>
+					<li data-colorvalue="813334735429">
+            <div href="https://belk.scene7.com/is/image/Belk?layer=0&amp;src=3201550_3553827_B_813_T10L00&amp;crop=1121,695,292,292&amp;layer=comp&amp;" data-product="813334735429" class="swatch" style="cursor:pointer;" title="Cache Rust">
+              <img data-thumb="{&quot;src&quot;:&quot;https://belk.scene7.com/is/image/Belk?layer=0&amp;src=3201550_3553827_A_813_T10L00&amp;layer=comp&amp;&quot;,&quot;srcalt&quot;:&quot;https://belk.scene7.com/is/image/Belk?layer=0&amp;src=3201550_3553827_B_813_T10L00&amp;layer=comp&amp;&quot;}" class="vjs_dri swatch-image" id="dri-IMG2019101108491859100864" src="//belk.scene7.com/is/image/Belk?layer=0&amp;src=3201550_3553827_B_813_T10L00&amp;crop=1121,695,292,292&amp;layer=comp&amp;$DWP_COLOR_PLP$" alt="Cache Rust">
+            </div>
+					</li>
+					<li data-colorvalue="425334735429">
+            <div href="https://belk.scene7.com/is/image/Belk?layer=0&amp;src=3201550_3553827_B_425_T10L00&amp;crop=739,1750,385,385&amp;layer=comp&amp;" data-product="425334735429" class="swatch" style="cursor:pointer;" title="Navy Boat">
+              <img data-thumb="{&quot;src&quot;:&quot;https://belk.scene7.com/is/image/Belk?layer=0&amp;src=3201550_3553827_A_425_T10L00&amp;layer=comp&amp;&quot;,&quot;srcalt&quot;:&quot;https://belk.scene7.com/is/image/Belk?layer=0&amp;src=3201550_3553827_B_425_T10L00&amp;layer=comp&amp;&quot;}" class="vjs_dri swatch-image" id="dri-IMG2019101108491859200865" src="//belk.scene7.com/is/image/Belk?layer=0&amp;src=3201550_3553827_B_425_T10L00&amp;crop=739,1750,385,385&amp;layer=comp&amp;$DWP_COLOR_PLP$" alt="Navy Boat">
+            </div>
+					</li>
+					<li data-colorvalue="340334735429">
+            <div href="https://belk.scene7.com/is/image/Belk?layer=0&amp;src=3201550_3553827_B_340_T10L00&amp;crop=561,540,250,250&amp;layer=comp&amp;" data-product="340334735429" class="swatch" style="cursor:pointer;" title="Pine Green">
+              <img data-thumb="{&quot;src&quot;:&quot;https://belk.scene7.com/is/image/Belk?layer=0&amp;src=3201550_3553827_A_340_T10L00&amp;layer=comp&amp;&quot;,&quot;srcalt&quot;:&quot;https://belk.scene7.com/is/image/Belk?layer=0&amp;src=3201550_3553827_B_340_T10L00&amp;layer=comp&amp;&quot;}" class="vjs_dri swatch-image" id="dri-IMG2019101108491859200866" src="//belk.scene7.com/is/image/Belk?layer=0&amp;src=3201550_3553827_B_340_T10L00&amp;crop=561,540,250,250&amp;layer=comp&amp;$DWP_COLOR_PLP$" alt="Pine Green">
+            </div>
+					</li>
+					<li data-colorvalue="433334735429">
+            <div href="https://belk.scene7.com/is/image/Belk?layer=0&amp;src=3201550_3553827_B_433_T10L00&amp;crop=591,626,250,250&amp;layer=comp&amp;" data-product="433334735429" class="swatch" style="cursor:pointer;" title="Boyden Blue">
+              <img data-thumb="{&quot;src&quot;:&quot;https://belk.scene7.com/is/image/Belk?layer=0&amp;src=3201550_3553827_A_433_T10L00&amp;layer=comp&amp;&quot;,&quot;srcalt&quot;:&quot;https://belk.scene7.com/is/image/Belk?layer=0&amp;src=3201550_3553827_B_433_T10L00&amp;layer=comp&amp;&quot;}" class="vjs_dri swatch-image" id="dri-IMG2019101108491859200867" src="//belk.scene7.com/is/image/Belk?layer=0&amp;src=3201550_3553827_B_433_T10L00&amp;crop=591,626,250,250&amp;layer=comp&amp;$DWP_COLOR_PLP$" alt="Boyden Blue">
+            </div>
+					</li>
+					<li data-colorvalue="645334735429">
+            <div href="https://belk.scene7.com/is/image/Belk?layer=0&amp;src=3201550_3553827_B_645_T10L00&amp;crop=534,1697,250,250&amp;layer=comp&amp;" data-product="645334735429" class="swatch" style="cursor:pointer;" title="Red Hots">
+              <img data-thumb="{&quot;src&quot;:&quot;https://belk.scene7.com/is/image/Belk?layer=0&amp;src=3201550_3553827_A_645_T10L00&amp;layer=comp&amp;&quot;,&quot;srcalt&quot;:&quot;https://belk.scene7.com/is/image/Belk?layer=0&amp;src=3201550_3553827_B_645_T10L00&amp;layer=comp&amp;&quot;}" class="vjs_dri swatch-image" id="dri-IMG2019101108491859300868" src="//belk.scene7.com/is/image/Belk?layer=0&amp;src=3201550_3553827_B_645_T10L00&amp;crop=534,1697,250,250&amp;layer=comp&amp;$DWP_COLOR_PLP$" alt="Red Hots">
+            </div>
+					</li>
+					<li data-colorvalue="811334735429">
+            <div href="https://belk.scene7.com/is/image/Belk?layer=0&amp;src=3201550_3553827_A_811_T10L00&amp;crop=623,584,289,289&amp;layer=comp&amp;" data-product="811334735429" class="swatch" style="cursor:pointer;" title="Copper Fig">
+              <img data-thumb="{&quot;src&quot;:&quot;https://belk.scene7.com/is/image/Belk?layer=0&amp;src=3201550_3553827_A_811_T10L00&amp;layer=comp&amp;&quot;,&quot;srcalt&quot;:&quot;https://belk.scene7.com/is/image/Belk?layer=0&amp;src=3201550_3553827_B_811_T10L00&amp;layer=comp&amp;&quot;}" class="vjs_dri swatch-image" id="dri-IMG2019101108491859300869" src="//belk.scene7.com/is/image/Belk?layer=0&amp;src=3201550_3553827_A_811_T10L00&amp;crop=623,584,289,289&amp;layer=comp&amp;$DWP_COLOR_PLP$" alt="Copper Fig">
+            </div>
+					</li>
+					<li data-colorvalue="499334735429">
+            <div href="https://belk.scene7.com/is/image/Belk?layer=0&amp;src=3201550_3553827_B_499_T10L00&amp;crop=1085,1121,250,250&amp;layer=comp&amp;" data-product="499334735429" class="swatch" style="cursor:pointer;" title="Blue Stuff">
+              <img data-thumb="{&quot;src&quot;:&quot;https://belk.scene7.com/is/image/Belk?layer=0&amp;src=3201550_3553827_A_499_T10L00&amp;layer=comp&amp;&quot;,&quot;srcalt&quot;:&quot;https://belk.scene7.com/is/image/Belk?layer=0&amp;src=3201550_3553827_B_499_T10L00&amp;layer=comp&amp;&quot;}" class="vjs_dri swatch-image" id="dri-IMG2019101108491859300870" src="//belk.scene7.com/is/image/Belk?layer=0&amp;src=3201550_3553827_B_499_T10L00&amp;crop=1085,1121,250,250&amp;layer=comp&amp;$DWP_COLOR_PLP$" alt="Blue Stuff">
+            </div>
+					</li>
+				</ul>
+			</belk-swatch>
+		</lib-toolbar>
+	</section>
+
+	<section id="changelog">
+		<h2>Changelog</h2>
+		<dl>
+			<dt>1.0.0</dt>
+			<dd>Belk Swatch is ready for use.</dd>
+		</dl>
+	</section>
+</div>
+
+<%- htmlWebpackPlugin.options.docsFoot %>

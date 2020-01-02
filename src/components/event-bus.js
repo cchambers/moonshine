@@ -53,8 +53,11 @@ function bindAll() {
 		setupEvent(event);
 	}
 
-	window.addEventListener('hashchange', () => {
-		EventBus.$emit('hashchange', window.location.hash.substr(1));
+	window.addEventListener('hashchange', (e) => {
+		EventBus.$emit('hashchange', {
+      event: e,
+      hash: window.location.hash.substr(1)
+    });
 	})
 }
 

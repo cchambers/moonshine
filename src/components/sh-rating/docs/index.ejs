@@ -1,0 +1,104 @@
+<%- htmlWebpackPlugin.options.docsHead %>
+
+<title><%= htmlWebpackPlugin.options.title %></title>
+
+<div class="documentation contain">
+  <h1>Rating</h1>
+  <section id="usage">
+    <h2>Usage</h2>
+    <pre>
+      <code class="language-html">
+          &lt;sh-rating level="3.2" count="72"&gt;&lt;/sh-rating&gt;
+      </code>
+    </pre>
+  </section>
+
+  <section id="reference" class="baseline30">
+    <h2>Reference</h2>
+    <h3 id="attributes">Attributes</h3>
+
+    <table class="attributes">
+      <thead>
+        <tr>
+          <th>Attribute</th>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>count</td>
+          <td>Number</td>
+          <td>Adds a number in parenthesis after the rating.</td>
+        </tr>
+        <tr>
+          <td>level</td>
+          <td>Number</td>
+          <td>Accepts tenth values from 0 - 5.0, for example: <code>4.3</code></td>
+        </tr>
+        <tr>
+          <td>choose</td>
+          <td>Boolean</td>
+          <td>Adds hover/click handlers for selecting a rating.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3 id="events">Events</h3>
+
+    <table class="events">
+      <thead>
+        <tr>
+          <th>Event</th>
+          <th>Payload Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>rating-chosen</td>
+          <td>
+            Number
+          </td>
+          <td>
+            Emits with the payload of the value that was selected &mdash; usually 1 - 5.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="examples">
+    <h2>Examples</h2>
+    <h3>Default</h3>
+    <lib-toolbar>
+      <sh-rating level="4"></sh-rating>
+    </lib-toolbar>
+
+    <h3>With [count]</h3>
+    <lib-toolbar>
+      <sh-rating level="3.5" count="200"></sh-rating>
+    </lib-toolbar>
+
+    <h3>With [choose]</h3>
+    <p>Adding <code>[choose]</code> to the rating component allows the user to make a star selection.</p>
+    <lib-toolbar>
+      <sh-rating id="choose-demo" choose level="3.2"></sh-rating>
+    </lib-toolbar>
+
+    <h3>With [choose] and [count]</h3>
+    <lib-toolbar>
+      <sh-rating id="choose-demo" choose count="10" level="1"></sh-rating>
+    </lib-toolbar>
+  </section>
+
+  <section id="changelog">
+    <h2>Changelog</h2>
+    <dl>
+      <dt>1.0.0</dt>
+      <dd>Rating was created.</dd>
+    </dl>
+  </section>
+</div>
+
+<%- htmlWebpackPlugin.options.docsFoot %>

@@ -1,52 +1,62 @@
 /* default styling */
-
-sh-dropnav {
+.sh-dropnav {
   display: inline-block;
   position: relative;
-  min-width: 22rem;
+  z-index: 2;
+  min-width: 4.5rem;
+  min-height: 4.5rem;
+  max-width: 16rem;
+  width: 100%;
 
-  .sh-dropnav {
+  &.is-open {
+    .item-container {
+      display: block !important;
+    }
+  }
+
+  .wrapper {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
     cursor: pointer;
     display: flex;
     flex-direction: column;
+    background: $accent-tertiary;
 
-    &.is-open {
-      .item-container {
-        display: block;
-      }
+    > button {
+      display: flex;
+      padding: 0 1.5rem;
+      line-height: 4.5rem;
+      font-weight: normal;
+      font-size: 1.6rem;
+      background: transparent;
+      outline: 0;
+      border: 0;
+      color: $accent-primary;
+      cursor: pointer;
     }
 
     .item-container {
       display: none;
-      position: absolute;
-      bottom: 0;
-      right: 0;
-      left: 0;
-    }
-
-    button {
-      display: flex;
-      padding: 0 1.5rem;
-      font-size: 3rem;
-      line-height: 4.5rem;
-    }
-
-    sh-link-list {
-      position: absolute;
-      top: 0;
+      top: 4.5rem;
       left: 0;
       right: 0;
-      background: $highlight-primary;
-      max-height: 50vh;
-      overflow-y: auto;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      background: $highlight-secondary;
+
       @include box-shadow(1);
 
-      a {
+      li > * {
         display: flex;
-        height: 3rem;
+        line-height: 3rem;
         padding: 0 1.5rem;
+
         &:hover {
-          background: $accent-secondary;
+          color: $accent-primary;
+          background: $accent-tertiary;
         }
       }
     }

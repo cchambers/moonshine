@@ -1,4 +1,6 @@
 import Vue from 'vue';
+import wrap from '../wrapper';
 import NavItem from './NavItem.vue';
 
-Vue.customElement('sh-nav-item', NavItem);
+const Wrapped = wrap(Vue, NavItem);
+window.customElements.define('sh-nav-item', Wrapped);

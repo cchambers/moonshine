@@ -1,0 +1,196 @@
+@import url("https://use.typekit.net/kav8pvx.css");
+
+// Font Treatments
+@mixin font-primary() {
+  font-family: proxima-nova, sans-serif;
+  font-style: normal;
+  font-weight: 300;
+}
+
+.font-primary {
+  @include font-primary;
+}
+
+.wt-900 {
+  font-weight: 900;
+}
+
+.wt-800 {
+  font-weight: 800;
+}
+
+.wt-700 {
+  font-weight: 700;
+}
+
+.wt-600 {
+  font-weight: 600;
+}
+
+.wt-500 {
+  font-weight: 500;
+}
+
+.wt-400 {
+  font-weight: 400;
+}
+
+.wt-300 {
+  font-weight: 300;
+}
+
+// Proxima Nova Black
+// font-family: proxima-nova,
+// sans-serif;
+// font-weight: 900;
+// font-style: normal;
+
+// Proxima Nova Black Italic
+// font-family: proxima-nova,
+// sans-serif;
+// font-weight: 900;
+// font-style: italic;
+
+// Proxima Nova Bold
+// font-family: proxima-nova,
+// sans-serif;
+// font-weight: 700;
+// font-style: normal;
+
+// Proxima Nova Bold Italic
+// font-family: proxima-nova,
+// sans-serif;
+// font-weight: 700;
+// font-style: italic;
+
+// Proxima Nova Extrabold
+// font-family: proxima-nova,
+// sans-serif;
+// font-weight: 800;
+// font-style: normal;
+
+// Proxima Nova Extrabold Italic
+// font-family: proxima-nova,
+// sans-serif;
+// font-weight: 800;
+// font-style: italic;
+
+// Proxima Nova Thin
+// font-family: proxima-nova,
+// sans-serif;
+// font-weight: 100;
+// font-style: normal;
+
+// Proxima Nova Thin Italic
+// font-family: proxima-nova,
+// sans-serif;
+// font-weight: 100;
+// font-style: italic;
+
+// Proxima Nova Semibold
+// font-family: proxima-nova,
+// sans-serif;
+// font-weight: 600;
+// font-style: normal;
+
+// Proxima Nova Semibold Italic
+// font-family: proxima-nova,
+// sans-serif;
+// font-weight: 600;
+// font-style: italic;
+
+// Proxima Nova Regular
+// font-family: proxima-nova,
+// sans-serif;
+// font-weight: 400;
+// font-style: normal;
+
+// Proxima Nova Italic
+// font-family: proxima-nova,
+// sans-serif;
+// font-weight: 400;
+// font-style: italic;
+
+// Proxima Nova Light
+// font-family: proxima-nova,
+// sans-serif;
+// font-weight: 300;
+// font-style: normal;
+
+// Proxima Nova Light Italic
+// font-family: proxima-nova,
+// sans-serif;
+// font-weight: 300;
+// font-style: italic;
+
+// Proxima Nova Medium
+// font-family: proxima-nova,
+// sans-serif;
+// font-weight: 500;
+// font-style: normal;
+
+// Proxima Nova Medium Italic
+// font-family: proxima-nova,
+// sans-serif;
+// font-weight: 500;
+// font-style: italic;
+
+// Proxima Nova Extra Condensed Black
+// font-family: proxima-nova-extra-condensed,
+// sans-serif;
+// font-weight: 900;
+// font-style: normal;
+
+// Proxima Nova Extra Condensed Bold Italic
+// font-family: proxima-nova-extra-condensed,
+// sans-serif;
+// font-weight: 700;
+// font-style: italic;
+
+// Proxima Nova Extra Condensed Bold
+// font-family: proxima-nova-extra-condensed,
+// sans-serif;
+// font-weight: 700;
+// font-style: normal;
+
+// Proxima Nova Extra Condensed Black Italic
+// font-family: proxima-nova-extra-condensed,
+// sans-serif;
+// font-weight: 900;
+// font-style: italic;
+
+// Proxima Nova Extra Condensed Semibold Italic
+// font-family: proxima-nova-extra-condensed,
+// sans-serif;
+// font-weight: 600;
+// font-style: italic;
+
+// Proxima Nova Extra Condensed Semibold
+// font-family: proxima-nova-extra-condensed,
+// sans-serif;
+// font-weight: 600;
+// font-style: normal;
+
+// Proxima Nova Extra Condensed Extrabold
+// font-family: proxima-nova-extra-condensed,
+// sans-serif;
+// font-weight: 800;
+// font-style: normal;
+
+// Proxima Nova Extra Condensed Extrabold Italic
+// font-family: proxima-nova-extra-condensed,
+// sans-serif;
+// font-weight: 800;
+// font-style: italic;
+
+// Proxima Nova Extra Condensed Medium
+// font-family: proxima-nova-extra-condensed,
+// sans-serif;
+// font-weight: 500;
+// font-style: normal;
+
+// Proxima Nova Extra Condensed Medium Italic
+// font-family: proxima-nova-extra-condensed,
+// sans-serif;
+// font-weight: 500;
+// font-style: italic;

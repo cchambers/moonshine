@@ -4,34 +4,21 @@ sh-accordion {
   display: block;
 
   .sh-accordion {
-
-    .header,
-    .body {
-      padding: 0.5rem 1.5rem;
-    }
-
-    .header {
-      display: block;
-      width: 100%;
-      outline: 0;
-      border: 0;
+    button.header {
+      outline: none;
+      border: none;
+      background: transparent;
       cursor: pointer;
-      background: $highlight-secondary;
-      transition: all 250ms $ease;
-      font-size: 1.6rem;
-      text-align: left;
-      color: $lowlight-secondary;
-      h1,h2,h3,h4,h5,h6 {
-        margin: 0 !important;
-      }
-      &:hover {
-        color: $accent-primary;
-        background: $highlight-primary;
-      }
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
     }
 
-    .body {
-      border: 1px solid transparent;
+    &.active {
+      .collapse {
+        max-height: 200vh;
+        transition: all 250ms $ease;
+      }
     }
 
     .collapse {
@@ -39,21 +26,5 @@ sh-accordion {
       overflow: hidden;
       transition: none;
     }
-
-    &.active {
-      .header {
-        background-color: $accent-tertiary;
-      }
-
-      .body {
-        border-color: $accent-tertiary;
-      }
-
-      .collapse {
-        max-height: 200vh;
-        transition: all 250ms $ease;
-      }
-    }
   }
 }
-

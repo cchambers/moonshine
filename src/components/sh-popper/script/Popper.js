@@ -25,6 +25,7 @@ function off(element, event, handler) {
 export default {
   mixins: [ComponentPrototype],
 
+
   props: {
     tagName: {
       type: String,
@@ -117,6 +118,19 @@ export default {
         this.$emit('hide', this);
       }
     },
+
+    // showPopper(value) {
+    //   if (value) {
+    //     if (this.popperJS) this.popperJS.enableEventListeners();
+    //     this.updatePopper();
+    //     this.$bus.$emit('show-curtain', this.foreground);
+    //     if (this.link) this.link.setAttribute('aria-expanded', true);
+    //   } else {
+    //     this.$bus.$emit('hide-curtain', this);
+    //     if (this.popperJS) this.popperJS.disableEventListeners();
+    //     if (this.link) this.link.setAttribute('aria-expanded', false);
+    //   }
+    // },
 
     forceShow: {
       handler(value) {

@@ -16,6 +16,21 @@ const ComponentPrototype = {
   },
 
   methods: {
+    debounce(func, wait, immediate) {
+      let timeout;
+      return (...args) => {
+        const context = this;
+        const later = () => {
+          timeout = null;
+          if (!immediate) func.apply(context, args);
+        };
+        const callNow = immediate && !timeout;
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+        if (callNow) func.apply(context, args);
+      };
+    },
+
     setUUID() {
       this.uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
         const r = Math.random() * 16 | 0;
@@ -38,7 +53,8 @@ const ComponentPrototype = {
       if (session) {
         sessionStorage.setItem(which, JSON.stringify(val));
       } else {
-        localStorage.setItem(which, JSON.stringify(val));
+        const test = JSON.stringify(val);
+        localStorage.setItem(which, test);
       }
       return true;
     },
