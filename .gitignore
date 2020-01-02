@@ -4,6 +4,7 @@ node_modules
 .yarn.lock
 .package.json
 .env
+.gitignore
 
 # local env files
 .env.local
@@ -16,6 +17,7 @@ yarn-error.log*
 
 stuff.todo
 README.md
+src/components/all.json
 
 # Editor directories and files
 .idea
@@ -25,4 +27,3 @@ README.md
 *.njsproj
 *.sln
 *.sw?
-src/components/all.json

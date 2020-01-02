@@ -1,4 +1,6 @@
 import Vue from 'vue';
+import wrap from '../wrapper';
 import Modal from './Modal.vue';
 
-Vue.customElement('sh-modal', Modal);
+const Wrapped = wrap(Vue, Modal);
+window.customElements.define('sh-modal', Wrapped);
