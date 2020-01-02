@@ -23,7 +23,10 @@ sh-carousel {
         width: 100%;
         transition: all 300ms $ease;
         opacity: 0;
+        overflow: hidden;
+        pointer-events: none;
         &.active {
+          pointer-events: initial;
           opacity: 1;
         }
       }
