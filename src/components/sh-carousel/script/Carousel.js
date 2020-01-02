@@ -24,7 +24,6 @@ export default {
     },
     autoplay: {
       type: String,
-      default: false,
     },
   },
 
@@ -85,7 +84,9 @@ export default {
     },
 
     swipeHandler(e) {
-      console.log(e.direction);
+      let dir = 'next';
+      if (e.direction > 2) dir = 'previous';
+      this[dir]();
     },
   },
 
