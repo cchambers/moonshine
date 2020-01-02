@@ -115,6 +115,8 @@ export default {
         wrap: true,
         showPrintMargin: false,
         indentedSoftWrap: false,
+        tabSize: 2,
+        useSoftTabs: true,
       });
       self.editor.getSession()
         .setMode('ace/mode/html');

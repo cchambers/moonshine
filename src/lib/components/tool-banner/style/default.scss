@@ -81,7 +81,7 @@ tool-banner {
   }
 
   .control-wrap {
-    position: relative;
+    position: absolute;
     transition: all 400ms $ease;
     transition-delay: 0.1s;
     bottom: -2rem;

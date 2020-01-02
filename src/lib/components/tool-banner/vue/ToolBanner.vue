@@ -41,7 +41,7 @@
     </div>
     <div class="tool">
       <div ref="component" class="component">
-        <div class="panel">
+        <div class="panel" hidden>
           <h2>Selection</h2>
           <ul>
             <li ref="colors">
