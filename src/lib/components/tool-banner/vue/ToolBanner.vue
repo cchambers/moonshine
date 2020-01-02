@@ -2,7 +2,7 @@
   <div class="tool-banner active" :layout="layout" :code-focus="codeFocus">
     <div class="detail">
       <div class="bar">
-        <sh-dropnav event-only>
+        <component v-bind:is="dropnav" id="toolbar-orient" event-only>
           <ul>
             <li>
               <a href="#" data-value="t">Top</a>
@@ -17,173 +17,99 @@
               <a href="#" data-value="l">Left</a>
             </li>
           </ul>
-        </sh-dropnav>
+        </component>
         <div class="sep"></div>
+        <sh-button
+          toggle
+          group="breakpoint"
+          click-event="code-focus"
+          default-value="code-all"
+          active
+        >FULL</sh-button>
         <sh-button toggle group="breakpoint"
-          click-event="code-focus" default-value="code-all" active>ALL</sh-button>
+        click-event="code-focus" default-value="code-lg">LG</sh-button>
         <sh-button toggle group="breakpoint"
-          click-event="code-focus" default-value="code-xs">XS</sh-button>
+        click-event="code-focus" default-value="code-md">MD</sh-button>
         <sh-button toggle group="breakpoint"
-          click-event="code-focus" default-value="code-sm">SM</sh-button>
+        click-event="code-focus" default-value="code-sm">SM</sh-button>
         <sh-button toggle group="breakpoint"
-          click-event="code-focus" default-value="code-md">MD</sh-button>
-        <sh-button toggle group="breakpoint"
-          click-event="code-focus" default-value="code-lg">LG</sh-button>
+        click-event="code-focus" default-value="code-xs">XS</sh-button>
         <div class="sep"></div>
+        <sh-button :disabled="!changedNotRendered" @click="renderEditorCode">RENDER</sh-button>
+        <!-- <sh-button @click="loadFromLocal">LOAD LS</sh-button> -->
       </div>
     </div>
     <div class="tool">
       <div ref="component" class="component">
+        <div class="panel" hidden>
+          <h2>Selection</h2>
+          <ul>
+            <li ref="colors">
+              <div class="swatches">
+                <div
+                  class="swatch foreground"
+                  :class="'back-'+selection.foreground"
+                ></div>
+                <div
+                  class="swatch background"
+                  :class="selection.background"
+                ></div>
+              </div>
+              <div v-for="(category, val) in colors" v-bind:key="val.id" class="cat">
+                  <div class="name">{{ val }}</div>
+                  <div v-for="color in category"
+                  v-bind:key="color" :class="'ex back-'+color"></div>
+                </div>
+            </li>
+            <li ref="typography">
+              Typograhy
+              <div class="options">
+                <div class="cat">Name: {{ selection.fontname }}</div>
+                <div class="cat">Size: {{ selection.fontsize }}</div>
+                <div class="cat">Line-Height: {{ selection.lineheight }}</div>
+                <div class="cat">Weight: {{ selection.fontweight }}</div>
+                <div class="cat">
+                  Style: <div class="options">
+                    <sh-button toggle group="style" variant="primary">
+                      [none]
+                    </sh-button>
+                    <sh-button toggle group="style" variant="primary">
+                      <em>italic</em>
+                    </sh-button>
+                  </div>
+                </div>
+                <div class="cat">Deco: {{ selection.decoration }}</div>
+                <div class="cat">Casing: {{ selection.casing }}</div>
+              </div>
+            </li>
+            <li>
+              <a href="#">Box Model</a>
+              <div class="options">
+                <div class="cat">Padding: {{ selection.padding }}</div>
+                <div class="cat">Margin: {{ selection.margin }}</div>
+                <div class="cat">Border: {{ selection.border }}</div>
+              </div>
+            </li>
+            <li>
+              <a href="#">Position</a>
+              <div class="options">
+                <div class="cat">Static</div>
+                <div class="cat">Relative</div>
+                <div class="cat">Absolute</div>
+              </div>
+            </li>
+          </ul>
+        </div>
         <div class="constrain" v-html="html"></div>
       </div>
       <div class="editors">
         <div class="editor" ref="editor"></div>
       </div>
     </div>
-    <div class="control-wrap">
-      <div class="control">
-        <sh-button round
-        variant="tertiary"
-        scale="60"
-        v-hammer:tap="copyEditor"
-        v-on:keyup.enter="copyEditor">
-          <i class="material-icons px20">file_copy</i>
-        </sh-button>
-        <sh-button round
-          variant="secondary"
-          scale="60"
-          v-hammer:tap="toggleFullscreen"
-          v-on:keyup.enter="toggleFullscreen">
-          <i class="material-icons px20">fullscreen</i>
-        </sh-button>
-      </div>
-    </div>
   </div>
 </template>
 
-<script>
-/* eslint-disable import/no-extraneous-dependencies */
-import * as ace from 'brace';
-import 'brace/mode/html';
-import 'brace/theme/monokai';
-import Pretty from 'pretty';
-import ComponentPrototype from '../../../../components/component-prototype';
-
-export default {
-  mixins: [ComponentPrototype],
-  name: 'ToolBanner',
-
-  props: {
-    demo: String,
-  },
-
-  data() {
-    return {
-      active: false,
-      fullscreen: false,
-      isActive: false,
-      code: '',
-      editorCode: '',
-      html: '...',
-      updateTimer: 0,
-      uniqueId: '',
-      editor: {},
-      layout: 't',
-      codeFocus: 'all',
-    };
-  },
-
-  created() {
-    this.setUUID();
-  },
-
-  mounted() {
-    const self = this;
-    this.uniqueId = `sh${this.uuid}`;
-    if (this.demo) {
-      this.$el.addEventListener('click', () => {
-        window.open(`${window.location.origin}/${this.demo}`, 'demo');
-      });
-    }
-    this.$refs.editor.id = `editor-${this.uniqueId}`;
-    this.editor = ace.edit(this.$refs.editor.id);
-    this.editor.getSession().setMode('ace/mode/html');
-    this.editor.setTheme('ace/theme/monokai');
-    this.code = Pretty(this.code);
-    this.editor.setValue(this.code);
-    this.editor.setOptions({
-      wrapBehavioursEnabled: true,
-      showLineNumbers: false,
-      showGutter: false,
-      wrap: true,
-      showPrintMargin: false,
-      indentedSoftWrap: false,
-    });
-
-    setTimeout(() => {
-      self.$refs.editor.style.width = '100%';
-      self.editor.resize();
-      self.editor.getSession().selection.clearSelection();
-
-      self.editor.getSession().on('change', () => {
-        const value = self.editor.getSession().getValue();
-        self.editorCode = value;
-        self.html = self.editorCode;
-      });
-    });
-  },
-
-  methods: {
-    events() {
-      this.$bus.$on('code-focus', this.codeFocusHandler);
-    },
-
-    codeFocusHandler(data) {
-      this.codeFocus = data.value;
-    },
-
-    renderDebounce(code) {
-      const self = this;
-      clearTimeout(this.updateTimer);
-      this.updateTimer = setTimeout(() => {
-        self.renderCode(code);
-      }, 300);
-    },
-
-    renderCode(code) {
-      this.html = code;
-    },
-
-    copyEditor() {
-      const copyTextarea = document.querySelector('#copy-editor');
-      copyTextarea.value = this.editor.getValue();
-      copyTextarea.select();
-      document.execCommand('copy');
-      this.$bus.$emit('notify', {
-        type: 'default',
-        message: 'Copied to clipboard.',
-      });
-    },
-
-    toggleActive() {
-      this.active = !this.active;
-    },
-
-    toggleFullscreen() {
-      this.fullscreen = !this.fullscreen;
-      if (this.fullscreen) {
-        document.documentElement.classList.add('toolbar-fullscreen');
-      } else {
-        document.documentElement.classList.remove('toolbar-fullscreen');
-      }
-    },
-  },
-
-  updated() {
-    this.isActive = this.active;
-  },
-};
-</script>
+<script src="../script/ToolBanner.js"></script>
 <style lang="scss" src="../style/default.scss"></style>
 <style lang="scss">
 .ace_text-input {

@@ -1,4 +1,6 @@
 import Vue from 'vue';
+import wrap from '../wrapper';
 import BelkSwatch from './BelkSwatch.vue';
 
-Vue.customElement('belk-swatch', BelkSwatch);
+const Wrapped = wrap(Vue, BelkSwatch);
+window.customElements.define('belk-swatch', Wrapped);

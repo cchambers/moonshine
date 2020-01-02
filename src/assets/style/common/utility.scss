@@ -5,7 +5,8 @@
 @each $name, $hex in $colors {
   $var: map-get($colors, $name);
 
-  .#{$name} {
+  .#{$name},
+  .color-#{$name} {
     color: $var;
     color: var(--#{$name});
   }
@@ -55,5 +56,15 @@
         }
       }
     }
+  }
+}
+
+@for $i from 1 through 100 {
+  $rem: (0.1 * $i);
+  .px-#{$i} {
+    font-size: #{$rem}rem;
+  }
+  .lh-#{$i} {
+    line-height: #{$rem}rem;
   }
 }

@@ -18,9 +18,11 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.7.0",
+    "@vue/web-component-wrapper": "^1.2.0",
     "core-js": "^3.3.2",
     "document-register-element": "^1.13.2",
     "ejs": "^2.7.3",
+    "interactjs": "^1.7.2",
     "vue": "^2.6.10",
     "vue-custom-element": "^3.2.7",
     "vue2-hammer": "^2.1.2"
@@ -50,6 +52,7 @@
     "fullname": "^4.0.1",
     "git-branch": "^2.0.1",
     "glob": "^7.1.4",
+    "lowdb": "^1.0.0",
     "node-sass": "^4.13.0",
     "pretty": "^2.0.0",
     "prompt": "^1.0.0",

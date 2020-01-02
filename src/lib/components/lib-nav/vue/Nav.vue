@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-cloak>
     <div class="show-nav nav-icon" v-hammer:tap="toggleNav" v-bind:class="{ tip: !usedShortcut }">
       <i class="material-icons-round" :class="{ active: !navShown }">menu</i>
       <i class="material-icons-round" :class="{ active: navShown }">arrow_back</i>
@@ -17,7 +17,7 @@
             disabled
             placeholder="Search">
           </div>
-          <div id="prod-toggle" class="absolute"
+          <div id="prod-toggle"
           :class="{ active: prodFilter }" v-hammer:tap="toggleFilter">
             <div class="px30">
               <i v-if="prodFilter" class="material-icons-round nav-icon">toggle_on</i>

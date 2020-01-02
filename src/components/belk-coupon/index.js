@@ -1,4 +1,6 @@
 import Vue from 'vue';
+import wrap from '../wrapper';
 import BelkCoupon from './vue/BelkCoupon.vue';
 
-Vue.customElement('belk-coupon', BelkCoupon);
+const Wrapped = wrap(Vue, BelkCoupon);
+window.customElements.define('belk-coupon', Wrapped);

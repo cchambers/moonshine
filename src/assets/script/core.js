@@ -5,6 +5,8 @@ const app = {
   init() {
     app.setup().events();
     if (window.location.search) app.urlParamsToObj();
+    const interaction = window.localStorage.getItem('last-interaction');
+    if (app.interaction !== interaction) this.interactionHandler(interaction);
   },
 
   setup() {
@@ -18,7 +20,7 @@ const app = {
     for (let x = 0, l = demos.length; x < l; x += 1) {
       const html = demos[x].innerHTML;
       demos[x].setAttribute('base-code', html);
-      demos[x].innerHTML = '';
+      // demos[x].innerHTML = '';
     }
     return this;
   },
@@ -51,6 +53,7 @@ const app = {
   interactionHandler(type) {
     if (app.interaction !== type) {
       app.interaction = type;
+      window.localStorage.setItem('last-interaction', type);
       document.documentElement.setAttribute('interaction', type);
     }
   },

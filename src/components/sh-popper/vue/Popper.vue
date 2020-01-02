@@ -4,7 +4,7 @@
       <slot name="reference"></slot>
     </div>
     <transition :name="transition" @after-leave="doDestroy">
-      <div class="popper-actual" :fill="fill" ref="popper" v-show="!disabled && showPopper">
+      <div class="popper-actual" ref="popper" v-show="!disabled && showPopper">
         <div class="popper-content">
           <slot name="content">{{ content }}</slot>
         </div>
@@ -48,7 +48,13 @@ export default {
     trigger: {
       type: String,
       default: 'hover',
-      validator: (value) => ['click', 'hover'].indexOf(value) > -1,
+      validator: (value) => [
+        'clickToOpen',
+        'click', // Same as clickToToggle, provided for backwards compatibility.
+        'clickToToggle',
+        'hover',
+        'focus',
+      ].indexOf(value) > -1,
     },
     delayOnMouseOver: {
       type: Number,
@@ -99,6 +105,10 @@ export default {
         return {};
       },
     },
+    placement: {
+      type: String,
+      default: 'bottom',
+    },
   },
 
   data() {
@@ -109,7 +119,6 @@ export default {
       currentPlacement: '',
       content: 'empty',
       popperOptions: {
-        placement: 'bottom',
         computeStyle: {
           gpuAcceleration: false,
         },
@@ -163,6 +172,8 @@ export default {
   created() {
     this.appendedArrow = false;
     this.appendedToBody = false;
+
+    this.popperOptions.placement = this.placement;
   },
 
   mounted() {
@@ -255,6 +266,7 @@ export default {
           const boundariesElement = document.querySelector(
             this.boundariesSelector,
           );
+
 
           if (boundariesElement) {
             this.popperOptions.modifiers = {

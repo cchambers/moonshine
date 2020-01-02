@@ -1,4 +1,6 @@
 import Vue from 'vue';
+import wrap from '../../../components/wrapper';
 import ToolBanner from './vue/ToolBanner.vue';
 
-Vue.customElement('tool-banner', ToolBanner);
+const Wrapped = wrap(Vue, ToolBanner);
+window.customElements.define('tool-banner', Wrapped);

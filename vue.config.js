@@ -1,3 +1,4 @@
+/* eslint-disable */
 const glob = require('glob');
 const fs = require('fs-extra');
 const path = require('path');
@@ -30,7 +31,8 @@ let gitName;
   * timestamp: ${dateNow}
 */\n\n`;
   const type = (process.env.NODE_ENV === 'production') ? 'Prod' : 'Development';
-  user.event(`${type} Build`, gitName).send();
+  user.event(`${type} Build`, gitName)
+    .send();
 })();
 
 let optimizationSetting = {
@@ -174,12 +176,9 @@ if (process.env.NODE_ENV !== 'production') {
     });
 }
 
-
 module.exports = {
   runtimeCompiler: false,
   filenameHashing: false,
-
-  // transpileDependencies: ['vue2-hammer', 'vue-custom-element'],
 
   css: {
     loaderOptions: {

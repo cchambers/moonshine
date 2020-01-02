@@ -1,4 +1,6 @@
 import Vue from 'vue';
+import wrap from '../wrapper';
 import Combo from './vue/Combo.vue';
 
-Vue.customElement('sh-combo', Combo);
+const Wrapped = wrap(Vue, Combo);
+window.customElements.define('sh-combo', Wrapped);
