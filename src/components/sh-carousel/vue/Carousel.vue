@@ -1,16 +1,21 @@
 <template>
   <div class="sh-carousel"
-    :variant="variant">
+    :variant="variant"
+    @mouseenter="mousePause(true, true)"
+    @mouseleave="mousePause(false, true)">
     <div class="carousel-spacer"></div>
     <div ref="slides" slot="slides" class="slides">
       <slot name="slides"></slot>
     </div>
     <div class="controls">
-      <div class="arrow next" v-hammer:tap="next">
-        next slide
+      <div v-if="!hideArrows" class="arrow next" v-hammer:tap="next">
+        {{ nextIcon }}
       </div>
-      <div class="arrow previous" v-hammer:tap="previous">
-        previous slide
+      <div v-if="!hideArrows" class="arrow previous" v-hammer:tap="previous">
+        {{ previousIcon }}
+      </div>
+      <div v-if="!hideDots" class="dots">
+        {{ dots }}
       </div>
       <!-- Control layer. Dots/arrows, etc. -->
     </div>

@@ -14,19 +14,31 @@ export default {
       type: Number,
       default: 1,
     },
+    hideArrows: {
+      type: Boolean,
+      default: false,
+    },
+    hideDots: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   data() {
     return {
       slides: [],
-      active: 0,
+      dots: [],
+      active: null,
+      previousIcon: 'prev',
+      nextIcon: 'next',
+      paused: false,
     };
   },
 
   mounted() {
     const slides = this.$slots.slides[0];
     this.slides = slides.elm.children;
-    this.activate(this.startAt);
+    this.active = this.startAt;
   },
 
   watch: {
@@ -40,6 +52,10 @@ export default {
   },
 
   methods: {
+    mousePause(bool = true) {
+      this.paused = bool;
+    },
+
     next() {
       let which = this.active + this.perNext;
       if (which >= this.slides.length) which = 0;
@@ -52,8 +68,8 @@ export default {
       this.active = which;
     },
 
-    activate(which = 0) {
-      this.$set(this, 'active', which);
+    activate(which) {
+      this.active = which;
     },
   },
 

@@ -219,7 +219,7 @@ tool-banner {
     width: 100% !important;
   }
 
-  .constrain [banner-block]:hover {
+  .constrain [banner-block="hovered"] {
     cursor: crosshair;
     background-image: linear-gradient(45deg, rgba(255,255,255,0.25) 25%, rgba(0,0,0,.05) 25%),
     linear-gradient(-45deg, rgba(255,255,255,0.25) 25%, rgba(0,0,0,.05) 25%),

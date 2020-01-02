@@ -39,7 +39,11 @@ sh-carousel {
         top: 50%;
         height: 4.5rem;
         width: 4.5rem;
+        display: flex;
+        text-align: center;
+        align-content: center;
         background: cyan;
+        cursor: pointer;
         &.next {
           right: 0;
         }
