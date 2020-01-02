@@ -16,7 +16,7 @@
         {{ previousIcon }}
       </div>
       <div v-if="!hideDots" class="dots">
-        {{ dots }}
+        ...
       </div>
       <!-- Control layer. Dots/arrows, etc. -->
     </div>

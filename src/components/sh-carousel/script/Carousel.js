@@ -24,6 +24,7 @@ export default {
     },
     autoplay: {
       type: String,
+      default: null,
     },
   },
 
@@ -42,7 +43,12 @@ export default {
     const slides = this.$slots.slides[0];
     this.slides = slides.elm.children;
     this.active = this.startAt;
-    if (this.autoplay) this.play(parseInt(this.autoplay, 10));
+    if (this.autoplay) {
+      // eslint-disable-next-line radix
+      let timer = parseInt(this.autoplay) || 0;
+      if (timer < 2000) timer = 2000;
+      this.play(timer);
+    }
   },
 
   watch: {
@@ -61,6 +67,7 @@ export default {
     },
 
     play(delay) {
+      console.log('play', delay);
       setTimeout(() => {
         if (!this.paused) this.next();
         this.play(delay);

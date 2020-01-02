@@ -45,8 +45,8 @@ sh-carousel {
         display: flex;
         text-align: center;
         align-content: center;
-        background: cyan;
         cursor: pointer;
+        color: cyan;
         &.next {
           right: 0;
         }
