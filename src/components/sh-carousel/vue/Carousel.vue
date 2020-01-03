@@ -5,23 +5,37 @@
     @mouseleave="mousePause(false, true)"
     v-hammer:swipe="swipeHandler"
     v-hammer:tap="pause">
-    <div class="carousel-spacer"></div>
+    <div ref="spacer" class="carousel-spacer"></div>
     <div ref="slides" slot="slides" class="slides">
       <slot name="slides"></slot>
     </div>
     <div class="controls">
-      <div v-if="!hideArrows" class="arrow next" v-hammer:tap="next">
+      <button v-if="!hideArrows" class="arrow next" v-hammer:tap="next">
         {{ nextIcon }}
-      </div>
-      <div v-if="!hideArrows" class="arrow previous" v-hammer:tap="previous">
+      </button>
+      <button v-if="!hideArrows" class="arrow previous" v-hammer:tap="previous">
         {{ previousIcon }}
-      </div>
-      <div v-if="!hideDots" class="dots">
-        ...
-      </div>
-      <div class="button play" v-hammer:tap="play">
+      </button>
+      <ul v-if="!hideDots" class="dots">
+        <li>
+          first slide
+        </li>
+        <li>
+          second slide
+        </li>
+        <li>
+          third slide
+        </li>
+      </ul>
+      <button class="button play"
+        :aria-label="{
+          'Stop automatic slide show': paused,
+          'Start automatic slide show': !paused,
+          }"
+          :disabled="isFocused"
+        v-hammer:tap="play">
         {{ mode }}
-      </div>
+      </button>
     </div>
   </div>
 </template>

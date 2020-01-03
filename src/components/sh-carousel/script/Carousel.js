@@ -31,6 +31,11 @@ export default {
       type: String,
       default: null,
     },
+    resolution: {
+      // 'Begin automatically cycling',
+      type: String,
+      default: null,
+    },
   },
 
   data() {
@@ -49,18 +54,27 @@ export default {
     mode() {
       return (this.paused) ? 'paused' : 'playing';
     },
+
+    delayTimer() {
+      // eslint-disable-next-line radix
+      let delay = (parseInt(this.autoplay) || 5000);
+      if (delay < 2000) delay = 2000;
+      return delay;
+    },
+
+    isFocused() {
+      let focused = false;
+      if (this.$el) focused = this.$el.contains(document.activeElement);
+      return focused;
+    },
   },
 
   mounted() {
     const slides = this.$slots.slides[0];
     this.slides = slides.elm.children;
     this.active = this.startAt;
-    if (this.autoplay) {
-      // eslint-disable-next-line radix
-      let timer = parseInt(this.autoplay) || 0;
-      if (timer < 2000) timer = 2000;
-      this.play(timer);
-    }
+    if (!this.resolution) setTimeout(this.autoSize);
+    if (this.autoplay) this.play();
   },
 
   watch: {
@@ -76,6 +90,9 @@ export default {
   methods: {
     mousePause(bool = true) {
       this.paused = bool;
+      if (bool) {
+        clearTimeout(this.playTimer);
+      } else if (this.autoplay && !this.buttonPaused) this.play();
     },
 
     pause() {
@@ -85,7 +102,7 @@ export default {
 
     play(delay = 5000) {
       this.playTimer = setTimeout(() => {
-        if (!this.paused) this.next();
+        if (!this.paused && !this.focused) this.next();
         this.play(delay);
       }, delay);
     },
@@ -110,6 +127,19 @@ export default {
       let dir = 'next';
       if (e.direction > 2) dir = 'previous';
       this[dir]();
+    },
+
+    autoSize() {
+      this.$refs.slides.classList.add('config');
+      let maxHeight = 0;
+      const slides = this.$el.querySelectorAll('.slides li');
+      slides.forEach((slide) => {
+        const ht = slide.offsetHeight;
+        if (ht > maxHeight) maxHeight = ht;
+      });
+      this.$refs.slides.classList.remove('config');
+      const heightStr = `${maxHeight}px`;
+      this.$refs.spacer.style.height = heightStr;
     },
   },
 

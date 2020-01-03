@@ -19,18 +19,19 @@ sh-link[variant="primary"] {
       position: absolute;
       width: 100%;
       height: 1px;
-      background: $highlight-primary;
+      background: transparent;
       transition: all 50ms linear;
       bottom: 0;
       left: 0;
       right: 0;
       border: 0;
+      transform: translateZ(0);
     }
     &:hover {
       &:before {
         height: 100%;
-        background: rgba(255,255,255,0.15);
-        border: 1px solid white;
+        @include background-opacity(color('highlight-primary'), 0.10);
+        border: 1px solid $highlight-primary;
       }
     }
   }

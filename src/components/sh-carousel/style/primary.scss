@@ -1,12 +1,19 @@
 /* primary variant */
 
 sh-carousel[variant="primary"] {
+  margin: 6rem;
   .slides {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
+    &.config {
+      position: static;
+      ul > * {
+        position: static;
+      }
+    }
   }
 
   ul {
@@ -34,13 +41,23 @@ sh-carousel[variant="primary"] {
     > * {
       height: 4.5rem;
       color: $accent-tertiary;
-      background: rgba(0, 0, 0, 0.5);
       display: flex;
       align-content: center;
       align-items: center;
       justify-content: center;
       cursor: pointer;
       position: absolute;
+      border-radius: 5px;
+      outline: 0;
+      border: 1px solid $lowlight-primary;
+      background: $lowlight-primary;
+    }
+
+    .dots {
+      position: absolute;
+      bottom: -6rem;
+      left: 50%;
+      transform: translateX(-50%);
     }
 
     .play {
@@ -51,6 +68,7 @@ sh-carousel[variant="primary"] {
     }
     .arrow {
       top: 50%;
+      transform: translateY(-50%);
       width: 4.5rem;
 
       &.next {
