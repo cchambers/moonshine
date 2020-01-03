@@ -62,7 +62,9 @@ export default {
 
     delayTimer() {
       // eslint-disable-next-line radix
-      let delay = (parseInt(this.autoplay) || 5000);
+      const autoplay = parseInt(this.autoplay);
+      let delay = (autoplay || 5000);
+      console.log(delay, autoplay);
       if (delay < 2000) delay = 2000;
       return delay;
     },
@@ -99,8 +101,10 @@ export default {
     },
 
     ada() {
-      this.slides.forEach((slide) => {
+      const slides = this.$refs.slides.querySelectorAll('li');
+      slides.forEach((slide, index) => {
         slide.setAttribute('aria-roledescription', 'slide');
+        slide.setAttribute('aria-label', `${index} of ${this.slides.length}`);
       });
     },
 
@@ -116,11 +120,11 @@ export default {
       this.paused = true;
     },
 
-    play(delay = 5000) {
+    play() {
       this.playTimer = setTimeout(() => {
         if (!this.paused && !this.focused) this.next();
-        this.play(delay);
-      }, delay);
+        this.play();
+      }, this.delayTimer);
     },
 
     focus() {
