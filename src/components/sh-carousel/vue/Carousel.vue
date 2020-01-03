@@ -1,5 +1,6 @@
 <template>
   <div class="sh-carousel"
+    :id="carouselId"
     :variant="variant"
     @mouseenter="mousePause(true, true)"
     @mouseleave="mousePause(false, true)"
@@ -11,10 +12,12 @@
       <slot name="slides"></slot>
     </div>
     <div v-if="!hideControls" class="controls">
-      <button v-if="!hideArrows" class="arrow next" v-hammer:tap="nextHandler">
+      <button :aria-controls="carouselId"
+        v-if="!hideArrows" class="arrow next" v-hammer:tap="nextHandler">
         {{ nextIcon }}
       </button>
-      <button v-if="!hideArrows" class="arrow previous" v-hammer:tap="previousHandler">
+      <button :aria-controls="carouselId"
+        v-if="!hideArrows" class="arrow previous" v-hammer:tap="previousHandler">
         {{ previousIcon }}
       </button>
       <ul v-if="!hideDots" class="dots">
@@ -28,7 +31,8 @@
           third slide
         </li>
       </ul>
-      <button class="button play"
+      <button :aria-controls="carouselId"
+        class="button play"
         :aria-label="{
           'Stop automatic slide show': paused,
           'Start automatic slide show': !paused,

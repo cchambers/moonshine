@@ -77,6 +77,8 @@ export default {
   },
 
   mounted() {
+    this.setUUID();
+    this.carouselId = `carousel-${this.uuid}`;
     this.getSlides();
     this.ada();
     this.active = this.startAt;
