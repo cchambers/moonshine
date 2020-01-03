@@ -2,7 +2,9 @@
   <div class="sh-carousel"
     :variant="variant"
     @mouseenter="mousePause(true, true)"
-    @mouseleave="mousePause(false, true)">
+    @mouseleave="mousePause(false, true)"
+    v-hammer:swipe="swipeHandler"
+    v-hammer:tap="pause">
     <div class="carousel-spacer"></div>
     <div ref="slides" slot="slides" class="slides">
       <slot name="slides"></slot>
@@ -15,9 +17,11 @@
         {{ previousIcon }}
       </div>
       <div v-if="!hideDots" class="dots">
-        {{ dots }}
+        ...
       </div>
-      <!-- Control layer. Dots/arrows, etc. -->
+      <div class="button play" v-hammer:tap="play">
+        {{ mode }}
+      </div>
     </div>
   </div>
 </template>
