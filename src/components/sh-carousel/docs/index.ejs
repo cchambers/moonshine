@@ -14,7 +14,7 @@
 
   </section>
 
-  <section id="reference" class="baseline30">
+  <!-- <section id="reference" class="baseline30">
     <h2>Reference</h2>
     <h3 id="attributes">Attributes</h3>
 
@@ -103,11 +103,11 @@
         </tr>
       </tbody>
     </table>
-  </section>
+  </section> -->
 
   <section id="examples">
     <h2>Examples</h2>
-    <h3>Default</h3>
+    <!-- <h3>Default</h3>
     <lib-toolbar>
       <sh-carousel>
         <ul slot="slides">
@@ -121,6 +121,29 @@
           <li style="background-image: url(http://lorempixel.com/400/200/sports/?7); background-size: cover;"></li>
         </ul>
       </sh-carousel>
+    </lib-toolbar> -->
+
+    <h3>Banner</h3>
+    <lib-toolbar>
+      <sh-carousel variant="primary" autoplay="4500">
+        <ul slot="slides">
+          <li class="case-upper font-primary text-center back-accent-primary color-highlight-primary pad-y-quarter">
+            <p><span class="wt-700">Extra 15% off </span> clearance purchases with belk rewards credit card &amp; coupon <sh-link href="#coupons1" variant="primary">get coupon</sh-link></p>
+          </li>
+          <li class="case-upper font-primary text-center back-brand-wildfuscia color-highlight-primary pad-y-quarter">
+            <p><span class="wt-700">Extra 20% off </span> regular and sale purchases with belk rewards credit card &amp; coupon <sh-link href="#coupons2" variant="primary">get coupon</sh-link></p>
+          </li>
+          <li class="case-upper font-primary text-center back-brand-mysticpurple color-highlight-primary pad-y-quarter">
+            <p><span class="wt-700">Modal demo </span> if you click this link... <sh-link href="#coupon3" variant="primary">get coupon</sh-link></p>
+          </li>
+        </ul>
+      </sh-carousel>
+
+      <sh-modal unique-id="coupon3">
+        <div>
+          Demo for modal from banner.
+        </div>
+      </sh-modal>
     </lib-toolbar>
   </section>
 

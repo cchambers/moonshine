@@ -1,7 +1,97 @@
 /* primary variant */
 
 sh-carousel[variant="primary"] {
-  .sh-carousel {
-    border: 1px solid tomato;
+  .slides {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+
+  ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    >* {
+      display: block;
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      transition: all 300ms $ease;
+      opacity: 0;
+      overflow: hidden;
+      pointer-events: none;
+
+      &.active {
+        pointer-events: initial;
+        opacity: 1;
+      }
+    }
+  }
+
+  .controls {
+    > * {
+      height: 4.5rem;
+      color: $accent-tertiary;
+      background: rgba(0, 0, 0, 0.5);
+      display: flex;
+      align-content: center;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      position: absolute;
+    }
+
+    .play {
+      top: -6rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 6rem;
+    }
+    .arrow {
+      top: 50%;
+      width: 4.5rem;
+
+      &.next {
+        right: -6rem;
+      }
+
+      &.previous {
+        left: -6rem;
+      }
+    }
+  }
+
+  &[resolution="4:3"] {
+    .carousel-spacer {
+      padding-top: 75%;
+    }
+  }
+
+  &[resolution="3:2"] {
+    .carousel-spacer {
+      padding-top: 66.66%;
+    }
+  }
+
+  &[resolution="16:9"] {
+    .carousel-spacer {
+      padding-top: 56.25%;
+    }
+  }
+
+  &[vertical] {
+    .controls {
+      .arrow {
+        .next {
+          color: red;
+        }
+
+        .previous {
+          color: red;
+        }
+      }
+    }
   }
 }
