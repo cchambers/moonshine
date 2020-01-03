@@ -7,22 +7,27 @@ export default {
 
   props: {
     startAt: {
+      // 'Which position in the slide array should the modal begin on',
       type: Number,
       default: 0,
     },
     perNext: {
+      // 'How many items the carousel will cycle through on interaction',
       type: Number,
       default: 1,
     },
     hideArrows: {
+      // 'Hide the next/previous arrow controls',
       type: Boolean,
       default: false,
     },
     hideDots: {
+      // 'Hide the dot controls',
       type: Boolean,
       default: false,
     },
     autoplay: {
+      // 'Begin automatically cycling',
       type: String,
       default: null,
     },
@@ -36,7 +41,14 @@ export default {
       previousIcon: 'prev',
       nextIcon: 'next',
       paused: false,
+      playTimer: {},
     };
+  },
+
+  computed: {
+    mode() {
+      return (this.paused) ? 'paused' : 'playing';
+    },
   },
 
   mounted() {
@@ -66,9 +78,13 @@ export default {
       this.paused = bool;
     },
 
-    play(delay) {
-      console.log('play', delay);
-      setTimeout(() => {
+    pause() {
+      clearTimeout(this.playTimer);
+      this.paused = true;
+    },
+
+    play(delay = 5000) {
+      this.playTimer = setTimeout(() => {
         if (!this.paused) this.next();
         this.play(delay);
       }, delay);
