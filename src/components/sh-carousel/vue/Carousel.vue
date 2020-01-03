@@ -4,16 +4,17 @@
     @mouseenter="mousePause(true, true)"
     @mouseleave="mousePause(false, true)"
     v-hammer:swipe="swipeHandler"
-    v-hammer:tap="pause">
+    v-hammer:tap="pause"
+    aria-roledescription="carousel">
     <div ref="spacer" class="carousel-spacer"></div>
     <div ref="slides" slot="slides" class="slides">
       <slot name="slides"></slot>
     </div>
-    <div class="controls">
-      <button v-if="!hideArrows" class="arrow next" v-hammer:tap="next">
+    <div v-if="!hideControls" class="controls">
+      <button v-if="!hideArrows" class="arrow next" v-hammer:tap="nextHandler">
         {{ nextIcon }}
       </button>
-      <button v-if="!hideArrows" class="arrow previous" v-hammer:tap="previous">
+      <button v-if="!hideArrows" class="arrow previous" v-hammer:tap="previousHandler">
         {{ previousIcon }}
       </button>
       <ul v-if="!hideDots" class="dots">

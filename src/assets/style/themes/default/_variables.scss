@@ -80,6 +80,7 @@ $base: 3;
 $rem: #{$base}rem;
 
 $mod-amounts: (
+  "eighth": #{$base/8}rem,
   "quarter": #{$base/4}rem,
   "half": #{$base/2}rem,
   "default": $rem,

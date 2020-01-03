@@ -16,6 +16,11 @@ export default {
       type: Number,
       default: 1,
     },
+    hideControls: {
+      // 'Hide all controls',
+      type: Boolean,
+      default: false,
+    },
     hideArrows: {
       // 'Hide the next/previous arrow controls',
       type: Boolean,
@@ -70,8 +75,8 @@ export default {
   },
 
   mounted() {
-    const slides = this.$slots.slides[0];
-    this.slides = slides.elm.children;
+    this.getSlides();
+    this.ada();
     this.active = this.startAt;
     if (!this.resolution) setTimeout(this.autoSize);
     if (this.autoplay) this.play();
@@ -88,6 +93,17 @@ export default {
   },
 
   methods: {
+    events() {
+      const resizeDebounced = this.debounce(this.autoSize, 100);
+      window.addEventListener('resize', resizeDebounced, true);
+    },
+
+    ada() {
+      this.slides.forEach((slide) => {
+        slide.setAttribute('aria-roledescription', 'slide');
+      });
+    },
+
     mousePause(bool = true) {
       this.paused = bool;
       if (bool) {
@@ -107,16 +123,30 @@ export default {
       }, delay);
     },
 
-    next() {
+    focus() {
+      this.$el.querySelector('.active').focus();
+    },
+
+    nextHandler() {
+      this.next(true);
+    },
+
+    next(userTriggered = false) {
       let which = this.active + this.perNext;
       if (which >= this.slides.length) which = 0;
       this.active = which;
+      if (userTriggered) this.focus(which);
     },
 
-    previous() {
+    previousHandler() {
+      this.next(true);
+    },
+
+    previous(userTriggered) {
       let which = this.active - this.perNext;
       if (which < 0) which = this.slides.length - 1;
       this.active = which;
+      if (userTriggered) this.focus(which);
     },
 
     activate(which) {
@@ -140,6 +170,11 @@ export default {
       this.$refs.slides.classList.remove('config');
       const heightStr = `${maxHeight}px`;
       this.$refs.spacer.style.height = heightStr;
+    },
+
+    getSlides() {
+      const slides = this.$slots.slides[0];
+      this.slides = slides.elm.children;
     },
   },
 
