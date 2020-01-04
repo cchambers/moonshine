@@ -230,14 +230,16 @@ export default {
       this.container.addEventListener('click', (e) => {
         if (e.target === this.container) self.$bus.$emit('close-modals');
       });
-      setTimeout(this.mountToContainer);
+      this.mountToContainer();
     },
 
     mountToContainer() {
       const id = this.uniqueId;
       const exists = document.querySelector(`#sh-modals #${id}`);
       if (exists) exists.remove();
-      this.container.appendChild(this.$el);
+      setTimeout(() => {
+        this.container.appendChild(this.$el);
+      });
     },
 
     doError() {

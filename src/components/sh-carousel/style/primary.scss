@@ -1,18 +1,22 @@
 /* primary variant */
 
 sh-carousel[variant="primary"] {
+  margin: 6rem;
   .slides {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
+    &.config {
+      position: static;
+      ul > * {
+        position: static;
+      }
+    }
   }
 
   ul {
-    padding: 0;
-    margin: 0;
-    list-style: none;
     >* {
       display: block;
       position: absolute;
@@ -22,7 +26,6 @@ sh-carousel[variant="primary"] {
       opacity: 0;
       overflow: hidden;
       pointer-events: none;
-
       &.active {
         pointer-events: initial;
         opacity: 1;
@@ -31,32 +34,10 @@ sh-carousel[variant="primary"] {
   }
 
   .controls {
-    > * {
-      height: 4.5rem;
-      color: $accent-tertiary;
-      background: rgba(0, 0, 0, 0.5);
-      display: flex;
-      align-content: center;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      position: absolute;
-    }
-
-    .play {
-      top: -6rem;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 6rem;
-    }
     .arrow {
-      top: 50%;
-      width: 4.5rem;
-
       &.next {
         right: -6rem;
       }
-
       &.previous {
         left: -6rem;
       }

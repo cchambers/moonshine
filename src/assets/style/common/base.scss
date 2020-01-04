@@ -615,8 +615,34 @@ ol.lower-alpha {
   padding-left: 3rem;
 }
 
-.pad-quarter {
-  padding: 1.5rem;
+.pad-eighth {
+  padding: 0.75rem;
+}
+
+.pad-x-eighth {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+
+.pad-y-eighth {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}
+
+.pad-t-eighth {
+  padding-top: 0.75rem;
+}
+
+.pad-b-eighth {
+  padding-bottom: 0.75rem;
+}
+
+.pad-r-eighth {
+  padding-right: 0.75rem;
+}
+
+.pad-l-eighth {
+  padding-left: 0.75rem;
 }
 
 .pad-x-quarter {

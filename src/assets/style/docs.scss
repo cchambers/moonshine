@@ -19,6 +19,9 @@
   margin: 0;
   outline: 0;
   box-sizing: inherit;
+  &:focus {
+    outline: 2px solid $accent-tertiary !important;
+  }
 
   /* this disables font boosting on mobile chrome... */
   max-height: 100000vh;
