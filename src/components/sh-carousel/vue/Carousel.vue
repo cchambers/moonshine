@@ -20,22 +20,12 @@
         v-if="!hideArrows" class="arrow previous" v-hammer:tap="previousHandler">
         {{ previousIcon }}
       </button>
-      <ul v-if="!hideDots" class="dots">
-        <li>
-          first slide
-        </li>
-        <li>
-          second slide
-        </li>
-        <li>
-          third slide
-        </li>
-      </ul>
+      <ul v-if="!hideDots" ref="dots" class="dots"></ul>
       <button :aria-controls="carouselId"
         class="button play"
         :aria-label="{
-          'Stop automatic slide show': paused,
-          'Start automatic slide show': !paused,
+          'Stop automatic slide show': playing,
+          'Start automatic slide show': !playing,
           }"
           :disabled="isFocused"
         v-hammer:tap="play">
@@ -48,3 +38,4 @@
 <script src="../script/Carousel.js"></script>
 <style lang="scss" src="../style/default.scss"></style>
 <style lang="scss" src="../style/primary.scss"></style>
+<style lang="scss" src="../style/secondary.scss"></style>

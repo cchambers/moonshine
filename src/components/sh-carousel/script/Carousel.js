@@ -51,6 +51,7 @@ export default {
       previousIcon: 'prev',
       nextIcon: 'next',
       paused: false,
+      playing: false,
       playTimer: {},
       carouselId: 'c',
     };
@@ -58,7 +59,7 @@ export default {
 
   computed: {
     mode() {
-      return (this.paused) ? 'paused' : 'playing';
+      return (!this.playing) ? 'stopped' : 'playing';
     },
 
     delayTimer() {
@@ -111,10 +112,12 @@ export default {
     },
 
     mousePause(bool = true) {
-      this.paused = bool;
-      if (bool) {
-        clearTimeout(this.playTimer);
-      } else if (this.autoplay && !this.buttonPaused) this.play();
+      if (this.playing) {
+        this.paused = bool;
+        if (bool) {
+          clearTimeout(this.playTimer);
+        } else if (this.autoplay && !this.buttonPaused) this.play();
+      }
     },
 
     pause() {
@@ -123,10 +126,15 @@ export default {
     },
 
     play() {
+      this.playing = true;
       this.playTimer = setTimeout(() => {
         if (!this.paused && !this.focused) this.next();
         this.play();
       }, this.delayTimer);
+    },
+
+    stop() {
+      this.playing = false;
     },
 
     focus() {
