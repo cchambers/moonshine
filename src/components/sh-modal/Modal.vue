@@ -223,7 +223,6 @@ export default {
 
     createContainer() {
       const self = this;
-      console.log('create');
       const container = document.createElement('div');
       container.id = 'sh-modals';
       document.body.appendChild(container);
@@ -231,14 +230,16 @@ export default {
       this.container.addEventListener('click', (e) => {
         if (e.target === this.container) self.$bus.$emit('close-modals');
       });
-      this.mountToContainer(this.container);
+      this.mountToContainer();
     },
 
-    mountToContainer(which) {
+    mountToContainer() {
       const id = this.uniqueId;
       const exists = document.querySelector(`#sh-modals #${id}`);
       if (exists) exists.remove();
-      this.container.appendChild(this.$el);
+      setTimeout(() => {
+        this.container.appendChild(this.$el);
+      });
     },
 
     doError() {

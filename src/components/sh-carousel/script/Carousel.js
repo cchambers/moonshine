@@ -52,6 +52,7 @@ export default {
       nextIcon: 'next',
       paused: false,
       playTimer: {},
+      carouselId: 'c',
     };
   },
 
@@ -64,7 +65,6 @@ export default {
       // eslint-disable-next-line radix
       const autoplay = parseInt(this.autoplay);
       let delay = (autoplay || 5000);
-      console.log(delay, autoplay);
       if (delay < 2000) delay = 2000;
       return delay;
     },
