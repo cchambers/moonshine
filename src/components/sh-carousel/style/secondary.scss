@@ -7,9 +7,13 @@ sh-carousel[variant="secondary"] {
         overflow-x: auto;
         display: flex;
         flex-direction: row;
+        scroll-behavior: smooth;
       }
       li {
         margin: 1.5rem;
+        &.active {
+          outline: 2px solid cyan;
+        }
       }
     }
     .carousel-spacer {
