@@ -11,6 +11,7 @@ export default {
     uniqueId: String,
     closedIcon: String,
     openIcon: String,
+    variant: String,
   },
 
   data() {

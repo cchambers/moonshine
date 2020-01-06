@@ -41,6 +41,7 @@ export default {
       type: String,
       default: null,
     },
+    variant: String,
     vertical: {
       type: Boolean,
     },
@@ -161,7 +162,7 @@ export default {
 
     nextHandler() {
       this.userTriggered = true;
-      this.next(true);
+      this.next();
     },
 
     next() {
@@ -173,7 +174,7 @@ export default {
 
     previousHandler() {
       this.userTriggered = true;
-      this.previous(true);
+      this.previous();
     },
 
     previous() {
