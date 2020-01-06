@@ -11,7 +11,7 @@ const ComponentPrototype = {
   props: {
     variant: {
       type: String,
-      value: 'default',
+      default: 'default',
     },
   },
 

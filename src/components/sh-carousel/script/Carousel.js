@@ -41,9 +41,8 @@ export default {
       type: String,
       default: null,
     },
-    variant: {
-      type: String,
-      value: 'default',
+    vertical: {
+      type: Boolean,
     },
   },
 
@@ -149,13 +148,14 @@ export default {
 
     focus() {
       const activeSlide = this.$el.querySelector('.active');
-      console.log('focus', activeSlide, this.variant);
       window.test = activeSlide;
       if (activeSlide) activeSlide.focus();
       if (this.variant === 'secondary') {
-        const dist = activeSlide.offsetTop;
-        console.log(dist, this.list);
-        this.list.scrollTop = dist;
+        if (this.vertical) {
+          this.list.scrollTop = activeSlide.offsetTop;
+        } else {
+          this.list.scrollLeft = activeSlide.offsetLeft;
+        }
       }
     },
 
