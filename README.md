@@ -35,10 +35,9 @@ Shine creates a local component library that can be managed and deployed as temp
 * [Basicss](https://basicss.com)
 
 
-git
-
 
 ### Getting Started
+
 #### Mac Dependencies
   - Open a command line: `CMD+SPACE` will cause the 'Spotlight' input to open. Type "term" and select "Terminal".
   - Install XCode Command Line Tools: type `git --version` in the command line. If you don't have git installed, the command line tools install will kick off.
@@ -60,6 +59,8 @@ git
 #### Start Shine Dev Server
   - In the shine project folder, type `yarn dev`.
   - When you want to end the process, use CTRL+C.
+
+
 
 ### Commands
 
