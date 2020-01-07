@@ -35,79 +35,64 @@ Shine creates a local component library that can be managed and deployed as temp
 * [Basicss](https://basicss.com)
 
 
+git
+
 
 ### Getting Started
+#### Mac Dependencies
+  - Open a command line: `CMD+SPACE` will cause the 'Spotlight' input to open. Type "term" and select "Terminal".
+  - Install XCode Command Line Tools: type `git --version` in the command line. If you don't have git installed, the command line tools install will kick off.
+  - Install Homebrew: paste this into your command line `/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
+  - Once homebrew is installed, you will want to close the current command line and open another.
+  - Optional: Install ZSH: `brew install zsh` (helps with automatically switching node versions for multiple projects)
+  - Install NVM via command line: `brew install nvm`
+  - Install Yarn via command line: `brew install yarn`
+  - Close the command line, open another...
+  - Install Node 10 via command line: `nvm install 10`
 
-Configuring your system to work with Shine is simple. We use yarn instead of npm because it flat-packs NPM modules. This saves space on dependencies and is just faster in general. `brew install yarn`
+#### Install Shine
+  - In your command line interface, navigate to the folder that you want the Shine project to reside in. ex: `mkdir Sites | cd Sites`
+  - Clone the shine repo: `git clone git@bitbucket.org:belk_ecom/shine.git`
+    ++ IF REPO ACCESS MUST BE REQUESTED: 
+  - Navigate to the new project folder: `cd shine`
+  - Type `yarn install`. This will initialize the project dependency installation. 
 
-After yarn is installed, navigate to the Shine project folder and run `yarn install`
+#### Start Shine Dev Server
+  - In the shine project folder, type `yarn dev`.
+  - When you want to end the process, use CTRL+C.
 
-Once the packages are installed, raise your local dev environment and documentation by running `yarn dev`
+### Commands
 
-
-#### Prerequisites
-* [yarn](https://yarnpkg.com/lang/en/docs/install)
-* [node 10+](https://nodejs.org/en/)
-
-```sh
-brew install yarn
-```
-
-#### Installation
-
-
-### Project setup
-```
-yarn install
-```
-
-### Compiles and hot-reloads for development
+#### Compiles and hot-reloads for development
 ```
 yarn dev
 ```
 **IF YOU HAVE A CORE-JS DEPENDENCY ERROR AT THIS POINT, RUN** `yarn install core-js@2`
 
-### Compiles and minifies for production
+#### Compiles and minifies for production
 ```
 yarn build
 ```
 
-### Compiles and minifies for dev server
+#### Compiles and minifies for dev server
 ```
 yarn build:dev
 ```
 
-### Run your tests
+#### Run your tests
 ```
 yarn test
 ```
 
-### Lints and fixes files
+#### Lints and fixes files
 ```
 yarn lint
 ```
 
-### Generate a new component
+#### Generate a new component
 ```
-yarn generate
+yarn gen
 ```
-
----
-
-### Shine for Belk
-
-Web Components are the future of front end development. The web component provides an API for developers to create new HTML elements. Styling and composition is encapsulated within the Shadow DOM; HTML templates are stored and instantiated via JavaScript.
-
-**What JS?** Vue is a lightweight open-source JS framework for building user interfaces and single-page applications. **Why?** Combined with a Web Component architecture you get a data-reactive templating/content system with SEO-friendly content slotting; your content is rendered on the server and enhanced for the client. 
-
-**What CSS?** OO classes show their worth time and time-again by helping us standardize basic style patterns like spacing (padding/margin/typography) and gives us (and the "prod" team) access to modify content in any way they wish without writing new CSS [that may conflict with or slow the render of the page]. **Why?** You write less CSS overall. The separation for what SHOULD be OO and what SHOULD be component style is just that -- Web Components will utilize SCSS variables to style content. These variables are linked to the OO classes. 
-
-**What standards?** Code control is imperative at an organization of this size. Enforcing simple things such as environment configurations for tab structure and code style is essential. This package handles most of this for us through automatic linting -- but we still need to draft and implement an actual code style guide. **Why?** Making the code look like it was written by a single person removes all confusion of how things should be done when a new developer is introduced to the project.
-
-The framework is a distillation of these forward-looking and scalable principles... and this is where it gets the name Moonshine, affectionately known as "Shine".
-
-**Perk: Shine components can even be exported for use in mobile environments like Android and iOS! This means 70-80% code re-use cross platform!**
-
 
 ---
 
