@@ -1,4 +1,6 @@
-import Vue from 'vue'
-import Button from './vue/Button';
+import Vue from 'vue';
+import wrap from '../wrapper';
+import Button from './vue/Button.vue';
 
-Vue.customElement('sh-button', Button);
+const Wrapped = wrap(Vue, Button);
+window.customElements.define('sh-button', Wrapped);

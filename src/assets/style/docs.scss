@@ -1,19 +1,31 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700,800,400italic,700italic,800italic);
-
 @import url(https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Round);
 .material-icons-round { font-family: 'Material Icons Round' !important; }
 .material-icons { font-family: 'Material Icons' !important; }
 
+@mixin vartype {
+  font-family:
+    "Menlo",
+    monospace;
+  color: $accent-primary;
+  text-align: center;
+  font-size: 1.4rem;
+}
 
-*, 
-*::before, 
+*,
+*::before,
 *::after {
   padding: 0;
   margin: 0;
   outline: 0;
   box-sizing: inherit;
+  &:focus {
+    outline: 2px solid $accent-tertiary !important;
+  }
+
   /* this disables font boosting on mobile chrome... */
   max-height: 100000vh;
+
   /* this might also do the same thing one day... */
   -webkit-text-size-adjust: none;
   -moz-text-size-adjust: none;
@@ -25,40 +37,49 @@ body {
   font-size: 1.6rem;
   font-family: "Open Sans";
   background-color: $highlight-primary;
-  color: #222;
+  color: $lowlight-quaternary;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
 }
 
 header.lib-header {
-  display: block
+  display: block;
 }
 
 main {
   display: block;
-  flex: 1 auto
+  flex: 1 auto;
+  align-self: flex-end;
+  width: 100%;
+  max-width: 100vw;
+  transition: all 200ms $ease;
 }
 
 footer {
-  display: block
+  display: block;
 }
 
 h1 {
   margin-top: 3.4rem;
   margin-bottom: 2.5rem;
+  margin-left: 3rem;
 }
 
 dt {
   line-height: 3rem;
 }
 
-
 svg {
   width: 100%;
-  height: auto;
+  height: 100%;
 }
-
 
 // img {
 //   display: inline-block;
@@ -68,7 +89,8 @@ svg {
 //   border: 0;
 // }
 
-ul, ol {
+ul,
+ol {
   padding-left: 3rem;
 }
 
@@ -84,16 +106,22 @@ a {
 }
 
 a:hover {
-  color: #115F91
+  color: #115f91;
 }
-
+$containMargin: 8rem;
 
 /* grid */
 .contain {
-  max-width: 102rem;
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto
+  width: calc(100% - #{$containMargin});
+  max-width: 128rem;
+  margin: 0 auto;
+  margin-left: $containMargin;
+}
+
+.nav-shown {
+  .contain {
+    margin-left: calc(#{$containMargin} / 2);
+  }
 }
 
 .row {
@@ -107,7 +135,7 @@ a:hover {
   float: left;
 }
 
-.row>[class*=col-] {
+.row > [class*=col-] {
   float: none;
 }
 
@@ -120,121 +148,121 @@ a:hover {
 // }
 
 .col-1-1 {
-  width: 100%
+  width: 100%;
 }
 
 .col-3-4 {
-  width: 75%
+  width: 75%;
 }
 
 .col-1-2 {
-  width: 50%
+  width: 50%;
 }
 
 .col-1-4 {
-  width: 25%
+  width: 25%;
 }
 
 .col-1-5 {
-  width: 20%
+  width: 20%;
 }
 
 .col-2-5 {
-  width: 40%
+  width: 40%;
 }
 
 .col-3-5 {
-  width: 60%
+  width: 60%;
 }
 
 .col-4-5 {
-  width: 80%
+  width: 80%;
 }
 
 .col-1-6 {
-  width: calc(100% / 6)
+  width: calc(100% / 6);
 }
 
 .col-5-6 {
   width: 83.33%;
-  width: calc(100% - ( 100%/5.99999))
+  width: calc(100% - ( 100% / 5.99999 ));
 }
 
 .col-7-8 {
-  width: 87.5%
+  width: 87.5%;
 }
 
 .col-1-8 {
-  width: 12.5%
+  width: 12.5%;
 }
 
 .col-3-8 {
-  width: 37.5%
+  width: 37.5%;
 }
 
 .col-1-3 {
-  width: calc(100% / 3)
+  width: calc(100% / 3);
 }
 
 .col-2-3 {
-  width: 66.66%
+  width: 66.66%;
 }
 
 .push-1-1 {
-  margin-left: 100%
+  margin-left: 100%;
 }
 
 .push-3-4 {
-  margin-left: 75%
+  margin-left: 75%;
 }
 
 .push-1-2 {
-  margin-left: 50%
+  margin-left: 50%;
 }
 
 .push-1-4 {
-  margin-left: 25%
+  margin-left: 25%;
 }
 
 .push-1-5 {
-  margin-left: 20%
+  margin-left: 20%;
 }
 
 .push-2-5 {
-  margin-left: 40%
+  margin-left: 40%;
 }
 
 .push-3-5 {
-  margin-left: 60%
+  margin-left: 60%;
 }
 
 .push-4-5 {
-  margin-left: 80%
+  margin-left: 80%;
 }
 
 .push-1-6 {
-  margin-left: calc(100% / 6)
+  margin-left: calc(100% / 6);
 }
 
 .push-5-6 {
   margin-left: 83.33%;
-  width: calc(100% - ( 100%/5.99999))
+  width: calc(100% - ( 100% / 5.99999 ));
 }
 
 .push-7-8 {
-  margin-left: 87.5%
+  margin-left: 87.5%;
 }
 
 .push-1-8 {
-  margin-left: 12.5%
+  margin-left: 12.5%;
 }
 
 .push-3-8 {
-  margin-left: 37.5%
+  margin-left: 37.5%;
 }
 
 .push-1-3 {
-  margin-left: calc(100% / 3)
+  margin-left: calc(100% / 3);
 }
 
 .push-2-3 {
@@ -243,71 +271,87 @@ a:hover {
 }
 
 @media screen and (max-width: 800px) {
-  .documentation.contain {
-    width: calc(100% - 3rem);
-  }
   .row {
     flex-direction: column;
   }
-  .row>[class*=col-] {
+
+  .row > [class*=col-] {
     width: 100% !important;
     margin-left: 0 !important;
     margin-right: 0 !important;
     padding-left: 0 !important;
     padding-right: 0 !important;
   }
+
   [attr*="col-"][attr*="push-"] {
     margin-left: 0;
   }
+
   .low-off {
-    display: none !important
+    display: none !important;
   }
+
   .low-on {
-    display: initial !important
+    display: initial !important;
   }
+
   .low-1-1 {
-    width: 100%
+    width: 100%;
   }
+
   .low-3-4 {
-    width: 75%
+    width: 75%;
   }
+
   .low-1-2 {
-    width: 50%
+    width: 50%;
   }
+
   .low-1-4 {
-    width: 25%
+    width: 25%;
   }
+
   .low-1-5 {
-    width: 20%
+    width: 20%;
   }
+
   .low-2-5 {
-    width: 40%
+    width: 40%;
   }
+
   .low-3-5 {
-    width: 60%
+    width: 60%;
   }
+
   .low-4-5 {
-    width: 80%
+    width: 80%;
   }
+
   .low-1-6 {
-    width: calc(100% / 6)
+    width: calc(100% / 6);
   }
+
   .low-5-6 {
     width: 83.33%;
-    width: calc(100% - ( 100%/5.99999))
+    width: calc(100% - ( 100% / 5.99999 ));
   }
+
   .low-7-8 {
-    width: 87.5%
+    width: 87.5%;
   }
+
   .low-1-8 {
-    width: 12.5%
+    width: 12.5%;
   }
+
   .low-3-8 {
-    width: 37.5%
+    width: 37.5%;
   }
+
   .low-1-3 {
-    width: calc(100% / 3)
+    width: calc(100% / 3);
   }
+
   .low-2-3 {
     width: 66.66%;
     width: calc(100% / 2.99999);
@@ -316,20 +360,21 @@ a:hover {
 
 @media (min-width: 800px) {
   .high-on {
-    display: initial
+    display: initial;
   }
+
   .high-off {
-    display: none
+    display: none;
   }
 }
 
 /* end grid */
 
-
 /* 30px baseline config for Open Sans */
-.baseline30 .show-baseline:before {
+.baseline30 .show-baseline::before {
   background-size: 100% 3rem;
 }
+
 .baseline30 {
   line-height: 3rem;
 }
@@ -345,9 +390,10 @@ a:hover {
 .baseline30 h1 {
   font-size: 3rem;
   line-height: 3rem;
-  margin-top: 3.4rem;
+  margin-top: 6.4rem;
   margin-bottom: 2.5rem;
 }
+
 .baseline30 p + h1 {
   margin-top: -0.5rem;
 }
@@ -393,19 +439,19 @@ a:hover {
   margin-bottom: 3rem;
 }
 
-.baseline30 p + p {}
+// .baseline30 p + p {}
 
 .baseline30 p:last-child,
 .baseline30 ul:last-child,
 .baseline30 ol:last-child {
-  margin-bottom: 2.1rem
+  margin-bottom: 2.1rem;
 }
 
 .baseline30 input {
   display: block;
   height: 3rem;
   width: 100%;
-  background-color: #fff;
+  background-color: $highlight-primary;
 }
 
 .baseline30 p + input,
@@ -432,7 +478,6 @@ a:hover {
   min-height: 3rem;
 }
 
-
 /* presentational */
 .lib-content {
   opacity: 0;
@@ -446,43 +491,32 @@ a:hover {
 }
 
 .documentation {
+  transition: all 200ms $ease;
+
   > h1 {
     font-family: "Menlo", monospace;
     font-weight: 100;
     color: $accent-primary;
-    font-size: 6rem;
-    line-height: 6rem;
-    text-align: right;
+    font-size: 5rem;
+    line-height: 5rem;
   }
 
   section {
+    display: block;
+    padding: 0 $rem;
     margin-bottom: 6rem;
-    padding-bottom: 6rem;
-    padding: 0 $rem $rem $rem;
     background-color: $highlight-quaternary;
-    @include box-shadow(1);
-    &:last-of-type {
-      border-bottom: none;
+
+    > h2 {
+      font-size: 2.2rem;
+      color: $accent-primary;
+      font-weight: 100;
     }
 
-    
-  
-    > h2 {
-      text-align: right;
-      background: $highlight-secondary;
-      color: $accent-primary;
-      margin: 0 -3rem;
-      padding: 1.5rem 3rem;
-      margin-bottom: 3rem;
-    }
-  
-    > pre[class*="language-"] {
-      margin-bottom: 0;
-    }
-  
     > h2,
     > h3 {
       font-family: "Menlo", monospace;
+      margin-bottom: 2.8rem;
     }
   }
 
@@ -525,6 +559,7 @@ a:hover {
 
     td:nth-child(1) {
       cursor: pointer;
+      white-space: pre;
     }
 
     &.attributes {
@@ -533,34 +568,33 @@ a:hover {
       }
 
       th:nth-child(2) {
-        width: 10rem
+        width: 10rem;
+      }
+
+      td:nth-child(2) {
+        @include vartype;
+
+        text-transform: capitalize;
       }
 
       td:nth-child(1) {
-        &:before,
-        &:after {
+        &::before,
+        &::after {
           display: inline-block;
           color: $accent-quaternary;
           font-family: "Material Icons";
           content: "[";
         }
 
-        &:after {
+        &::after {
           content: "]";
         }
 
         &:hover {
-          &:after {
+          &::after {
             content: "] file_copy";
           }
         }
-      }
-
-      td:nth-child(2) {
-        font-family: "Menlo", monospace;
-        color: $accent-primary;
-        text-transform: capitalize;
-        text-align: center;
       }
     }
 
@@ -572,7 +606,7 @@ a:hover {
       td:nth-child(1) {
         font-family: "Menlo", monospace;
 
-        &:after {
+        &::after {
           display: inline-block;
           color: $accent-secondary;
           font-family: "Material Icons";
@@ -580,7 +614,7 @@ a:hover {
         }
 
         &:hover {
-          &:after {
+          &::after {
             content: "() file_copy";
           }
         }
@@ -590,12 +624,9 @@ a:hover {
     &.slots {
       td:nth-child(1) {
         min-width: 15rem;
-      }
 
-      td:nth-child(1) {
-
-        &:before,
-        &:after {
+        &::before,
+        &::after {
           display: inline-block;
           color: $accent-secondary;
           font-family: "Material Icons";
@@ -603,11 +634,10 @@ a:hover {
         }
 
         &:hover {
-          &:after {
+          &::after {
             content: '" file_copy';
           }
         }
-
       }
     }
 
@@ -621,26 +651,22 @@ a:hover {
       }
 
       td:nth-child(1) {
-
-        &:before,
-        &:after {
+        &::before,
+        &::after {
           color: $accent-secondary;
           font-family: "Material Icons";
           content: '"';
         }
 
         &:hover {
-          &:after {
+          &::after {
             content: '" file_copy';
           }
         }
       }
 
       td:nth-child(2) {
-        font-family: "Menlo", monospace;
-        color: $accent-primary;
-        text-transform: capitalize;
-        text-align: center;
+        @include vartype;
       }
     }
   }
@@ -654,15 +680,28 @@ a:hover {
       font-weight: bold;
       font-family: "Menlo", monospace;
       padding: 0 1.5rem;
+      margin-top: 1.5rem;
+
+      &:first-of-type {
+        margin-top: 0;
+      }
     }
 
     dd {
       border: 1px solid $accent-tertiary;
-      margin-bottom: 3rem;
       padding: 0 1.5rem;
+      line-height: 3rem;
+
+      &:nth-child(odd) {
+        background: $highlight-secondary;
+        border-top: none;
+      }
+    }
+
+    code {
+      color: $accent-primary;
     }
   }
-
 }
 
 #library-content {
@@ -672,7 +711,7 @@ a:hover {
 
 code[class*="language-"],
 pre[class*="language-"] {
-  color: black;
+  color: $lowlight-primary;
   background: none;
   font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
   font-size: 1em;
@@ -682,11 +721,9 @@ pre[class*="language-"] {
   word-break: normal;
   word-wrap: normal;
   line-height: 1.5;
-
   -moz-tab-size: 4;
   -o-tab-size: 4;
   tab-size: 4;
-
   -webkit-hyphens: none;
   -moz-hyphens: none;
   -ms-hyphens: none;
@@ -696,16 +733,16 @@ pre[class*="language-"] {
 /* Code blocks */
 pre[class*="language-"] {
   position: relative;
-  margin: .5em 0;
+  margin: 0.5em 0;
   overflow: visible;
   padding: 0;
 }
 
-pre[class*="language-"]>code {
+pre[class*="language-"] > code {
   position: relative;
-  border-left: 10px solid #358ccb;
-  box-shadow: -1px 0px 0px 0px #358ccb, 0px 0px 0px 1px #dfdfdf;
-  background-color: #fdfdfd;
+  border-left: 10px solid $accent-primary;
+  box-shadow: -1px 0 0 0 $accent-primary, 0 0 0 1px $highlight-secondary;
+  background-color: $highlight-primary;
   background-image: linear-gradient(transparent 50%, rgba(69, 142, 209, 0.04) 50%);
   background-size: 3em 3em;
   background-origin: content-box;
@@ -721,9 +758,9 @@ code[class*="language"] {
 }
 
 /* Margin bottom to accommodate shadow */
-:not(pre)>code[class*="language-"],
+:not(pre) > code[class*="language-"],
 pre[class*="language-"] {
-  background-color: #fdfdfd;
+  background-color: $highlight-primary;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -731,9 +768,9 @@ pre[class*="language-"] {
 }
 
 /* Inline code */
-:not(pre)>code[class*="language-"] {
+:not(pre) > code[class*="language-"] {
   position: relative;
-  padding: .2em;
+  padding: 0.2em;
   border-radius: 0.3em;
   color: #c92c2c;
   border: 1px solid rgba(0, 0, 0, 0.1);
@@ -741,13 +778,13 @@ pre[class*="language-"] {
   white-space: normal;
 }
 
-pre[class*="language-"]:before,
-pre[class*="language-"]:after {
+pre[class*="language-"]::before,
+pre[class*="language-"]::after {
   display: none;
 }
 
-:not(pre)>code[class*="language-"]:after,
-pre[class*="language-"]:after {
+:not(pre) > code[class*="language-"]::after,
+pre[class*="language-"]::after {
   right: 0.75em;
   left: auto;
   -webkit-transform: rotate(2deg);
@@ -762,11 +799,11 @@ pre[class*="language-"]:after {
 .token.prolog,
 .token.doctype,
 .token.cdata {
-  color: #7D8B99;
+  color: #7d8b99;
 }
 
 .token.punctuation {
-  color: #5F6364;
+  color: #5f6364;
 }
 
 .token.property,
@@ -833,23 +870,21 @@ pre[class*="language-"]:after {
 }
 
 .namespace {
-  opacity: .7;
+  opacity: 0.7;
 }
 
 @media screen and (max-width: 767px) {
-
-  pre[class*="language-"]:before,
-  pre[class*="language-"]:after {
+  pre[class*="language-"]::before,
+  pre[class*="language-"]::after {
     bottom: 14px;
     box-shadow: none;
   }
-
 }
 
 /* Plugin styles */
-.token.tab:not(:empty):before,
-.token.cr:before,
-.token.lf:before {
+.token.tab:not(:empty)::before,
+.token.cr::before,
+.token.lf::before {
   color: #e0d7d1;
 }
 
@@ -891,12 +926,12 @@ pre .line-highlight {
   padding: 0 1.5rem;
   text-shadow: 1px 1px 1px $highlight-quaternary;
   border: 1px dashed $lowlight-tertiary;
-  &:before { 
+
+  &::before {
     content: 'Note: ';
     font-weight: bold;
   }
 }
-
 
 // TODO: everything else... find a new place for this
 
@@ -911,20 +946,11 @@ html {
 html.iOS {
   height: 100% !important;
   width: 100% !important;
+
   body {
     height: 100% !important;
     width: 100% !important;
   }
-}
-
-body {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  overflow: hidden;
-  color: $lowlight-quaternary;
 }
 
 [id="xxx"] {
@@ -934,21 +960,26 @@ body {
   right: 0;
   bottom: 0;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+
   #page {
-    position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
     display: flex;
+    transition: all 200ms $ease;
+    align-self: flex-end;
     flex-direction: column;
-    transition: all 150ms $ease;
     height: 100vh;
     position: relative;
     overflow: hidden;
     transform: translateX(0) translateZ(0);
+    width: 100%;
+    flex-grow: 1;
+    max-width: 100vw;
   }
-  
 
   #control {
     position: fixed;
@@ -965,8 +996,6 @@ body {
     padding: $rem 0;
     line-height: 3rem;
     flex-shrink: 0;
-    background: $accent-primary;
-    color: $highlight-primary;
   }
 
   > main {
@@ -974,21 +1003,28 @@ body {
     flex-direction: column;
     justify-content: space-between;
     flex: 1 auto;
-    background: $highlight-primary;
     scroll-behavior: smooth;
+
     @include scroll-y;
   }
 
   main > footer {
     display: block;
-    color: $lowlight-tertiary;
+    color: $accent-primary;
     background: $lowlight-secondary;
   }
 }
 
-i.material-icons {
+i.material-icons,
+i.material-icons-round {
   display: inline-flex;
   vertical-align: middle;
   line-height: 1em;
   font-size: inherit;
+}
+
+.gradient-text {
+  background: $docsGradient;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }

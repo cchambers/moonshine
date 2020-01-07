@@ -1,4 +1,3 @@
-'use strict';
 /**
  * The sass-loader makes node-sass available to webpack modules.
  *
@@ -6,39 +5,45 @@
  * @param {string} content
  */
 function themeLoader(content) {
-  let data = content.match(/([^\s]*:(\s.*)[$][A-z]*-[A-z]*);/g);
-  // TODO: https://regexr.com/4k3tf  
+  let str = content;
+  // TODO: https://regexr.com/4k3tf
+  let data = str.match(/([^\s]*:(\s.*)[$][A-z]*-[A-z]*);/g);
+
   if (data) {
     data = [...new Set(data)];
 
-    for (let x = 0, l = data.length; x < l; x++) {
-      let scss = data[x];
-      
+    for (let x = 0, l = data.length; x < l; x += 1) {
+      const scss = data[x];
+
       // make a new string from the SCSS variable: (color: $accent-primary;)
       let newString = `${scss}`;
 
       // pull the actual variable: ($accent-primary)
-      let theVar = newString.match(/([$][A-z]*-[A-z]*)/g);
+      const theVar = newString.match(/([$][A-z]*-[A-z]*)/g);
 
-      // lop off the dollar sign: (accent-primary)
-      let noDollar = theVar[0].substr(1);
+      for (let y = 0, m = theVar.length; y < m; y += 1) {
+        const it = theVar[y];
 
-      // replace the variable with custom prop: var(--accent-primary)
-      newString = newString.replace(theVar[0], `var(--${noDollar})`);
+        // lop off the dollar sign: (accent-primary)
+        const noDollar = it.substr(1);
 
-      // concatenate old value with new value:
-      // ex: color: $accent-primary; color: var(--accent-primary);
-      newString = `${scss} ${newString}`;
+        // replace the variable with custom prop: var(--accent-primary)
+        newString = newString.replace(it, `var(--${noDollar})`);
 
-      // find/replace all occurances
-      var regStr = `(?<!-)${scss}`;
-      regStr = regStr.replace(/\$/, String.fromCharCode(92) + '$');
-      var regEx = new RegExp(regStr, 'g');
+        // concatenate old value with new value:
+        // ex: color: $accent-primary; color: var(--accent-primary);
+        newString = `${scss} ${newString}`;
 
-      content = content.replace(regEx, newString);
+        // find/replace all occurances
+        let regStr = `(?<!-)${scss}`;
+        regStr = regStr.replace(/\$/, `${String.fromCharCode(92)}$`);
+        const regEx = new RegExp(regStr, 'g');
+
+        str = str.replace(regEx, newString);
+      }
     }
   }
-  return content;
+  return str;
 }
 
 module.exports = themeLoader;

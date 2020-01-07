@@ -1,19 +1,19 @@
 import ComponentPrototype from '../../../../components/component-prototype';
 
 export default {
- mixins: [ComponentPrototype],
+  mixins: [ComponentPrototype],
 
   name: 'LibHeader',
 
   props: {
-    nav: Boolean
+    nav: Boolean,
   },
 
   data() {
     return {
       pageName: '',
-      pageNameActive: false
-    }
+      pageNameActive: false,
+    };
   },
 
   methods: {
@@ -23,23 +23,19 @@ export default {
   },
 
   mounted() {
-    let self = this;
+    const self = this;
     let lastKnown = 0;
     let ticking = false;
-    let main = document.querySelector('main');
+    const main = document.querySelector('main');
 
-    function updateHeader(scroll_pos) {
-      if (scroll_pos > 100) {
-        if (!self.pageNameActive) self.pageNameActive = true;
-      } else {
-        if (self.pageNameActive) self.pageNameActive = false;
-      }
+    function updateHeader(scrollPos) {
+      self.pageNameActive = (scrollPos > 100);
     }
-  
-    main.addEventListener('scroll', function() {
+
+    main.addEventListener('scroll', () => {
       lastKnown = main.scrollTop;
       if (!ticking) {
-        window.requestAnimationFrame(function() {
+        window.requestAnimationFrame(() => {
           updateHeader(lastKnown);
           ticking = false;
         });
@@ -47,7 +43,7 @@ export default {
       }
     });
 
-    let h1 = document.querySelector('h1');
+    const h1 = document.querySelector('h1');
     if (h1) self.pageName = h1.innerText;
-  }
-}
+  },
+};

@@ -1,0 +1,167 @@
+<%- htmlWebpackPlugin.options.docsHead %>
+
+<title><%= htmlWebpackPlugin.options.title %></title>
+
+<div class="documentation contain">
+	<h1>Form</h1>
+	<section id="usage">
+		<h2>Usage</h2>
+		<pre>
+				<code class="language-html">
+						&lt;sh-form&gt;new component&lt;/sh-form&gt;
+				</code>
+		</pre>
+	</section>
+
+	<section id="reference" class="baseline30">
+		<h2>Reference</h2>
+		<h3 id="attributes">Attributes</h3>
+
+		<table class="attributes">
+			<thead>
+				<tr>
+					<th>Attribute</th>
+					<th>Type</th>
+					<th>Description</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>hidden</td>
+					<td>Boolean</td>
+					<td>Hide from view.</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<h3 id="slots">Slots</h3>
+
+		<table class="slots">
+			<thead>
+				<tr>
+					<th>Slot</th>
+					<th>Description</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><em>default</em></td>
+					<td>
+						Form content.
+					</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<h3 id="methods">Public Methods</h3>
+
+		<table class="methods">
+			<thead>
+				<tr>
+					<th>Function</th>
+					<th>Params</th>
+					<th>Description</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>validate</td>
+					<td>
+						<ul>
+							<li>
+								none
+							</li>
+						</ul>
+					</td>
+					<td>
+						Manually trigger form validation.
+					</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<h3 id="events">Events</h3>
+
+		<table class="events">
+			<thead>
+				<tr>
+					<th>Event Name</th>
+					<th>Payload Type</th>
+					<th>Description</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>form-submit</td>
+					<td>
+						Type
+					</td>
+					<td>
+						Fired when form is submitted.
+					</td>
+				</tr>
+				<tr>
+					<td>form-valid</td>
+					<td>
+						Type
+					</td>
+					<td>
+						Fired when validation suceeds.
+					</td>
+				</tr>
+				<tr>
+					<td>form-invalid</td>
+					<td>
+						Type
+					</td>
+					<td>
+						Fired when validation fails.
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</section>
+
+	<section id="examples">
+		<h2>Examples</h2>
+		<h3>Default</h3>
+		<lib-toolbar>
+			<sh-form>
+
+				<div class="row">
+					<sh-input placeholder="Name" label="First Name"></sh-input>
+				</div>
+				<div class="row">
+					<sh-select placeholder="Name" label="Choose Wisely">
+						<option value="one">First</option>
+						<option value="two">Second</option>
+						<option value="three" selected>Third</option>
+					</sh-select>
+				</div>
+				<div class="row">
+					<sh-checkbox label="To Check, or?"></sh-checkbox>
+				</div>
+				<div class="row">
+					<sh-radio group="radio-demo" label="Radio One"></sh-radio>
+					<sh-radio group="radio-demo" label="Radio Two"></sh-radio>
+					<sh-radio group="radio-demo" label="Radio Three"></sh-radio>
+				</div>
+				<div class="row">
+					<sh-textarea label="Text Area">
+						Default content of textarea.
+					</sh-textarea>
+				</div>
+			</sh-form>
+		</lib-toolbar>
+	</section>
+
+	<section id="changelog">
+		<h2>Changelog</h2>
+		<dl>
+			<dt>1.0.0</dt>
+			<dd>Form was created.</dd>
+		</dl>
+	</section>
+</div>
+
+<%- htmlWebpackPlugin.options.docsFoot %>

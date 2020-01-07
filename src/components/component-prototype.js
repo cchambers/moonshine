@@ -1,5 +1,7 @@
+/* eslint-disable */ 
+
 import Vue from 'vue';
-import { EventBus } from './event-bus.js';
+import { EventBus } from './event-bus';
 
 Vue.prototype.$bus = EventBus;
 Vue.prototype.$appName = 'Shine';
@@ -9,18 +11,34 @@ const ComponentPrototype = {
   props: {
     variant: {
       type: String,
-      value: 'default'
-    }
+      value: 'default',
+    },
   },
 
   methods: {
+    debounce(func, wait, immediate) {
+      let timeout;
+      return (...args) => {
+        const context = this;
+        const later = () => {
+          timeout = null;
+          if (!immediate) func.apply(context, args);
+        };
+        const callNow = immediate && !timeout;
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+        if (callNow) func.apply(context, args);
+      };
+    },
+
     setUUID() {
-      this.uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-        var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+      this.uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
+        const r = Math.random() * 16 | 0;
+        const v = c === 'x' ? r : (r & 0x3 | 0x8);
         return v.toString(16);
       });
     },
-    
+
     getItem(which, session) {
       let val;
       if (session) {
@@ -28,18 +46,19 @@ const ComponentPrototype = {
       } else {
         val = localStorage.getItem(which);
       }
-      return JSON.parse(val)
+      return JSON.parse(val);
     },
 
     setItem(which, val, session) {
       if (session) {
         sessionStorage.setItem(which, JSON.stringify(val));
       } else {
-        localStorage.setItem(which, JSON.stringify(val));
+        const test = JSON.stringify(val);
+        localStorage.setItem(which, test);
       }
-      return true
+      return true;
     },
-    
+
     elementContains(elm, otherElm) {
       if (typeof elm.contains === 'function') {
         return elm.contains(otherElm);
@@ -48,40 +67,38 @@ const ComponentPrototype = {
       return false;
     },
 
-    log() {
-      let args = Array.from(arguments);
-      window.sh.log = window.sh.log || [];   // store logs to an array for reference
-      
-      let dev = (window.location.href.indexOf('web-belk.demand') >= 0) || (window.location.href.indexOf('localhost') >= 0);
-      
-      let level = args[args.length-1];
-      level = (typeof level == 'number') ? args.pop() : 0;
+    log(...args) {
+      window.sh.log = window.sh.log || []; // store logs to an array for reference
+      let level = args[args.length - 1];
+      level = (typeof level === 'number') ? args.pop() : 0;
+      const dev = (window.location.href.indexOf('belk.demand') >= 0) || (window.location.href.indexOf('localhost') >= 0);
+      const message = args.join();
       if (dev) {
-        let style = 'font-size: 20px;';
-        switch(level) {
+        let style = 'font-size: 18px;';
+        switch (level) {
           default:
-            style += ' color: #0667a0;'
+            style += ' color: #0667a0;';
             break;
         }
-        let message = args.join();
-        window.sh.log.push(message);
-        // eslint-disable-next-line 
+        // eslint-disable-next-line
         console.log(`%c ${message}`, style);
       }
-    }
+
+      window.sh.log.push(message);
+    },
   },
 
   data() {
     return {
-      uuid: String
-    }
+      uuid: String,
+    };
   },
 
   mounted() {
-    let self = this;
-    if (typeof self.events == 'function') setTimeout(self.events);
+    const self = this;
+    if (typeof self.events === 'function') setTimeout(self.events);
     self.$bus.$emit('component-ready', self);
-  }
+  },
 };
 
-export default ComponentPrototype
+export default ComponentPrototype;

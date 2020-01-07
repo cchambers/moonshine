@@ -1,7 +1,78 @@
 /* primary variant */
 
 sh-carousel[variant="primary"] {
-  .sh-carousel {
-    border: 1px solid tomato;
+  margin: 6rem;
+  .slides {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    &.config {
+      position: static;
+      ul > * {
+        position: static;
+      }
+    }
+  }
+
+  ul {
+    >* {
+      display: block;
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      transition: all 300ms $ease;
+      opacity: 0;
+      overflow: hidden;
+      pointer-events: none;
+      &.active {
+        pointer-events: initial;
+        opacity: 1;
+      }
+    }
+  }
+
+  .controls {
+    .arrow {
+      &.next {
+        right: -6rem;
+      }
+      &.previous {
+        left: -6rem;
+      }
+    }
+  }
+
+  &[resolution="4:3"] {
+    .carousel-spacer {
+      padding-top: 75%;
+    }
+  }
+
+  &[resolution="3:2"] {
+    .carousel-spacer {
+      padding-top: 66.66%;
+    }
+  }
+
+  &[resolution="16:9"] {
+    .carousel-spacer {
+      padding-top: 56.25%;
+    }
+  }
+
+  &[vertical] {
+    .controls {
+      .arrow {
+        .next {
+          color: red;
+        }
+
+        .previous {
+          color: red;
+        }
+      }
+    }
   }
 }

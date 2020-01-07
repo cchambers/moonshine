@@ -1,4 +1,6 @@
-import Vue from 'vue'
-import AdaptContent from './vue/AdaptContent';
+import Vue from 'vue';
+import wrap from '../wrapper';
+import AdaptContent from './vue/AdaptContent.vue';
 
-Vue.customElement('sh-adapt-content', AdaptContent);
+const Wrapped = wrap(Vue, AdaptContent);
+window.customElements.define('sh-adapt-content', Wrapped);

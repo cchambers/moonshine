@@ -1,0 +1,73 @@
+<%- htmlWebpackPlugin.options.docsHead %>
+
+<title><%= htmlWebpackPlugin.options.title %></title>
+
+<div class="documentation contain">
+  <h1>Bag</h1>
+  <section id="usage">
+    <h2>Usage</h2>
+    <pre>
+      <code class="language-html">
+          &lt;belk-bag count="10" price="200.24"&gt;&lt;/belk-bag&gt;
+      </code>
+    </pre>
+
+  </section>
+
+  <section id="reference" class="baseline30">
+    <h2>Reference</h2>
+
+    <h3 id="events">Events</h3>
+
+    <table class="events">
+      <thead>
+        <tr>
+          <th>Event</th>
+          <th>Payload Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>value-changed</td>
+          <td>
+            Object
+          </td>
+          <td>
+            Fires when the totalPrice or itemCount props update; the payload is an object of the values.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="examples">
+    <h2>Examples</h2>
+    <h3>Default Count and Price</h3>
+    <lib-toolbar>
+      <belk-bag count="15" price="10.00"></belk-bag>
+    </lib-toolbar>
+
+    <h3>Zeroed</h3>
+    <lib-toolbar>
+      <belk-bag count="0" price="0.00"></belk-bag>
+    </lib-toolbar>
+
+    <h3>Long Count and Price</h3>
+    <lib-toolbar>
+      <belk-bag count="99" price="3000.00"></belk-bag>
+    </lib-toolbar>
+  </section>
+
+  <section id="changelog">
+    <h2>Changelog</h2>
+    <dl>
+      <dt>0.1.0</dt>
+      <dd>Belk Bag is under development.</dd>
+      <!-- <dt>1.0.0</dt>
+      <dd>Belk Bag is ready for use.</dd> -->
+    </dl>
+  </section>
+</div>
+
+<%- htmlWebpackPlugin.options.docsFoot %>

@@ -1,18 +1,21 @@
 .lib-section-links {
   background: $highlight-secondary;
+
   .contain {
     display: flex;
     justify-content: flex-end;
   }
+
   a {
+    font-size: 1.4rem;
     color: $accent-primary;
     display: block;
     text-transform: capitalize;
     line-height: $rem;
-    margin-left: $rem;
+    margin-right: $rem;
+
     &:hover {
       color: $accent-tertiary;
     }
   }
 }
-

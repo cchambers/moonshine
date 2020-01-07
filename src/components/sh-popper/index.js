@@ -1,4 +1,6 @@
-import Vue from 'vue'
-import Popper from './vue/Popper';
+import Vue from 'vue';
+import wrap from '../wrapper';
+import Popper from './vue/Popper.vue';
 
-Vue.customElement('sh-popper', Popper);
+const Wrapped = wrap(Vue, Popper);
+window.customElements.define('sh-popper', Wrapped);

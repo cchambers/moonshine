@@ -1,31 +1,31 @@
 export default {
   name: 'LibNotify',
   props: {
-    baseCode: String
+    baseCode: String,
   },
   data() {
     return {
       active: false,
       message: '',
       type: 'default',
-      timeout: 0
-    }
+      timeout: 0,
+    };
   },
-  
+
   mounted() {
-    this.$bus.$on('notify', this.doNotify)
+    this.$bus.$on('notify', this.doNotify);
   },
 
   methods: {
     doNotify(data) {
-      let self = this;
-      self.type = data.type || "default";
+      const self = this;
+      self.type = data.type || 'default';
       self.message = data.message;
       self.active = true;
       clearTimeout(self.timeout);
-      self.timeout = setTimeout(function() {
+      self.timeout = setTimeout(() => {
         self.active = false;
       }, 1800);
-    }
-  }
-}
+    },
+  },
+};

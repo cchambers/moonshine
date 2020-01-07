@@ -1,14 +1,14 @@
 const InputPrototype = {
   props: {
     uniqueId: String,
-    name: String
+    name: String,
   },
 
   data() {
     return {
       inputId: String,
-      value: ''
-    }
+      value: '',
+    };
   },
 
   created() {
@@ -19,8 +19,8 @@ const InputPrototype = {
     changeHandler(e) {
       this.value = e.target.value;
       this.$bus.$emit('value-changed', this.value);
-    }
-  }
+    },
+  },
 };
 
-export default InputPrototype
+export default InputPrototype;

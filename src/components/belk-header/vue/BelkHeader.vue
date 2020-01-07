@@ -23,24 +23,33 @@ export default {
         store: false,
         cartQty: false,
         subTotal: false,
-      }
-    }
+      },
+      baseData: false,
+      brdData: false,
+    };
+  },
+
+  computed: {
+    hasAllData() {
+      return (this.baseData && this.brdData);
+    },
   },
 
   watch: {
     headerData(val) {
-      let self = this;
-      clearTimeout(self._dataDebounce);
-      self._dataDebounce = setTimeout(() => {
+      const self = this;
+      clearTimeout(self.dataDebounce);
+      self.dataDebounce = setTimeout(() => {
         self.setItem('belkUserData', val, true);
-        self.$bus.$emit('user-data', val);
         self.updateContainers(val);
-      }, 50);
-    }
+        self.clearForEmit();
+      }, 20);
+    },
   },
 
   mounted() {
-    let self = this;
+    const self = this;
+    self.log('header: live on page');
     self.actual = document.querySelector('#header .belk-header');
     self.bagEl = document.querySelector('belk-bag');
     self.setupEvents();
@@ -49,112 +58,143 @@ export default {
 
   methods: {
     setupEvents() {
-      let self = this;
-      self.$bus.$on('get-user-data', self.emitUserData);
+      const self = this;
+      self.$bus.$on('get-user-data', self.clearForEmit);
       self.$bus.$on('bag-update', self.bagUpdateHandler);
     },
 
-    emitUserData() {
-        this.$bus.$emit('user-data', this.headerData);
+    clearForEmit() {
+      const self = this;
+      if (self.hasAllData) {
+        clearTimeout(self.emitTimer);
+        self.$bus.$emit('user-data', self.headerData);
+      } else {
+        self.emitTimer = setTimeout(self.clearForEmit, 50);
+      }
     },
 
     getData() {
-      let self = this;
+      const self = this;
       // let sessionData = self.getItem('belkUserData', true);
       // if (sessionData && !forceUpdate) {
       //   self.headerData = self.sessionData;
       // } else {
-        let url, brdurl;
-        if (window.Urls) {
-          url = window.Urls.headerInfo;
-          brdurl = window.Urls.getBRDDetailsForHeader;
-        } else {
-          let origin = location.origin;
-          if (origin.indexOf('localhost') >= 0) origin = '//dev29-web-belk.demandware.net';
-          url = `${origin}/on/demandware.store/Sites-Belk-Site/default/Home-HeaderInfo?format=ajax`;
-          brdurl = `${origin}/on/demandware.store/Sites-Belk-Site/default/BRD-GetBRDDetailsForHeader?format=ajax`;
-          // self.recheckUrls();
+      let url;
+      let brdurl;
+      if (window.Urls) {
+        url = window.Urls.headerInfo;
+        brdurl = window.Urls.getBRDDetailsForHeader;
+      } else {
+        let { origin } = window.location;
+        if (origin.indexOf('localhost') >= 0) origin = '//dev29-web-belk.demandware.net';
+        url = `${origin}/on/demandware.store/Sites-Belk-Site/default/Home-HeaderInfo?format=ajax`;
+        brdurl = `${origin}/on/demandware.store/Sites-Belk-Site/default/BRD-GetBRDDetailsForHeader?format=ajax`;
+        self.recheckUrls();
+      }
+      const xhr = new XMLHttpRequest();
+      xhr.open('GET', url);
+      xhr.send(null);
+      xhr.onreadystatechange = () => {
+        const DONE = 4;
+        const OK = 200;
+        if (xhr.readyState === DONE) {
+          if (xhr.status === OK) {
+            let res;
+            try {
+              res = JSON.parse(xhr.responseText);
+            } catch (e) {
+              // Oh well...
+            }
+
+            self.handleHeader(res);
+          }
         }
-        let xhr = new XMLHttpRequest();
-        xhr.open('GET', url);
-        xhr.send(null);
-        xhr.onreadystatechange = function() {
-          let DONE = 4;
-          let OK = 200;
-          if (xhr.readyState === DONE) {
-            if (xhr.status === OK) {
-              let res = JSON.parse(xhr.responseText);
-              self.handleHeader(res);
+      };
+
+      const brdxhr = new XMLHttpRequest();
+      brdxhr.open('GET', brdurl);
+      brdxhr.send(null);
+      brdxhr.onreadystatechange = () => {
+        const DONE = 4;
+        const OK = 200;
+        if (brdxhr.readyState === DONE) {
+          if (brdxhr.status === OK) {
+            let res;
+            try {
+              res = JSON.parse(brdxhr.responseText);
+            } catch (e) {
+              // Oh well, but whatever...
             }
+            self.handleBRD(res);
           }
-        };
-        
-        let brdxhr = new XMLHttpRequest();
-        brdxhr.open('GET', brdurl);
-        brdxhr.send(null);
-        brdxhr.onreadystatechange = function() {
-          let DONE = 4;
-          let OK = 200;
-          if (brdxhr.readyState === DONE) {
-            if (brdxhr.status === OK) {
-              let res = JSON.parse(brdxhr.responseText);
-              self.handleBRD(res);
-            }
-          }
-        };
+        }
+      };
       // }
     },
 
     recheckUrls() {
-      let self = this;
+      const self = this;
       setTimeout(() => {
         if (window.Urls) self.getData();
       }, 500);
     },
 
     handleHeader(data) {
+      this.updateWindow(data);
       this.$set(this.headerData, 'name', data.userDetails.firstName);
       this.$set(this.headerData, 'auth', data.userDetails.authenticated);
       this.$set(this.headerData, 'qty', data.cartQty);
       this.$set(this.headerData, 'total', data.subTotal);
       this.$set(this.headerData, 'store', data.storeName);
       if (this.headerData.auth) this.$el.classList.add('is-user');
+      this.baseData = true;
     },
 
     handleBRD(data) {
-      this.$set(this.headerData, 'brc', data.customerType);
-      this.$set(this.headerData, 'brd', data.availableBRDValue);
+      if (data) {
+        this.updateWindow(data);
+        this.$set(this.headerData, 'brc', data.customerType);
+        this.$set(this.headerData, 'brd', data.availableBRDValue);
+        this.brdData = true;
+      }
     },
 
     bagUpdateHandler(data) {
       if (!this.loggedIn) {
         this.bagState(0);
+      } else if (data.count === 0) {
+        this.bagState(1);
       } else {
-        if (data.count == 0) {
-          this.bagState(1);
-        } else {
-          this.bagState(2);
-        }
+        this.bagState(2);
+      }
+    },
+
+    updateWindow(data) {
+      if (window.headerInfo) {
+        window.headerInfo = { ...window.headerInfo, ...data };
+      } else {
+        window.headerInfo = { ...data };
       }
     },
 
     bagState(num) {
-      this.actual.setAttribute('bag-state', num)
+      this.actual.setAttribute('bag-state', num);
     },
 
     updateContainers(data) {
-      for (var item in data) {
-        let val = data[item];
-        if (val) {
-          let els = document.querySelectorAll(`[fill="${item}"]`)
-          els.forEach(el => {
-            el.innerText = val;
-            el.setAttribute('filled', true);
-          });
-        }
+      const keys = Object.keys(data);
+      const values = Object.values(data);
+      for (let i = 0; i < keys.length; i += 1) {
+        const val = values[i];
+        const els = document.querySelectorAll(`[fill="${keys[i]}"]`);
+        els.forEach((el) => {
+          const target = el;
+          target.innerText = val;
+          target.setAttribute('filled', true);
+        });
       }
     },
   },
-}
+};
 </script>
 <style lang="scss" src="../style/default.scss"></style>

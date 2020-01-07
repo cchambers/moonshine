@@ -1,0 +1,99 @@
+<%- htmlWebpackPlugin.options.docsHead %>
+
+<title><%= htmlWebpackPlugin.options.title %></title>
+
+<div class="documentation contain">
+    <h1>Component Prototype</h1>
+    <section id="usage">
+      <h2>Usage</h2>
+      <p>
+        This is the base object of every component. Be sure to check out <a href="/utilities/event-bus">Event Bus</a> for details on event handling.
+      </p>
+    </section>
+  
+    <section id="reference" class="baseline30">
+      <h2>Reference</h2>
+      <h3 id="attributes">Attributes</h3>
+  
+      <table class="attributes">
+        <thead>
+          <tr>
+            <th>Attribute</th>
+            <th>Type</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr>
+              <td>hidden</td>
+              <td>Boolean</td>
+              <td>Hide from view.</td>
+            </tr>
+            <tr>
+              <td>variant</td>
+              <td>String</td>
+              <td>
+                <ul>
+                  <li>
+                    Different variants generally provide different functionalities or layouts. 
+                  </li>
+                  <li>
+                    Defaults to 'default'. Options are usually named in ordinal fashion: primary/secondary/tertiary/quaternary/quinary/etc 
+                  </li>
+                </ul>
+              </td>
+            </tr>
+        </tbody>
+      </table>
+
+      <h3 id="properties">Properties</h3>
+  
+      <table class="attributes">
+        <thead>
+          <tr>
+            <th>Attribute</th>
+            <th>Type</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr>
+              <td>uuid</td>
+              <td>String</td>
+              <td>Unique ID for this instance of a component.</td>
+            </tr>
+        </tbody>
+      </table>
+  
+      <h3 id="events">Events</h3>
+      <table class="events">
+        <thead>
+          <tr>
+            <th>Event</th>
+            <th>Payload Type</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>component-ready</td>
+            <td>
+              VueInstance
+            </td>
+            <td>
+              Emitted when component is mounted.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  
+    <section id="changelog">
+      <h2>Changelog</h2>
+      <dl>
+        <dt>1.0.0</dt>
+        <dd>Component prototype created.</dd>
+      </dl>
+    </section>
+  </div>
+  

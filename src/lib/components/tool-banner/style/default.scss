@@ -1,0 +1,292 @@
+$z-level: 8;
+
+tool-banner {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  .detail {
+    background: $highlight-quinary;
+    position: relative;
+    z-index: 4;
+    @media screen and (min-width: $libBreak) {
+      padding-left: 8rem;
+    }
+    sh-button {
+      height: 100%;
+      span {
+        text-decoration: none;
+      }
+    }
+
+    .bar {
+      max-width: 128rem;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      align-content: center;
+      height: 4.5rem;
+      justify-items: flex-start;
+    }
+
+    .sep {
+      height: 100%;
+      width: 2px;
+      background: rgba(0,0,0,0.2);
+      border-left: 1px solid rgba(255, 255, 255, 0.5);
+    }
+  }
+
+  .tool-banner {
+    flex-grow: 1;
+    // &[layout="t"] {
+      .tool {
+        flex-direction: column;
+      }
+      .component {
+        order: 1;
+        height: 50%;
+        flex-shrink: 1;
+      }
+      .editors {
+        order: 0;
+        min-width: 100rem;
+      }
+    // }
+  }
+
+  .tool {
+    position: fixed;
+    top: 4.5rem;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-grow: 0;
+    flex-direction: column;
+  }
+
+  .editors {
+    display: flex;
+    flex-grow: 1;
+  }
+
+  .details {
+    background: $lowlight-quaternary;
+    height: 8rem;
+  }
+
+  .control-wrap {
+    position: absolute;
+    transition: all 400ms $ease;
+    transition-delay: 0.1s;
+    bottom: -2rem;
+    right: 3rem;
+    z-index: 2;
+
+    i {
+      font-size: 2rem !important;
+      margin: 0 !important;
+    }
+  }
+
+  .control {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    z-index: $z-level;
+
+    sh-button {
+      font-size: 0.6rem;
+
+      button {
+        background: $lowlight-tertiary;
+        font-size: 8px;
+
+        &:hover {
+          background: $accent-secondary;
+        }
+      }
+    }
+  }
+
+  .component {
+    background: $highlight-primary;
+    flex-grow: 1;
+    position: relative;
+    display: flex;
+    .constrain {
+      width: 100%;
+      margin: 0 auto;
+      margin-top: 3rem;
+      margin-bottom: 3rem;
+      transition: all 50ms linear;
+      flex-grow: 1;
+      overflow-y: auto;
+    }
+    .panel {
+      width: 32rem;
+      background: $highlight-tertiary;
+      overflow-y: auto;
+      padding: 1.5rem;
+      ul {
+        list-style: none;
+        padding: 0;
+        margin-bottom: 3rem;
+        a {
+          line-height: 3rem;
+          padding: 0.5rem 1.5rem;
+        }
+        li {
+          position: relative;
+        }
+      }
+    }
+    .swatches {
+      display: flex;
+      padding: 0.5rem 1.5rem;
+    }
+    .swatch {
+      height: 4.5rem;
+      width: 4.5rem;
+      border: 1px solid white;
+    }
+    .cat {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      + .cat {
+        padding-top: 1rem;
+        margin-top: 1rem;
+        border-top: 1px solid $highlight-tertiary;
+      }
+      .name {
+        width: 100%;
+        margin-bottom: 0.5rem;
+        font-size: 1.2rem;
+        text-transform: uppercase;
+      }
+      .ex {
+        height: 2rem;
+        width: 2rem;
+        margin-right: 0.5rem;
+        margin-bottom: 0.5rem;
+        border: 1px solid black;
+        border-color: invert;
+        flex-grow: 0;
+        flex-shrink: 0;
+        cursor: pointer;
+        transition: all 100ms linear;
+      }
+    }
+  }
+
+  .tool-banner {
+    &[code-focus="code-xs"] {
+      .constrain {
+        max-width: 48rem;
+        border-color: green;
+      }
+    }
+
+    &[code-focus="code-sm"] {
+      .constrain {
+        max-width: 76.8rem;
+      }
+    }
+
+    &[code-focus="code-md"] {
+      .constrain {
+        max-width: 96rem;
+      }
+    }
+
+    &[code-focus="code-lg"] {
+      .constrain {
+        max-width: 128rem;
+      }
+    }
+  }
+
+  .editor {
+    flex-grow: 0;
+    min-height: 10rem;
+    width: 100% !important;
+  }
+
+  .constrain [banner-block="hovered"] {
+    cursor: crosshair;
+    background-image: linear-gradient(45deg, rgba(255,255,255,0.25) 25%, rgba(0,0,0,.05) 25%),
+    linear-gradient(-45deg, rgba(255,255,255,0.25) 25%, rgba(0,0,0,.05) 25%),
+    linear-gradient(45deg, rgba(0,0,0,.05) 75%, rgba(255,255,255,0.25) 75%),
+    linear-gradient(-45deg, rgba(0,0,0,.05) 75%, rgba(255,255,255,0.25) 75%);
+    background-size: 20px 20px;
+    background-position: 0 0,
+    0 10px,
+    10px -10px,
+    -10px 0px;
+    [class*='col-'] {
+      outline: 1px dashed white;
+    }
+  }
+
+  .constrain [banner-block="active"] {
+    outline: 2px dashed yellow;
+    [class*='col-'] {
+      outline: 1px dotted white;
+    }
+  }
+
+  [banner-row]:empty {
+    min-height: 10px;
+    &:before {
+      content: '[ empty row ]';
+    }
+  }
+  // &[demo] {
+  //   .lib-toolbar::before {
+  //     @include fill;
+
+  //     display: flex;
+  //     align-content: center;
+  //     justify-content: center;
+  //     align-items: center;
+  //     background: rgba(0, 0, 0, 0.8);
+  //     content: 'click for demo';
+  //     z-index: 5;
+  //     color: #ccc;
+  //     opacity: 0;
+  //     transform: opacity 250ms $ease;
+  //     cursor: pointer;
+  //   }
+
+  //   &:hover {
+  //     .lib-toolbar::before {
+  //       opacity: 1;
+  //     }
+  //   }
+  // }
+
+  .ace_content,
+  .ace_editor {
+    font-size: 14px !important;
+  }
+}
+
+
+.banner-base {
+  display: flex;
+  flex-direction: column;
+}
+
+[banner-row] {
+  display: flex;
+  > * {
+    float: none;
+  }
+}

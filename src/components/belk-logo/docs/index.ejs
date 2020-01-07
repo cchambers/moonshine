@@ -1,0 +1,38 @@
+<%- htmlWebpackPlugin.options.docsHead %>
+
+<title><%= htmlWebpackPlugin.options.title %></title>
+
+<div class="documentation contain">
+  <h1>Logo</h1>
+  <section id="usage">
+    <h2>Usage</h2>
+    <pre>
+      <code class="language-html">
+          &lt;belk-logo width="200"&gt;&lt;/belk-logo&gt;
+      </code>
+    </pre>
+
+  </section>
+
+  <section id="examples">
+    <h2>Examples</h2>
+    <h3>Default</h3>
+    <lib-toolbar>
+      <belk-logo width="160"></belk-logo>
+    </lib-toolbar>
+    <h3>Using color attribute</h3>
+    <lib-toolbar>
+      <belk-logo width="80" color="accent-primary"></belk-logo>
+    </lib-toolbar>
+  </section>
+
+  <section id="changelog">
+    <h2>Changelog</h2>
+    <dl>
+      <dt>1.0.0</dt>
+      <dd>Belk Logo is ready for use.</dd>
+    </dl>
+  </section>
+</div>
+
+<%- htmlWebpackPlugin.options.docsFoot %>

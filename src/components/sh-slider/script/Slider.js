@@ -1,7 +1,7 @@
-  import ComponentPrototype from '../../component-prototype';
+import ComponentPrototype from '../../component-prototype';
 
-  export default {
-    mixins: [ComponentPrototype],
+export default {
+  mixins: [ComponentPrototype],
 
   name: 'Slider',
 
@@ -14,10 +14,10 @@
       startX: 0,
       startY: 0,
       clickX: 0,
-      clickY: 0
-    }
+      clickY: 0,
+    };
   },
-  
+
   methods: {
     panHandler(e) { // lmao
       this.deltaX = e.deltaX;
@@ -25,6 +25,6 @@
 
       this.clickX = Math.round(e.srcEvent.offsetX);
       this.clickY = Math.round(e.srcEvent.offsetY);
-    }
+    },
   },
-}
+};

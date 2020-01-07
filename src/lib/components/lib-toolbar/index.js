@@ -1,4 +1,6 @@
-import Vue from 'vue'
-import LibToolbar from './vue/LibToolbar';
+import Vue from 'vue';
+import wrap from '../../../components/wrapper';
+import LibToolbar from './vue/LibToolbar.vue';
 
-Vue.customElement('lib-toolbar', LibToolbar);
+const Wrapped = wrap(Vue, LibToolbar);
+window.customElements.define('lib-toolbar', Wrapped);

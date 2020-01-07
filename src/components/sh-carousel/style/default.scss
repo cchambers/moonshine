@@ -1,33 +1,51 @@
 /* default styling */
 
 sh-carousel {
-  display: inline-block;
+  display: block;
+
   .sh-carousel {
-
-
-    /** DELETE THIS EXAMPLE SECTION **/
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    text-align: center;
-    height: 15rem;
-    width: 15rem;
-    background-size: cover;
-    border: 1px solid transparent;
-    transition: all 200ms linear;
-
-    &:hover {
-      border: 1px solid $accent-primary;
-    }
-    
-    &.snap-state {
-      color: transparent;
-      background-image: url(../../../assets/img/snap.gif);
-      border: 1px solid $accent-primary;
+    position: relative;
+    ul {
+      padding: 0;
+      margin: 0;
+      list-style: none;
     }
 
-    
+    .controls {
+      >* {
+        height: 4.5rem;
+        color: $accent-tertiary;
+        display: flex;
+        align-content: center;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        position: absolute;
+        border-radius: 5px;
+        outline: 0;
+        border: 1px solid $lowlight-primary;
+        background: $lowlight-primary;
+      }
 
+      .dots {
+        position: absolute;
+        bottom: -6rem;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      .play {
+        top: -6rem;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 6rem;
+      }
+
+      .arrow {
+        top: 50%;
+        transform: translateY(-50%);
+        width: 4.5rem;
+      }
+    }
   }
 }

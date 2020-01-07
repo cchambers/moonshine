@@ -1,4 +1,6 @@
-import Vue from 'vue'
-import BelkIcon from './vue/BelkIcon';
+import Vue from 'vue';
+import wrap from '../wrapper';
+import BelkIcon from './vue/BelkIcon.vue';
 
-Vue.customElement('belk-icon', BelkIcon);
+const Wrapped = wrap(Vue, BelkIcon);
+window.customElements.define('belk-icon', Wrapped);

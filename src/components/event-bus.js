@@ -18,21 +18,28 @@ setTimeout(function () {
 const baseEmit = EventBus.$emit;
 EventBus.$emit = (...args) => {
 	let event = args[0];
-	if (preload && event != 'component-ready') batch.push(event);
-  baseEmit.apply(EventBus, args);
+	if (preload && event !== 'component-ready') batch.push(event);
+	baseEmit.apply(EventBus, args);
+
+	// Re-emit events as native for other components.
+	
+	// let data = args.slice(1);
+	// data = data[0];
+	// let nativeEvent = (typeof data === 'object') ? new CustomEvent(event, data) : nativeEvent = new CustomEvent(event);
+	// document.dispatchEvent(nativeEvent);
 };
 
 let delegations = {
 	click: [
 		{
-			target: "[close-trigger]",
+			target: '[close-trigger]',
 			priority: 1,
 			handler() {
 				EventBus.$emit('close-modals');
 			}
 		},
 		{
-			target: "[nav-trigger]",
+			target: '[nav-trigger]',
 			handler() {
 				EventBus.$emit('show-nav');
 				this.$bus.$emit('show-curtain');
@@ -42,13 +49,15 @@ let delegations = {
 };
 
 function bindAll() {
-	let self = this;
 	for (let event in delegations) {
 		setupEvent(event);
 	}
 
-	window.addEventListener('hashchange', () => {
-		EventBus.$emit('hashchange', window.location.hash.substr(1));
+	window.addEventListener('hashchange', (e) => {
+		EventBus.$emit('hashchange', {
+      event: e,
+      hash: window.location.hash.substr(1)
+    });
 	})
 }
 
@@ -58,7 +67,7 @@ function setupEvent(event) {
 	document.addEventListener(event, function(e) {
 		let arr = delegations[event];
 		// for every item that needs to be watched on *event*
-		for (let x = 0, l = arr.length; x < l; x++) {
+		for (let x = 0, l = arr.length; x < l; x += 1) {
 			if (e.target.matches) {
 				if (e.target.matches(arr[x].target)) arr[x].handler(e)
 			} else if (e.target.msMatchesSelector) {
@@ -70,7 +79,7 @@ function setupEvent(event) {
 }
 
 function listen(event, target, handler, options) {
-	if (!event || !target || typeof handler != 'function') {
+	if (!event || !target || typeof handler !== 'function') {
 		return false;
 	}
 

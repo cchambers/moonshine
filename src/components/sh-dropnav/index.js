@@ -1,4 +1,6 @@
-import Vue from 'vue'
-import Dropnav from './vue/Dropnav';
+import Vue from 'vue';
+import wrap from '../wrapper';
+import Dropnav from './Dropnav.vue';
 
-Vue.customElement('sh-dropnav', Dropnav);
+const Wrapped = wrap(Vue, Dropnav);
+window.customElements.define('sh-dropnav', Wrapped);

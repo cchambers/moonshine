@@ -1,22 +1,22 @@
-  import ComponentPrototype from '../../component-prototype';
+import ComponentPrototype from '../../component-prototype';
 
-  export default {
-    mixins: [ComponentPrototype],
+export default {
+  mixins: [ComponentPrototype],
 
   name: 'Tag',
   props: {
     msg: {
       type: String,
-      default: 'new component'
-    }
+      default: 'new component',
+    },
   },
 
   data() {
     return {
-      snapping: false
-    }
+      snapping: false,
+    };
   },
-  
+
   methods: {
 
     /* REMOVE THESE METHODS */
@@ -35,14 +35,14 @@
     },
 
     halve() {
-      let str = this.$el.innerText;
+      const str = this.$el.innerText;
       if (!str.length) return;
-      let middle = Math.ceil(str.length / 2);
-      let half = str.slice(0, middle);
+      const middle = Math.ceil(str.length / 2);
+      const half = str.slice(0, middle);
       this.$el.innerText = half.trim();
-    }
+    },
     /* END REMOVE */
-    
+
   },
 
-}
+};

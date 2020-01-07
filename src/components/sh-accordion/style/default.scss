@@ -2,50 +2,29 @@
 
 sh-accordion {
   display: block;
-}
 
-.sh-accordion {
-
-  .header,
-  .body {
-    padding: 0.5rem 1.5rem;
-  }
-
-  .header {
-    cursor: pointer;
-    background: $highlight-secondary;
-    transition: all 250ms $ease;
-    h1,h2,h3,h4,h5,h6 {
-      margin: 0 !important;
-    }
-    &:hover {
-      color: $accent-primary;
-      background: $highlight-primary;
-    }
-  }
-
-  .body {
-    border: 1px solid transparent;
-  }
-
-  .collapse {
-    max-height: 0;
-    overflow: hidden;
-    transition: none;
-  }
-
-  &.active {
-    .header {
-      background-color: $accent-tertiary;
+  .sh-accordion {
+    button.header {
+      outline: none;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
     }
 
-    .body {
-      border-color: $accent-tertiary;
+    &.active {
+      .collapse {
+        max-height: 200vh;
+        transition: all 250ms $ease;
+      }
     }
 
     .collapse {
-      max-height: 200vh;
-      transition: all 250ms $ease;
+      max-height: 0;
+      overflow: hidden;
+      transition: none;
     }
   }
 }

@@ -1,12 +1,12 @@
-<template> 
+<template>
   <div class="sh-curtain" v-bind:class="{ 'active': active }" v-hammer:tap="hide"></div>
 </template>
 
 <script>
-  import ComponentPrototype from '../component-prototype';
+import ComponentPrototype from '../component-prototype';
 
-  export default {
-    mixins: [ComponentPrototype],
+export default {
+  mixins: [ComponentPrototype],
 
   name: 'Curtain',
 
@@ -15,7 +15,7 @@
       active: false,
       targetEl: false,
       lastTargetEl: false,
-    }
+    };
   },
 
   watch: {
@@ -25,7 +25,7 @@
       } else {
         this.lastTargetEl = val;
       }
-    }
+    },
   },
 
   methods: {
@@ -35,22 +35,23 @@
     },
 
     show(el) {
-      if (el) {
-        let _z = el.style.zIndex || 0;
-        let pos = el.style.position;
-        if (pos != "absolute" && pos != "relative") {
-          el.style.pos = "relative";
+      const target = el;
+      if (target) {
+        const zIndex = target.style.zIndex || 0;
+        const pos = target.style.position;
+        if (pos !== 'absolute' && pos !== 'relative') {
+          target.style.pos = 'relative';
         }
-        if (_z < 8) {
-          this.targetEl = el;
-          el.style.zIndex = 9;
+        if (zIndex < 8) {
+          this.targetEl = target;
+          target.style.zIndex = 9;
         }
       }
-      setTimeout( () => {
+      setTimeout(() => {
         this.$bus.$emit('curtain-showing');
         this.active = true;
         this.$bus.$emit('curtain-shown');
-      })
+      });
     },
 
     hide() {
@@ -74,8 +75,8 @@
 
     clickHanlder() {
       this.hide();
-    }
-  }
-}
+    },
+  },
+};
 </script>
 <style lang="scss" src="./style/default.scss"></style>

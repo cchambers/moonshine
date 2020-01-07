@@ -1,4 +1,6 @@
-import Vue from 'vue'
-import BelkBag from './BelkBag';
+import Vue from 'vue';
+import wrap from '../wrapper';
+import BelkBag from './BelkBag.vue';
 
-Vue.customElement('belk-bag', BelkBag);
+const Wrapped = wrap(Vue, BelkBag);
+window.customElements.define('belk-bag', Wrapped);

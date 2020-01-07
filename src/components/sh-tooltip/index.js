@@ -1,4 +1,6 @@
-import Vue from 'vue'
-import Tooltip from './vue/Tooltip';
+import Vue from 'vue';
+import wrap from '../wrapper';
+import Tooltip from './vue/Tooltip.vue';
 
-Vue.customElement('sh-tooltip', Tooltip);
+const Wrapped = wrap(Vue, Tooltip);
+window.customElements.define('sh-tooltip', Wrapped);

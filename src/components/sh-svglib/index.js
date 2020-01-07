@@ -1,4 +1,6 @@
-import Vue from 'vue'
-import Svglib from './Svglib';
+import Vue from 'vue';
+import wrap from '../wrapper';
+import Svglib from './Svglib.vue';
 
-Vue.customElement('sh-svglib', Svglib);
+const Wrapped = wrap(Vue, Svglib);
+window.customElements.define('sh-svglib', Wrapped);

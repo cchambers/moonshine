@@ -1,4 +1,6 @@
-import Vue from 'vue'
-import BelkSearch from './BelkSearch';
+import Vue from 'vue';
+import wrap from '../wrapper';
+import BelkSearch from './BelkSearch.vue';
 
-Vue.customElement('belk-search', BelkSearch);
+const Wrapped = wrap(Vue, BelkSearch);
+window.customElements.define('belk-search', Wrapped);

@@ -1,86 +1,184 @@
+/* eslint-disable */
 const glob = require('glob');
 const fs = require('fs-extra');
 const path = require('path');
+const branch = require('git-branch');
+const fullName = require('fullname');
+const WrapperPlugin = require('wrapper-webpack-plugin');
+const dateFormat = require('dateformat');
+const ejs = require('ejs');
+const ua = require('universal-analytics');
 
-let nav = fs.readFileSync('./src/lib/incl-nav.html', 'utf8');
-let footer = fs.readFileSync('./src/lib/incl-footer.html', 'utf8');
+const themeLoader = path.resolve('theme-loader.js');
+const user = ua('UA-148739944-1');
+const dateNow = new Date();
+dateFormat(dateNow, 'dddd, mmmm dS, yyyy, h:MM:ss TT');
 
-let pages = {
+const branchActual = branch.sync();
+let buildTag = '';
+let gitName;
+
+(async () => {
+  gitName = await fullName();
+  buildTag = `/*!
+  *         __     __
+  * .-----.|  |--.|__|.-----.-----.
+  * |__ --||     ||  ||     |  -__|
+  * |_____||__|__||__||__|__|_____|
+  * 
+  * built by: ${gitName}
+  * branch: \`${branchActual}\`
+  * timestamp: ${dateNow}
+*/\n\n`;
+  const type = (process.env.NODE_ENV === 'production') ? 'Prod' : 'Development';
+  user.event(`${type} Build`, gitName)
+    .send();
+})();
+
+let optimizationSetting = {
+  minimize: false,
+};
+
+if (branchActual === 'master') {
+  optimizationSetting = {
+    minimize: true,
+  };
+}
+
+const headTemplate = fs.readFileSync('./src/lib/incl-head.ejs', 'utf8');
+const docsHead = ejs.render(headTemplate, {
+  dirname: __dirname,
+});
+const docsFoot = fs.readFileSync('./src/lib/incl-foot.ejs', 'utf8');
+
+const pages = {
   index: {
     entry: 'src/main.js',
-    nav: nav,
-    footer: footer,
-    template: 'src/lib/docs-index.html'
-  }
+    template: 'src/lib/docs-index.ejs',
+  },
+};
+
+if (process.env.NODE_ENV !== 'production') {
+  glob.sync('src/components/**/docs/data/*.html')
+    .forEach((dir) => {
+      const component = dir.split('/')[3];
+      let filename = dir.split('/');
+      filename = filename[filename.length - 1];
+      const name = component + filename;
+      pages[name] = {
+        entry: 'src/blank.js',
+        template: dir,
+        filename: `components/${component}/data/${filename}`,
+      };
+    });
+
+  glob.sync('src/components/**/docs/*.ejs')
+    .forEach((dir) => {
+      const component = dir.split('/')[2];
+      let filename = dir.split('/');
+      let schemaDir = dir.replace(/(docs\/)([a-zA-Z0-9\s_\\.\-():])+(.html|.ejs)$/, '');
+      schemaDir = `${schemaDir}schema.json`;
+      filename = filename[filename.length - 1];
+      const name = `${component}/${filename}`;
+      let schema = fs.readFileSync(schemaDir, 'utf8');
+      const url = `components/${component}/${filename.split('.')[0]}.html`;
+      schema = JSON.parse(schema);
+      pages[name] = {
+        entry: 'src/main.js',
+        template: dir,
+        filename: url,
+        title: schema.name || 'configure schema.json',
+        description: schema.description || {},
+        tags: schema.tags || {},
+        reqs: schema.reqs || {},
+        docsHead,
+        docsFoot,
+      };
+    });
+
+  glob.sync('src/components/**/docs/*.ejs')
+    .forEach((dir) => {
+      const component = dir.split('/')[2];
+      let filename = dir.split('/');
+      let schemaDir = dir.replace(/(docs\/)([a-zA-Z0-9\s_\\.\-():])+(.html|.ejs)$/, '');
+      schemaDir = `${schemaDir}schema.json`;
+      filename = filename[filename.length - 1];
+      const name = `${component}/${filename}`;
+      let schema = fs.readFileSync(schemaDir, 'utf8');
+      const url = `components/${component}/${filename.split('.')[0]}.html`;
+      schema = JSON.parse(schema);
+      pages[name] = {
+        entry: 'src/main.js',
+        template: dir,
+        filename: url,
+        title: schema.name || 'configure schema.json',
+        description: schema.description || {},
+        tags: schema.tags || {},
+        reqs: schema.reqs || {},
+        docsHead,
+        docsFoot,
+      };
+    });
+
+  glob.sync('src/lib/tools/**/*.ejs')
+    .forEach((dir) => {
+      const name = dir.split('/')[3];
+      let filename = dir.split('/');
+      filename = filename[filename.length - 1];
+      const test = dir.split('/');
+      test.pop();
+      let schemaDir = test.join('/');
+      schemaDir = `${schemaDir}/schema.json`;
+      let schema = fs.readFileSync(schemaDir, 'utf8');
+      schema = JSON.parse(schema);
+      const tool = `${name}/${filename}`;
+      const url = `tools/${schema.url}/${filename.split('.')[0]}.html`;
+      pages[tool] = {
+        entry: 'src/main.js',
+        template: dir,
+        filename: url,
+        title: schema.name || 'configure schema.json',
+        description: schema.description || {},
+        tags: schema.tags || {},
+        reqs: schema.reqs || {},
+        docsHead,
+        docsFoot,
+      };
+    });
+
+  glob.sync('src/lib/utilities/*.ejs')
+    .forEach((dir) => {
+      let filename = dir.split('/');
+      filename = filename[filename.length - 1];
+      const name = filename.split('.')[0];
+
+      pages[name] = {
+        entry: 'src/main.js',
+        template: dir,
+        docsHead,
+        title: 'Shine Utility',
+        docsFoot,
+        filename: `utilities/${name}/index.html`,
+      };
+    });
+
+  glob.sync('src/lib/demos/*.html')
+    .forEach((dir) => {
+      let filename = dir.split('/');
+      filename = filename[filename.length - 1];
+      const name = filename.split('.')[0];
+
+      pages[name] = {
+        entry: 'src/main.js',
+        template: dir,
+        filename: `demo/${name}/index.html`,
+      };
+    });
 }
-
-if (process.env.NODE_ENV != 'production') {
-  glob.sync('./src/components/**/docs/data/*.html').forEach(path => {  
-    let component = path.split('/')[3];
-    let filename = path.split('/');
-    filename = filename[filename.length-1];
-    let name = component+filename;
-    
-    pages[name] = {
-      entry: 'src/blank.js',
-      template: path,
-      filename: `components/${component}/data/${filename}`
-    }
-  })
-
-  glob.sync('./src/components/**/docs/*.html').forEach(path => {  
-    let component = path.split('/')[3];
-    let filename = path.split('/');
-    filename = filename[filename.length-1];
-    let name = component+filename;
-    let content = fs.readFileSync(path, 'utf8');
-
-    pages[name] = {
-      entry: 'src/main.js',
-      template: 'src/lib/docs-component.html',
-      content: content,
-      nav: nav,
-      footer: footer,
-      filename: `components/${component}/${filename}`
-    }
-  })
-
-  glob.sync('./src/lib/utilities/*.html').forEach(path => {  
-    let filename = path.split('/');
-    filename = filename[filename.length-1];
-    let name = filename.split('.')[0];
-    let content = fs.readFileSync(path, 'utf8');
-
-    pages[name] = {
-      entry: 'src/main.js',
-      template: 'src/lib/docs-component.html',
-      content: content,
-      nav: nav,
-      footer: footer,
-      filename: `utilities/${name}/index.html`
-    }
-  })
-
-  glob.sync('./src/lib/demos/*.html').forEach(path => {  
-    let filename = path.split('/');
-    filename = filename[filename.length-1];
-    let name = filename.split('.')[0];
-    let content = fs.readFileSync(path, 'utf8');
-
-    pages[name] = {
-      entry: 'src/main.js',
-      template: 'src/lib/docs-demonstration.html',
-      content: content,
-      filename: `demo/${name}/index.html`
-    }
-  })
-}
-
 
 module.exports = {
   runtimeCompiler: false,
   filenameHashing: false,
-  // transpileDependencies: ['vue2-hammer', 'vue-custom-element'],
 
   css: {
     loaderOptions: {
@@ -89,40 +187,49 @@ module.exports = {
           @import "@/assets/style/common/_functions.scss";
           @import "@/assets/style/common/_mixins.scss";
           @import "@/assets/style/themes/default/_variables.scss";
-        `
-      }
-    }
+        `,
+      },
+    },
   },
 
   configureWebpack: {
     resolve: {
       alias: {
-        'vue$': 'vue/dist/vue.esm.js'
-      }
+        vue$: 'vue/dist/vue.esm.js',
+      },
     },
-  //   optimization: {
-  //     // We no not want to minimize our code.
-  //     minimize: false
-  //   }
+    optimization: optimizationSetting,
+    plugins: [
+      new WrapperPlugin({
+        header() {
+          return buildTag;
+        },
+      }),
+    ],
   },
 
-  chainWebpack: config => {
-    const themeLoader = path.resolve('theme-loader.js');
+  chainWebpack: (config) => {
+    function addStyleResource(rule) {
+      rule.use('shine-theme-loader')
+        .loader(themeLoader);
+    }
 
-    const vueRule = config.module.rule('scss').oneOf('vue');
-    vueRule.use('shine-theme-loader').loader(themeLoader).end();
+    const types = ['vue-modules', 'vue', 'normal-modules', 'normal'];
+    types.forEach((type) => addStyleResource(config.module.rule('scss')
+      .oneOf(type)));
 
-    const normalRule = config.module.rule('scss').oneOf('normal');
-    normalRule.use('shine-theme-loader').loader(themeLoader).end();
-
-    const vueModules = config.module.rule('scss').oneOf('vue-modules');
-    vueModules.use('shine-theme-loader').loader(themeLoader).end();
-
-    const normalModules = config.module.rule('scss').oneOf('normal-modules');
-    normalModules.use('shine-theme-loader').loader(themeLoader).end();
-
+    config.module
+      .rule('ejs')
+      .test(/\.ejs|.html$/)
+      .use('ejs-compiled-loader')
+      .loader('ejs-compiled-loader')
+      .end();
   },
 
-  pages: pages,
-  
-}
+  pages,
+
+  pluginOptions: {
+    lintStyleOnBuild: false,
+    stylelint: {},
+  },
+};

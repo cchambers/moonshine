@@ -1,4 +1,6 @@
-import Vue from 'vue'
-import Accordion from './vue/Accordion';
+import Vue from 'vue';
+import wrap from '../wrapper';
+import Accordion from './vue/Accordion.vue';
 
-Vue.customElement('sh-accordion', Accordion);
+const Wrapped = wrap(Vue, Accordion);
+window.customElements.define('sh-accordion', Wrapped);

@@ -1,4 +1,6 @@
-import Vue from 'vue'
-import Input from './Input';
+import Vue from 'vue';
+import wrap from '../wrapper';
+import Input from './Input.vue';
 
-Vue.customElement('sh-input', Input);
+const Wrapped = wrap(Vue, Input);
+window.customElements.define('sh-input', Wrapped);
