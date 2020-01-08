@@ -25,8 +25,9 @@ require('./assets/style/themes/custom-props.scss');
 require('./assets/style/themes/default/belk.scss');
 
 const schema = require('./components/all.json');
+const production = (process.env.NODE_ENV !== 'production');
 
-if (process.env.NODE_ENV !== 'production') {
+if (production) {
   /* Documentation Library */
   require('./assets/script/prism.js');
   require('./assets/style/prism.css');
@@ -44,6 +45,7 @@ if (process.env.NODE_ENV !== 'production') {
   window.schema = schema;
 }
 
+console.log('weee');
 Object.keys(schema)
   .forEach(function (cat) {
     Object.keys(schema[cat])

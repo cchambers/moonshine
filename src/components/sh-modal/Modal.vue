@@ -1,3 +1,4 @@
+
 <template>
   <div class="sh-modal" role="dialog"
     :variant="variant"
@@ -36,6 +37,7 @@
 </template>
 
 <script>
+/* eslint-disable no-restricted-globals */
 import ComponentPrototype from '../component-prototype';
 
 export default {
@@ -197,10 +199,12 @@ export default {
       let scrollV;
       let scrollH;
       const loc = window.location;
-      // eslint-disable-next-line no-restricted-globals
       if ('pushState' in history) {
-      // eslint-disable-next-line no-restricted-globals
-        history.pushState('', document.title, loc.pathname + loc.search);
+        if (!this.noState) {
+          history.pushState('', document.title, loc.pathname + loc.search);
+        } else {
+          history.replaceState('', document.title, loc.pathname + loc.search);
+        }
       } else {
         // Prevent scrolling by storing the page's current scroll offset
         scrollV = document.body.scrollTop;
