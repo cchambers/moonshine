@@ -49,7 +49,6 @@ export default {
 
   mounted() {
     const self = this;
-    self.log('header: live on page');
     self.actual = document.querySelector('#header .belk-header');
     self.bagEl = document.querySelector('belk-bag');
     self.setupEvents();
