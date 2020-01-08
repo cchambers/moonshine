@@ -48,12 +48,10 @@ export default {
   },
 
   mounted() {
-    const self = this;
-    self.log('header: live on page');
-    self.actual = document.querySelector('#header .belk-header');
-    self.bagEl = document.querySelector('belk-bag');
-    self.setupEvents();
-    self.getData();
+    this.actual = document.querySelector('#header .belk-header');
+    this.bagEl = document.querySelector('belk-bag');
+    this.setupEvents();
+    this.getData();
   },
 
   methods: {

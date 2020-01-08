@@ -41,12 +41,17 @@ export default {
       type: String,
       default: null,
     },
+    variant: String,
+    vertical: {
+      type: Boolean,
+    },
   },
 
   data() {
     return {
       slides: [],
       dots: [],
+      list: [],
       active: null,
       previousIcon: 'prev',
       nextIcon: 'next',
@@ -94,6 +99,8 @@ export default {
           slide.classList.add('active');
         } else if (slide.classList.contains('active')) slide.classList.remove('active');
       });
+
+      if (this.userTriggered) this.focus();
     },
   },
 
@@ -128,7 +135,10 @@ export default {
     play() {
       this.playing = true;
       this.playTimer = setTimeout(() => {
-        if (!this.paused && !this.focused) this.next();
+        if (!this.paused && !this.focused) {
+          this.userTriggered = false;
+          this.next();
+        }
         this.play();
       }, this.delayTimer);
     },
@@ -138,29 +148,40 @@ export default {
     },
 
     focus() {
-      this.$el.querySelector('.active').focus();
+      const activeSlide = this.$el.querySelector('.active');
+      window.test = activeSlide;
+      if (activeSlide) activeSlide.focus();
+      if (this.variant === 'secondary') {
+        if (this.vertical) {
+          this.list.scrollTop = activeSlide.offsetTop;
+        } else {
+          this.list.scrollLeft = activeSlide.offsetLeft;
+        }
+      }
     },
 
     nextHandler() {
-      this.next(true);
+      this.userTriggered = true;
+      this.next();
     },
 
-    next(userTriggered = false) {
+    next() {
+      const len = this.slides.length;
       let which = this.active + this.perNext;
-      if (which >= this.slides.length) which = 0;
+      if (which >= len) which -= len;
       this.active = which;
-      if (userTriggered) this.focus(which);
     },
 
     previousHandler() {
-      this.next(true);
+      this.userTriggered = true;
+      this.previous();
     },
 
-    previous(userTriggered) {
+    previous() {
       let which = this.active - this.perNext;
-      if (which < 0) which = this.slides.length - 1;
+      const len = this.slides.length;
+      if (which < 0) which += len;
       this.active = which;
-      if (userTriggered) this.focus(which);
     },
 
     activate(which) {
@@ -188,6 +209,7 @@ export default {
 
     getSlides() {
       const slides = this.$slots.slides[0];
+      this.list = slides.elm;
       this.slides = slides.elm.children;
     },
   },
