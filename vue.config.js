@@ -217,12 +217,14 @@ module.exports = {
     types.forEach((type) => addStyleResource(config.module.rule('scss')
       .oneOf(type)));
 
+    // if (process.env.NODE_ENV !== 'production') {
     config.module
       .rule('ejs')
       .test(/\.ejs|.html$/)
       .use('ejs-compiled-loader')
       .loader('ejs-compiled-loader')
       .end();
+    // }
   },
 
   pages,
