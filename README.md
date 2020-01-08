@@ -57,7 +57,6 @@ Shine creates a local component library that can be managed and deployed as temp
 #### Install Shine
   - In your command line interface, navigate to the folder that you want the Shine project to reside in. ex: `mkdir Sites | cd Sites`
   - Clone the shine repo: `git clone git@bitbucket.org:belk_ecom/shine.git`
-    ++ IF REPO ACCESS MUST BE REQUESTED: 
   - Navigate to the new project folder: `cd shine`
   - Type `yarn install`. This will initialize the project dependency installation. 
 
