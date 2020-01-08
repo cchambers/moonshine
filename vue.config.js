@@ -45,20 +45,19 @@ if (branchActual === 'master') {
   };
 }
 
-const headTemplate = fs.readFileSync('./src/lib/incl-head.ejs', 'utf8');
-const docsHead = ejs.render(headTemplate, {
-  dirname: __dirname,
-});
-const docsFoot = fs.readFileSync('./src/lib/incl-foot.ejs', 'utf8');
-
 const pages = {
   index: {
     entry: 'src/main.js',
-    template: 'src/lib/docs-index.ejs',
+    template: 'src/lib/docs-index.html',
   },
 };
 
 if (process.env.NODE_ENV !== 'production') {
+  const headTemplate = fs.readFileSync('./src/lib/incl-head.ejs', 'utf8');
+  const docsHead = ejs.render(headTemplate, {
+    dirname: __dirname,
+  });
+  const docsFoot = fs.readFileSync('./src/lib/incl-foot.ejs', 'utf8');
   glob.sync('src/components/**/docs/data/*.html')
     .forEach((dir) => {
       const component = dir.split('/')[3];
@@ -218,12 +217,14 @@ module.exports = {
     types.forEach((type) => addStyleResource(config.module.rule('scss')
       .oneOf(type)));
 
-    config.module
-      .rule('ejs')
-      .test(/\.ejs|.html$/)
-      .use('ejs-compiled-loader')
-      .loader('ejs-compiled-loader')
-      .end();
+    if (process.env.NODE_ENV !== 'production') {
+      config.module
+        .rule('ejs')
+        .test(/\.ejs|.html$/)
+        .use('ejs-compiled-loader')
+        .loader('ejs-compiled-loader')
+        .end();
+    }
   },
 
   pages,
