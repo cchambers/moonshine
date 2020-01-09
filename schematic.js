@@ -4,8 +4,6 @@ const fs = require('fs-extra');
 const chalk = require('chalk');
 
 const schema = {};
-
-const prod = process.env.NODE_ENV === 'production';
 let count = 0;
 
 glob.sync('src/utilities/**/schema.json')
@@ -37,7 +35,7 @@ glob.sync('src/components/**/schema.json')
   .forEach((dir) => {
     const name = dir.split('/')[2];
     const data = JSON.parse(fs.readFileSync(dir, 'utf8'));
-    if (prod && !data.production) return;
+    if (process.env.NODE_ENV === 'production' && !data.production) return;
     schema[name] = data;
     count += 1;
   });

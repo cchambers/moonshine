@@ -1,10 +1,29 @@
 <template>
   <div class="belk-bag" :variant="variant" v-bind:class="{ active: itemCount > 0 }">
-    <div class="bag-icon">
-      <belk-icon width="30" name="bag">shopping bag</belk-icon>
-      <div class="bag-count">{{ itemCount }}</div>
-    </div>
-    <div class="bag-total">{{ totalPrice }}</div>
+    <sh-popper reference-id="someid" has-curtain>
+      <span slot="reference">
+        <div class="bag-icon">
+          <belk-icon width="30" name="bag">shopping bag</belk-icon>
+          <div class="bag-count">{{ itemCount }}</div>
+        </div>
+        <div class="bag-total">{{ totalPrice }}</div>
+      </span>
+      <div slot="content">
+        <div v-if="itemCount > 0">
+          <ul>
+            <li>Item 1</li>
+            <li>Item 2</li>
+            <li>Item 3</li>
+          </ul>
+        </div>
+        <div v-if="itemCount === 0">
+          <div class="content-asset">
+            <h1>Your bag is empty &amp; could use some love.</h1>
+            <p>Sign in to see items you may have added to your bag.</p>
+          </div>
+        </div>
+      </div>
+    </sh-popper>
   </div>
 </template>
 
@@ -16,14 +35,14 @@ export default {
 
   name: 'BelkBag',
   props: {
-    count: Number,
-    price: Number,
+    count: String,
+    price: String,
   },
 
   computed: {
     totalPrice() {
       const { price } = this;
-      if (this.price === 0) {
+      if (parseInt(this.price, 10) === 0) {
         return 'Bag';
       }
       const formatter = new Intl.NumberFormat('en-US', {
@@ -53,8 +72,8 @@ export default {
     },
 
     handleUserData(data) {
-      if (data.cartQty) this.itemCount = data.cartQty;
-      if (data.subTotal) this.subTotal = data.subTotal;
+      if (data.cartQty) this.itemCount = parseInt(data.cartQty, 10);
+      if (data.subTotal) this.subTotal = parseInt(data.subTotal, 10);
     },
 
     emitUpdate() {
