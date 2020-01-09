@@ -9,7 +9,7 @@
     </div>
     <transition
     :name="transition"
-    @after-leave="destroy">
+    @after-leave="doDestroy">
       <div
         class="popper-actual"
         :fill="fill"
@@ -164,24 +164,24 @@ export default {
   watch: {
     showPopper(value) {
       if (value) {
-        this.$bus.$emit('popper-opening', this);
+        this.$bus.$emit('popper-opening', this.uuid);
         if (this.popperJS) this.popperJS.enableEventListeners();
         this.updatePopper();
         if (this.hasCurtain) this.$bus.$emit('show-curtain', this.foreground);
         if (this.link) this.link.setAttribute('aria-expanded', true);
-        this.$bus.$emit('popper-opened', this);
+        this.$bus.$emit('popper-opened', this.uuid);
       } else {
-        this.$bus.$emit('popper-closing', this);
+        this.$bus.$emit('popper-closing', this.uuid);
         if (this.hasCurtain) this.$bus.$emit('hide-curtain', this);
         if (this.link) this.link.setAttribute('aria-expanded', false);
         if (this.popperJS) this.popperJS.disableEventListeners();
-        this.$bus.$emit('popper-closed', this);
+        this.$bus.$emit('popper-closed', this.uuid);
       }
     },
 
     forceShow: {
       handler(value) {
-        this[value ? 'show' : 'close']();
+        this[value ? 'doShow' : 'doClose']();
       },
       immediate: true,
     },
@@ -196,8 +196,9 @@ export default {
   created() {
     this.appendedArrow = false;
     this.appendedToBody = false;
-
     this.popperOptions.placement = this.placement;
+    this.setUUID();
+    console.log(this.uuid);
   },
 
   mounted() {
@@ -208,7 +209,7 @@ export default {
     events() {
       const self = this;
       this.$bus.$on('popper-opening', (which) => {
-        if (which !== self.uuid) self.close();
+        if (which !== self.uuid) self.doClose();
       });
 
       this.$bus.$on('breakpoint-mobile', () => {
@@ -239,22 +240,18 @@ export default {
           on(document, 'click', this.handleDocumentClick);
           break;
         case 'hover':
-          on(this.referenceElm, 'mouseover', this.mouseoverHandler);
-          on(this.referenceElm, 'focus', this.mouseoverHandler);
-          on(this.popper, 'mouseover', this.mouseoverHandler);
-          on(this.popper, 'focus', this.mouseoverHandler);
-          on(this.referenceElm, 'mouseout', this.mouseoutHandler);
-          on(this.referenceElm, 'blur', this.mouseoutHandler);
-          on(this.popper, 'mouseout', this.mouseoutHandler);
-          on(this.popper, 'blur', this.mouseoutHandler);
+          on(this.referenceElm, 'mouseover', this.onMouseOver);
+          on(this.referenceElm, 'focus', this.onMouseOver);
+          on(this.popper, 'mouseover', this.onMouseOver);
+          on(this.popper, 'focus', this.onMouseOver);
+          on(this.referenceElm, 'mouseout', this.onMouseOut);
+          on(this.referenceElm, 'blur', this.onMouseOut);
+          on(this.popper, 'mouseout', this.onMouseOut);
+          on(this.popper, 'blur', this.onMouseOut);
           break;
         default:
           break;
       }
-    },
-
-    close() {
-      this.showPopper = false;
     },
 
     doToggle(event) {
@@ -271,11 +268,15 @@ export default {
       }
     },
 
-    show() {
+    doShow() {
       this.showPopper = true;
     },
 
-    destroy() {
+    doClose() {
+      this.showPopper = false;
+    },
+
+    doDestroy() {
       if (this.showPopper) {
         return;
       }
@@ -321,7 +322,7 @@ export default {
         }
 
         this.popperOptions.onCreate = () => {
-          this.$emit('created', this);
+          this.$bus.$emit('created', this);
           this.$nextTick(this.updatePopper);
         };
 
@@ -335,16 +336,16 @@ export default {
 
     destroyPopper() {
       off(this.referenceElm, 'click', this.doToggle);
-      off(this.referenceElm, 'mouseup', this.close);
-      off(this.referenceElm, 'mousedown', this.show);
-      off(this.referenceElm, 'focus', this.show);
-      off(this.referenceElm, 'blur', this.close);
-      off(this.referenceElm, 'mouseout', this.mouseoutHandler);
-      off(this.referenceElm, 'mouseover', this.mouseoverHandler);
+      off(this.referenceElm, 'mouseup', this.doClose);
+      off(this.referenceElm, 'mousedown', this.doShow);
+      off(this.referenceElm, 'focus', this.doShow);
+      off(this.referenceElm, 'blur', this.doClose);
+      off(this.referenceElm, 'mouseout', this.onMouseOut);
+      off(this.referenceElm, 'mouseover', this.onMouseOver);
       off(document, 'click', this.handleDocumentClick);
 
       this.showPopper = false;
-      this.destroy();
+      this.doDestroy();
     },
 
     appendArrow(element) {
@@ -367,14 +368,14 @@ export default {
       return test;
     },
 
-    mouseoverHandler() {
+    onMouseOver() {
       clearTimeout(this.mousetimer);
       this.mousetimer = setTimeout(() => {
         this.showPopper = true;
       }, this.delayOnMouseOver);
     },
 
-    mouseoutHandler() {
+    onMouseOut() {
       clearTimeout(this.mousetimer);
       this.mousetimer = setTimeout(() => {
         this.showPopper = false;
