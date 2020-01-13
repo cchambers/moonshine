@@ -16,7 +16,7 @@
           </h3>
         </div>
         <div class="buttons">
-          <button close-trigger tabindex="0"
+          <button close-trigger
           v-hammer:tap="close"
           v-on:keyup.enter="close">
             <belk-icon :name="closeIcon" width="32">Close Button</belk-icon>
