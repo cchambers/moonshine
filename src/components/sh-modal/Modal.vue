@@ -15,11 +15,13 @@
             <slot name="header">{{ header }}</slot>
           </h3>
         </div>
-        <button close-trigger tabindex="0"
-        v-hammer:tap="close"
-        v-on:keyup.enter="close">
-          <belk-icon :name="closeIcon" width="32">Close Button</belk-icon>
-        </button>
+        <div class="buttons">
+          <button close-trigger tabindex="0"
+          v-hammer:tap="close"
+          v-on:keyup.enter="close">
+            <belk-icon :name="closeIcon" width="32">Close Button</belk-icon>
+          </button>
+        </div>
       </div>
       <div class="body" ref="body" :id="ariaDescID" tabindex="-1">
         <div v-if="contentUrl && !loaded" class="loading-anim" v-html="loadHtml"></div>
