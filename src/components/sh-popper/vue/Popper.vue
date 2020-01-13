@@ -198,7 +198,6 @@ export default {
     this.appendedToBody = false;
     this.popperOptions.placement = this.placement;
     this.setUUID();
-    console.log(this.uuid);
   },
 
   mounted() {
