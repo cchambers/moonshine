@@ -1,13 +1,24 @@
 <template>
-  <div class="sh-popper">
-    <div class="popper-target reference" ref="target">
-      <slot name="reference"></slot>
+  <div class="sh-popper"
+    v-bind:class="{ 'touch': mobile }"
+    :active="active">
+    <div class="popper-target" ref="target">
+      <div class="reference">
+        <slot name="reference"></slot>
+      </div>
     </div>
-    <transition :name="transition" @after-leave="doDestroy">
-      <div class="popper-actual" ref="popper" v-show="!disabled && showPopper">
+    <transition
+    :name="transition"
+    @after-leave="doDestroy">
+      <div
+        class="popper-actual"
+        :fill="fill"
+        ref="popper"
+        v-show="!disabled && showPopper">
         <div class="popper-content">
           <slot name="content">{{ content }}</slot>
         </div>
+        <div class="popper-arrow" x-arrow></div>
       </div>
     </transition>
   </div>
@@ -39,11 +50,11 @@ function off(element, event, handler) {
 
 export default {
   mixins: [ComponentPrototype],
-
+  name: 'Popper',
   props: {
-    tagName: {
+    variant: {
       type: String,
-      default: 'span',
+      default: 'default',
     },
     trigger: {
       type: String,
@@ -58,19 +69,28 @@ export default {
     },
     delayOnMouseOver: {
       type: Number,
-      default: 10,
+      default: 200,
     },
     delayOnMouseOut: {
       type: Number,
-      default: 10,
+      default: 200,
     },
     disabled: {
       type: Boolean,
       default: false,
     },
-    enterActiveClass: String,
-    leaveActiveClass: String,
-    boundariesSelector: String,
+    hasCurtain: {
+      type: Boolean,
+      default: false,
+    },
+    fill: {
+      type: Boolean,
+      default: false,
+    },
+    boundariesSelector: {
+      type: String,
+      default: '.documentation',
+    },
     reference: {},
     forceShow: {
       type: Boolean,
@@ -113,14 +133,29 @@ export default {
 
   data() {
     return {
+      active: false,
+      foreground: null,
       referenceElm: null,
       popperJS: null,
       showPopper: false,
+      mobile: false,
       currentPlacement: '',
       content: 'empty',
       popperOptions: {
-        computeStyle: {
-          gpuAcceleration: false,
+        modifiers: {
+          offset: {
+            offset: '0, -3px',
+          },
+          flip: {
+            behavior: ['bottom'],
+          },
+          computeStyle: {
+            x: 'left',
+          },
+          preventOverflow: {
+            padding: 0,
+            priority: ['left', 'right'],
+          },
         },
       },
     };
@@ -129,31 +164,20 @@ export default {
   watch: {
     showPopper(value) {
       if (value) {
-        this.$emit('show', this);
-        if (this.popperJS) {
-          this.popperJS.enableEventListeners();
-        }
+        this.$bus.$emit('popper-opening', this.uuid);
+        if (this.popperJS) this.popperJS.enableEventListeners();
         this.updatePopper();
+        if (this.hasCurtain) this.$bus.$emit('show-curtain', this.foreground);
+        if (this.link) this.link.setAttribute('aria-expanded', true);
+        this.$bus.$emit('popper-opened', this.uuid);
       } else {
-        if (this.popperJS) {
-          this.popperJS.disableEventListeners();
-        }
-        this.$emit('hide', this);
+        this.$bus.$emit('popper-closing', this.uuid);
+        if (this.hasCurtain) this.$bus.$emit('hide-curtain', this);
+        if (this.link) this.link.setAttribute('aria-expanded', false);
+        if (this.popperJS) this.popperJS.disableEventListeners();
+        this.$bus.$emit('popper-closed', this.uuid);
       }
     },
-
-    // showPopper(value) {
-    //   if (value) {
-    //     if (this.popperJS) this.popperJS.enableEventListeners();
-    //     this.updatePopper();
-    //     this.$bus.$emit('show-curtain', this.foreground);
-    //     if (this.link) this.link.setAttribute('aria-expanded', true);
-    //   } else {
-    //     this.$bus.$emit('hide-curtain', this);
-    //     if (this.popperJS) this.popperJS.disableEventListeners();
-    //     if (this.link) this.link.setAttribute('aria-expanded', false);
-    //   }
-    // },
 
     forceShow: {
       handler(value) {
@@ -172,8 +196,8 @@ export default {
   created() {
     this.appendedArrow = false;
     this.appendedToBody = false;
-
     this.popperOptions.placement = this.placement;
+    this.setUUID();
   },
 
   mounted() {
@@ -181,6 +205,26 @@ export default {
   },
 
   methods: {
+    events() {
+      const self = this;
+      this.$bus.$on('popper-opening', (which) => {
+        if (which !== self.uuid) self.doClose();
+      });
+
+      this.$bus.$on('breakpoint-mobile', () => {
+        self.mobile = true;
+      });
+
+      this.$bus.$on('breakpoint-desktop', () => {
+        self.mobile = false;
+      });
+
+      // this.$bus.$on('popper-opening', (el) => {
+      //   if (el === this) return;
+      //   if (self.closingTimer) clearTimeout(self.closingTimer);
+      // });
+    },
+
     ready() {
       if (typeof this.reference === 'string') {
         this.referenceElm = document.querySelector(this.reference);
@@ -263,15 +307,12 @@ export default {
         }
 
         if (this.boundariesSelector) {
-          const boundariesElement = document.querySelector(
-            this.boundariesSelector,
-          );
-
-
+          const boundariesElement = document.querySelector(this.boundariesSelector) || document.querySelector('#main');
           if (boundariesElement) {
             this.popperOptions.modifiers = {
               ...this.popperOptions.modifiers,
             };
+            this.popperOptions.modifiers.offset.offset = this.offset;
             this.popperOptions.modifiers.preventOverflow = {
               ...this.popperOptions.modifiers.preventOverflow,
             };
@@ -280,7 +321,7 @@ export default {
         }
 
         this.popperOptions.onCreate = () => {
-          this.$emit('created', this);
+          this.$bus.$emit('created', this);
           this.$nextTick(this.updatePopper);
         };
 
@@ -352,7 +393,7 @@ export default {
         return;
       }
 
-      this.$emit('documentClick', this);
+      this.$bus.$emit('documentClick', this);
 
       if (this.forceShow) {
         return;

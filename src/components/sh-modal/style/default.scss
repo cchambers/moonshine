@@ -44,6 +44,12 @@
       height: 3rem;
     }
 
+    .buttons {
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+
     div,
     h3 {
       display: flex;
@@ -53,6 +59,12 @@
     h3 {
       margin: 0;
       padding-left: 2rem;
+    }
+
+    button {
+      outline: none;
+      border: none;
+      align-self: flex-end;
     }
   }
 
