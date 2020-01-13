@@ -50,7 +50,6 @@ function off(element, event, handler) {
 
 export default {
   mixins: [ComponentPrototype],
-
   name: 'NavItem',
   props: {
     variant: {
@@ -281,10 +280,13 @@ export default {
         if (this.boundariesSelector) {
           const boundariesElement = document.querySelector(this.boundariesSelector) || document.querySelector('#main');
           if (boundariesElement) {
-            this.popperOptions.modifiers = { ...this.popperOptions.modifiers };
+            this.popperOptions.modifiers = {
+              ...this.popperOptions.modifiers,
+            };
             this.popperOptions.modifiers.offset.offset = this.offset;
-            /* eslint-disable-next-line */
-            this.popperOptions.modifiers.preventOverflow = { ...this.popperOptions.modifiers.preventOverflow };
+            this.popperOptions.modifiers.preventOverflow = {
+              ...this.popperOptions.modifiers.preventOverflow,
+            };
             this.popperOptions.modifiers.preventOverflow.boundariesElement = boundariesElement;
           }
         }
@@ -313,11 +315,10 @@ export default {
     },
 
     updatePopper() {
-      if (this.popperJS) {
-        this.popperJS.scheduleUpdate();
-      } else {
-        this.createPopper();
-      }
+      const test = this.popperJS
+        ? this.popperJS.scheduleUpdate()
+        : this.createPopper();
+      return test;
     },
 
     mouseoverHandler() {
@@ -325,7 +326,7 @@ export default {
         clearTimeout(this.timer);
         this.timer = setTimeout(() => {
           this.$bus.$emit('show-nav', this.uuid);
-          this.showPopper = true;
+          this.$set(this, 'showPopper', true);
         }, this.delayOnMouseOver);
       }
     },

@@ -1,4 +1,6 @@
 /* eslint-disable */
+
+import '@webcomponents/webcomponentsjs/webcomponents-bundle';
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 

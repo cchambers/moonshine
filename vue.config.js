@@ -197,6 +197,15 @@ module.exports = {
         vue$: 'vue/dist/vue.esm.js',
       },
     },
+    module: {
+      rules: [
+        {
+          test: /(\.ts$)|(\.js$)/,
+          exclude: /node_modules\/(?!(@vue\/web-component-wrapper)\/).*/,
+          loader: 'babel-loader',
+        },
+      ]
+    },
     optimization: optimizationSetting,
     plugins: [
       new WrapperPlugin({

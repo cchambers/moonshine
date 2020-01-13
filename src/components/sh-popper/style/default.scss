@@ -1,8 +1,9 @@
 $arrowHeight: 0.8rem;
-$arrowWidth: 2.5rem;
+$arrowWidth: 2.4rem;
 $_aw: $arrowWidth/2;
 
 sh-popper {
+  position: relative;
 
   i {
     pointer-events: none;
@@ -76,6 +77,7 @@ sh-popper {
 
   .popper-actual {
     width: auto;
+    max-width: 102rem;
     z-index: 90;
 
     &[fill] {

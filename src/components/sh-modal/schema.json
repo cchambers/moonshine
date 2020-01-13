@@ -5,5 +5,10 @@
   "element": "sh-modal",
   "description": "Modal component.",
   "tags": ["utilities", "demo"],
-  "requirements": {}
+  "requirements": {
+
+    "mobile": [
+      "dots change to play control"
+    ]
+  }
 }
