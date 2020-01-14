@@ -1273,6 +1273,6 @@ ol.lower-alpha {
   display: none !important;
 }
 
-// [interaction='keyboard'] *:focus {
-//   outline: 1px solid $accent-primary;
-// }
+[interaction='mouse'] *:focus {
+  outline: none !important;
+}
