@@ -14,11 +14,11 @@
     <div v-if="!hideControls" class="controls">
       <button :aria-controls="carouselId"
         v-if="!hideArrows" class="arrow next" v-hammer:tap="nextHandler">
-        {{ nextIcon }}
+        <belk-icon width="20" :name="nextArrow"></belk-icon>
       </button>
       <button :aria-controls="carouselId"
         v-if="!hideArrows" class="arrow previous" v-hammer:tap="previousHandler">
-        {{ previousIcon }}
+        <belk-icon width="20" :name="previousArrow"></belk-icon>
       </button>
       <ul v-if="!hideDots" ref="dots" class="dots"></ul>
       <button :aria-controls="carouselId"
