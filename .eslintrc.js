@@ -4,4 +4,7 @@ module.exports = {
     browser: true,
     node: true,
   },
+  rules: {
+    'linebreak-style': 0,
+  },
 };

@@ -53,6 +53,7 @@ Shine creates a local component library that can be managed and deployed as temp
   - Install GIT: https://git-scm.com/download/win
   - Install NVM for Windows: https://github.com/coreybutler/nvm-windows
   - Install Yarn via Installer (https://yarnpkg.com/latest.msi) OR Chocolatey (`choco install yarn`)
+  - Install Windows Node Environment Variable handler globally: `npm install -g win-node-env`
 
 #### Install Shine
   - In your command line interface, navigate to the folder that you want the Shine project to reside in. ex: `mkdir Sites | cd Sites`
