@@ -11,7 +11,7 @@ const ComponentPrototype = {
   props: {
     variant: {
       type: String,
-      value: 'default',
+      default: 'default',
     },
   },
 
@@ -53,7 +53,8 @@ const ComponentPrototype = {
       if (session) {
         sessionStorage.setItem(which, JSON.stringify(val));
       } else {
-        localStorage.setItem(which, JSON.stringify(val));
+        const test = JSON.stringify(val);
+        localStorage.setItem(which, test);
       }
       return true;
     },

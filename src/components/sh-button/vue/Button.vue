@@ -4,6 +4,7 @@
     :close-trigger="closeTrigger"
     v-hammer:tap="tapHandler"
     :value="defaultValue"
+    v-bind:role="{ link: link }"
     class="sh-button">
     <slot name="before-text"></slot>
     <slot></slot>
@@ -32,6 +33,7 @@ export default {
     clickEvent: String,
     defaultValue: String,
     active: Boolean,
+    link: Boolean,
   },
 
   data() {
@@ -40,6 +42,10 @@ export default {
       emitData: null,
       buttonEl: this.$refs.button,
     };
+  },
+
+  created() {
+    // console.log('BUTTON CREATED');
   },
 
   mounted() {

@@ -1,21 +1,23 @@
 <template>
   <div class="sh-dropnav" v-bind:class="{ 'is-open': isOpen }">
-    <div hidden><slot></slot></div>
-    <button ref="button" v-hammer:tap="toggleOpen">{{ activeItem }}</button>
-    <ul class="item-container">
-      <li v-for="(item, index) in items" v-bind:key="item.key">
-        <div v-if="!item.hidden"
-        v-bind:class="{ 'active': item.active }"
-        :data-key="index"
-        :href="item.link"
-        v-hammer:tap="clickHandler">{{ item.text }}</div>
-      </li>
-    </ul>
+    <div class="wrapper">
+      <div hidden><slot></slot></div>
+      <button ref="button" v-hammer:tap="toggleOpen">{{ activeItem }}</button>
+      <ul class="item-container">
+        <li v-for="(item, index) in items" v-bind:key="item.key">
+          <div v-if="!item.hidden"
+          v-bind:class="{ 'active': item.active }"
+          :data-key="index"
+          :href="item.link"
+          v-hammer:tap="clickHandler">{{ item.text }}</div>
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 
 <script>
-import ComponentPrototype from '../../component-prototype';
+import ComponentPrototype from '../component-prototype';
 
 export default {
   mixins: [ComponentPrototype],
@@ -101,6 +103,10 @@ export default {
     activate(key) {
       const item = this.items[key];
       this.$set(item, 'active', true);
+      this.$bus.$emit('dropnav-value-changed', {
+        el: this,
+        value: item,
+      });
       this.$emit('selected', item);
     },
 
@@ -112,5 +118,5 @@ export default {
 };
 </script>
 
-<style lang="scss" src="../style/default.scss"></style>
-<style lang="scss" src="../style/primary.scss"></style>
+<style lang="scss" src="./style/default.scss"></style>
+<style lang="scss" src="./style/primary.scss"></style>

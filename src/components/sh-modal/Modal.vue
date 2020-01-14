@@ -1,3 +1,4 @@
+
 <template>
   <div class="sh-modal" role="dialog"
     :variant="variant"
@@ -14,13 +15,15 @@
             <slot name="header">{{ header }}</slot>
           </h3>
         </div>
-        <div close-trigger tabindex="0"
-        v-hammer:tap="close"
-        v-on:keyup.enter="close">
-          <belk-icon :name="closeIcon" width="32"></belk-icon>
+        <div class="buttons">
+          <button close-trigger
+          v-hammer:tap="close"
+          v-on:keyup.enter="close">
+            <belk-icon :name="closeIcon" width="32">Close Button</belk-icon>
+          </button>
         </div>
       </div>
-      <div class="body" ref="body" :id="ariaDescID">
+      <div class="body" ref="body" :id="ariaDescID" tabindex="-1">
         <div v-if="contentUrl && !loaded" class="loading-anim" v-html="loadHtml"></div>
         <div>
           <slot>{{ content }}</slot>
@@ -36,6 +39,7 @@
 </template>
 
 <script>
+/* eslint-disable no-restricted-globals */
 import ComponentPrototype from '../component-prototype';
 
 export default {
@@ -107,7 +111,12 @@ export default {
     } else {
       self.createContainer();
     }
-    if (window.location.hash) self.hashHandler(window.location.hash.substr(1));
+    if (window.location.hash) {
+      self.hashHandler({
+        hash: window.location.hash.substr(1),
+        event: false,
+      });
+    }
 
     if (self.openTriggerEvent) self.$bus.$on(self.openTriggerEvent, self.open);
     if (self.closeTriggerEvent) self.$bus.$on(self.closeTriggerEvent, self.close);
@@ -150,44 +159,63 @@ export default {
       if (hash === '') {
         if (this.active) this.close(false);
       } else if (hash === this.uniqueId) {
-        event.preventDefault();
+        if (event) event.preventDefault();
         this.open();
       }
     },
 
     open() {
-      const self = this;
-      if (!self.loaded && self.contentUrl) self.loadContent();
+      if (!this.loaded && this.contentUrl) this.loadContent();
 
-      if (self.overlay) {
-        self.container.setAttribute('overlay', self.overlay);
+      if (this.overlay) {
+        this.container.setAttribute('overlay', this.overlay);
       } else {
-        self.container.removeAttribute('overlay');
+        this.container.removeAttribute('overlay');
       }
 
-      if (!self.active) {
-        self.$bus.$emit('modal-opening', self.uniqueId);
+      if (!this.active) {
+        this.$bus.$emit('modal-opening', this.uniqueId);
         document.documentElement.classList.add('sh-modal-open');
-        self.active = true;
-        self.$el.focus();
-        self.$bus.$emit('modal-opened', self.uniqueId);
+        this.active = true;
+        this.$el.focus();
+        this.$bus.$emit('modal-opened', this.uniqueId);
       }
 
-      if (self.focusTarget) {
-        const target = self.$el.querySelector(self.focusTarget);
+      if (this.focusTarget) {
+        const target = this.$el.querySelector(this.focusTarget);
         if (target) target.focus();
       }
     },
 
     close(clearHash = true) {
-      const self = this;
       if (this.active) {
-        self.$bus.$emit('modal-closing', this.uniqueId);
+        this.$bus.$emit('modal-closing', this.uniqueId);
         document.documentElement.classList.remove('sh-modal-open');
         this.active = false;
-        self.$bus.$emit('modal-closed', this.uniqueId);
+        this.$bus.$emit('modal-closed', this.uniqueId);
       }
-      if (clearHash) window.location.hash = '';
+      if (clearHash) this.clearHash();
+    },
+
+    clearHash() {
+      let scrollV;
+      let scrollH;
+      const loc = window.location;
+      if ('pushState' in history) {
+        if (!this.noState) {
+          history.pushState('', document.title, loc.pathname + loc.search);
+        } else {
+          history.replaceState('', document.title, loc.pathname + loc.search);
+        }
+      } else {
+        // Prevent scrolling by storing the page's current scroll offset
+        scrollV = document.body.scrollTop;
+        scrollH = document.body.scrollLeft;
+        loc.hash = '';
+        // Restore the scroll offset, should be flicker free
+        document.body.scrollTop = scrollV;
+        document.body.scrollLeft = scrollH;
+      }
     },
 
     loadContent() {
@@ -197,10 +225,10 @@ export default {
 
     configureTriggers() {
       const self = this;
-      const selector = `[modal-trigger="${this.uniqueId}"]`;
-      this.triggers = document.querySelectorAll(selector);
-      for (let x = 0; x < this.triggers.length; x += 1) {
-        const el = this.triggers[x];
+      const selector = `[modal-trigger="${self.uniqueId}"]`;
+      self.triggers = document.querySelectorAll(selector);
+      for (let x = 0; x < self.triggers.length; x += 1) {
+        const el = self.triggers[x];
         el.addEventListener('click', (e) => {
           e.preventDefault();
           window.location.hash = `#${self.uniqueId}`;
@@ -208,10 +236,10 @@ export default {
       }
 
       const closeSelector = '[close-trigger]';
-      this.closeTriggers = this.$el.querySelectorAll(closeSelector);
+      self.closeTriggers = self.$el.querySelectorAll(closeSelector);
 
-      for (let y = 0; y < this.closeTriggers.length; y += 1) {
-        const el = this.closeTriggers[y];
+      for (let y = 0; y < self.closeTriggers.length; y += 1) {
+        const el = self.closeTriggers[y];
         el.addEventListener('click', self.close);
       }
     },
@@ -221,18 +249,21 @@ export default {
       const container = document.createElement('div');
       container.id = 'sh-modals';
       document.body.appendChild(container);
-      this.container = container;
-      this.container.addEventListener('click', (e) => {
-        if (e.target === this.container) self.$bus.$emit('close-modals');
+      self.container = container;
+      self.container.addEventListener('click', (e) => {
+        if (e.target === self.container) self.$bus.$emit('close-modals');
       });
-      this.mountToContainer();
+      self.mountToContainer();
     },
 
     mountToContainer() {
-      const id = this.uniqueId;
+      const self = this;
+      const id = self.uniqueId;
       const exists = document.querySelector(`#sh-modals #${id}`);
       if (exists) exists.remove();
-      this.container.appendChild(this.$el);
+      setTimeout(() => {
+        self.container.appendChild(self.$el);
+      });
     },
 
     doError() {
@@ -242,7 +273,7 @@ export default {
     ajax() {
       const self = this;
       const xhr = new XMLHttpRequest();
-      xhr.open('GET', this.contentUrl);
+      xhr.open('GET', self.contentUrl);
       xhr.send(null);
       xhr.onreadystatechange = () => {
         const DONE = 4; // readyState 4 means the request is done.

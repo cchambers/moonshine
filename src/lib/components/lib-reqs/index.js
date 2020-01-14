@@ -1,4 +1,6 @@
 import Vue from 'vue';
+import wrap from '../../../components/wrapper';
 import LibReqs from './vue/LibReqs.vue';
 
-Vue.customElement('lib-reqs', LibReqs);
+const Wrapped = wrap(Vue, LibReqs);
+window.customElements.define('lib-reqs', Wrapped);

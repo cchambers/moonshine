@@ -15,7 +15,7 @@
               <a href="/stores/" fill="store">Find a Store</a>
             </div>
 
-            <sh-nav-item boundaries-selector="#primary-nav" variant="primary" vce-cloak has-arrow foreground-selector="#header .primary">
+            <sh-nav-item boundaries-selector="#primary-nav" variant="primary" has-arrow foreground-selector="#header .primary">
               <div slot="reference" id="rewards-link">
                 <a href="#">
                   Belk <span fill-data="user-tier">&nbsp;</span> Rewards
@@ -30,7 +30,7 @@
               </div>
             </sh-nav-item>
 
-            <sh-nav-item boundaries-selector="#primary-nav" variant="primary" vce-cloak has-arrow foreground-selector="#header .primary">
+            <sh-nav-item boundaries-selector="#primary-nav" variant="primary" has-arrow foreground-selector="#header .primary">
               <div slot="reference" id="giftcards-link">
                 <a href="#">
                   Gift Cards
@@ -60,11 +60,11 @@
             <belk-logo class="logo" variant="header" width="96"></belk-logo>
           </a>
 
-          <belk-search vce-cloak></belk-search>
+          <belk-search ></belk-search>
 
           <sh-modal unique-id="search-modal" variant="secondary" fullscreen hide-header>
             <div class="flex sticky cross-middle">
-                <belk-search id="mobile-search" vce-cloak variant="modal" class="flex-item double"></belk-search>
+                <belk-search id="mobile-search"  variant="modal" class="flex-item double"></belk-search>
                 
                 <div class="sh-button close-search" tabindex="0" click-event="close-search" close-trigger aria-label="closes modal">
                   Cancel
@@ -79,7 +79,7 @@
               <div class="iconbar-context">Coupons</div>
             </a>
 
-            <sh-nav-item vce-cloak class="iconbar-action account-action" variant="primary" has-arrow foreground-selector="#header .belk-header">
+            <sh-nav-item class="iconbar-action account-action" variant="primary" has-arrow foreground-selector="#header .belk-header">
               <a
                 slot="reference"
                 id="signin-link"
@@ -100,7 +100,7 @@
               </div>
             </sh-nav-item>
 
-            <sh-nav-item vce-cloak class="iconbar-action minibag-action" variant="primary" foreground-selector="#header .belk-header">
+            <sh-nav-item class="iconbar-action minibag-action" variant="primary" foreground-selector="#header .belk-header">
               <belk-bag
                 slot="reference"
                 id="bag-link"
@@ -119,4 +119,4 @@
     </div>
   </header>
 </div>
-<sh-curtain vce-cloak id="curtain"></sh-curtain>
+<sh-curtain id="curtain"></sh-curtain>

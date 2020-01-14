@@ -1,4 +1,6 @@
 /* eslint-disable */
+
+import '@webcomponents/webcomponentsjs/webcomponents-bundle';
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 
@@ -14,10 +16,6 @@ import './assets/script/polyfills.js'
 /* HammerJS (touch support) */
 import { VueHammer } from 'vue2-hammer';
 Vue.use(VueHammer);
-
-/* Vue Custom Element */
-import vueCustomElement from 'vue-custom-element';
-Vue.use(vueCustomElement);
 
 /* This disables warnings caused by 'undefined vue components' that are actually defined. vce-workaround */
 Vue.config.ignoredElements = [ /.*/ ]

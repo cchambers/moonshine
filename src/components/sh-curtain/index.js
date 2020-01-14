@@ -1,4 +1,6 @@
 import Vue from 'vue';
+import wrap from '../wrapper';
 import Curtain from './Curtain.vue';
 
-Vue.customElement('sh-curtain', Curtain);
+const Wrapped = wrap(Vue, Curtain);
+window.customElements.define('sh-curtain', Wrapped);

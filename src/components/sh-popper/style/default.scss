@@ -1,9 +1,194 @@
-/* default styling */
+$arrowHeight: 0.8rem;
+$arrowWidth: 2.4rem;
+$_aw: $arrowWidth/2;
 
 sh-popper {
-  .actual > * {
-    background: $lowlight-primary;
-    color: $highlight-primary;
+  position: relative;
+
+  i {
+    pointer-events: none;
   }
-  // TODO: enter-active-class demos
+
+  .sh-popper {
+    display: inline-block;
+    color: $lowlight-primary;
+
+    &:hover {
+      .reference a {
+        background: $highlight-secondary;
+      }
+    }
+  }
+
+  .popper-target {
+    border-bottom: none;
+    display: inline-flex;
+    cursor: pointer;
+
+    button {
+      display: none;
+    }
+
+    .reference {
+      position: relative;
+    }
+
+    a {
+      position: relative;
+      display: flex;
+      align-items: center;
+      transition: all 150ms $ease;
+      color: $lowlight-primary;
+      cursor: pointer;
+    }
+
+    .belk-icon {
+      display: flex;
+    }
+  }
+
+  .fold-in {
+    background: red;
+  }
+
+  .popper-arrow {
+    width: 0;
+    height: 0;
+    border-style: solid;
+    position: absolute;
+    margin: $_aw;
+    z-index: 0;
+    border-width: $_aw;
+
+    &::before {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 1px;
+      left: 0;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: inherit;
+      border-color: transparent;
+      transform: translateX(-50%);
+    }
+  }
+
+  .popper-actual {
+    width: auto;
+    max-width: 102rem;
+    z-index: 90;
+
+    &[fill] {
+      width: 100%;
+    }
+
+    &[x-placement^="top"] {
+      margin-bottom: $arrowHeight;
+    }
+
+    &[x-placement^="top"] .popper-arrow {
+      border-top-width: $arrowHeight;
+      border-bottom-width: 0;
+      border-color: $lowlight-primary transparent transparent transparent;
+      bottom: -$arrowHeight;
+      left: 50%;
+      margin-top: 0;
+      margin-bottom: 0;
+
+      &::before {
+        top: 1px;
+        border-color: $highlight-primary transparent transparent transparent;
+      }
+    }
+
+    &[x-placement^="bottom"] {
+      margin-top: $arrowHeight;
+    }
+
+    &[x-placement^="bottom"] .popper-arrow {
+      border-top-width: 0;
+      border-bottom-width: $arrowHeight;
+      border-color: transparent transparent $lowlight-primary transparent;
+      top: -$arrowHeight;
+      left: 50%;
+      margin-top: 0;
+      margin-bottom: 0;
+
+      &::before {
+        border-color: transparent transparent $highlight-primary transparent;
+      }
+    }
+
+    &[x-placement^="right"] {
+      margin-left: $_aw;
+    }
+
+    &[x-placement^="right"] .popper-arrow {
+      border-width: $arrowHeight $_aw $_aw 0;
+      border-color: transparent $lowlight-primary transparent transparent;
+      left: -$_aw;
+      top: calc(50% - #{ $_aw });
+      margin-left: 0;
+      margin-right: 0;
+    }
+
+    &[x-placement^="left"] {
+      margin-right: $_aw;
+    }
+
+    &[x-placement^="left"] .popper-arrow {
+      border-width: $_aw 0 $_aw $arrowHeight;
+      border-color: transparent transparent transparent $lowlight-primary;
+      right: -$_aw;
+      top: calc(50% - #{ $_aw });
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
+
+  .popper-content {
+    background: $highlight-primary;
+    color: $lowlight-primary;
+    padding: 1rem;
+    border: 1px solid $lowlight-primary;
+
+    ul {
+      margin: 0;
+      padding: 0;
+
+      li {
+        list-style: none;
+        white-space: nowrap;
+
+        a {
+          display: block;
+          color: currentColor;
+          padding: 0.6rem;
+
+          &:hover {
+            background-color: $highlight-secondary;
+          }
+        }
+      }
+    }
+  }
+
+  .fade-enter-active,
+  .fade-leave-active {
+    transition: opacity 250ms $ease;
+  }
+
+  .fade-enter,
+  .fade-leave-to
+
+  /* .fade-leave-active below version 2.1.8 */
+    {
+    opacity: 0;
+  }
+
+  belk-icon.arrow-down {
+    align-self: flex-end;
+  }
 }

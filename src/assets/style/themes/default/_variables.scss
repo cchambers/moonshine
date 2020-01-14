@@ -16,6 +16,15 @@ $accent-tertiary: rgb(157, 208, 230);
 $accent-quaternary: rgb(129, 177, 210);
 $accent-quinary: rgb(0, 131, 186);
 
+$brand-belkblue: #0033a1;
+$brand-wildfuscia: #df1783;
+$brand-classicblue: #0071ce;
+$brand-deepteal: #00afa8;
+$brand-festivelime: #c2d500;
+$brand-goldenhour: #ffda00;
+$brand-peachyred: #fd495c;
+$brand-mysticpurple: #773dbd;
+
 $colors: (
   "highlight-primary": $highlight-primary,
   "highlight-secondary": $highlight-secondary,
@@ -32,6 +41,14 @@ $colors: (
   "accent-tertiary": $accent-tertiary,
   "accent-quaternary": $accent-quaternary,
   "accent-quinary": $accent-quinary,
+  "brand-belkblue": #0033a1,
+  "brand-wildfuscia": #df1783,
+  "brand-classicblue": #0071ce,
+  "brand-deepteal": #00afa8,
+  "brand-festivelime": #c2d500,
+  "brand-goldenhour": #ffda00,
+  "brand-peachyred": #fd495c,
+  "brand-mysticpurple": #773dbd,
 );
 
 $break-sm: 480px;
@@ -63,6 +80,7 @@ $base: 3;
 $rem: #{$base}rem;
 
 $mod-amounts: (
+  "eighth": #{$base/8}rem,
   "quarter": #{$base/4}rem,
   "half": #{$base/2}rem,
   "default": $rem,
@@ -74,4 +92,4 @@ $ease: cubic-bezier(0.4, 0, 0.2, 1);
 $decel: cubic-bezier(0, 0, 0.2, 1);
 $accel: cubic-bezier(0.4, 0, 1, 1);
 
-$docsGradient: linear-gradient(45deg, var(--classicblue), var(--deepteal));
+$docsGradient: linear-gradient(45deg, var(--brand-classicblue), var(--brand-deepteal));

@@ -1,4 +1,6 @@
 import Vue from 'vue';
+import wrap from '../wrapper';
 import BelkHeader from './vue/BelkHeader.vue';
 
-Vue.customElement('belk-header', BelkHeader);
+const Wrapped = wrap(Vue, BelkHeader);
+window.customElements.define('belk-header', Wrapped);

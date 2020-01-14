@@ -1,4 +1,6 @@
 import Vue from 'vue';
+import wrap from '../../../components/wrapper';
 import ControlPanel from './vue/ControlPanel.vue';
 
-Vue.customElement('lib-control-panel', ControlPanel);
+const Wrapped = wrap(Vue, ControlPanel);
+window.customElements.define('lib-control-panel', Wrapped);
