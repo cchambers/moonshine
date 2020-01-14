@@ -3,6 +3,9 @@ belk-search {
   position: relative;
   max-width: 60rem;
   height: 3.2rem;
+  width: 100%;
+  align-items: center;
+  margin: 0 auto;
 
   @media (min-width: breakpoint("md")) {
     height: 4rem;
@@ -23,7 +26,7 @@ belk-search {
     border: 2px solid $lowlight-primary;
     border-radius: 1rem;
     transition: box-shadow 250ms $ease;
-    z-index: 7;
+    z-index: 30;
 
     &.active {
       @include box-shadow(1);
@@ -69,6 +72,7 @@ belk-search {
     button {
       justify-content: center;
       cursor: pointer;
+      padding: 0 1rem;
     }
 
     ul {
@@ -123,6 +127,16 @@ belk-search {
 
       &.active {
         display: block;
+      }
+    }
+
+    .search-recent {
+      .sh-button {
+        color: var(--accent-secondary);
+        font-size: 1.4rem;
+        font-weight: 00;
+        text-decoration: underline;
+        text-transform: none;
       }
     }
 
