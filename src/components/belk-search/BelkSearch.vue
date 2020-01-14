@@ -416,7 +416,7 @@ export default {
       this.isFocused = true;
       this.selectInput();
 
-      if (this.isMobile()) {
+      if (this.isMobile() && this.variant !== 'modal') {
         this.triggerModalSearch();
       }
     },
@@ -424,7 +424,6 @@ export default {
     triggerModalSearch() {
       window.location.hash = 'search-modal';
       this.$bus.$emit('focus-search', 'mobile-search');
-      setTimeout(() => { this.isFocused = true; this.log('this is focused?'); }, 5000);
     },
 
     placeholderHandler() {
@@ -439,6 +438,7 @@ export default {
     selectInput() {
       const self = this;
       setTimeout(() => {
+        self.inputEl.focus();
         self.inputEl.setSelectionRange(0, self.value.length);
       }, 10);
     },
