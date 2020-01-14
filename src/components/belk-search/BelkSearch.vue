@@ -412,11 +412,12 @@ export default {
       }
     },
 
-    focusHandler(mobileCheck = true) {
+    focusHandler(e) {
       this.isFocused = true;
       this.selectInput();
 
-      if (this.isMobile() && mobileCheck) {
+      if (this.isMobile()) {
+        e.preventDefault();
         this.triggerModalSearch();
       }
     },
@@ -622,7 +623,7 @@ export default {
     },
 
     isMobile() {
-      return window.matchMedia('(max-width: 959px)');
+      return window.matchMedia('(max-width: 959px)').matches;
     },
 
     suggestionHoverHandler(val) {

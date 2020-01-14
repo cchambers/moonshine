@@ -87,6 +87,7 @@ belk-search {
       padding: 1rem;
       transition: background 250ms $ease;
       color: $lowlight-primary;
+      text-decoration: none;
 
       &:hover {
         color: $lowlight-primary;
@@ -134,7 +135,7 @@ belk-search {
       .sh-button {
         color: var(--accent-secondary);
         font-size: 1.4rem;
-        font-weight: 00;
+        font-weight: 400;
         text-decoration: underline;
         text-transform: none;
       }
