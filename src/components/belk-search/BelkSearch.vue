@@ -412,12 +412,11 @@ export default {
       }
     },
 
-    focusHandler(e) {
+    focusHandler() {
       this.isFocused = true;
       this.selectInput();
 
       if (this.isMobile()) {
-        e.preventDefault();
         this.triggerModalSearch();
       }
     },
@@ -425,6 +424,7 @@ export default {
     triggerModalSearch() {
       window.location.hash = 'search-modal';
       this.$bus.$emit('focus-search', 'mobile-search');
+      setTimeout(() => { this.isFocused = true; this.log('this is focused?'); }, 5000);
     },
 
     placeholderHandler() {
@@ -587,6 +587,10 @@ export default {
     },
 
     buildSearchLink(q) {
+      const dev = (window.location.href.indexOf('belk.demand') >= 0) || (window.location.href.indexOf('localhost') >= 0);
+      // sandbox
+      if (dev) return `${window.location.origin}/on/demandware.store/Sites-Belk-Site/default/Search-Show?q=${q}&lang=default`;
+      // Other environments
       return `${window.location.origin}/search/?q=${q}&lang=default`;
     },
 
