@@ -27,3 +27,4 @@ src/components/all.json
 *.njsproj
 *.sln
 *.sw?
+.env
