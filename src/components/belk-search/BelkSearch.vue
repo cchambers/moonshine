@@ -347,6 +347,7 @@ export default {
 
       window.addEventListener('resize', self.placeholderHandler);
       window.addEventListener('navitem-opening', self.forceBlur);
+      if (this.variant === 'modal') self.$bus.$on('focus-search', self.focusHandler);
     },
 
     searchTermHandler(data) {
