@@ -75,4 +75,13 @@ sh-carousel[variant="primary"] {
       }
     }
   }
+
+  &[hide-controls] {
+    margin: 0;
+  }
+
+  &[hide-arrows] {
+    margin-left: 0;
+    margin-right: 0;
+  }
 }

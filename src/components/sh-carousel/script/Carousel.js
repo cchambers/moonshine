@@ -57,6 +57,7 @@ export default {
       nextArrow: 'arrow-right',
       paused: false,
       playing: false,
+      playLabel: '',
       playTimer: {},
       carouselId: 'c',
     };
@@ -105,6 +106,10 @@ export default {
       });
 
       if (this.userTriggered) this.focus();
+    },
+
+    paused(val) {
+      this.playLabel = (val) ? 'Start automatic slide show' : 'Stop automatic slide show';
     },
   },
 
