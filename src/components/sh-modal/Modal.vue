@@ -64,7 +64,9 @@ export default {
     hideHeader: Boolean,
     fullscreen: Boolean,
     openTriggerEvent: String,
+    openedEvent: String,
     closeTriggerEvent: String,
+    closedEvent: String,
     focusTarget: String,
     header: String,
     footer: String,
@@ -179,6 +181,7 @@ export default {
         this.active = true;
         this.$el.focus();
         this.$bus.$emit('modal-opened', this.uniqueId);
+        if (this.openedEvent) this.$bus.$emit(this.openedEvent, this.uniqueId);
       }
 
       if (this.focusTarget) {
@@ -193,6 +196,7 @@ export default {
         document.documentElement.classList.remove('sh-modal-open');
         this.active = false;
         this.$bus.$emit('modal-closed', this.uniqueId);
+        if (this.closedEvent) this.$bus.$emit(this.closedEvent, this.uniqueId);
       }
       if (clearHash) this.clearHash();
     },
