@@ -23,11 +23,8 @@
       <ul v-if="!hideDots" ref="dots" class="dots"></ul>
       <button :aria-controls="carouselId"
         class="button play"
-        :aria-label="{
-          'Stop automatic slide show': playing,
-          'Start automatic slide show': !playing,
-          }"
-          :disabled="isFocused"
+        :aria-label="playLabel"
+        :disabled="isFocused"
         v-hammer:tap="play">
         {{ mode }}
       </button>
