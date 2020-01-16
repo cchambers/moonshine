@@ -252,8 +252,11 @@ export default {
     },
 
     value(val) {
-      if (this.inputEl.value !== val) this.inputEl.value = val;
-      this.valueLength = val.length;
+      console.log('Value is ', val);
+      if (val !== '' && val !== undefined) {
+        if (this.inputEl.value !== val) this.inputEl.value = val;
+        this.valueLength = val.length;
+      }
     },
 
     recents(arr) {
@@ -354,8 +357,8 @@ export default {
     },
 
     focusSearchHandler(data) {
-      this.log(this.id);
-      this.log(data.id);
+      // this.log(this.id);
+      // this.log(data.id);
       if (data.id !== this.id) return;
       this.focusHandler(false);
     },
