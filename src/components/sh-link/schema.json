@@ -1,9 +1,9 @@
 {
   "name": "Link",
-  "category": "uncategorized",
+  "category": "components",
   "production": false,
   "element": "sh-link",
-  "description": "Demonstration component.",
-  "tags": ["utilities", "demo"],
+  "description": "Pre-built links.",
+  "tags": ["utilities"],
   "requirements": {}
 }
