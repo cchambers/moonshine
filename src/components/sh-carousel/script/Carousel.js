@@ -53,13 +53,18 @@ export default {
       dots: [],
       list: [],
       active: null,
-      previousIcon: 'prev',
-      nextIcon: 'next',
+      previousArrow: 'arrow-left',
+      nextArrow: 'arrow-right',
       paused: false,
       playing: false,
+      playLabel: '',
       playTimer: {},
       carouselId: 'c',
     };
+  },
+
+  created() {
+    this.setArrowIcon();
   },
 
   computed: {
@@ -102,9 +107,20 @@ export default {
 
       if (this.userTriggered) this.focus();
     },
+
+    paused(val) {
+      this.playLabel = (val) ? 'Start automatic slide show' : 'Stop automatic slide show';
+    },
   },
 
   methods: {
+    setArrowIcon() {
+      if (this.vertical) {
+        this.previousArrow = 'arrow-up';
+        this.nextArrow = 'arrow-down';
+      }
+    },
+
     events() {
       const resizeDebounced = this.debounce(this.autoSize, 100);
       window.addEventListener('resize', resizeDebounced, true);

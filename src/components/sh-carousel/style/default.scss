@@ -14,17 +14,17 @@ sh-carousel {
     .controls {
       >* {
         height: 4.5rem;
-        color: $accent-tertiary;
+        color: $lowlight-primary;
         display: flex;
         align-content: center;
         align-items: center;
         justify-content: center;
         cursor: pointer;
         position: absolute;
-        border-radius: 5px;
+        // border-radius: 5px;
         outline: 0;
-        border: 1px solid $lowlight-primary;
-        background: $lowlight-primary;
+        border: 1px solid $highlight-primary;
+        background: $highlight-primary;
       }
 
       .dots {
