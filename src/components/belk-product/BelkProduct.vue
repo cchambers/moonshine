@@ -42,7 +42,7 @@ export default {
     brand: String,
     sale_price_range: String,
     sale_price: String,
-    price_range: String,
+    price_range: Array,
     thumb_image: String,
   },
 
