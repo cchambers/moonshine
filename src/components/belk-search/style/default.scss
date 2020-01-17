@@ -92,6 +92,7 @@ belk-search {
       transition: background 250ms $ease;
       color: $lowlight-primary;
       text-decoration: none;
+      box-sizing: border-box;
 
       &:hover {
         color: $lowlight-primary;

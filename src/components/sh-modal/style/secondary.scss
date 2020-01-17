@@ -1,5 +1,7 @@
 .sh-modal[variant="secondary"] {
   display: block;
+  position: fixed;
+  top: 0;
 
   &#search-modal {
     transition: none;

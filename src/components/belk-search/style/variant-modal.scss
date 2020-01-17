@@ -12,6 +12,8 @@ belk-search[variant="modal"] {
         right: 0;
         top: 51px;
         -webkit-overflow-scrolling: touch;
+        height: calc(100vh - 130px);
+        box-sizing: border-box;
     }
 
     & + .sh-button {
