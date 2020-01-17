@@ -9,7 +9,7 @@
   overflow: hidden;
   opacity: 0;
   pointer-events: none;
-  display: flex;
+  display: none !important;
   align-items: center;
   flex-direction: column;
 
@@ -33,6 +33,7 @@
   &.active {
     transform: translateX(0) translateY(0) translateZ(0) scale(1);
     opacity: 1;
+    display: flex !important;
   }
 
   .header {

@@ -345,14 +345,13 @@ export default {
       const self = this;
       document.addEventListener('click', (e) => {
         if (!self.$el || self.elementContains(self.$el, e.target)) return;
-        self.isFocused = false;
+        if (this.variant !== 'modal') self.isFocused = false;
       });
 
       self.$on('active-descendant', self.activeDescendantHandler);
       self.$bus.$on('navitem-opening', self.forceBlur);
       self.$bus.$on('close-search', self.forceBlur);
       self.$bus.$on('search-term', self.searchTermHandler);
-      self.$bus.$on('focus-search', self.focusSearchHandler);
 
       window.addEventListener('resize', self.placeholderHandler);
       window.addEventListener('navitem-opening', self.forceBlur);
@@ -367,13 +366,6 @@ export default {
       console.log('MODAL HANDLER');
       this.inputEl.focus();
       this.focusHandler();
-    },
-
-    focusSearchHandler(data) {
-      // this.log(this.id);
-      // this.log(data.id);
-      if (data.id !== this.id) return;
-      this.focusHandler(false);
     },
 
     searchTermHandler(data) {
@@ -429,38 +421,37 @@ export default {
     },
 
     focusHandler() {
-      this.isFocused = true;
-      this.selectInput();
-
       if (this.isMobile() && this.variant !== 'modal') {
         this.triggerModalSearch();
+      } else {
+        this.isFocused = true;
+        this.selectInput();
       }
-      console.log('Ran FocusHandler');
     },
 
     triggerModalSearch() {
+      console.log('Ran triggerModalSearch');
       window.location.hash = 'search-modal';
       this.$bus.$emit('focus-search', 'mobile-search');
-      console.log('Ran triggerModalSearch');
     },
 
     placeholderHandler() {
+      console.log('Ran placeholderHandler');
       const self = this;
       clearTimeout(self.placeholderTimer);
       self.placeholderTimer = setTimeout(() => {
         const text = (window.innerWidth < 768) ? self.lowerPlaceholder : self.upperPlaceholder;
         self.placeholder = text;
       }, 100);
-      console.log('Ran placeholderHandler');
     },
 
     selectInput() {
+      console.log('Ran selectInput');
       const self = this;
       setTimeout(() => {
         self.inputEl.focus();
         self.inputEl.setSelectionRange(0, self.value.length);
       }, 10);
-      console.log('Ran selectInput');
     },
 
     removeHighlight(arr) {
