@@ -3,13 +3,12 @@ belk-search[variant="modal"] {
     width: auto;
 
     .belk-search.focused .search-results {
-        border-top: 1px solid;
         bottom: 0;
         left: 0;
         overflow: scroll;
         position: fixed;
         right: 0;
-        top: 50px;
+        top: 51px;
         -webkit-overflow-scrolling: touch;
     }
 

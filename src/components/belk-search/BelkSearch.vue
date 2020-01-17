@@ -133,6 +133,10 @@ export default {
       type: String,
       default: 'What can we help you find?',
     },
+    variant: {
+      type: String,
+      default: 'default',
+    },
   },
 
   data() {
@@ -219,7 +223,7 @@ export default {
         self.suggestTerm = self.searchValue;
         self.$bus.$emit('search-term', {
           el: self.uuid,
-          term: val.response.q,
+          term: val.response.q || '',
         });
         self.count = self.suggestions.length || 0;
         if (self.count === 0) {
@@ -253,10 +257,8 @@ export default {
 
     value(val) {
       console.log('Value is ', val);
-      if (val !== '' && val !== undefined) {
-        if (this.inputEl.value !== val) this.inputEl.value = val;
-        this.valueLength = val.length;
-      }
+      if (this.inputEl.value !== val) this.inputEl.value = val;
+      this.valueLength = val.length;
     },
 
     recents(arr) {
@@ -354,6 +356,17 @@ export default {
 
       window.addEventListener('resize', self.placeholderHandler);
       window.addEventListener('navitem-opening', self.forceBlur);
+      console.log('BEFORE VARIANT CHECK');
+      if (this.variant === 'modal') {
+        console.log('THIS IS VARIANT MODAL');
+        self.$bus.$on('focus-search', self.modalHandler);
+      }
+    },
+
+    modalHandler() {
+      console.log('MODAL HANDLER');
+      this.inputEl.focus();
+      this.focusHandler();
     },
 
     focusSearchHandler(data) {
@@ -422,11 +435,13 @@ export default {
       if (this.isMobile() && this.variant !== 'modal') {
         this.triggerModalSearch();
       }
+      console.log('Ran FocusHandler');
     },
 
     triggerModalSearch() {
       window.location.hash = 'search-modal';
       this.$bus.$emit('focus-search', 'mobile-search');
+      console.log('Ran triggerModalSearch');
     },
 
     placeholderHandler() {
@@ -436,6 +451,7 @@ export default {
         const text = (window.innerWidth < 768) ? self.lowerPlaceholder : self.upperPlaceholder;
         self.placeholder = text;
       }, 100);
+      console.log('Ran placeholderHandler');
     },
 
     selectInput() {
@@ -444,6 +460,7 @@ export default {
         self.inputEl.focus();
         self.inputEl.setSelectionRange(0, self.value.length);
       }, 10);
+      console.log('Ran selectInput');
     },
 
     removeHighlight(arr) {

@@ -1,3 +1,10 @@
 .sh-modal[variant="secondary"] {
   display: block;
+
+  &#search-modal {
+    transition: none;
+    .body {
+      border-bottom: 1px solid;
+    }
+  }
 }
