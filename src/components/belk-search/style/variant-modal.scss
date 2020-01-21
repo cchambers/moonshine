@@ -3,6 +3,10 @@ belk-search[variant="modal"] {
     width: auto;
     .belk-search {
         z-index: auto;
+
+        button.clear-search {
+            visibility: visible;
+        }
     }
     .belk-search.focused .search-results {
         bottom: 0;

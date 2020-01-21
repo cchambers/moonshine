@@ -65,6 +65,15 @@ belk-search {
       }
     }
 
+    button.clear-search {
+      visibility: hidden;
+      color: var(--lowlight-quinary);
+  
+      @media (min-width: breakpoint("md")) {
+        visibility: visible;
+      }
+    }
+
     input {
       padding: 0 1rem;
     }
@@ -227,4 +236,37 @@ belk-search {
       }
     }
   }
+
+  &:not(#mobile-search){
+    //very small breakpoint search UI
+    @media (max-width: breakpoint("xs")) {
+      width: 32px;
+      margin: 0;
+      margin-left: auto;
+
+      .belk-search {
+        border: 0;
+
+        .search-input {
+          input {
+            position: absolute;
+            opacity: 0;
+            padding: 0;
+            width: 100%;
+          }
+          button {
+            padding: 0;
+            height: 100%;
+            margin-left: auto;
+
+            belk-icon svg {
+              transform: scale(1.2);
+              margin-top: 2px;
+            }
+          }
+        }
+      }
+    }
+  }
+
 }

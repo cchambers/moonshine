@@ -26,7 +26,7 @@
         v-on:keydown.up="highlightHandler"
         :placeholder="placeholder"
         @focus="focusHandler"/>
-      <button aria-role="button"
+      <button class="clear-search" aria-role="button"
         aria-label="clear search field"
         ref="clear"
         v-if="valueLength>0"
