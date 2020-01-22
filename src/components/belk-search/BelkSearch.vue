@@ -43,7 +43,9 @@
     <div ref="loading" class="search-loading">
       <div class="loading-bar"></div>
     </div>
-    <div class="search-results" :id="ariaIDResults" :aria-label="ariaListLabel">
+    <div class="search-results" 
+        :id="ariaIDResults"
+        :aria-label="ariaListLabel">
       <div ref="noresults" v-bind:class="{ active: state === 3 }" class="search-noresults">
         <ul>
           <li>
@@ -59,7 +61,7 @@
           </ul>
       </div>
 
-      <div ref="recent" v-bind:class="{ active: state === 1 }" class="search-recent">
+      <div ref="recent" v-bind:class="{ active: state === 1 }" class="search-recent" @touchstart="blurInputMobile()">
         <div class="flex space-between align-center">
           <div class="heading">Recent Searches</div>
           <div>
@@ -79,7 +81,8 @@
 
       <div ref="actual"
         v-bind:class="{ active: state === 2 || state === 3 }"
-        class="search-suggestions">
+        class="search-suggestions"
+        @touchstart="blurInputMobile()" >
         <div class="keywords">
           <ul>
             <li v-for="(item, index) in suggestionsLimited"
@@ -446,6 +449,7 @@ export default {
     },
 
     selectInput() {
+      // eslint-disable-next-line no-console
       console.log('Ran selectInput');
       const self = this;
       setTimeout(() => {
@@ -586,7 +590,7 @@ export default {
     },
 
     fillSearch(val, doSearch) {
-      this.value = val;
+      this.value = decodeURIComponent(val);
       if (doSearch) setTimeout(this.doRequest, 10);
     },
 
@@ -643,6 +647,13 @@ export default {
 
     suggestionHoverHandler(val) {
       this.showSuggestedProducts(val);
+    },
+
+    blurInputMobile() {
+      setTimeout(() => {
+        console.log('blur input');
+        this.inputEl.blur();
+      }, 100);
     },
 
     setupReceive(which) {

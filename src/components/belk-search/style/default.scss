@@ -134,6 +134,8 @@ belk-search {
         width: 90%;
         flex-grow: 1;
         font-size: 1.6rem;
+        white-space: nowrap;
+        text-overflow: ellipsis;
       }
     }
 
