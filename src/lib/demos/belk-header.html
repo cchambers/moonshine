@@ -1,9 +1,11 @@
 <div id="page">
   <header id="header">
     <belk-header></belk-header>
+
     <div class="belk-header">
       <div class="primary">
         <div id="primary-nav" class="contain">
+
           <div class="primary-promo">
             <belk-promo free-shipping="49"></belk-promo>
           </div>
@@ -50,12 +52,6 @@
       <div class="secondary">
         <div class="contain">
 
-          <belk-search></belk-search>
-
-          <sh-button class="close-search" click-event="close-search">
-            Close
-          </sh-button>
-
           <sh-button class="nav-trigger" v-hammer:tap="menuHandler">
             <belk-icon width="30" name="menu"></belk-icon>
           </sh-button>
@@ -63,6 +59,17 @@
           <a class="logo-link" href="#">
             <belk-logo class="logo" variant="header" width="96"></belk-logo>
           </a>
+
+          <belk-search ></belk-search>
+
+          <sh-modal unique-id="search-modal" variant="secondary" fullscreen hide-header>
+            <div class="flex sticky cross-middle">
+                <belk-search id="mobile-search"  variant="modal" class="flex-item double"></belk-search>
+                <div class="sh-button close-search" tabindex="0" click-event="close-search" close-trigger aria-label="closes modal">
+                  Cancel
+                </div>
+            </div>
+          </sh-modal>
 
           <div class="iconbar">
 
@@ -107,6 +114,7 @@
           </div>
         </div>
       </div>
+    
     </div>
   </header>
 </div>
