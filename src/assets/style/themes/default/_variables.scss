@@ -51,6 +51,7 @@ $colors: (
   "brand-mysticpurple": #773dbd,
 );
 
+$break-xs: 350px;
 $break-sm: 480px;
 $break-md: 768px;
 $break-lg: 960px;
@@ -59,6 +60,7 @@ $break-xl: 1200px;
 $libBreak: 800px;
 
 $breakpoints: (
+  "xs": $break-xs,
   "sm": $break-sm,
   "md": $break-md,
   "lg": $break-lg,

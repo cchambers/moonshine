@@ -4,6 +4,7 @@
     :count="count"
     :state="state"
     v-bind:class="{ active: isActive, focused: isFocused }">
+
     <!-- Input -->
     <div class="search-input">
       <input
@@ -25,7 +26,7 @@
         v-on:keydown.up="highlightHandler"
         :placeholder="placeholder"
         @focus="focusHandler"/>
-      <button aria-role="button"
+      <button class="clear-search" aria-role="button"
         aria-label="clear search field"
         ref="clear"
         v-if="valueLength>0"
@@ -42,7 +43,9 @@
     <div ref="loading" class="search-loading">
       <div class="loading-bar"></div>
     </div>
-    <div class="search-results" :id="ariaIDResults" :aria-label="ariaListLabel">
+    <div class="search-results" 
+        :id="ariaIDResults"
+        :aria-label="ariaListLabel">
       <div ref="noresults" v-bind:class="{ active: state === 3 }" class="search-noresults">
         <ul>
           <li>
@@ -58,7 +61,7 @@
           </ul>
       </div>
 
-      <div ref="recent" v-bind:class="{ active: state === 1 }" class="search-recent">
+      <div ref="recent" v-bind:class="{ active: state === 1 }" class="search-recent" @touchstart="blurInputMobile()">
         <div class="flex space-between align-center">
           <div class="heading">Recent Searches</div>
           <div>
@@ -78,7 +81,8 @@
 
       <div ref="actual"
         v-bind:class="{ active: state === 2 || state === 3 }"
-        class="search-suggestions">
+        class="search-suggestions"
+        @touchstart="blurInputMobile()" >
         <div class="keywords">
           <ul>
             <li v-for="(item, index) in suggestionsLimited"
@@ -112,6 +116,7 @@
 </template>
 
 <style lang="scss" src="./style/default.scss"></style>
+<style lang="scss" src="./style/variant-modal.scss"></style>
 
 <script>
 import BelkProductList from '../belk-product-list/BelkProductList.vue';
@@ -131,6 +136,10 @@ export default {
       type: String,
       default: 'What can we help you find?',
     },
+    variant: {
+      type: String,
+      default: 'default',
+    },
   },
 
   data() {
@@ -144,6 +153,7 @@ export default {
       noResults: false,
       filled: false,
       isFocused: false,
+      id: '',
       inputEl: {},
       ignoreKeys: [37, 39, 91, 16, 13],
       navKeys: [38, 40],
@@ -216,7 +226,7 @@ export default {
         self.suggestTerm = self.searchValue;
         self.$bus.$emit('search-term', {
           el: self.uuid,
-          term: val.response.q,
+          term: val.response.q || '',
         });
         self.count = self.suggestions.length || 0;
         if (self.count === 0) {
@@ -337,7 +347,7 @@ export default {
       const self = this;
       document.addEventListener('click', (e) => {
         if (!self.$el || self.elementContains(self.$el, e.target)) return;
-        self.isFocused = false;
+        if (this.variant !== 'modal') self.isFocused = false;
       });
 
       self.$on('active-descendant', self.activeDescendantHandler);
@@ -347,6 +357,14 @@ export default {
 
       window.addEventListener('resize', self.placeholderHandler);
       window.addEventListener('navitem-opening', self.forceBlur);
+      if (this.variant === 'modal') {
+        self.$bus.$on('focus-search', self.modalHandler);
+      }
+    },
+
+    modalHandler() {
+      this.inputEl.focus();
+      this.focusHandler();
     },
 
     searchTermHandler(data) {
@@ -402,8 +420,17 @@ export default {
     },
 
     focusHandler() {
-      this.isFocused = true;
-      this.selectInput();
+      if (this.isMobile() && this.variant !== 'modal') {
+        this.triggerModalSearch();
+      } else {
+        this.isFocused = true;
+        this.selectInput();
+      }
+    },
+
+    triggerModalSearch() {
+      window.location.hash = 'search-modal';
+      this.$bus.$emit('focus-search', 'mobile-search');
     },
 
     placeholderHandler() {
@@ -418,6 +445,7 @@ export default {
     selectInput() {
       const self = this;
       setTimeout(() => {
+        self.inputEl.focus();
         self.inputEl.setSelectionRange(0, self.value.length);
       }, 10);
     },
@@ -456,7 +484,6 @@ export default {
         default:
           break;
       }
-
 
       which += choose;
       if (which >= length) which = 0;
@@ -555,7 +582,7 @@ export default {
     },
 
     fillSearch(val, doSearch) {
-      this.value = val;
+      this.value = decodeURIComponent(val);
       if (doSearch) setTimeout(this.doRequest, 10);
     },
 
@@ -567,6 +594,10 @@ export default {
     },
 
     buildSearchLink(q) {
+      const dev = (window.location.href.indexOf('belk.demand') >= 0) || (window.location.href.indexOf('localhost') >= 0);
+      // sandbox
+      if (dev) return `${window.location.origin}/on/demandware.store/Sites-Belk-Site/default/Search-Show?q=${q}&lang=default`;
+      // Other environments
       return `${window.location.origin}/search/?q=${q}&lang=default`;
     },
 
@@ -602,8 +633,18 @@ export default {
       }
     },
 
+    isMobile() {
+      return window.matchMedia('(max-width: 959px)').matches;
+    },
+
     suggestionHoverHandler(val) {
       this.showSuggestedProducts(val);
+    },
+
+    blurInputMobile() {
+      setTimeout(() => {
+        this.inputEl.blur();
+      }, 100);
     },
 
     setupReceive(which) {

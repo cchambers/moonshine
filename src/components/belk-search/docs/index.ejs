@@ -47,13 +47,19 @@
   <section id="examples">
     <h2>Examples</h2>
     <h3>Default</h3>
-    <lib-toolbar>
+    <lib-toolbar> 
       <belk-search></belk-search>
+      <sh-modal unique-id="search-modal" variant="secondary" fullscreen hide-header>
+        <div class="flex sticky cross-middle">
+          <belk-search id="mobile-search" variant="modal" class="flex-item double"></belk-search>
+          <div class="sh-button close-search" tabindex="0" click-event="close-search" close-trigger aria-label="closes modal">
+            Cancel
+          </div>
+        </div>
+      </sh-modal>
     </lib-toolbar>
-    <h3>Another</h3>
-    <sh-modal unique-id="test">
-      <belk-search></belk-search> 
-    </sh-modal>
+
+    
   </section>
 
   <section id="changelog">
