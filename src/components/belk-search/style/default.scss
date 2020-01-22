@@ -240,7 +240,22 @@ belk-search {
     button.clear-search {
       display: none;
     }
+    button[aria-label="perform search"] {
+      margin-left: auto;
+    }
+    .belk-search .search-input input {
+      position: absolute;
+      padding-right: 43px;
+      width: 100%;
+      z-index: 1;
+    }
     @media (min-width: breakpoint("md")) {
+      .belk-search .search-input input {
+        width: 90%;
+        position: relative;
+        z-index: unset;
+        padding-right: 1rem;
+      }
       button.clear-search {
         display: block;
       }
