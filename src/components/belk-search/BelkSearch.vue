@@ -259,7 +259,6 @@ export default {
     },
 
     value(val) {
-      console.log('Value is ', val);
       if (this.inputEl.value !== val) this.inputEl.value = val;
       this.valueLength = val.length;
     },
@@ -358,15 +357,12 @@ export default {
 
       window.addEventListener('resize', self.placeholderHandler);
       window.addEventListener('navitem-opening', self.forceBlur);
-      console.log('BEFORE VARIANT CHECK');
       if (this.variant === 'modal') {
-        console.log('THIS IS VARIANT MODAL');
         self.$bus.$on('focus-search', self.modalHandler);
       }
     },
 
     modalHandler() {
-      console.log('MODAL HANDLER');
       this.inputEl.focus();
       this.focusHandler();
     },
@@ -433,13 +429,11 @@ export default {
     },
 
     triggerModalSearch() {
-      console.log('Ran triggerModalSearch');
       window.location.hash = 'search-modal';
       this.$bus.$emit('focus-search', 'mobile-search');
     },
 
     placeholderHandler() {
-      console.log('Ran placeholderHandler');
       const self = this;
       clearTimeout(self.placeholderTimer);
       self.placeholderTimer = setTimeout(() => {
@@ -449,8 +443,6 @@ export default {
     },
 
     selectInput() {
-      // eslint-disable-next-line no-console
-      console.log('Ran selectInput');
       const self = this;
       setTimeout(() => {
         self.inputEl.focus();
@@ -651,7 +643,6 @@ export default {
 
     blurInputMobile() {
       setTimeout(() => {
-        console.log('blur input');
         this.inputEl.blur();
       }, 100);
     },

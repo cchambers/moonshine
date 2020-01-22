@@ -66,12 +66,7 @@ belk-search {
     }
 
     button.clear-search {
-      visibility: hidden;
       color: var(--lowlight-quinary);
-  
-      @media (min-width: breakpoint("md")) {
-        visibility: visible;
-      }
     }
 
     input {
@@ -239,7 +234,18 @@ belk-search {
     }
   }
 
+  //only desktop
   &:not(#mobile-search){
+
+    button.clear-search {
+      display: none;
+    }
+    @media (min-width: breakpoint("md")) {
+      button.clear-search {
+        display: block;
+      }
+    }
+
     //very small breakpoint search UI
     @media (max-width: breakpoint("xs")) {
       width: 32px;
