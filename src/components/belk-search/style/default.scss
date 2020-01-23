@@ -74,12 +74,14 @@ belk-search {
     }
 
     button {
+      display: flex;
       justify-content: center;
       cursor: pointer;
       padding: 0 1rem;
 
       .belk-icon {
         height: 30px;
+        flex-grow: 1;
       }
     }
 
@@ -241,7 +243,7 @@ belk-search {
   &:not(#mobile-search){
 
     button.clear-search {
-      display: none;
+      visibility: hidden;
     }
     button[aria-label="perform search"] {
       margin-left: auto;
@@ -260,7 +262,7 @@ belk-search {
         padding-right: 1rem;
       }
       button.clear-search {
-        display: block;
+        visibility: visible;
       }
     }
 
