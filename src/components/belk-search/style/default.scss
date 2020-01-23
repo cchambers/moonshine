@@ -131,6 +131,9 @@ belk-search {
         font-size: 1.6rem;
         white-space: nowrap;
         text-overflow: ellipsis;
+        &::-ms-clear {
+          display: none;
+        }
       }
     }
 
