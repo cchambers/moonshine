@@ -3,6 +3,9 @@ belk-search {
   position: relative;
   max-width: 60rem;
   height: 3.2rem;
+  width: 100%;
+  align-items: center;
+  margin: 0 auto;
 
   @media (min-width: breakpoint("md")) {
     height: 4rem;
@@ -23,7 +26,7 @@ belk-search {
     border: 2px solid $lowlight-primary;
     border-radius: 1rem;
     transition: box-shadow 250ms $ease;
-    z-index: 7;
+    z-index: 30;
 
     &.active {
       @include box-shadow(1);
@@ -62,6 +65,10 @@ belk-search {
       }
     }
 
+    button.clear-search {
+      color: var(--lowlight-quinary);
+    }
+
     input {
       padding: 0 1rem;
     }
@@ -69,6 +76,11 @@ belk-search {
     button {
       justify-content: center;
       cursor: pointer;
+      padding: 0 1rem;
+
+      .belk-icon {
+        height: 30px;
+      }
     }
 
     ul {
@@ -83,6 +95,8 @@ belk-search {
       padding: 1rem;
       transition: background 250ms $ease;
       color: $lowlight-primary;
+      text-decoration: none;
+      box-sizing: border-box;
 
       &:hover {
         color: $lowlight-primary;
@@ -115,6 +129,8 @@ belk-search {
         width: 90%;
         flex-grow: 1;
         font-size: 1.6rem;
+        white-space: nowrap;
+        text-overflow: ellipsis;
         &::-ms-clear {
           display: none;
         }
@@ -126,6 +142,16 @@ belk-search {
 
       &.active {
         display: block;
+      }
+    }
+
+    .search-recent {
+      .sh-button {
+        color: var(--accent-secondary);
+        font-size: 1.4rem;
+        font-weight: 400;
+        text-decoration: underline;
+        text-transform: none;
       }
     }
 
@@ -210,4 +236,63 @@ belk-search {
       }
     }
   }
+
+  //only desktop
+  &:not(#mobile-search){
+
+    button.clear-search {
+      display: none;
+    }
+    button[aria-label="perform search"] {
+      margin-left: auto;
+    }
+    .belk-search .search-input input {
+      position: absolute;
+      padding-right: 43px;
+      width: 100%;
+      z-index: 1;
+    }
+    @media (min-width: breakpoint("md")) {
+      .belk-search .search-input input {
+        width: 90%;
+        position: relative;
+        z-index: unset;
+        padding-right: 1rem;
+      }
+      button.clear-search {
+        display: block;
+      }
+    }
+
+    //very small breakpoint search UI
+    @media (max-width: breakpoint("xs")) {
+      width: 32px;
+      margin: 0;
+      margin-left: auto;
+
+      .belk-search {
+        border: 0;
+
+        .search-input {
+          input {
+            position: absolute;
+            opacity: 0;
+            padding: 0;
+            width: 100%;
+          }
+          button {
+            padding: 0;
+            height: 100%;
+            margin-left: auto;
+
+            belk-icon svg {
+              transform: scale(1.2);
+              margin-top: 2px;
+            }
+          }
+        }
+      }
+    }
+  }
+
 }

@@ -1,0 +1,43 @@
+belk-search[variant="modal"] {
+    margin: 9px 6px;
+    width: auto;
+    .belk-search {
+        z-index: auto;
+
+        button.clear-search {
+            visibility: visible;
+        }
+    }
+    .belk-search.focused .search-results {
+        bottom: 0;
+        left: 0;
+        position: fixed;
+        right: 0;
+        top: 51px;
+        height: calc(100vh - 51px);
+        box-sizing: border-box;
+
+        .search-recent,
+        .search-suggestions {
+            height: 100%;
+            overflow: scroll;
+            -webkit-overflow-scrolling: touch;
+            padding-bottom: 50px;
+        }
+
+        .search-suggestions {
+            padding-bottom: 100px;
+        }
+    }
+
+    & + .sh-button {
+        color: #000;
+        margin-right: 9px;
+        min-width: unset;
+        padding: 0;
+        text-transform: unset;
+        font-size: 12px;
+        font-weight: 400;
+        text-decoration: none;
+    }
+}

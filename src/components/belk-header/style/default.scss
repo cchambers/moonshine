@@ -154,9 +154,16 @@
 
   belk-search {
     width: 100%;
-    order: 1;
     max-width: 58rem;
-    margin-left: 2rem;
+    flex: 1;
+    margin: 0 auto;
+    z-index: 26; //for existing header structure in isml
+
+    .belk-search button {
+      display: flex;
+      align-items: center;
+      padding: 0 10px;
+    }
   }
 
   sh-button.nav-trigger {
