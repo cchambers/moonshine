@@ -54,7 +54,7 @@ export default {
       salePrice: String,
       originalPrice: String,
       coupon: false,
-      fixedUrl: String
+      fixedUrl: String,
     };
   },
 

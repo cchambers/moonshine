@@ -61,7 +61,10 @@
           </ul>
       </div>
 
-      <div ref="recent" v-bind:class="{ active: state === 1 }" class="search-recent" @touchstart="blurInputMobile()">
+      <div ref="recent"
+        v-bind:class="{ active: state === 1 }"
+        class="search-recent"
+        @touchstart="blurInputMobile">
         <div class="flex space-between align-center">
           <div class="heading">Recent Searches</div>
           <div>
