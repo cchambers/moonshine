@@ -634,7 +634,7 @@ export default {
     },
 
     isMobile() {
-      return window.matchMedia('(max-width: 769px)').matches;
+      return window.matchMedia('(max-width: 768px)').matches;
     },
 
     suggestionHoverHandler(val) {
