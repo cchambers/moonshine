@@ -10,7 +10,7 @@
     <div class="content">
       <div class="tab-lock" v-on:focus="focusLast()" tabindex="0"></div>
       <div v-if="!hideHeader" class="header">
-        <div v-if="header" class="title">
+        <div v-if="header" class="modal-title">
           <h3 :id="ariaHeaderID">
             <slot name="header">{{ header }}</slot>
           </h3>

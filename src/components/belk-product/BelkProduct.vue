@@ -2,7 +2,7 @@
   <div class="belk-product"
     :variant="variant"
     v-bind:class=" { 'is-on-sale': onSale } ">
-    <a :href="url" :data-pid="pid">
+    <a :href="fixedUrl" :data-pid="pid">
       <div class="image" :style="{ backgroundImage: 'url('+thumb_image+')' }"></div>
       <div class="data">
         <div class="name">
@@ -54,6 +54,7 @@ export default {
       salePrice: String,
       originalPrice: String,
       coupon: false,
+      fixedUrl: String
     };
   },
 
@@ -67,6 +68,14 @@ export default {
     },
 
     processProps() {
+      const indev = (window.location.href.indexOf('belk.demand') >= 0) || (window.location.href.indexOf('localhost') >= 0);
+      if (indev) {
+        const newUrl = this.url.replace('https://www.belk.com/', window.location.href);
+        this.fixedUrl = newUrl;
+      } else {
+        this.fixedUrl = this.url;
+      }
+
       if (this.price_range.length > 1) {
         if (this.price_range[0] !== this.price_range[1]) {
           this.originalPrice = `${this.format(this.price_range[0])} - ${this.format(this.price_range[1])}`;
