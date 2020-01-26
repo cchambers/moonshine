@@ -598,7 +598,7 @@ export default {
 
     buildSearchLink(q) {
       const whref = window.location.href;
-      const dev = (whref.indexOf('belk.demand') >= 0) 
+      const dev = (whref.indexOf('belk.demand') >= 0)
         || (whref.indexOf('belkdev') >= 0)
         || (whref.indexOf('localhost') >= 0);
       if (dev) return `${window.location.origin}/on/demandware.store/Sites-Belk-Site/default/Search-Show?q=${q}&lang=default`;
