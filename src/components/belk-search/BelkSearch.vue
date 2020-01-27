@@ -517,7 +517,7 @@ export default {
       this.inputEl.value = '';
       this.value = '';
       this.searchValue = '';
-      this.products = '';
+      this.products = [];
       this.clearResponse();
       if (focus) setTimeout(() => { this.inputEl.focus(); });
     },
