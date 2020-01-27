@@ -597,7 +597,8 @@ export default {
     },
 
     emphasizeText(text) {
-      const val = this.searchValue.trim();
+      let val = this.searchValue.trim();
+      if (val) val = val.toLowerCase();
       const arr = text.split(val);
       if (arr.length > 1) arr.splice(1, 0, `<span class="bold">${val}</span>`);
       return arr.join('');
