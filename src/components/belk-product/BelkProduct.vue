@@ -68,9 +68,11 @@ export default {
     },
 
     processProps() {
-      const indev = (window.location.href.indexOf('belk.demand') >= 0) || (window.location.href.indexOf('localhost') >= 0);
-      if (indev) {
-        const newUrl = this.url.replace('https://www.belk.com/', window.location.href);
+      const dev = (whref.indexOf('belk.demand') >= 0)
+        || (whref.indexOf('belkdev') >= 0)
+        || (whref.indexOf('localhost') >= 0);
+      if (dev) {
+        const newUrl = this.url.replace('https://www.belk.com/', window.location.origin);
         this.fixedUrl = newUrl;
       } else {
         this.fixedUrl = this.url;
