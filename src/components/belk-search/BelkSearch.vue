@@ -146,7 +146,7 @@ export default {
     debug: {
       type: Boolean,
       default: false,
-    }
+    },
   },
 
   data() {
