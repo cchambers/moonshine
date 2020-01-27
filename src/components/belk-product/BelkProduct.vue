@@ -68,6 +68,7 @@ export default {
     },
 
     processProps() {
+      const whref = window.location.href;
       const dev = (whref.indexOf('belk.demand') >= 0)
         || (whref.indexOf('belkdev') >= 0)
         || (whref.indexOf('localhost') >= 0);
