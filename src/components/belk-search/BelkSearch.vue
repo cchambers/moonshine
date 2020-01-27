@@ -43,7 +43,7 @@
     <div ref="loading" class="search-loading">
       <div class="loading-bar"></div>
     </div>
-    <div class="search-results" 
+    <div class="search-results"
         :id="ariaIDResults"
         :aria-label="ariaListLabel">
       <div ref="noresults" v-bind:class="{ active: state === 3 }" class="search-noresults">
@@ -143,6 +143,10 @@ export default {
       type: String,
       default: 'default',
     },
+    debug: {
+      type: Boolean,
+      default: false,
+    }
   },
 
   data() {
@@ -195,9 +199,10 @@ export default {
       let state = 0;
       if (this.recents.length && this.count === 0 && this.isFocused) state = 1;
       if (this.count > 0 && this.isFocused) state = 2;
-      if (this.count === 0 && this.noResults && this.searchValue !== '' && this.isFocused) state = 3;
+      if (this.count === 0 && this.noResults && this.searchValue !== '' && this.isFocused) state = 1; // was 3
       this.activeDescendantHandler();
       this.stateHandler(state);
+      if (this.debug) console.log(`ct: ${this.count}, nr: ${this.noResults}, sv: ${this.searchValue}, foc: ${this.isFocused}, st: ${state}`);
       return state;
     },
 
@@ -511,6 +516,7 @@ export default {
       this.inputEl.value = '';
       this.value = '';
       this.searchValue = '';
+      this.products = '';
       this.clearResponse();
       if (focus) setTimeout(() => { this.inputEl.focus(); });
     },
