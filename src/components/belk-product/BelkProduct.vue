@@ -73,7 +73,7 @@ export default {
         || (whref.indexOf('belkdev') >= 0)
         || (whref.indexOf('localhost') >= 0);
       if (dev) {
-        const newUrl = this.url.replace('https://www.belk.com/', window.location.origin);
+        const newUrl = this.url.replace('https://www.belk.com', window.location.origin);
         this.fixedUrl = newUrl;
       } else {
         this.fixedUrl = this.url;
