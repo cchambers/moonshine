@@ -202,6 +202,7 @@ export default {
       if (this.count === 0 && this.noResults && this.searchValue !== '' && this.isFocused) state = 1; // was 3
       this.activeDescendantHandler();
       this.stateHandler(state);
+      // eslint-disable-next-line
       if (this.debug) console.log(`ct: ${this.count}, nr: ${this.noResults}, sv: ${this.searchValue}, foc: ${this.isFocused}, st: ${state}`);
       return state;
     },
