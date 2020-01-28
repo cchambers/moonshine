@@ -24,7 +24,7 @@
     "core-js": "^3.4.5",
     "ejs": "^2.7.3",
     "interactjs": "^1.7.2",
-    "vue": "^2.6.10",
+    "vue": "2.6.10",
     "vue-custom-element": "^3.2.7",
     "vue2-hammer": "^2.1.2"
   },
@@ -69,7 +69,7 @@
     "stylelint-config-standard": "^18.2.0",
     "stylelint-webpack-plugin": "^1.0.4",
     "universal-analytics": "^0.4.20",
-    "vue-template-compiler": "^2.6.10",
+    "vue-template-compiler": "2.6.10",
     "wrapper-webpack-plugin": "^2.1.0"
   },
   "eslintConfig": {
