@@ -25,7 +25,7 @@ let gitName;
   * .-----.|  |--.|__|.-----.-----.
   * |__ --||     ||  ||     |  -__|
   * |_____||__|__||__||__|__|_____|
-  * 
+  *
   * built by: ${gitName}
   * branch: \`${branchActual}\`
   * timestamp: ${dateNow}
@@ -198,13 +198,13 @@ module.exports = {
       },
     },
     module: {
-      rules: [
-        {
-          test: /(\.ts$)|(\.js$)/,
-          exclude: /node_modules\/(?!(@vue\/web-component-wrapper)\/).*/,
+      rules: [{
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
           loader: 'babel-loader',
-        },
-      ]
+        }
+      }]
     },
     optimization: optimizationSetting,
     plugins: [

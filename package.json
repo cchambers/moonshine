@@ -19,9 +19,9 @@
   "dependencies": {
     "@babel/polyfill": "^7.7.0",
     "@vue/web-component-wrapper": "^1.2.0",
-    "document-register-element": "^1.13.2",
     "@webcomponents/webcomponentsjs": "2.0.4",
     "core-js": "^3.4.5",
+    "document-register-element": "^1.13.2",
     "ejs": "^2.7.3",
     "interactjs": "^1.7.2",
     "vue": "^2.6.10",
