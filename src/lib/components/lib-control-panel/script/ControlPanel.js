@@ -36,7 +36,7 @@ export default {
   },
 
   mounted() {
-    const theme = this.getItem('docs-theme');
+    const theme = this.getItem('docs-theme') || 'default';
     if (theme) this.theme = theme;
   },
 };
