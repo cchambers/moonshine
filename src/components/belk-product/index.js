@@ -1,10 +1,7 @@
-/* eslint-disable no-undef */
 import Vue from 'vue';
-import wrap from '../wrapper';
 import BelkProduct from './BelkProduct.vue';
 
-const Wrapped = wrap(Vue, BelkProduct);
-window.customElements.define('belk-product', Wrapped);
+Vue.customElement('belk-product', BelkProduct);
 
 
 /*
