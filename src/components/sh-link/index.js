@@ -1,10 +1,8 @@
 /* eslint-disable no-undef */
 import Vue from 'vue';
-import wrap from '../wrapper';
 import Link from './Link.vue';
 
-const Wrapped = wrap(Vue, Link);
-window.customElements.define('sh-link', Wrapped);
+Vue.customElement('sh-link', Link);
 
 
 /*

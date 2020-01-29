@@ -1,10 +1,8 @@
 /* eslint-disable no-undef */
 import Vue from 'vue';
-import wrap from '../wrapper';
 import ComponentTemplate from './ComponentTemplate.vue';
 
-const Wrapped = wrap(Vue, ComponentTemplate);
-window.customElements.define('component-template', Wrapped);
+Vue.customElement('component-template', ComponentTemplate);
 
 
 /*
