@@ -1,16 +1,11 @@
-
 /* eslint-disable */
-import '@babel/polyfill';
+import 'core-js/stable';
+import 'regenerator-runtime/runtime';
 
 require('./assets/script/core.js');
 
 import Vue from 'vue';
 Vue.config.productionTip = false;
-
-/* SH-COMPONENT PROTOTYPE 
-import ComponentPrototype from './components/component-prototype';
-Vue.mixin(ComponentPrototype);
-*/
 
 /* IE-11 Polyfills */
 import 'document-register-element/build/document-register-element';
@@ -25,7 +20,6 @@ Vue.use(VueHammer);
 /* Vue Custom Element */
 import vueCustomElement from 'vue-custom-element';
 Vue.use(vueCustomElement);
-
 
 /* This disables warnings caused by 'undefined vue components' that are actually defined. vce-workaround */
 Vue.config.ignoredElements = [/.*/]
