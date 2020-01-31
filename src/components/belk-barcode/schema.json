@@ -1,9 +1,9 @@
 {
   "name": "Belk Barcode",
-  "category": "uncategorized",
+  "category": "features",
   "production": false,
   "element": "belk-barcode",
-  "description": "Demonstration component.",
-  "tags": ["utilities", "demo"],
+  "description": "Code93 barcode generator.",
+  "tags": ["utilities", "product", "coupon", "barcode"],
   "requirements": {}
 }

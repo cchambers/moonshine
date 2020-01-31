@@ -15,12 +15,12 @@ export default {
     code: {
       type: String,
       default: '1234567890'
-    }
+    },
   },
 
   data() {
     return {
-      bars: []
+      bars: [],
     };
   },
 
@@ -29,7 +29,7 @@ export default {
       if (invert === void 0) {
         invert = false;
       }
-      for (let _i = 0, s_4 = s; _i < s_4.length; _i++) {
+      for (let _i = 0, s_4 = s; _i < s_4.length; _i += 1) {
         let c = s_4[_i];
         this.bars.push(parseInt(c, 10) ^ (invert ? 1 : 0));
       }
@@ -37,10 +37,10 @@ export default {
 
     appendNarrowWide(s, narrow, wide) {
       let color = 0;
-      for (let _i = 0, s_5 = s; _i < s_5.length; _i++) {
+      for (let _i = 0, s_5 = s; _i < s_5.length; _i += 1) {
         let c = s_5[_i];
         let rep = c == 'n' ? narrow : wide;
-        for (let i = 0; i < rep; i++) {
+        for (let i = 0; i < rep; i += 1) {
           this.bars.push(color);
         }
         color ^= 1;
@@ -50,7 +50,7 @@ export default {
     code93(s) {
       
       let t = '';
-      for (let i = 0; i < s.length; i++) {
+      for (let i = 0; i < s.length; i += 1) {
         let c = s.charCodeAt(i);
         if (c >= 128) {
           throw 'Text must only contain ASCII characters';
@@ -93,7 +93,7 @@ export default {
       let ALPHABET = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ-. $/+%abcd*'; 
       [20, 15].forEach(mod => {
         let checksum = 0;
-        for (let i = 0; i < s.length; i++) {
+        for (let i = 0; i < s.length; i += 1) {
           let code = ALPHABET.indexOf(s.charAt(s.length - 1 - i));
           let weight = (i % mod) + 1;
           checksum = (checksum + code * weight) % 47;
@@ -152,7 +152,7 @@ export default {
         '1100110',
         '1010000'
       ];
-      for (let _i = 0, s_1 = s; _i < s_1.length; _i++) {
+      for (let _i = 0, s_1 = s; _i < s_1.length; _i += 1) {
         const c = s_1[_i];
         this.appendDigits('0' + TABLE[ALPHABET.indexOf(c)] + '1');
       }
@@ -171,18 +171,18 @@ export default {
         let radioElem = document.querySelector(
           '#barcode-type-container input:checked'
         );
-        let barcode = this.code93(this.code).bars; 
-        let scale1 = 3;
-        let padding1 = 0; 
-        let width1 = (canvas.width = barcode.length * scale1 + padding1 * 2);
-        let height1 = (canvas.height = 100 + padding1 * 2);
-        let image = graphics.createImageData(width1, height1);
-        let pixels_1 = image.data; 
-        for (let i = 0; i < pixels_1.length; i++) pixels_1[i] = 0xff;
+        const barcode = this.code93(this.code).bars; 
+        const scale1 = 3;
+        const padding1 = 0; 
+        const width1 = (canvas.width = barcode.length * scale1 + padding1 * 2);
+        const height1 = (canvas.height = 100 + padding1 * 2);
+        const image = graphics.createImageData(width1, height1);
+        const pixels_1 = image.data; 
+        for (let i = 0; i < pixels_1.length; i += 1) pixels_1[i] = 0xff;
         barcode.forEach((barcolor, i) => {
-          for (let y = padding1; y < height1 - padding1; y++) {
-            for (let x = padding1 + i * scale1, dx = 0; dx < scale1; dx++) {
-              let k = (y * width1 + x + dx) * 4;
+          for (let y = padding1; y < height1 - padding1; y += 1) {
+            for (let x = padding1 + i * scale1, dx = 0; dx < scale1; dx += 1) {
+              const k = (y * width1 + x + dx) * 4;
               pixels_1[k + 0] = pixels_1[k + 1] = pixels_1[k + 2] = barcolor * 255;
             }
           }
