@@ -1,0 +1,9 @@
+{
+  "name": "Belk Barcode",
+  "category": "uncategorized",
+  "production": false,
+  "element": "belk-barcode",
+  "description": "Demonstration component.",
+  "tags": ["utilities", "demo"],
+  "requirements": {}
+}

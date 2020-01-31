@@ -1,0 +1,10 @@
+/* default styling */
+
+belk-barcode {
+  display: inline-flex;
+
+  .belk-barcode {
+    border: 1px solid black;
+    padding: 2rem;
+  }
+}
