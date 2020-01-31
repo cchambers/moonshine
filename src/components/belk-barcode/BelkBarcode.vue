@@ -48,7 +48,7 @@ export default {
     },
 
     code93(s) {
-      // Escape the string
+      
       let t = '';
       for (let i = 0; i < s.length; i++) {
         let c = s.charCodeAt(i);
@@ -88,9 +88,9 @@ export default {
           throw 'Assertion error';
         }
       }
-      s = t; // s is reduced into the 47-symbol 'alphabet' defined below
-      // Add 2 checksum symbols
-      let ALPHABET = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ-. $/+%abcd*'; // The 5 characters abcd* are special
+      s = t; 
+      
+      let ALPHABET = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ-. $/+%abcd*'; 
       [20, 15].forEach(mod => {
         let checksum = 0;
         for (let i = 0; i < s.length; i++) {
@@ -100,8 +100,8 @@ export default {
         }
         s += ALPHABET.charAt(checksum);
       });
-      s = '*' + s + '*'; // Start and end
-      // Build barcode
+      s = '*' + s + '*'; 
+      
       const TABLE = [
         '1110101',
         '1011011',
@@ -156,35 +156,29 @@ export default {
         const c = s_1[_i];
         this.appendDigits('0' + TABLE[ALPHABET.indexOf(c)] + '1');
       }
-      this.appendDigits('0'); // Final black bar
+      this.appendDigits('0'); 
       return this;
     },
 
     generate() {
       try {
-        // Get canvas and graphics
         let canvas = document.querySelector('canvas');
         if (!(canvas instanceof HTMLCanvasElement)) throw 'Assertion error';
         let graphics = canvas.getContext('2d');
         if (!(graphics instanceof CanvasRenderingContext2D))
           throw 'Assertion error';
         graphics.clearRect(0, 0, canvas.width, canvas.height);
-        // Select barcode generator function based on radio buttons
         let radioElem = document.querySelector(
           '#barcode-type-container input:checked'
         );
-        // Try to generate barcode
-        let barcode = this.code93(this.code).bars; // 0s and 1s
-        // Dimensions of canvas and new image
+        let barcode = this.code93(this.code).bars; 
         let scale1 = 3;
-        let padding1 = 0; // Number of pixels on each of the four sides
+        let padding1 = 0; 
         let width1 = (canvas.width = barcode.length * scale1 + padding1 * 2);
         let height1 = (canvas.height = 100 + padding1 * 2);
-        // Create image and fill with opaque white color
         let image = graphics.createImageData(width1, height1);
-        let pixels_1 = image.data; // An array of bytes in RGBA format
+        let pixels_1 = image.data; 
         for (let i = 0; i < pixels_1.length; i++) pixels_1[i] = 0xff;
-        // Draw barcode onto image and canvas
         barcode.forEach((barcolor, i) => {
           for (let y = padding1; y < height1 - padding1; y++) {
             for (let x = padding1 + i * scale1, dx = 0; dx < scale1; dx++) {
