@@ -189,7 +189,7 @@ export default {
         });
         graphics.putImageData(image, 0, 0);
       } catch (e) {
-        this.log(e);
+        this.log(`BARCODE ERR: ${e}`);
       }
     },
   },
