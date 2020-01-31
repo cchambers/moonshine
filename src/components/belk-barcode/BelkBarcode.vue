@@ -163,14 +163,14 @@ export default {
     generate() {
       try {
         let canvas = document.querySelector('canvas');
-        if (!(canvas instanceof HTMLCanvasElement)) throw 'Assertion error';
-        let graphics = canvas.getContext('2d');
-        if (!(graphics instanceof CanvasRenderingContext2D))
+        if (!(canvas instanceof HTMLCanvasElement)) {
           throw 'Assertion error';
+        }
+        let graphics = canvas.getContext('2d');
+        if (!(graphics instanceof CanvasRenderingContext2D)) {
+          throw 'Assertion error';
+        }
         graphics.clearRect(0, 0, canvas.width, canvas.height);
-        let radioElem = document.querySelector(
-          '#barcode-type-container input:checked'
-        );
         const barcode = this.code93(this.code).bars; 
         const scale1 = 3;
         const padding1 = 0; 
