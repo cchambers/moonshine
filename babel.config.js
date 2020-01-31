@@ -1,20 +1,7 @@
-module.exports = (api) => {
-  api.cache(true);
-
-  const presets = [
-    ['@babel/preset-env', {
-      modules: false,
-      targets: '> 1%, ie >= 11',
+module.exports = {
+  presets: [
+    ['@vue/cli-plugin-babel/preset', {
       useBuiltIns: 'entry',
-      corejs: 3,
     }],
-    ['@babel/preset-typescript', {
-      allExtensions: true,
-    }],
-  ];
-  const sourceType = 'unambiguous';
-
-  return {
-    presets
-  };
+  ],
 };

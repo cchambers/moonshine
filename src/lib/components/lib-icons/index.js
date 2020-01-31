@@ -1,10 +1,7 @@
-/* eslint-disable no-undef */
 import Vue from 'vue';
-import wrap from '../../../components/wrapper';
 import LibIcons from './LibIcons.vue';
 
-const Wrapped = wrap(Vue, LibIcons);
-window.customElements.define('lib-icons', Wrapped);
+Vue.customElement('lib-icons', LibIcons);
 
 
 /*
