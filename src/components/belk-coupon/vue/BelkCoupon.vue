@@ -28,10 +28,10 @@
         <belk-barcode :code="upc"></belk-barcode>
       </div>
       <div class="coupon-buttons">
-        <sh-button variant="primary" @click="addCoupon">
+        <sh-button variant="secondary" @click="addCoupon">
           Add Coupon To bag
         </sh-button>
-        <sh-button variant="secondary" @click="printCoupon">
+        <sh-button variant="secondary" outline @click="printCoupon">
           View In-Store Coupon
         </sh-button>
       </div>
