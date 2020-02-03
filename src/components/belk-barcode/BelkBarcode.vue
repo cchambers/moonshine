@@ -16,22 +16,32 @@ export default {
   props: {
     code: {
       type: String,
-      default: '1234567890',
+      default: 'no code',
     },
-  },
-
-  data() {
-    return {
-      bars: [],
-    };
+    format: {
+      type: String,
+      default: 'code128',
+    },
+    height: {
+      type: Number,
+      default: 60,
+    },
+    width: {
+      type: Number,
+      default: 4,
+    },
+    color: {
+      type: String,
+      default: '#222',
+    },
   },
 
   mounted() {
     JsBarcode(this.$refs.barcode, this.code, {
-      format: 'code128',
-      lineColor: '#0aa',
-      width: 4,
-      height: 40,
+      format: this.format,
+      lineColor: this.color,
+      width: this.width,
+      height: this.height,
       displayValue: false,
     });
   },

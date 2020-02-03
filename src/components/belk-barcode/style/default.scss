@@ -1,11 +1,15 @@
 /* default styling */
 
 belk-barcode {
-  display: inline-flex;
+  display: block;
+  min-width: 120px;
 
   .belk-barcode {
+    display: block;
     svg {
       display: block;
+      height: 100%;
+      width: 100%;
     }
   }
 }
