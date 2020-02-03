@@ -2,35 +2,61 @@
 
 belk-coupon {
   display: inline-block;
-
+  max-width: 300px;
+  border: 1px solid $lowlight-primary;
   .belk-coupon {
-    /** DELETE THIS EXAMPLE SECTION **/
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    text-align: center;
-    height: 15rem;
-    width: 15rem;
-    background-size: cover;
-    border: 1px solid transparent;
-    transition: all 200ms linear;
-
-    &:hover {
-      border: 1px solid $accent-primary;
+    .coupon-spacer {
+      padding: 1.5rem 3rem;
+      display: flex;
+      flex-direction: column;
+      color: $lowlight-primary;
+      > * {
+        display: flex;
+        justify-content: center;
+      }
     }
-
-    &.snap-state {
-      color: transparent;
-      border: 1px solid $accent-primary;
-    }
-
-    @media screen and (min-width: $break-lg) {
-      // mobile first, right... make desktop mods here.
-      background: $accent-primary;
+    .coupon-type {
+      text-align: center;
+      font-weight: bold;
+      font-size: 1.8rem;
+      background: $lowlight-primary;
       color: $highlight-primary;
     }
-
-    /** END EXAMPLE SECTION **/
+    .coupon-event-name {
+      font-size: 2.2rem;
+    }
+    .coupon-use-code {
+      .actual {
+        font-weight: bold;
+        color: $lowlight-primary;
+        margin-left: 1rem;
+        text-transform: uppercase;
+      }
+    }
+    .coupon-buttons {
+      display: flex;
+      flex-direction: column;
+      sh-button {
+        margin: 0;
+        margin-top: 1rem;
+        button {
+          display: block;
+        }
+      }
+    }
+    .coupon-description {
+      font-size: 1.4rem;
+      margin-left: -1.5rem;
+      margin-right: -1.5rem;
+      text-align: center;
+    }
+    .coupon-ends {
+      font-weight: bold;
+    }
+    .coupon-upc {
+      border: 1px solid $lowlight-primary;
+      margin-top: 1rem;
+      padding: 1rem;
+    }
   }
 }
