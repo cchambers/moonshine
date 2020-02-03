@@ -1,7 +1,7 @@
 /* default styling */
 
 belk-coupon {
-  display: inline-block;
+  display: block;
   max-width: 300px;
   border: 1px solid $lowlight-primary;
   .belk-coupon {
@@ -13,6 +13,28 @@ belk-coupon {
       > * {
         display: flex;
         justify-content: center;
+        margin-top: 1rem;
+      }
+    }
+    .coupon-extra {
+      font-family: proxima-nova,sans-serif;
+      font-weight: 900;
+      font-style: normal;
+      font-size: 3rem;
+      margin-bottom: -2rem;
+      margin-top: -1rem;
+    }
+    .coupon-discount {
+      font-family: proxima-nova, sans-serif;
+      font-weight: 900;
+      font-style: normal;
+      font-size: 10rem;
+      margin-top: -1rem;
+      margin-bottom: -2.5rem;
+      .secondary {
+        font-size: 0.45em;
+        line-height: 0.8em;
+        margin-top: 0.5em;
       }
     }
     .coupon-type {
@@ -24,6 +46,7 @@ belk-coupon {
     }
     .coupon-event-name {
       font-size: 2.2rem;
+      font-weight: 400;
     }
     .coupon-use-code {
       .actual {
@@ -38,9 +61,11 @@ belk-coupon {
       flex-direction: column;
       sh-button {
         margin: 0;
-        margin-top: 1rem;
         button {
           display: block;
+        }
+        + sh-button {
+          margin-top: 1rem;
         }
       }
     }
@@ -57,6 +82,14 @@ belk-coupon {
       border: 1px solid $lowlight-primary;
       margin-top: 1rem;
       padding: 1rem;
+    }
+    .coupon-exclusions {
+      a {
+        text-decoration: underline;
+        &:hover {
+          text-decoration: none;
+        }
+      }
     }
   }
 }

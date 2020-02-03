@@ -6,7 +6,12 @@
     </div>
     <div class="coupon-spacer">
       <div v-if="extra" class="coupon-extra">extra</div>
-      <div class="coupon-discount">{{discount}}</div>
+      <div class="coupon-discount">
+        <div class="actual">{{discount}}</div>
+        <div class="secondary">
+          %<br>off
+        </div>
+      </div>
       <div class="coupon-event-name">{{eventName}}</div>
       <div class="coupon-use-code">Use Code: <span class="actual">{{code}}</span></div>
       <div v-if="ends" class="coupon-ends">{{ends}}</div>
