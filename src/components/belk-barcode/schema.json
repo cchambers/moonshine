@@ -1,7 +1,7 @@
 {
   "name": "Belk Barcode",
   "category": "features",
-  "production": false,
+  "production": true,
   "element": "belk-barcode",
   "description": "Code128 barcode generator.",
   "tags": ["utilities", "product", "coupon", "barcode"],
