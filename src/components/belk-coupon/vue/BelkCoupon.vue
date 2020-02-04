@@ -24,9 +24,6 @@
           </div>
         </sh-modal>
       </div>
-      <div v-if="upc" class="coupon-upc">
-        <belk-barcode :code="upc"></belk-barcode>
-      </div>
       <div class="coupon-buttons">
         <sh-button variant="secondary" @click="addCoupon">
           Add Coupon to bag
@@ -34,6 +31,9 @@
         <sh-button variant="secondary" outline @click="printCoupon">
           View In-Store Coupon
         </sh-button>
+      </div>
+      <div v-if="upc" class="coupon-upc">
+        <belk-barcode :code="upc"></belk-barcode>
       </div>
     </div>
   </div>

@@ -42,7 +42,7 @@ export default {
       lineColor: this.color,
       width: this.width,
       height: this.height,
-      displayValue: false,
+      displayValue: true,
     });
   },
 };
