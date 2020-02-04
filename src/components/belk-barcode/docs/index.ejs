@@ -3,12 +3,12 @@
 <title><%= htmlWebpackPlugin.options.title %></title>
 
 <div class="documentation contain">
-  <h1>Coupon</h1>
+  <h1>Belk Barcode</h1>
   <section id="usage">
     <h2>Usage</h2>
     <pre>
       <code class="language-html">
-          &lt;belk-coupon&gt;&lt;/belk-coupon&gt;
+          &lt;belk-barcode code="123456789"&gt;&lt;/belk-barcode&gt;
       </code>
     </pre>
 
@@ -28,44 +28,35 @@
       </thead>
       <tbody>
         <tr>
-          <td>hidden</td>
-          <td>Boolean</td>
-          <td>Hide from view.</td>
+          <td>code</td>
+          <td>String</td>
+          <td>A valid [code93] UPC code string.</td>
+        </tr>
+        <tr>
+          <td>format</td>
+          <td>String</td>
+          <td>UPC format. Defaults to 'code128'</td>
+        </tr>
+        <tr>
+          <td>height</td>
+          <td>Number</td>
+          <td>Defaults to '60'</td>
+        </tr>
+        <tr>
+          <td>color</td>
+          <td>String</td>
+          <td>Defaults to '#222'</td>
         </tr>
       </tbody>
     </table>
 
-    <h3 id="slots">Slots</h3>
-
-    <table class="slots">
-      <thead>
-        <tr>
-          <th>Slot</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>exclusions</td>
-          <td>
-            Exclusion modal content.
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </section>
 
   <section id="examples">
     <h2>Examples</h2>
     <h3>Default</h3>
     <lib-toolbar>
-      <div style="display: flex;">
-        <belk-coupon discount="30" upc="12349876"></belk-coupon>
-        <belk-coupon discount="25" upc="99999994" extra class="margin-l-quarter">
-          <div slot="exclusions">
-            Here's some information about the coupon's exclusions.
-          </div>
-        </belk-coupon>
+      <div style="max-width: 300px; border: 1px solid #222;">
+        <belk-barcode code="12166076"></belk-barcode>
       </div>
     </lib-toolbar>
   </section>
@@ -74,7 +65,9 @@
     <h2>Changelog</h2>
     <dl>
       <dt>0.1.0</dt>
-      <dd>Belk Coupon is under development.</dd>
+      <dd>Belk Barcode is under development.</dd>
+      <dt>1.0.0</dt>
+      <dd>Belk Barcode is ready for use.</dd>
     </dl>
   </section>
 </div>

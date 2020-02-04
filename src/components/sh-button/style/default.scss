@@ -26,6 +26,7 @@ sh-button {
     position: relative;
     border: 0;
     display: inline-flex;
+    width: 100%;
     align-items: center;
     justify-content: center;
     flex-direction: row;
@@ -52,7 +53,7 @@ sh-button {
     }
 
     span {
-      display: flex;
+      display: inline-flex;
       font-size: 1.4em;
     }
 
