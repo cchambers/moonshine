@@ -215,3 +215,21 @@ sh-modal {
     }
   }
 }
+
+
+@media print {
+  html.sh-modal-open {
+    .page-wrapper {
+      display: none;
+    }
+    .sh-modal.active {
+      .content {
+        width: 100%;
+        height: auto;
+        margin: 0;
+        max-height: auto;
+        max-width: auto;
+      }
+    }
+  }
+}
