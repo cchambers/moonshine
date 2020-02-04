@@ -1,36 +1,98 @@
 /* default styling */
 
 belk-coupon {
-  display: inline-block;
-
+  display: block;
+  max-width: 300px;
+  border: 1px solid $lowlight-primary;
   .belk-coupon {
-    /** DELETE THIS EXAMPLE SECTION **/
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    text-align: center;
-    height: 15rem;
-    width: 15rem;
-    background-size: cover;
-    border: 1px solid transparent;
-    transition: all 200ms linear;
-
-    &:hover {
-      border: 1px solid $accent-primary;
+    display: block;
+    flex-grow: 1;
+    height: 100%;
+    .coupon-spacer {
+      padding: 1.5rem 3rem;
+      display: flex;
+      flex-direction: column;
+      color: $lowlight-primary;
+      justify-content: flex-end;
+      > * {
+        display: flex;
+        justify-content: center;
+        margin-top: 1rem;
+      }
     }
-
-    &.snap-state {
-      color: transparent;
-      border: 1px solid $accent-primary;
+    .coupon-extra {
+      font-family: proxima-nova,sans-serif;
+      font-weight: 900;
+      font-style: normal;
+      font-size: 3rem;
+      margin-bottom: -1rem;
+      margin-top: -1rem;
     }
-
-    @media screen and (min-width: $break-lg) {
-      // mobile first, right... make desktop mods here.
-      background: $accent-primary;
+    .coupon-discount {
+      font-family: proxima-nova, sans-serif;
+      font-weight: 900;
+      font-style: normal;
+      font-size: 10rem;
+      margin-top: -2rem;
+      margin-bottom: -2.5rem;
+      .secondary {
+        font-size: 0.45em;
+        line-height: 0.8em;
+        margin-top: 0.5em;
+      }
+    }
+    .coupon-type {
+      text-align: center;
+      font-weight: bold;
+      font-size: 1.8rem;
+      background: $lowlight-primary;
       color: $highlight-primary;
     }
-
-    /** END EXAMPLE SECTION **/
+    .coupon-event-name {
+      font-size: 2.2rem;
+      font-weight: 400;
+    }
+    .coupon-use-code {
+      .actual {
+        font-weight: bold;
+        color: $lowlight-primary;
+        margin-left: 1rem;
+        text-transform: uppercase;
+      }
+    }
+    .coupon-buttons {
+      display: flex;
+      flex-direction: column;
+      sh-button {
+        margin: 0;
+        button {
+          display: block;
+        }
+        + sh-button {
+          margin-top: 1rem;
+        }
+      }
+    }
+    .coupon-description {
+      font-size: 1.4rem;
+      margin-left: -1.5rem;
+      margin-right: -1.5rem;
+      text-align: center;
+    }
+    .coupon-ends {
+      font-weight: bold;
+    }
+    .coupon-upc {
+      border: 1px solid $lowlight-primary;
+      margin-top: 1rem;
+    }
+    .coupon-exclusions {
+      a {
+        text-decoration: underline;
+        &:hover {
+          text-decoration: none;
+        }
+      }
+    }
   }
 }

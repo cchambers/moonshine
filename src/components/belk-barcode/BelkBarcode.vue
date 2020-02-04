@@ -24,7 +24,7 @@ export default {
     },
     height: {
       type: Number,
-      default: 60,
+      default: 80,
     },
     width: {
       type: Number,
@@ -42,7 +42,7 @@ export default {
       lineColor: this.color,
       width: this.width,
       height: this.height,
-      displayValue: false,
+      displayValue: true,
     });
   },
 };
