@@ -5,11 +5,15 @@ belk-coupon {
   max-width: 300px;
   border: 1px solid $lowlight-primary;
   .belk-coupon {
+    display: block;
+    flex-grow: 1;
+    height: 100%;
     .coupon-spacer {
       padding: 1.5rem 3rem;
       display: flex;
       flex-direction: column;
       color: $lowlight-primary;
+      justify-content: flex-end;
       > * {
         display: flex;
         justify-content: center;
@@ -21,7 +25,7 @@ belk-coupon {
       font-weight: 900;
       font-style: normal;
       font-size: 3rem;
-      margin-bottom: -2rem;
+      margin-bottom: -1rem;
       margin-top: -1rem;
     }
     .coupon-discount {
@@ -29,7 +33,7 @@ belk-coupon {
       font-weight: 900;
       font-style: normal;
       font-size: 10rem;
-      margin-top: -1rem;
+      margin-top: -2rem;
       margin-bottom: -2.5rem;
       .secondary {
         font-size: 0.45em;
@@ -81,7 +85,6 @@ belk-coupon {
     .coupon-upc {
       border: 1px solid $lowlight-primary;
       margin-top: 1rem;
-      padding: 1rem;
     }
     .coupon-exclusions {
       a {

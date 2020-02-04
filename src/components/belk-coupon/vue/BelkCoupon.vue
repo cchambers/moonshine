@@ -7,16 +7,16 @@
     <div class="coupon-spacer">
       <div v-if="extra" class="coupon-extra">extra</div>
       <div class="coupon-discount">
-        <div class="actual">{{discount}}</div>
+        <div class="actual">{{ discount }}</div>
         <div class="secondary">
           %<br>off
         </div>
       </div>
-      <div class="coupon-event-name">{{eventName}}</div>
-      <div class="coupon-use-code">Use Code: <span class="actual">{{code}}</span></div>
-      <div v-if="ends" class="coupon-ends">{{ends}}</div>
-      <div v-if="description" class="coupon-description">{{description}}</div>
-      <div class="coupon-exclusions" :class="{ 'off': !exclusions}">
+      <div class="coupon-event-name">{{ eventName }}</div>
+      <div class="coupon-use-code">Use Code: <span class="actual">{{ code }}</span></div>
+      <div v-if="ends" class="coupon-ends">{{ ends }}</div>
+      <div v-if="description" class="coupon-description">{{ description }}</div>
+      <div class="coupon-exclusions" :hidden="!exclusions">
         <a :href="'#'+exclusionsId">View Exclusions</a>
         <sh-modal :unique-id="exclusionsId">
           <div>
@@ -29,7 +29,7 @@
       </div>
       <div class="coupon-buttons">
         <sh-button variant="secondary" @click="addCoupon">
-          Add Coupon To bag
+          Add Coupon to bag
         </sh-button>
         <sh-button variant="secondary" outline @click="printCoupon">
           View In-Store Coupon
@@ -68,10 +68,6 @@ export default {
       type: String,
       default: 'Coupon Title',
     },
-    exclusions: {
-      type: Boolean,
-      default: false,
-    },
     extra: {
       type: Boolean,
       default: false,
@@ -84,6 +80,7 @@ export default {
 
   data() {
     return {
+      exclusions: false,
       exclusionsId: 'defaultid',
     };
   },
@@ -91,6 +88,7 @@ export default {
   mounted() {
     this.setUUID();
     this.exclusionsId = `em-${this.uuid}`;
+    if (this.$slots.exclusions) this.exclusions = true;
   },
 
   methods: {
