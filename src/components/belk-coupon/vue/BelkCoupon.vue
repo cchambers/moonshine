@@ -26,7 +26,7 @@
             </div>
           </sh-modal>
         </template>
-        <div class="coupon-exclusions" v-else>
+        <div class="coupon-exclusions-actual" v-else>
           <slot name="exclusions"></slot>
         </div>
 

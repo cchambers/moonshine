@@ -44,10 +44,6 @@ belk-coupon {
     margin-top: -1rem;
   }
 
-  .coupon-exclusions {
-    font-size: 1rem;
-  }
-
   .coupon-discount {
     font-family: proxima-nova, sans-serif;
     font-weight: 900;
@@ -126,5 +122,9 @@ belk-coupon {
         text-decoration: none;
       }
     }
+  }
+
+  .coupon-exclusions-actual {
+    font-size: 1rem;
   }
 }
