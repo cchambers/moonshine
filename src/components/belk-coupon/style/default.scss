@@ -65,6 +65,15 @@ belk-coupon {
     margin-top: -2rem;
     margin-bottom: -2.5rem;
 
+    .actual {
+      display: flex;
+      align-items: center;
+    }
+
+    .dollar {
+      font-size: 0.5em;
+    }
+
     .secondary {
       font-size: 0.45em;
       line-height: 0.8em;
@@ -123,8 +132,9 @@ belk-coupon {
   }
 
   .coupon-upc {
-    border: 0.3rem solid $lowlight-primary;
     margin-top: 1rem;
+    margin-left: -1rem;
+    margin-right: -1rem;
   }
 
   .coupon-exclusions {

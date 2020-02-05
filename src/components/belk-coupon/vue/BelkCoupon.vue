@@ -3,20 +3,28 @@
     :class="{ printable: print }"
     :variant="variant">
     <div v-if="!noType" class="coupon-type">
-      Online &amp; In Store
+      {{badge}}
     </div>
     <div class="coupon-spacer">
       <div v-if="extra" class="coupon-extra">extra</div>
       <div class="coupon-discount">
-        <div class="actual">{{ discount }}</div>
-        <div class="secondary">
+        <div class="actual">
+          <span v-if="toSpend" class="dollar">$</span>
+          {{discount}}
+          </div>
+        <div v-if="!toSpend" class="secondary">
           %<br>off
         </div>
+        <div v-else class="secondary">
+          off</br>
+          ${{toSpend}}
+        </div>
       </div>
-      <div class="coupon-event-name">{{ eventName }}</div>
-      <div class="coupon-use-code">Use Code: <span class="actual">{{ code }}</span></div>
-      <div v-if="ends" class="coupon-ends">{{ ends }}</div>
-      <div v-if="description" class="coupon-description">{{ description }}</div>
+      <div v-if="eventName" class="coupon-event-name">{{eventName}}</div>
+      <div class="coupon-use-code"
+        v-if="code">Use Code: <span class="actual">{{code}}</span></div>
+      <div v-if="ends" class="coupon-ends">{{ends}}</div>
+      <div v-if="description" class="coupon-description">{{description}}</div>
       <div class="coupon-exclusions" :hidden="!exclusions && !print">
         <template v-if="!print">
           <a :href="'#'+exclusionsId">View Exclusions</a>
@@ -35,7 +43,9 @@
         <sh-button variant="primary" @click="addCoupon">
           Add Coupon to bag
         </sh-button>
-        <sh-button variant="primary" outline @click="printCoupon">
+        <sh-button variant="primary" outline
+          @click="printCoupon"
+          v-if="printable">
           View In-Store Coupon
         </sh-button>
         <div hidden class="modal"></div>
@@ -60,18 +70,13 @@ export default {
   name: 'BelkCoupon',
 
   props: {
+    badge: String,
     upc: {
       type: String,
       default: 'none-given',
     },
-    eventName: {
-      type: String,
-      default: 'Event Name',
-    },
-    code: {
-      type: String,
-      default: 'discount code',
-    },
+    eventName: String,
+    code: String,
     description: {
       type: String,
       default: 'Description text. Capitalize on low hanging fruit to identify a ballpark value added activity to beta test. Override the digital divide with additional clickthroughs.',
@@ -92,6 +97,7 @@ export default {
       type: Boolean,
       default: false,
     },
+    toSpend: Number,
     print: {
       type: Boolean,
       default: false,
@@ -104,6 +110,7 @@ export default {
       exclusionsId: 'defaultid',
       exclusionsHTML: '',
       printId: 'defaultid',
+      printable: false,
     };
   },
 
@@ -115,25 +122,30 @@ export default {
   },
 
   mounted() {
+    if (this.badge) {
+      if (this.badge.indexOf('Store') >= 0) this.printable = true;
+    } 
+    
     if (this.exclusions) {
       this.exclusionsHTML = this.$slots.exclusions[0].elm.outerHTML || '';
-    setTimeout( () => {
-    const el = this.$el.querySelector('.modal[hidden]');
-    console.log(el);
-      el.innerHTML = `<sh-modal printable unique-id="${this.printId}">
-      <div>
-        <belk-coupon print no-type
-          extra="${this.extra}"
-          event-name="${this.eventName}"
-          discount="${this.discount}"
-          code="${this.code}"
-          ends="${this.ends}"
-          upc="${this.upc}">
-          <div slot="exclusions">${this.exclusionsHTML}</div>
-        </belk-coupon>
-      </div>
-    </sh-modal>`;
-    });
+      setTimeout( () => {
+        const el = this.$el.querySelector('.modal[hidden]');
+        if (el) {
+          el.innerHTML = `<sh-modal printable unique-id="${this.printId}">
+            <div>
+              <belk-coupon print no-type
+                extra="${this.extra}"
+                event-name="${this.eventName}"
+                discount="${this.discount}"
+                code="${this.code}" 
+                ends="${this.ends}"
+                upc="${this.upc}">
+                <div slot="exclusions">${this.exclusionsHTML}</div>
+              </belk-coupon>  
+            </div>
+          </sh-modal>`;
+        }
+      });
     }
   },
 
