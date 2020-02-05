@@ -42,6 +42,9 @@
       </div>
       <div v-if="upc" class="coupon-upc">
         <belk-barcode :code="upc"></belk-barcode>
+        <div class="coupon-logo" v-if="print">
+          <belk-logo width="120"></belk-logo>
+        </div>
       </div>
     </div>
   </div>
