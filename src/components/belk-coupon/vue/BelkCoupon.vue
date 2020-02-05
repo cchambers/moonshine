@@ -1,5 +1,6 @@
 <template>
   <div class="belk-coupon"
+    :class="{ printable: print }"
     :variant="variant">
     <div class="coupon-type">
       Online &amp; In Store
@@ -18,19 +19,30 @@
       <div v-if="description" class="coupon-description">{{ description }}</div>
       <div class="coupon-exclusions" :hidden="!exclusions">
         <a :href="'#'+exclusionsId">View Exclusions</a>
-        <sh-modal :unique-id="exclusionsId">
-          <div>
-            <slot name="exclusions">EXCLUSIONS CONTENT</slot>
-          </div>
-        </sh-modal>
+        <template v-if="!print">
+          <sh-modal :unique-id="exclusionsId">
+            <div>
+              <slot name="exclusions"></slot>
+            </div>
+          </sh-modal>
+        </template>
+        <template v-else>
+          <slot name="exclusions"></slot>
+        </template>
+
       </div>
-      <div class="coupon-buttons">
-        <sh-button variant="secondary" @click="addCoupon">
+      <div class="coupon-buttons" v-if="!print">
+        <sh-button variant="primary" @click="addCoupon">
           Add Coupon to bag
         </sh-button>
-        <sh-button variant="secondary" outline @click="printCoupon">
+        <sh-button variant="primary" outline @click="printCoupon">
           View In-Store Coupon
         </sh-button>
+        <sh-modal :unique-id="printId">
+          <div>
+            <belk-coupon print></belk-coupon>
+          </div>
+        </sh-modal>
       </div>
       <div v-if="upc" class="coupon-upc">
         <belk-barcode :code="upc"></belk-barcode>
@@ -40,6 +52,7 @@
 </template>
 
 <script>
+/* eslint-disable */
 import ComponentPrototype from '../../component-prototype';
 
 export default {
@@ -76,19 +89,31 @@ export default {
       type: String,
       default: 'ends 1/1/79',
     },
+    print: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   data() {
     return {
       exclusions: false,
       exclusionsId: 'defaultid',
+      printId: 'defaultid',
     };
   },
 
-  mounted() {
+  created() {
     this.setUUID();
     this.exclusionsId = `em-${this.uuid}`;
-    if (this.$slots.exclusions) this.exclusions = true;
+    this.printId = `pr-${this.uuid}`;
+    if (this.$slots.exclusions !== undefined) {
+      this.exclusions = true;
+    }
+  },
+
+  mounted() {
+    if (this.exclusions) this.exclusionsHTML = this.$slots.exclusions[0].elm.outerHTML;
   },
 
   methods: {
@@ -97,7 +122,7 @@ export default {
     },
 
     printCoupon() {
-      this.log('print coupon click handler');
+      this.$bus.$emit('open-modal', this.printId);
     },
   },
 

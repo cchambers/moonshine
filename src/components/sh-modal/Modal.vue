@@ -148,6 +148,10 @@ export default {
         self.close(false);
       });
 
+      self.$bus.$on('open-modal', (id) => {
+        if (id === this.uniqueId) this.open();
+      });
+
       window.addEventListener('keyup', (e) => {
         const key = e.keyCode;
         if (key === 27) self.$bus.$emit('close-modals'); // esc

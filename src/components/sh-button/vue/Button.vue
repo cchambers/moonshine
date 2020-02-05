@@ -4,7 +4,7 @@
     :close-trigger="closeTrigger"
     v-hammer:tap="tapHandler"
     :value="defaultValue"
-    v-bind:role="{ link: link }"
+    v-bind:role="isLink"
     class="sh-button">
     <slot name="before-text"></slot>
     <slot></slot>
@@ -41,11 +41,13 @@ export default {
       isActive: false,
       emitData: null,
       buttonEl: this.$refs.button,
+      isLink: false,
     };
   },
 
   created() {
     // console.log('BUTTON CREATED');
+    if (this.link) this.isLink = 'link';
   },
 
   mounted() {
