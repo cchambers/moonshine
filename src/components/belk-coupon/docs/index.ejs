@@ -58,9 +58,9 @@
   <section id="examples">
     <h2>Examples</h2>
     <h3>Default</h3>
-    <div style="display: flex;">
-      <belk-coupon discount="30" upc="12349876"></belk-coupon>
-      <belk-coupon discount="25" upc="99999994" extra class="margin-l-quarter">
+    <div style="display: flex;" class="belk-coupons">
+      <belk-coupon discount="30" event-name="Dirty Thirty" code="GET SOME" upc="12349876"></belk-coupon>
+      <belk-coupon discount="88" event-name="Lost a Good One" code="GREGOLSEN" upc="12345678" extra>
         <div slot="exclusions">
           Here's some information about the coupon's exclusions.
         </div>

@@ -2,7 +2,7 @@
   <div class="belk-coupon"
     :class="{ printable: print }"
     :variant="variant">
-    <div class="coupon-type">
+    <div v-if="!noType" class="coupon-type">
       Online &amp; In Store
     </div>
     <div class="coupon-spacer">
@@ -17,18 +17,18 @@
       <div class="coupon-use-code">Use Code: <span class="actual">{{ code }}</span></div>
       <div v-if="ends" class="coupon-ends">{{ ends }}</div>
       <div v-if="description" class="coupon-description">{{ description }}</div>
-      <div class="coupon-exclusions" :hidden="!exclusions">
-        <a :href="'#'+exclusionsId">View Exclusions</a>
+      <div class="coupon-exclusions" :hidden="!exclusions && !print">
         <template v-if="!print">
+          <a :href="'#'+exclusionsId">View Exclusions</a>
           <sh-modal :unique-id="exclusionsId">
             <div>
               <slot name="exclusions"></slot>
             </div>
           </sh-modal>
         </template>
-        <template v-else>
+        <div class="coupon-exclusions" v-else>
           <slot name="exclusions"></slot>
-        </template>
+        </div>
 
       </div>
       <div class="coupon-buttons" v-if="!print">
@@ -38,11 +38,7 @@
         <sh-button variant="primary" outline @click="printCoupon">
           View In-Store Coupon
         </sh-button>
-        <sh-modal :unique-id="printId">
-          <div>
-            <belk-coupon print></belk-coupon>
-          </div>
-        </sh-modal>
+        <div hidden class="modal"></div>
       </div>
       <div v-if="upc" class="coupon-upc">
         <belk-barcode :code="upc"></belk-barcode>
@@ -79,7 +75,7 @@ export default {
     },
     discount: {
       type: String,
-      default: 'Coupon Title',
+      default: '00',
     },
     extra: {
       type: Boolean,
@@ -88,6 +84,10 @@ export default {
     ends: {
       type: String,
       default: 'ends 1/1/79',
+    },
+    noType: {
+      type: Boolean,
+      default: false,
     },
     print: {
       type: Boolean,
@@ -99,6 +99,7 @@ export default {
     return {
       exclusions: false,
       exclusionsId: 'defaultid',
+      exclusionsHTML: '',
       printId: 'defaultid',
     };
   },
@@ -107,13 +108,30 @@ export default {
     this.setUUID();
     this.exclusionsId = `em-${this.uuid}`;
     this.printId = `pr-${this.uuid}`;
-    if (this.$slots.exclusions !== undefined) {
-      this.exclusions = true;
-    }
+    if (this.$slots.exclusions !== undefined) this.exclusions = true;
   },
 
   mounted() {
-    if (this.exclusions) this.exclusionsHTML = this.$slots.exclusions[0].elm.outerHTML;
+    if (this.exclusions) {
+      this.exclusionsHTML = this.$slots.exclusions[0].elm.outerHTML || '';
+    setTimeout( () => {
+    const el = this.$el.querySelector('.modal[hidden]');
+    console.log(el);
+      el.innerHTML = `<sh-modal printable unique-id="${this.printId}">
+      <div>
+        <belk-coupon print no-type
+          extra="${this.extra}"
+          event-name="${this.eventName}"
+          discount="${this.discount}"
+          code="${this.code}"
+          ends="${this.ends}"
+          upc="${this.upc}">
+          <div slot="exclusions">${this.exclusionsHTML}</div>
+        </belk-coupon>
+      </div>
+    </sh-modal>`;
+    });
+    }
   },
 
   methods: {
