@@ -123,29 +123,15 @@ export default {
 
   mounted() {
     if (this.badge) {
-      if (this.badge.indexOf('Store') >= 0) this.printable = true;
+      if (this.badge.indexOf('Store') >= 0) {
+        this.printable = true;
+        this.makeModal();
+      }
     } 
     
     if (this.exclusions) {
       this.exclusionsHTML = this.$slots.exclusions[0].elm.outerHTML || '';
-      setTimeout( () => {
-        const el = this.$el.querySelector('.modal[hidden]');
-        if (el) {
-          el.innerHTML = `<sh-modal printable unique-id="${this.printId}">
-            <div>
-              <belk-coupon print no-type
-                extra="${this.extra}"
-                event-name="${this.eventName}"
-                discount="${this.discount}"
-                code="${this.code}" 
-                ends="${this.ends}"
-                upc="${this.upc}">
-                <div slot="exclusions">${this.exclusionsHTML}</div>
-              </belk-coupon>  
-            </div>
-          </sh-modal>`;
-        }
-      });
+      
     }
   },
 
@@ -157,6 +143,26 @@ export default {
     printCoupon() {
       this.$bus.$emit('open-modal', this.printId);
     },
+
+    makeModal() {
+      let self = this;
+      const el = self.$el.querySelector('.modal[hidden]');
+      if (el) {
+        el.innerHTML = `<sh-modal printable unique-id="${self.printId}">
+          <div>
+            <belk-coupon print no-type
+              extra="${self.extra}"
+              event-name="${self.eventName}"
+              discount="${self.discount}"
+              code="${self.code}" 
+              ends="${self.ends}"
+              upc="${self.upc}">
+              <div slot="exclusions">${self.exclusionsHTML}</div>
+            </belk-coupon>  
+          </div>
+        </sh-modal>`;
+      }
+    }
   },
 
 };
