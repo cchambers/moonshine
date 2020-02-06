@@ -5,6 +5,10 @@ belk-coupon {
 }
 
 .belk-coupons {
+  display: flex;
+  belk-coupon {
+    flex-basis: 25%;
+  }
   belk-coupon + belk-coupon {
     margin-left: 1.5rem;
   }
@@ -14,11 +18,12 @@ belk-coupon {
   display: block;
   flex-grow: 1;
   height: 100%;
-  max-width: 300px;
+  min-width: 300px;
   border: 1px solid $lowlight-primary;
   &.printable {
     border-style: dashed;
     margin: 0 auto;
+    max-width: 300px;
     .coupon-upc {
       display: flex;
       border: none;
