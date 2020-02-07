@@ -39,9 +39,17 @@ sh-button {
     cursor: pointer;
     overflow: hidden;
     background-color: transparent;
-
+    .active-text {
+      display: none;
+    }
     &.active {
       background: $accent-tertiary;
+      .actual-text {
+        display: none;
+      }
+      .active-text {
+        display: block;
+      }
     }
 
     span,

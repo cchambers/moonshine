@@ -25,7 +25,9 @@
       <div class="coupon-use-code"
         v-if="code">Use Code: <span class="actual">{{code}}</span></div>
       <div v-if="ends" class="coupon-ends">{{ends}}</div>
-      <div v-if="description" class="coupon-description">{{description}}</div>
+      <div v-if="hasDescription" class="coupon-description">
+          <slot name="description"></slot>
+      </div>
       <div class="coupon-exclusions" :hidden="!exclusions && !print">
         <template v-if="!print">
           <a :href="'#'+exclusionsId">View Exclusions</a>
@@ -41,7 +43,10 @@
 
       </div>
       <div class="coupon-buttons" v-if="!print">
-        <sh-button variant="primary" @click="addCoupon">
+        <sh-button variant="primary" toggle
+          @click="addCoupon"
+          active-text="Added to Bag"
+          active-icon="check">
           Add Coupon to bag
         </sh-button>
         <sh-button variant="primary" outline
@@ -78,10 +83,7 @@ export default {
     },
     eventName: String,
     code: String,
-    description: {
-      type: String,
-      default: 'Description text. Capitalize on low hanging fruit to identify a ballpark value added activity to beta test. Override the digital divide with additional clickthroughs.',
-    },
+    description: String,
     discount: {
       type: String,
       default: '00',
@@ -90,10 +92,7 @@ export default {
       type: Boolean,
       default: false,
     },
-    ends: {
-      type: String,
-      default: 'ends 1/1/79',
-    },
+    ends: String,
     noType: {
       type: Boolean,
       default: false,
@@ -107,8 +106,10 @@ export default {
 
   data() {
     return {
-      exclusions: false,
-      exclusionsId: 'defaultid',
+      added: true,
+      hasDescription: false,
+      hasExclusions: false,
+      hasEd: 'defaultid',
       exclusionsHTML: '',
       printId: 'defaultid',
       printable: false,
@@ -119,7 +120,8 @@ export default {
     this.setUUID();
     this.exclusionsId = `em-${this.uuid}`;
     this.printId = `pr-${this.uuid}`;
-    if (this.$slots.exclusions !== undefined) this.exclusions = true;
+    if (this.$slots.exclusions !== undefined) this.hasExclusions = true;
+    if (this.$slots.description !== undefined) this.hasDescription = true;
   },
 
   mounted() {
@@ -130,10 +132,8 @@ export default {
       }
     } 
     
-    if (this.exclusions) {
-      this.exclusionsHTML = this.$slots.exclusions[0].elm.outerHTML || '';
-      
-    }
+    if (this.hasExclusions) this.exclusionsHTML = this.$slots.exclusions[0].elm.outerHTML || '';
+    
   },
 
   methods: {

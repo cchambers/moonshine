@@ -7,7 +7,13 @@
     v-bind:role="isLink"
     class="sh-button">
     <slot name="before-text"></slot>
-    <slot></slot>
+    <span class="active-icon"
+      v-if="activeIcon"><belk-icon width="25"
+      :name="activeIcon"></belk-icon></span>
+    <span class="actual-text"><slot></slot></span>
+    <span class="active-text" v-if="isActive">
+      {{activeText}}
+    </span>
     <slot name="after-text"></slot>
   </button>
 </template>
@@ -25,6 +31,8 @@ export default {
       type: String,
       default: 'default',
     },
+    activeText: String,
+    activeIcon: String,
     group: String,
     closeTrigger: Boolean,
     toggle: Boolean,
