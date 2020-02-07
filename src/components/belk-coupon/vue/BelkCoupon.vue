@@ -29,12 +29,12 @@
           <slot name="description"></slot>
       </div>
       <div hidden><slot name="exclusions"></slot></div>
+      <div class="coupon-push"></div>
       <div class="coupon-exclusions" :hidden="!hasExclusions && !print">
         <template v-if="!print">
           <a :href="'#'+exclusionsId">View Exclusions</a>
         </template>
         <div class="coupon-exclusions-actual" v-else>{{exclusions}}</div>
-
       </div>
       <div class="coupon-buttons" v-if="!print">
         <sh-button variant="primary" toggle

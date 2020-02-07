@@ -52,17 +52,26 @@ belk-coupon {
     }
   }
 
+  .flex-end {
+    margin-top: auto;
+  }
+
   .coupon-spacer {
     padding: 1.5rem 3rem;
     display: flex;
+    height: calc(100% - 3rem);
     flex-direction: column;
     color: $lowlight-primary;
     justify-content: flex-end;
 
-    >* {
+    > * {
       display: flex;
       justify-content: center;
       margin-top: 1rem;
+    }
+
+    .coupon-push {
+      margin-top: auto !important;
     }
   }
 
