@@ -39,6 +39,19 @@ belk-coupon {
     }
   }
 
+  &.to-spend {
+    .coupon-discount .coupon-secondary {
+      line-height: 3rem;
+      margin-top: 5rem;
+      .s-t {
+        font-size: 4.2rem;
+      }
+      .s-b {
+        font-size: 3rem;
+      }
+    }
+  }
+
   .coupon-spacer {
     padding: 1.5rem 3rem;
     display: flex;
@@ -60,29 +73,36 @@ belk-coupon {
     font-size: 3rem;
     margin-bottom: -1rem;
     margin-top: -1rem;
+    margin-right: 30%;
   }
 
   .coupon-discount {
     font-family: proxima-nova, sans-serif;
     font-weight: 900;
     font-style: normal;
-    font-size: 10rem;
+    font-size: 13.2rem;
     margin-top: -2rem;
     margin-bottom: -2.5rem;
 
     .actual {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
     }
 
     .dollar {
-      font-size: 0.5em;
+      font-size: 5rem;
+      margin-top: 3rem;
     }
 
-    .secondary {
-      font-size: 0.45em;
-      line-height: 0.8em;
-      margin-top: 0.5em;
+    .coupon-secondary {
+      line-height: 4.5rem;
+      margin-top: 3.5rem;
+      .s-t {
+        font-size: 7rem;
+      }
+      .s-b {
+        font-size: 4.2rem;
+      }
     }
   }
 

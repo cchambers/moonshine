@@ -1,6 +1,6 @@
 <template>
   <div class="belk-coupon"
-    :class="{ printable: print }"
+    :class="{ printable: print, 'to-spend': toSpend }"
     :variant="variant">
     <div v-if="!noType" class="coupon-type">
       {{badge}}
@@ -12,12 +12,13 @@
           <span v-if="toSpend" class="dollar">$</span>
           {{discount}}
           </div>
-        <div v-if="!toSpend" class="secondary">
-          %<br>off
+        <div v-if="!toSpend" class="coupon-secondary">
+          <div class="s-t">%</div>
+          <div class="s-b">off</div>
         </div>
-        <div v-else class="secondary">
-          off</br>
-          ${{toSpend}}
+        <div v-else class="coupon-secondary">
+          <div class="s-t">off</div>
+          <div class="s-b">${{toSpend}}</div>
         </div>
       </div>
       <div v-if="eventName" class="coupon-event-name">{{eventName}}</div>
