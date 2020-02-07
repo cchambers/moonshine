@@ -28,7 +28,7 @@
       <div v-if="hasDescription" class="coupon-description">
           <slot name="description"></slot>
       </div>
-      <div class="coupon-exclusions" :hidden="!exclusions && !print">
+      <div class="coupon-exclusions" :hidden="!hasExclusions && !print">
         <template v-if="!print">
           <a :href="'#'+exclusionsId">View Exclusions</a>
           <sh-modal :unique-id="exclusionsId">
@@ -47,7 +47,7 @@
           @click="addCoupon"
           active-text="Added to Bag"
           active-icon="check">
-          Add Coupon to bag
+          Add Coupon to Bag
         </sh-button>
         <sh-button variant="primary" outline
           @click="printCoupon"
@@ -125,6 +125,7 @@ export default {
   },
 
   mounted() {
+    console.log(this.$slots);
     if (this.badge) {
       if (this.badge.indexOf('Store') >= 0) {
         this.printable = true;
