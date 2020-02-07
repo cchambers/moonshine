@@ -2,6 +2,11 @@ sh-button[variant="primary"] {
   button {
     color: $highlight-primary;
     background-color: $lowlight-primary;
+    span {
+      font-weight: bold;
+      text-transform: none;
+      font-size: 1.8em;
+    }
 
     &:hover,
     &.active {
