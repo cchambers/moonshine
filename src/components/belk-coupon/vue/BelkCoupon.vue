@@ -28,18 +28,12 @@
       <div v-if="hasDescription" class="coupon-description">
           <slot name="description"></slot>
       </div>
+      <div hidden><slot name="exclusions"></slot></div>
       <div class="coupon-exclusions" :hidden="!hasExclusions && !print">
         <template v-if="!print">
           <a :href="'#'+exclusionsId">View Exclusions</a>
-          <sh-modal :unique-id="exclusionsId">
-            <div>
-              <slot name="exclusions"></slot>
-            </div>
-          </sh-modal>
         </template>
-        <div class="coupon-exclusions-actual" v-else>
-          <slot name="exclusions"></slot>
-        </div>
+        <div class="coupon-exclusions-actual" v-else>{{exclusions}}</div>
 
       </div>
       <div class="coupon-buttons" v-if="!print">
@@ -93,6 +87,7 @@ export default {
       default: false,
     },
     ends: String,
+    exclusions: String,
     noType: {
       type: Boolean,
       default: false,
@@ -125,16 +120,17 @@ export default {
   },
 
   mounted() {
-    console.log(this.$slots);
+    if (this.hasExclusions) {
+      this.exclusionsHTML = this.$slots.exclusions[0].elm.innerHTML || '';
+      this.makeExclusionsModal();
+    }
+    
     if (this.badge) {
       if (this.badge.indexOf('Store') >= 0) {
         this.printable = true;
-        this.makeModal();
+        this.makePrintModal();
       }
     } 
-    
-    if (this.hasExclusions) this.exclusionsHTML = this.$slots.exclusions[0].elm.outerHTML || '';
-    
   },
 
   methods: {
@@ -146,11 +142,22 @@ export default {
       this.$bus.$emit('open-modal', this.printId);
     },
 
-    makeModal() {
+    makeExclusionsModal() {
       let self = this;
       const el = self.$el.querySelector('.modal[hidden]');
       if (el) {
-        el.innerHTML = `<sh-modal printable unique-id="${self.printId}">
+        const html = `<sh-modal unique-id="${self.exclusionsId}">
+          <div>${self.exclusionsHTML}</div>
+        </sh-modal>`;
+        el.innerHTML += html;
+      }
+    },
+
+    makePrintModal() {
+      let self = this;
+      const el = self.$el.querySelector('.modal[hidden]');
+      if (el) {
+        const html = `<sh-modal printable unique-id="${self.printId}">
           <div>
             <belk-coupon print no-type
               extra="${self.extra}"
@@ -158,13 +165,15 @@ export default {
               discount="${self.discount}"
               code="${self.code}" 
               ends="${self.ends}"
-              upc="${self.upc}">
-              <div slot="exclusions">${self.exclusionsHTML}</div>
+              upc="${self.upc}"
+              exclusions="${self.exclusionsHTML}"
+              description="${self.descriptionHTML}">
             </belk-coupon>  
           </div>
         </sh-modal>`;
+        el.innerHTML += html;
       }
-    }
+    },
   },
 
 };
