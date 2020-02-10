@@ -99,7 +99,11 @@
           Here's a descriptive paragraph that <strong>is HTML friendly</strong>.
         </div>
       </belk-coupon>
-      <belk-coupon badge="Online and In-Store" discount="30" to-spend="100" event-name="Dirty Thirty" code="GET SOME" upc="12349876"></belk-coupon>
+      <belk-coupon badge="Online and In-Store" discount="30" to-spend="100" event-name="Dirty Thirty" code="GET SOME" upc="12349876">
+        <div slot="exclusions">
+          Here's some exclusions without a description... so the link is lower.
+        </div>
+      </belk-coupon>
     </div>
   </section>
 
