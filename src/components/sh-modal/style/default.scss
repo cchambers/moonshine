@@ -52,10 +52,13 @@ sh-modal {
 
     .buttons {
       position: absolute;
+      display: flex;
+      flex-direction: column;
       right: 0;
       top: 0;
       button {
         color: $lowlight-secondary !important;
+        cursor: pointer;
       }
     }
 
@@ -86,7 +89,7 @@ sh-modal {
     cursor: pointer;
   }
 
-  .header [close-trigger] {
+  .header button {
     display: flex;
     height: 5rem;
     width: 5rem;
@@ -211,6 +214,31 @@ sh-modal {
 
       100% {
         opacity: 0.05;
+      }
+    }
+  }
+}
+
+
+@media print {
+  html.sh-modal-open {
+    body > * {
+      display: none;
+    }
+    body > #sh-modals {
+      display: block;
+      .sh-modal.active {
+        .buttons {
+          display: none;
+        }
+        .content {
+          width: 100vw;
+          min-height: 100vh;
+          height: auto;
+          margin: 0;
+          max-height: initial;
+          max-width: initial;
+        }
       }
     }
   }

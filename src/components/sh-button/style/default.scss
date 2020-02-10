@@ -31,18 +31,25 @@ sh-button {
     justify-content: center;
     flex-direction: row;
     padding: 0 1.5em;
-    min-height: 4em;
+    min-height: 4.5em;
     min-width: 4.5em;
     color: $lowlight-primary;
     transition: all 250ms $decel;
-    text-transform: uppercase;
     font-size: 1em;
     cursor: pointer;
     overflow: hidden;
     background-color: transparent;
-
+    .active-text {
+      display: none;
+    }
     &.active {
       background: $accent-tertiary;
+      .actual-text {
+        display: none;
+      }
+      .active-text {
+        display: block;
+      }
     }
 
     span,
@@ -127,10 +134,13 @@ sh-button {
   &[outline] button,
   &[outline][variant] button {
     background-color: transparent;
-    border-width: 0.25em;
+    border-width: 0.15em;
     border-style: solid;
     border-color: inherit;
     color: $lowlight-primary;
+    span {
+      font-weight: normal;
+    }
 
     &:hover {
       color: $highlight-primary;
