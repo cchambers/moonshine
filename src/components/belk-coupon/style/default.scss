@@ -2,97 +2,193 @@
 
 belk-coupon {
   display: block;
-  max-width: 300px;
+}
+
+.belk-coupons {
+  display: flex;
+  belk-coupon {
+    flex-basis: 25%;
+  }
+  belk-coupon + belk-coupon {
+    margin-left: 1.5rem;
+  }
+}
+
+.belk-coupon {
+  display: block;
+  flex-grow: 1;
+  height: 100%;
+  min-width: 300px;
   border: 1px solid $lowlight-primary;
-  .belk-coupon {
-    display: block;
-    flex-grow: 1;
-    height: 100%;
-    .coupon-spacer {
-      padding: 1.5rem 3rem;
+  &.printable {
+    border-style: dashed;
+    margin: 0 auto;
+    max-width: 300px;
+    .coupon-upc {
       display: flex;
-      flex-direction: column;
-      color: $lowlight-primary;
-      justify-content: flex-end;
-      > * {
+      border: none;
+      margin-left: -1.5rem;
+      margin-right: -1.5rem;
+      .coupon-logo {
+        width: 120px;
         display: flex;
-        justify-content: center;
+        align-items: center;
+        margin-left: 1.5rem;
+        padding-bottom: 1.5rem;
+      }
+    }
+  }
+
+  &.to-spend {
+    .coupon-discount .coupon-secondary {
+      line-height: 3rem;
+      margin-top: 5rem;
+      .s-t {
+        font-size: 4.2rem;
+      }
+      .s-b {
+        font-size: 3rem;
+      }
+    }
+  }
+
+  .coupon-spacer {
+    padding: 1.5rem 3rem;
+    display: flex;
+    height: calc(100% - 3rem);
+    flex-direction: column;
+    color: $lowlight-primary;
+    justify-content: flex-end;
+
+    > * {
+      display: flex;
+      justify-content: center;
+      margin-top: 1rem;
+    }
+
+    .coupon-push {
+      margin-top: auto !important;
+    }
+  }
+
+  .coupon-extra {
+    font-family: proxima-nova, sans-serif;
+    font-weight: 900;
+    font-style: normal;
+    font-size: 3rem;
+    margin-bottom: -1rem;
+    margin-top: -1rem;
+    margin-right: 30%;
+  }
+
+  .coupon-discount {
+    font-family: proxima-nova, sans-serif;
+    font-weight: 900;
+    font-style: normal;
+    font-size: 13.2rem;
+    margin-top: -2rem;
+    margin-bottom: -3rem;
+
+    .actual {
+      display: flex;
+      align-items: flex-start;
+    }
+
+    .dollar {
+      font-size: 5rem;
+      margin-top: 3rem;
+    }
+
+    .coupon-secondary {
+      line-height: 4.5rem;
+      margin-top: 3.5rem;
+      .s-t {
+        font-size: 7rem;
+        text-align: center;
+      }
+      .s-b {
+        font-size: 4.2rem;
+      }
+    }
+  }
+
+  .coupon-type {
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.8rem;
+    background: $lowlight-primary;
+    color: $highlight-primary;
+  }
+
+  .coupon-event-name {
+    font-size: 2.2rem;
+    font-weight: 400;
+  }
+
+  .coupon-use-code {
+    .actual {
+      font-weight: bold;
+      color: $lowlight-primary;
+      margin-left: 1rem;
+      text-transform: uppercase;
+    }
+  }
+
+  .coupon-buttons {
+    display: flex;
+    flex-direction: column;
+
+    sh-button {
+      margin: 0;
+
+      button {
+        display: flex;
+        &.active {
+          background: $state-success;
+          belk-icon {
+            display: block;
+          }
+        }
+        belk-icon {
+          display: none;
+          margin-right: 0.5rem;
+        }
+      }
+
+      +sh-button {
         margin-top: 1rem;
       }
     }
-    .coupon-extra {
-      font-family: proxima-nova,sans-serif;
-      font-weight: 900;
-      font-style: normal;
-      font-size: 3rem;
-      margin-bottom: -1rem;
-      margin-top: -1rem;
-    }
-    .coupon-discount {
-      font-family: proxima-nova, sans-serif;
-      font-weight: 900;
-      font-style: normal;
-      font-size: 10rem;
-      margin-top: -2rem;
-      margin-bottom: -2.5rem;
-      .secondary {
-        font-size: 0.45em;
-        line-height: 0.8em;
-        margin-top: 0.5em;
+  }
+
+  .coupon-description {
+    font-size: 1.4rem;
+    margin-left: -1.5rem;
+    margin-right: -1.5rem;
+    text-align: center;
+  }
+
+  .coupon-ends {
+    font-weight: bold;
+  }
+
+  .coupon-upc {
+    margin-top: 1rem;
+    margin-left: -1rem;
+    margin-right: -1rem;
+  }
+
+  .coupon-exclusions {
+    a {
+      text-decoration: underline;
+
+      &:hover {
+        text-decoration: none;
       }
     }
-    .coupon-type {
-      text-align: center;
-      font-weight: bold;
-      font-size: 1.8rem;
-      background: $lowlight-primary;
-      color: $highlight-primary;
-    }
-    .coupon-event-name {
-      font-size: 2.2rem;
-      font-weight: 400;
-    }
-    .coupon-use-code {
-      .actual {
-        font-weight: bold;
-        color: $lowlight-primary;
-        margin-left: 1rem;
-        text-transform: uppercase;
-      }
-    }
-    .coupon-buttons {
-      display: flex;
-      flex-direction: column;
-      sh-button {
-        margin: 0;
-        button {
-          display: block;
-        }
-        + sh-button {
-          margin-top: 1rem;
-        }
-      }
-    }
-    .coupon-description {
-      font-size: 1.4rem;
-      margin-left: -1.5rem;
-      margin-right: -1.5rem;
-      text-align: center;
-    }
-    .coupon-ends {
-      font-weight: bold;
-    }
-    .coupon-upc {
-      border: 1px solid $lowlight-primary;
-      margin-top: 1rem;
-    }
-    .coupon-exclusions {
-      a {
-        text-decoration: underline;
-        &:hover {
-          text-decoration: none;
-        }
-      }
-    }
+  }
+
+  .coupon-exclusions-actual {
+    font-size: 1rem;
   }
 }

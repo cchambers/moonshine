@@ -52,10 +52,13 @@ sh-modal {
 
     .buttons {
       position: absolute;
+      display: flex;
+      flex-direction: column;
       right: 0;
       top: 0;
       button {
         color: $lowlight-secondary !important;
+        cursor: pointer;
       }
     }
 
@@ -86,7 +89,7 @@ sh-modal {
     cursor: pointer;
   }
 
-  .header [close-trigger] {
+  .header button {
     display: flex;
     height: 5rem;
     width: 5rem;

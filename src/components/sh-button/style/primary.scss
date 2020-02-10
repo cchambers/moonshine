@@ -1,7 +1,15 @@
 sh-button[variant="primary"] {
   button {
     color: $highlight-primary;
-    background-color: $lowlight-tertiary;
+    background-color: $lowlight-primary;
+    > span {
+      font-weight: 600;
+      text-transform: none;
+      font-size: 1.8em;
+      span {
+        font-size: 1em;
+      }
+    }
 
     &:hover,
     &.active {
@@ -10,6 +18,10 @@ sh-button[variant="primary"] {
   }
 
   &[outline] button {
-    color: $lowlight-tertiary;
+    color: $lowlight-primary;
+    &:hover {
+      border: 0.25em solid $lowlight-primary;
+      background: $lowlight-primary;
+    }
   }
 }

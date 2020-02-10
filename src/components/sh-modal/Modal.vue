@@ -21,6 +21,11 @@
           v-on:keyup.enter="close">
             <belk-icon :name="closeIcon" width="32">Close Button</belk-icon>
           </button>
+          <button v-if="printable"
+          v-hammer:tap="doPrint"
+          v-on:keyup.enter="doPrint">
+            <belk-icon name="print" width="32">Print Content</belk-icon>
+          </button>
         </div>
       </div>
       <div class="body" ref="body" :id="ariaDescID" tabindex="-1">
@@ -73,6 +78,7 @@ export default {
     reveal: String,
     variant: String,
     overlay: String,
+    printable: Boolean,
   },
 
   data() {
@@ -125,6 +131,10 @@ export default {
   },
 
   methods: {
+    doPrint() {
+      window.print();
+    },
+
     focusFirst() {
       const { filter } = Array.prototype;
       const els = this.$el.querySelectorAll('a, input, button, [tabindex], [close-trigger]');
@@ -146,6 +156,10 @@ export default {
       self.$bus.$on('close-modals', this.close);
       self.$bus.$on('modal-opening', () => {
         self.close(false);
+      });
+
+      self.$bus.$on('open-modal', (id) => {
+        if (id === this.uniqueId) this.open();
       });
 
       window.addEventListener('keyup', (e) => {

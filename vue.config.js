@@ -45,6 +45,8 @@ if (branchActual === 'master') {
   };
 }
 
+const openToPage = process.env.PAGE || '';
+
 const pages = {
   index: {
     entry: 'src/main.js',
@@ -205,6 +207,9 @@ module.exports = {
           loader: 'babel-loader',
         }
       }]
+    },
+    devServer: {
+      openPage: openToPage,
     },
     optimization: optimizationSetting,
     plugins: [
