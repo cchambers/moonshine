@@ -24,7 +24,8 @@
     "vue": "^2.6.10",
     "vue-custom-element": "^3.2.7",
     "vue2-hammer": "^2.1.2",
-    "glob": "^7.1.4"
+    "glob": "^7.1.4",
+    "fs-extra": "^8.1.0"
   },
   "devDependencies": {
     "@ascendancyy/vue-cli-plugin-stylelint": "^1.1.2",
@@ -48,7 +49,6 @@
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-vue": "^5.2.2",
-    "fs-extra": "^8.1.0",
     "fullname": "^4.0.1",
     "git-branch": "^2.0.1",
     "node-sass": "^4.13.0",
