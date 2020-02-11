@@ -23,7 +23,8 @@
     "jsbarcode": "^3.11.0",
     "vue": "^2.6.10",
     "vue-custom-element": "^3.2.7",
-    "vue2-hammer": "^2.1.2"
+    "vue2-hammer": "^2.1.2",
+    "glob": "^7.1.4"
   },
   "devDependencies": {
     "@ascendancyy/vue-cli-plugin-stylelint": "^1.1.2",
@@ -50,7 +51,6 @@
     "fs-extra": "^8.1.0",
     "fullname": "^4.0.1",
     "git-branch": "^2.0.1",
-    "glob": "^7.1.4",
     "node-sass": "^4.13.0",
     "pretty": "^2.0.0",
     "prompt": "^1.0.0",
