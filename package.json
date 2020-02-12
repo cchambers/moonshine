@@ -26,15 +26,15 @@
     "jsbarcode": "^3.11.0",
     "vue": "^2.6.10",
     "vue-custom-element": "^3.2.7",
-    "vue2-hammer": "^2.1.2"
+    "vue2-hammer": "^2.1.2",
+    "@vue/cli": "^4.2.2",
+    "@vue/cli-plugin-babel": "^4.0.5",
+    "@vue/cli-plugin-eslint": "^4.0.5",
+    "@vue/cli-service": "^4.0.5"
   },
   "devDependencies": {
     "@ascendancyy/vue-cli-plugin-stylelint": "^1.1.2",
     "@types/ace": "0.0.42",
-    "@vue/cli": "^4.2.2",
-    "@vue/cli-plugin-babel": "^4.0.5",
-    "@vue/cli-plugin-eslint": "^4.0.5",
-    "@vue/cli-service": "^4.0.5",
     "ace-builds": "^1.4.5",
     "babel-eslint": "^10.0.2",
     "babel-polyfill": "^6.26.0",
