@@ -18,19 +18,20 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.7.0",
+    "chalk": "^3.0.0",
     "core-js": "^3.3.2",
     "document-register-element": "^1.13.2",
+    "fs-extra": "^8.1.0",
+    "glob": "^7.1.4",
     "jsbarcode": "^3.11.0",
     "vue": "^2.6.10",
     "vue-custom-element": "^3.2.7",
-    "vue2-hammer": "^2.1.2",
-    "glob": "^7.1.4",
-    "fs-extra": "^8.1.0",
-    "chalk": "^3.0.0"
+    "vue2-hammer": "^2.1.2"
   },
   "devDependencies": {
     "@ascendancyy/vue-cli-plugin-stylelint": "^1.1.2",
     "@types/ace": "0.0.42",
+    "@vue/cli": "^4.2.2",
     "@vue/cli-plugin-babel": "^4.0.5",
     "@vue/cli-plugin-eslint": "^4.0.5",
     "@vue/cli-service": "^4.0.5",
