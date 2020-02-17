@@ -9,18 +9,6 @@
     :aria-describedby="ariaDescID">
     <div class="content">
       <div class="tab-lock" v-on:focus="focusLast()" tabindex="0"></div>
-      <div class="buttons">
-        <button close-trigger
-        v-hammer:tap="close"
-        v-on:keyup.enter="close">
-          <belk-icon :name="closeIcon" width="32">Close Button</belk-icon>
-        </button>
-        <button v-if="printable"
-        v-hammer:tap="doPrint"
-        v-on:keyup.enter="doPrint">
-          <belk-icon name="print" width="32">Print Content</belk-icon>
-        </button>
-      </div>
       <div v-if="!hideHeader" class="header">
         <div v-if="header" class="modal-title">
           <h3 :id="ariaHeaderID">
@@ -266,6 +254,15 @@ export default {
       const self = this;
       const container = document.createElement('div');
       container.id = 'sh-modals';
+      container.innerHTML = `
+      <div class="buttons">
+        <button close-trigger>
+          <belk-icon name="close" width="32">Close Button</belk-icon>
+        </button>
+        <button print-trigger hidden>
+          <belk-icon name="print" width="32">Print Content</belk-icon>
+        </button>
+      </div>`;
       document.body.appendChild(container);
       self.container = container;
       self.container.addEventListener('click', (e) => {
@@ -348,6 +345,39 @@ export default {
     background: rgba(0, 0, 0, 0.8);
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
+    .buttons {
+      position: fixed;
+      z-index: 2;
+      display: flex;
+      pointer-events: all;
+      flex-direction: column;
+      right: 0;
+      top: 13rem;
+      color: $highlight-primary;
+      @include lg {
+        left: calc(100% / 2 + 39.5rem);
+        right: auto;
+      }
+      button {
+        display: flex;
+        height: 5rem;
+        width: 5rem;
+        align-content: center;
+        justify-content: center;
+        color: $highlight-primary !important;
+        background: transparent;
+        cursor: pointer;
+        border: none;
+        outline: none;
+        transition: all 150ms ease-out;
+        transform: scale(1) translateX(0);
+        transform-origin: center center;
+        &:hover,
+        &:focus {
+          transform: scale(1.3) translateX(0);
+        }
+      }
+    }
 
     &[overlay] {
       &[overlay="none"] {
@@ -357,7 +387,6 @@ export default {
           @include box-shadow(2);
         }
       }
-
       /* Generate background colors for every bg */
       @each $name, $hex in $colors {
         &[overlay="#{$name}"] {

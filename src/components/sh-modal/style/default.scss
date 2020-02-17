@@ -18,7 +18,7 @@ sh-modal {
   align-items: center;
   flex-direction: column;
   &.active {
-    transform: translateX(0) translateY(0) translateZ(0) scale(2);
+    transform: translateX(0) translateY(0) translateZ(0) scale(1);
     opacity: 1;
     display: flex !important;
   }
@@ -42,39 +42,6 @@ sh-modal {
 
   .body {
     padding: 3rem 2rem;
-  }
-  .buttons {
-    position: fixed;
-    z-index: 2;
-    display: flex;
-    pointer-events: all;
-    flex-direction: column;
-    right: 0;
-    top: 0;
-    @include lg {
-      left: calc(100% / 2 + 39.5rem);
-      right: auto;
-    }
-    top: 13rem;
-    button {
-      display: flex;
-      height: 5rem;
-      width: 5rem;
-      align-content: center;
-      justify-content: center;
-      color: $highlight-primary !important;
-      background: transparent;
-      cursor: pointer;
-      border: none;
-      outline: none;
-      transition: all 150ms ease-out;
-      transform: scale(1) translateX(0);
-      transform-origin: center center;
-      &:hover,
-      &:focus {
-        transform: scale(1.3) translateX(0);
-      }
-    }
   }
 
   .header {

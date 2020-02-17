@@ -37,7 +37,14 @@ let delegations = {
 			handler() {
 				EventBus.$emit('close-modals');
 			}
-		},
+    },
+    {
+      target: '[print-trigger]',
+      priority: 1,
+      handler() {
+        window.print();
+      }
+    },
 		{
 			target: '[nav-trigger]',
 			handler() {
