@@ -91,7 +91,7 @@ belk-bag {
     }
   }
 
-  @media (min-width: breakpoint("md")) {
+  @mixin md {
     .bag-icon {
       height: 3rem;
     }

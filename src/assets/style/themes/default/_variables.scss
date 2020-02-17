@@ -53,21 +53,45 @@ $colors: (
   "brand-mysticpurple": #773dbd,
 );
 
-$break-xs: 350px;
-$break-sm: 480px;
-$break-md: 768px;
-$break-lg: 960px;
-$break-xl: 1200px;
-
 $libBreak: 800px;
 
 $breakpoints: (
-  "xs": $break-xs,
-  "sm": $break-sm,
-  "md": $break-md,
-  "lg": $break-lg,
-  "xl": $break-xl
+  "xs": 350px,
+  "sm": 480px,
+  "md": 768px,
+  "lg": 960px,
+  "xl": 1200px
 );
+
+
+@mixin xs {
+  @media screen and (min-width: breakpoint("xs")) {
+    @content;
+  }
+}
+@mixin sm {
+  @media screen and (min-width: breakpoint("sm")) {
+    @content;
+  }
+}
+
+@mixin md {
+  @media screen and (min-width: breakpoint("md")) {
+    @content;
+  }
+}
+
+@mixin lg {
+  @media screen and (min-width: breakpoint("lg")) {
+    @content;
+  }
+}
+
+@mixin xl {
+  @media screen and (min-width: breakpoint("xl")) {
+    @content;
+  }
+}
 
 $box-model-mods: ( "pad": "padding", "margin": "margin" );
 $edges: (

@@ -14,7 +14,7 @@ belk-promo {
       display: none;
     }
 
-    @media screen and (min-width: breakpoint("md")) {
+    @include md {
       justify-content: flex-start;
       flex-direction: row;
 

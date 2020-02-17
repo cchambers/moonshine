@@ -40,7 +40,7 @@ lib-header {
       opacity: 1;
     }
 
-    @media screen and (min-width: $break-xl) {
+    @include xl {
       margin-right: 0;
     }
   }
