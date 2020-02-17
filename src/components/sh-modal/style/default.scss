@@ -8,19 +8,43 @@ sh-modal {
   top: 0;
   left: 0;
   right: 0;
-  transition: transform 300ms $ease, opacity 250ms linear;
-  transition-delay: 50ms;
   height: 0;
   overflow: hidden;
   opacity: 0;
   pointer-events: none;
-  display: none !important;
   align-items: center;
+  display: flex;
   flex-direction: column;
+  max-height: 0;
+  transition: all 150ms $ease;
+  transition-delay: 10ms;
+  transform: scale(0.7) rotateX(-60deg) translateY(20%) translateZ(0);
+  transform-origin: top center;
   &.active {
-    transform: translateX(0) translateY(0) translateZ(0) scale(1);
+    transform: translateX(0) translateY(0) translateZ(0) scale(1) rotate(0) !important;
     opacity: 1;
-    display: flex !important;
+    max-height: initial;
+    height: auto;
+  }
+
+  &[reveal='left'] {
+    transform: translateX(-200%);
+  }
+
+  &[reveal='right'] {
+    transform: translateX(200%);
+  }
+
+  &[reveal='top'] {
+    transform: translateY(-200%);
+  }
+
+  &[reveal='bottom'] {
+    transform: translateY(200%);
+  }
+
+  &[reveal='none'] {
+    transform: scale(1);
   }
 
   .content {
@@ -78,26 +102,6 @@ sh-modal {
 
   [close-trigger] {
     cursor: pointer;
-  }
-
-  &[reveal='left'] {
-    transform: translateX(-200%);
-  }
-
-  &[reveal='right'] {
-    transform: translateX(200%);
-  }
-
-  &[reveal='top'] {
-    transform: translateY(-200%);
-  }
-
-  &[reveal='bottom'] {
-    transform: translateY(200%);
-  }
-
-  &[reveal='zoom'] {
-    transform: scale(0.7) rotateX(-60deg) translateY(20%);
   }
 
   &.fullscreen {

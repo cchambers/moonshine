@@ -336,6 +336,7 @@ export default {
   #sh-modals {
     position: fixed;
     pointer-events: none;
+    max-height: 0;
     top: 0;
     right: 0;
     bottom: 0;
@@ -345,6 +346,7 @@ export default {
     background: rgba(0, 0, 0, 0.8);
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
+    transition: opacity 150ms ease;
     .buttons {
       position: fixed;
       z-index: 2;
@@ -369,7 +371,7 @@ export default {
         cursor: pointer;
         border: none;
         outline: none;
-        transition: all 150ms ease-out;
+        transition: all 150ms $decel;
         transform: scale(1) translateX(0);
         transform-origin: center center;
         &:hover,
@@ -382,7 +384,6 @@ export default {
     &[overlay] {
       &[overlay="none"] {
         background: transparent;
-
         .content {
           @include box-shadow(2);
         }
@@ -402,22 +403,10 @@ export default {
         overflow: hidden !important;
       }
 
-      #close-modal {
-        transform: translateZ(0);
-      }
-
-      #close-curtain {
-        transform: translateY(-10rem) translateZ(0) !important;
-      }
-
       #sh-modals {
-        pointer-events: initial;
         opacity: 1;
-
-        .sh-modal.active {
-          transform: translateY(0);
-          height: auto;
-        }
+        pointer-events: initial;
+        max-height: initial;
       }
     }
   }
