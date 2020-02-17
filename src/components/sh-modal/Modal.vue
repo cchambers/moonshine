@@ -9,30 +9,30 @@
     :aria-describedby="ariaDescID">
     <div class="content">
       <div class="tab-lock" v-on:focus="focusLast()" tabindex="0"></div>
+      <div class="buttons">
+        <button close-trigger
+        v-hammer:tap="close"
+        v-on:keyup.enter="close">
+          <belk-icon :name="closeIcon" width="32">Close Button</belk-icon>
+        </button>
+        <button v-if="printable"
+        v-hammer:tap="doPrint"
+        v-on:keyup.enter="doPrint">
+          <belk-icon name="print" width="32">Print Content</belk-icon>
+        </button>
+      </div>
       <div v-if="!hideHeader" class="header">
         <div v-if="header" class="modal-title">
           <h3 :id="ariaHeaderID">
             <slot name="header">{{ header }}</slot>
           </h3>
         </div>
-        <div class="buttons">
-          <button close-trigger
-          v-hammer:tap="close"
-          v-on:keyup.enter="close">
-            <belk-icon :name="closeIcon" width="32">Close Button</belk-icon>
-          </button>
-          <button v-if="printable"
-          v-hammer:tap="doPrint"
-          v-on:keyup.enter="doPrint">
-            <belk-icon name="print" width="32">Print Content</belk-icon>
-          </button>
-        </div>
       </div>
       <div class="body" ref="body" :id="ariaDescID" tabindex="-1">
         <div v-if="contentUrl && !loaded" class="loading-anim" v-html="loadHtml"></div>
-        <div>
+        <template>
           <slot>{{ content }}</slot>
-        </div>
+        </template>
 
       </div>
       <div class="footer" v-if="footer">
@@ -348,7 +348,6 @@ export default {
     background: rgba(0, 0, 0, 0.8);
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
-    will-change: scroll-position;
 
     &[overlay] {
       &[overlay="none"] {
