@@ -91,7 +91,7 @@ belk-bag {
     }
   }
 
-  @mixin md {
+  @include md {
     .bag-icon {
       height: 3rem;
     }

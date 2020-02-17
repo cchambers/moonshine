@@ -7,7 +7,7 @@ belk-search {
   align-items: center;
   margin: 0 auto;
 
-  @mixin md {
+  @include md {
     height: 4rem;
   }
 
@@ -59,7 +59,7 @@ belk-search {
         background: $highlight-secondary;
       }
 
-      @mixin md {
+      @include md {
         height: 3.6rem;
         min-width: 3.6rem;
       }
@@ -191,7 +191,7 @@ belk-search {
         display: flex;
       }
 
-      @mixin md {
+      @include md {
         flex-direction: row;
       }
 
@@ -208,7 +208,7 @@ belk-search {
 
       .products {
         ul {
-          @mixin md {
+          @include md {
             border-left: 1px solid $highlight-tertiary;
           }
         }
@@ -255,7 +255,7 @@ belk-search {
       width: 100%;
       z-index: 1;
     }
-    @mixin md {
+    @include md {
       .belk-search .search-input input {
         width: 90%;
         position: relative;

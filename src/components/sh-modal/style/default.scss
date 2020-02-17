@@ -30,7 +30,8 @@ sh-modal {
     flex-grow: 0;
     margin: 0;
     margin-right: 6rem;
-    @mixin lg {
+    @include lg {
+      border: 10px solid red;
       margin: 12rem 1.5rem;
     }
   }
@@ -51,7 +52,7 @@ sh-modal {
     pointer-events: all;
     flex-direction: column;
     right: 0;
-    @mixin lg {
+    @include lg {
       left: calc(100% / 2 + 42rem);
       right: auto;
     }

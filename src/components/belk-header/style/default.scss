@@ -195,7 +195,7 @@
   }
 
   // Media Queries
-  @mixin md {
+  @include md {
     border-bottom: 0;
 
     belk-logo {
@@ -267,7 +267,7 @@
     }
   }
 
-  @mixin xl {
+  @include xl {
     .primary {
       display: flex;
 
@@ -297,7 +297,7 @@
     }
   }
 
-  @mixin xl {
+  @include xl {
     .contain {
       padding: 0 2rem;
     }
