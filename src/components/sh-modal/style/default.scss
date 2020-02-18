@@ -16,7 +16,7 @@ sh-modal {
   display: flex;
   flex-direction: column;
   max-height: 0;
-  transition: all 150ms $ease;
+  transition: all 150ms $ease, opacity 300ms linear;
   transition-delay: 10ms;
   transform: scale(0.7) rotateX(-60deg) translateY(20%) translateZ(0);
   transform-origin: top center;
@@ -206,7 +206,7 @@ sh-modal {
     body > #sh-modals {
       display: block;
       .sh-modal.active {
-        .buttons {
+        .modal-buttons {
           display: none;
         }
         .content {

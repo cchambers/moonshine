@@ -67,6 +67,8 @@ export default {
     variant: String,
     overlay: String,
     printable: Boolean,
+    startOpen: Boolean,
+    formTarget: String,
   },
 
   data() {
@@ -116,11 +118,42 @@ export default {
 
     if (self.openTriggerEvent) self.$bus.$on(self.openTriggerEvent, self.open);
     if (self.closeTriggerEvent) self.$bus.$on(self.closeTriggerEvent, self.close);
+
+    if (self.startOpen) this.open();
   },
 
   methods: {
     doPrint() {
       window.print();
+    },
+
+    serialize(form) {
+      // Setup our serialized data
+      var serialized = [];
+      // Loop through each field in the form
+      for (var i = 0; i < form.elements.length; i++) {
+
+        var field = form.elements[i];
+
+        // Don't serialize fields without a name, submits, buttons, file and reset inputs, and disabled fields
+        if (!field.name || field.disabled || field.type === 'file' || field.type === 'reset' || field.type === 'submit' || field.type === 'button') continue;
+
+        // If a multi-select, get all selections
+        if (field.type === 'select-multiple') {
+          for (var n = 0; n < field.options.length; n++) {
+            if (!field.options[n].selected) continue;
+            serialized.push(encodeURIComponent(field.name) + "=" + encodeURIComponent(field.options[n].value));
+          }
+        }
+
+        // Convert field data to a query string
+        else if ((field.type !== 'checkbox' && field.type !== 'radio') || field.checked) {
+          serialized.push(encodeURIComponent(field.name) + "=" + encodeURIComponent(field.value));
+        }
+      }
+
+      return serialized.join('&');
+
     },
 
     focusFirst() {
@@ -285,22 +318,34 @@ export default {
       this.$refs.body.innerHTML = `<p class="error">There was a problem loading content from <a href='${window.location.host}${this.contentUrl}'>${window.location.host}${this.contentUrl}</a>.</p>`;
     },
 
-    ajax() {
+    ajax(data = null) {
       const self = this;
       const xhr = new XMLHttpRequest();
-      xhr.open('GET', self.contentUrl);
-      xhr.send(null);
+      const method = (data === null) ? 'GET' : 'POST';
+      xhr.open(method, self.contentUrl, true);
+      if (method == 'POST') {
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        if (self.formTarget) {
+          const form = document.querySelector(self.formTarget);
+          if (form) data = self.serialize(form);
+        }
+      }
+      xhr.send(data);
       xhr.onreadystatechange = () => {
-        const DONE = 4; // readyState 4 means the request is done.
-        const OK = 200; // status 200 is a successful return.
+        const DONE = 4;
+        const OK = 200;
         if (xhr.readyState === DONE) {
           if (xhr.status === OK) {
             self.loaded = true;
             let response = xhr.responseText;
             const pattern = /<body[^>]*>((.|[\n\r])*)<\/body>/im;
             const arr = pattern.exec(response);
+            if (!arr) {
+              response = xhr.responseText;
+            } else {
+              response = arr[1];
+            }
             // eslint-disable-next-line
-            if (arr[1].length) response = arr[1];
             let html = document.createElement('div');
             html.innerHTML = response;
 
@@ -347,7 +392,7 @@ export default {
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
     transition: opacity 150ms ease;
-    .buttons {
+    .modal-buttons {
       position: fixed;
       z-index: 2;
       display: flex;

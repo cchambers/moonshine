@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import Popper from '../../../assets/script/popper';
+import { createPopper } from '@popperjs/core';
 import ComponentPrototype from '../../component-prototype';
 
 function on(element, event, handler) {
@@ -174,7 +174,6 @@ export default {
         this.$bus.$emit('popper-closing', this.uuid);
         if (this.hasCurtain) this.$bus.$emit('hide-curtain', this);
         if (this.link) this.link.setAttribute('aria-expanded', false);
-        if (this.popperJS) this.popperJS.disableEventListeners();
         this.$bus.$emit('popper-closed', this.uuid);
       }
     },
@@ -325,7 +324,7 @@ export default {
           this.$nextTick(this.updatePopper);
         };
 
-        this.popperJS = new Popper(
+        this.popperJS = new createPopper(
           this.referenceElm,
           this.popper,
           this.popperOptions,
