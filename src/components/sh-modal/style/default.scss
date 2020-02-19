@@ -43,6 +43,11 @@ sh-modal {
     transform: translateY(200%);
   }
 
+  &[reveal='fade'] {
+    transform: translateX(0) translateY(0) translateZ(0) scale(1) rotate(0);
+    opacity: 0;
+  }
+
   &[reveal='none'] {
     transform: scale(1);
   }

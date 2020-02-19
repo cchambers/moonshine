@@ -1,5 +1,6 @@
+
+import { createPopper as CreatePopper } from '@popperjs/core';
 import ComponentPrototype from '../../component-prototype';
-import Popper from '../../../assets/script/popper';
 
 export default {
   mixins: [ComponentPrototype],
@@ -78,8 +79,8 @@ export default {
         self.$el.classList.add('active');
       }, this.delay);
     } else {
-      this.poppers.push(new Popper(this.referenceEl, this.popperLeft, this.opts('left-start')));
-      this.poppers.push(new Popper(this.referenceEl, this.popperRight, this.opts('right-start')));
+      this.poppers.push(new CreatePopper(this.referenceEl, this.popperLeft, this.opts('left-start')));
+      this.poppers.push(new CreatePopper(this.referenceEl, this.popperRight, this.opts('right-start')));
 
       setTimeout(() => {
         self.$el.classList.add('active');
