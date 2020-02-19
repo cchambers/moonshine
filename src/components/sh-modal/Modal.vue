@@ -7,7 +7,7 @@
     :id="uniqueId"
     :aria-labelledby="ariaID"
     :aria-describedby="ariaDescID">
-    <div class="content">
+    <div class="content" :class="customClass">
       <div class="tab-lock" v-on:focus="focusLast()" tabindex="0"></div>
       <div v-if="!hideHeader" class="header">
         <div v-if="header" class="modal-title">
@@ -52,6 +52,7 @@ export default {
     content: String,
     contentUrl: String,
     contentSelector: String,
+    customClass: String,
     dynamicHTML: String,
     noHistory: Boolean,
     hideHeader: Boolean,
@@ -129,31 +130,38 @@ export default {
 
     serialize(form) {
       // Setup our serialized data
-      var serialized = [];
+      const serialized = [];
+
       // Loop through each field in the form
-      for (var i = 0; i < form.elements.length; i++) {
-
-        var field = form.elements[i];
-
-        // Don't serialize fields without a name, submits, buttons, file and reset inputs, and disabled fields
-        if (!field.name || field.disabled || field.type === 'file' || field.type === 'reset' || field.type === 'submit' || field.type === 'button') continue;
+      for (let i = 0; i < form.elements.length; i += 1) {
+        const field = form.elements[i];
+        if (!field.name
+          || field.disabled
+          || field.type === 'file'
+          || field.type === 'reset'
+          || field.type === 'submit'
+          || field.type === 'button') {
+          // eslint-disable-next-line
+          continue;
+        }
 
         // If a multi-select, get all selections
         if (field.type === 'select-multiple') {
-          for (var n = 0; n < field.options.length; n++) {
+          for (let n = 0; n < field.options.length; n += 1) {
+            // eslint-disable-next-line
             if (!field.options[n].selected) continue;
-            serialized.push(encodeURIComponent(field.name) + "=" + encodeURIComponent(field.options[n].value));
+            const name = encodeURIComponent(field.name);
+            const value = encodeURIComponent(field.options[n].value);
+            serialized.push(`${name}=${value}`);
           }
-        }
-
-        // Convert field data to a query string
-        else if ((field.type !== 'checkbox' && field.type !== 'radio') || field.checked) {
-          serialized.push(encodeURIComponent(field.name) + "=" + encodeURIComponent(field.value));
+        } else if ((field.type !== 'checkbox' && field.type !== 'radio') || field.checked) {
+          const name = encodeURIComponent(field.name);
+          const value = encodeURIComponent(field.value);
+          serialized.push(`${name}=${value}`);
         }
       }
 
       return serialized.join('&');
-
     },
 
     focusFirst() {
@@ -288,7 +296,7 @@ export default {
       const container = document.createElement('div');
       container.id = 'sh-modals';
       container.innerHTML = `
-      <div class="buttons">
+      <div class="modal-buttons">
         <button close-trigger>
           <belk-icon name="close" width="32">Close Button</belk-icon>
         </button>
@@ -322,15 +330,16 @@ export default {
       const self = this;
       const xhr = new XMLHttpRequest();
       const method = (data === null) ? 'GET' : 'POST';
+      let postData = data;
       xhr.open(method, self.contentUrl, true);
-      if (method == 'POST') {
+      if (method === 'POST') {
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         if (self.formTarget) {
           const form = document.querySelector(self.formTarget);
-          if (form) data = self.serialize(form);
+          if (form) postData = self.serialize(form);
         }
       }
-      xhr.send(data);
+      xhr.send(postData);
       xhr.onreadystatechange = () => {
         const DONE = 4;
         const OK = 200;
@@ -343,6 +352,7 @@ export default {
             if (!arr) {
               response = xhr.responseText;
             } else {
+              // eslint-disable-next-line
               response = arr[1];
             }
             // eslint-disable-next-line

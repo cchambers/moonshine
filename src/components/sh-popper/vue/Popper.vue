@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import { createPopper } from '@popperjs/core';
+import { createPopper as CreatePopper } from '@popperjs/core';
 import ComponentPrototype from '../../component-prototype';
 
 function on(element, event, handler) {
@@ -324,7 +324,7 @@ export default {
           this.$nextTick(this.updatePopper);
         };
 
-        this.popperJS = new createPopper(
+        this.popperJS = new CreatePopper(
           this.referenceElm,
           this.popper,
           this.popperOptions,
