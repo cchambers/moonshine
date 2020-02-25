@@ -21,6 +21,14 @@ export default {
       type: String,
       default: '99',
     },
+    freeShippingBasic: {
+      type: String,
+      default: '99',
+    },
+    freeShippingPremier: {
+      type: String,
+      default: '99',
+    }
   },
 
   data() {
@@ -35,20 +43,41 @@ export default {
   computed: {
     shipping() {
       let string;
-      const brd = this.data.brd || 0;
+      let brd = parthis.data.brd || 0;
+      brd = parseInt(brd, 10);
       let brc = this.data.brc || '';
       brc = brc.toLowerCase();
+      const freeShipping = (parseInt(this.freeShipping, 10) === 0);
+      const freeShippingBasic = (parseInt(this.freeShippingBasic, 10) === 0);
+      const freeShippingPremier = (parseInt(this.freeShippingPremier, 10) === 0);
+
       switch (brc) {
         case 'elite':
-          if (parseInt(brd, 10) === 0) {
+          if (brd) {
             string = 'Elites get <span class="uppercase">Free</span> Shipping every day';
           } else {
             string = '<span class="uppercase">Free</span> Shipping for Elites';
           }
           break;
 
+        case 'premier':
+          if (freeShippingPremier) {
+            string = `<span class="uppercase">Free</span> Shipping for Premiers!`;
+          } else {
+            string = `<span class="uppercase">Free</span> Shipping @ $${this.freeShippingPremier}`;
+          }
+          break;
+
+        case 'basic':
+          if (freeShippingBasic) {
+            string = `<span class="uppercase">Free</span> Shipping for all cardholders!`;
+          } else {
+            string = `<span class="uppercase">Free</span> Shipping @ $${this.freeShippingBasic}`;
+          }
+          break;
+
         default:
-          if (parseInt(this.freeShipping, 10) === 0) {
+          if (freeShipping) {
             string = '<span class="uppercase">Free</span> Shipping on all orders!';
           } else {
             string = `<span class="uppercase">Free</span> Shipping @ $${this.freeShipping}`;
