@@ -43,7 +43,7 @@ export default {
   computed: {
     shipping() {
       let string;
-      let brd = parthis.data.brd || 0;
+      let brd = this.data.brd || 0;
       brd = parseInt(brd, 10);
       let brc = this.data.brc || '';
       brc = brc.toLowerCase();
