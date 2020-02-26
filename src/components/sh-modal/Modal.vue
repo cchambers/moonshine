@@ -409,11 +409,13 @@ export default {
       pointer-events: all;
       flex-direction: column;
       right: 0;
-      top: 13rem;
-      color: $highlight-primary;
+      top: 0rem;
+      color: $lowlight-primary;
       @include lg {
+        top: 13rem;
         left: calc(100% / 2 + 39.5rem);
         right: auto;
+        color: $highlight-primary;
       }
       button {
         display: flex;
@@ -421,7 +423,7 @@ export default {
         width: 5rem;
         align-content: center;
         justify-content: center;
-        color: $highlight-primary !important;
+        color: inherit;
         background: transparent;
         cursor: pointer;
         border: none;
