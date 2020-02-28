@@ -62,7 +62,7 @@ export default {
 
         case 'premier':
           if (freeShippingPremier) {
-            string = `<span class="uppercase">Free</span> Shipping for Premiers!`;
+            string = '<span class="uppercase">Free</span> Shipping for Premiers!';
           } else {
             string = `<span class="uppercase">Free</span> Shipping @ $${this.freeShippingPremier}`;
           }
@@ -70,7 +70,7 @@ export default {
 
         case 'basic':
           if (freeShippingBasic) {
-            string = `<span class="uppercase">Free</span> Shipping for all cardholders!`;
+            string = '<span class="uppercase">Free</span> Shipping for all cardholders!';
           } else {
             string = `<span class="uppercase">Free</span> Shipping @ $${this.freeShippingBasic}`;
           }
