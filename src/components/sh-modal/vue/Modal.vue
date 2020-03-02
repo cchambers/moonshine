@@ -411,11 +411,14 @@ export default {
       right: 0;
       top: 0rem;
       color: $lowlight-primary;
-      @include lg {
+      @include md {
         top: 13rem;
-        left: calc(100% / 2 + 39.5rem);
+        left: calc(100% / 2 + 38rem);
         right: auto;
         color: $highlight-primary;
+      }
+      @include lg {
+        left: calc(100% / 2 + 39.5rem);
       }
       button {
         display: flex;
