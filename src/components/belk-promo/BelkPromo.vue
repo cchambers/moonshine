@@ -54,9 +54,9 @@ export default {
       switch (brc) {
         case 'elite':
           if (brd) {
-            string = 'Elites get <span class="uppercase">Free</span> Shipping every day';
-          } else {
             string = '<span class="uppercase">Free</span> Shipping for Elites';
+          } else {
+            string = 'Elites get <span class="uppercase">Free</span> Shipping every day';
           }
           break;
 
