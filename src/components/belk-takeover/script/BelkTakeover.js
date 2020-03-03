@@ -1,5 +1,6 @@
-
 import { createPopper as CreatePopper } from '@popperjs/core';
+// import preventOverflow from '@popperjs/core/lib/modifiers/preventOverflow';
+// import flip from '@popperjs/core/lib/modifiers/flip';
 import ComponentPrototype from '../../component-prototype';
 
 export default {
@@ -79,17 +80,18 @@ export default {
         self.$el.classList.add('active');
       }, this.delay);
     } else {
-      this.poppers.push(new CreatePopper(this.referenceEl, this.popperLeft, this.opts('left-start')));
-      this.poppers.push(new CreatePopper(this.referenceEl, this.popperRight, this.opts('right-start')));
+      const left = new CreatePopper(this.referenceEl, this.popperLeft, this.opts('left-start'));
+      const right = new CreatePopper(this.referenceEl, this.popperRight, this.opts('right-start'));
+      this.poppers.push([left, right]);
 
       setTimeout(() => {
         self.$el.classList.add('active');
         self.$nextTick(self.updatePopper);
       }, this.delay);
 
-      this.poppers.forEach((el) => {
-        el.enableEventListeners();
-      });
+      // this.poppers.forEach((el) => {
+      //   el.enableEventListeners();
+      // });
     }
 
     document.documentElement.classList.add('takeover-active');
@@ -99,7 +101,11 @@ export default {
     updatePopper() {
       if (this.poppers.length) {
         this.poppers.forEach((popper) => {
-          popper.scheduleUpdate();
+          if (typeof popper.update === 'function') {
+            popper.update();
+          } else {
+            this.log('update still unavailable');
+          }
         });
       }
     },
@@ -107,18 +113,27 @@ export default {
     opts(pos) {
       const self = this;
       return {
-        placement: pos,
-        modifiers: {
-          preventOverflow: {
+        modifiers: [{
+          name: 'flip',
+          options: {
+            enabled: true,
+            behavior: [pos],
+          },
+        },
+        {
+          name: 'placement',
+          options: pos,
+        },
+        {
+          name: 'preventOverflow',
+          options: {
             boundariesElement: self.scrollingEl,
             priority: ['top'],
             padding: 0,
           },
-          flip: {
-            behavior: [pos],
-          },
         },
-        onCreate: () => {
+        ],
+        onFirstUpdate: () => {
           self.$emit('created', self);
           self.$nextTick(self.updatePopper);
         },
