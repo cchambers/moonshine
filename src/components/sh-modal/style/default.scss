@@ -23,7 +23,7 @@ sh-modal {
     transform: scale(0.7) rotateX(-60deg) translateY(20%) translateZ(0);
   }
   &.active {
-    opacity: 1;
+    opacity: 1 !important;
     max-height: initial;
     height: auto;
     @include md {

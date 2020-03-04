@@ -64,6 +64,8 @@ export default {
     },
 
     quickView(e) {
+      // make URL,
+      this.$emit('open-modal', { id: 'modal-quickview', url: this.url });
       return e;
     },
 

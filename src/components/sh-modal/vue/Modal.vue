@@ -51,6 +51,7 @@ export default {
     },
     content: String,
     contentUrl: String,
+    loadedUrl: String,
     contentSelector: String,
     customClass: String,
     dynamicHTML: String,
@@ -187,8 +188,9 @@ export default {
         self.close(false);
       });
 
-      self.$bus.$on('open-modal', (id) => {
-        if (id === this.uniqueId) this.open();
+      self.$bus.$on('open-modal', (data) => {
+        if (data.url !== this.loadedUrl) this.contentUrl = data.url;
+        if (data.id === this.uniqueId) this.open();
       });
 
       window.addEventListener('keyup', (e) => {
@@ -210,7 +212,9 @@ export default {
     },
 
     open() {
-      if (!this.loaded && this.contentUrl) this.loadContent();
+      if (!this.loaded && this.contentUrl) {
+        if (this.contentUrl !== this.loadedUrl) this.loadContent();
+      }
 
       if (this.overlay) {
         this.container.setAttribute('overlay', this.overlay);
@@ -369,6 +373,7 @@ export default {
               self.doError();
             } else {
               self.$refs.body.appendChild(html);
+              self.loadedUrl = self.contentUrl;
             }
           } else {
             self.doError();
