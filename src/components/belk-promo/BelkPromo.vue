@@ -21,7 +21,7 @@ export default {
       type: String,
       default: '99',
     },
-    freeShippingBasic: {
+    freeShippingStandard: {
       type: String,
       default: '99',
     },
@@ -48,8 +48,11 @@ export default {
       let brc = this.data.brc || '';
       brc = brc.toLowerCase();
       const freeShipping = (parseInt(this.freeShipping, 10) === 0);
-      const freeShippingBasic = (parseInt(this.freeShippingBasic, 10) === 0);
+      const freeShippingStandard = (parseInt(this.freeShippingStandard, 10) === 0);
       const freeShippingPremier = (parseInt(this.freeShippingPremier, 10) === 0);
+
+      // WOW THOUGH
+      if (brc === 'premiere') brc = 'premier';
 
       switch (brc) {
         case 'elite':
@@ -68,11 +71,11 @@ export default {
           }
           break;
 
-        case 'basic':
-          if (freeShippingBasic) {
+        case 'standard':
+          if (freeShippingStandard) {
             string = '<span class="uppercase">Free</span> Shipping for all cardholders!';
           } else {
-            string = `<span class="uppercase">Free</span> Shipping @ $${this.freeShippingBasic}`;
+            string = `<span class="uppercase">Free</span> Shipping @ $${this.freeShippingStandard}`;
           }
           break;
 
