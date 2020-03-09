@@ -27,6 +27,12 @@ $brand-mysticpurple: #773dbd;
 
 $state-success: #4D7A39;
 
+$ease: cubic-bezier(0.4, 0, 0.2, 1);
+$decel: cubic-bezier(0, 0, 0.2, 1);
+$accel: cubic-bezier(0.4, 0, 1, 1);
+
+$docsGradient: linear-gradient(45deg, var(--brand-classicblue), var(--brand-deepteal));
+
 $colors: (
   "highlight-primary": $highlight-primary,
   "highlight-secondary": $highlight-secondary,
@@ -63,7 +69,6 @@ $breakpoints: (
   "xl": 1200px
 );
 
-
 @mixin xs {
   @media screen and (min-width: breakpoint("xs")) {
     @content;
@@ -93,31 +98,52 @@ $breakpoints: (
   }
 }
 
-$box-model-mods: ( "pad": "padding", "margin": "margin" );
-$edges: (
-  "y": ("top", "bottom"),
-  "x": ("left", "right"),
-  "t": "top",
-  "b": "bottom",
-  "l": "left",
-  "r": "right"
+// OO-Class Generation
+
+$box-model-mods: (
+  "pad": "padding",
+  "margin": "margin",
+  "pull": "margin"
 );
 
-$base: 3;
+$edges: (
+  "y": ("-top", "-bottom"),
+  "x": ("-left", "-right"),
+  "t": ("-top"),
+  "b": ("-bottom"),
+  "l": ("-left"),
+  "r": ("-right")
+);
+
+$base: 3.2;
 
 $rem: #{$base}rem;
 
-$mod-amounts: (
-  "eighth": #{$base/8}rem,
-  "quarter": #{$base/4}rem,
-  "half": #{$base/2}rem,
-  "default": $rem,
-  "double": #{$base*2}rem,
-  "quad": #{$base*4}rem
-);
+$mod-amounts: ("-atomic": #{$base/8}rem,
+  "-micro": #{$base/4}rem,
+  "-little": #{$base/2}rem,
+  "": $rem,
+  "-big": #{$base*1.5}rem,
+  "-huge": #{$base*2}rem,
+  "-mega": #{$base*2.5}rem);
+$inv: "";
 
-$ease: cubic-bezier(0.4, 0, 0.2, 1);
-$decel: cubic-bezier(0, 0, 0.2, 1);
-$accel: cubic-bezier(0.4, 0, 1, 1);
+@each $mod,
+$prop in $box-model-mods {
+  @if $mod=="pull" {
+    $inv: "-";
+  }
 
-$docsGradient: linear-gradient(45deg, var(--brand-classicblue), var(--brand-deepteal));
+  @each $name,
+  $edge in $edges {
+
+    @each $amt,
+    $meas in $mod-amounts {
+      .#{$mod}-#{$name}#{$amt} {
+        @each $act in $edge {
+          #{$prop}#{$act}: #{$inv}#{$meas};
+        }
+      }
+    }
+  }
+}
