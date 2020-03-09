@@ -169,9 +169,11 @@ export default {
       if (activeSlide) activeSlide.focus();
       if (this.variant === 'secondary') {
         if (this.vertical) {
-          this.list.scrollTop = activeSlide.offsetTop;
+          const dist = (this.hideArrows) ? activeSlide.offsetTop : activeSlide.offsetTop - 60;
+          this.list.scrollTop = dist;
         } else {
-          this.list.scrollLeft = activeSlide.offsetLeft;
+          const dist = (this.hideArrows) ? activeSlide.offsetLeft : activeSlide.offsetLeft - 60;
+          this.list.scrollLeft = dist;
         }
       }
     },

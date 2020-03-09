@@ -8,57 +8,103 @@ sh-modal {
   top: 0;
   left: 0;
   right: 0;
-  transition: transform 300ms $ease, opacity 250ms linear;
-  transition-delay: 50ms;
   height: 0;
   overflow: hidden;
   opacity: 0;
   pointer-events: none;
-  display: none !important;
   align-items: center;
+  display: flex;
   flex-direction: column;
+  max-height: 0;
+  transition: all 150ms $ease, opacity 300ms linear;
+  transition-delay: 10ms;
+  transform-origin: top center;
+  @include md {
+    transform: scale(0.7) rotateX(-60deg) translateY(20%) translateZ(0);
+  }
+  &.active {
+    opacity: 1 !important;
+    max-height: initial;
+    height: auto;
+    @include md {
+      transform: translateX(0) translateY(0) translateZ(0) scale(1) rotate(0) !important;
+      transform: scale(0.7) rotateX(-60deg) translateY(20%) translateZ(0);
+    }
+  }
+
+  &[reveal='left'] {
+    transform: translateX(-200%);
+  }
+
+  &[reveal='right'] {
+    transform: translateX(200%);
+  }
+
+  &[reveal='top'] {
+    transform: translateY(-200%);
+  }
+
+  &[reveal='bottom'] {
+    transform: translateY(200%);
+  }
+
+  &[reveal='fade'] {
+    transform: translateX(0) translateY(0) translateZ(0) scale(1) rotate(0);
+    opacity: 0;
+  }
+
+  &[reveal='none'] {
+    transform: scale(1);
+  }
 
   .content {
     position: relative;
     background: $highlight-primary;
     pointer-events: all;
     height: 100%;
+    width: 100%;
     min-height: 12rem;
-    width: calc(100% - 3rem);
     max-width: 78rem;
     flex-shrink: 0;
     flex-grow: 0;
-    margin: 12rem 1.5rem;
+    margin: 0;
+    height: 100vh;
+    overflow-y: auto;
+    @include md {
+      height: auto;
+      overflow-y: auto;
+      margin: 12rem 1.5rem;
+      margin-right: 4.5rem;
+    }
+    @include lg {
+      margin-right: 1.5rem;
+    }
   }
 
   .body {
-    padding: 3rem 2rem;
-  }
-
-  &.active {
-    transform: translateX(0) translateY(0) translateZ(0) scale(1);
-    opacity: 1;
-    display: flex !important;
+    padding: 0 2rem 3rem 2rem;
+    @include md {
+      padding: 2rem;
+    }
   }
 
   .header {
     display: flex;
     justify-content: space-between;
-    height: 0;
-
-    .modal-title {
-      height: 3rem;
+    height: auto;
+    position: sticky;
+    top: 0;
+    @include md {
+      height: auto;
+      position: static;
     }
 
-    .buttons {
-      position: absolute;
-      display: flex;
-      flex-direction: column;
-      right: 0;
-      top: 0;
-      button {
-        color: $lowlight-secondary !important;
-        cursor: pointer;
+    .modal-title {
+      background: $highlight-primary;
+      width: 100%;
+      height: 4.5rem;
+      @include md {
+        height: 3rem;
       }
     }
 
@@ -87,43 +133,6 @@ sh-modal {
 
   [close-trigger] {
     cursor: pointer;
-  }
-
-  .header button {
-    display: flex;
-    height: 5rem;
-    width: 5rem;
-    top: 0;
-    left: 0;
-    align-content: center;
-    justify-content: center;
-    opacity: 0.7;
-    transition: opacity 250ms $ease;
-    background: transparent;
-
-    &:hover {
-      opacity: 1;
-    }
-  }
-
-  &[reveal='left'] {
-    transform: translateX(-200%);
-  }
-
-  &[reveal='right'] {
-    transform: translateX(200%);
-  }
-
-  &[reveal='top'] {
-    transform: translateY(-200%);
-  }
-
-  &[reveal='bottom'] {
-    transform: translateY(200%);
-  }
-
-  &[reveal='zoom'] {
-    transform: scale(0.7) rotateX(-60deg) translateY(20%);
   }
 
   &.fullscreen {
@@ -228,7 +237,7 @@ sh-modal {
     body > #sh-modals {
       display: block;
       .sh-modal.active {
-        .buttons {
+        .modal-buttons {
           display: none;
         }
         .content {
