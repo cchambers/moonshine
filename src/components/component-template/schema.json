@@ -1,6 +1,6 @@
 {
   "name": "Component Template",
-  "category": "uncategorized",
+  "category": "base",
   "production": false,
   "element": "component-template",
   "description": "Demonstration component.",

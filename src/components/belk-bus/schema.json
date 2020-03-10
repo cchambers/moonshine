@@ -1,6 +1,6 @@
 {
   "name": "Belk Bus",
-  "category": "uncategorized",
+  "category": "base",
   "production": false,
   "element": "belk-bus",
   "description": "Demonstration component.",
