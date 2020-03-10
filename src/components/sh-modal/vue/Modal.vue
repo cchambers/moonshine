@@ -7,7 +7,7 @@
     :id="uniqueId"
     :aria-labelledby="ariaID"
     :aria-describedby="ariaDescID">
-    <div class="content" :class="customClass">
+    <div class="content" :class="customClass" :size="size">
       <div class="tab-lock" v-on:focus="focusLast()" tabindex="0"></div>
       <div v-if="!hideHeader" class="header">
         <div v-if="header" class="modal-title">
@@ -71,6 +71,7 @@ export default {
     printable: Boolean,
     startOpen: Boolean,
     formTarget: String,
+    size: String,
   },
 
   data() {
