@@ -195,7 +195,7 @@
   }
 
   // Media Queries
-  @media (min-width: breakpoint("md")) {
+  @include md {
     border-bottom: 0;
 
     belk-logo {
@@ -267,7 +267,7 @@
     }
   }
 
-  @media (min-width: breakpoint("lg")) {
+  @include xl {
     .primary {
       display: flex;
 
@@ -297,7 +297,7 @@
     }
   }
 
-  @media (min-width: breakpoint("xl")) {
+  @include xl {
     .contain {
       padding: 0 2rem;
     }

@@ -1,7 +1,7 @@
 {
   "name": "Link",
   "category": "components",
-  "production": false,
+  "production": true,
   "element": "sh-link",
   "description": "Pre-built links.",
   "tags": ["utilities"],

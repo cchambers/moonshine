@@ -139,7 +139,7 @@ export default {
     },
 
     printCoupon() {
-      this.$bus.$emit('open-modal', this.printId);
+      this.$bus.$emit('open-modal', { id: this.printId });
     },
 
     makeExclusionsModal() {

@@ -81,7 +81,9 @@ sh-carousel[variant="primary"] {
   }
 
   &[hide-arrows] {
-    margin-left: 0;
-    margin-right: 0;
+    .slides > ul {
+      margin-left: 0;
+      margin-right: 0;
+    }
   }
 }

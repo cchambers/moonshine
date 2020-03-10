@@ -4,7 +4,7 @@ import 'brace/mode/html';
 import 'brace/theme/monokai';
 import Pretty from 'pretty';
 import ComponentPrototype from '../../../../components/component-prototype';
-import ShDropnav from '../../../../components/sh-dropnav/Dropnav.vue';
+import ShDropnav from '../../../../components/sh-dropnav/vue/Dropnav.vue';
 // const low = require('lowdb')
 // const FileSync = require('lowdb/adapters/FileSync')
 // const adapter = new FileSync('db.json')
