@@ -1,0 +1,9 @@
+{
+  "name": "Belk Bus",
+  "category": "uncategorized",
+  "production": false,
+  "element": "belk-bus",
+  "description": "Demonstration component.",
+  "tags": ["utilities", "demo"],
+  "requirements": {}
+}

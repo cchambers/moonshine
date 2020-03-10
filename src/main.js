@@ -37,16 +37,16 @@ if (process.env.NODE_ENV !== 'production') {
   require('./assets/script/prism.js');
   require('./assets/style/prism.css');
   require('./assets/style/docs.scss');
-  require('./lib/components/lib-control-panel');
-  require('./lib/components/lib-nav');
-  require('./lib/components/lib-header');
-  require('./lib/components/lib-icons');
-  require('./lib/components/lib-content');
-  require('./lib/components/lib-section-links');
-  require('./lib/components/lib-notify');
-  require('./lib/components/lib-reqs');
-  require('./lib/components/lib-toolbar');
-  require('./lib/components/tool-banner');
+  require('./lib/components/lib-control-panel/vue');
+  require('./lib/components/lib-nav/vue');
+  require('./lib/components/lib-header/vue');
+  require('./lib/components/lib-icons/vue');
+  require('./lib/components/lib-content/vue');
+  require('./lib/components/lib-section-links/vue');
+  require('./lib/components/lib-notify/vue');
+  require('./lib/components/lib-reqs/vue');
+  require('./lib/components/lib-toolbar/vue');
+  require('./lib/components/tool-banner/vue');
   window.schema = schema;
 }
 
@@ -54,6 +54,6 @@ Object.keys(schema)
   .forEach(function (cat) {
     Object.keys(schema[cat])
       .forEach(function (item) {
-        require(`./components/${item}`);
+        require(`./components/${item}/vue/index.js`);
       });
   });
