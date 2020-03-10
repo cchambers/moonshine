@@ -79,6 +79,9 @@ sh-modal {
     @include lg {
       margin-right: 1.5rem;
     }
+    &[size="double"] {
+      max-width: 128rem;
+    }
   }
 
   .body {

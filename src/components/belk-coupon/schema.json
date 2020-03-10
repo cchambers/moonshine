@@ -3,7 +3,7 @@
   "category": "features",
   "production": true,
   "element": "belk-coupon",
-  "description": "Demonstration component.",
+  "description": "View, add, or print coupons.",
   "tags": ["marketing", "tile"],
   "requirements": {
     "Container": []
