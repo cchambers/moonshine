@@ -405,13 +405,13 @@ export default {
     z-index: 90;
     opacity: 0;
     background: rgba(0, 0, 0, 0.8);
-    overflow-y: auto;
+    overflow: hidden;
     -webkit-overflow-scrolling: touch;
     transition: opacity 150ms ease;
     .modal-buttons {
       position: fixed;
       z-index: 2;
-      display: flex;
+      display: none;
       pointer-events: all;
       flex-direction: column;
       right: 0;
@@ -473,6 +473,10 @@ export default {
         opacity: 1;
         pointer-events: initial;
         max-height: initial;
+        overflow-y: auto;
+        .modal-buttons {
+          display: flex;
+        }
       }
     }
   }
