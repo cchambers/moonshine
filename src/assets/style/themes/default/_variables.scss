@@ -128,17 +128,17 @@ $mod-amounts: ("-atomic": #{$base/8}rem,
   "-mega": #{$base*2.5}rem);
 $inv: "";
 
-@each $mod,
-$prop in $box-model-mods {
+@each $mod, $prop in $box-model-mods {
   @if $mod=="pull" {
     $inv: "-";
   }
 
-  @each $name,
-  $edge in $edges {
+  @each $amt, $meas in $mod-amounts {
+    .#{$mod}#{$amt} {
+      #{$prop}: #{$inv}#{$meas};
+    }
 
-    @each $amt,
-    $meas in $mod-amounts {
+    @each $name, $edge in $edges {
       .#{$mod}-#{$name}#{$amt} {
         @each $act in $edge {
           #{$prop}#{$act}: #{$inv}#{$meas};
