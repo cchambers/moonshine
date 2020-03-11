@@ -12,6 +12,7 @@
     "gen": "node generate.js",
     "lint:style": "vue-cli-service lint:style",
     "prebuild": "NODE_ENV=production node schematic",
+    "prebuild:dev": "node schematic",
     "predev": "NODE_ENV=dev node schematic",
     "postbuild": "node combine",
     "prestart": "nvm use 10"
