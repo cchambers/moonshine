@@ -5,13 +5,16 @@ sh-link {
   position: relative;
   a {
     display: inline-flex;
-    height: 4.5rem;
+    height: 3.2rem;
     align-items: center;
     border: 1px solid $lowlight-quaternary;
-    padding: 0 1rem;
+    padding:  1.2rem;
     color: $lowlight-primary;
-    @include lg {
-      height: 3rem;
+    border-radius: 4px;
+    transition: all 150ms $ease;
+    &:hover {
+      background: $lowlight-primary;
+      color: $highlight-primary;
     }
   }
 }
