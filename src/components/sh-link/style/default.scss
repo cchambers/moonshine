@@ -11,8 +11,10 @@ sh-link {
     padding:  1.2rem;
     color: $lowlight-primary;
     border-radius: 4px;
-    @include lg {
-      height: 3rem;
+    transition: all 150ms $ease;
+    &:hover {
+      background: $lowlight-primary;
+      color: $highlight-primary;
     }
   }
 }
