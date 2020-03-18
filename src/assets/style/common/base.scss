@@ -706,6 +706,10 @@ ol.lower-alpha {
   text-decoration: line-through;
 }
 
+.deco-none {
+  text-decoration: none !important;
+}
+
 .italic,
 .style-italic {
   font-style: italic;
