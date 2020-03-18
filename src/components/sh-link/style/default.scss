@@ -1,17 +1,9 @@
 /* default styling */
 
 sh-link {
-  display: inline;
+  display: inline-block;
   position: relative;
   a {
     display: inline-flex;
-    height: 4.5rem;
-    align-items: center;
-    border: 1px solid $lowlight-quaternary;
-    padding: 0 1rem;
-    color: $lowlight-primary;
-    @include lg {
-      height: 3rem;
-    }
   }
 }
