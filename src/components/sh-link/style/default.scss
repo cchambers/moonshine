@@ -1,20 +1,9 @@
 /* default styling */
 
 sh-link {
-  display: inline;
+  display: inline-block;
   position: relative;
   a {
     display: inline-flex;
-    height: 3.2rem;
-    align-items: center;
-    border: 1px solid $lowlight-quaternary;
-    padding:  1.2rem;
-    color: $lowlight-primary;
-    border-radius: 4px;
-    transition: all 150ms $ease;
-    &:hover {
-      background: $lowlight-primary;
-      color: $highlight-primary;
-    }
   }
 }

@@ -10,10 +10,10 @@ sh-carousel[variant="secondary"] {
         scroll-behavior: smooth;
       }
       li {
-        margin: 1.5rem;
-        &.active {
-          outline: 2px solid cyan;
-        }
+        margin: 1rem 0.5rem;
+        // &.active {
+        //   outline: 1px solid cyan;
+        // }
       }
     }
     .carousel-spacer {
@@ -35,6 +35,17 @@ sh-carousel[variant="secondary"] {
       }
       &.previous {
         left: 0;
+      }
+    }
+  }
+
+  &[hide-controls] {
+    .controls {
+      display: none;
+    }
+    .slides {
+      ul {
+        margin: 0;
       }
     }
   }
