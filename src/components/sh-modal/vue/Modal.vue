@@ -419,8 +419,6 @@ export default {
       color: $lowlight-primary;
       @include md {
         top: 13rem;
-        left: calc(100% / 2 + 38rem);
-        right: auto;
         color: $highlight-primary;
       }
       @include lg {
