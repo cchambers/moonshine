@@ -73,11 +73,14 @@ sh-modal {
     @include md {
       height: auto;
       overflow-y: auto;
-      margin: 12rem 1.5rem;
-      margin-right: 4.5rem;
+      margin: 12rem auto;
+      margin-left: 0;
+      max-width: calc(100% - 5.5rem);
     }
     @include lg {
       margin-right: 1.5rem;
+      margin-left: 0;
+      max-width: 78rem;
     }
     &[size="double"] {
       max-width: 128rem;
