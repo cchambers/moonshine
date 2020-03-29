@@ -442,6 +442,11 @@ export default {
         &:focus {
           transform: scale(1.3) translateX(0);
         }
+        > belk-icon {
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+        }
       }
     }
 
