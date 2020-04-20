@@ -2,6 +2,7 @@
   <button ref="button" :class="{ active: isActive }"
     v-on:keyup.enter="tapHandler"
     :close-trigger="closeTrigger"
+    :print-trigger="printTrigger"
     v-hammer:tap="tapHandler"
     :value="defaultValue"
     v-bind:role="isLink"
@@ -35,6 +36,7 @@ export default {
     activeIcon: String,
     group: String,
     closeTrigger: Boolean,
+    printTrigger: Boolean,
     toggle: Boolean,
     round: String,
     outline: Boolean,
