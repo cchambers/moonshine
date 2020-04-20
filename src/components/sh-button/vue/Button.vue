@@ -2,6 +2,7 @@
   <button ref="button" :class="{ active: isActive }"
     v-on:keyup.enter="tapHandler"
     :close-trigger="closeTrigger"
+    :print-trigger="printTrigger"
     v-hammer:tap="tapHandler"
     :value="defaultValue"
     v-bind:role="isLink"
