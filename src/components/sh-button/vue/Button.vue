@@ -36,6 +36,7 @@ export default {
     activeIcon: String,
     group: String,
     closeTrigger: Boolean,
+    printTrigger: Boolean,
     toggle: Boolean,
     round: String,
     outline: Boolean,
