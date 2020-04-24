@@ -63,6 +63,12 @@ sh-button {
     span {
       display: inline-flex;
       font-size: 1.4em;
+      belk-icon:first-child {
+        margin-right: 0.5em;
+      }
+      belk-icon:last-child {
+        margin-left: 0.5em;
+      }
     }
 
     .ripple {
@@ -141,6 +147,7 @@ sh-button {
     color: $lowlight-primary;
     span {
       font-weight: normal;
+      white-space: normal;
     }
 
     &:hover {
