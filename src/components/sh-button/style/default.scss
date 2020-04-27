@@ -34,7 +34,7 @@ sh-button {
     min-height: 4.5em;
     min-width: 4.5em;
     color: $lowlight-primary;
-    transition: all 250ms $decel;
+    transition: all 250ms $decel !important;
     font-size: 1em;
     cursor: pointer;
     overflow: hidden;
@@ -63,6 +63,7 @@ sh-button {
     span {
       display: inline-flex;
       font-size: 1.4em;
+      align-items: center;
       belk-icon:first-child {
         margin-right: 0.5em;
       }
