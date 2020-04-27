@@ -37,6 +37,7 @@ export default {
 
   mounted() {
     if (this.width) this.$el.style.width = `${this.width}px`;
+    if (this.height) this.$el.style.height = `${this.height}px`;
     if (this.$refs.title) this.title = this.$refs.title.innerText;
     this.doReady();
     this.$bus.$on('icons-ready', this.checkConfig);
