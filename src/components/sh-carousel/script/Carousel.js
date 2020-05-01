@@ -203,7 +203,10 @@ export default {
     },
 
     activate(which) {
+      this.$emit('carousel-slide-changing');
       this.active = which;
+      this.$bus.$emit('carousel-slide-changed', { uuid: this.uuid, active: which });
+      this.$emit('carousel-slide-changed', { active: which });
     },
 
     swipeHandler(e) {
