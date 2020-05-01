@@ -13,15 +13,46 @@ sh-banner[variant="primary"] {
   //     background-position: 0 0;
   //   }
   // }
-  &[animate] {
-    .slide {
-      opacity: 0;
-      transition-duration: 0;
+  .sh-banner {
+    p {
+      line-height: 3rem;
     }
-  }
-  &[animate='in'] {
-    .slide.active {
-      transform: translateX(0) translateY(0) translateZ(0);
+
+    a {
+      text-decoration: none;
+    }
+
+    .cta {
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255,255,255,1);
+      color: currentColor;
+      font-size: 1.4rem;
+      transition: all 100ms $ease;
+    }
+
+    a:hover .cta,
+    a.cta:hover {
+      border-bottom: 1px solid rgba(255,255,255,0.5);
+    }
+
+    // &[animate] {
+    //   .slide {
+    //     opacity: 0;
+    //     transition-duration: 0;
+    //   }
+    // }
+    // &[animate='in'] {
+    //   .slide.active {
+    //     transform: translateX(0) translateY(0) translateZ(0);
+    //   }
+    // }
+
+    .slides li p {
+      transform: translateY(150%);
+      transition: all 400ms $decel;
+    }
+    .slides li.active p {
+      transform: translateY(0);
     }
   }
 }

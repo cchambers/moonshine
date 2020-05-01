@@ -37,7 +37,6 @@ export default {
       const el = self.$el.querySelector('sh-carousel');
       if (el) {
         setTimeout(() => {
-          console.log('GOT ONE!');
           self.carousel = el.querySelector('.sh-carousel').id;
           self.$bus.$on('carousel-slide-changing', (data) => {
             if (data.id === self.carousel) {
@@ -45,7 +44,6 @@ export default {
             }
           });
           self.$bus.$on('carousel-slide-changed', (data) => {
-            console.log(data.id, self.carousel);
             if (data.id === self.carousel) {
               self.handleCarousel();
             }

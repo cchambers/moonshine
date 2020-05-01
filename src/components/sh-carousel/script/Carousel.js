@@ -11,6 +11,11 @@ export default {
       type: Number,
       default: 0,
     },
+    changeDelay: {
+      // animation transition timing
+      type: Number,
+      default: 0,
+    },
     perNext: {
       // 'How many items the carousel will cycle through on interaction',
       type: Number,
@@ -212,13 +217,14 @@ export default {
     },
 
     activate(which) {
-      this.$bus.$emit('carousel-slide-changing', { id: this.carouselId, active: this.active });
-      this.active = which;
-      this.$bus.$emit('carousel-slide-changed', { id: this.carouselId, active: this.active });
-      if (this.controller) {
-        console.log('RATVOOD');
-        this.controller.$emit('carousel-slide-changed', { active: this.active });
-      }
+      this.$bus.$emit('carousel-slide-changing', { id: this.carouselId, active: this.active, changeDelay: this.changeDelay });
+      setTimeout(() => {
+        this.active = which;
+        this.$bus.$emit('carousel-slide-changed', { id: this.carouselId, active: this.active });
+        if (this.controller) {
+          this.controller.$emit('carousel-slide-changed', { active: this.active });
+        }
+      }, this.changeDelay);
     },
 
     setController(what) {
