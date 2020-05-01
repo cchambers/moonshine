@@ -1,7 +1,7 @@
 <template>
   <div class="sh-banner"
     :variant="variant">
-    <div class="banner-background" :class="background">
+    <div class="banner-background" :class="background" :animate="animate">
       <slot></slot>
     </div>
   </div>

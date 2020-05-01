@@ -60,6 +60,7 @@ export default {
       playLabel: '',
       playTimer: {},
       carouselId: 'c',
+      controller: null,
     };
   },
 
@@ -111,6 +112,10 @@ export default {
     paused(val) {
       this.playLabel = (val) ? 'Start automatic slide show' : 'Stop automatic slide show';
     },
+
+    controller(val) {
+      console.log('controller', val);
+    },
   },
 
   methods: {
@@ -122,8 +127,12 @@ export default {
     },
 
     events() {
-      const resizeDebounced = this.debounce(this.autoSize, 100);
+      const self = this;
+      const resizeDebounced = self.debounce(self.autoSize, 100);
       window.addEventListener('resize', resizeDebounced, true);
+      self.$on('set-controller', (el) => {
+        self.controller = el;
+      });
     },
 
     ada() {
@@ -187,7 +196,7 @@ export default {
       const len = this.slides.length;
       let which = this.active + this.perNext;
       if (which >= len) which -= len;
-      this.active = which;
+      this.activate(which);
     },
 
     previousHandler() {
@@ -199,14 +208,21 @@ export default {
       let which = this.active - this.perNext;
       const len = this.slides.length;
       if (which < 0) which += len;
-      this.active = which;
+      this.activate(which);
     },
 
     activate(which) {
-      this.$emit('carousel-slide-changing');
+      this.$bus.$emit('carousel-slide-changing', { id: this.carouselId, active: this.active });
       this.active = which;
-      this.$bus.$emit('carousel-slide-changed', { uuid: this.uuid, active: which });
-      this.$emit('carousel-slide-changed', { active: which });
+      this.$bus.$emit('carousel-slide-changed', { id: this.carouselId, active: this.active });
+      if (this.controller) {
+        console.log('RATVOOD');
+        this.controller.$emit('carousel-slide-changed', { active: this.active });
+      }
+    },
+
+    setController(what) {
+      this.controller = what;
     },
 
     swipeHandler(e) {
