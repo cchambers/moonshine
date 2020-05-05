@@ -84,7 +84,30 @@
 
   <section id="examples">
     <h2>Examples</h2>
-    <h3>Default</h3>
+    <h3>Background Control</h3>
+      <sh-banner variant="primary" backgrounds="brand-mysticpurple, brand-wildfuscia, brand-classicblue">
+        <sh-carousel id="pre-header-carousel" variant="primary" autoplay="6000" hide-controls>
+          <ul slot="slides">
+            <li>
+              <!-- this has a slide link -->
+              <a href="#link1">
+                <div class="case-upper font-primary text-center color-highlight-primary pad-y-quarter">
+                  <p><span class="wt-700">Extra 60% off </span> your favorite brands <span class="cta">do it now</span></p>
+                </div>
+              </a>
+            </li>
+            <li>
+              <!-- this has multiple links -->
+              <div class="case-upper font-primary text-center color-highlight-primary pad-y-quarter">
+                <p><span class="wt-700">Extra 20% off </span> <a class="cta" href="#regular">regular</a> and <a class="cta" href="#sale">sale</a> purchases with belk rewards credit card</p>
+              </div>
+            </li>
+          </ul>
+        </sh-carousel>
+      </sh-banner>
+
+
+    <h3>Adaptable Content</h3>
     <lib-toolbar>
       <sh-banner variant="primary" class="font-primary">
         <!-- DEFAULT -->
@@ -104,7 +127,7 @@
               </div>
             </div>
           </div>
-          
+
           <div slot="md">
             <div class="pad-y">
                 <div class="uppercase text-center">
