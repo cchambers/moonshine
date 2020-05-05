@@ -40,15 +40,15 @@ sh-banner[variant="primary"] {
     }
 
     [animate] {
-      .slides li p {
+      .slides li {
         transform: translateY(150%) translateZ(0);
-        transition: all 250ms $accel;
+        transition: all 250ms $accel, transform 250ms linear 500ms;
         opacity: 0;
       }
     }
 
     [animate='in'] {
-      .slides li.active p {
+      .slides li.active {
         transform: translateX(0) translateY(0) translateZ(0);
         transition: all 300ms $decel;
         opacity: 1;
