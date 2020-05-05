@@ -22,6 +22,10 @@ sh-banner[variant="primary"] {
       text-decoration: none;
     }
 
+    .banner-background {
+      transition: all 200ms $ease;
+    }
+
     .cta {
       text-decoration: none;
       border-bottom: 1px solid rgba(255,255,255,1);
@@ -35,24 +39,20 @@ sh-banner[variant="primary"] {
       border-bottom: 1px solid rgba(255,255,255,0.5);
     }
 
-    // &[animate] {
-    //   .slide {
-    //     opacity: 0;
-    //     transition-duration: 0;
-    //   }
-    // }
-    // &[animate='in'] {
-    //   .slide.active {
-    //     transform: translateX(0) translateY(0) translateZ(0);
-    //   }
-    // }
-
-    .slides li p {
-      transform: translateY(150%);
-      transition: all 400ms $decel;
+    [animate] {
+      .slides li p {
+        transform: translateY(150%) translateZ(0);
+        transition: all 250ms $accel;
+        opacity: 0;
+      }
     }
-    .slides li.active p {
-      transform: translateY(0);
+
+    [animate='in'] {
+      .slides li.active p {
+        transform: translateX(0) translateY(0) translateZ(0);
+        transition: all 300ms $decel;
+        opacity: 1;
+      }
     }
   }
 }

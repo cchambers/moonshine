@@ -11,11 +11,6 @@ export default {
       type: Number,
       default: 0,
     },
-    changeDelay: {
-      // animation transition timing
-      type: Number,
-      default: 0,
-    },
     perNext: {
       // 'How many items the carousel will cycle through on interaction',
       type: Number,
@@ -66,6 +61,7 @@ export default {
       playTimer: {},
       carouselId: 'c',
       controller: null,
+      changeDelay: 0,
     };
   },
 
@@ -254,6 +250,10 @@ export default {
       const slides = this.$slots.slides[0];
       this.list = slides.elm;
       this.slides = slides.elm.children;
+    },
+
+    setChangeDelay(time) {
+      this.changeDelay = time;
     },
   },
 

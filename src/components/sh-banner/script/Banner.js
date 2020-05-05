@@ -10,12 +10,34 @@ export default {
       type: String,
       default: 'lowlight-secondary, lowlight-tertiary',
     },
+    textFrom: {
+      type: String,
+      default: 'bottom',
+    },
+    textTo: {
+      type: String,
+      default: 'bottom',
+    },
+    textIn: {
+      type: String,
+      default: '400',
+    },
+    textOut: {
+      type: String,
+      default: '250',
+    },
+    changeDelay: {
+      type: String,
+      default: '400',
+    },
   },
 
   data() {
     return {
-      animate: 'out',
+      animate: 'in',
       carousel: undefined,
+      carouselId: undefined,
+      carouselSpeed: 5000,
       background: 'back-lowlight-primary',
       backgroundArray: [],
       whichback: 0,
@@ -37,17 +59,22 @@ export default {
       const el = self.$el.querySelector('sh-carousel');
       if (el) {
         setTimeout(() => {
-          self.carousel = el.querySelector('.sh-carousel').id;
+          const target = el.querySelector('.sh-carousel');
+          self.carouselId = target.id;
+          self.carousel = el.getVueInstance();
           self.$bus.$on('carousel-slide-changing', (data) => {
-            if (data.id === self.carousel) {
+            if (data.id === self.carouselId) {
               self.animate = 'out';
             }
           });
           self.$bus.$on('carousel-slide-changed', (data) => {
-            if (data.id === self.carousel) {
+            if (data.id === self.carouselId) {
               self.handleCarousel();
             }
           });
+
+          if (self.carousel.autoplay) this.carouselSpeed = self.carousel.autoplay;
+          self.carousel.setChangeDelay(parseInt(this.changeDelay, 10));
         }, 20);
       }
     },
