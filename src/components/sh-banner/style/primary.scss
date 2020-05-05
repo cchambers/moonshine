@@ -42,7 +42,7 @@ sh-banner[variant="primary"] {
     [animate] {
       .slides li {
         transform: translateY(150%) translateZ(0);
-        transition: all 250ms $accel, transform 250ms linear 2s;
+        transition: all 250ms $accel, transform 250ms linear 500ms;
         opacity: 0;
       }
     }
