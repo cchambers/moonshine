@@ -1,6 +1,6 @@
 <template>
-  <div class="sh-tabs" v-bind:class="{ 'snap-state': snapping }" v-hammer:tap="snap">
-    <slot>{{ msg }}</slot>
+  <div class="sh-tabs">
+    <slot></slot>
   </div>
 </template>
 

@@ -84,11 +84,12 @@ export default {
       this.ripple(e);
       if (this.toggle) this.doToggle();
       if (this.clickEvent) {
+        e.preventDefault();
+        console.log(this.clickEvent);
         this.$bus.$emit(this.clickEvent, {
           el: this,
           value: this.buttonEl.value,
         });
-        e.preventDefault();
       }
       if (this.group) {
         this.$bus.$emit('group-toggle', {

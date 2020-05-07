@@ -3,12 +3,12 @@
 <title><%= htmlWebpackPlugin.options.title %></title>
 
 <div class="documentation contain">
-  <h1>Tabs</h1>
+  <h1>View Swapper</h1>
   <section id="usage">
     <h2>Usage</h2>
     <pre>
       <code class="language-html">
-          &lt;sh-tabs&gt;new component&lt;/sh-tabs&gt;
+          &lt;view-swapper&gt;new component&lt;/view-swapper&gt;
       </code>
     </pre>
 
@@ -109,30 +109,35 @@
     <h2>Examples</h2>
     <h3>Default</h3>
     <lib-toolbar>
-
-      <sh-tabs unique-id="example" controller="#drop" for="demo-swapper">
-        <sh-button default-value="first-view">First</sh-button>
-        <sh-button default-value="second-view">Second</sh-button>
-      </sh-tabs>
-
-      <sh-view-swapper receive="demo-swapper">
-        <div id="first-view">
-          <p>First Tab</p>
-        </div>
-        <div id="second-view">
-          <p>Second Tab</p>
-        </div>
-      </sh-view-swapper>
+      <view-swapper>
+        TEXT THAT IS EVEN AND STILL EXISTS
+      </view-swapper>
     </lib-toolbar>
   </section>
 
   <section id="changelog">
     <h2>Changelog</h2>
     <dl>
+      <dt>0.1.0</dt>
+      <dd>View Swapper is under development.</dd>
       <dt>1.0.0</dt>
-      <dd>Tabs was created.</dd>
+      <dd>View Swapper is ready for use.</dd>
+      <dt>1.0.1</dt>
+      <dd><strong>PATCH</strong> version when you make backwards-compatible bug fixes.</dd>
+      <dt>1.1.0</dt>
+      <dd><strong>MINOR</strong> version when you add functionality in a backwards-compatible manner.</dd>
+      <dt>2.0.0</dt>
+      <dd><strong>MAJOR</strong> version when you make incompatible API changes.</dd>
+      <dd>Example of another change from the same update.</dd>
+      <dd>And another.</dd>
     </dl>
   </section>
+
+  <!-- Uncomment this section when you have written requirements in the schema.json!
+    <section id="requirements">
+    <h2>Requirements</h2>
+    <lib-reqs></lib-reqs>
+  </section> -->
 </div>
 
 <%- htmlWebpackPlugin.options.docsFoot %>
