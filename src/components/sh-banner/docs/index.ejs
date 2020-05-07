@@ -9,7 +9,11 @@
 
     <pre>
       <code class="language-html">
-          &lt;sh-banner&gt;banner content&lt;/sh-banner&gt;
+          &lt;sh-banner&gt;
+            &lt;sh-carousel&gt;
+              ...
+            &lt;/sh-carousel&gt;
+          &lt;/sh-banner&gt;
       </code>
     </pre>
   </section>
@@ -28,14 +32,63 @@
       </thead>
       <tbody>
         <tr>
-          <td>hidden</td>
+          <td>backgrounds</td>
           <td>Boolean</td>
-          <td>Hide from view.</td>
+          <td>
+            <ul>
+              <li>Comma separated list of background colors to cycle when the carousel activates</li>
+              <li>Defaults to: 'lowlight-secondary, lowlight-tertiary'</li>
+            </ul>
+          </td>
         </tr>
         <tr>
           <td>reveal</td>
           <td>String</td>
-          <td>Animate when initially scrolled or loaded into view.</td>
+          <td>
+            <ul>
+              <li>
+                Animate when initially scrolled or loaded into view
+              </li>
+              <li>
+                Off by default
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>slide-from</td>
+          <td>String</td>
+          <td>Direction that the slide content comes from when a slide is activated</td>
+        </tr>
+        <tr>
+          <td>slide-to</td>
+          <td>String</td>
+          <td>Direction that the slide content goes when a slide is deactivated</td>
+        </tr>
+        <tr>
+          <td>content-in</td>
+          <td>Number</td>
+          <td>
+            <ul>
+              <li>Content transition in speed</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>content-out</td>
+          <td>Number</td>
+          <td>
+            <ul>
+              <li>Content transition out speed</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>change-delay</td>
+          <td>Number</td>
+          <td>
+            Stall time between slides to allow for transitions.
+          </td>
         </tr>
       </tbody>
     </table>
@@ -52,7 +105,7 @@
         <tr>
           <td>default</td>
           <td>
-            HTML content of banner.
+            This will usually be a sh-carousel of text slides.
           </td>
         </tr>
       </tbody>

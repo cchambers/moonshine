@@ -1,10 +1,18 @@
 <template>
   <div class="sh-combo"
-    :variant="variant">
-    <button ref="trigger"></button>
-    <ul ref="options" class="combo-options">
-      <slot></slot>
-    </ul>
+    :variant="variant"
+    :class="{
+      active: isActive
+    }">
+    <button class="combo-trigger" ref="trigger" v-hammer:tap="buttonHandler">
+      <div class="combo-text">
+        {{ activeText }}
+      </div>
+      <belk-icon name="arrow-down"></belk-icon>
+    </button>
+    <div ref="options" class="combo-options" v-hammer:tap="optionHandler">
+      <slot name="options"></slot>
+    </div>
   </div>
 </template>
 

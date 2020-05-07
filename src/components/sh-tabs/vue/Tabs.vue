@@ -1,6 +1,13 @@
 <template>
-  <div class="sh-tabs">
-    <slot></slot>
+  <div>
+    <div class="sh-tabs">
+      <div class="tabs-actual">
+        <slot></slot>
+      </div>
+      <div class="tabs-combo">
+        <sh-combo></sh-combo>
+      </div>
+    </div>
   </div>
 </template>
 
