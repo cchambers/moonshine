@@ -1,9 +1,10 @@
 <template>
   <div class="sh-combo"
-    :variant="variant"
-    v-bind:class="{ 'snap-state': snapping }"
-    v-hammer:tap="snap">
-    <slot>{{ msg }}</slot>
+    :variant="variant">
+    <button ref="trigger"></button>
+    <ul ref="options" class="combo-options">
+      <slot></slot>
+    </ul>
   </div>
 </template>
 
