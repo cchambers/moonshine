@@ -2,6 +2,10 @@
 
 sh-combo[variant="primary"] {
   .sh-combo {
-    border: 1px solid tomato;
+    .combo-options li {
+      &:hover {
+        background: $highlight-tertiary;
+      }
+    }
   }
 }

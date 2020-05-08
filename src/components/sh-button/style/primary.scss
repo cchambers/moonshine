@@ -20,7 +20,7 @@ sh-button[variant="primary"] {
   &[outline] button {
     color: $lowlight-primary;
     &:hover {
-      border: 0.25em solid $lowlight-primary;
+      border: 0.2em solid $lowlight-primary;
       background: $lowlight-primary;
     }
   }

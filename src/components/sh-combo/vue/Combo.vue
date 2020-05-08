@@ -10,8 +10,11 @@
       </div>
       <belk-icon name="arrow-down"></belk-icon>
     </button>
-    <div ref="options" class="combo-options" v-hammer:tap="optionHandler">
+    <div class="combo-hidden-options" hidden>
       <slot name="options"></slot>
+    </div>
+    <div ref="options" class="combo-options" v-hammer:tap="optionHandler">
+      ...
     </div>
   </div>
 </template>

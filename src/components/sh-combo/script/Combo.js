@@ -4,23 +4,22 @@ export default {
   mixins: [ComponentPrototype],
 
   name: 'Combo',
-  props: {
-    msg: {
-      type: String,
-      default: 'new component',
-    },
-  },
 
   data() {
     return {
       isActive: false,
       activeText: 'Select',
+      options: [],
     };
   },
 
   watch: {
-    isActive(val, old) {
-      if (val) console.log('opening', old);
+    isActive(val) {
+      if (val) {
+        this.$bus.$emit('combo-opening', {
+          id: this.uuid,
+        });
+      }
     },
   },
 
@@ -30,8 +29,9 @@ export default {
         if (!this.elementContains(this.$el, e.target) && this.isActive) this.toggleActive();
       });
 
-      this.$bus.$on('combo-opening', (e) => {
-        console.log(e);
+      this.$bus.$on('combo-opening', (data) => {
+        if (data.uuid === this.uuid) return;
+        if (this.active) this.toggleActive();
       });
     },
 
