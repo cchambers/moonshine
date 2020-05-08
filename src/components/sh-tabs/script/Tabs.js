@@ -24,7 +24,7 @@ export default {
 
   mounted() {
     const self = this;
-    self.buttons = self.$el.children;
+    self.buttons = self.$refs.tabs.children;
     self.buttons.forEach((el) => {
       const x = el;
       x.clickEvent = `click-${self.for}`;
@@ -32,12 +32,7 @@ export default {
   },
 
   methods: {
-
-    clickHandler(e) {
-      e.preventDefault();
-      const val = e.target.value();
-      console.log(val);
-    },
+    //
   },
 
 };

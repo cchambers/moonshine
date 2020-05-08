@@ -14,15 +14,27 @@ export default {
   name: 'ViewSwapper',
 
   props: {
+    active: {
+      type: Number,
+      default: 0,
+    },
+
     receive: {
       type: String,
       default: 'default',
     },
   },
 
+  watch: {
+    active(which) {
+      // do ADA stuff for "which"
+      this.log(which);
+    },
+  },
+
   data() {
     return {
-      activeView: '',
+      activeView: undefined,
       views: [],
     };
   },
@@ -30,24 +42,25 @@ export default {
   mounted() {
     const self = this;
     self.views = self.$el.children;
+    self.activate(self.active);
   },
 
   methods: {
     events() {
       const self = this;
       self.$bus.$on(`click-${this.receive}`, (data) => {
-        console.log(data);
         self.activate(data.value);
       });
     },
 
     activate(id) {
-      this.views.forEach((el) => {
+      let which = id;
+      const str = (typeof which === 'string');
+      this.views.forEach((el, index) => {
         if (el.classList.contains('active')) el.classList.remove('active');
-        if (el.id === id) {
-          el.classList.add('active');
-        }
+        if (str) if (el.id === which) which = index;
       });
+      this.views[which].classList.add('active');
     },
   },
 

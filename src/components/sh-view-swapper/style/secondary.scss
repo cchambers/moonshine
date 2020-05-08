@@ -1,0 +1,11 @@
+/* primary variant */
+
+sh-view-swapper[variant="secondary"] {
+  .sh-view-swapper {
+    > div {
+      border: 1px solid $lowlight-tertiary;
+      padding: 2rem;
+      @include box-shadow(2);
+    }
+  }
+}

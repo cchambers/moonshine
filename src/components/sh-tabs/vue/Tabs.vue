@@ -1,12 +1,10 @@
 <template>
-  <div>
-    <div class="sh-tabs">
-      <div class="tabs-actual">
-        <slot></slot>
-      </div>
-      <div class="tabs-combo">
-        <sh-combo></sh-combo>
-      </div>
+  <div class="sh-tabs">
+    <div class="tabs-actual" ref="tabs">
+      <slot></slot>
+    </div>
+    <div class="tabs-combo" ref="combo">
+      <sh-combo></sh-combo>
     </div>
   </div>
 </template>
