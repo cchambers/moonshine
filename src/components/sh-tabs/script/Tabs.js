@@ -38,7 +38,7 @@ export default {
       // newEls.push(`<li>${el.innerText}</li>`);
       comboOpts.push({
         text: el.innerText,
-        value: el.defaultValue,
+        value: el.getAttribute('default-value'),
       });
     });
     self.comboOptions = comboOpts;

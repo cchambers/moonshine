@@ -37,6 +37,7 @@ export default {
     return {
       activeView: undefined,
       views: [],
+      labelledBy: String,
     };
   },
 
@@ -46,6 +47,7 @@ export default {
     setTimeout(() => {
       self.activate(self.active);
     });
+    self.ADA();
   },
 
   methods: {
@@ -79,6 +81,12 @@ export default {
         if (index === num) which = el.id;
       });
       return which;
+    },
+
+    ADA() {
+      this.views.forEach((el) => {
+        el.setAttribute('aria-labelledby', 'test');
+      });
     },
   },
 };

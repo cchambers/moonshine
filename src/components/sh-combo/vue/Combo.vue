@@ -16,7 +16,10 @@
       </div>
       <div ref="options" class="combo-options" v-hammer:tap="optionClickHandler">
         <ul>
-          <li v-for="item in options" v-bind:key="item.index">
+          <li v-for="item in options"
+          v-bind:key="item.index"
+          v-bind:value="item.value"
+          v-bind:class="{ active: item.active }">
             {{ item.text }}
           </li>
         </ul>

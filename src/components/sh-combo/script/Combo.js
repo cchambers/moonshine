@@ -75,7 +75,29 @@ export default {
     },
 
     optionClickHandler(e) {
-      console.log(e.target);
+      let el = e.target;
+      if (el.nodeName !== 'LI') {
+        el = el.closest('li');
+      }
+      this.select(el);
+    },
+
+    select(el) {
+      const obj = {
+        text: el.innerText,
+        value: el.getAttribute('value'),
+      };
+
+      this.options.forEach((opt, index) => {
+        if (opt.value !== obj.value) {
+          this.$set(this.options[index], 'active', false);
+        } else {
+          this.$set(this.options[index], 'active', true);
+        }
+      });
+      this.$bus.$emit('value-changed', obj);
+      this.activeText = obj.text;
+      this.toggleActive();
     },
 
     processHTMLOptions() {

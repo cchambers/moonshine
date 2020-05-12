@@ -3,6 +3,9 @@
 .sh-combo[variant="primary"] {
   .combo-options li {
     &:hover {
+      background: $highlight-secondary;
+    }
+    &.active {
       background: $highlight-tertiary;
     }
   }
