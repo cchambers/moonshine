@@ -9,7 +9,7 @@ export default {
     comboOptions: {
       type: Array,
     },
-    tabTarget: {
+    target: {
       type: String,
     },
   },
@@ -49,13 +49,15 @@ export default {
         if (this.active) this.toggleActive();
       });
 
-      if (this.tabTarget) {
+      if (this.target) {
         this.$bus.$on('view-swapper-changed', this.swapperChangedHandler);
       }
 
       if (this.comboOptions.length) {
         this.options = this.comboOptions;
       }
+
+      this.$bus.$on('combo-sync', this.handleSync);
     },
 
     buttonHandler(e) {
@@ -65,7 +67,7 @@ export default {
 
     swapperChangedHandler(data) {
       const self = this;
-      if (data.group === self.tabTarget) {
+      if (data.group === self.target) {
         console.log('swap', data);
       }
     },
@@ -82,10 +84,23 @@ export default {
       this.select(el);
     },
 
+    handleSync(data) {
+      if (data.group === this.target || this.group === data.group) {
+        this.options.forEach((opt, index) => {
+          if (opt.value === data.value) this.select(index);
+        });
+      }
+    },
+
     select(el) {
+      let which = el;
+      if (typeof which === 'number') {
+        which = this.$refs.options.querySelectorAll('li')[which];
+      }
+
       const obj = {
-        text: el.innerText,
-        value: el.getAttribute('value'),
+        text: which.innerText,
+        value: which.getAttribute('value'),
       };
 
       this.options.forEach((opt, index) => {
@@ -97,7 +112,7 @@ export default {
       });
       this.$bus.$emit('value-changed', obj);
       this.activeText = obj.text;
-      this.toggleActive();
+      if (this.isActive) this.toggleActive();
     },
 
     processHTMLOptions() {

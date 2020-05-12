@@ -51,7 +51,13 @@ export default {
 
     swapperChangedHandler(data) {
       const self = this;
-      if (data.group === self.target) self.activate(data.which);
+      if (data.group === self.target) {
+        self.activate(data.which);
+        this.$bus.$emit('combo-sync', {
+          group: this.target,
+          value: data.which,
+        });
+      }
     },
 
     activate(which) {
