@@ -4,7 +4,7 @@
 
 <div class="documentation contain">
   <h1>Tabs</h1>
-  <section id="usage">
+  <!-- <section id="usage">
     <h2>Usage</h2>
     <pre>
       <code class="language-html">
@@ -56,7 +56,7 @@
 
     <h3 id="methods">Public Methods</h3>
 
-        <!-- <table class="methods">
+    <table class="methods">
       <thead>
         <tr>
           <th>Function</th>
@@ -78,7 +78,7 @@
             Perform snap animation and halve text.
           </td>
         </tr>
-      </tbody> -->
+      </tbody>
     </table>
 
     <h3 id="events">Events</h3>
@@ -103,24 +103,28 @@
         </tr>
       </tbody>
     </table>
-  </section>
+  </section> -->
 
   <section id="examples">
     <h2>Examples</h2>
     <h3>Default</h3>
     <lib-toolbar>
 
-      <sh-tabs collapse unique-id="example" for="demo-swapper">
+      <sh-tabs collapse unique-id="example" target="demo-swapper">
         <sh-button default-value="first-view">First</sh-button>
         <sh-button default-value="second-view">Second</sh-button>
+        <sh-button default-value="third-view">Third</sh-button>
       </sh-tabs>
 
       <sh-view-swapper variant="secondary" receive="demo-swapper">
         <div id="first-view">
-          <p>First Tab</p>
+          <p>First Tab Content</p>
         </div>
         <div id="second-view">
-          <p>Second Tab</p>
+          <p>Second Tab Content</p>
+        </div>
+        <div id="third-view">
+          <p>Third Tab Content</p>
         </div>
       </sh-view-swapper>
     </lib-toolbar>

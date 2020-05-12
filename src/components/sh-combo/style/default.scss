@@ -1,66 +1,65 @@
 /* default styling */
 
-sh-combo {
+.sh-combo {
   display: block;
-  position: relative;
   height: 3.2rem;
+  position: relative;
 
-  .sh-combo {
+  &.active {
+    belk-icon {
+      transform: rotate(180deg);
+    }
+    .combo-options {
+      display: flex;
+    }
+  }
+  .combo-actual {
     position: absolute;
     width: 100%;
     border: 1px solid $lowlight-primary;
     background: $highlight-primary;
+  }
 
-    &.active {
-      belk-icon {
-        transform: rotate(180deg);
-      }
-      .combo-options {
-        display: flex;
-      }
-    }
+  belk-icon {
+    height: 1rem;
+    width: 1.5rem;
+    margin-right: 1.5rem;
+    transform-origin: center center;
+  }
 
-    belk-icon {
-      height: 1rem;
-      width: 1.5rem;
-      margin-right: 1.5rem;
-      transform-origin: center center;
-    }
+  .combo-trigger {
+    display: block;
+    width: 100%;
+    line-height: 3rem;
+    font-size: 1.6rem;
+    outline: none;
+    border: none;
+    background: none;
+    cursor: pointer;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 
-    .combo-trigger {
-      display: block;
-      width: 100%;
+  .combo-text {
+    padding: 0 1.5rem;
+    flex-grow: 1;
+    flex-shrink: 0;
+    flex-basis: 80%;
+  }
+
+  .combo-options {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    ul {
+      list-style: none;
       line-height: 3rem;
-      font-size: 1.6rem;
-      outline: none;
-      border: none;
-      background: none;
-      cursor: pointer;
-      text-align: left;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      padding: 0;
     }
-
-    .combo-text {
+    li {
       padding: 0 1.5rem;
-      flex-grow: 1;
-      flex-shrink: 0;
-      flex-basis: 80%;
-    }
-
-    .combo-options {
-      display: none;
-      width: 100%;
-      flex-direction: column;
-      ul {
-        list-style: none;
-        line-height: 3rem;
-        padding: 0;
-      }
-      li {
-        padding: 0 1.5rem;
-      }
     }
   }
 }

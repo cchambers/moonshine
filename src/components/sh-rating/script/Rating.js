@@ -8,7 +8,7 @@ export default {
   props: {
     count: Number,
     icon: String,
-    level: String,
+    level: Number,
     choose: Boolean,
     arr: Array,
   },

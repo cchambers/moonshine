@@ -1,6 +1,7 @@
 <template>
   <div class="sh-view-swapper"
-    :variant="variant">
+    :variant="variant"
+    role="tablist">
     <slot></slot>
   </div>
 </template>
@@ -42,7 +43,9 @@ export default {
   mounted() {
     const self = this;
     self.views = self.$el.children;
-    self.activate(self.active);
+    setTimeout(() => {
+      self.activate(self.active);
+    });
   },
 
   methods: {
@@ -54,17 +57,32 @@ export default {
     },
 
     activate(id) {
-      let which = id;
-      const str = (typeof which === 'string');
-      this.views.forEach((el, index) => {
+      const which = (typeof id === 'string') ? this.strProcess(id) : this.numProcess(id);
+      this.views.forEach((el) => {
         if (el.classList.contains('active')) el.classList.remove('active');
-        if (str) if (el.id === which) which = index;
       });
       this.views[which].classList.add('active');
+      this.$bus.$emit('view-swapper-changed', { which, group: this.receive });
+    },
+
+    strProcess(str) {
+      let which;
+      this.views.forEach((el) => {
+        if (el.id === str) which = el.id;
+      });
+      return which;
+    },
+
+    numProcess(num) {
+      let which;
+      this.views.forEach((el, index) => {
+        if (index === num) which = el.id;
+      });
+      return which;
     },
   },
-
 };
 </script>
 <style lang="scss" src="../style/default.scss"></style>
 <style lang="scss" src="../style/primary.scss"></style>
+<style lang="scss" src="../style/secondary.scss"></style>

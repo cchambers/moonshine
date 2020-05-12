@@ -11,8 +11,8 @@ sh-tabs {
       width: 100%;
     }
 
-    > * .active {
-      border: 1px solid red;
+    sh-button.active {
+      background: $highlight-tertiary;
     }
   }
 }

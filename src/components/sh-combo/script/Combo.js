@@ -5,6 +5,15 @@ export default {
 
   name: 'Combo',
 
+  props: {
+    comboOptions: {
+      type: Array,
+    },
+    tabTarget: {
+      type: String,
+    },
+  },
+
   data() {
     return {
       isActive: false,
@@ -23,6 +32,12 @@ export default {
     },
   },
 
+  mounted() {
+    const self = this;
+    const opts = self.$refs.options.children;
+    if (opts.length > 0) self.processHTMLOptions();
+  },
+
   methods: {
     events() {
       document.addEventListener('click', (e) => {
@@ -33,6 +48,14 @@ export default {
         if (data.uuid === this.uuid) return;
         if (this.active) this.toggleActive();
       });
+
+      if (this.tabTarget) {
+        this.$bus.$on('view-swapper-changed', this.swapperChangedHandler);
+      }
+
+      if (this.comboOptions.length) {
+        this.options = this.comboOptions;
+      }
     },
 
     buttonHandler(e) {
@@ -40,13 +63,25 @@ export default {
       this.toggleActive();
     },
 
+    swapperChangedHandler(data) {
+      const self = this;
+      if (data.group === self.tabTarget) {
+        console.log('swap', data);
+      }
+    },
+
     toggleActive() {
       this.isActive = !this.isActive;
     },
 
-    optionHandler(e) {
+    optionClickHandler(e) {
       console.log(e.target);
     },
-  },
 
+    processHTMLOptions() {
+      this.options.forEach((el) => {
+        console.log(el);
+      });
+    },
+  },
 };

@@ -3,8 +3,15 @@
     <div class="tabs-actual" ref="tabs">
       <slot></slot>
     </div>
-    <div class="tabs-combo" ref="combo">
-      <sh-combo></sh-combo>
+    <div class="tabs-combo">
+      <component
+        ref="combo"
+        v-bind:is="combo"
+        v-bind:id="'tc-'+uuid"
+        v-bind:target="target"
+        v-bind:comboOptions="comboOptions"
+        variant="primary"
+      ></component>
     </div>
   </div>
 </template>

@@ -10,8 +10,12 @@
 / */
 
 html {
-  font-size: 10px;
+  font-size: 8px;
   box-sizing: border-box;
+
+  @include md {
+    font-size: 10px;
+  }
 }
 
 // /* Scaling CSS Configuration */
