@@ -32,13 +32,14 @@ export default {
     // const newEls = [];
     const comboOpts = [];
     self.buttons.forEach((el) => {
+      const val = el.getAttribute('default-value');
       const x = el;
       x.clickEvent = `click-${self.target}`;
       x.ariaRole = 'tab';
-      // newEls.push(`<li>${el.innerText}</li>`);
+      x.ariaControls = `#tab-${val}`;
       comboOpts.push({
         text: el.innerText,
-        value: el.getAttribute('default-value'),
+        value: val,
       });
     });
     self.comboOptions = comboOpts;
@@ -47,16 +48,23 @@ export default {
   methods: {
     events() {
       this.$bus.$on('view-swapper-changed', this.swapperChangedHandler);
+      this.$bus.$on('value-changed', this.comboValueHandler);
     },
 
     swapperChangedHandler(data) {
       const self = this;
       if (data.group === self.target) {
-        self.activate(data.which);
+        self.activate(data.which); // TODO: remove this, make work w/ button toggle group func
         this.$bus.$emit('combo-sync', {
           group: this.target,
           value: data.which,
         });
+      }
+    },
+
+    comboValueHandler(data) {
+      if (data.group === this.target) {
+        this.activate(data.value);
       }
     },
 
@@ -65,7 +73,11 @@ export default {
       self.buttons.forEach((el) => {
         if (which === el.defaultValue) {
           el.classList.add('active');
-        } else if (el.classList.contains('active')) el.classList.remove('active');
+          el.setAttribute('aria-selected', true);
+        } else if (el.classList.contains('active')) {
+          el.classList.remove('active');
+          el.setAttribute('aria-selected', false);
+        }
       });
     },
   },

@@ -87,18 +87,18 @@ export default {
     handleSync(data) {
       if (data.group === this.target || this.group === data.group) {
         this.options.forEach((opt, index) => {
-          if (opt.value === data.value) this.select(index);
+          if (opt.value === data.value) this.select(index, false);
         });
       }
     },
 
-    select(el) {
+    select(el, event = true) {
       let which = el;
-      if (typeof which === 'number') {
-        which = this.$refs.options.querySelectorAll('li')[which];
-      }
+      if (typeof which === 'number') which = this.$refs.options.querySelectorAll('li')[which];
 
       const obj = {
+        id: this.$el.id,
+        group: this.target || false,
         text: which.innerText,
         value: which.getAttribute('value'),
       };
@@ -110,7 +110,7 @@ export default {
           this.$set(this.options[index], 'active', true);
         }
       });
-      this.$bus.$emit('value-changed', obj);
+      if (event) this.$bus.$emit('value-changed', obj);
       this.activeText = obj.text;
       if (this.isActive) this.toggleActive();
     },

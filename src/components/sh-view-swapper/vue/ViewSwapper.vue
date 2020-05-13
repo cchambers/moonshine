@@ -56,6 +56,12 @@ export default {
       self.$bus.$on(`click-${this.receive}`, (data) => {
         self.activate(data.value);
       });
+
+      self.$bus.$on('value-changed', (data) => {
+        if (data.group === self.receive) {
+          self.activate(data.value);
+        }
+      });
     },
 
     activate(id) {
