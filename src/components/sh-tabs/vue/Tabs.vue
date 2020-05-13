@@ -1,6 +1,18 @@
 <template>
-  <div class="sh-tabs" v-bind:class="{ 'snap-state': snapping }" v-hammer:tap="snap">
-    <slot>{{ msg }}</slot>
+  <div class="sh-tabs">
+    <div class="tabs-actual" ref="tabs">
+      <slot></slot>
+    </div>
+    <div class="tabs-combo">
+      <component
+        ref="combo"
+        v-bind:is="combo"
+        v-bind:id="'tc-'+uuid"
+        v-bind:target="target"
+        v-bind:comboOptions="comboOptions"
+        variant="primary"
+      ></component>
+    </div>
   </div>
 </template>
 

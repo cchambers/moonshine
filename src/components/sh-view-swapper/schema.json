@@ -1,8 +1,8 @@
 {
-  "name": "Combo",
-  "category": "components",
+  "name": "View Swapper",
+  "category": "base",
   "production": true,
-  "element": "sh-combo",
+  "element": "sh-view-swapper",
   "description": "Demonstration component.",
   "tags": ["utilities", "demo"],
   "requirements": {}

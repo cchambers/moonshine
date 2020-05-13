@@ -5,7 +5,9 @@
     :print-trigger="printTrigger"
     v-hammer:tap="tapHandler"
     :value="defaultValue"
-    v-bind:role="isLink"
+    v-bind:role="ariaRole"
+    v-bind:aria-selected="isActive"
+    v-bind:aria-controls="ariaControls"
     class="sh-button">
     <slot name="before-text"></slot>
     <span class="active-icon"
@@ -44,6 +46,8 @@ export default {
     defaultValue: String,
     active: Boolean,
     link: Boolean,
+    ariaRole: String,
+    ariaControls: String,
   },
 
   data() {
@@ -51,18 +55,18 @@ export default {
       isActive: false,
       emitData: null,
       buttonEl: this.$refs.button,
-      isLink: false,
+      isRole: false,
     };
   },
 
   created() {
-    // console.log('BUTTON CREATED');
-    if (this.link) this.isLink = 'link';
+    if (this.link) this.ariaRole = 'link';
   },
 
   mounted() {
     this.buttonEl = this.$refs.button;
     if (this.active) this.isActive = true;
+    if (this.ariaRole) this.isRole = this.ariaRole;
   },
 
   methods: {
@@ -84,11 +88,11 @@ export default {
       this.ripple(e);
       if (this.toggle) this.doToggle();
       if (this.clickEvent) {
+        e.preventDefault();
         this.$bus.$emit(this.clickEvent, {
           el: this,
           value: this.buttonEl.value,
         });
-        e.preventDefault();
       }
       if (this.group) {
         this.$bus.$emit('group-toggle', {

@@ -4,45 +4,121 @@ export default {
   mixins: [ComponentPrototype],
 
   name: 'Combo',
+
   props: {
-    msg: {
+    comboOptions: {
+      type: Array,
+    },
+    target: {
       type: String,
-      default: 'new component',
     },
   },
 
   data() {
     return {
-      snapping: false,
+      isActive: false,
+      activeText: 'Select',
+      options: [],
     };
   },
 
-  methods: {
+  watch: {
+    isActive(val) {
+      if (val) {
+        this.$bus.$emit('combo-opening', {
+          id: this.uuid,
+        });
+      }
+    },
+  },
 
-    /* REMOVE THESE METHODS */
-    snap() {
-      if (!this.snapping) {
-        this.snapping = true;
-        this.snapTimeout = setTimeout(this.recover, 1500);
-        this.$emit('snapping');
+  mounted() {
+    const self = this;
+    const opts = self.$refs.options.children;
+    if (opts.length > 0) self.processHTMLOptions();
+  },
+
+  methods: {
+    events() {
+      document.addEventListener('click', (e) => {
+        if (!this.elementContains(this.$el, e.target) && this.isActive) this.toggleActive();
+      });
+
+      this.$bus.$on('combo-opening', (data) => {
+        if (data.uuid === this.uuid) return;
+        if (this.active) this.toggleActive();
+      });
+
+      if (this.target) {
+        this.$bus.$on('view-swapper-changed', this.swapperChangedHandler);
+      }
+
+      if (this.comboOptions.length) {
+        this.options = this.comboOptions;
+      }
+
+      this.$bus.$on('combo-sync', this.handleSync);
+    },
+
+    buttonHandler(e) {
+      e.preventDefault();
+      this.toggleActive();
+    },
+
+    swapperChangedHandler(data) {
+      const self = this;
+      if (data.group === self.target) {
+        console.log('swap', data);
       }
     },
 
-    recover() {
-      this.halve();
-      this.snapping = false;
-      this.$emit('snapped');
+    toggleActive() {
+      this.isActive = !this.isActive;
     },
 
-    halve() {
-      const str = this.$el.innerText;
-      if (!str.length) return;
-      const middle = Math.ceil(str.length / 2);
-      const half = str.slice(0, middle);
-      this.$el.innerText = half.trim();
+    optionClickHandler(e) {
+      let el = e.target;
+      if (el.nodeName !== 'LI') {
+        el = el.closest('li');
+      }
+      this.select(el);
     },
-    /* END REMOVE */
 
+    handleSync(data) {
+      if (data.group === this.target || this.group === data.group) {
+        this.options.forEach((opt, index) => {
+          if (opt.value === data.value) this.select(index, false);
+        });
+      }
+    },
+
+    select(el, event = true) {
+      let which = el;
+      if (typeof which === 'number') which = this.$refs.options.querySelectorAll('li')[which];
+
+      const obj = {
+        id: this.$el.id,
+        group: this.target || false,
+        text: which.innerText,
+        value: which.getAttribute('value'),
+      };
+
+      this.options.forEach((opt, index) => {
+        if (opt.value !== obj.value) {
+          this.$set(this.options[index], 'active', false);
+        } else {
+          this.$set(this.options[index], 'active', true);
+        }
+      });
+      if (event) this.$bus.$emit('value-changed', obj);
+      this.activeText = obj.text;
+      if (this.isActive) this.toggleActive();
+    },
+
+    processHTMLOptions() {
+      this.options.forEach((el) => {
+        console.log(el);
+      });
+    },
   },
-
 };

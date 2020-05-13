@@ -10,19 +10,19 @@ export default {
       type: String,
       default: 'lowlight-secondary, lowlight-tertiary',
     },
-    textFrom: {
+    slideFrom: {
       type: String,
       default: 'bottom',
     },
-    textTo: {
+    slideTo: {
       type: String,
       default: 'bottom',
     },
-    textIn: {
+    contentIn: {
       type: String,
       default: '400',
     },
-    textOut: {
+    contentOut: {
       type: String,
       default: '250',
     },

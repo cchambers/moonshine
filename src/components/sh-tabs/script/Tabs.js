@@ -1,43 +1,84 @@
 import ComponentPrototype from '../../component-prototype';
+import Combo from '../../sh-combo/vue/Combo.vue';
 
 export default {
   mixins: [ComponentPrototype],
 
   name: 'Tabs',
   props: {
-    msg: {
+    uniqueId: {
       type: String,
-      default: 'new component',
+      required: true,
+    },
+    target: {
+      type: String,
+      required: true,
     },
   },
 
   data() {
     return {
-      snapping: false,
+      uuid: undefined,
+      buttons: [],
+      combo: Combo,
+      comboOptions: [],
     };
   },
 
+  mounted() {
+    const self = this;
+    self.setUUID();
+    self.buttons = self.$refs.tabs.children;
+    // const newEls = [];
+    const comboOpts = [];
+    self.buttons.forEach((el) => {
+      const val = el.getAttribute('default-value');
+      const x = el;
+      x.clickEvent = `click-${self.target}`;
+      x.ariaRole = 'tab';
+      x.ariaControls = `#tab-${val}`;
+      comboOpts.push({
+        text: el.innerText,
+        value: val,
+      });
+    });
+    self.comboOptions = comboOpts;
+  },
+
   methods: {
-    snap() {
-      if (!this.snapping) {
-        this.snapping = true;
-        this.snapTimeout = setTimeout(this.recover, 1500);
-        this.$emit('snapping');
+    events() {
+      this.$bus.$on('view-swapper-changed', this.swapperChangedHandler);
+      this.$bus.$on('value-changed', this.comboValueHandler);
+    },
+
+    swapperChangedHandler(data) {
+      const self = this;
+      if (data.group === self.target) {
+        self.activate(data.which); // TODO: remove this, make work w/ button toggle group func
+        this.$bus.$emit('combo-sync', {
+          group: this.target,
+          value: data.which,
+        });
       }
     },
 
-    recover() {
-      this.halve();
-      this.snapping = false;
-      this.$emit('snapped');
+    comboValueHandler(data) {
+      if (data.group === this.target) {
+        this.activate(data.value);
+      }
     },
 
-    halve() {
-      const str = this.$el.innerText;
-      if (!str.length) return;
-      const middle = Math.ceil(str.length / 2);
-      const half = str.slice(0, middle);
-      this.$el.innerText = half.trim();
+    activate(which) {
+      const self = this;
+      self.buttons.forEach((el) => {
+        if (which === el.defaultValue) {
+          el.classList.add('active');
+          el.setAttribute('aria-selected', true);
+        } else if (el.classList.contains('active')) {
+          el.classList.remove('active');
+          el.setAttribute('aria-selected', false);
+        }
+      });
     },
   },
 
