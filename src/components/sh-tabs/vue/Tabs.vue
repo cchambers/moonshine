@@ -6,6 +6,7 @@
     <div class="tabs-combo">
       <component
         ref="combo"
+        native
         v-bind:is="combo"
         v-bind:id="'tc-'+uuid"
         v-bind:target="target"

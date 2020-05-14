@@ -2,7 +2,8 @@
   <div class="sh-combo"
     :variant="variant"
     :class="{
-      active: isActive
+      active: isActive,
+      native: native,
     }">
     <div class="combo-actual">
       <button class="combo-trigger" ref="trigger"
@@ -28,6 +29,16 @@
           </li>
         </ul>
       </div>
+    </div>
+    <div ref="select">
+      <select v-on:input="selectHandler">
+        <option v-for="item in options"
+        v-bind:key="item.index"
+        v-bind:value="item.value"
+        v-bind:selected="item.active">
+          {{ item.text }}
+        </option>
+      </select>
     </div>
   </div>
 </template>

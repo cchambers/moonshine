@@ -12,6 +12,12 @@ export default {
     target: {
       type: String,
     },
+    native: {
+      type: Boolean,
+    },
+    id: {
+      type: String,
+    },
   },
 
   data() {
@@ -25,6 +31,7 @@ export default {
       ignoreKeys: [37, 39, 91, 16, 13],
       navKeys: [38, 40],
       value: undefined,
+      selectId: undefined,
     };
   },
 
@@ -38,10 +45,17 @@ export default {
     },
   },
 
+  created() {
+    this.setUUID();
+  },
+
   mounted() {
     const self = this;
     const opts = self.$refs.options.children;
     if (opts.length > 0) self.processHTMLOptions();
+    if (this.native) {
+      this.selectId = `sel-${this.uuid}`;
+    }
   },
 
   methods: {
@@ -74,6 +88,10 @@ export default {
       }
     },
 
+    selectHandler(e) {
+      this.selectFromVal(e.target.value);
+    },
+
     swapperChangedHandler(data) {
       const self = this;
       if (data.group === self.target) {
@@ -81,9 +99,24 @@ export default {
       }
     },
 
+    selectFromVal(str) {
+      this.options.forEach((opt, index) => {
+        if (opt.value === str) this.select(index);
+      });
+    },
+
     toggleActive(origin) {
-      console.log(origin);
+      this.log(origin);
       this.isActive = !this.isActive;
+      if (this.native) {
+        this.log('NATIVE', 2);
+        const event = new MouseEvent('click', {
+          view: window,
+          bubbles: true,
+          cancelable: true,
+        });
+        this.$refs.select.dispatchEvent(event);
+      }
     },
 
     optionClickHandler(e) {
