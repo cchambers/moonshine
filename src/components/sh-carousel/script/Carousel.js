@@ -60,7 +60,6 @@ export default {
       playLabel: '',
       playTimer: {},
       carouselId: 'c',
-      controller: null,
       changeDelay: 0,
     };
   },
@@ -113,10 +112,6 @@ export default {
     paused(val) {
       this.playLabel = (val) ? 'Start automatic slide show' : 'Stop automatic slide show';
     },
-
-    controller(val) {
-      console.log('controller', val);
-    },
   },
 
   methods: {
@@ -131,9 +126,6 @@ export default {
       const self = this;
       const resizeDebounced = self.debounce(self.autoSize, 100);
       window.addEventListener('resize', resizeDebounced, true);
-      self.$on('set-controller', (el) => {
-        self.controller = el;
-      });
     },
 
     ada() {
@@ -217,14 +209,7 @@ export default {
       setTimeout(() => {
         this.active = which;
         this.$bus.$emit('carousel-slide-changed', { id: this.carouselId, active: this.active });
-        if (this.controller) {
-          this.controller.$emit('carousel-slide-changed', { active: this.active });
-        }
       }, this.changeDelay);
-    },
-
-    setController(what) {
-      this.controller = what;
     },
 
     swipeHandler(e) {

@@ -3,14 +3,12 @@
 <title><%= htmlWebpackPlugin.options.title %></title>
 
 <div class="documentation contain">
-  <h1>Combo</h1>
+  <h1>View Swapper</h1>
   <section id="usage">
     <h2>Usage</h2>
     <pre>
       <code class="language-html">
-          &lt;sh-combo&gt;
-            &lt;div slot="options"&gt;
-          &lt;/sh-combo&gt;
+          &lt;view-swapper&gt;new component&lt;/view-swapper&gt;
       </code>
     </pre>
 
@@ -58,7 +56,7 @@
 
     <h3 id="methods">Public Methods</h3>
 
-    <!-- <table class="methods">
+        <!-- <table class="methods">
       <thead>
         <tr>
           <th>Function</th>
@@ -111,29 +109,9 @@
     <h2>Examples</h2>
     <h3>Default</h3>
     <lib-toolbar>
-      <div style="width: 20rem">
-        <sh-combo>
-          <ul slot="options">
-            <li>One thing</li>
-            <li>Two thing</li>
-            <li>Red thing</li>
-            <li>Blue thing</li>
-          </ul>
-        </sh-combo>
-      </div>
-    </lib-toolbar>
-    <h3>Primary variant</h3>
-    <lib-toolbar>
-      <div style="width: 20rem">
-        <sh-combo variant="primary">
-          <ul slot="options">
-            <li>One thing</li>
-            <li>Two thing</li>
-            <li>Red thing</li>
-            <li>Blue thing</li>
-          </ul>
-        </sh-combo>
-      </div>
+      <view-swapper>
+        TEXT THAT IS EVEN AND STILL EXISTS
+      </view-swapper>
     </lib-toolbar>
   </section>
 
@@ -141,9 +119,25 @@
     <h2>Changelog</h2>
     <dl>
       <dt>0.1.0</dt>
-      <dd>Combo is under development.</dd>
+      <dd>View Swapper is under development.</dd>
+      <dt>1.0.0</dt>
+      <dd>View Swapper is ready for use.</dd>
+      <dt>1.0.1</dt>
+      <dd><strong>PATCH</strong> version when you make backwards-compatible bug fixes.</dd>
+      <dt>1.1.0</dt>
+      <dd><strong>MINOR</strong> version when you add functionality in a backwards-compatible manner.</dd>
+      <dt>2.0.0</dt>
+      <dd><strong>MAJOR</strong> version when you make incompatible API changes.</dd>
+      <dd>Example of another change from the same update.</dd>
+      <dd>And another.</dd>
     </dl>
   </section>
+
+  <!-- Uncomment this section when you have written requirements in the schema.json!
+    <section id="requirements">
+    <h2>Requirements</h2>
+    <lib-reqs></lib-reqs>
+  </section> -->
 </div>
 
 <%- htmlWebpackPlugin.options.docsFoot %>

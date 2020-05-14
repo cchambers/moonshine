@@ -1,27 +1,23 @@
 /* default styling */
 
 sh-tabs {
-  display: inline-block;
-}
+  display: block;
+  .sh-tabs {
+    display: flex;
+    align-items: flex-start;
 
-.sh-tabs {
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  text-align: center;
-  height: 15rem;
-  width: 15rem;
-  background-size: cover;
-  border: 1px solid transparent;
-  transition: all 200ms linear;
+    > * {
+      display: block; 
+      width: 100%;
+    }
 
-  &:hover {
-    border: 1px solid purple;
+    sh-button.active {
+      background: $highlight-tertiary;
+    }
   }
-
-  &.snap-state {
-    color: transparent;
-    border: 1px solid purple;
+  &[collapse] {
+    .tabs-actual {
+      display: none;
+    }
   }
 }

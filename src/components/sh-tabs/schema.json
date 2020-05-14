@@ -1,7 +1,7 @@
 {
   "name": "Tabs",
   "category": "components",
-  "production": false,
+  "production": true,
   "element": "sh-tabs",
   "description": "Tab component.",
   "tags": ["utilities", "demo"],

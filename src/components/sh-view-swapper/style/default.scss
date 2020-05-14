@@ -1,0 +1,15 @@
+/* default styling */
+
+sh-view-swapper {
+  display: block;
+
+  .sh-view-swapper {
+    > div {
+      display: none;
+    }
+
+    > div.active {
+      display: block;
+    }
+  }
+}

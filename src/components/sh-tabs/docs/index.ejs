@@ -4,7 +4,7 @@
 
 <div class="documentation contain">
   <h1>Tabs</h1>
-  <section id="usage">
+  <!-- <section id="usage">
     <h2>Usage</h2>
     <pre>
       <code class="language-html">
@@ -103,14 +103,34 @@
         </tr>
       </tbody>
     </table>
-  </section>
+  </section> -->
 
   <section id="examples">
     <h2>Examples</h2>
     <h3>Default</h3>
     <lib-toolbar>
-      <sh-tabs>TEXT THAT IS EVEN AND STILL EXISTS</sh-tabs>
+      <div class="row">
+        <div class="col-1-4">
+          <sh-tabs collapse unique-id="example" target="demo-swapper">
+            <sh-button default-value="first-view">First</sh-button>
+            <sh-button default-value="second-view">Second</sh-button>
+            <sh-button default-value="third-view">Third</sh-button>
+          </sh-tabs>
+        </div>
+      </div>
+      <sh-view-swapper variant="secondary" receive="demo-swapper">
+        <div id="first-view">
+          <p>First Tab Content</p>
+        </div>
+        <div id="second-view">
+          <p>Second Tab Content</p>
+        </div>
+        <div id="third-view">
+          <p>Third Tab Content</p>
+        </div>
+      </sh-view-swapper>
     </lib-toolbar>
+    <div style="height:80vh;"></div>
   </section>
 
   <section id="changelog">
@@ -118,12 +138,6 @@
     <dl>
       <dt>1.0.0</dt>
       <dd>Tabs was created.</dd>
-      <dt>1.0.1</dt>
-      <dd>PATCH version when you make backwards-compatible bug fixes.</dd>
-      <dt>1.1.0</dt>
-      <dd>MINOR version when you add functionality in a backwards-compatible manner</dd>
-      <dt>2.0.0</dt>
-      <dd>MINOR version when you add functionality in a backwards-compatible manner</dd>
     </dl>
   </section>
 </div>
