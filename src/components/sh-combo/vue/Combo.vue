@@ -2,10 +2,15 @@
   <div class="sh-combo"
     :variant="variant"
     :class="{
-      active: isActive
+      active: isActive,
+      native: native,
     }">
     <div class="combo-actual">
-      <button class="combo-trigger" ref="trigger" v-hammer:tap="buttonHandler">
+      <button class="combo-trigger" ref="trigger"
+        v-hammer:tap="buttonHandler"
+        v-on:keydown.down="highlightHandler"
+        v-on:keydown.up="highlightHandler"
+        v-on:keydown.enter="enterHandler">
         <div class="combo-text">
           {{ activeText }}
         </div>
@@ -19,11 +24,21 @@
           <li v-for="item in options"
           v-bind:key="item.index"
           v-bind:value="item.value"
-          v-bind:class="{ active: item.active }">
+          v-bind:class="{ active: item.active, highlight: item.highlight }">
             {{ item.text }}
           </li>
         </ul>
       </div>
+    </div>
+    <div ref="select">
+      <select v-on:input="selectHandler">
+        <option v-for="item in options"
+        v-bind:key="item.index"
+        v-bind:value="item.value"
+        v-bind:selected="item.active">
+          {{ item.text }}
+        </option>
+      </select>
     </div>
   </div>
 </template>

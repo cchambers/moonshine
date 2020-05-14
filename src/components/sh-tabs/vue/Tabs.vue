@@ -1,11 +1,12 @@
 <template>
-  <div class="sh-tabs">
+  <div class="sh-tabs" :style="{ width: width }">
     <div class="tabs-actual" ref="tabs">
       <slot></slot>
     </div>
     <div class="tabs-combo">
       <component
         ref="combo"
+        native
         v-bind:is="combo"
         v-bind:id="'tc-'+uuid"
         v-bind:target="target"

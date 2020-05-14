@@ -109,13 +109,15 @@
     <h2>Examples</h2>
     <h3>Default</h3>
     <lib-toolbar>
-
-      <sh-tabs collapse unique-id="example" target="demo-swapper">
-        <sh-button default-value="first-view">First</sh-button>
-        <sh-button default-value="second-view">Second</sh-button>
-        <sh-button default-value="third-view">Third</sh-button>
-      </sh-tabs>
-
+      <div class="row">
+        <div class="col-1-4">
+          <sh-tabs collapse unique-id="example" target="demo-swapper">
+            <sh-button default-value="first-view">First</sh-button>
+            <sh-button default-value="second-view">Second</sh-button>
+            <sh-button default-value="third-view">Third</sh-button>
+          </sh-tabs>
+        </div>
+      </div>
       <sh-view-swapper variant="secondary" receive="demo-swapper">
         <div id="first-view">
           <p>First Tab Content</p>

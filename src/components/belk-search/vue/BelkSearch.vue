@@ -203,7 +203,7 @@ export default {
       this.activeDescendantHandler();
       this.stateHandler(state);
       // eslint-disable-next-line
-      if (this.debug) console.log(`ct: ${this.count}, nr: ${this.noResults}, sv: ${this.searchValue}, foc: ${this.isFocused}, st: ${state}`);
+      if (this.debug) this.log(`ct: ${this.count}, nr: ${this.noResults}, sv: ${this.searchValue}, foc: ${this.isFocused}, st: ${state}`);
       return state;
     },
 

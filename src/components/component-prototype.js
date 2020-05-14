@@ -76,6 +76,9 @@ const ComponentPrototype = {
       if (dev) {
         let style = 'font-size: 18px;';
         switch (level) {
+          case 2:
+            style += ' color: #ff5500;';
+            break;
           default:
             style += ' color: #0667a0;';
             break;
