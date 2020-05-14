@@ -51,10 +51,10 @@ export default {
 
   mounted() {
     const self = this;
-    const opts = self.$refs.options.children;
-    if (opts.length > 0) self.processHTMLOptions();
-    if (this.native) {
-      this.selectId = `sel-${this.uuid}`;
+    // const opts = self.$refs.options.children;
+    // if (opts.length > 0) self.processHTMLOptions();
+    if (self.native) {
+      self.selectId = `sel-${self.uuid}`;
     }
   },
 
@@ -159,11 +159,11 @@ export default {
       if (this.isActive && toggle) this.toggleActive('select');
     },
 
-    processHTMLOptions() {
-      this.options.forEach((el) => {
-        console.log(el);
-      });
-    },
+    // processHTMLOptions() {
+    //   this.options.forEach((el) => {
+    //      console.log(el);
+    //   });
+    // },
 
     highlightHandler(e) {
       e.preventDefault();
