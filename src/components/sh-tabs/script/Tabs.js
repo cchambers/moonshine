@@ -14,6 +14,9 @@ export default {
       type: String,
       required: true,
     },
+    width: {
+      type: String,
+    },
   },
 
   data() {

@@ -8,5 +8,8 @@
     &.active {
       background: $highlight-tertiary;
     }
+    &.highlight {
+      background: $highlight-secondary;
+    }
   }
 }

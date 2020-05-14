@@ -15,4 +15,9 @@ sh-tabs {
       background: $highlight-tertiary;
     }
   }
+  &[collapse] {
+    .tabs-actual {
+      display: none;
+    }
+  }
 }

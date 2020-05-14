@@ -18,7 +18,13 @@ export default {
     return {
       isActive: false,
       activeText: 'Select',
+      activeIndex: 0,
+      highlightedIndex: 0,
       options: [],
+      button: {},
+      ignoreKeys: [37, 39, 91, 16, 13],
+      navKeys: [38, 40],
+      value: undefined,
     };
   },
 
@@ -41,38 +47,42 @@ export default {
   methods: {
     events() {
       document.addEventListener('click', (e) => {
-        if (!this.elementContains(this.$el, e.target) && this.isActive) this.toggleActive();
+        if (!this.elementContains(this.$el, e.target) && this.isActive) this.toggleActive('off-click');
       });
 
       this.$bus.$on('combo-opening', (data) => {
-        if (data.uuid === this.uuid) return;
-        if (this.active) this.toggleActive();
+        if (data.id === this.uuid) return;
+        if (this.isActive) this.toggleActive('combo-opening handler');
       });
 
-      if (this.target) {
-        this.$bus.$on('view-swapper-changed', this.swapperChangedHandler);
-      }
-
-      if (this.comboOptions.length) {
-        this.options = this.comboOptions;
-      }
-
+      if (this.target) this.$bus.$on('view-swapper-changed', this.swapperChangedHandler);
+      if (this.comboOptions.length) this.options = this.comboOptions;
       this.$bus.$on('combo-sync', this.handleSync);
     },
 
     buttonHandler(e) {
       e.preventDefault();
-      this.toggleActive();
+      this.toggleActive('button handler');
+    },
+
+    enterHandler(e) {
+      e.preventDefault();
+      if (this.isActive) {
+        this.select(this.highlightedIndex);
+      } else {
+        this.toggleActive('enter handler');
+      }
     },
 
     swapperChangedHandler(data) {
       const self = this;
       if (data.group === self.target) {
-        console.log('swap', data);
+        // console.log('swap', data);
       }
     },
 
-    toggleActive() {
+    toggleActive(origin) {
+      console.log(origin);
       this.isActive = !this.isActive;
     },
 
@@ -92,7 +102,7 @@ export default {
       }
     },
 
-    select(el, event = true) {
+    select(el, event = true, toggle = true) {
       let which = el;
       if (typeof which === 'number') which = this.$refs.options.querySelectorAll('li')[which];
 
@@ -108,17 +118,44 @@ export default {
           this.$set(this.options[index], 'active', false);
         } else {
           this.$set(this.options[index], 'active', true);
+          this.activeIndex = index;
         }
       });
       if (event) this.$bus.$emit('value-changed', obj);
       this.activeText = obj.text;
-      if (this.isActive) this.toggleActive();
+      if (this.isActive && toggle) this.toggleActive('select');
     },
 
     processHTMLOptions() {
       this.options.forEach((el) => {
         console.log(el);
       });
+    },
+
+    highlightHandler(e) {
+      e.preventDefault();
+      let dir = 0;
+      const key = e.charCode || e.keyCode;
+      let which = this.activeIndex;
+
+      switch (key) {
+        case 38:
+          dir = -1;
+          break;
+        case 40:
+          dir = 1;
+          break;
+        default:
+          dir = 0;
+          break;
+      }
+
+      const { length } = this.options;
+      which += dir;
+      if (which >= length) which = 0;
+      if (which < 0) which = length - 1;
+
+      this.select(which, true, false);
     },
   },
 };

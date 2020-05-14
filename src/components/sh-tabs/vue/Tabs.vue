@@ -1,5 +1,5 @@
 <template>
-  <div class="sh-tabs">
+  <div class="sh-tabs" :style="{ width: width }">
     <div class="tabs-actual" ref="tabs">
       <slot></slot>
     </div>
