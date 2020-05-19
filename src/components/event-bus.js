@@ -56,7 +56,8 @@ let delegations = {
         e.preventDefault();
         let target = e.target;
         EventBus.$emit(target.getAttribute('emit'), {
-          which: target.getAttribute('which')
+          which: target.getAttribute('which'),
+          origin: target,
         });
 			}
     }
