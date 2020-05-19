@@ -44,12 +44,20 @@ let delegations = {
       handler() {
         window.print();
       }
-    },
-		{
-			target: '[nav-trigger]',
-			handler() {
-				EventBus.$emit('show-nav');
-				this.$bus.$emit('show-curtain');
+    }, {
+      target: '[nav-trigger]',
+      handler() {
+        EventBus.$emit('show-nav');
+        EventBus.$emit('show-curtain');
+      }
+    }, {
+			target: '[emit]',
+			handler(e) {
+        e.preventDefault();
+        let target = e.target;
+        EventBus.$emit(target.getAttribute('emit'), {
+          which: target.getAttribute('which')
+        });
 			}
     }
 	]

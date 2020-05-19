@@ -18,6 +18,7 @@ sh-accordion {
       .collapse {
         max-height: 200vh;
         transition: all 250ms $ease;
+        overflow: auto;
       }
     }
 

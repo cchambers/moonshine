@@ -30,7 +30,7 @@
         </ul>
       </div>
     </div>
-    <div ref="select">
+    <div class="combo-select" ref="select">
       <select v-on:input="selectHandler">
         <option value="blank_opt">{{ defaultText }}</option>
         <option v-for="item in options"

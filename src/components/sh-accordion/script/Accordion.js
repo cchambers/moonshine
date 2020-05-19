@@ -92,6 +92,7 @@ export default {
       this.$bus.$emit('accordion-opening', payload);
       this.ariaExpanded = true;
       this.$bus.$emit('accordion-opened', payload);
+      this.$el.focus();
     },
 
     events() {
@@ -102,6 +103,10 @@ export default {
           }
         });
       }
+
+      this.$bus.$on('accordion-trigger', (data) => {
+        if (data.which === this.uniqueId) this.toggleActive();
+      });
 
       this.$bus.$on('hashchange', this.hashHandler);
     },
