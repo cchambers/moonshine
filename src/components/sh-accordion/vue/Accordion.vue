@@ -3,7 +3,7 @@
     :id="uniqueId"
     :variant="variant"
     v-bind:class="{ 'active': ariaExpanded }">
-    <button class="header" :id="headerId" :aria-controls="ariaControlsId"
+    <button v-if="variant" class="header" :id="headerId" :aria-controls="ariaControlsId"
       v-hammer:tap="toggleActive">
       <slot name="header"></slot>
       <i class="material-icons-round">{{ iconHandler }}</i>
