@@ -128,6 +128,12 @@ $mod-amounts: ("-atomic": #{$base/8}rem,
   "-mega": #{$base*2.5}rem);
 $inv: "";
 
+$micro: #{$base/4}rem;
+$little: #{$base/2}rem;
+$big: #{$base*1.5}rem;
+$huge: #{$base*2}rem;
+$mega: #{$base*2.5}rem;
+
 @each $mod, $prop in $box-model-mods {
   @if $mod=="pull" {
     $inv: "-";
