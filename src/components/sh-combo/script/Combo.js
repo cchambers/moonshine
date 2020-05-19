@@ -18,6 +18,10 @@ export default {
     id: {
       type: String,
     },
+    defaultText: {
+      type: String,
+      default: 'Select',
+    },
   },
 
   data() {
@@ -56,6 +60,8 @@ export default {
     if (self.native) {
       self.selectId = `sel-${self.uuid}`;
     }
+
+    if (this.defaultText.length > 0) this.activeText = this.defaultText;
   },
 
   methods: {

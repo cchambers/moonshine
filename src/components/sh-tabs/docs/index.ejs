@@ -106,31 +106,3791 @@
   </section> -->
 
   <section id="examples">
-    <h2>Examples</h2>
-    <h3>Default</h3>
-    <lib-toolbar>
-      <div class="row">
-        <div class="col-1-4">
-          <sh-tabs collapse unique-id="example" target="demo-swapper">
-            <sh-button default-value="first-view">First</sh-button>
-            <sh-button default-value="second-view">Second</sh-button>
-            <sh-button default-value="third-view">Third</sh-button>
-          </sh-tabs>
-        </div>
+    <h2>Sizing Chart Example</h2>
+    <h1>Find Your Fit</h1>
+
+    <p class="pad-b">Use the size charts below to find the correct fit. Please keep in mind that while many manufacturers follow the
+      same standard of measurement, some brands may vary.</p>
+    <sh-tabs collapse width="300px" default-text="Select" unique-id="top-tabs" target="opt-swapper">
+      <sh-button default-value="womens-tab">Women's</sh-button>
+      <sh-button default-value="intimates-tab">Intimates</sh-button>
+      <sh-button default-value="juniors-all">Juniors</sh-button>
+      <sh-button default-value="mens-tab">Men's</sh-button>
+      <sh-button default-value="girls-tab">Kids - Girls'</sh-button>
+      <sh-button default-value="boys-tab">Kids - Boys'</sh-button>
+    </sh-tabs>
+
+    <sh-view-swapper receive="opt-swapper">
+      <div id="blank-opt"></div>
+
+      <div id="juniors-all">
+
+        <table class="belk__table belk__table--grey belk__table--lined c_text--center" border="0" cellpadding="0" cellspacing="0">
+          <caption> Juniors 5'3.5"- 5'7.5" Size Chart
+          </caption>
+          <tbody>
+            <tr>
+              <th scope="col">&nbsp;
+              </th>
+              <th scope="col">XS
+              </th>
+              <th scope="col">S
+              </th>
+              <th scope="col">&nbsp;
+              </th>
+              <th scope="col">M
+              </th>
+              <th scope="col">&nbsp;
+              </th>
+              <th scope="col">L
+              </th>
+              <th scope="col">&nbsp;
+              </th>
+              <th scope="col">XL
+              </th>
+            </tr>
+            <tr>
+              <th scope="row">Size
+              </th>
+              <td>1</td>
+              <td>3</td>
+              <td>5</td>
+              <td>7</td>
+              <td>9</td>
+              <td>11</td>
+              <td>13</td>
+              <td>15</td>
+            </tr>
+            <tr>
+              <th scope="row">Chest
+              </th>
+              <td>31.5</td>
+              <td>32.5</td>
+              <td>33.5</td>
+              <td>34.5</td>
+              <td>35.5</td>
+              <td>37</td>
+              <td>38.5</td>
+              <td>40</td>
+            </tr>
+            <tr>
+              <th scope="row">Waist
+              </th>
+              <td>23.5</td>
+              <td>24.5</td>
+              <td>25.5</td>
+              <td>26.5</td>
+              <td>27.5</td>
+              <td>29</td>
+              <td>30.5</td>
+              <td>32</td>
+            </tr>
+            <tr>
+              <th scope="row">Hip
+              </th>
+              <td>33.5</td>
+              <td>34.5</td>
+              <td>35.5</td>
+              <td>36.5</td>
+              <td>37.5</td>
+              <td>39</td>
+              <td>40.5</td>
+              <td>42</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-      <sh-view-swapper variant="secondary" receive="demo-swapper">
-        <div id="first-view">
-          <p>First Tab Content</p>
-        </div>
-        <div id="second-view">
-          <p>Second Tab Content</p>
-        </div>
-        <div id="third-view">
-          <p>Third Tab Content</p>
-        </div>
-      </sh-view-swapper>
-    </lib-toolbar>
-    <div style="height:80vh;"></div>
+
+      <div id="womens-tab">
+        <sh-tabs collapse width="300px" default-text="Select" unique-id="womens-tabs" target="womens-swapper">
+          <sh-button default-value="womens-apparel">Women's Apparel</sh-button>
+          <sh-button default-value="womens-petites">Women's Apparel - Petites</sh-button>
+          <sh-button default-value="womens-plus-size">Women's Apparel - Plus Size</sh-button>
+          <sh-button default-value="womens-shorts">Women's Shorts</sh-button>
+          <sh-button default-value="womens-sleepwear">Women's Sleepwear</sh-button>
+          <sh-button default-value="womens-shoes">Women's Shoes</sh-button>
+        </sh-tabs>
+        <sh-view-swapper receive="womens-swapper">
+          <div id="blank-womens"></div>
+
+          <div id="womens-apparel">
+            <table class="belk__table belk__table--grey belk__table--lined c_text--center" border="0" cellpadding="0" cellspacing="0">
+              <caption> Women's Size Chart (5'4"-5'7.5")</caption>
+              <tbody>
+                <tr>
+                  <th scope="col">&nbsp;</th>
+                  <th scope="col">Size</th>
+                  <th scope="col">Chest</th>
+                  <th scope="col">Waist</th>
+                  <th scope="col">Hip</th>
+                </tr>
+                <tr>
+                  <th scope="row">XS</th>
+                  <td>0</td>
+                  <td>32</td>
+                  <td>24</td>
+                  <td>34</td>
+                </tr>
+                <tr>
+                  <th scope="row">&nbsp;</th>
+                  <td>2</td>
+                  <td>33</td>
+                  <td>25</td>
+                  <td>35</td>
+                </tr>
+                <tr>
+                  <th scope="row">S</th>
+                  <td>4</td>
+                  <td>34</td>
+                  <td>26</td>
+                  <td>36</td>
+                </tr>
+                <tr>
+                  <th scope="row">&nbsp;</th>
+                  <td>6</td>
+                  <td>36</td>
+                  <td>28</td>
+                  <td>37</td>
+                </tr>
+                <tr>
+                  <th scope="row">M</th>
+                  <td>8</td>
+                  <td>36</td>
+                  <td>28</td>
+                  <td>38</td>
+                </tr>
+                <tr>
+                  <th scope="row">&nbsp;</th>
+                  <td>10</td>
+                  <td>37</td>
+                  <td>29</td>
+                  <td>39</td>
+                </tr>
+                <tr>
+                  <th scope="row">L</th>
+                  <td>12</td>
+                  <td>38.5</td>
+                  <td>30.5</td>
+                  <td>40.5</td>
+                </tr>
+                <tr>
+                  <th scope="row">&nbsp;</th>
+                  <td>14</td>
+                  <td>40</td>
+                  <td>32</td>
+                  <td>42</td>
+                </tr>
+                <tr>
+                  <th scope="row">XL</th>
+                  <td>16</td>
+                  <td>41.5</td>
+                  <td>33.5</td>
+                  <td>43.5</td>
+                </tr>
+                <tr>
+                  <th scope="row">&nbsp;</th>
+                  <td>18</td>
+                  <td>43.5</td>
+                  <td>35</td>
+                  <td>45.5</td>
+                </tr>
+                <tr>
+                  <th scope="row">XXL</th>
+                  <td>20</td>
+                  <td>45.5</td>
+                  <td>37</td>
+                  <td>47.5</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div id="womens-petites">
+            <table class="belk__table belk__table--grey belk__table--lined c_text--center" border="0" cellpadding="0" cellspacing="0">
+              <caption> Women’s Petites Size Chart (4'11" - 5'4")</caption>
+              <tbody>
+                <tr>
+                  <th scope="col">&nbsp;</th>
+                  <th scope="col">XS</th>
+                  <th scope="col">&nbsp;</th>
+                  <th scope="col">S</th>
+                  <th scope="col">&nbsp;</th>
+                  <th scope="col">M</th>
+                  <th scope="col">&nbsp;</th>
+                  <th scope="col">L</th>
+                  <th scope="col">&nbsp;</th>
+                  <th scope="col">XL</th>
+                </tr>
+                <tr>
+                  <th scope="row">Size</th>
+                  <td>2</td>
+                  <td>4</td>
+                  <td>6</td>
+                  <td>8</td>
+                  <td>10</td>
+                  <td>12</td>
+                  <td>14</td>
+                  <td>16</td>
+                  <td>18</td>
+                </tr>
+                <tr>
+                  <th scope="row">Chest</th>
+                  <td>32.5</td>
+                  <td>33.5</td>
+                  <td>34.5</td>
+                  <td>35.5</td>
+                  <td>36.5</td>
+                  <td>38</td>
+                  <td>39.5</td>
+                  <td>41</td>
+                  <td>43</td>
+                </tr>
+                <tr>
+                  <th scope="row">Waist</th>
+                  <td>24.5</td>
+                  <td>25.5</td>
+                  <td>26.5</td>
+                  <td>27.5</td>
+                  <td>28.5</td>
+                  <td>30</td>
+                  <td>31.5</td>
+                  <td>33</td>
+                  <td>35</td>
+                </tr>
+                <tr>
+                  <th scope="row">Hip</th>
+                  <td>34.5</td>
+                  <td>
+                    <p>35.5
+                    </p>
+                  </td>
+                  <td>36.5</td>
+                  <td>37.5</td>
+                  <td>38.5</td>
+                  <td>40</td>
+                  <td>41.5</td>
+                  <td>43.5</td>
+                  <td>45.5</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div id="womens-plus-size">
+            <table class="belk__table belk__table--grey belk__table--lined c_text--center" border="0" cellpadding="0" cellspacing="0">
+              <caption> Women’s Plus Size Chart (5'4" - 5'7.5")
+              </caption>
+              <tbody>
+                <tr>
+                  <th scope="col">&nbsp;</th>
+                  <th scope="col">1X</th>
+                  <th scope="col">&nbsp;</th>
+                  <th scope="col">2X</th>
+                  <th scope="col">&nbsp;</th>
+                  <th scope="col">3X</th>
+                  <th scope="col">&nbsp;</th>
+                </tr>
+                <tr>
+                  <th scope="row">Size</th>
+                  <td>16W</td>
+                  <td>18W</td>
+                  <td>20W</td>
+                  <td>22W</td>
+                  <td>24W</td>
+                  <td>26W</td>
+                </tr>
+                <tr>
+                  <th scope="row">Chest</th>
+                  <td>44.5</td>
+                  <td>45.5</td>
+                  <td>47.5</td>
+                  <td>49.5</td>
+                  <td>51.5</td>
+                  <td>53.5</td>
+                </tr>
+                <tr>
+                  <th scope="row">Waist</th>
+                  <td>36</td>
+                  <td>38</td>
+                  <td>40</td>
+                  <td>42</td>
+                  <td>44</td>
+                  <td>46</td>
+                </tr>
+                <tr>
+                  <th scope="row">Hip</th>
+                  <td>43.5</td>
+                  <td>48.5</td>
+                  <td>50.5</td>
+                  <td>52.5</td>
+                  <td>54.5</td>
+                  <td>56.5</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div id="womens-shorts">
+            <table class="belk__table belk__table--grey belk__table--lined c_text--center" height="127" border="0" cellpadding="0" cellspacing="0">
+              <caption> Women’s Shorts Size Chart
+              </caption>
+              <tbody>
+                <tr>
+                  <th>&nbsp;</th>
+                  <th>0</th>
+                  <th>2</th>
+                  <th>4</th>
+                  <th>6</th>
+                  <th>8</th>
+                  <th>10</th>
+                  <th>12</th>
+                  <th>14</th>
+                  <th>16</th>
+                  <th>18</th>
+                  <th>20</th>
+                </tr>
+                <tr>
+                  <th scope="row">Chest</th>
+                  <td>32</td>
+                  <td>33</td>
+                  <td>34</td>
+                  <td>35</td>
+                  <td>36</td>
+                  <td>37</td>
+                  <td>38.5</td>
+                  <td>40</td>
+                  <td>41.5</td>
+                  <td>43.5</td>
+                  <td>45.5</td>
+                </tr>
+                <tr>
+                  <th scope="row">Waist</th>
+                  <td>24</td>
+                  <td>25</td>
+                  <td>26</td>
+                  <td>27</td>
+                  <td>28</td>
+                  <td>29</td>
+                  <td>30.5</td>
+                  <td>32</td>
+                  <td>33.5</td>
+                  <td>35</td>
+                  <td>37</td>
+                </tr>
+                <tr>
+                  <th scope="row">Hip</th>
+                  <td>34</td>
+                  <td>35</td>
+                  <td>36</td>
+                  <td>37</td>
+                  <td>38</td>
+                  <td>39</td>
+                  <td>40.5</td>
+                  <td>42</td>
+                  <td>43.5</td>
+                  <td>45.5</td>
+                  <td>47.5</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div id="womens-sleepwear">
+            <table class="belk__table belk__table--grey belk__table--lined c_text--center" height="90" border="0" cellpadding="0" cellspacing="0">
+              <caption> Women’s Sleepwear and Robes Size Chart
+              </caption>
+              <tbody>
+                <tr>
+                  <th scope="col">&nbsp;</th>
+                  <th scope="col">S</th>
+                  <th scope="col">M</th>
+                  <th scope="col">L</th>
+                  <th scope="col">XL</th>
+                </tr>
+                <tr>
+                  <th scope="row">Waist</th>
+                  <td>2-4</td>
+                  <td>6-8</td>
+                  <td>10-12</td>
+                  <td>14-16</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div id="womens-shoes">
+            <table class="belk__table belk__table--grey belk__table--lined c_text--center" border="0" cellpadding="0" cellspacing="0">
+              <caption> Women’s Shoes Size/Width Chart (Inches)
+              </caption>
+              <tbody>
+                <tr>
+                  <th scope="col">&nbsp;</th>
+                  <th scope="col">Narrow</th>
+                  <th scope="col">Average</th>
+                  <th scope="col">Wide</th>
+                  <th scope="col">Extra Wide</th>
+                </tr>
+                <tr>
+                  <th scope="row">5</th>
+                  <td>2.81</td>
+                  <td>3.19</td>
+                  <td>3.56</td>
+                  <td>3.94</td>
+                </tr>
+                <tr>
+                  <th scope="row">5.5</th>
+                  <td>2.88</td>
+                  <td>3.25</td>
+                  <td>3.63</td>
+                  <td>4</td>
+                </tr>
+                <tr>
+                  <th scope="row">6</th>
+                  <td>2.94</td>
+                  <td>3.31</td>
+                  <td>3.69</td>
+                  <td>4.06</td>
+                </tr>
+                <tr>
+                  <th scope="row">6.5</th>
+                  <td>3</td>
+                  <td>3.38</td>
+                  <td>3.75</td>
+                  <td>4.13</td>
+                </tr>
+                <tr>
+                  <th scope="row">7</th>
+                  <td>3.06</td>
+                  <td>3.44</td>
+                  <td>3.81</td>
+                  <td>4.19</td>
+                </tr>
+                <tr>
+                  <th scope="row">7.5</th>
+                  <td>3.13</td>
+                  <td>3.5</td>
+                  <td>3.88</td>
+                  <td>4.25</td>
+                </tr>
+                <tr>
+                  <th scope="row">8</th>
+                  <td>3.19</td>
+                  <td>3.56</td>
+                  <td>3.94</td>
+                  <td>4.31</td>
+                </tr>
+                <tr>
+                  <th scope="row">8.5</th>
+                  <td>3.25</td>
+                  <td>3.63</td>
+                  <td>4</td>
+                  <td>4.38&nbsp;</td>
+                </tr>
+                <tr>
+                  <th scope="row">9</th>
+                  <td>3.31</td>
+                  <td>3.69</td>
+                  <td>4.06</td>
+                  <td>4.44</td>
+                </tr>
+                <tr>
+                  <th scope="row">9.5</th>
+                  <td>3.38</td>
+                  <td>3.75</td>
+                  <td>4.13</td>
+                  <td>4.5</td>
+                </tr>
+                <tr>
+                  <th scope="row">10</th>
+                  <td>3.44</td>
+                  <td>3.81</td>
+                  <td>4.19</td>
+                  <td>4.56</td>
+                </tr>
+                <tr>
+                  <th scope="row">10.5</th>
+                  <td>3.5</td>
+                  <td>3.88</td>
+                  <td>4.25</td>
+                  <td>4.63</td>
+                </tr>
+                <tr>
+                  <th scope="row">11</th>
+                  <td>3.56</td>
+                  <td>3.94</td>
+                  <td>4.31</td>
+                  <td>4.69</td>
+                </tr>
+                <tr>
+                  <th scope="row">11.5</th>
+                  <td>3.63</td>
+                  <td>4</td>
+                  <td>4.38&nbsp;</td>
+                  <td>4.75</td>
+                </tr>
+                <tr>
+                  <th scope="row">12</th>
+                  <td>3.69</td>
+                  <td>4.06</td>
+                  <td>4.44</td>
+                  <td>4.81</td>
+                </tr>
+                <tr>
+                  <th scope="row">12.5</th>
+                  <td>3.75</td>
+                  <td>4.13</td>
+                  <td>4.5</td>
+                  <td>4.88</td>
+                </tr>
+                <tr>
+                  <th scope="row">13</th>
+                  <td>3.81</td>
+                  <td>4.19</td>
+                  <td>4.56</td>
+                  <td>4.94</td>
+                </tr>
+                <tr>
+                  <th scope="row">13.5</th>
+                  <td>3.88</td>
+                  <td>4.25</td>
+                  <td>4.63</td>
+                  <td>5</td>
+                </tr>
+                <tr>
+                  <th scope="row">14</th>
+                  <td>3.94</td>
+                  <td>4.31</td>
+                  <td>4.69</td>
+                  <td>5.06</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </sh-view-swapper>
+      </div>
+      <div id="intimates-tab">
+        <sh-tabs collapse width="300px" default-text="Select" unique-id="intimates-tabs" target="intimates-swapper">
+          <sh-button default-value="womens-bras">Women's Bras</sh-button>
+          <sh-button default-value="womens-panties">Women's Panties</sh-button>
+          <sh-button default-value="womens-shapewear">Women's Shapewear</sh-button>
+          <sh-button default-value="pantyhose-hanes-ultrasheer">Pantyhose - Hanes UltraSheer</sh-button>
+          <sh-button default-value="pantyhose-hanes-silk-reflections">Pantyhose - Hanes Silk Reflections</sh-button>
+          <sh-button default-value="pantyhose-hanes-plus">Pantyhose - Hanes Plus</sh-button>
+          <sh-button default-value="assets-and-spanx">Assets and Spanx</sh-button>
+        </sh-tabs>
+        <sh-view-swapper receive="intimates-swapper">
+          <div id="blank-intimates"></div>
+          <div id="womens-bras">
+            <table class="belk__table belk__table--grey belk__table--lined c_text--center" border="0" cellspacing="0" cellpadding="0" class="tableBorder">
+              <caption> Women's Bras Size Chart
+              </caption>
+              <tbody>
+                <tr>
+                  <td>S</td>
+                  <td>30-32</td>
+                </tr>
+                <tr>
+                  <td>M</td>
+                  <td>34-36</td>
+                </tr>
+                <tr>
+                  <td>L</td>
+                  <td>38-40</td>
+                </tr>
+                <tr>
+                  <td>XL</td>
+                  <td>42-44</td>
+                </tr>
+              </tbody>
+            </table>
+            <table class="belk__table belk__table--grey belk__table--lined c_text--center" border="0" cellspacing="0" cellpadding="0" class="tableBorder">
+              <caption> Bra Size (Inches)
+              </caption>
+              <thead>
+                <tr>
+                  <th>&nbsp;</th>
+                  <th>6</th>
+                  <th>8</th>
+                  <th>10</th>
+                  <th>12</th>
+                  <th>14</th>
+                  <th>16</th>
+                  <th>18</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th>Bust</th>
+                  <td>30.5</td>
+                  <td>31.5</td>
+                  <td>32.5</td>
+                  <td>34</td>
+                  <td>36</td>
+                  <td>38</td>
+                  <td>40</td>
+                </tr>
+                <tr>
+                  <th>Waist</th>
+                  <td>23</td>
+                  <td>24</td>
+                  <td>25</td>
+                  <td>26.5</td>
+                  <td>28</td>
+                  <td>30</td>
+                  <td>32</td>
+                </tr>
+                <tr>
+                  <th>Hip</th>
+                  <td>32.5</td>
+                  <td>33.5</td>
+                  <td>34.5</td>
+                  <td>36</td>
+                  <td>38</td>
+                  <td>40</td>
+                  <td>42</td>
+                </tr>
+                <tr>
+                  <th>backwaist Length</th>
+                  <td>15.5</td>
+                  <td>15.75</td>
+                  <td>16</td>
+                  <td>16.25</td>
+                  <td>16.55</td>
+                  <td>16.75</td>
+                  <td>17</td>
+                </tr>
+                <tr>
+                  <th>Across back</th>
+                  <td>13.5</td>
+                  <td>13.5</td>
+                  <td>14</td>
+                  <td>14.5</td>
+                  <td>15</td>
+                  <td>15.5</td>
+                  <td>16</td>
+                </tr>
+                <tr>
+                  <th>Shoulder</th>
+                  <td>4.75</td>
+                  <td>4.75</td>
+                  <td>5</td>
+                  <td>5</td>
+                  <td>5</td>
+                  <td>5.25</td>
+                  <td>5.25</td>
+                </tr>
+                <tr>
+                  <th>Neck</th>
+                  <td>4</td>
+                  <td>4</td>
+                  <td>4</td>
+                  <td>4.25</td>
+                  <td>5</td>
+                  <td>5</td>
+                  <td>5.25</td>
+                </tr>
+                <tr>
+                  <th>Sleeve Length of Underarm</th>
+                  <td>16.75</td>
+                  <td>16.75</td>
+                  <td>17</td>
+                  <td>17.5</td>
+                  <td>17.75</td>
+                  <td>18</td>
+                  <td>18.25</td>
+                </tr>
+                <tr>
+                  <th>Armhole Depth</th>
+                  <td>7</td>
+                  <td>7</td>
+                  <td>7.5</td>
+                  <td>7.5</td>
+                  <td>7.5</td>
+                  <td>8</td>
+                  <td>8</td>
+                </tr>
+                <tr>
+                  <th>Upper arm circumference</th>
+                  <td>9.75</td>
+                  <td>9.75</td>
+                  <td>10.25</td>
+                  <td>10.5</td>
+                  <td>11</td>
+                  <td>11.5</td>
+                  <td>12</td>
+                </tr>
+                <tr>
+                  <th>wrist circumference</th>
+                  <td>6</td>
+                  <td>6</td>
+                  <td>6.25</td>
+                  <td>6.25</td>
+                  <td>6.5</td>
+                  <td>6.5</td>
+                  <td>6.5</td>
+                </tr>
+              </tbody>
+            </table>
+            <table class="belk__table belk__table--grey belk__table--lined c_text--center">
+              <caption> Cup Size (Inches)
+              </caption>
+              <thead>
+                <tr>
+                  <th>&nbsp;</th>
+                  <th>AA</th>
+                  <th>A</th>
+                  <th>B</th>
+                  <th>C</th>
+                  <th>D</th>
+                  <th>DD</th>
+                  <th>F(DD)</th>
+                  <th>G</th>
+                  <th>H</th>
+                  <th>I</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th>Difference</th>
+                  <td>0</td>
+                  <td>1</td>
+                  <td>2</td>
+                  <td>3</td>
+                  <td>4</td>
+                  <td>5</td>
+                  <td>6</td>
+                  <td>7</td>
+                  <td>8</td>
+                  <td>9</td>
+                </tr>
+              </tbody>
+            </table>
+            <img src="https://s7d4.scene7.com/is/image/Belk?&amp;src=Sizing_Chart_Womens_Bras&amp;$P_CONTENT$" style="margin-bottom:20px;" alt="" height="80" class="floatRight">
+            <h2 class="sub-title">How to Measure for Bra Size
+            </h2>
+            <h3 class="sub-title">Band Size
+            </h3>
+            <ol>
+              <li>Measure around your ribcage, directly under the bust.
+              </li>
+              <li>Add 5 to this measurement to obtain your band size.
+                <br>
+                <em>(i.e.: If your ribcage measurement is 29" + (5) = 34" band size.)
+                </em>
+              </li>
+            </ol>
+            <h3 class="sub-title">Cup Size
+            </h3>
+            <ol>
+              <li>Measure completely around the bust at the fullest point.
+              </li>
+              <li>Each inch of difference between this measurement and your BAND size = cup size.
+                <br>
+                <em>(i.e.: If your band size is 34" and your bust measurement is 35", you wear an "A" cup.)
+                </em>
+              </li>
+            </ol>
+            <h4>Belk Certified Bra Fitters
+            </h4>
+            <p>Seven out of 10 women are wearing the wrong size bra. Common Fitting Issues are: Bra straps fall down, Need
+              more support, Bra is too tight and rides up in back. With properly fitted bra, you will feel more comfortable
+              all the time, and your clothes will look and bit better, too.
+            </p>
+          </div>
+
+          <div id="womens-panties">
+            <table class="belk__table belk__table--grey belk__table--lined c_text--center" border="0" cellpadding="0" cellspacing="0">
+              <caption> Women’s Panties Size Chart
+              </caption>
+              <tbody>
+                <tr>
+                  <th scope="col">&nbsp;</th>
+                  <th scope="col">XS</th>
+                  <th scope="col">S</th>
+                  <th scope="col">M</th>
+                  <th scope="col">L</th>
+                  <th scope="col">XL</th>
+                </tr>
+                <tr>
+                  <th scope="col">Size</th>
+                  <td>0</td>
+                  <td>0-2</td>
+                  <td>4-6</td>
+                  <td>8-10</td>
+                  <td>12-14</td>
+                </tr>
+                <tr>
+                  <th scope="row">Waist</th>
+                  <td>23-24</td>
+                  <td>25-26</td>
+                  <td>27-28</td>
+                  <td>30-32</td>
+                  <td>33-35</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div id="womens-shapewear">
+            <table class="belk__table belk__table--grey belk__table--lined c_text--center" border="0" cellpadding="0" cellspacing="0">
+              <caption> Women's Shapewear Size Chart
+              </caption>
+              <tbody>
+                <tr>
+                  <th scope="col">&nbsp;</th>
+                  <th scope="col">S</th>
+                  <th scope="col">M</th>
+                  <th scope="col">L</th>
+                  <th scope="col">XL</th>
+                  <th scope="col">XXL</th>
+                </tr>
+                <tr>
+                  <th scope="row">Waist</th>
+                  <td>25-26</td>
+                  <td>27-28</td>
+                  <td>29-30</td>
+                  <td>31-32</td>
+                  <td>33-34</td>
+                </tr>
+                <tr>
+                  <th scope="row">Hip</th>
+                  <td>35-36</td>
+                  <td>37-38</td>
+                  <td>39-40</td>
+                  <td>41-42</td>
+                  <td>43-44</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div id="pantyhose-hanes-ultrasheer">
+            <table class="belk__table belk__table--grey belk__table--lined c_text--center" border="0" cellpadding="0" cellspacing="0" class="hanes">
+              <caption> Pantyhose - Hanes UltraSheer (Weight in pounds / Height)
+              </caption>
+              <tbody>
+                <tr>
+                  <th scope="col">&nbsp;</th>
+                  <th scope="col">95</th>
+                  <th scope="col">100</th>
+                  <th scope="col">105</th>
+                  <th scope="col">110</th>
+                  <th scope="col">115</th>
+                  <th scope="col">120</th>
+                  <th scope="col">125</th>
+                  <th scope="col">130</th>
+                  <th scope="col">135</th>
+                  <th scope="col">140</th>
+                  <th scope="col">145</th>
+                  <th scope="col">150</th>
+                  <th scope="col">155</th>
+                  <th scope="col">160</th>
+                  <th scope="col">165</th>
+                  <th scope="col">170</th>
+                  <th scope="col">175</th>
+                  <th scope="col">180</th>
+                  <th scope="col">185</th>
+                  <th scope="col">190</th>
+                </tr>
+                <tr>
+                  <th scope="row">
+                    <p>4'10"
+                    </p>
+                  </th>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                </tr>
+                <tr>
+                  <th scope="row">4'11"</th>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#BFA182">&nbsp;</td>
+                  <td bgcolor="#BFA182">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#BFA182">&nbsp;</td>
+                  <td bgcolor="#BFA182">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                </tr>
+                <tr>
+                  <th scope="row">5'0"</th>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#BFA182">&nbsp;</td>
+                  <td bgcolor="#BFA182">&nbsp;</td>
+                  <td bgcolor="#BFA182">&nbsp;</td>
+                  <td bgcolor="#BFA182">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#BFA182">&nbsp;</td>
+                  <td bgcolor="#BFA182">&nbsp;</td>
+                  <td bgcolor="#BFA182">&nbsp;</td>
+                  <td bgcolor="#BFA182">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                </tr>
+                <tr>
+                  <th scope="row">5'1"</th>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#BFA182">&nbsp;</td>
+                  <td bgcolor="#BFA182">&nbsp;</td>
+                  <td bgcolor="#BFA182">&nbsp;</td>
+                  <td bgcolor="#BFA182">&nbsp;</td>
+                  <td bgcolor="#BFA182">&nbsp;</td>
+                  <td bgcolor="#885536">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#BFA182">&nbsp;</td>
+                  <td bgcolor="#BFA182">&nbsp;</td>
+                  <td bgcolor="#BFA182">&nbsp;</td>
+                  <td bgcolor="#BFA182">&nbsp;</td>
+                  <td bgcolor="#BFA182">&nbsp;</td>
+                  <td bgcolor="#885536">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                </tr>
+                <tr>
+                  <th scope="row">5'2"</th>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#BFA182">&nbsp;</td>
+                  <td bgcolor="#BFA182">&nbsp;</td>
+                  <td bgcolor="#BFA182">
+                    <div align="center">A
+                    </div>
+                  </td>
+                  <td bgcolor="#BFA182">&nbsp;</td>
+                  <td bgcolor="#BFA182">&nbsp;</td>
+                  <td bgcolor="#885536">&nbsp;</td>
+                  <td bgcolor="#885536">&nbsp;</td>
+                  <td bgcolor="#885536">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#BFA182">&nbsp;</td>
+                  <td bgcolor="#BFA182">&nbsp;</td>
+                  <td bgcolor="#BFA182">
+                    <div align="center">E
+                    </div>
+                  </td>
+                  <td bgcolor="#BFA182">&nbsp;</td>
+                  <td bgcolor="#BFA182">&nbsp;</td>
+                  <td bgcolor="#885536">&nbsp;</td>
+                  <td bgcolor="#885536">&nbsp;</td>
+                  <td bgcolor="#885536">&nbsp;</td>
+                  <td>&nbsp;</td>
+                </tr>
+                <tr>
+                  <th scope="row">5'3"</th>
+                  <td bgcolor="#BFA182">&nbsp;</td>
+                  <td bgcolor="#BFA182">&nbsp;</td>
+                  <td bgcolor="#BFA182">&nbsp;</td>
+                  <td bgcolor="#BFA182">&nbsp;</td>
+                  <td bgcolor="#BFA182">&nbsp;</td>
+                  <td bgcolor="#885536">&nbsp;</td>
+                  <td bgcolor="#885536">&nbsp;</td>
+                  <td bgcolor="#885536">&nbsp;</td>
+                  <td bgcolor="#885536">&nbsp;</td>
+                  <td bgcolor="#885536">&nbsp;</td>
+                  <td bgcolor="#BFA182">&nbsp;</td>
+                  <td bgcolor="#BFA182">&nbsp;</td>
+                  <td bgcolor="#BFA182">&nbsp;</td>
+                  <td bgcolor="#BFA182">&nbsp;</td>
+                  <td bgcolor="#BFA182">&nbsp;</td>
+                  <td bgcolor="#885536">&nbsp;</td>
+                  <td bgcolor="#885536">&nbsp;</td>
+                  <td bgcolor="#885536">&nbsp;</td>
+                  <td bgcolor="#885536">&nbsp;</td>
+                  <td bgcolor="#885536">&nbsp;</td>
+                </tr>
+                <tr>
+                  <th scope="row">5'4"</th>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#BFA182">&nbsp;</td>
+                  <td bgcolor="#BFA182">&nbsp;</td>
+                  <td bgcolor="#BFA182">&nbsp;</td>
+                  <td bgcolor="#885536">&nbsp;</td>
+                  <td bgcolor="#885536">&nbsp;</td>
+                  <td bgcolor="#885536">
+                    <div align="center">B
+                    </div>
+                  </td>
+                  <td bgcolor="#885536">&nbsp;</td>
+                  <td bgcolor="#885536">&nbsp;</td>
+                  <td bgcolor="#ECD3AF">
+                    <span class="style1"></span></td>
+                  <td bgcolor="#ECD3AF">
+                    <span class="style1"></span></td>
+                  <td bgcolor="#BFA182">&nbsp;</td>
+                  <td bgcolor="#BFA182">&nbsp;</td>
+                  <td bgcolor="#BFA182">&nbsp;</td>
+                  <td bgcolor="#885536">&nbsp;</td>
+                  <td bgcolor="#885536">&nbsp;</td>
+                  <td bgcolor="#885536">
+                    <div align="center">F
+                    </div>
+                  </td>
+                  <td bgcolor="#885536">&nbsp;</td>
+                  <td bgcolor="#885536">&nbsp;</td>
+                  <td>&nbsp;</td>
+                </tr>
+                <tr>
+                  <th scope="row">5'5"</th>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#BFA182">&nbsp;</td>
+                  <td bgcolor="#885536">&nbsp;</td>
+                  <td bgcolor="#885536">&nbsp;</td>
+                  <td bgcolor="#885536">&nbsp;</td>
+                  <td bgcolor="#885536">&nbsp;</td>
+                  <td bgcolor="#885536">&nbsp;</td>
+                  <td bgcolor="#ECD3AF">&nbsp;</td>
+                  <td bgcolor="#ECD3AF">&nbsp;</td>
+                  <td bgcolor="#ECD3AF">&nbsp;</td>
+                  <td bgcolor="#ECD3AF">&nbsp;</td>
+                  <td bgcolor="#BFA182">&nbsp;</td>
+                  <td bgcolor="#885536">&nbsp;</td>
+                  <td bgcolor="#885536">&nbsp;</td>
+                  <td bgcolor="#885536">&nbsp;</td>
+                  <td bgcolor="#885536">&nbsp;</td>
+                  <td bgcolor="#885536">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                </tr>
+                <tr>
+                  <th scope="row">5'6"</th>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#885536">&nbsp;</td>
+                  <td bgcolor="#885536">&nbsp;</td>
+                  <td bgcolor="#885536">&nbsp;</td>
+                  <td bgcolor="#885536">&nbsp;</td>
+                  <td bgcolor="#ECD3AF">&nbsp;</td>
+                  <td bgcolor="#ECD3AF">&nbsp;</td>
+                  <td bgcolor="#ECD3AF">&nbsp;</td>
+                  <td bgcolor="#ECD3AF">&nbsp;</td>
+                  <td bgcolor="#ECD3AF">&nbsp;</td>
+                  <td bgcolor="#AC926A">
+                    <span class="style2"></span></td>
+                  <td bgcolor="#885536">&nbsp;</td>
+                  <td bgcolor="#885536">&nbsp;</td>
+                  <td bgcolor="#885536">&nbsp;</td>
+                  <td bgcolor="#885536">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                </tr>
+                <tr>
+                  <th scope="row">5'7"</th>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#885536">&nbsp;</td>
+                  <td bgcolor="#885536">&nbsp;</td>
+                  <td bgcolor="#ECD3AF">&nbsp;</td>
+                  <td bgcolor="#ECD3AF">&nbsp;</td>
+                  <td bgcolor="#ECD3AF">
+                    <div align="center">C
+                    </div>
+                  </td>
+                  <td bgcolor="#ECD3AF">&nbsp;</td>
+                  <td bgcolor="#ECD3AF">&nbsp;</td>
+                  <td bgcolor="#AC926A">&nbsp;</td>
+                  <td bgcolor="#AC926A">
+                    <span class="style2"></span></td>
+                  <td bgcolor="#AC926A">&nbsp;</td>
+                  <td bgcolor="#885536">&nbsp;</td>
+                  <td bgcolor="#885536">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                </tr>
+                <tr>
+                  <th scope="row">5'8"</th>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#ECD3AF">&nbsp;</td>
+                  <td bgcolor="#ECD3AF">&nbsp;</td>
+                  <td bgcolor="#ECD3AF">&nbsp;</td>
+                  <td bgcolor="#ECD3AF">&nbsp;</td>
+                  <td bgcolor="#ECD3AF">&nbsp;</td>
+                  <td bgcolor="#AC926A">&nbsp;</td>
+                  <td bgcolor="#AC926A">&nbsp;</td>
+                  <td bgcolor="#AC926A">
+                    <span class="style2"></span></td>
+                  <td bgcolor="#AC926A">&nbsp;</td>
+                  <td bgcolor="#AC926A">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                </tr>
+                <tr>
+                  <th scope="row">5'9"</th>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#ECD3AF">&nbsp;</td>
+                  <td bgcolor="#ECD3AF">&nbsp;</td>
+                  <td bgcolor="#ECD3AF">&nbsp;</td>
+                  <td bgcolor="#AC926A">&nbsp;</td>
+                  <td bgcolor="#AC926A">&nbsp;</td>
+                  <td bgcolor="#AC926A">
+                    <div align="center">D
+                    </div>
+                  </td>
+                  <td bgcolor="#AC926A">
+                    <span class="style2"></span></td>
+                  <td bgcolor="#AC926A">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td colspan="4" rowspan="3">
+                    <span class="style4">If your measurements fall in this size range, try our Plus Collection</span></td>
+                  <td>&nbsp;</td>
+                </tr>
+                <tr>
+                  <th scope="row">5'10"</th>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#ECD3AF">&nbsp;</td>
+                  <td bgcolor="#AC926A">&nbsp;</td>
+                  <td bgcolor="#AC926A">&nbsp;</td>
+                  <td bgcolor="#AC926A">&nbsp;</td>
+                  <td bgcolor="#AC926A">&nbsp;</td>
+                  <td bgcolor="#AC926A">
+                    <span class="style2"></span></td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                </tr>
+                <tr>
+                  <th scope="row">5'11"</th>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#AC926A">&nbsp;</td>
+                  <td bgcolor="#AC926A">&nbsp;</td>
+                  <td bgcolor="#AC926A">&nbsp;</td>
+                  <td bgcolor="#AC926A">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                </tr>
+                <tr>
+                  <th scope="row">6'0"</th>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#AC926A">&nbsp;</td>
+                  <td bgcolor="#AC926A">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div id="pantyhose-hanes-silk-reflections">
+            <table class="belk__table belk__table--grey belk__table--lined c_text--center" border="0" cellpadding="0" cellspacing="0" class="hanes">
+              <caption> Pantyhose - Hanes Silk Reflections (Weight in pounds / Height)
+              </caption>
+              <tbody>
+                <tr>
+                  <th scope="col">&nbsp;</th>
+                  <th scope="col">95</th>
+                  <th scope="col">100</th>
+                  <th scope="col">105</th>
+                  <th scope="col">110</th>
+                  <th scope="col">115</th>
+                  <th scope="col">120</th>
+                  <th scope="col">125</th>
+                  <th scope="col">130</th>
+                  <th scope="col">135</th>
+                  <th scope="col">140</th>
+                  <th scope="col">145</th>
+                  <th scope="col">150</th>
+                  <th scope="col">155</th>
+                  <th scope="col">160</th>
+                  <th scope="col">165</th>
+                  <th scope="col">170</th>
+                  <th scope="col">175</th>
+                  <th scope="col">180</th>
+                  <th scope="col">185</th>
+                  <th scope="col">190</th>
+                </tr>
+                <tr>
+                  <th scope="row">4'11"</th>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#550A3E">&nbsp;</td>
+                  <td bgcolor="#550A3E">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#974E6A">&nbsp;</td>
+                  <td bgcolor="#974E6A">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                </tr>
+                <tr>
+                  <th scope="row">5'0"</th>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#550A3E">&nbsp;</td>
+                  <td bgcolor="#550A3E">&nbsp;</td>
+                  <td bgcolor="#550A3E">&nbsp;</td>
+                  <td bgcolor="#550A3E">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#974E6A">&nbsp;</td>
+                  <td bgcolor="#974E6A">&nbsp;</td>
+                  <td bgcolor="#974E6A">&nbsp;</td>
+                  <td bgcolor="#974E6A">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                </tr>
+                <tr>
+                  <th scope="row">5'1"</th>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#550A3E">&nbsp;</td>
+                  <td bgcolor="#550A3E">&nbsp;</td>
+                  <td bgcolor="#550A3E">&nbsp;</td>
+                  <td bgcolor="#550A3E">&nbsp;</td>
+                  <td bgcolor="#550A3E">&nbsp;</td>
+                  <td bgcolor="#550A3E">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#974E6A">&nbsp;</td>
+                  <td bgcolor="#974E6A">&nbsp;</td>
+                  <td bgcolor="#974E6A">&nbsp;</td>
+                  <td bgcolor="#974E6A">&nbsp;</td>
+                  <td bgcolor="#974E6A">&nbsp;</td>
+                  <td bgcolor="#974E6A">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                </tr>
+                <tr>
+                  <th scope="row">5'2"</th>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#550A3E">&nbsp;</td>
+                  <td bgcolor="#550A3E">&nbsp;</td>
+                  <td bgcolor="#550A3E">&nbsp;</td>
+                  <td bgcolor="#550A3E">&nbsp;</td>
+                  <td bgcolor="#550A3E">&nbsp;</td>
+                  <td bgcolor="#550A3E">&nbsp;</td>
+                  <td bgcolor="#550A3E">&nbsp;</td>
+                  <td bgcolor="#550A3E">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#974E6A">&nbsp;</td>
+                  <td bgcolor="#974E6A">&nbsp;</td>
+                  <td bgcolor="#974E6A">&nbsp;</td>
+                  <td bgcolor="#974E6A">&nbsp;</td>
+                  <td bgcolor="#974E6A">&nbsp;</td>
+                  <td bgcolor="#974E6A">&nbsp;</td>
+                  <td bgcolor="#974E6A">&nbsp;</td>
+                  <td bgcolor="#974E6A">&nbsp;</td>
+                  <td>&nbsp;</td>
+                </tr>
+                <tr>
+                  <th scope="row">5'3"</th>
+                  <td bgcolor="#550A3E">&nbsp;</td>
+                  <td bgcolor="#550A3E">&nbsp;</td>
+                  <td bgcolor="#550A3E">&nbsp;</td>
+                  <td bgcolor="#550A3E">&nbsp;</td>
+                  <td colspan="2" bgcolor="#550A3E">
+                    <div align="center">
+                      <span class="style5">A-B</span>
+                    </div>
+                  </td>
+                  <td bgcolor="#550A3E">&nbsp;</td>
+                  <td bgcolor="#550A3E">&nbsp;</td>
+                  <td bgcolor="#550A3E">&nbsp;</td>
+                  <td bgcolor="#550A3E">&nbsp;</td>
+                  <td bgcolor="#974E6A">&nbsp;</td>
+                  <td bgcolor="#974E6A">&nbsp;</td>
+                  <td bgcolor="#974E6A">&nbsp;</td>
+                  <td bgcolor="#974E6A">&nbsp;</td>
+                  <td colspan="2" bgcolor="#974E6A">
+                    <div align="center" class="style5">E-F
+                    </div>
+                  </td>
+                  <td bgcolor="#974E6A">&nbsp;</td>
+                  <td bgcolor="#974E6A">&nbsp;</td>
+                  <td bgcolor="#974E6A">&nbsp;</td>
+                  <td bgcolor="#974E6A">&nbsp;</td>
+                </tr>
+                <tr>
+                  <th scope="row">5'4"</th>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#550A3E">&nbsp;</td>
+                  <td bgcolor="#550A3E">&nbsp;</td>
+                  <td bgcolor="#550A3E">&nbsp;</td>
+                  <td bgcolor="#550A3E">&nbsp;</td>
+                  <td bgcolor="#550A3E">&nbsp;</td>
+                  <td bgcolor="#550A3E">&nbsp;</td>
+                  <td bgcolor="#550A3E">&nbsp;</td>
+                  <td bgcolor="#550A3E">&nbsp;</td>
+                  <td bgcolor="#999999">&nbsp;</td>
+                  <td bgcolor="#999999">&nbsp;</td>
+                  <td bgcolor="#974E6A">&nbsp;</td>
+                  <td bgcolor="#974E6A">&nbsp;</td>
+                  <td bgcolor="#974E6A">&nbsp;</td>
+                  <td bgcolor="#974E6A">&nbsp;</td>
+                  <td bgcolor="#974E6A">&nbsp;</td>
+                  <td bgcolor="#974E6A">&nbsp;</td>
+                  <td bgcolor="#974E6A">&nbsp;</td>
+                  <td bgcolor="#974E6A">&nbsp;</td>
+                  <td>&nbsp;</td>
+                </tr>
+                <tr>
+                  <th scope="row">5'5"</th>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#550A3E">&nbsp;</td>
+                  <td bgcolor="#550A3E">&nbsp;</td>
+                  <td bgcolor="#550A3E">&nbsp;</td>
+                  <td bgcolor="#550A3E">&nbsp;</td>
+                  <td bgcolor="#550A3E">&nbsp;</td>
+                  <td bgcolor="#550A3E">&nbsp;</td>
+                  <td bgcolor="#999999">&nbsp;</td>
+                  <td bgcolor="#999999">&nbsp;</td>
+                  <td bgcolor="#999999">&nbsp;</td>
+                  <td bgcolor="#999999">&nbsp;</td>
+                  <td bgcolor="#974E6A">&nbsp;</td>
+                  <td bgcolor="#974E6A">&nbsp;</td>
+                  <td bgcolor="#974E6A">&nbsp;</td>
+                  <td bgcolor="#974E6A">&nbsp;</td>
+                  <td bgcolor="#974E6A">&nbsp;</td>
+                  <td bgcolor="#974E6A">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                </tr>
+                <tr>
+                  <th scope="row">5'6"</th>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#550A3E">&nbsp;</td>
+                  <td bgcolor="#550A3E">&nbsp;</td>
+                  <td bgcolor="#550A3E">&nbsp;</td>
+                  <td bgcolor="#550A3E">&nbsp;</td>
+                  <td bgcolor="#999999">&nbsp;</td>
+                  <td bgcolor="#999999">&nbsp;</td>
+                  <td bgcolor="#999999">&nbsp;</td>
+                  <td bgcolor="#999999">&nbsp;</td>
+                  <td bgcolor="#999999">&nbsp;</td>
+                  <td bgcolor="#999999">
+                    <span class="style2"></span></td>
+                  <td bgcolor="#974E6A">&nbsp;</td>
+                  <td bgcolor="#974E6A">&nbsp;</td>
+                  <td bgcolor="#974E6A">&nbsp;</td>
+                  <td bgcolor="#974E6A">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                </tr>
+                <tr>
+                  <th scope="row">5'7"</th>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#550A3E">&nbsp;</td>
+                  <td bgcolor="#550A3E">&nbsp;</td>
+                  <td bgcolor="#999999">&nbsp;</td>
+                  <td bgcolor="#999999">&nbsp;</td>
+                  <td bgcolor="#999999">&nbsp;</td>
+                  <td bgcolor="#999999">&nbsp;</td>
+                  <td bgcolor="#999999">&nbsp;</td>
+                  <td bgcolor="#999999">&nbsp;</td>
+                  <td bgcolor="#999999">
+                    <span class="style2"></span></td>
+                  <td bgcolor="#999999">&nbsp;</td>
+                  <td bgcolor="#974E6A">&nbsp;</td>
+                  <td bgcolor="#974E6A">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                </tr>
+                <tr>
+                  <th scope="row">5'8"</th>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#999999">&nbsp;</td>
+                  <td bgcolor="#999999">&nbsp;</td>
+                  <td bgcolor="#999999">&nbsp;</td>
+                  <td bgcolor="#999999">&nbsp;</td>
+                  <td colspan="2" bgcolor="#999999">
+                    <div align="center" class="style5">C-D
+                    </div>
+                  </td>
+                  <td bgcolor="#999999">&nbsp;</td>
+                  <td bgcolor="#999999">
+                    <span class="style2"></span></td>
+                  <td bgcolor="#999999">&nbsp;</td>
+                  <td bgcolor="#999999">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                </tr>
+                <tr>
+                  <th scope="row">5'9"</th>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#999999">&nbsp;</td>
+                  <td bgcolor="#999999">&nbsp;</td>
+                  <td bgcolor="#999999">&nbsp;</td>
+                  <td bgcolor="#999999">&nbsp;</td>
+                  <td bgcolor="#999999">&nbsp;</td>
+                  <td bgcolor="#999999">&nbsp;</td>
+                  <td bgcolor="#999999">
+                    <span class="style2"></span></td>
+                  <td bgcolor="#999999">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                </tr>
+                <tr>
+                  <th scope="row">5'10"</th>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#999999">&nbsp;</td>
+                  <td bgcolor="#999999">&nbsp;</td>
+                  <td bgcolor="#999999">&nbsp;</td>
+                  <td bgcolor="#999999">&nbsp;</td>
+                  <td bgcolor="#999999">&nbsp;</td>
+                  <td bgcolor="#999999">
+                    <span class="style2"></span></td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                </tr>
+                <tr>
+                  <th scope="row">5'11"</th>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#999999">&nbsp;</td>
+                  <td bgcolor="#999999">&nbsp;</td>
+                  <td bgcolor="#999999">&nbsp;</td>
+                  <td bgcolor="#999999">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                </tr>
+                <tr>
+                  <th scope="row">6'0"</th>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#999999">&nbsp;</td>
+                  <td bgcolor="#999999">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div id="pantyhose-hanes-plus">
+            <table class="belk__table belk__table--grey belk__table--lined c_text--center" border="0" cellpadding="0" cellspacing="0" class="hanes plus">
+              <caption> Pantyhose - Hanes Plus (Weight in pounds / Height)
+              </caption>
+              <tbody>
+                <tr>
+                  <th scope="col">&nbsp;</th>
+                  <th scope="col">150</th>
+                  <th scope="col">155</th>
+                  <th scope="col">160</th>
+                  <th scope="col">165</th>
+                  <th scope="col">170</th>
+                  <th scope="col">175</th>
+                  <th scope="col">180</th>
+                  <th scope="col">185</th>
+                  <th scope="col">190</th>
+                  <th scope="col">195</th>
+                  <th scope="col">200</th>
+                  <th scope="col">205</th>
+                  <th scope="col">210</th>
+                  <th scope="col">215</th>
+                  <th scope="col">220</th>
+                  <th scope="col">225</th>
+                  <th scope="col">230</th>
+                  <th scope="col">235</th>
+                  <th scope="col">240</th>
+                  <th scope="col">245</th>
+                  <th scope="col">250</th>
+                  <th scope="col">255</th>
+                  <th scope="col">260</th>
+                  <th scope="col">265</th>
+                  <th scope="col">270</th>
+                  <th scope="col">275</th>
+                  <th scope="col">280</th>
+                  <th scope="col">285</th>
+                  <th scope="col">290</th>
+                  <th scope="col">295</th>
+                  <th scope="col">300</th>
+                </tr>
+                <tr>
+                  <th scope="row">4'11"</th>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#895178">&nbsp;</td>
+                  <td bgcolor="#895178">&nbsp;</td>
+                  <td bgcolor="#895178">&nbsp;</td>
+                  <td bgcolor="#895178">&nbsp;</td>
+                  <td bgcolor="#895178">&nbsp;</td>
+                  <td bgcolor="#895178">&nbsp;</td>
+                  <td bgcolor="#895178">&nbsp;</td>
+                  <td bgcolor="#895178">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                </tr>
+                <tr>
+                  <th scope="row">5'0"</th>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#895178">&nbsp;</td>
+                  <td bgcolor="#895178">&nbsp;</td>
+                  <td bgcolor="#895178">&nbsp;</td>
+                  <td bgcolor="#895178">&nbsp;</td>
+                  <td bgcolor="#895178">&nbsp;</td>
+                  <td bgcolor="#895178">&nbsp;</td>
+                  <td bgcolor="#895178">&nbsp;</td>
+                  <td bgcolor="#895178">&nbsp;</td>
+                  <td bgcolor="#DEB9C9">&nbsp;</td>
+                  <td bgcolor="#DEB9C9">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                </tr>
+                <tr>
+                  <th scope="row">5'1"</th>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#895178">&nbsp;</td>
+                  <td bgcolor="#895178">&nbsp;</td>
+                  <td bgcolor="#895178">&nbsp;</td>
+                  <td bgcolor="#895178">&nbsp;</td>
+                  <td bgcolor="#895178">&nbsp;</td>
+                  <td bgcolor="#895178">&nbsp;</td>
+                  <td bgcolor="#895178">&nbsp;</td>
+                  <td bgcolor="#895178">&nbsp;</td>
+                  <td bgcolor="#DEB9C9">&nbsp;</td>
+                  <td bgcolor="#DEB9C9">&nbsp;</td>
+                  <td bgcolor="#DEB9C9">&nbsp;</td>
+                  <td bgcolor="#DEB9C9">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                </tr>
+                <tr>
+                  <th scope="row">5'2"</th>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td colspan="5" bgcolor="#77304D">
+                    <div align="center" class="style5">PLUS PETITE
+                    </div>
+                  </td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#895178">&nbsp;</td>
+                  <td bgcolor="#895178">&nbsp;</td>
+                  <td bgcolor="#895178">&nbsp;</td>
+                  <td bgcolor="#895178">&nbsp;</td>
+                  <td bgcolor="#895178">&nbsp;</td>
+                  <td bgcolor="#895178">&nbsp;</td>
+                  <td bgcolor="#895178">&nbsp;</td>
+                  <td bgcolor="#895178">&nbsp;</td>
+                  <td bgcolor="#DEB9C9">&nbsp;</td>
+                  <td bgcolor="#DEB9C9">&nbsp;</td>
+                  <td bgcolor="#DEB9C9">&nbsp;</td>
+                  <td bgcolor="#DEB9C9">&nbsp;</td>
+                  <td bgcolor="#DEB9C9">&nbsp;</td>
+                  <td bgcolor="#DEB9C9">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                </tr>
+                <tr>
+                  <th scope="row">5'3"</th>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">
+                    <div align="center">
+                    </div>
+                  </td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#895178">&nbsp;</td>
+                  <td bgcolor="#895178">&nbsp;</td>
+                  <td colspan="5" bgcolor="#895178">
+                    <div align="center" class="style5">ONE PLUS
+                    </div>
+                  </td>
+                  <td bgcolor="#895178">&nbsp;</td>
+                  <td bgcolor="#DEB9C9">&nbsp;</td>
+                  <td bgcolor="#DEB9C9">&nbsp;</td>
+                  <td bgcolor="#DEB9C9">&nbsp;</td>
+                  <td bgcolor="#DEB9C9">&nbsp;</td>
+                  <td bgcolor="#DEB9C9">&nbsp;</td>
+                  <td bgcolor="#DEB9C9">&nbsp;</td>
+                  <td bgcolor="#DEB9C9">&nbsp;</td>
+                  <td bgcolor="#DEB9C9">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                </tr>
+                <tr>
+                  <th scope="row">5'4"</th>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#AC6596">&nbsp;</td>
+                  <td bgcolor="#AC6596">&nbsp;</td>
+                  <td bgcolor="#895178">&nbsp;</td>
+                  <td bgcolor="#895178">&nbsp;</td>
+                  <td bgcolor="#895178">&nbsp;</td>
+                  <td bgcolor="#895178">&nbsp;</td>
+                  <td bgcolor="#895178">&nbsp;</td>
+                  <td bgcolor="#895178">&nbsp;</td>
+                  <td bgcolor="#DEB9C9">&nbsp;</td>
+                  <td bgcolor="#DEB9C9">&nbsp;</td>
+                  <td bgcolor="#DEB9C9">&nbsp;</td>
+                  <td bgcolor="#DEB9C9">&nbsp;</td>
+                  <td bgcolor="#DEB9C9">&nbsp;</td>
+                  <td bgcolor="#DEB9C9">&nbsp;</td>
+                  <td bgcolor="#DEB9C9">&nbsp;</td>
+                  <td bgcolor="#DEB9C9">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                </tr>
+                <tr>
+                  <th scope="row">5'5"</th>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#AC6596">&nbsp;</td>
+                  <td bgcolor="#AC6596">&nbsp;</td>
+                  <td bgcolor="#AC6596">&nbsp;</td>
+                  <td bgcolor="#AC6596">&nbsp;</td>
+                  <td bgcolor="#895178">&nbsp;</td>
+                  <td bgcolor="#895178">&nbsp;</td>
+                  <td bgcolor="#895178">&nbsp;</td>
+                  <td bgcolor="#895178">&nbsp;</td>
+                  <td bgcolor="#DEB9C9">&nbsp;</td>
+                  <td bgcolor="#DEB9C9">&nbsp;</td>
+                  <td bgcolor="#DEB9C9">&nbsp;</td>
+                  <td bgcolor="#DEB9C9">&nbsp;</td>
+                  <td bgcolor="#DEB9C9">&nbsp;</td>
+                  <td bgcolor="#DEB9C9">&nbsp;</td>
+                  <td bgcolor="#DEB9C9">&nbsp;</td>
+                  <td bgcolor="#DEB9C9">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                </tr>
+                <tr>
+                  <th scope="row">5'6"</th>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#AC6596">&nbsp;</td>
+                  <td bgcolor="#AC6596">&nbsp;</td>
+                  <td bgcolor="#AC6596">&nbsp;</td>
+                  <td bgcolor="#AC6596">&nbsp;</td>
+                  <td bgcolor="#AC6596">&nbsp;</td>
+                  <td bgcolor="#AC6596">&nbsp;</td>
+                  <td bgcolor="#895178">
+                    <span class="style2"></span></td>
+                  <td bgcolor="#895178">&nbsp;</td>
+                  <td bgcolor="#DEB9C9">&nbsp;</td>
+                  <td bgcolor="#DEB9C9">&nbsp;</td>
+                  <td bgcolor="#DEB9C9">&nbsp;</td>
+                  <td bgcolor="#DEB9C9">&nbsp;</td>
+                  <td bgcolor="#DEB9C9">&nbsp;</td>
+                  <td bgcolor="#DEB9C9">&nbsp;</td>
+                  <td bgcolor="#DEB9C9">&nbsp;</td>
+                  <td bgcolor="#DEB9C9">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td>&nbsp;</td>
+                </tr>
+                <tr>
+                  <th scope="row">5'7"</th>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#AC6596">&nbsp;</td>
+                  <td bgcolor="#AC6596">&nbsp;</td>
+                  <td bgcolor="#AC6596">&nbsp;</td>
+                  <td bgcolor="#AC6596">&nbsp;</td>
+                  <td bgcolor="#AC6596">&nbsp;</td>
+                  <td bgcolor="#AC6596">&nbsp;</td>
+                  <td bgcolor="#AC6596">&nbsp;</td>
+                  <td bgcolor="#AC6596">
+                    <span class="style2"></span></td>
+                  <td bgcolor="#DEB9C9">&nbsp;</td>
+                  <td bgcolor="#DEB9C9">&nbsp;</td>
+                  <td colspan="4" bgcolor="#DEB9C9">
+                    <div align="center">
+                      <span class="style6">THREE PLUS</span>
+                    </div>
+                  </td>
+                  <td bgcolor="#DEB9C9">&nbsp;</td>
+                  <td bgcolor="#DEB9C9">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td colspan="5" bgcolor="#77304D">
+                    <div align="center" class="style5">FOUR-FIVE PLUS
+                    </div>
+                  </td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                </tr>
+                <tr>
+                  <th scope="row">5'8"</th>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#AC6596">&nbsp;</td>
+                  <td bgcolor="#AC6596">&nbsp;</td>
+                  <td colspan="4" bgcolor="#AC6596">
+                    <div align="center" class="style5">TWO PLUS
+                    </div>
+                  </td>
+                  <td bgcolor="#AC6596">&nbsp;</td>
+                  <td bgcolor="#AC6596">&nbsp;</td>
+                  <td bgcolor="#DEB9C9">
+                    <span class="style2"></span></td>
+                  <td bgcolor="#DEB9C9">&nbsp;</td>
+                  <td bgcolor="#DEB9C9">&nbsp;</td>
+                  <td bgcolor="#DEB9C9">&nbsp;</td>
+                  <td bgcolor="#DEB9C9">&nbsp;</td>
+                  <td bgcolor="#DEB9C9">&nbsp;</td>
+                  <td bgcolor="#DEB9C9">&nbsp;</td>
+                  <td bgcolor="#DEB9C9">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                </tr>
+                <tr>
+                  <th scope="row">5'9"</th>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#AC6596">&nbsp;</td>
+                  <td bgcolor="#AC6596">&nbsp;</td>
+                  <td bgcolor="#AC6596">&nbsp;</td>
+                  <td bgcolor="#AC6596">&nbsp;</td>
+                  <td bgcolor="#AC6596">&nbsp;</td>
+                  <td bgcolor="#AC6596">&nbsp;</td>
+                  <td bgcolor="#DEB9C9">&nbsp;</td>
+                  <td bgcolor="#DEB9C9">
+                    <span class="style2"></span></td>
+                  <td bgcolor="#DEB9C9">&nbsp;</td>
+                  <td bgcolor="#DEB9C9">&nbsp;</td>
+                  <td bgcolor="#DEB9C9">&nbsp;</td>
+                  <td bgcolor="#DEB9C9">&nbsp;</td>
+                  <td bgcolor="#DEB9C9">&nbsp;</td>
+                  <td bgcolor="#DEB9C9">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                </tr>
+                <tr>
+                  <th scope="row">5'10"</th>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#AC6596">&nbsp;</td>
+                  <td bgcolor="#AC6596">&nbsp;</td>
+                  <td bgcolor="#AC6596">&nbsp;</td>
+                  <td bgcolor="#AC6596">&nbsp;</td>
+                  <td bgcolor="#DEB9C9">&nbsp;</td>
+                  <td bgcolor="#DEB9C9">&nbsp;</td>
+                  <td bgcolor="#DEB9C9">
+                    <span class="style2"></span></td>
+                  <td bgcolor="#DEB9C9">&nbsp;</td>
+                  <td bgcolor="#DEB9C9">&nbsp;</td>
+                  <td bgcolor="#DEB9C9">&nbsp;</td>
+                  <td bgcolor="#DEB9C9">&nbsp;</td>
+                  <td bgcolor="#DEB9C9">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                </tr>
+                <tr>
+                  <th scope="row">5'11"</th>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#AC6596">&nbsp;</td>
+                  <td bgcolor="#AC6596">&nbsp;</td>
+                  <td bgcolor="#DEB9C9">&nbsp;</td>
+                  <td bgcolor="#DEB9C9">&nbsp;</td>
+                  <td bgcolor="#DEB9C9">&nbsp;</td>
+                  <td bgcolor="#DEB9C9">&nbsp;</td>
+                  <td bgcolor="#DEB9C9">&nbsp;</td>
+                  <td bgcolor="#DEB9C9">&nbsp;</td>
+                  <td bgcolor="#DEB9C9">&nbsp;</td>
+                  <td bgcolor="#DEB9C9">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td bgcolor="#77304D">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div id="assets-and-spanx">
+            <table class="belk__table belk__table--grey belk__table--lined c_text--center" height="336" border=".5" cellpadding="0" cellspacing="0" class="spanx">
+              <caption> Assets and Spanx (Weight in pounds / Height)
+              </caption>
+              <tbody>
+                <tr>
+                  <th scope="col">&nbsp;</th>
+                  <th scope="col"> 95</th>
+                  <th scope="col">100</th>
+                  <th scope="col">105</th>
+                  <th scope="col">110</th>
+                  <th scope="col">115</th>
+                  <th scope="col">120</th>
+                  <th scope="col">125</th>
+                  <th scope="col">130</th>
+                  <th scope="col">135</th>
+                  <th scope="col">140</th>
+                  <th scope="col">145</th>
+                  <th scope="col">150</th>
+                  <th scope="col">155</th>
+                  <th scope="col">16</th>
+                  <th scope="col">165</th>
+                  <th scope="col">170</th>
+                  <th scope="col">175</th>
+                  <th scope="col">180</th>
+                  <th scope="col">185</th>
+                  <th scope="col">190</th>
+                  <th scope="col">195</th>
+                  <th scope="col">200</th>
+                  <th scope="col">205</th>
+                  <th scope="col">210</th>
+                  <th scope="col">215</th>
+                  <th scope="col">220</th>
+                  <th scope="col">225</th>
+                  <th scope="col">230</th>
+                  <th scope="col">235</th>
+                  <th scope="col">240</th>
+                  <th scope="col">245</th>
+                  <th scope="col">250</th>
+                  <th scope="col">255</th>
+                  <th scope="col">260</th>
+                  <th scope="col">265</th>
+                </tr>
+                <tr>
+                  <th scope="row">4'10"</th>
+                  <td bgcolor="#FFCC33">&nbsp;</td>
+                  <td bgcolor="#FFCC33">&nbsp;</td>
+                  <td bgcolor="#FFCC33">&nbsp;</td>
+                  <td bgcolor="#FFCC33">&nbsp;</td>
+                  <td bgcolor="#FFCC33">&nbsp;</td>
+                  <td bgcolor="#FF3300">&nbsp;</td>
+                  <td bgcolor="#FF3300">&nbsp;</td>
+                  <td bgcolor="#FF3300">&nbsp;</td>
+                  <td bgcolor="#FF3300">&nbsp;</td>
+                  <td bgcolor="#FF3300">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#eeeeee">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#eeeeee">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#eeeeee">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#eeeeee">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#eeeeee">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#eeeeee">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#eeeeee">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#eeeeee">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#eeeeee">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#eeeeee">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#eeeeee">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#eeeeee">&nbsp;</td>
+                </tr>
+                <tr>
+                  <th scope="row">4'11"</th>
+                  <td bgcolor="#FFCC33">&nbsp;</td>
+                  <td bgcolor="#FFCC33">&nbsp;</td>
+                  <td bgcolor="#FFCC33">&nbsp;</td>
+                  <td bgcolor="#FFCC33">&nbsp;</td>
+                  <td bgcolor="#FFCC33">&nbsp;</td>
+                  <td bgcolor="#FFCC33">&nbsp;</td>
+                  <td bgcolor="#FF3300">&nbsp;</td>
+                  <td bgcolor="#FF3300">&nbsp;</td>
+                  <td bgcolor="#FF3300">&nbsp;</td>
+                  <td bgcolor="#FF3300">&nbsp;</td>
+                  <td bgcolor="#FF3300">&nbsp;</td>
+                  <td bgcolor="#33FF66">&nbsp;</td>
+                  <td bgcolor="#33FF66">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#eeeeee">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#eeeeee">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#eeeeee">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#eeeeee">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#eeeeee">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#eeeeee">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#eeeeee">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#eeeeee">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#eeeeee">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#eeeeee">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#eeeeee">&nbsp;</td>
+                </tr>
+                <tr>
+                  <th scope="row">5'0"</th>
+                  <td bgcolor="#FFCC33">&nbsp;</td>
+                  <td bgcolor="#FFCC33">&nbsp;</td>
+                  <td bgcolor="#FFCC33">&nbsp;</td>
+                  <td bgcolor="#FFCC33">&nbsp;</td>
+                  <td bgcolor="#FFCC33">&nbsp;</td>
+                  <td bgcolor="#FFCC33">&nbsp;</td>
+                  <td bgcolor="#FF3300">&nbsp;</td>
+                  <td bgcolor="#FF3300">&nbsp;</td>
+                  <td bgcolor="#FF3300">&nbsp;</td>
+                  <td bgcolor="#FF3300">&nbsp;</td>
+                  <td bgcolor="#FF3300">&nbsp;</td>
+                  <td bgcolor="#FF3300">&nbsp;</td>
+                  <td bgcolor="#33FF66">&nbsp;</td>
+                  <td bgcolor="#33FF66">&nbsp;</td>
+                  <td bgcolor="#33FF66">&nbsp;</td>
+                  <td bgcolor="#33CCFF">&nbsp;</td>
+                  <td bgcolor="#33CCFF">&nbsp;</td>
+                  <td bgcolor="#33CCFF">&nbsp;</td>
+                  <td bgcolor="#33CCFF">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#eeeeee">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#eeeeee">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#eeeeee">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#eeeeee">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#eeeeee">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#eeeeee">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#eeeeee">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#eeeeee">&nbsp;</td>
+                </tr>
+                <tr>
+                  <th scope="row">5'1"</th>
+                  <td bgcolor="#FFCC33">&nbsp;</td>
+                  <td bgcolor="#FFCC33">&nbsp;</td>
+                  <td bgcolor="#FFCC33">&nbsp;</td>
+                  <td bgcolor="#FFCC33">
+                    <span class="style1">1</span></td>
+                  <td bgcolor="#FFCC33">&nbsp;</td>
+                  <td bgcolor="#FFCC33">&nbsp;</td>
+                  <td bgcolor="#FFCC33">&nbsp;</td>
+                  <td bgcolor="#FF3300">&nbsp;</td>
+                  <td bgcolor="#FF3300">&nbsp;</td>
+                  <td bgcolor="#FF3300">&nbsp;</td>
+                  <td bgcolor="#FF3300">&nbsp;</td>
+                  <td bgcolor="#FF3300">&nbsp;</td>
+                  <td bgcolor="#33FF66">&nbsp;</td>
+                  <td bgcolor="#33FF66">&nbsp;</td>
+                  <td bgcolor="#33FF66">&nbsp;</td>
+                  <td bgcolor="#33FF66">&nbsp;</td>
+                  <td bgcolor="#33FF66">&nbsp;</td>
+                  <td bgcolor="#33CCFF">&nbsp;</td>
+                  <td bgcolor="#33CCFF">&nbsp;</td>
+                  <td bgcolor="#33CCFF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#eeeeee">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#eeeeee">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#eeeeee">&nbsp;</td>
+                </tr>
+                <tr>
+                  <th scope="row">5'2"</th>
+                  <td bgcolor="#FFCC33">&nbsp;</td>
+                  <td bgcolor="#FFCC33">&nbsp;</td>
+                  <td bgcolor="#FFCC33">&nbsp;</td>
+                  <td bgcolor="#FFCC33">&nbsp;</td>
+                  <td bgcolor="#FFCC33">&nbsp;</td>
+                  <td bgcolor="#FFCC33">&nbsp;</td>
+                  <td bgcolor="#FFCC33">&nbsp;</td>
+                  <td bgcolor="#FF3300">&nbsp;</td>
+                  <td bgcolor="#FF3300">&nbsp;</td>
+                  <td bgcolor="#FF3300">&nbsp;</td>
+                  <td bgcolor="#FF3300">&nbsp;</td>
+                  <td bgcolor="#FF3300">&nbsp;</td>
+                  <td bgcolor="#33FF66">&nbsp;</td>
+                  <td bgcolor="#33FF66">&nbsp;</td>
+                  <td bgcolor="#33FF66">&nbsp;</td>
+                  <td bgcolor="#33FF66">&nbsp;</td>
+                  <td bgcolor="#33FF66">&nbsp;</td>
+                  <td bgcolor="#33FF66">&nbsp;</td>
+                  <td bgcolor="#33CCFF">&nbsp;</td>
+                  <td bgcolor="#33CCFF">&nbsp;</td>
+                  <td bgcolor="#33CCFF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#eeeeee">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#eeeeee">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#eeeeee">&nbsp;</td>
+                </tr>
+                <tr>
+                  <th scope="row">5'3"</th>
+                  <td bgcolor="#FFCC33">&nbsp;</td>
+                  <td bgcolor="#FFCC33">&nbsp;</td>
+                  <td bgcolor="#FFCC33">&nbsp;</td>
+                  <td bgcolor="#FFCC33">&nbsp;</td>
+                  <td bgcolor="#FFCC33">&nbsp;</td>
+                  <td bgcolor="#FFCC33">&nbsp;</td>
+                  <td bgcolor="#FFCC33">&nbsp;</td>
+                  <td bgcolor="#FF3300">&nbsp;</td>
+                  <td bgcolor="#FF3300">&nbsp;</td>
+                  <td bgcolor="#FF3300">2</td>
+                  <td bgcolor="#FF3300">&nbsp;</td>
+                  <td bgcolor="#FF3300">&nbsp;</td>
+                  <td bgcolor="#33FF66">&nbsp;</td>
+                  <td bgcolor="#33FF66">&nbsp;</td>
+                  <td bgcolor="#33FF66">&nbsp;</td>
+                  <td bgcolor="#33FF66">&nbsp;</td>
+                  <td bgcolor="#33FF66">&nbsp;</td>
+                  <td bgcolor="#33FF66">&nbsp;</td>
+                  <td bgcolor="#33CCFF">&nbsp;</td>
+                  <td bgcolor="#33CCFF">&nbsp;</td>
+                  <td bgcolor="#33CCFF">&nbsp;</td>
+                  <td bgcolor="#33CCFF">&nbsp;</td>
+                  <td bgcolor="#33CCFF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#eeeeee">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#eeeeee">&nbsp;</td>
+                </tr>
+                <tr>
+                  <th scope="row">5'4"</th>
+                  <td bgcolor="#eeeeee">&nbsp;</td>
+                  <td bgcolor="#FFCC33">&nbsp;</td>
+                  <td bgcolor="#FFCC33">&nbsp;</td>
+                  <td bgcolor="#FFCC33">&nbsp;</td>
+                  <td bgcolor="#FFCC33">&nbsp;</td>
+                  <td bgcolor="#FFCC33">&nbsp;</td>
+                  <td bgcolor="#FF3300">&nbsp;</td>
+                  <td bgcolor="#FF3300">&nbsp;</td>
+                  <td bgcolor="#FF3300">&nbsp;</td>
+                  <td bgcolor="#FF3300">&nbsp;</td>
+                  <td bgcolor="#FF3300">&nbsp;</td>
+                  <td bgcolor="#FF3300">&nbsp;</td>
+                  <td bgcolor="#33FF66">&nbsp;</td>
+                  <td bgcolor="#33FF66">&nbsp;</td>
+                  <td bgcolor="#33FF66">&nbsp;</td>
+                  <td bgcolor="#33FF66">&nbsp;</td>
+                  <td bgcolor="#33FF66">&nbsp;</td>
+                  <td bgcolor="#33FF66">&nbsp;</td>
+                  <td bgcolor="#33CCFF">&nbsp;</td>
+                  <td bgcolor="#33CCFF">&nbsp;</td>
+                  <td bgcolor="#33CCFF">&nbsp;</td>
+                  <td bgcolor="#33CCFF">&nbsp;</td>
+                  <td bgcolor="#33CCFF">&nbsp;</td>
+                  <td bgcolor="#33CCFF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#eeeeee">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#eeeeee">&nbsp;</td>
+                </tr>
+                <tr>
+                  <th scope="row">5'5"</th>
+                  <td bgcolor="#eeeeee">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#FFCC33">&nbsp;</td>
+                  <td bgcolor="#FFCC33">&nbsp;</td>
+                  <td bgcolor="#FFCC33">&nbsp;</td>
+                  <td bgcolor="#FF3300">&nbsp;</td>
+                  <td bgcolor="#FF3300">&nbsp;</td>
+                  <td bgcolor="#FF3300">&nbsp;</td>
+                  <td bgcolor="#FF3300">&nbsp;</td>
+                  <td bgcolor="#FF3300">&nbsp;</td>
+                  <td bgcolor="#FF3300">&nbsp;</td>
+                  <td bgcolor="#FF3300">&nbsp;</td>
+                  <td bgcolor="#33FF66">&nbsp;</td>
+                  <td bgcolor="#33FF66">&nbsp;</td>
+                  <td bgcolor="#33FF66">&nbsp;</td>
+                  <td bgcolor="#33FF66">3</td>
+                  <td bgcolor="#33FF66">&nbsp;</td>
+                  <td bgcolor="#33FF66">&nbsp;</td>
+                  <td bgcolor="#33CCFF">&nbsp;</td>
+                  <td bgcolor="#33CCFF">&nbsp;</td>
+                  <td bgcolor="#33CCFF">&nbsp;</td>
+                  <td bgcolor="#33CCFF">&nbsp;</td>
+                  <td bgcolor="#33CCFF">&nbsp;</td>
+                  <td bgcolor="#33CCFF">&nbsp;</td>
+                  <td bgcolor="#33CCFF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#eeeeee">&nbsp;</td>
+                </tr>
+                <tr>
+                  <th scope="row">5'6"</th>
+                  <td bgcolor="#eeeeee">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#eeeeee">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#FF3300">&nbsp;</td>
+                  <td bgcolor="#FF3300">&nbsp;</td>
+                  <td bgcolor="#FF3300">&nbsp;</td>
+                  <td bgcolor="#FF3300">&nbsp;</td>
+                  <td bgcolor="#FF3300">&nbsp;</td>
+                  <td bgcolor="#FF3300">&nbsp;</td>
+                  <td bgcolor="#FF3300">&nbsp;</td>
+                  <td bgcolor="#FF3300">&nbsp;</td>
+                  <td bgcolor="#33FF66">&nbsp;</td>
+                  <td bgcolor="#33FF66">&nbsp;</td>
+                  <td bgcolor="#33FF66">&nbsp;</td>
+                  <td bgcolor="#33FF66">&nbsp;</td>
+                  <td bgcolor="#33FF66">&nbsp;</td>
+                  <td bgcolor="#33FF66">&nbsp;</td>
+                  <td bgcolor="#33CCFF">&nbsp;</td>
+                  <td bgcolor="#33CCFF">&nbsp;</td>
+                  <td bgcolor="#33CCFF">&nbsp;</td>
+                  <td bgcolor="#33CCFF">&nbsp;</td>
+                  <td bgcolor="#33CCFF">&nbsp;</td>
+                  <td bgcolor="#33CCFF">&nbsp;</td>
+                  <td bgcolor="#33CCFF">&nbsp;</td>
+                  <td bgcolor="#33CCFF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                </tr>
+                <tr>
+                  <th scope="row">5'7"</th>
+                  <td bgcolor="#eeeeee">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#eeeeee">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#eeeeee">&nbsp;</td>
+                  <td bgcolor="#FF3300">&nbsp;</td>
+                  <td bgcolor="#FF3300">&nbsp;</td>
+                  <td bgcolor="#FF3300">&nbsp;</td>
+                  <td bgcolor="#FF3300">&nbsp;</td>
+                  <td bgcolor="#FF3300">&nbsp;</td>
+                  <td bgcolor="#FF3300">&nbsp;</td>
+                  <td bgcolor="#33FF66">&nbsp;</td>
+                  <td bgcolor="#33FF66">&nbsp;</td>
+                  <td bgcolor="#33FF66">&nbsp;</td>
+                  <td bgcolor="#33FF66">&nbsp;</td>
+                  <td bgcolor="#33FF66">&nbsp;</td>
+                  <td bgcolor="#33FF66">&nbsp;</td>
+                  <td bgcolor="#33FF66">&nbsp;</td>
+                  <td bgcolor="#33CCFF">&nbsp;</td>
+                  <td bgcolor="#33CCFF">&nbsp;</td>
+                  <td bgcolor="#33CCFF">&nbsp;</td>
+                  <td bgcolor="#33CCFF">4</td>
+                  <td bgcolor="#33CCFF">&nbsp;</td>
+                  <td bgcolor="#33CCFF">&nbsp;</td>
+                  <td bgcolor="#33CCFF">&nbsp;</td>
+                  <td bgcolor="#33CCFF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                </tr>
+                <tr>
+                  <th scope="row">5'8"</th>
+                  <td bgcolor="#eeeeee">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#eeeeee">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#eeeeee">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#FF3300">&nbsp;</td>
+                  <td bgcolor="#FF3300">&nbsp;</td>
+                  <td bgcolor="#FF3300">&nbsp;</td>
+                  <td bgcolor="#FF3300">&nbsp;</td>
+                  <td bgcolor="#33FF66">&nbsp;</td>
+                  <td bgcolor="#33FF66">&nbsp;</td>
+                  <td bgcolor="#33FF66">&nbsp;</td>
+                  <td bgcolor="#33FF66">&nbsp;</td>
+                  <td bgcolor="#33FF66">&nbsp;</td>
+                  <td bgcolor="#33FF66">&nbsp;</td>
+                  <td bgcolor="#33FF66">&nbsp;</td>
+                  <td bgcolor="#33FF66">&nbsp;</td>
+                  <td bgcolor="#33CCFF">&nbsp;</td>
+                  <td bgcolor="#33CCFF">&nbsp;</td>
+                  <td bgcolor="#33CCFF">&nbsp;</td>
+                  <td bgcolor="#33CCFF">&nbsp;</td>
+                  <td bgcolor="#33CCFF">&nbsp;</td>
+                  <td bgcolor="#33CCFF">&nbsp;</td>
+                  <td bgcolor="#33CCFF">&nbsp;</td>
+                  <td bgcolor="#33CCFF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#9966FF">5</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                </tr>
+                <tr>
+                  <th scope="row">5'9"</th>
+                  <td bgcolor="#eeeeee">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#eeeeee">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#eeeeee">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#FF3300">&nbsp;</td>
+                  <td bgcolor="#FF3300">&nbsp;</td>
+                  <td bgcolor="#FF3300">&nbsp;</td>
+                  <td bgcolor="#33FF66">&nbsp;</td>
+                  <td bgcolor="#33FF66">&nbsp;</td>
+                  <td bgcolor="#33FF66">&nbsp;</td>
+                  <td bgcolor="#33FF66">&nbsp;</td>
+                  <td bgcolor="#33FF66">&nbsp;</td>
+                  <td bgcolor="#33FF66">&nbsp;</td>
+                  <td bgcolor="#33FF66">&nbsp;</td>
+                  <td bgcolor="#33FF66">&nbsp;</td>
+                  <td bgcolor="#33CCFF">&nbsp;</td>
+                  <td bgcolor="#33CCFF">&nbsp;</td>
+                  <td bgcolor="#33CCFF">&nbsp;</td>
+                  <td bgcolor="#33CCFF">&nbsp;</td>
+                  <td bgcolor="#33CCFF">&nbsp;</td>
+                  <td bgcolor="#33CCFF">&nbsp;</td>
+                  <td bgcolor="#33CCFF">&nbsp;</td>
+                  <td bgcolor="#33CCFF">&nbsp;</td>
+                  <td bgcolor="#33CCFF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                </tr>
+                <tr>
+                  <th scope="row">5'10"</th>
+                  <td bgcolor="#eeeeee">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#eeeeee">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#eeeeee">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#eeeeee">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#eeeeee">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#33FF66">&nbsp;</td>
+                  <td bgcolor="#33FF66">&nbsp;</td>
+                  <td bgcolor="#33FF66">&nbsp;</td>
+                  <td bgcolor="#33FF66">&nbsp;</td>
+                  <td bgcolor="#33FF66">&nbsp;</td>
+                  <td bgcolor="#33FF66">&nbsp;</td>
+                  <td bgcolor="#33CCFF">&nbsp;</td>
+                  <td bgcolor="#33CCFF">&nbsp;</td>
+                  <td bgcolor="#33CCFF">&nbsp;</td>
+                  <td bgcolor="#33CCFF">&nbsp;</td>
+                  <td bgcolor="#33CCFF">&nbsp;</td>
+                  <td bgcolor="#33CCFF">&nbsp;</td>
+                  <td bgcolor="#33CCFF">&nbsp;</td>
+                  <td bgcolor="#33CCFF">&nbsp;</td>
+                  <td bgcolor="#33CCFF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                </tr>
+                <tr>
+                  <th scope="row">5'11"</th>
+                  <td bgcolor="#eeeeee">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#eeeeee">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#eeeeee">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#eeeeee">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#eeeeee">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#eeeeee">&nbsp;</td>
+                  <td bgcolor="#33FF66">&nbsp;</td>
+                  <td bgcolor="#33FF66">&nbsp;</td>
+                  <td bgcolor="#33FF66">&nbsp;</td>
+                  <td bgcolor="#33FF66">&nbsp;</td>
+                  <td bgcolor="#33CCFF">&nbsp;</td>
+                  <td bgcolor="#33CCFF">&nbsp;</td>
+                  <td bgcolor="#33CCFF">&nbsp;</td>
+                  <td bgcolor="#33CCFF">&nbsp;</td>
+                  <td bgcolor="#33CCFF">&nbsp;</td>
+                  <td bgcolor="#33CCFF">&nbsp;</td>
+                  <td bgcolor="#33CCFF">&nbsp;</td>
+                  <td bgcolor="#33CCFF">&nbsp;</td>
+                  <td bgcolor="#33CCFF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                </tr>
+                <tr>
+                  <th scope="row">6'0"</th>
+                  <td bgcolor="#eeeeee">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#eeeeee">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#eeeeee">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#eeeeee">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#eeeeee">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#eeeeee">&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td bgcolor="#33FF66">&nbsp;</td>
+                  <td bgcolor="#33FF66">&nbsp;</td>
+                  <td bgcolor="#33CCFF">&nbsp;</td>
+                  <td bgcolor="#33CCFF">&nbsp;</td>
+                  <td bgcolor="#33CCFF">&nbsp;</td>
+                  <td bgcolor="#33CCFF">&nbsp;</td>
+                  <td bgcolor="#33CCFF">&nbsp;</td>
+                  <td bgcolor="#33CCFF">&nbsp;</td>
+                  <td bgcolor="#33CCFF">&nbsp;</td>
+                  <td bgcolor="#33CCFF">&nbsp;</td>
+                  <td bgcolor="#33CCFF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                  <td bgcolor="#9966FF">&nbsp;</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </sh-view-swapper>
+      </div>
+      <div id="mens-tab">
+        <sh-tabs collapse width="300px" default-text="Select" unique-id="mens-tabs" target="mens-swapper">
+          <sh-button default-value="mens-apparel">Men's Apparel</sh-button>
+          <sh-button default-value="mens-big-and-tall">Men's Big &amp; Tall</sh-button>
+          <sh-button default-value="mens-shoes">Men's Shoes</sh-button>
+        </sh-tabs>
+        <sh-view-swapper receive="mens-swapper">
+          <div id="blank-mens"></div>
+          <div id="mens-apparel">
+            <table class="belk__table belk__table--grey belk__table--lined c_text--center" border="0" cellpadding="0" cellspacing="0">
+              <caption> Men’s Size Chart (5'8" - 5'11.5")
+              </caption>
+              <tbody>
+                <tr>
+                  <th scope="col">&nbsp;</th>
+                  <th scope="col">S</th>
+                  <th scope="col">M</th>
+                  <th scope="col">L</th>
+                  <th scope="col">XL</th>
+                  <th scope="col">XXL</th>
+                </tr>
+                <tr>
+                  <th scope="row">Neck</th>
+                  <td>14.5</td>
+                  <td>15.5</td>
+                  <td>16.5</td>
+                  <td>17.5</td>
+                  <td>18.5</td>
+                </tr>
+                <tr>
+                  <th scope="row">Chest</th>
+                  <td>38</td>
+                  <td>41</td>
+                  <td>44</td>
+                  <td>47</td>
+                  <td>50</td>
+                </tr>
+                <tr>
+                  <th scope="row">Waist</th>
+                  <td>30</td>
+                  <td>34</td>
+                  <td>37</td>
+                  <td>40</td>
+                  <td>43</td>
+                </tr>
+                <tr>
+                  <th scope="row">Hip</th>
+                  <td>38</td>
+                  <td>41</td>
+                  <td>44</td>
+                  <td>47</td>
+                  <td>50</td>
+                </tr>
+                <tr>
+                  <th scope="row">Sleeve</th>
+                  <td>33</td>
+                  <td>34</td>
+                  <td>35</td>
+                  <td>35.5</td>
+                  <td>36</td>
+                </tr>
+                <tr>
+                  <th scope="row">Socks</th>
+                  <td>7-12</td>
+                  <td>10-13</td>
+                  <td>13-16</td>
+                  <td></td>
+                  <td></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div id="mens-big-and-tall">
+            <table class="belk__table belk__table--grey belk__table--lined c_text--center" border="0" cellpadding="0" cellspacing="0">
+              <caption> Men’s Big Size Chart (6' - 6'3.5")
+              </caption>
+              <tbody>
+                <tr>
+                  <th scope="col">&nbsp;</th>
+                  <th scope="col">2X</th>
+                  <th scope="col">3X</th>
+                  <th scope="col">4X</th>
+                </tr>
+                <tr>
+                  <th scope="row">Neck</th>
+                  <td>18.5</td>
+                  <td>19.5</td>
+                  <td>20.5</td>
+                </tr>
+                <tr>
+                  <th scope="row">Chest</th>
+                  <td>52</td>
+                  <td>55</td>
+                  <td>58</td>
+                </tr>
+                <tr>
+                  <th scope="row">Waist</th>
+                  <td>48</td>
+                  <td>51</td>
+                  <td>54</td>
+                </tr>
+                <tr>
+                  <th scope="row">Hip</th>
+                  <td>52</td>
+                  <td>55</td>
+                  <td>58</td>
+                </tr>
+                <tr>
+                  <th scope="row">Sleeve</th>
+                  <td>36.5</td>
+                  <td>37</td>
+                  <td>37.5</td>
+                </tr>
+              </tbody>
+            </table>
+            <table class="belk__table belk__table--grey belk__table--lined c_text--center" border="0" cellpadding="0" cellspacing="0">
+              <caption> Men’s Tall Size Chart (6' - 6'3.5")
+              </caption>
+              <tbody>
+                <tr>
+                  <th scope="col">&nbsp;</th>
+                  <th scope="col">LT</th>
+                  <th scope="col">XLT</th>
+                  <th scope="col">2XLT</th>
+                  <th scope="col">3XLT</th>
+                </tr>
+                <tr>
+                  <th scope="row">Neck</th>
+                  <td>16.5</td>
+                  <td>17.5</td>
+                  <td>18.5</td>
+                  <td>19.5</td>
+                </tr>
+                <tr>
+                  <th scope="row">Chest</th>
+                  <td>44</td>
+                  <td>47</td>
+                  <td>50</td>
+                  <td>53</td>
+                </tr>
+                <tr>
+                  <th scope="row">Waist</th>
+                  <td>37</td>
+                  <td>40</td>
+                  <td>43</td>
+                  <td>46</td>
+                </tr>
+                <tr>
+                  <th scope="row">Hip</th>
+                  <td>44</td>
+                  <td>47</td>
+                  <td>50</td>
+                  <td>53</td>
+                </tr>
+                <tr>
+                  <th scope="row">Sleeve</th>
+                  <td>36.5</td>
+                  <td>37</td>
+                  <td>37.5</td>
+                  <td>38</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div id="mens-shoes">
+            <table class="belk__table belk__table--grey belk__table--lined c_text--center" border="0" cellpadding="0" cellspacing="0">
+              <caption> Men’s Shoes Size/Width Chart (Inches)
+              </caption>
+              <tbody>
+                <tr>
+                  <th scope="col">&nbsp;</th>
+                  <th scope="col">C Narrow</th>
+                  <th scope="col">D Medium</th>
+                  <th scope="col">E Wide</th>
+                </tr>
+                <tr>
+                  <th scope="row">6</th>
+                  <td>3.3</td>
+                  <td>3.5</td>
+                  <td>3.7</td>
+                </tr>
+                <tr>
+                  <th scope="row">6.5</th>
+                  <td>3.3</td>
+                  <td>3.6</td>
+                  <td>3.8</td>
+                </tr>
+                <tr>
+                  <th scope="row">7</th>
+                  <td>3.4</td>
+                  <td>3.6</td>
+                  <td>3.8</td>
+                </tr>
+                <tr>
+                  <th scope="row">7.5</th>
+                  <td>3.4</td>
+                  <td>3.7</td>
+                  <td>3.9</td>
+                </tr>
+                <tr>
+                  <th scope="row">8</th>
+                  <td>3.5</td>
+                  <td>3.8</td>
+                  <td>3.9</td>
+                </tr>
+                <tr>
+                  <th scope="row">8.5</th>
+                  <td>3.6</td>
+                  <td>3.8</td>
+                  <td>4.0</td>
+                </tr>
+                <tr>
+                  <th scope="row">9</th>
+                  <td>3.6</td>
+                  <td>3.9</td>
+                  <td>4.1</td>
+                </tr>
+                <tr>
+                  <th scope="row">9.5</th>
+                  <td>3.7</td>
+                  <td>3.9</td>
+                  <td>4.1</td>
+                </tr>
+                <tr>
+                  <th scope="row">10</th>
+                  <td>3.8</td>
+                  <td>4.0</td>
+                  <td>4.2</td>
+                </tr>
+                <tr>
+                  <th scope="row">10.5</th>
+                  <td>3.8</td>
+                  <td>4.1</td>
+                  <td>4.2</td>
+                </tr>
+                <tr>
+                  <th scope="row">11</th>
+                  <td>3.9</td>
+                  <td>4.1</td>
+                  <td>4.3</td>
+                </tr>
+                <tr>
+                  <th scope="row">11.5</th>
+                  <td>3.9</td>
+                  <td>4.2</td>
+                  <td>4.4</td>
+                </tr>
+                <tr>
+                  <th scope="row">12</th>
+                  <td>4.0</td>
+                  <td>4.3</td>
+                  <td>4.4</td>
+                </tr>
+                <tr>
+                  <th scope="row">12.5</th>
+                  <td>4.1</td>
+                  <td>4.3</td>
+                  <td>4.5</td>
+                </tr>
+                <tr>
+                  <th scope="row">13</th>
+                  <td>4.1</td>
+                  <td>4.4</td>
+                  <td>4.6</td>
+                </tr>
+                <tr>
+                  <th scope="row">13.5</th>
+                  <td>4.2</td>
+                  <td>4.4</td>
+                  <td>4.8</td>
+                </tr>
+                <tr>
+                  <th scope="row">14</th>
+                  <td>4.2</td>
+                  <td>4.5</td>
+                  <td>4.9</td>
+                </tr>
+                <tr>
+                  <th scope="row">14.5</th>
+                  <td>4.3</td>
+                  <td>4.5</td>
+                  <td>4.9</td>
+                </tr>
+                <tr>
+                  <th scope="row">15</th>
+                  <td>4.3</td>
+                  <td>4.6</td>
+                  <td>5</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </sh-view-swapper>
+      </div>
+      <div id="girls-tab">
+        <sh-tabs collapse width="300px" default-text="Select" unique-id="girls-tabs" target="girls-swapper">
+          <sh-button default-value="girls-newborn">Newborn</sh-button>
+          <sh-button default-value="girls-toddler">Toddler</sh-button>
+          <sh-button default-value="girls-4-6">Girls' 4-6x</sh-button>
+          <sh-button default-value="girls-7-16">Girls' 7-16</sh-button>
+          <sh-button default-value="girls-shorts">Girls' Shorts</sh-button>
+          <sh-button default-value="girls-accessories">Girls' 4-16 Accessories</sh-button>
+        </sh-tabs>
+        <sh-view-swapper receive="girls-swapper">
+          <div id="blank-girls"></div>
+          <div id="girls-newborn">
+            <table class="belk__table belk__table--grey belk__table--lined c_text--center" border="0" cellpadding="0" cellspacing="0">
+              <caption> Newborns’ 3M-9M and Infants’ 12M-24M
+              </caption>
+              <tbody>
+                <tr>
+                  <th scope="col">&nbsp;</th>
+                  <th scope="col">0/3M</th>
+                  <th scope="col">3/6M</th>
+                  <th scope="col">6/9M</th>
+                  <th scope="col">12M</th>
+                  <th scope="col">18M</th>
+                  <th scope="col">24M</th>
+                </tr>
+                <tr>
+                  <th scope="row">Height</th>
+                  <td>to 23.5</td>
+                  <td>24-26.5</td>
+                  <td>27-27.5</td>
+                  <td>28-30.5</td>
+                  <td>31-32.5</td>
+                  <td>33-35.5</td>
+                </tr>
+                <tr>
+                  <th scope="row">Weight (lbs.)</th>
+                  <td>to 12 lbs.</td>
+                  <td>12.5-16</td>
+                  <td>16.5-18</td>
+                  <td>18.5-22</td>
+                  <td>22.5-25</td>
+                  <td>25.5-28</td>
+                </tr>
+                <tr>
+                  <th scope="row">Chest</th>
+                  <td>17</td>
+                  <td>18</td>
+                  <td>18.5</td>
+                  <td>19</td>
+                  <td>20</td>
+                  <td>21</td>
+                </tr>
+                <tr>
+                  <th scope="row">Waist</th>
+                  <td>18</td>
+                  <td>18.5</td>
+                  <td>18.75</td>
+                  <td>19</td>
+                  <td>19.5</td>
+                  <td>20</td>
+                </tr>
+                <tr>
+                  <th scope="row">Hip</th>
+                  <td>17</td>
+                  <td>18</td>
+                  <td>18.5</td>
+                  <td>19</td>
+                  <td>20</td>
+                  <td>21</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div id="girls-toddler">
+            <table class="belk__table belk__table--grey belk__table--lined c_text--center" border="0" cellpadding="0" cellspacing="0">
+              <caption> Toddlers’ 2T-4T Size Chart
+              </caption>
+              <tbody>
+                <tr>
+                  <th scope="col">&nbsp;</th>
+                  <th scope="col">2T</th>
+                  <th scope="col">3T</th>
+                  <th scope="col">4T</th>
+                </tr>
+                <tr>
+                  <th scope="row">Height</th>
+                  <td>33-35.5</td>
+                  <td>36-38.5</td>
+                  <td>39-41.5</td>
+                </tr>
+                <tr>
+                  <th scope="row">Weight (lbs.)</th>
+                  <td>25.5-28</td>
+                  <td>28.5-32</td>
+                  <td>32.5-37</td>
+                </tr>
+                <tr>
+                  <th scope="row">Chest</th>
+                  <td>21</td>
+                  <td>22</td>
+                  <td>23</td>
+                </tr>
+                <tr>
+                  <th scope="row">Waist</th>
+                  <td>20.5</td>
+                  <td>21</td>
+                  <td>21.5</td>
+                </tr>
+                <tr>
+                  <th scope="row">Hip</th>
+                  <td>21</td>
+                  <td>22</td>
+                  <td>23</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div id="girls-4-6">
+            <table class="belk__table belk__table--grey belk__table--lined c_text--center" border="0" cellpadding="0" cellspacing="0">
+              <caption> Boys’ 4-7 and Girls’ 4-6x
+              </caption>
+              <tbody>
+                <tr>
+                  <th scope="col">&nbsp;</th>
+                  <th scope="col">S</th>
+                  <th scope="col">M</th>
+                  <th scope="col">&nbsp;</th>
+                  <th scope="col">L</th>
+                </tr>
+                <tr>
+                  <th scope="row">Size</th>
+                  <td>4</td>
+                  <td>5</td>
+                  <td>6</td>
+                  <td>6X/7</td>
+                </tr>
+                <tr>
+                  <th scope="row">Height</th>
+                  <td>39-41.5</td>
+                  <td>42-44.5</td>
+                  <td>45-47.5</td>
+                  <td>48-50.5</td>
+                </tr>
+                <tr>
+                  <th scope="row">Weight (lbs.)</th>
+                  <td>33-36</td>
+                  <td>37-42</td>
+                  <td>43-48</td>
+                  <td>49-54</td>
+                </tr>
+                <tr>
+                  <th scope="row">Chest</th>
+                  <td>23</td>
+                  <td>24</td>
+                  <td>25</td>
+                  <td>26</td>
+                </tr>
+                <tr>
+                  <th scope="row">Waist</th>
+                  <td>21.5</td>
+                  <td>22</td>
+                  <td>22.5</td>
+                  <td>23</td>
+                </tr>
+                <tr>
+                  <th scope="row">Hip</th>
+                  <td>23</td>
+                  <td>24</td>
+                  <td>25</td>
+                  <td>26</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div id="girls-7-16">
+            <table class="belk__table belk__table--grey belk__table--lined c_text--center" border="0" cellpadding="0" cellspacing="0">
+              <caption> Girls’ 7-16
+              </caption>
+              <tbody>
+                <tr>
+                  <th scope="col">&nbsp;</th>
+                  <th scope="col">S</th>
+                  <th scope="col">M</th>
+                  <th scope="col">M</th>
+                  <th scope="col">L</th>
+                  <th scope="col">L</th>
+                  <th scope="col">XL</th>
+                </tr>
+                <tr>
+                  <th scope="row">Size</th>
+                  <td>7</td>
+                  <td>8</td>
+                  <td>10</td>
+                  <td>12</td>
+                  <td>14</td>
+                  <td>16</td>
+                </tr>
+                <tr>
+                  <th scope="row">Height</th>
+                  <td>51</td>
+                  <td>53</td>
+                  <td>55</td>
+                  <td>57.5</td>
+                  <td>60</td>
+                  <td>62.5</td>
+                </tr>
+                <tr>
+                  <th scope="row">Weight (lbs.)</th>
+                  <td>60</td>
+                  <td>66</td>
+                  <td>74</td>
+                  <td>84</td>
+                  <td>96</td>
+                  <td>110</td>
+                </tr>
+                <tr>
+                  <th scope="row">Chest</th>
+                  <td>26</td>
+                  <td>27</td>
+                  <td>28.5</td>
+                  <td>30</td>
+                  <td>31.5</td>
+                  <td>33</td>
+                </tr>
+                <tr>
+                  <th scope="row">Waist</th>
+                  <td>22.5</td>
+                  <td>23</td>
+                  <td>24</td>
+                  <td>25</td>
+                  <td>26</td>
+                  <td>27</td>
+                </tr>
+                <tr>
+                  <th scope="row">Hip</th>
+                  <td>27.5</td>
+                  <td>28.5</td>
+                  <td>30</td>
+                  <td>32</td>
+                  <td>34</td>
+                  <td>36</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div id="girls-shorts">
+            <table class="belk__table belk__table--grey belk__table--lined c_text--center" border="0" cellpadding="0" cellspacing="0">
+              <caption> Girls’ 7-16 Short Size Chart
+              </caption>
+              <tbody>
+                <tr>
+                  <th scope="col">&nbsp;</th>
+                  <th scope="col">7</th>
+                  <th scope="col">8</th>
+                  <th scope="col">10</th>
+                  <th scope="col">12</th>
+                  <th scope="col">14</th>
+                  <th scope="col">16</th>
+                </tr>
+                <tr>
+                  <th scope="row">Chest</th>
+                  <td>51</td>
+                  <td>53</td>
+                  <td>55</td>
+                  <td>57.5</td>
+                  <td>60</td>
+                  <td>60.5</td>
+                </tr>
+                <tr>
+                  <th scope="row">Waist</th>
+                  <td>60</td>
+                  <td>66</td>
+                  <td>74</td>
+                  <td>84</td>
+                  <td>96</td>
+                  <td>110</td>
+                </tr>
+                <tr>
+                  <th scope="row">Hip</th>
+                  <td>26</td>
+                  <td>27</td>
+                  <td>28.5</td>
+                  <td>30</td>
+                  <td>31.5</td>
+                  <td>33</td>
+                </tr>
+                <tr>
+                  <th scope="row">Waist</th>
+                  <td>22.5</td>
+                  <td>23</td>
+                  <td>24</td>
+                  <td>25</td>
+                  <td>26</td>
+                  <td>27</td>
+                </tr>
+                <tr>
+                  <th scope="row">Hip</th>
+                  <td>27.5</td>
+                  <td>28.5</td>
+                  <td>30</td>
+                  <td>32</td>
+                  <td>34</td>
+                  <td>36</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div id="girls-accessories">
+            <table class="belk__table belk__table--grey belk__table--lined c_text--center" border="0" cellpadding="0" cellspacing="0">
+              <caption> Girls’ 4-16 Accessories
+              </caption>
+              <tbody>
+                <tr>
+                  <th scope="col">&nbsp;</th>
+                  <th scope="col">4</th>
+                  <th scope="col">5</th>
+                  <th scope="col">6</th>
+                  <th scope="col">6X/7</th>
+                  <th scope="col">7</th>
+                  <th scope="col">8</th>
+                  <th scope="col">10</th>
+                  <th scope="col">12</th>
+                  <th scope="col">14</th>
+                  <th scope="col">16</th>
+                </tr>
+                <tr>
+                  <th scope="row">Height</th>
+                  <td>
+                    <p>39-41.5
+                    </p>
+                  </td>
+                  <td>42-44.5</td>
+                  <td>45-47.5</td>
+                  <td>48-50.5</td>
+                  <td>51</td>
+                  <td>53</td>
+                  <td>55</td>
+                  <td>57.5</td>
+                  <td>60</td>
+                  <td>62.5</td>
+                </tr>
+                <tr>
+                  <th scope="row">Weight (lbs.)</th>
+                  <td>33-36</td>
+                  <td>37-42</td>
+                  <td>43-48</td>
+                  <td>49-54</td>
+                  <td>60</td>
+                  <td>66</td>
+                  <td>74</td>
+                  <td>84</td>
+                  <td>96</td>
+                  <td>110</td>
+                </tr>
+                <tr>
+                  <th scope="row">Chest</th>
+                  <td>23</td>
+                  <td>24</td>
+                  <td>25</td>
+                  <td>26</td>
+                  <td>26</td>
+                  <td>27</td>
+                  <td>28.5</td>
+                  <td>30</td>
+                  <td>31.5</td>
+                  <td>33</td>
+                </tr>
+                <tr>
+                  <th scope="row">Waist</th>
+                  <td>21.5</td>
+                  <td>22</td>
+                  <td>22.5</td>
+                  <td>23</td>
+                  <td>22.5</td>
+                  <td>23</td>
+                  <td>24</td>
+                  <td>25</td>
+                  <td>26</td>
+                  <td>27</td>
+                </tr>
+                <tr>
+                  <th scope="row">Hip</th>
+                  <td>23</td>
+                  <td>24</td>
+                  <td>25</td>
+                  <td>26</td>
+                  <td>27.5</td>
+                  <td>28.5</td>
+                  <td>30</td>
+                  <td>32</td>
+                  <td>34</td>
+                  <td>36</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </sh-view-swapper>
+      </div>
+      <div id="boys-tab">
+        <sh-tabs collapse width="300px" default-text="Select" unique-id="boys-tabs" target="boys-swapper">
+          <sh-button default-value="boys-newborn">Newborn</sh-button>
+          <sh-button default-value="boys-toddler">Toddler</sh-button>
+          <sh-button default-value="boys-4-7">Boys' 4-7</sh-button>
+          <sh-button default-value="boys-8-20">Boys' 8-20</sh-button>
+          <sh-button default-value="boys-8-20-husky">Boys' 8-20 Husky</sh-button>
+        </sh-tabs>
+        <sh-view-swapper receive="boys-swapper">
+          <div id="blank-boys"></div>
+          <div id="boys-newborn">
+            <table class="belk__table belk__table--grey belk__table--lined c_text--center" border="0" cellpadding="0" cellspacing="0">
+              <caption> Newborns’ 3M-9M and Infants’ 12M-24M
+              </caption>
+              <tbody>
+                <tr>
+                  <th scope="col">&nbsp;</th>
+                  <th scope="col">0/3M</th>
+                  <th scope="col">3/6M</th>
+                  <th scope="col">6/9M</th>
+                  <th scope="col">12M</th>
+                  <th scope="col">18M</th>
+                  <th scope="col">24M</th>
+                </tr>
+                <tr>
+                  <th scope="row">Height</th>
+                  <td>to 23.5</td>
+                  <td>24-26.5</td>
+                  <td>27-27.5</td>
+                  <td>28-30.5</td>
+                  <td>31-32.5</td>
+                  <td>33-35.5</td>
+                </tr>
+                <tr>
+                  <th scope="row">Weight (lbs.)</th>
+                  <td>to 12 lbs.</td>
+                  <td>12.5-16</td>
+                  <td>16.5-18</td>
+                  <td>18.5-22</td>
+                  <td>22.5-25</td>
+                  <td>25.5-28</td>
+                </tr>
+                <tr>
+                  <th scope="row">Chest</th>
+                  <td>17</td>
+                  <td>18</td>
+                  <td>18.5</td>
+                  <td>19</td>
+                  <td>20</td>
+                  <td>21</td>
+                </tr>
+                <tr>
+                  <th scope="row">Waist</th>
+                  <td>18</td>
+                  <td>18.5</td>
+                  <td>18.75</td>
+                  <td>19</td>
+                  <td>19.5</td>
+                  <td>20</td>
+                </tr>
+                <tr>
+                  <th scope="row">Hip</th>
+                  <td>17</td>
+                  <td>18</td>
+                  <td>18.5</td>
+                  <td>19</td>
+                  <td>20</td>
+                  <td>21</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div id="boys-toddler">
+            <table class="belk__table belk__table--grey belk__table--lined c_text--center" border="0" cellpadding="0" cellspacing="0">
+              <caption> Toddlers’ 2T-4T Size Chart
+              </caption>
+              <tbody>
+                <tr>
+                  <th scope="col">&nbsp;</th>
+                  <th scope="col">2T</th>
+                  <th scope="col">3T</th>
+                  <th scope="col">4T</th>
+                </tr>
+                <tr>
+                  <th scope="row">Height</th>
+                  <td>33-35.5</td>
+                  <td>36-38.5</td>
+                  <td>39-41.5</td>
+                </tr>
+                <tr>
+                  <th scope="row">Weight (lbs.)</th>
+                  <td>25.5-28</td>
+                  <td>28.5-32</td>
+                  <td>32.5-37</td>
+                </tr>
+                <tr>
+                  <th scope="row">Chest</th>
+                  <td>21</td>
+                  <td>22</td>
+                  <td>23</td>
+                </tr>
+                <tr>
+                  <th scope="row">Waist</th>
+                  <td>20.5</td>
+                  <td>21</td>
+                  <td>21.5</td>
+                </tr>
+                <tr>
+                  <th scope="row">Hip</th>
+                  <td>21</td>
+                  <td>22</td>
+                  <td>23</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div id="boys-4-7">
+            <table class="belk__table belk__table--grey belk__table--lined c_text--center" border="0" cellpadding="0" cellspacing="0">
+              <caption> Boys’ 4-7 and Girls’ 4-6x
+              </caption>
+              <tbody>
+                <tr>
+                  <th scope="col">&nbsp;</th>
+                  <th scope="col">S</th>
+                  <th scope="col">M</th>
+                  <th scope="col">&nbsp;</th>
+                  <th scope="col">L</th>
+                </tr>
+                <tr>
+                  <th scope="row">Size</th>
+                  <td>4</td>
+                  <td>5</td>
+                  <td>6</td>
+                  <td>6X/7</td>
+                </tr>
+                <tr>
+                  <th scope="row">Height</th>
+                  <td>39-41.5</td>
+                  <td>42-44.5</td>
+                  <td>45-47.5</td>
+                  <td>48-50.5</td>
+                </tr>
+                <tr>
+                  <th scope="row">Weight (lbs.)</th>
+                  <td>33-36</td>
+                  <td>37-42</td>
+                  <td>43-48</td>
+                  <td>49-54</td>
+                </tr>
+                <tr>
+                  <th scope="row">Chest</th>
+                  <td>23</td>
+                  <td>24</td>
+                  <td>25</td>
+                  <td>26</td>
+                </tr>
+                <tr>
+                  <th scope="row">Waist</th>
+                  <td>21.5</td>
+                  <td>22</td>
+                  <td>22.5</td>
+                  <td>23</td>
+                </tr>
+                <tr>
+                  <th scope="row">Hip</th>
+                  <td>23</td>
+                  <td>24</td>
+                  <td>25</td>
+                  <td>26</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div id="boys-8-20">
+            <table class="belk__table belk__table--grey belk__table--lined c_text--center" border="0" cellpadding="0" cellspacing="0">
+              <caption> Boys’ 8-20 Regular Size Chart
+              </caption>
+              <tbody>
+                <tr>
+                  <th scope="col">&nbsp;</th>
+                  <th scope="col">&nbsp;</th>
+                  <th scope="col">S</th>
+                  <th scope="col">&nbsp;</th>
+                  <th scope="col">M</th>
+                  <th scope="col">&nbsp;</th>
+                  <th scope="col">L</th>
+                  <th scope="col">XL</th>
+                </tr>
+                <tr>
+                  <th scope="row">Size</th>
+                  <td>8</td>
+                  <td>10</td>
+                  <td>12</td>
+                  <td>14</td>
+                  <td>16</td>
+                  <td>18</td>
+                  <td>20</td>
+                </tr>
+                <tr>
+                  <th scope="row">Height</th>
+                  <td>51</td>
+                  <td>54</td>
+                  <td>58</td>
+                  <td>61</td>
+                  <td>64</td>
+                  <td>66</td>
+                  <td>68</td>
+                </tr>
+                <tr>
+                  <th scope="row">Weight (lbs.)</th>
+                  <td>60</td>
+                  <td>73</td>
+                  <td>87</td>
+                  <td>100</td>
+                  <td>115</td>
+                  <td>126</td>
+                  <td>138</td>
+                </tr>
+                <tr>
+                  <th scope="row">Chest</th>
+                  <td>26</td>
+                  <td>28</td>
+                  <td>30</td>
+                  <td>31.5</td>
+                  <td>33</td>
+                  <td>34.5</td>
+                  <td>36</td>
+                </tr>
+                <tr>
+                  <th scope="row">Waist</th>
+                  <td>24</td>
+                  <td>25</td>
+                  <td>26</td>
+                  <td>27</td>
+                  <td>28</td>
+                  <td>29</td>
+                  <td>30</td>
+                </tr>
+                <tr>
+                  <th scope="row">Hip</th>
+                  <td>26.5</td>
+                  <td>28</td>
+                  <td>29.5</td>
+                  <td>31.5</td>
+                  <td>33.5</td>
+                  <td>35</td>
+                  <td>36.5</td>
+                </tr>
+                <tr>
+                  <th scope="row">Inseam</th>
+                  <td>21</td>
+                  <td>23.5</td>
+                  <td>25.5</td>
+                  <td>26.5</td>
+                  <td>27.5</td>
+                  <td>28.5</td>
+                  <td>29.5</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div id="boys-8-20-husky">
+            <table class="belk__table belk__table--grey belk__table--lined c_text--center" border="0" cellpadding="0" cellspacing="0">
+              <caption> Boys’ 8-20 Husky Size Chart
+              </caption>
+              <tbody>
+                <tr>
+                  <th scope="col">&nbsp;</th>
+                  <th scope="col">&nbsp;</th>
+                  <th scope="col">S</th>
+                  <th scope="col">&nbsp;</th>
+                  <th scope="col">M</th>
+                  <th scope="col">&nbsp;</th>
+                  <th scope="col">L</th>
+                  <th scope="col">XL</th>
+                </tr>
+                <tr>
+                  <th scope="row">Size</th>
+                  <td>8H</td>
+                  <td>10H</td>
+                  <td>12H</td>
+                  <td>14H</td>
+                  <td>16H</td>
+                  <td>18H</td>
+                  <td>20H</td>
+                </tr>
+                <tr>
+                  <th scope="row">Height</th>
+                  <td>51</td>
+                  <td>54</td>
+                  <td>58</td>
+                  <td>61</td>
+                  <td>64</td>
+                  <td>66</td>
+                  <td>68</td>
+                </tr>
+                <tr>
+                  <th scope="row">Weight (lbs.)</th>
+                  <td>64</td>
+                  <td>78</td>
+                  <td>92</td>
+                  <td>105</td>
+                  <td>121</td>
+                  <td>133</td>
+                  <td>145</td>
+                </tr>
+                <tr>
+                  <th scope="row">Chest</th>
+                  <td>27.5</td>
+                  <td>29.5</td>
+                  <td>31.5</td>
+                  <td>33</td>
+                  <td>34.5</td>
+                  <td>36</td>
+                  <td>37.5</td>
+                </tr>
+                <tr>
+                  <th scope="row">Waist</th>
+                  <td>26</td>
+                  <td>27</td>
+                  <td>28</td>
+                  <td>29</td>
+                  <td>30</td>
+                  <td>31</td>
+                  <td>32</td>
+                </tr>
+                <tr>
+                  <th scope="row">Hip</th>
+                  <td>28.5</td>
+                  <td>30</td>
+                  <td>31.5</td>
+                  <td>33.5</td>
+                  <td>35.5</td>
+                  <td>37</td>
+                  <td>38.5</td>
+                </tr>
+                <tr>
+                  <th scope="row">Inseam</th>
+                  <td>21</td>
+                  <td>23.5</td>
+                  <td>25.5</td>
+                  <td>26.5</td>
+                  <td>27.5</td>
+                  <td>28.5</td>
+                  <td>29.5</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </sh-view-swapper>
+      </div>
+    </sh-view-swapper>
+
   </section>
 
   <section id="changelog">
@@ -141,5 +3901,7 @@
     </dl>
   </section>
 </div>
+
+<div style="height:80vh;"></div>
 
 <%- htmlWebpackPlugin.options.docsFoot %>

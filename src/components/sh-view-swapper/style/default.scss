@@ -4,6 +4,7 @@ sh-view-swapper {
   display: block;
 
   .sh-view-swapper {
+    padding-top: $micro;
     > div {
       display: none;
     }
