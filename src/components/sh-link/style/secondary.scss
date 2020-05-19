@@ -8,8 +8,8 @@ sh-link[variant="secondary"] {
     border-radius: 5px;
     transition: all 150ms $ease;
     &:hover {
-      background: $lowlight-primary;
-      color: $highlight-primary;
+      background: $highlight-tertiary;
+      color: $lowlight-primary;
     }
     span {
       display: block;
