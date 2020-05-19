@@ -32,6 +32,7 @@
     </div>
     <div ref="select">
       <select v-on:input="selectHandler">
+        <option value="blank_opt">{{ defaultText }}</option>
         <option v-for="item in options"
         v-bind:key="item.index"
         v-bind:value="item.value"
