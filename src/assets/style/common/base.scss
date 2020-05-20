@@ -969,6 +969,6 @@ ol.lower-alpha {
   display: none !important;
 }
 
-// [interaction='mouse'] *:focus {
-//   outline: none !important;
-// }
+[interaction='mouse'] *:focus {
+  outline: none !important;
+}
