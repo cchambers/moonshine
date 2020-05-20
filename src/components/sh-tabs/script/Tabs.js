@@ -17,6 +17,9 @@ export default {
     width: {
       type: String,
     },
+    defaultComboText: {
+      type: String,
+    },
   },
 
   data() {
