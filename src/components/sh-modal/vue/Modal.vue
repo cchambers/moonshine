@@ -247,7 +247,7 @@ export default {
         this.$bus.$emit('modal-opened', this.uniqueId);
         if (this.openedEvent) this.$bus.$emit(this.openedEvent, this.uniqueId);
 
-        if (this.$refs.content.offsetHeight > window.innerHeight) {
+        if (this.$refs.content.offsetHeight > (window.innerHeight - 160)) {
           this.noSpace = true;
         }
 
