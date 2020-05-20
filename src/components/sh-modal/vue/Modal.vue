@@ -448,6 +448,7 @@ export default {
           display: flex;
           height: 5rem;
           width: 5rem;
+          padding: 0 !important;
           align-content: center;
           justify-content: center;
           color: inherit;
