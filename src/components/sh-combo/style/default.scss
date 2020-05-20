@@ -73,10 +73,10 @@
     }
   }
   .combo-select {
-    height: 100%;
     select {
       display: block;
       width: 100%;
+      min-height: 3.2rem;
       height: 100%;
       -webkit-appearance: none;
       border: 0;

@@ -1,5 +1,5 @@
 <template>
-  <div class="sh-tabs" :style="{ width: width }">
+  <div class="sh-tabs" :style="{ width: width }" :changed="hasChanged">
     <div class="tabs-actual" ref="tabs">
       <slot></slot>
     </div>
@@ -11,6 +11,7 @@
         v-bind:id="'tc-'+uuid"
         v-bind:target="target"
         v-bind:comboOptions="comboOptions"
+        v-bind:defaultText="defaultComboText"
         variant="primary"
       ></component>
     </div>
