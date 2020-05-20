@@ -7,8 +7,8 @@
     :id="uniqueId"
     :aria-labelledby="ariaID"
     :aria-describedby="ariaDescID">
-    <div class="content" :class="customClass" :size="size">
-      <div class="tab-lock" v-on:focus="focusLast()" tabindex="0"></div>
+    <div class="content" ref="content" :class="{ 'no-margin': noSpace }" :size="size">
+      <div class="tab-lock" v-on:focus="modalButtonsFocus()" tabindex="0"></div>
       <div v-if="!hideHeader" class="header">
         <div v-if="header" class="modal-title">
           <h3 :id="ariaHeaderID">
@@ -16,7 +16,7 @@
           </h3>
         </div>
       </div>
-      <div class="body" ref="body" :id="ariaDescID" tabindex="-1">
+      <div class="body" ref="body" :id="ariaDescID">
         <div v-if="contentUrl && !loaded" class="loading-anim" v-html="loadHtml"></div>
         <template>
           <slot>{{ content }}</slot>
@@ -26,7 +26,7 @@
       <div class="footer" v-if="footer">
         <slot name="footer">{{ footer }}</slot>
       </div>
-      <div class="tab-lock" v-on:focus="focusFirst()" tabindex="0"></div>
+      <div class="tab-lock" v-on:focus="modalButtonsFocus()" tabindex="0"></div>
     </div>
   </div>
 </template>
@@ -86,6 +86,8 @@ export default {
       ariaID: String,
       ariaHeaderID: String,
       ariaDescID: String,
+      links: Array,
+      noSpace: false,
       loadHtml: `<div class="bar"></div>
                 <div class="bar"></div>
                 <div class="bar"></div>
@@ -105,7 +107,9 @@ export default {
     self.ariaID = `aria-${self.uniqueId}`;
     self.ariaHeaderID = `aria-header-${self.uniqueId}`;
     self.ariaDescID = `aria-desc-${self.uniqueId}`;
+    self.links = self.$el.querySelectorAll('a, input, button, [tabindex]:not(.tab-lock), [close-trigger]');
     const container = document.querySelector('#sh-modals');
+    if (this.customClass) this.$refs.content.classList.add(this.customClass);
     if (container) {
       self.container = container;
       self.mountToContainer();
@@ -121,7 +125,6 @@ export default {
 
     if (self.openTriggerEvent) self.$bus.$on(self.openTriggerEvent, self.open);
     if (self.closeTriggerEvent) self.$bus.$on(self.closeTriggerEvent, self.close);
-
     if (self.startOpen) this.open();
   },
 
@@ -167,22 +170,36 @@ export default {
     },
 
     focusFirst() {
-      const { filter } = Array.prototype;
-      const els = this.$el.querySelectorAll('a, input, button, [tabindex], [close-trigger]');
-      const filtered = filter.call(els, (node) => !node.classList.contains('tab-lock'));
-      if (filtered) filtered[0].focus();
+      if (this.links.length === 0) {
+        this.modalButtonsFocus();
+      } else {
+        this.links[0].focus();
+      }
     },
 
     focusLast() {
-      const { filter } = Array.prototype;
-      const els = this.$el.querySelectorAll('a, input, button, [tabindex], [close-trigger]');
-      const filtered = filter.call(els, (node) => !node.classList.contains('tab-lock'));
-      if (filtered) filtered[filtered.length - 1].focus();
+      if (this.links.length === 0) {
+        this.modalButtonsFocus();
+      } else {
+        this.links[this.links.length - 1].focus();
+      }
+    },
+
+    modalButtonsFocus() {
+      this.$bus.$emit('modal-buttons-focus');
     },
 
     events() {
       const self = this;
       this.configureTriggers();
+
+      self.$bus.$on('modal-focus-first', () => {
+        if (this.active) self.focusFirst();
+      });
+
+      self.$bus.$on('modal-focus-last', () => {
+        if (this.active) self.focusLast();
+      });
 
       self.$bus.$on('close-modals', this.close);
       self.$bus.$on('modal-opening', () => {
@@ -227,9 +244,16 @@ export default {
         this.$bus.$emit('modal-opening', this.uniqueId);
         document.documentElement.classList.add('sh-modal-open');
         this.active = true;
-        this.$el.focus();
         this.$bus.$emit('modal-opened', this.uniqueId);
         if (this.openedEvent) this.$bus.$emit(this.openedEvent, this.uniqueId);
+
+        if (this.$refs.content.offsetHeight > (window.innerHeight - 160)) {
+          this.noSpace = true;
+        }
+
+        setTimeout(() => {
+          this.$refs.content.focus();
+        }, 200);
       }
 
       if (this.focusTarget) {
@@ -300,15 +324,7 @@ export default {
       const self = this;
       const container = document.createElement('div');
       container.id = 'sh-modals';
-      container.innerHTML = `
-      <div class="modal-buttons">
-        <button close-trigger>
-          <belk-icon name="close" width="32">Close Button</belk-icon>
-        </button>
-        <button print-trigger hidden>
-          <belk-icon name="print" width="32">Print Content</belk-icon>
-        </button>
-      </div>`;
+      container.innerHTML = '<sh-modal-buttons></sh-modal-buttons>';
       document.body.appendChild(container);
       self.container = container;
       self.container.addEventListener('click', (e) => {
@@ -404,48 +420,54 @@ export default {
     left: 0;
     z-index: 90;
     opacity: 0;
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.5);
     overflow: hidden;
     -webkit-overflow-scrolling: touch;
     transition: opacity 150ms ease;
-    .modal-buttons {
-      position: fixed;
-      z-index: 2;
-      display: none;
-      pointer-events: all;
-      flex-direction: column;
-      right: 0;
-      top: 0rem;
-      color: $lowlight-primary;
-      @include md {
-        top: 13rem;
-        color: $highlight-primary;
-      }
-      @include lg {
-        left: calc(100% / 2 + 39.5rem);
-      }
-      button {
-        display: flex;
-        height: 5rem;
-        width: 5rem;
-        align-content: center;
-        justify-content: center;
-        color: inherit;
-        background: transparent;
-        cursor: pointer;
-        border: none;
-        outline: none;
-        transition: all 150ms $decel;
-        transform: scale(1) translateX(0);
-        transform-origin: center center;
-        &:hover,
-        &:focus {
-          transform: scale(1.3) translateX(0);
+    *:focus {
+      outline: 2px solid $accent-tertiary !important;
+    }
+    sh-modal-buttons {
+      display: block;
+      .sh-modal-buttons {
+        position: fixed;
+        z-index: 2;
+        pointer-events: all;
+        flex-direction: column;
+        right: 0;
+        top: 0rem;
+        color: $lowlight-primary;
+        @include md {
+          top: 13rem;
+          color: $highlight-primary;
         }
-        > belk-icon {
-          position: absolute;
-          top: 50%;
-          transform: translateY(-50%);
+        @include lg {
+          left: calc(100% / 2 + 38.7rem);
+        }
+        button {
+          display: flex;
+          height: 5rem;
+          width: 5rem;
+          padding: 0 !important;
+          align-content: center;
+          justify-content: center;
+          color: inherit;
+          background: transparent;
+          cursor: pointer;
+          border: none;
+          outline: none;
+          transition: all 150ms $decel;
+          transform: scale(1) translateX(0);
+          transform-origin: center center;
+          &:hover,
+          &:focus {
+            transform: scale(1.3) translateX(0);
+          }
+          > belk-icon {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+          }
         }
       }
     }
