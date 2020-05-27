@@ -31,6 +31,12 @@ export default {
       // do ADA stuff for "which"
       this.log(which);
     },
+    views(v) {
+      if (v.length > 0) {
+        this.activate(this.active);
+        this.ADA();
+      }
+    },
   },
 
   data() {
@@ -43,11 +49,9 @@ export default {
 
   mounted() {
     const self = this;
-    self.views = self.$el.children;
     setTimeout(() => {
-      self.activate(self.active);
+      self.views = self.$el.children;
     });
-    self.ADA();
   },
 
   methods: {

@@ -28,6 +28,7 @@ export default {
       buttons: [],
       combo: Combo,
       comboOptions: [],
+      hasChanged: false,
     };
   },
 

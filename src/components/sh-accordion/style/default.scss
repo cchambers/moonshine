@@ -15,14 +15,15 @@ sh-accordion {
     }
 
     &.active {
-      .collapse {
+      .accordion-collapse {
+        display: block;
         max-height: 200vh;
         transition: all 250ms $ease;
         overflow: auto;
       }
     }
 
-    .collapse {
+    .accordion-collapse {
       max-height: 0;
       overflow: hidden;
       transition: none;

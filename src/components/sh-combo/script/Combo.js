@@ -115,8 +115,7 @@ export default {
       this.log(origin);
       this.isActive = !this.isActive;
       if (this.native) {
-        this.log('NATIVE', 2);
-        const event = new MouseEvent('click', {
+        const event = new CustomEvent('click', {
           view: window,
           bubbles: true,
           cancelable: true,
