@@ -31,7 +31,7 @@
       </div>
     </div>
     <div class="combo-select" ref="select">
-      <select v-on:input="selectHandler">
+      <select v-on:change="selectHandler">
         <option value="blank_opt" disabled selected>{{ defaultText }}</option>
         <option v-for="item in options"
         v-bind:key="item.index"
