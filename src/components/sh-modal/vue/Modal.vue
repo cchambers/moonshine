@@ -428,7 +428,7 @@ export default {
       outline: 2px solid $accent-tertiary !important;
     }
     sh-modal-buttons {
-      display: block;
+      display: none;
       .sh-modal-buttons {
         position: fixed;
         z-index: 2;
@@ -499,8 +499,8 @@ export default {
         pointer-events: initial;
         max-height: initial;
         overflow-y: auto;
-        .modal-buttons {
-          display: flex;
+        sh-modal-buttons {
+          display: block;
         }
       }
     }

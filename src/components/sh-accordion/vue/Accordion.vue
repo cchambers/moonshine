@@ -9,7 +9,7 @@
       <i class="material-icons-round">{{ iconHandler }}</i>
     </button>
     <div :aria-expanded="ariaExpanded" :aria-labelled-by="headerId" role="region">
-      <div :id="ariaControlsId" class="collapse">
+      <div :id="ariaControlsId" class="accordion-collapse">
         <div class="body">
           <slot name="body"></slot>
         </div>
