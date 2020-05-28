@@ -19,7 +19,8 @@
       "Should highlight previous search term on keydown.down, loop to end at beginning of list",
       "Should pre-load data from location.param.q parameter",
       "Should show [Clear] button (cancel icon) when character count is greater than 0",
-      "Should perform total text selection when focused"
+      "Should perform total text selection when focused",
+      "IS NOT - Should remove special characters on paste"
     ],
 
     "Recent Searches (container)": [
