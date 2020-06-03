@@ -61,7 +61,20 @@ let delegations = {
         });
 			}
     }
-	]
+  ],
+  onmousenter: [
+    {
+      target: '[hover-emit]',
+      handler(e) {
+        e.preventDefault();
+        let target = e.target;
+        EventBus.$emit(target.getAttribute('hover-emit'), {
+          which: target.getAttribute('which'),
+          origin: target,
+        });
+      }
+    }
+  ]
 };
 
 function bindAll() {
