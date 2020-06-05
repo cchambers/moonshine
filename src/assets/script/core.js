@@ -1,6 +1,7 @@
 /* eslint-disable func-names */
 const app = {
   interaction: 'keyboard',
+  banners: [],
 
   init() {
     app.setup().events();
@@ -22,7 +23,18 @@ const app = {
       demos[x].setAttribute('base-code', html);
       // demos[x].innerHTML = '';
     }
+
+    this.banners = document.querySelectorAll('sh-banner[reveal-event]');
+    if (this.banners.length) this.configureBanners();
     return this;
+  },
+
+  configureBanners() {
+    const { banners } = this;
+    for (let x = 0, l = banners.length; x < l; x += 1) {
+      const html = banners[x].innerHTML;
+      banners[x].setAttribute('base-code', html);
+    }
   },
 
   events() {

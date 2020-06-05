@@ -62,13 +62,13 @@ let delegations = {
 			}
     }
   ],
-  onmousenter: [
+  mouseover: [
     {
-      target: '[hover-emit]',
+      target: '[hover-event]',
       handler(e) {
-        e.preventDefault();
         let target = e.target;
-        EventBus.$emit(target.getAttribute('hover-emit'), {
+        console.log('hover');
+        EventBus.$emit(target.getAttribute('hover-event'), {
           which: target.getAttribute('which'),
           origin: target,
         });
@@ -94,7 +94,7 @@ function bindAll() {
 function setupEvent(event) {
 // create a new listener... 
 	document.addEventListener(event, function(e) {
-		let arr = delegations[event];
+    let arr = delegations[event];
 		// for every item that needs to be watched on *event*
 		for (let x = 0, l = arr.length; x < l; x += 1) {
 			if (e.target.matches) {
