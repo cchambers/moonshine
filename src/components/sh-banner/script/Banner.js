@@ -49,7 +49,7 @@ export default {
       whichback: 0,
       revealed: true,
       code: '',
-      html: 'Loading...',
+      html: undefined,
     };
   },
 
