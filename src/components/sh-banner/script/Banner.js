@@ -10,6 +10,9 @@ export default {
       type: String,
       default: 'lowlight-secondary, lowlight-tertiary',
     },
+    baseCode: {
+      type: String,
+    },
     slideFrom: {
       type: String,
       default: 'bottom',
@@ -30,6 +33,9 @@ export default {
       type: String,
       default: '400',
     },
+    revealEvent: {
+      type: String,
+    },
   },
 
   data() {
@@ -41,18 +47,43 @@ export default {
       background: 'back-lowlight-primary',
       backgroundArray: [],
       whichback: 0,
+      revealed: true,
+      code: '',
+      html: undefined,
     };
   },
 
+  created() {
+    if (this.baseCode) {
+      this.revealed = false;
+    }
+  },
+
   mounted() {
-    this.findCarousel();
-    this.configureBackgrounds();
+    const self = this;
+    if (self.revealEvent) {
+      self.$bus.$on(self.revealEvent, () => {
+        self.renderCode(this.baseCode);
+        self.revealed = true;
+        self.$bus.$off(self.revealEvent);
+      });
+    }
+    if (!this.baseCode) {
+      self.init();
+    }
   },
 
   methods: {
-    // events() {
-    //   const self = this;
-    // },
+    init() {
+      this.findCarousel();
+      this.configureBackgrounds();
+      this.loadImages();
+    },
+
+    renderCode(code) {
+      this.html = code;
+      setTimeout(this.init);
+    },
 
     findCarousel() {
       const self = this;
@@ -86,6 +117,17 @@ export default {
       }
       this.backgroundArray = arr;
       this.handleBackground(0);
+    },
+
+    loadImages() {
+      const imgs = this.$el.querySelectorAll('img[data-src]');
+      if (imgs.length) {
+        for (let x = 0, l = imgs.length; x < l; x += 1) {
+          const el = imgs[x];
+          const src = el.getAttribute('data-src');
+          el.src = src;
+        }
+      }
     },
 
     handleCarousel() {
