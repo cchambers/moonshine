@@ -67,7 +67,6 @@ let delegations = {
       target: '[hover-event]',
       handler(e) {
         let target = e.target;
-        console.log('hover');
         EventBus.$emit(target.getAttribute('hover-event'), {
           which: target.getAttribute('which'),
           origin: target,
