@@ -54,7 +54,6 @@ sh-rating {
     bottom: 0;
     font-family: "Material Icons";
     content: attr(icon) attr(icon) attr(icon) attr(icon) attr(icon);
-    letter-spacing: -1.65rem;
     color: $accent-tertiary;
     z-index: 0;
   }
