@@ -146,8 +146,7 @@ sh-modal {
 
   &.fullscreen {
     .content {
-      $fullscreenMargin: 1.5rem;
-
+      margin: 1.5rem;
       width: 100vw;
       max-width: initial;
       min-height: 100vh;

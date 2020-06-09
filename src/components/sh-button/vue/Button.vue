@@ -39,7 +39,7 @@ export default {
     group: String,
     closeTrigger: Boolean,
     printTrigger: Boolean,
-    toggle: Boolean,
+    toggle: String,
     round: String,
     outline: Boolean,
     clickEvent: String,
@@ -56,6 +56,7 @@ export default {
       emitData: null,
       buttonEl: this.$refs.button,
       isRole: false,
+      once: false,
     };
   },
 
@@ -117,6 +118,11 @@ export default {
     },
 
     doToggle() {
+      if (this.toggle === 'once' && !this.once) {
+        this.once = true;
+      } else {
+        return;
+      }
       if (this.group && this.isActive) return;
       this.isActive = !this.isActive;
     },

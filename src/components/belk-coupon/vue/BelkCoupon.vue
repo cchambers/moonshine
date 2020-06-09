@@ -37,7 +37,7 @@
         <div class="coupon-exclusions-actual" v-else>{{exclusions}}</div>
       </div>
       <div class="coupon-buttons" v-if="!print">
-        <sh-button variant="primary" toggle
+        <sh-button variant="primary" toggle="once"
           @click="addCoupon"
           active-text="Added to Bag"
           active-icon="check">
