@@ -340,7 +340,7 @@ export default {
         });
       }
 
-      // internal affirmation triggers
+      // internal rejection triggers
       const rejectTriggers = '[reject-trigger]';
       self.rejectTriggers = self.$el.querySelectorAll(rejectTriggers);
       for (let y = 0; y < self.rejectTriggers.length; y += 1) {
