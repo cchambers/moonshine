@@ -24,7 +24,7 @@ EventBus.$emit = (...args) => {
 	// Re-emit events as native for other components.
 	let data = args.slice(1);
 	data = data[0];
-  let nativeEvent = (typeof data === 'object') ? new CustomEvent(event, data) : nativeEvent = new CustomEvent(event);
+  let nativeEvent = (typeof data === 'object') ? new CustomEvent(event, data) : nativeEvent = new CustomEvent(event, { data: data });
   const emitter = document.querySelector('belk-bus') || document;
 	emitter.dispatchEvent(nativeEvent);
 };

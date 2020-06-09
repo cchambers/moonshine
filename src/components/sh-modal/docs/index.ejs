@@ -157,6 +157,17 @@
             </ul>
           </td>
         </tr>
+        <tr>
+          <td>confirmation-events</td>
+          <td>Boolean</td>
+          <td>
+            <ul>
+              <li>
+                Enable <code>modal-affirmed</code> or <code>modal-rejected</code> events for this modal.
+              </li>
+            </ul>
+          </td>
+        </tr>
       </tbody>
     </table>
 
@@ -273,6 +284,30 @@
             </ul>
           </td>
         </tr>
+        <tr>
+          <td>modal-closing</td>
+          <td>
+            String
+          </td>
+          <td>
+            <ul>
+              <li>Fires before the modal closes.</li>
+              <li>Payload is the ID of the modal that will close.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>modal-closed</td>
+          <td>
+            String
+          </td>
+          <td>
+            <ul>
+              <li>Fires immediately after the modal has closed.</li>
+              <li>Payload is the ID of the modal that has closed.</li>
+            </ul>
+          </td>
+        </tr>
       </tbody>
     </table>
   </section>
@@ -280,10 +315,10 @@
   <section id="examples">
     <h2>Examples</h2>
 
-    <h3 class="margin-t">Default</h3>
+    <h3 class="margin-t">Confirmation Modal</h3>
     <lib-toolbar>
-      <sh-button modal-trigger="demo-default">Open modal</sh-button>
-      <sh-modal unique-id="demo-default" header="Modal Header">
+      <sh-button modal-trigger="demo-default">Open Confirmation Modal</sh-button>
+      <sh-modal confirmation-events unique-id="demo-default" header="Modal Header">
         <div>
           <p>
             Magna <a href="#" modal-trigger="demo-2">demo modal 2</a> commodo ullamco occaecat ut ex ea reprehenderit.
@@ -518,7 +553,7 @@
           </p>
         </div>
         <div slot="footer">
-          <p class="text-center">I <a href="#" close-trigger>agree</a> to the terms and conditions.</p>
+          <p class="text-center">I <a href="#" affirm-trigger close-trigger>agree</a> to the terms and conditions.</p>
         </div>
       </sh-modal>
     </lib-toolbar>

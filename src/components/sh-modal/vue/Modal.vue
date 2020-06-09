@@ -23,7 +23,7 @@
         </template>
 
       </div>
-      <div class="footer" v-if="footer">
+      <div class="footer">
         <slot name="footer">{{ footer }}</slot>
       </div>
       <div class="tab-lock" v-on:focus="modalButtonsFocus()" tabindex="0"></div>
@@ -51,6 +51,7 @@ export default {
     },
     content: String,
     contentUrl: String,
+    confirmationEvents: Boolean,
     loadedUrl: String,
     contentSelector: String,
     customClass: String,
@@ -77,11 +78,14 @@ export default {
   data() {
     return {
       triggers: [],
+      affirmTriggers: [],
       closeTriggers: [],
+      rejectTriggers: [],
       container: null,
       loaded: false,
       loading: false,
       active: false,
+      affirmed: undefined,
       blockHistory: false,
       ariaID: String,
       ariaHeaderID: String,
@@ -201,7 +205,19 @@ export default {
         if (this.active) self.focusLast();
       });
 
-      self.$bus.$on('close-modals', this.close);
+      self.$bus.$on('close-modals', () => {
+        if (this.active) {
+          if (this.confirmationEvents) {
+            if (this.affirmed) {
+              self.$bus.$emit('modal-affirmed', self.uniqueId);
+            } else {
+              self.$bus.$emit('modal-rejected', self.uniqueId);
+            }
+          }
+          this.close();
+        }
+      });
+
       self.$bus.$on('modal-opening', () => {
         self.close(false);
       });
@@ -230,6 +246,8 @@ export default {
     },
 
     open() {
+      if (this.confirmationEvents) this.affirmed = undefined;
+
       if (!this.loaded && this.contentUrl) {
         if (this.contentUrl !== this.loadedUrl) this.loadContent();
       }
@@ -311,12 +329,36 @@ export default {
         });
       }
 
+      // internal affirmation triggers
+      const affirmTriggers = '[affirm-trigger]';
+      self.affirmTriggers = self.$el.querySelectorAll(affirmTriggers);
+      for (let y = 0; y < self.affirmTriggers.length; y += 1) {
+        const el = self.affirmTriggers[y];
+        el.addEventListener('click', () => {
+          self.affirmed = true;
+          if (self.confirmationEvents) self.$bus.$emit('modal-affirmed', self.uniqueId);
+        });
+      }
+
+      // internal affirmation triggers
+      const rejectTriggers = '[reject-trigger]';
+      self.rejectTriggers = self.$el.querySelectorAll(rejectTriggers);
+      for (let y = 0; y < self.rejectTriggers.length; y += 1) {
+        const el = self.rejectTriggers[y];
+        el.addEventListener('click', () => {
+          self.affirmed = false;
+          if (self.confirmationEvents) self.$bus.$emit('modal-rejected', self.uniqueId);
+        });
+      }
+
+      // internal close triggers
       const closeSelector = '[close-trigger]';
       self.closeTriggers = self.$el.querySelectorAll(closeSelector);
-
       for (let y = 0; y < self.closeTriggers.length; y += 1) {
         const el = self.closeTriggers[y];
-        el.addEventListener('click', self.close);
+        el.addEventListener('click', () => {
+          self.$bus.$emit('close-modals');
+        });
       }
     },
 
