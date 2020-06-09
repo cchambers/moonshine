@@ -1,9 +1,13 @@
 <template>
   <div class="sh-banner"
-    :variant="variant">
-    <div class="banner-background" :class="background" :animate="animate">
-      <slot></slot>
-    </div>
+    :variant="variant"
+    :hidden="!revealed">
+    <div class="banner-background"
+      :class="background"
+      :animate="animate" ref="content">
+        <slot></slot>
+        <template v-if="html" v-html="html"></template>
+      </div>
   </div>
 </template>
 
