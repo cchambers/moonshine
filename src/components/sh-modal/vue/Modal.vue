@@ -2,7 +2,7 @@
 <template>
   <div class="sh-modal" role="dialog"
     :variant="variant"
-    :class="{ fullscreen: fullscreen, active: active }"
+    :class="{ fullscreen: fullscreen, active: active, drawer: drawer }"
     :reveal="reveal"
     :id="uniqueId"
     :aria-labelledby="ariaID"
@@ -55,6 +55,8 @@ export default {
     loadedUrl: String,
     contentSelector: String,
     customClass: String,
+    drawer: Boolean,
+    buttonText: String,
     dynamicHTML: String,
     noHistory: Boolean,
     hideHeader: Boolean,
