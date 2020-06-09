@@ -132,9 +132,12 @@ sh-modal {
     }
   }
 
-  .footer:not(:empty) {
-    padding: 0.5rem $rem;
+  .footer {
+    padding: 2rem $rem;
     margin-top: 0;
+    &:empty {
+      display: none;
+    }
   }
 
   [close-trigger] {
