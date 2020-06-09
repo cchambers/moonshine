@@ -8,7 +8,6 @@ export default {
   props: {
     backgrounds: {
       type: String,
-      default: 'lowlight-secondary, lowlight-tertiary',
     },
     baseCode: {
       type: String,
@@ -44,7 +43,7 @@ export default {
       carousel: undefined,
       carouselId: undefined,
       carouselSpeed: 5000,
-      background: 'back-lowlight-primary',
+      background: undefined,
       backgroundArray: [],
       whichback: 0,
       revealed: true,
@@ -76,7 +75,7 @@ export default {
   methods: {
     init() {
       this.findCarousel();
-      this.configureBackgrounds();
+      if (this.backgrounds) this.configureBackgrounds();
       this.loadImages();
     },
 
