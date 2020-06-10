@@ -15,6 +15,11 @@
     background-color: $var;
     background-color: var(--#{$name});
   }
+
+  .border-#{$name} {
+    border-color: $var;
+    border-color: var(--#{$name});
+  }
 }
 
 @each $name, $mod in $box-model-mods {
