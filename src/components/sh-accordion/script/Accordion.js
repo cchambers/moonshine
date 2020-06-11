@@ -107,7 +107,6 @@ export default {
       }
 
       this.$bus.$on('accordion-trigger', (data) => {
-        console.log(data);
         if (data.which === this.uniqueId) this.toggleActive();
         if (data.origin) data.origin.setAttribute('aria-expanded', this.ariaExpanded);
         if (data.origin) {
