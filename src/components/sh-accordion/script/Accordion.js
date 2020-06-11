@@ -92,7 +92,9 @@ export default {
       this.$bus.$emit('accordion-opening', payload);
       this.ariaExpanded = true;
       this.$bus.$emit('accordion-opened', payload);
-      this.$el.scrollIntoView();
+      setTimeout(() => {
+        this.$el.scrollIntoView();
+      }, 100);
     },
 
     events() {
@@ -107,6 +109,9 @@ export default {
       this.$bus.$on('accordion-trigger', (data) => {
         if (data.which === this.uniqueId) this.toggleActive();
         if (data.origin) data.origin.setAttribute('aria-expanded', this.ariaExpanded);
+        if (data.target) {
+          if (data.target.hasAttribute('focus-me')) data.target.scrollIntoView();
+        }
       });
 
       this.$bus.$on('hashchange', this.hashHandler);
