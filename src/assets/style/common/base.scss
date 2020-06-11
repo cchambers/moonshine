@@ -12,11 +12,21 @@
 html {
   font-size: 8px;
   box-sizing: border-box;
-  scroll-behavior: smooth;
-  
   @include md {
     font-size: 10px;
   }
+}
+
+html, body {
+  scroll-behavior: smooth;
+}
+
+.destyle {
+  border: none;
+  outline: none;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
 // /* Scaling CSS Configuration */
@@ -445,10 +455,6 @@ html {
   border: none;
 }
 
-[class*=border-] {
-  border-color: inherit;
-}
-
 .border-1 {
   border-width: 1px;
 }
@@ -748,10 +754,14 @@ ol.lower-alpha {
 .case-title {
   text-transform: capitalize;
 }
-
 .strike,
 .deco-strike {
   text-decoration: line-through;
+}
+
+.underline,
+.deco-underline {
+  text-decoration: underline;
 }
 
 .deco-none {
