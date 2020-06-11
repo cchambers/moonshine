@@ -84,6 +84,7 @@ const iconJSON = {
   },
 }
 
+
 export default {
   mixins: [ComponentPrototype],
 

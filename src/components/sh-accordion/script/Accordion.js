@@ -109,8 +109,12 @@ export default {
       this.$bus.$on('accordion-trigger', (data) => {
         if (data.which === this.uniqueId) this.toggleActive();
         if (data.origin) data.origin.setAttribute('aria-expanded', this.ariaExpanded);
-        if (data.target) {
-          if (data.target.hasAttribute('focus-me')) data.target.scrollIntoView();
+        if (data.origin) {
+          if (data.origin.hasAttribute('focus-me')) {
+            setTimeout(() => {
+              data.origin.scrollIntoView();
+            }, 101);
+          }
         }
       });
 
