@@ -14,9 +14,7 @@
       v-if="activeIcon"><belk-icon width="25"
       :name="activeIcon"></belk-icon></span>
     <span class="actual-text"><slot></slot></span>
-    <span class="active-text" v-if="isActive">
-      {{activeText}}
-    </span>
+    <span class="active-text" v-if="isActive">{{activeText}}</span>
     <slot name="after-text"></slot>
   </button>
 </template>
