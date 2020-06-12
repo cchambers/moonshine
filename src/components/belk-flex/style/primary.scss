@@ -30,6 +30,7 @@ belk-flex[variant="toolbar"] {
     >div:hover,
     >a:hover,
     >button:hover {
+      display: block;
       background-color: $highlight-tertiary;
       cursor: pointer;
     }
