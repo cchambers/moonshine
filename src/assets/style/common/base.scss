@@ -228,6 +228,7 @@ html, body {
 
 @media (max-width: 768px) {
   .srow {
+    clear: both;
     flex-direction: column;
   }
 
