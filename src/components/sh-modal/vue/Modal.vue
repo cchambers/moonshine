@@ -246,36 +246,35 @@ export default {
     },
 
     open() {
-      if (this.confirmationEvents) this.affirmed = undefined;
+      const self = this;
+      if (self.confirmationEvents) self.affirmed = undefined;
 
-      if (!this.loaded && this.contentUrl) {
-        if (this.contentUrl !== this.loadedUrl) this.loadContent();
+      if (!self.loaded && self.contentUrl) {
+        if (self.contentUrl !== self.loadedUrl) self.loadContent();
       }
 
-      if (this.overlay) {
-        this.container.setAttribute('overlay', this.overlay);
+      if (self.overlay) {
+        self.container.setAttribute('overlay', self.overlay);
       } else {
-        this.container.removeAttribute('overlay');
+        self.container.removeAttribute('overlay');
       }
 
-      if (!this.active) {
-        this.$bus.$emit('modal-opening', this.uniqueId);
+      if (!self.active) {
+        self.$bus.$emit('modal-opening', self.uniqueId);
         document.documentElement.classList.add('sh-modal-open');
-        this.active = true;
-        this.$bus.$emit('modal-opened', this.uniqueId);
-        if (this.openedEvent) this.$bus.$emit(this.openedEvent, this.uniqueId);
+        self.active = true;
+        self.$bus.$emit('modal-opened', self.uniqueId);
+        if (self.openedEvent) self.$bus.$emit(self.openedEvent, self.uniqueId);
 
-        if (this.$refs.content.offsetHeight > (window.innerHeight - 160)) {
-          this.noSpace = true;
-        }
+        self.manageHeight();
 
         setTimeout(() => {
-          this.$refs.content.focus();
+          self.$refs.content.focus();
         }, 200);
       }
 
-      if (this.focusTarget) {
-        const target = this.$el.querySelector(this.focusTarget);
+      if (self.focusTarget) {
+        const target = self.$el.querySelector(self.focusTarget);
         if (target) target.focus();
       }
     },
@@ -385,6 +384,12 @@ export default {
       });
     },
 
+    manageHeight() {
+      if (this.$refs.content.offsetHeight > (window.innerHeight - 160)) {
+        this.noSpace = true;
+      }
+    },
+
     doError() {
       this.$refs.body.innerHTML = `<p class="error">There was a problem loading content from <a href='${window.location.host}${this.contentUrl}'>${window.location.host}${this.contentUrl}</a>.</p>`;
     },
@@ -433,6 +438,7 @@ export default {
             } else {
               self.$refs.body.appendChild(html);
               self.loadedUrl = self.contentUrl;
+              self.manageHeight();
             }
           } else {
             self.doError();
