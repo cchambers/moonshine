@@ -29,15 +29,19 @@
   <belk-flex variant="toolbar" flip="mobile">
     <a href="/customer-service/faqs/">
       <div class="bold">Quick answers at your fingertips.</div>
-      <belk-icon name="faqs" width="100" class="lowlight-primary pad-y-little">Frequently Asked Questions</belk-icon>
+      <belk-icon name="faqs" width="140" class="lowlight-primary pad-y-little">Frequently Asked Questions</belk-icon>
       <div class="deco-underline">Start Here</div>
     </a>
-    <div class="liveperson_replace">
-      <div class="bold">Chat Offline</div>
+    <div class="live-chat-container">
+      <div class="chat-offline lowlight-quaternary">
+        <div class="bold">Chat Offline</div>
+        <belk-icon name="speech-bubble" width="140" class="pad-y-little">Chat is Offline</belk-icon>
+        <div>We're Offline</div>
+      </div>
     </div>
     <button class="destyle flex col px-16" emit="accordion-trigger" focus-me which="contact-form-1">
       <div class="bold">Send us a message 24/7</div>
-      <belk-icon name="envelope" width="100" class="lowlight-primary pad-y-little">Send us a Message</belk-icon>
+      <belk-icon name="envelope" width="140" class="lowlight-primary pad-y-little">Send us a Message</belk-icon>
       <div class="deco-underline">Start a Message</div>
     </button>
   </belk-flex>
