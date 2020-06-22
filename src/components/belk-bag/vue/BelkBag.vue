@@ -35,7 +35,7 @@ export default {
 
   name: 'BelkBag',
   props: {
-    count: String,
+    count: Number,
     price: String,
   },
 
