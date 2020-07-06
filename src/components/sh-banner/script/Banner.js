@@ -60,7 +60,7 @@ export default {
 
   mounted() {
     const self = this;
-    if (self.revealEvent) {
+    if (self.revealEvent && !this.revealed) {
       self.$bus.$on(self.revealEvent, () => {
         self.renderCode(this.baseCode);
         self.revealed = true;
