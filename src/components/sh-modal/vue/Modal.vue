@@ -16,7 +16,7 @@
           </h3>
         </div>
       </div>
-      <div class="body" ref="body" :id="ariaDescID">
+      <div class="body" :style="{ 'max-width': maxWidth }" ref="body" :id="ariaDescID">
         <div v-if="contentUrl && !loaded" class="loading-anim" v-html="loadHtml"></div>
         <template>
           <slot>{{ content }}</slot>
@@ -56,6 +56,7 @@ export default {
     contentSelector: String,
     customClass: String,
     dynamicHTML: String,
+    maxWidth: String,
     noHistory: Boolean,
     hideHeader: Boolean,
     fullscreen: Boolean,
@@ -209,7 +210,7 @@ export default {
         if (this.active) {
           if (this.confirmationEvents) {
             if (this.affirmed) {
-              self.$bus.$emit('modal-affirmed', self.uniqueId);
+              // self.$bus.$emit('modal-affirmed', self.uniqueId);
             } else {
               self.$bus.$emit('modal-rejected', self.uniqueId);
             }
