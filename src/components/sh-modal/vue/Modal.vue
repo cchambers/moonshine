@@ -209,11 +209,11 @@ export default {
       self.$bus.$on('close-modals', () => {
         if (this.active) {
           if (this.confirmationEvents) {
-            if (this.affirmed) {
-              // self.$bus.$emit('modal-affirmed', self.uniqueId);
-            } else {
+            // if (this.affirmed) {
+            //   // self.$bus.$emit('modal-affirmed', self.uniqueId);
+            // } else {
               self.$bus.$emit('modal-rejected', self.uniqueId);
-            }
+            // }
           }
           this.close();
         }
