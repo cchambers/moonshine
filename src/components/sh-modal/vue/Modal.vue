@@ -79,6 +79,7 @@ export default {
   data() {
     return {
       triggers: [],
+      triggerLinks: [],
       affirmTriggers: [],
       closeTriggers: [],
       rejectTriggers: [],
@@ -212,7 +213,7 @@ export default {
             // if (this.affirmed) {
             //   // self.$bus.$emit('modal-affirmed', self.uniqueId);
             // } else {
-              self.$bus.$emit('modal-rejected', self.uniqueId);
+            self.$bus.$emit('modal-rejected', self.uniqueId);
             // }
           }
           this.close();
@@ -321,11 +322,33 @@ export default {
       const self = this;
       const selector = `[modal-trigger="${self.uniqueId}"]`;
       self.triggers = document.querySelectorAll(selector);
-      for (let x = 0; x < self.triggers.length; x += 1) {
+      for (let x = 0, l = self.triggers.length; x < l; x += 1) {
         const el = self.triggers[x];
         el.addEventListener('click', (e) => {
+          const data = e.target.dataset;
           e.preventDefault();
           window.location.hash = `#${self.uniqueId}`;
+          if (data) {
+            self.$bus.$emit('modal-trigger-data', {
+              id: self.uniqueId,
+              data,
+            });
+          }
+        });
+      }
+
+      const triggerLinks = `[href="#${self.uniqueId}"]`;
+      self.triggerLinks = document.querySelectorAll(triggerLinks);
+      for (let x = 0, l = self.triggerLinks.length; x < l; x += 1) {
+        const el = self.triggerLinks[x];
+        el.addEventListener('click', (e) => {
+          const data = e.target.dataset;
+          if (data) {
+            self.$bus.$emit('modal-trigger-data', {
+              id: self.uniqueId,
+              data,
+            });
+          }
         });
       }
 
