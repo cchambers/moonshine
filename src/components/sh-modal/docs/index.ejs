@@ -315,6 +315,44 @@
             </ul>
           </td>
         </tr>
+        <tr>
+          <td>modal-affirmed</td>
+          <td>
+            String
+          </td>
+          <td>
+            <ul>
+              <li>Fires when a an <code>affirm-trigger</code> is clicked.</li>
+              <li>Payload is the ID of the modal that has closed.</li>
+              <li>Modal <strong>MUST</strong> have <code>[confirmation-events]</code> applied.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>modal-rejected</td>
+          <td>
+            String
+          </td>
+          <td>
+            <ul>
+              <li>Fires when a an <code>reject-trigger</code> OR <code>close-trigger</code> is clicked.</li>
+              <li>Payload is the ID of the modal that has closed.</li>
+              <li>Modal <strong>MUST</strong> have <code>[confirmation-events]</code> applied.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>modal-trigger-data</td>
+          <td>
+            Object
+          </td>
+          <td>
+            <ul>
+              <li>Fires immediately after the modal trigger is clicked.</li>
+              <li>Payload contains the <code>id</code> of the target modal and whatever dataset is on the trigger.</li>
+            </ul>
+          </td>
+        </tr>
       </tbody>
     </table>
   </section>
