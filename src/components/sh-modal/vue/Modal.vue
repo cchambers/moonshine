@@ -463,6 +463,7 @@ export default {
               self.$refs.body.appendChild(html);
               self.loadedUrl = self.contentUrl;
               self.manageHeight();
+              self.$bus.$emit('modal-content-loaded', self.uniqueId);
             }
           } else {
             self.doError();
