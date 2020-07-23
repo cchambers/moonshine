@@ -11,17 +11,6 @@
           &lt;belk-icon name="close"&gt;Title for specific case.&lt;/belk-icon&gt;
       </code>
     </pre>
-    <test-thing
-        prop1="1"
-        prop2="example text"
-        prop3="true"
-        string-prop="123"
-        boolean-prop="false"
-        number-prop="123"
-        long-prop-name="long name"
-      >
-        <!-- Some comments -->
-      </test-thing>
   </section>
 
   <section id="reference" class="baseline30">
@@ -73,16 +62,18 @@
         </tr>
       </tbody>
     </table>
-    <sh-button print-trigger variant="primary" outline round scale="80">
-      <belk-icon height="20" width="20" name="print"></belk-icon>
-      Print
-    </sh-button>
   </section>
 
   <section id="examples">
     <h2>Examples</h2>
     <lib-icons></lib-icons>
     
+    <h2>Used with <code>sh-button</code></h2>
+    <lib-toolbar>
+      <sh-button print-trigger variant="primary" outline round scale="80">
+        <belk-icon height="20" width="20" name="print"></belk-icon> Print
+      </sh-button>
+    </lib-toolbar>
   </section>
 
   <section id="changelog">

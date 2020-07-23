@@ -29,7 +29,10 @@
               <div class="header" cat="tools">Tools</div>
               <ul>
                 <li>
-                  <a href="/tools/banner-builder">Banner Builder</a>
+                  <a href="/tools/oo-class-list">OO Class List</a>
+                </li>
+                <li>
+                  <a href="/tools/shared-modal-list">Shared Modals</a>
                 </li>
               </ul>
             </li>

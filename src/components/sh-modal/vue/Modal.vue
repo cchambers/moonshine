@@ -51,8 +51,8 @@ export default {
     },
     content: String,
     contentUrl: String,
+    alwaysReload: Boolean,
     confirmationEvents: Boolean,
-    loadedUrl: String,
     contentSelector: String,
     customClass: String,
     dynamicHTML: String,
@@ -85,6 +85,7 @@ export default {
       rejectTriggers: [],
       container: null,
       loaded: false,
+      loadedUrl: String,
       loading: false,
       active: false,
       affirmed: undefined,
@@ -555,7 +556,7 @@ export default {
       /* Generate background colors for every bg */
       @each $name, $hex in $colors {
         &[overlay="#{$name}"] {
-          @include background-opacity($hex, 0.5);
+          @include background-opacity($hex, 0.8);
         }
       }
     }
