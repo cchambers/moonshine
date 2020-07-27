@@ -132,7 +132,7 @@ export default {
 
     if (self.openTriggerEvent) self.$bus.$on(self.openTriggerEvent, self.open);
     if (self.closeTriggerEvent) self.$bus.$on(self.closeTriggerEvent, self.close);
-    if (self.startOpen) this.open();
+    if (self.startOpen) self.open();
   },
 
   methods: {
@@ -226,8 +226,9 @@ export default {
       });
 
       self.$bus.$on('open-modal', (data) => {
-        if (data.url !== this.loadedUrl) this.contentUrl = data.url;
-        if (data.id === this.uniqueId) this.open();
+        const params = data.params || {};
+        if (data.url && data.url !== this.loadedUrl) this.loadedUrl = data.url;
+        if (data.id === this.uniqueId) this.open(params);
       });
 
       window.addEventListener('keyup', (e) => {
@@ -248,8 +249,17 @@ export default {
       }
     },
 
-    open() {
+    open(params) {
       const self = this;
+
+      if (params) {
+        // jqui converter
+        console.log('parameters', params);
+        // html
+        // title
+        // autoOpen
+      }
+
       if (self.confirmationEvents) self.affirmed = undefined;
 
       if (!self.loaded && self.contentUrl) {
