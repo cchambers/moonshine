@@ -87,7 +87,7 @@ function bindAll() {
     });
   });
 
-  document.addEventListener('sh-relay', (data) => {
+  document.addEventListener('sh-emit', (data) => {
     const detail = data.detail;
     const event = detail.eventName;
     EventBus.$emit(event, detail);
@@ -144,10 +144,10 @@ window.sh = {
     return element.__vue_custom_element__.$children[0];
   },
 
-  relay(name, data) {
+  emit(name, data) {
     var obj = { detail: data }
     obj.detail.eventName = name;
-    var nativeEvent = new CustomEvent('sh-relay', obj);
+    var nativeEvent = new CustomEvent('sh-emit', obj);
     const emitter = document.querySelector('belk-bus') || document;
     emitter.dispatchEvent(nativeEvent);
   }

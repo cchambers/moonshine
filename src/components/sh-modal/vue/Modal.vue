@@ -18,9 +18,10 @@
       </div>
       <div class="body" :style="{ 'max-width': maxWidth }" ref="body" :id="ariaDescID">
         <div v-if="contentUrl && !loaded" class="loading-anim" v-html="loadHtml"></div>
-        <template>
+        <template v-if="!dynamicHTML">
           <slot>{{ content }}</slot>
         </template>
+        <div v-if="dynamicHTML" v-html="dynamicHTML"></div>
 
       </div>
       <div class="footer">
@@ -55,7 +56,6 @@ export default {
     confirmationEvents: Boolean,
     contentSelector: String,
     customClass: String,
-    dynamicHTML: String,
     maxWidth: String,
     noHistory: Boolean,
     hideHeader: Boolean,
@@ -95,6 +95,9 @@ export default {
       ariaDescID: String,
       links: Array,
       noSpace: false,
+      openedCallback: undefined,
+      closedCallback: undefined,
+      dynamicHTML: undefined,
       loadHtml: `<div class="bar"></div>
                 <div class="bar"></div>
                 <div class="bar"></div>
@@ -226,9 +229,20 @@ export default {
       });
 
       self.$bus.$on('open-modal', (data) => {
-        const params = data.params || {};
         if (data.url && data.url !== this.loadedUrl) this.loadedUrl = data.url;
-        if (data.id === this.uniqueId) this.open(params);
+        if (data.id === this.uniqueId) this.open();
+      });
+
+      self.$bus.$on('update-modal', (data) => {
+        const { params } = data;
+        const which = data.id;
+        if (which === self.uniqueId) {
+          if (params === 'close') {
+            self.close();
+          } else {
+            self.paramsHandler(params);
+          }
+        }
       });
 
       window.addEventListener('keyup', (e) => {
@@ -249,16 +263,16 @@ export default {
       }
     },
 
-    open(params) {
+    paramsHandler(data) {
       const self = this;
+      if (data.html) self.dynamicHTML = data.html;
+      if (typeof data.open === 'function') self.openedCallback = data.open;
+      if (typeof data.close === 'function') self.closedCallback = data.close;
+      if (data.autoOpen) self.open();
+    },
 
-      if (params) {
-        // jqui converter
-        console.log('parameters', params);
-        // html
-        // title
-        // autoOpen
-      }
+    open() {
+      const self = this;
 
       if (self.confirmationEvents) self.affirmed = undefined;
 
@@ -278,6 +292,7 @@ export default {
         self.active = true;
         self.$bus.$emit('modal-opened', self.uniqueId);
         if (self.openedEvent) self.$bus.$emit(self.openedEvent, self.uniqueId);
+        if (self.openedCallback) self.openedCallback();
 
         self.manageHeight();
 
@@ -299,6 +314,7 @@ export default {
         this.active = false;
         this.$bus.$emit('modal-closed', this.uniqueId);
         if (this.closedEvent) this.$bus.$emit(this.closedEvent, this.uniqueId);
+        if (this.closedCallback) this.closedCallback();
       }
       if (clearHash) this.clearHash();
     },
@@ -336,7 +352,7 @@ export default {
       for (let x = 0, l = self.triggers.length; x < l; x += 1) {
         const el = self.triggers[x];
         el.addEventListener('click', (e) => {
-          const data = e.target.dataset;
+          const data = el.dataset;
           e.preventDefault();
           window.location.hash = `#${self.uniqueId}`;
           if (data) {
@@ -352,8 +368,8 @@ export default {
       self.triggerLinks = document.querySelectorAll(triggerLinks);
       for (let x = 0, l = self.triggerLinks.length; x < l; x += 1) {
         const el = self.triggerLinks[x];
-        el.addEventListener('click', (e) => {
-          const data = e.target.dataset;
+        el.addEventListener('click', () => {
+          const data = el.dataset;
           if (data) {
             self.$bus.$emit('modal-trigger-data', {
               id: self.uniqueId,
