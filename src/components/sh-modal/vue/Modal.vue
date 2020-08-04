@@ -268,6 +268,10 @@ export default {
       if (data.html) self.dynamicHTML = data.html;
       if (typeof data.open === 'function') self.openedCallback = data.open;
       if (typeof data.close === 'function') self.closedCallback = data.close;
+      if (data.url) {
+        self.contentUrl = data.url;
+        self.loadContent();
+      }
       if (data.autoOpen) self.open();
     },
 
@@ -525,7 +529,7 @@ export default {
     -webkit-overflow-scrolling: touch;
     transition: opacity 150ms ease;
     *:focus {
-      outline: 2px solid $accent-tertiary !important;
+      outline: 2px solid $accent-tertiary;
     }
     sh-modal-buttons {
       display: none;
