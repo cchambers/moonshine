@@ -6,8 +6,8 @@
       {{badge}}
     </div>
     <div class="coupon-spacer">
-      <div v-if="extra" class="coupon-extra">extra</div>
-      <div class="coupon-discount">
+      <div v-if="extra" class="coupon-extra" :class="headerColor">extra</div>
+      <div class="coupon-discount" :class="headerColor">
         <div class="actual">
           <span v-if="toSpend" class="dollar">$</span>
           {{discount}}
@@ -39,22 +39,21 @@
       <div class="coupon-buttons" v-if="!print">
         <sh-button variant="primary" toggle
           @click="addCoupon"
-          active-text="Added to Bag"
+          active-text="Added"
           active-icon="check">
-          Add Coupon to Bag
-        </sh-button>
-        <sh-button variant="primary" outline
-          @click="printCoupon"
-          v-if="printable">
-          View In-Store Coupon
+          Add Coupon
         </sh-button>
         <div hidden class="modal"></div>
       </div>
       <div v-if="upc" class="coupon-upc">
-        <belk-barcode :code="upc"></belk-barcode>
+        <belk-barcode align-text="right" :code="upc"></belk-barcode>
         <div class="coupon-logo" v-if="print">
           <belk-logo width="120"></belk-logo>
         </div>
+      </div>
+      <div class="coupon-print" v-if="printable">
+        <sh-button variant="belk-link"
+          @click="printCoupon">Print Coupon</sh-button>
       </div>
     </div>
   </div>
@@ -88,6 +87,7 @@ export default {
     },
     ends: String,
     exclusions: String,
+    headerColor: String,
     noType: {
       type: Boolean,
       default: false,
