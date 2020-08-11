@@ -34,16 +34,22 @@ export default {
       type: String,
       default: '#222',
     },
+    alignText: {
+      type: String,
+      default: undefined,
+    },
   },
 
   mounted() {
-    JsBarcode(this.$refs.barcode, this.code, {
+    const obj = {
       format: this.format,
       lineColor: this.color,
       width: this.width,
       height: this.height,
       displayValue: true,
-    });
+    };
+    if (this.alignText) obj.textAlign = this.alignText;
+    JsBarcode(this.$refs.barcode, this.code, obj);
   },
 };
 </script>

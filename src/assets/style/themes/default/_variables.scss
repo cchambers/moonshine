@@ -1,3 +1,40 @@
+
+$base: 3.2;
+
+$rem: #{$base}rem;
+
+
+$box-model-mods: (
+  "pad": "padding",
+  "margin": "margin",
+  "pull": "margin"
+);
+
+$edges: (
+  "y": ("-top", "-bottom"),
+  "x": ("-left", "-right"),
+  "t": ("-top"),
+  "b": ("-bottom"),
+  "l": ("-left"),
+  "r": ("-right")
+);
+
+$mod-amounts: ("-atomic": #{$base/8}rem,
+  "-micro": #{$base/4}rem,
+  "-little": #{$base/2}rem,
+  "": $rem,
+  "-big": #{$base*1.5}rem,
+  "-huge": #{$base*2}rem,
+  "-mega": #{$base*2.5}rem);
+$inv: "";
+
+$micro: #{$base/4}rem;
+$little: #{$base/2}rem;
+$big: #{$base*1.5}rem;
+$huge: #{$base*2}rem;
+$mega: #{$base*2.5}rem;
+
+
 $highlight-primary: rgb(254, 254, 254);
 $highlight-secondary: rgb(245, 245, 245);
 $highlight-tertiary: rgb(220, 220, 220);
@@ -69,88 +106,3 @@ $breakpoints: (
   "lg": 960px,
   "xl": 1200px
 );
-
-@mixin xs {
-  @media screen and (min-width: breakpoint("xs")) {
-    @content;
-  }
-}
-@mixin sm {
-  @media screen and (min-width: breakpoint("sm")) {
-    @content;
-  }
-}
-
-@mixin md {
-  @media screen and (min-width: breakpoint("md")) {
-    @content;
-  }
-}
-
-@mixin lg {
-  @media screen and (min-width: breakpoint("lg")) {
-    @content;
-  }
-}
-
-@mixin xl {
-  @media screen and (min-width: breakpoint("xl")) {
-    @content;
-  }
-}
-
-// OO-Class Generation
-
-$box-model-mods: (
-  "pad": "padding",
-  "margin": "margin",
-  "pull": "margin"
-);
-
-$edges: (
-  "y": ("-top", "-bottom"),
-  "x": ("-left", "-right"),
-  "t": ("-top"),
-  "b": ("-bottom"),
-  "l": ("-left"),
-  "r": ("-right")
-);
-
-$base: 3.2;
-
-$rem: #{$base}rem;
-
-$mod-amounts: ("-atomic": #{$base/8}rem,
-  "-micro": #{$base/4}rem,
-  "-little": #{$base/2}rem,
-  "": $rem,
-  "-big": #{$base*1.5}rem,
-  "-huge": #{$base*2}rem,
-  "-mega": #{$base*2.5}rem);
-$inv: "";
-
-$micro: #{$base/4}rem;
-$little: #{$base/2}rem;
-$big: #{$base*1.5}rem;
-$huge: #{$base*2}rem;
-$mega: #{$base*2.5}rem;
-
-@each $mod, $prop in $box-model-mods {
-  @if $mod=="pull" {
-    $inv: "-";
-  }
-
-  @each $amt, $meas in $mod-amounts {
-    .#{$mod}#{$amt} {
-      #{$prop}: #{$inv}#{$meas};
-    }
-
-    @each $name, $edge in $edges {
-      .#{$mod}-#{$name}#{$amt} {
-        @each $act in $edge {
-          #{$prop}#{$act}: #{$inv}#{$meas};
-        }
-      }
-    }
-  }
-}

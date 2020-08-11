@@ -5,5 +5,10 @@
   "element": "component-template",
   "description": "Demonstration component.",
   "tags": ["utilities", "demo"],
-  "requirements": {}
+  "requirements": {
+    "Element One": [],
+    "Element Two": [],
+    "a11y": [],
+    "states": []
+  }
 }

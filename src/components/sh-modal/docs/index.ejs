@@ -617,7 +617,7 @@
 
     <h3 class="margin-t">Variants</h3>
     <lib-toolbar>
-      <sh-button modal-trigger="demo-variant-primary">Primary</sh-button>
+      <a href="#demo-variant-primary">Primary via link</a>
       <sh-modal variant="primary" unique-id="demo-variant-primary">
         <p>"Primary" variant.</p>
       </sh-modal>
@@ -625,7 +625,7 @@
 
     <h3 class="margin-t">Remote Content (Ajax)</h3>
     <lib-toolbar>
-      <sh-button modal-trigger="demo-ajax">Basic</sh-button>
+      <sh-button modal-trigger="demo-ajax">Basic ajax via button</sh-button>
       <sh-modal unique-id="demo-ajax" content-url="/components/sh-modal/data/ajax-test.html">
         <div slot="footer">
           <div class="flex center pad">
@@ -734,6 +734,11 @@
         <p>No overlay.</p>
       </sh-modal>
     </lib-toolbar>
+
+
+    <sh-modal variant="primary" unique-id="dyn-modal">
+      <div>Loading...</div>
+    </sh-modal>
   </section>
 
   <section id="changelog">

@@ -5,5 +5,11 @@
   "element": "belk-barcode",
   "description": "Code128 barcode generator.",
   "tags": ["utilities", "product", "coupon", "barcode"],
-  "requirements": {}
+  "requirements": {
+    "Barcode": [
+      "Should have adjustable width/height",
+      "Should have ability to change color"
+    ],
+    "Text": ["Should have ability to adjust text alignment"]
+  }
 }
