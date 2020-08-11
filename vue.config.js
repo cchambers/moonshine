@@ -62,15 +62,17 @@ if (process.env.NODE_ENV !== 'production') {
   const docsFoot = fs.readFileSync('./src/lib/incl-foot.ejs', 'utf8');
   glob.sync('src/components/**/docs/data/*.html')
     .forEach((dir) => {
-      const component = dir.split('/')[3];
+      const component = dir.split('/')[2];
       let filename = dir.split('/');
       filename = filename[filename.length - 1];
       const name = component + filename;
-      pages[name] = {
+      const obj = {
         entry: 'src/blank.js',
         template: dir,
         filename: `components/${component}/data/${filename}`,
       };
+      console.log('><> obj', obj);
+      pages[name] = obj;
     });
 
   glob.sync('src/components/**/docs/*.ejs')

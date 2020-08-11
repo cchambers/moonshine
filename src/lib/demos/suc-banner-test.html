@@ -1,0 +1,90 @@
+<!-- start demo only code -->
+<sh-svglib></sh-svglib>
+<!-- end demo only code -->
+
+
+<style>
+  #yes-add {
+    max-height: 10vh;
+    transition: all 300ms ease;
+  }
+
+  #yes-add.closed {
+    max-height: 0 !important;
+    overflow: hidden;
+  }
+</style>
+<sh-banner id="yes-add" reveal-event="suc-succeed">
+  <div>
+    <div class="font-primary pad-x-mega px-22 lh-45 wt-600 relative case-upper text-center back-brand-wildfuscia highlight-primary">
+      <p>Some text</p>
+      <sh-button style="position: absolute; top: 0; right: 0" click-event="suc-banner-closed">
+        <belk-icon width="30" name="close" class="highlight-primary"></belk-icon>
+      </sh-button>
+    </div>
+  </div>
+</sh-banner>
+
+<sh-banner id="no-add" reveal-event="suc-fail">
+  <div class="font-primary pad-x-mega px-22 lh-45 wt-600 relative case-upper text-center back-brand-wildfuscia highlight-primary">
+    Well that sucs! The coupon could not be applied.
+  </div>
+</sh-banner>
+
+<div class="col-1-2">
+  <button onclick="sh.emit('suc-succeed')">TRIGGER SUCCESS</button>
+  <button onclick="sh.emit('suc-fail')">TRIGGER FAIL</button>
+  <button onclick="sessionStorage.clear()">RESET SESSION</button>
+</div>
+
+<script>
+  // SUCCEED EXAMPLE
+  var url = 'https://my-json-server.typicode.com/cchambers/jsondb/examples/1';
+
+  // FAIL EXAMPLE:
+  // var url = 'https://my-json-server.typicode.com/cchambers/jsondb/examples/2';
+
+  var prop = 'success';
+  var closedSucBanner = window.sessionStorage.getItem('closed-suc-banner');
+
+  document.addEventListener('suc-banner-closed', function() {
+    var target = document.querySelector('#yes-add');
+    if (target) target.classList.add('closed');
+    window.sessionStorage.setItem('closed-suc-banner', true);
+  });
+
+  function reqListener(data) {
+    if (data[prop]) {
+      sh.emit('suc-succeed');
+      window.sessionStorage.setItem('closed-suc-banner', false);
+    } else {
+      sh.emit('suc-fail');
+    }
+  }
+
+  function sucCheck() {
+    if (closedSucBanner === null) {
+      if (window.location.params.suc_code) {
+        var request = new XMLHttpRequest();
+          request.open('GET', url, true);
+          request.send();
+          request.onreadystatechange = function () {
+            var DONE = 4;
+            var OK = 200;
+            if (request.readyState === DONE) {
+              if (request.status === OK) {
+                reqListener(JSON.parse(request.responseText));
+              } else {
+                console.log('Error: ' + request.status);
+              }
+            }
+          };
+      }
+    } else {
+      if (closedSucBanner === false) sh.emit('suc-succeed');;
+    }
+  }
+
+  setTimeout(sucCheck, 200);
+
+</script>

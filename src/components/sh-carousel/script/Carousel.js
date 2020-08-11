@@ -219,16 +219,18 @@ export default {
     },
 
     autoSize() {
-      this.$refs.slides.classList.add('config');
-      let maxHeight = 0;
-      const slides = this.$el.querySelectorAll('.slides li');
-      slides.forEach((slide) => {
-        const ht = slide.offsetHeight;
-        if (ht > maxHeight) maxHeight = ht;
-      });
-      this.$refs.slides.classList.remove('config');
-      const heightStr = `${maxHeight}px`;
-      this.$refs.spacer.style.height = heightStr;
+      if (this.$refs.slides) {
+        this.$refs.slides.classList.add('config');
+        let maxHeight = 0;
+        const slides = this.$el.querySelectorAll('.slides li');
+        slides.forEach((slide) => {
+          const ht = slide.offsetHeight;
+          if (ht > maxHeight) maxHeight = ht;
+        });
+        this.$refs.slides.classList.remove('config');
+        const heightStr = `${maxHeight}px`;
+        this.$refs.spacer.style.height = heightStr;
+      }
     },
 
     getSlides() {

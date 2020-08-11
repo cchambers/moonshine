@@ -18,9 +18,10 @@
       </div>
       <div class="body" :style="{ 'max-width': maxWidth }" ref="body" :id="ariaDescID">
         <div v-if="contentUrl && !loaded" class="loading-anim" v-html="loadHtml"></div>
-        <template>
+        <template v-if="!dynamicHTML">
           <slot>{{ content }}</slot>
         </template>
+        <div v-if="dynamicHTML" v-html="dynamicHTML"></div>
 
       </div>
       <div class="footer">
@@ -51,11 +52,10 @@ export default {
     },
     content: String,
     contentUrl: String,
+    alwaysReload: Boolean,
     confirmationEvents: Boolean,
-    loadedUrl: String,
     contentSelector: String,
     customClass: String,
-    dynamicHTML: String,
     maxWidth: String,
     noHistory: Boolean,
     hideHeader: Boolean,
@@ -85,6 +85,7 @@ export default {
       rejectTriggers: [],
       container: null,
       loaded: false,
+      loadedUrl: String,
       loading: false,
       active: false,
       affirmed: undefined,
@@ -94,6 +95,9 @@ export default {
       ariaDescID: String,
       links: Array,
       noSpace: false,
+      openedCallback: undefined,
+      closedCallback: undefined,
+      dynamicHTML: undefined,
       loadHtml: `<div class="bar"></div>
                 <div class="bar"></div>
                 <div class="bar"></div>
@@ -131,7 +135,7 @@ export default {
 
     if (self.openTriggerEvent) self.$bus.$on(self.openTriggerEvent, self.open);
     if (self.closeTriggerEvent) self.$bus.$on(self.closeTriggerEvent, self.close);
-    if (self.startOpen) this.open();
+    if (self.startOpen) self.open();
   },
 
   methods: {
@@ -225,8 +229,20 @@ export default {
       });
 
       self.$bus.$on('open-modal', (data) => {
-        if (data.url !== this.loadedUrl) this.contentUrl = data.url;
+        if (data.url && data.url !== this.loadedUrl) this.loadedUrl = data.url;
         if (data.id === this.uniqueId) this.open();
+      });
+
+      self.$bus.$on('update-modal', (data) => {
+        const { params } = data;
+        const which = data.id;
+        if (which === self.uniqueId) {
+          if (params === 'close') {
+            self.close();
+          } else {
+            self.paramsHandler(params);
+          }
+        }
       });
 
       window.addEventListener('keyup', (e) => {
@@ -247,8 +263,21 @@ export default {
       }
     },
 
+    paramsHandler(data) {
+      const self = this;
+      if (data.html) self.dynamicHTML = data.html;
+      if (typeof data.open === 'function') self.openedCallback = data.open;
+      if (typeof data.close === 'function') self.closedCallback = data.close;
+      if (data.url) {
+        self.contentUrl = data.url;
+        self.loadContent();
+      }
+      if (data.autoOpen) self.open();
+    },
+
     open() {
       const self = this;
+
       if (self.confirmationEvents) self.affirmed = undefined;
 
       if (!self.loaded && self.contentUrl) {
@@ -267,6 +296,7 @@ export default {
         self.active = true;
         self.$bus.$emit('modal-opened', self.uniqueId);
         if (self.openedEvent) self.$bus.$emit(self.openedEvent, self.uniqueId);
+        if (self.openedCallback) self.openedCallback();
 
         self.manageHeight();
 
@@ -288,6 +318,7 @@ export default {
         this.active = false;
         this.$bus.$emit('modal-closed', this.uniqueId);
         if (this.closedEvent) this.$bus.$emit(this.closedEvent, this.uniqueId);
+        if (this.closedCallback) this.closedCallback();
       }
       if (clearHash) this.clearHash();
     },
@@ -325,7 +356,7 @@ export default {
       for (let x = 0, l = self.triggers.length; x < l; x += 1) {
         const el = self.triggers[x];
         el.addEventListener('click', (e) => {
-          const data = e.target.dataset;
+          const data = el.dataset;
           e.preventDefault();
           window.location.hash = `#${self.uniqueId}`;
           if (data) {
@@ -341,8 +372,8 @@ export default {
       self.triggerLinks = document.querySelectorAll(triggerLinks);
       for (let x = 0, l = self.triggerLinks.length; x < l; x += 1) {
         const el = self.triggerLinks[x];
-        el.addEventListener('click', (e) => {
-          const data = e.target.dataset;
+        el.addEventListener('click', () => {
+          const data = el.dataset;
           if (data) {
             self.$bus.$emit('modal-trigger-data', {
               id: self.uniqueId,
@@ -498,7 +529,7 @@ export default {
     -webkit-overflow-scrolling: touch;
     transition: opacity 150ms ease;
     *:focus {
-      outline: 2px solid $accent-tertiary !important;
+      outline: 2px solid $accent-tertiary;
     }
     sh-modal-buttons {
       display: none;
@@ -555,7 +586,7 @@ export default {
       /* Generate background colors for every bg */
       @each $name, $hex in $colors {
         &[overlay="#{$name}"] {
-          @include background-opacity($hex, 0.5);
+          @include background-opacity($hex, 0.8);
         }
       }
     }

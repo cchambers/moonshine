@@ -41,6 +41,26 @@
   transition: background-color 200ms $decel;
 }
 
+@each $mod, $prop in $box-model-mods {
+  @if $mod=="pull" {
+    $inv: "-";
+  }
+
+  @each $amt, $meas in $mod-amounts {
+    .#{$mod}#{$amt} {
+      #{$prop}: #{$inv}#{$meas};
+    }
+
+    @each $name, $edge in $edges {
+      .#{$mod}-#{$name}#{$amt} {
+        @each $act in $edge {
+          #{$prop}#{$act}: #{$inv}#{$meas};
+        }
+      }
+    }
+  }
+}
+
 @each $name, $mod in $box-model-mods {
   .#{$name} {
     #{$mod}: #{$rem};

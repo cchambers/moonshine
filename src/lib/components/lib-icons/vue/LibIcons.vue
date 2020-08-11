@@ -2,7 +2,7 @@
   <div class="lib-icons">
     <div v-for="icon in icons" v-bind:key="icon.index">
       <h3>{{ icon }}</h3>
-      <div class="flex">
+      <div class="flex start">
         <belk-icon :name="icon"></belk-icon>
         <belk-icon :name="icon" class="accent-secondary"></belk-icon>
         <belk-icon :name="icon" class="accent-tertiary"></belk-icon>
