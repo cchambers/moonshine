@@ -81,7 +81,9 @@
           };
       }
     } else {
-      if (closedSucBanner === false) sh.emit('suc-succeed');;
+      if (closedSucBanner === "false") {
+        sh.emit('suc-succeed');
+      }
     }
   }
 

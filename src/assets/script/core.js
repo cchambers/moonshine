@@ -108,7 +108,11 @@ const app = {
         }
       }
     });
-    if (params) window.location.params = params;
+    if (params) {
+      window.location.params = params;
+    } else {
+      window.location.params = {};
+    }
   },
 };
 
