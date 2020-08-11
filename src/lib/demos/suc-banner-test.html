@@ -30,14 +30,14 @@
 
 <h2>suc-fail</h2>
 <sh-banner id="no-add" reveal-event="suc-fail">
-  <div class="back-brand-wildfuscia highlight-primary text-center">
-    We're sorry...
+  <div class="font-primary pad-x-mega px-22 lh-45 wt-600 relative case-upper text-center back-brand-wildfuscia highlight-primary">
+    Well that sucs! The coupon could not be applied.
   </div>
 </sh-banner>
 
 <script>
-  var url = 'https://jsonplaceholder.typicode.com/todos/1';
-  var prop = 'completed';
+  var url = 'my-json-server.typicode.com/cchambers/shine/examples/1';
+  var prop = 'success';
   var closedSucBanner = window.sessionStorage.getItem('closed-suc-banner');
 
   document.addEventListener('suc-banner-closed', function() {

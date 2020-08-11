@@ -145,7 +145,9 @@ window.sh = {
   },
 
   emit(name, data) {
-    var obj = { detail: data }
+    if (!name) return false;
+    var obj = { detail: {} }
+    if (data) obj.detail.data = data;
     obj.detail.eventName = name;
     var nativeEvent = new CustomEvent('sh-emit', obj);
     const emitter = document.querySelector('belk-bus') || document;
