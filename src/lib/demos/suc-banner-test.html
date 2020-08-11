@@ -1,9 +1,4 @@
 <sh-svglib></sh-svglib>
-
-
-
-
-
 <h2>suc-succeed</h2>
 
 <style>
@@ -35,8 +30,14 @@
   </div>
 </sh-banner>
 
+<div class="col-1-2">
+  <button onclick="sh.emit('suc-succeed')">TRIGGER SUCCESS</button>
+  <button onclick="sh.emit('suc-fail')">TRIGGER FAIL</button>
+  <button onclick="sessionStorage.clear()">RESET SESSION</button>
+</div>
+
 <script>
-  var url = 'my-json-server.typicode.com/cchambers/shine/examples/1';
+  var url = 'https://my-json-server.typicode.com/cchambers/shine/examples/1';
   var prop = 'success';
   var closedSucBanner = window.sessionStorage.getItem('closed-suc-banner');
 
@@ -47,10 +48,11 @@
   });
 
   function reqListener(data) {
-    if (data) {
-      console.log(data);
-      data = JSON.stringify(data);
-      if (data[prop]) {
+    if (data.responseText) {
+      var response = data.responseText;
+      console.log(response);
+      response = JSON.stringify(response);
+      if (response[prop]) {
         sh.emit('suc-succeed');
         window.sessionStorage.setItem('closed-suc-banner', false);
       } else {
@@ -59,10 +61,11 @@
     }
   }
 
-  setTimeout( function() {
+  function sucCheck() {
+    console.log('suc');
     if (closedSucBanner === null) {
       if (window.location.params.suc_code) {
-        // DO AJAX REQUEST...
+        console.log('Doing AJAX request...');
         var request = new XMLHttpRequest();
           request.addEventListener('load', reqListener);
           request.open('GET', url);
@@ -71,6 +74,8 @@
     } else {
       if (closedSucBanner === false) sh.emit('suc-succeed');;
     }
-  },200)
+  }
+
+  setTimeout(sucCheck, 200);
 
 </script>
