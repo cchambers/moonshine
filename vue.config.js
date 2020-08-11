@@ -71,7 +71,6 @@ if (process.env.NODE_ENV !== 'production') {
         template: dir,
         filename: `components/${component}/data/${filename}`,
       };
-      console.log('><> obj', obj);
       pages[name] = obj;
     });
 

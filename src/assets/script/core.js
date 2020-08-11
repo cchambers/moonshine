@@ -5,7 +5,11 @@ const app = {
 
   init() {
     app.setup().events();
-    if (window.location.search) app.urlParamsToObj();
+    if (window.location.search) {
+      app.urlParamsToObj();
+    } else {
+      window.location.params = {};
+    }
     const interaction = window.localStorage.getItem('last-interaction');
     if (app.interaction !== interaction) this.interactionHandler(interaction);
   },
@@ -108,11 +112,7 @@ const app = {
         }
       }
     });
-    if (params) {
-      window.location.params = params;
-    } else {
-      window.location.params = {};
-    }
+    if (params) window.location.params = params;
   },
 };
 

@@ -1,5 +1,17 @@
 <!-- start demo only code -->
 <sh-svglib></sh-svglib>
+
+<div class="col-1-2">
+    <button onclick="sh.emit('suc-succeed')">TRIGGER SUCCESS</button>
+    <button onclick="sh.emit('suc-fail')">TRIGGER FAIL</button>
+    <button onclick="sessionStorage.clear()">RESET SESSION</button>
+  </div>
+  
+  <div class="col-1-2">
+    <a href="/demo/suc-banner-test">remove param</a>
+    <a href="/demo/suc-banner-test?suc_code=1234123">add param</a>
+  </div>
+  
 <!-- end demo only code -->
 
 
@@ -30,12 +42,6 @@
     Well that sucs! The coupon could not be applied.
   </div>
 </sh-banner>
-
-<div class="col-1-2">
-  <button onclick="sh.emit('suc-succeed')">TRIGGER SUCCESS</button>
-  <button onclick="sh.emit('suc-fail')">TRIGGER FAIL</button>
-  <button onclick="sessionStorage.clear()">RESET SESSION</button>
-</div>
 
 <script>
   // SUCCEED EXAMPLE
