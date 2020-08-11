@@ -1,0 +1,15 @@
+{
+  "examples": [
+    {
+      "id": 1,
+      "success": true
+    },
+    {
+      "id": 2,
+      "success": false
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
