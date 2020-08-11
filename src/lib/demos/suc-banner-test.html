@@ -1,5 +1,7 @@
+<!-- start demo only code -->
 <sh-svglib></sh-svglib>
-<h2>suc-succeed</h2>
+<!-- end demo only code -->
+
 
 <style>
   #yes-add {
@@ -23,7 +25,6 @@
   </div>
 </sh-banner>
 
-<h2>suc-fail</h2>
 <sh-banner id="no-add" reveal-event="suc-fail">
   <div class="font-primary pad-x-mega px-22 lh-45 wt-600 relative case-upper text-center back-brand-wildfuscia highlight-primary">
     Well that sucs! The coupon could not be applied.
@@ -62,10 +63,8 @@
   }
 
   function sucCheck() {
-    console.log('suc');
     if (closedSucBanner === null) {
       if (window.location.params.suc_code) {
-        console.log('Doing AJAX request...');
         var request = new XMLHttpRequest();
           request.open('GET', url, true);
           request.send();
