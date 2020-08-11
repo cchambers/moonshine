@@ -126,3 +126,4 @@ export default {
 <style lang="scss" src="../style/primary.scss"></style>
 <style lang="scss" src="../style/secondary.scss"></style>
 <style lang="scss" src="../style/tertiary.scss"></style>
+<style lang="scss" src="../style/belk-link.scss"></style>

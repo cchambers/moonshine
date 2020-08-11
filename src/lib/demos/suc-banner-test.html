@@ -1,0 +1,76 @@
+<sh-svglib></sh-svglib>
+
+
+
+
+
+<h2>suc-succeed</h2>
+
+<style>
+  #yes-add {
+    max-height: 10vh;
+    transition: all 300ms ease;
+  }
+
+  #yes-add.closed {
+    max-height: 0 !important;
+    overflow: hidden;
+  }
+</style>
+<sh-banner id="yes-add" reveal-event="suc-succeed">
+  <div>
+    <div class="font-primary pad-x-mega px-22 lh-45 wt-600 relative case-upper text-center back-brand-wildfuscia highlight-primary">
+      <p>Some text</p>
+      <sh-button style="position: absolute; top: 0; right: 0" click-event="suc-banner-closed">
+        <belk-icon width="30" name="close" class="highlight-primary"></belk-icon>
+      </sh-button>
+    </div>
+  </div>
+</sh-banner>
+
+<h2>suc-fail</h2>
+<sh-banner id="no-add" reveal-event="suc-fail">
+  <div class="back-brand-wildfuscia highlight-primary text-center">
+    We're sorry...
+  </div>
+</sh-banner>
+
+<script>
+  var url = 'https://jsonplaceholder.typicode.com/todos/1';
+  var prop = 'completed';
+  var closedSucBanner = window.sessionStorage.getItem('closed-suc-banner');
+
+  document.addEventListener('suc-banner-closed', function() {
+    var target = document.querySelector('#yes-add');
+    if (target) target.classList.add('closed');
+    window.sessionStorage.setItem('closed-suc-banner', true);
+  });
+
+  function reqListener(data) {
+    if (data) {
+      console.log(data);
+      data = JSON.stringify(data);
+      if (data[prop]) {
+        sh.emit('suc-succeed');
+        window.sessionStorage.setItem('closed-suc-banner', false);
+      } else {
+        sh.emit('suc-fail');
+      }
+    }
+  }
+
+  setTimeout( function() {
+    if (closedSucBanner === null) {
+      if (window.location.params.suc_code) {
+        // DO AJAX REQUEST...
+        var request = new XMLHttpRequest();
+          request.addEventListener('load', reqListener);
+          request.open('GET', url);
+          request.send();
+      }
+    } else {
+      if (closedSucBanner === false) sh.emit('suc-succeed');;
+    }
+  },200)
+
+</script>
