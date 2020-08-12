@@ -29,6 +29,7 @@ export default {
         'map-pin',
         'bag',
         'clipboard',
+        'checkmark',
         'arrow-down'],
     };
   },
