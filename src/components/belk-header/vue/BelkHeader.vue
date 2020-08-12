@@ -110,7 +110,6 @@ export default {
       };
 
       const savedResponse = window.SessionAttributes.AVAILABLE_BRDS;
-
       if (savedResponse) { 
         self.handleBRD(savedResponse);
       } else {
