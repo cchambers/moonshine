@@ -2,8 +2,9 @@
 <template>
   <div class="sh-modal" role="dialog"
     :variant="variant"
-    :class="{ fullscreen: fullscreen, active: active, drawer: drawer }"
+    :class="{ fullscreen: fullscreen, active: active }"
     :reveal="reveal"
+    :drawer="drawer"
     :id="uniqueId"
     :aria-labelledby="ariaID"
     :aria-describedby="ariaDescID">
@@ -56,7 +57,7 @@ export default {
     confirmationEvents: Boolean,
     contentSelector: String,
     customClass: String,
-    drawer: Boolean,
+    drawer: String,
     buttonText: String,
     dynamicHTML: String,
     maxWidth: String,
@@ -100,7 +101,7 @@ export default {
       noSpace: false,
       openedCallback: undefined,
       closedCallback: undefined,
-      dynamicHTML: undefined,
+      // dynamicHTML: undefined,
       loadHtml: `<div class="bar"></div>
                 <div class="bar"></div>
                 <div class="bar"></div>
@@ -530,7 +531,7 @@ export default {
     background: rgba(0, 0, 0, 0.5);
     overflow: hidden;
     -webkit-overflow-scrolling: touch;
-    transition: opacity 150ms ease;
+    // transition: opacity 150ms ease;
     *:focus {
       outline: 2px solid $accent-tertiary;
     }
