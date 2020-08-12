@@ -1,6 +1,6 @@
 <template>
   <div class="belk-bag" :variant="variant" v-bind:class="{ active: itemCount > 0 }">
-    <sh-popper reference-id="someid" has-curtain>
+    <sh-popper reference-id="belk-bag" has-curtain>
       <span slot="reference">
         <div class="bag-icon">
           <belk-icon width="30" name="bag">shopping bag</belk-icon>
@@ -35,7 +35,7 @@ export default {
 
   name: 'BelkBag',
   props: {
-    count: String,
+    count: Number,
     price: String,
   },
 

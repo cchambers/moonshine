@@ -16,11 +16,12 @@
           </h3>
         </div>
       </div>
-      <div class="body" ref="body" :id="ariaDescID">
+      <div class="body" :style="{ 'max-width': maxWidth }" ref="body" :id="ariaDescID">
         <div v-if="contentUrl && !loaded" class="loading-anim" v-html="loadHtml"></div>
-        <template>
+        <template v-if="!dynamicHTML">
           <slot>{{ content }}</slot>
         </template>
+        <div v-if="dynamicHTML" v-html="dynamicHTML"></div>
 
       </div>
       <div class="footer">
@@ -51,13 +52,14 @@ export default {
     },
     content: String,
     contentUrl: String,
+    alwaysReload: Boolean,
     confirmationEvents: Boolean,
-    loadedUrl: String,
     contentSelector: String,
     customClass: String,
     drawer: Boolean,
     buttonText: String,
     dynamicHTML: String,
+    maxWidth: String,
     noHistory: Boolean,
     hideHeader: Boolean,
     fullscreen: Boolean,
@@ -80,11 +82,13 @@ export default {
   data() {
     return {
       triggers: [],
+      triggerLinks: [],
       affirmTriggers: [],
       closeTriggers: [],
       rejectTriggers: [],
       container: null,
       loaded: false,
+      loadedUrl: String,
       loading: false,
       active: false,
       affirmed: undefined,
@@ -94,6 +98,9 @@ export default {
       ariaDescID: String,
       links: Array,
       noSpace: false,
+      openedCallback: undefined,
+      closedCallback: undefined,
+      dynamicHTML: undefined,
       loadHtml: `<div class="bar"></div>
                 <div class="bar"></div>
                 <div class="bar"></div>
@@ -131,7 +138,7 @@ export default {
 
     if (self.openTriggerEvent) self.$bus.$on(self.openTriggerEvent, self.open);
     if (self.closeTriggerEvent) self.$bus.$on(self.closeTriggerEvent, self.close);
-    if (self.startOpen) this.open();
+    if (self.startOpen) self.open();
   },
 
   methods: {
@@ -210,11 +217,11 @@ export default {
       self.$bus.$on('close-modals', () => {
         if (this.active) {
           if (this.confirmationEvents) {
-            if (this.affirmed) {
-              self.$bus.$emit('modal-affirmed', self.uniqueId);
-            } else {
-              self.$bus.$emit('modal-rejected', self.uniqueId);
-            }
+            // if (this.affirmed) {
+            //   // self.$bus.$emit('modal-affirmed', self.uniqueId);
+            // } else {
+            self.$bus.$emit('modal-rejected', self.uniqueId);
+            // }
           }
           this.close();
         }
@@ -225,8 +232,20 @@ export default {
       });
 
       self.$bus.$on('open-modal', (data) => {
-        if (data.url !== this.loadedUrl) this.contentUrl = data.url;
+        if (data.url && data.url !== this.loadedUrl) this.loadedUrl = data.url;
         if (data.id === this.uniqueId) this.open();
+      });
+
+      self.$bus.$on('update-modal', (data) => {
+        const { params } = data;
+        const which = data.id;
+        if (which === self.uniqueId) {
+          if (params === 'close') {
+            self.close();
+          } else {
+            self.paramsHandler(params);
+          }
+        }
       });
 
       window.addEventListener('keyup', (e) => {
@@ -247,37 +266,50 @@ export default {
       }
     },
 
+    paramsHandler(data) {
+      const self = this;
+      if (data.html) self.dynamicHTML = data.html;
+      if (typeof data.open === 'function') self.openedCallback = data.open;
+      if (typeof data.close === 'function') self.closedCallback = data.close;
+      if (data.url) {
+        self.contentUrl = data.url;
+        self.loadContent();
+      }
+      if (data.autoOpen) self.open();
+    },
+
     open() {
-      if (this.confirmationEvents) this.affirmed = undefined;
+      const self = this;
 
-      if (!this.loaded && this.contentUrl) {
-        if (this.contentUrl !== this.loadedUrl) this.loadContent();
+      if (self.confirmationEvents) self.affirmed = undefined;
+
+      if (!self.loaded && self.contentUrl) {
+        if (self.contentUrl !== self.loadedUrl) self.loadContent();
       }
 
-      if (this.overlay) {
-        this.container.setAttribute('overlay', this.overlay);
+      if (self.overlay) {
+        self.container.setAttribute('overlay', self.overlay);
       } else {
-        this.container.removeAttribute('overlay');
+        self.container.removeAttribute('overlay');
       }
 
-      if (!this.active) {
-        this.$bus.$emit('modal-opening', this.uniqueId);
+      if (!self.active) {
+        self.$bus.$emit('modal-opening', self.uniqueId);
         document.documentElement.classList.add('sh-modal-open');
-        this.active = true;
-        this.$bus.$emit('modal-opened', this.uniqueId);
-        if (this.openedEvent) this.$bus.$emit(this.openedEvent, this.uniqueId);
+        self.active = true;
+        self.$bus.$emit('modal-opened', self.uniqueId);
+        if (self.openedEvent) self.$bus.$emit(self.openedEvent, self.uniqueId);
+        if (self.openedCallback) self.openedCallback();
 
-        if (this.$refs.content.offsetHeight > (window.innerHeight - 160)) {
-          this.noSpace = true;
-        }
+        self.manageHeight();
 
         setTimeout(() => {
-          this.$refs.content.focus();
+          self.$refs.content.focus();
         }, 200);
       }
 
-      if (this.focusTarget) {
-        const target = this.$el.querySelector(this.focusTarget);
+      if (self.focusTarget) {
+        const target = self.$el.querySelector(self.focusTarget);
         if (target) target.focus();
       }
     },
@@ -289,6 +321,7 @@ export default {
         this.active = false;
         this.$bus.$emit('modal-closed', this.uniqueId);
         if (this.closedEvent) this.$bus.$emit(this.closedEvent, this.uniqueId);
+        if (this.closedCallback) this.closedCallback();
       }
       if (clearHash) this.clearHash();
     },
@@ -323,11 +356,33 @@ export default {
       const self = this;
       const selector = `[modal-trigger="${self.uniqueId}"]`;
       self.triggers = document.querySelectorAll(selector);
-      for (let x = 0; x < self.triggers.length; x += 1) {
+      for (let x = 0, l = self.triggers.length; x < l; x += 1) {
         const el = self.triggers[x];
         el.addEventListener('click', (e) => {
+          const data = el.dataset;
           e.preventDefault();
           window.location.hash = `#${self.uniqueId}`;
+          if (data) {
+            self.$bus.$emit('modal-trigger-data', {
+              id: self.uniqueId,
+              data,
+            });
+          }
+        });
+      }
+
+      const triggerLinks = `[href="#${self.uniqueId}"]`;
+      self.triggerLinks = document.querySelectorAll(triggerLinks);
+      for (let x = 0, l = self.triggerLinks.length; x < l; x += 1) {
+        const el = self.triggerLinks[x];
+        el.addEventListener('click', () => {
+          const data = el.dataset;
+          if (data) {
+            self.$bus.$emit('modal-trigger-data', {
+              id: self.uniqueId,
+              data,
+            });
+          }
         });
       }
 
@@ -387,6 +442,12 @@ export default {
       });
     },
 
+    manageHeight() {
+      if (this.$refs.content.offsetHeight > (window.innerHeight - 160)) {
+        this.noSpace = true;
+      }
+    },
+
     doError() {
       this.$refs.body.innerHTML = `<p class="error">There was a problem loading content from <a href='${window.location.host}${this.contentUrl}'>${window.location.host}${this.contentUrl}</a>.</p>`;
     },
@@ -435,6 +496,8 @@ export default {
             } else {
               self.$refs.body.appendChild(html);
               self.loadedUrl = self.contentUrl;
+              self.manageHeight();
+              self.$bus.$emit('modal-content-loaded', self.uniqueId);
             }
           } else {
             self.doError();
@@ -469,7 +532,7 @@ export default {
     -webkit-overflow-scrolling: touch;
     transition: opacity 150ms ease;
     *:focus {
-      outline: 2px solid $accent-tertiary !important;
+      outline: 2px solid $accent-tertiary;
     }
     sh-modal-buttons {
       display: none;
@@ -526,7 +589,7 @@ export default {
       /* Generate background colors for every bg */
       @each $name, $hex in $colors {
         &[overlay="#{$name}"] {
-          @include background-opacity($hex, 0.5);
+          @include background-opacity($hex, 0.8);
         }
       }
     }

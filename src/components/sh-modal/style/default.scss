@@ -16,7 +16,7 @@ sh-modal {
   display: flex;
   flex-direction: column;
   max-height: 0;
-  transition: all 150ms $ease, opacity 300ms linear;
+  transition: all 300ms $ease, opacity 350ms linear;
   transition-delay: 10ms;
   transform-origin: top center;
   @include md {
@@ -64,7 +64,6 @@ sh-modal {
     height: 100%;
     width: 100%;
     min-height: 12rem;
-    max-width: 78rem;
     flex-shrink: 0;
     flex-grow: 0;
     margin: 0;
@@ -89,6 +88,8 @@ sh-modal {
 
   .body {
     padding: 0 2rem 3rem 2rem;
+    margin-left: auto;
+    margin-right: auto;
     @include md {
       padding: 2rem;
     }

@@ -116,8 +116,8 @@ belk-coupon {
     text-align: center;
     font-weight: bold;
     font-size: 1.8rem;
-    background: $lowlight-primary;
-    color: $highlight-primary;
+    color: $lowlight-primary;
+    border-bottom: 1px solid $lowlight-primary;
   }
 
   .coupon-event-name {
@@ -161,6 +161,11 @@ belk-coupon {
     }
   }
 
+  .coupon-print {
+    justify-content: flex-start;
+    margin-top: -1.2em;
+  }
+
   .coupon-description {
     font-size: 1.4rem;
     margin-left: -1.5rem;
@@ -174,8 +179,8 @@ belk-coupon {
 
   .coupon-upc {
     margin-top: 1rem;
-    margin-left: -1rem;
-    margin-right: -1rem;
+    margin-left: -0.5em;
+    margin-right: -0.5em;
   }
 
   .coupon-exclusions {

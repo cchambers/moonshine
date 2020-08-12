@@ -47,6 +47,11 @@
           <td>String</td>
           <td>Defaults to '#222'</td>
         </tr>
+        <tr>
+          <td>align-text</td>
+          <td>String</td>
+          <td>Defaults to 'center'</td>
+        </tr>
       </tbody>
     </table>
   </section>
@@ -59,6 +64,12 @@
         <belk-barcode code="12166076"></belk-barcode>
       </div>
     </lib-toolbar>
+    <h3>Align Right</h3>
+    <lib-toolbar>
+      <div style="max-width: 270px; border: 1px solid #222;">
+        <belk-barcode align-text="right" code="12166076"></belk-barcode>
+      </div>
+    </lib-toolbar>
   </section>
 
   <section id="changelog">
@@ -68,6 +79,8 @@
       <dd>Belk Barcode is under development.</dd>
       <dt>1.0.0</dt>
       <dd>Belk Barcode is ready for use.</dd>
+      <dt>1.0.1</dt>
+      <dd><code>align-text</code> attribute added</dd>
     </dl>
   </section>
 </div>

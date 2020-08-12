@@ -1,0 +1,10 @@
+/* default styling */
+
+belk-flex {
+  display: block;
+  .belk-flex {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+}

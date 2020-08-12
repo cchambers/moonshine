@@ -1,0 +1,16 @@
+sh-button[variant="belk-link"] {
+  button {
+    padding: 0;
+    min-height: auto;
+    .actual-text {
+      font-size: 1em;
+      color: $accent-primary;
+      border-bottom: 1px solid $accent-primary;
+    }
+  }
+  &:hover {
+    .actual-text {
+      border-color: transparent;
+    }
+  }
+}

@@ -5,7 +5,11 @@ const app = {
 
   init() {
     app.setup().events();
-    if (window.location.search) app.urlParamsToObj();
+    if (window.location.search) {
+      app.urlParamsToObj();
+    } else {
+      window.location.params = {};
+    }
     const interaction = window.localStorage.getItem('last-interaction');
     if (app.interaction !== interaction) this.interactionHandler(interaction);
   },

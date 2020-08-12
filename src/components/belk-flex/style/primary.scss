@@ -1,0 +1,45 @@
+/* primary variant */
+
+belk-flex[variant="toolbar"] {
+  .belk-flex {
+    align-content: stretch;
+    width: 100%;
+
+    >* {
+      flex-grow: 3;
+      flex-shrink: 0;
+      flex-basis: calc(100% / 6);
+      border: 1px solid $lowlight-quaternary;
+      background-color: $highlight-primary;
+      transition: background-color 250ms $decel;
+      text-decoration: none;
+      margin: $micro;
+      padding: $little;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      justify-content: center;
+
+      >* {
+        pointer-events: none;
+      }
+    }
+
+    >div:hover,
+    >a:hover,
+    >button:hover {
+      background-color: $highlight-tertiary;
+      cursor: pointer;
+    }
+  }
+
+  @media (max-width: breakpoint("md")) {
+    &[flip="mobile"] {
+      .belk-flex {
+        flex-direction: column;
+      }
+    }
+  }
+}
