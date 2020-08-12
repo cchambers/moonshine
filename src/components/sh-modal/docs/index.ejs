@@ -9,9 +9,12 @@
     <pre>
       <code class="language-html">
         &lt;sh-modal header="Modal Header" unique-id="string"&gt;
-          &lt;p&gt;
-            Lorem ipsum doler.
-          &lt;/p&gt;
+          &lt;div&gt;
+            &lt;p&gt;Default content slot, lorem ipsum doler.&lt;/p&gt;
+          &lt;/div&gt;
+          &lt;div slot="footer"&gt;
+            &lt;p&gt;... buttons, etc ...&lt;/p&gt;
+          &lt;/div&gt;
         &lt;/sh-modal&gt;
       </code>
     </pre>

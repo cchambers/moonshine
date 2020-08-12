@@ -110,7 +110,7 @@ export default {
       };
 
       const savedResponse = window.SessionAttributes.AVAILABLE_BRDS;
-      if (savedResponse) { 
+      if (savedResponse) {
         self.handleBRD(savedResponse);
       } else {
         const brdxhr = new XMLHttpRequest();
