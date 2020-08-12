@@ -1,5 +1,8 @@
 .sh-modal[variant="primary"] {
-  .header {
-    color: $lowlight-secondary;
+  .modal-title {
+    color: $lowlight-primary;
+    h3 {
+      font-size: 18px;
+    }
   }
 }
