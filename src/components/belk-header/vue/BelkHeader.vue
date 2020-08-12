@@ -109,25 +109,29 @@ export default {
         }
       };
 
-      const brdxhr = new XMLHttpRequest();
-      brdxhr.open('GET', brdurl);
-      brdxhr.send(null);
-      brdxhr.onreadystatechange = () => {
-        const DONE = 4;
-        const OK = 200;
-        if (brdxhr.readyState === DONE) {
-          if (brdxhr.status === OK) {
-            let res;
-            try {
-              res = JSON.parse(brdxhr.responseText);
-            } catch (e) {
-              // Oh well, but whatever...
+      const savedResponse = window.SessionAttributes.AVAILABLE_BRDS;
+      if (savedResponse) {
+        self.handleBRD(savedResponse);
+      } else {
+        const brdxhr = new XMLHttpRequest();
+        brdxhr.open('GET', brdurl);
+        brdxhr.send(null);
+        brdxhr.onreadystatechange = () => {
+          const DONE = 4;
+          const OK = 200;
+          if (brdxhr.readyState === DONE) {
+            if (brdxhr.status === OK) {
+              let res;
+              try {
+                res = JSON.parse(brdxhr.responseText);
+              } catch (e) {
+                // Oh well, but whatever...
+              }
+              self.handleBRD(res);
             }
-            self.handleBRD(res);
           }
-        }
-      };
-      // }
+        };
+      }
     },
 
     recheckUrls() {
