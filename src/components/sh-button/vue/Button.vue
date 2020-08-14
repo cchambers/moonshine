@@ -1,5 +1,6 @@
 <template>
   <button ref="button" :class="{ active: isActive }"
+    :type="type"
     v-on:keyup.enter="tapHandler"
     :close-trigger="closeTrigger"
     :print-trigger="printTrigger"
@@ -46,6 +47,10 @@ export default {
     link: Boolean,
     ariaRole: String,
     ariaControls: String,
+    type: {
+      type: String,
+      default: 'button',
+    },
   },
 
   data() {
