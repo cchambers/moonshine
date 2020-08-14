@@ -47,10 +47,7 @@ export default {
     link: Boolean,
     ariaRole: String,
     ariaControls: String,
-    type: {
-      type: String,
-      default: 'button',
-    },
+    type: String,
   },
 
   data() {
