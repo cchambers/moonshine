@@ -518,6 +518,13 @@ $containMargin: 8rem;
       font-family: "Menlo", monospace;
       margin-bottom: 2.8rem;
     }
+
+    h3 code {
+      display: inline-flex;
+      color: $accent-primary;
+      background: $highlight-tertiary;
+      padding: 0 1rem;
+    }
   }
 
   table {
