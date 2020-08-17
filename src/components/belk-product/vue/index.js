@@ -3,7 +3,6 @@ import BelkProduct from './BelkProduct.vue';
 
 Vue.customElement('belk-product', BelkProduct);
 
-
 /*
 * Unit tests:
 * https: //vue-test-utils.vuejs.org/guides/getting-started.html

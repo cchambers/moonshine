@@ -1,4 +1,3 @@
-
 <template>
   <div class="sh-svglib">
     <svg>

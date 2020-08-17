@@ -1,4 +1,3 @@
-
 <template>
   <div class="sh-modal-buttons">
     <div class="tab-lock" v-on:focus="modalFocusLast()" tabindex="0"></div>

@@ -4,7 +4,6 @@ import BelkBus from './BelkBus.vue';
 
 Vue.customElement('belk-bus', BelkBus);
 
-
 /*
 * Unit tests:
 * https: //vue-test-utils.vuejs.org/guides/getting-started.html
