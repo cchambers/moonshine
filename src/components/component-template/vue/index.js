@@ -4,7 +4,6 @@ import ComponentTemplate from './ComponentTemplate.vue';
 
 Vue.customElement('component-template', ComponentTemplate);
 
-
 /*
 * Unit tests:
 * https: //vue-test-utils.vuejs.org/guides/getting-started.html

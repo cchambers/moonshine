@@ -3,7 +3,6 @@ import BelkBarcode from './BelkBarcode.vue';
 
 Vue.customElement('belk-barcode', BelkBarcode);
 
-
 /*
 * Unit tests:
 * https: //vue-test-utils.vuejs.org/guides/getting-started.html

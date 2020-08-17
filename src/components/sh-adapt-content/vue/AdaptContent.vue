@@ -91,7 +91,6 @@ export default {
 };
 </script>
 
-
 <style type="text/css" lang="scss">
   sh-adapt-content {
     display: block;
@@ -105,6 +104,5 @@ export default {
   sh-adapt-content[inline] {
     display: inline-block;
   }
-
 
 </style>
