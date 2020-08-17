@@ -1,4 +1,3 @@
-
 <template>
   <div class="sh-modal" role="dialog"
     :variant="variant"

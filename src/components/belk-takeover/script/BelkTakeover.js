@@ -50,7 +50,6 @@ export default {
     };
   },
 
-
   mounted() {
     const self = this;
     this.referenceEl = document.querySelector(this.attachTo);
@@ -74,7 +73,6 @@ export default {
 
       this.referenceEl.prepend(leftAnchor);
       this.referenceEl.prepend(rightAnchor);
-
 
       setTimeout(() => {
         self.$el.classList.add('active');
@@ -140,6 +138,5 @@ export default {
       };
     },
   },
-
 
 };
