@@ -4,7 +4,6 @@ import BelkFlex from './BelkFlex.vue';
 
 Vue.customElement('belk-flex', BelkFlex);
 
-
 /*
 * Unit tests:
 * https: //vue-test-utils.vuejs.org/guides/getting-started.html

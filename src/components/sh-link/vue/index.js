@@ -4,7 +4,6 @@ import Link from './Link.vue';
 
 Vue.customElement('sh-link', Link);
 
-
 /*
 * Unit tests:
 * https: //vue-test-utils.vuejs.org/guides/getting-started.html
