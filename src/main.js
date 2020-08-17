@@ -1,9 +1,8 @@
 /* eslint-disable */
 import 'core-js/stable';
-import 'regenerator-runtime/runtime';
+// import 'regenerator-runtime/runtime';
 
 require('./assets/script/core.js');
-
 import Vue from 'vue';
 Vue.config.productionTip = false;
 
