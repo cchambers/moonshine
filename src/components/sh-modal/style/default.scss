@@ -24,7 +24,7 @@ sh-modal {
   }
   &.active {
     opacity: 1 !important;
-    max-height: initial;
+    max-height: 10000vh;
     height: auto;
     @include md {
       transform: translateX(0) translateY(0) translateZ(0) scale(1) rotate(0) !important;
@@ -252,7 +252,7 @@ sh-modal {
           min-height: 100vh;
           height: auto;
           margin: 0;
-          max-height: initial;
+          max-height: 10000vh;
           max-width: initial;
         }
       }
