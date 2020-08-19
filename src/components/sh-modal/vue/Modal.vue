@@ -9,6 +9,18 @@
     :aria-describedby="ariaDescID">
     <div class="content" ref="content" :class="{ 'no-margin': noSpace }" :size="size">
       <div class="tab-lock" v-on:focus="modalButtonsFocus()" tabindex="0"></div>
+      <div v-if="drawer">
+        <div toggle-trigger class="drawer-toggle">
+          <div v-if="!active">
+            <div class="dt-headline">Today's Offers</div>
+            <div class="dt-subhead">Tap for Savings Made Simple</div>
+          </div>
+          <div v-else>
+            <div class="dt-headline">Savings Made Simple</div>
+            <div class="dt-subhead">[count] offers</div>
+          </div>
+        </div>
+      </div>
       <div v-if="!hideHeader" class="header">
         <div v-if="header" class="modal-title">
           <h3 :id="ariaHeaderID">
@@ -121,7 +133,7 @@ export default {
     self.ariaHeaderID = `aria-header-${self.uniqueId}`;
     self.ariaDescID = `aria-desc-${self.uniqueId}`;
     self.links = self.$el.querySelectorAll('a, input, button, [tabindex]:not(.tab-lock), [close-trigger]');
-    const container = document.querySelector('#sh-modals');
+    const container = (!this.drawer) ? document.querySelector('#sh-modals') : document.querySelector('#sh-modal-drawers');
     if (this.customClass) this.$refs.content.classList.add(this.customClass);
     if (container) {
       self.container = container;
@@ -278,6 +290,14 @@ export default {
       if (data.autoOpen) self.open();
     },
 
+    toggle() {
+      if (this.active) {
+        this.close();
+      } else {
+        this.open();
+      }
+    },
+
     open() {
       const self = this;
 
@@ -295,7 +315,11 @@ export default {
 
       if (!self.active) {
         self.$bus.$emit('modal-opening', self.uniqueId);
-        document.documentElement.classList.add('sh-modal-open');
+        if (this.drawer) {
+          document.documentElement.classList.add('sh-modal-drawer-open');
+        } else {
+          document.documentElement.classList.add('sh-modal-open');
+        }
         self.active = true;
         self.$bus.$emit('modal-opened', self.uniqueId);
         if (self.openedEvent) self.$bus.$emit(self.openedEvent, self.uniqueId);
@@ -317,7 +341,11 @@ export default {
     close(clearHash = true) {
       if (this.active) {
         this.$bus.$emit('modal-closing', this.uniqueId);
-        document.documentElement.classList.remove('sh-modal-open');
+        if (this.drawer) {
+          document.documentElement.classList.remove('sh-modal-drawer-open');
+        } else {
+          document.documentElement.classList.remove('sh-modal-open');
+        }
         this.active = false;
         this.$bus.$emit('modal-closed', this.uniqueId);
         if (this.closedEvent) this.$bus.$emit(this.closedEvent, this.uniqueId);
@@ -387,6 +415,14 @@ export default {
       }
 
       // internal affirmation triggers
+      const toggleTriggers = '[toggle-trigger]';
+      self.toggleTriggers = self.$el.querySelectorAll(toggleTriggers);
+      for (let y = 0; y < self.toggleTriggers.length; y += 1) {
+        const el = self.toggleTriggers[y];
+        el.addEventListener('click', self.toggle);
+      }
+
+      // internal affirmation triggers
       const affirmTriggers = '[affirm-trigger]';
       self.affirmTriggers = self.$el.querySelectorAll(affirmTriggers);
       for (let y = 0; y < self.affirmTriggers.length; y += 1) {
@@ -422,8 +458,12 @@ export default {
     createContainer() {
       const self = this;
       const container = document.createElement('div');
-      container.id = 'sh-modals';
-      container.innerHTML = '<sh-modal-buttons></sh-modal-buttons>';
+      if (this.drawer) {
+        container.id = 'sh-modal-drawers';
+      } else {
+        container.id = 'sh-modals';
+        container.innerHTML = '<sh-modal-buttons></sh-modal-buttons>';
+      }
       document.body.appendChild(container);
       self.container = container;
       self.container.addEventListener('click', (e) => {
@@ -517,7 +557,8 @@ export default {
     color: $accent-primary;
   }
 
-  #sh-modals {
+  #sh-modals,
+  #sh-modal-drawers {
     position: fixed;
     pointer-events: none;
     max-height: 0;
@@ -593,6 +634,12 @@ export default {
         }
       }
     }
+  }
+
+  #sh-modal-drawers {
+    opacity: 1;
+    max-height: 100vh;
+    background: none;
   }
 
   html {

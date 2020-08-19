@@ -37,6 +37,26 @@ sh-modal {
     transform: translateY(0) translateZ(0);
     opacity: 1;
     transition: none !important;
+    max-height: 100vh;
+
+    &.active {
+      .drawer-toggle {
+        background: $highlight-primary;
+        color: $lowlight-primary; 
+      }
+    }
+
+    .drawer-toggle {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%) translateY(-100%);
+      border: 1px solid red;
+      background: $lowlight-secondary;
+      color: $highlight-primary;
+      cursor: pointer;
+      padding: 0.5rem;
+    }
     .content {
       position: absolute;
       bottom: 0;
@@ -44,6 +64,7 @@ sh-modal {
       max-width: 100%;
       transform: translateY(100%) translateZ(0);
       transition: all 300ms $decel;
+      overflow: visible;
     }
     &.active {
       .content {
@@ -94,7 +115,6 @@ sh-modal {
     overflow-y: auto;
     @include md {
       height: auto;
-      overflow-y: auto;
       margin: 16.7rem auto;
       margin-left: 0;
       max-width: calc(100% - 5.5rem);
