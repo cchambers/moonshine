@@ -1,4 +1,3 @@
-
 <template>
   <div class="sh-modal" role="dialog"
     :variant="variant"
@@ -590,7 +589,7 @@ export default {
       /* Generate background colors for every bg */
       @each $name, $hex in $colors {
         &[overlay="#{$name}"] {
-          @include background-opacity($hex, 0.8);
+          @include background-opacity($hex, 0.6);
         }
       }
     }

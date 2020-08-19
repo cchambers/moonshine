@@ -132,10 +132,7 @@ sh-modal {
     .modal-title {
       background: $highlight-primary;
       width: 100%;
-      height: 4.5rem;
-      @include md {
-        height: 3rem;
-      }
+      padding-top: 2rem;
     }
 
     div,

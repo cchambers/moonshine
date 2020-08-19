@@ -9,9 +9,12 @@
     <pre>
       <code class="language-html">
         &lt;sh-modal header="Modal Header" unique-id="string"&gt;
-          &lt;p&gt;
-            Lorem ipsum doler.
-          &lt;/p&gt;
+          &lt;div&gt;
+            &lt;p&gt;Default content slot, lorem ipsum doler.&lt;/p&gt;
+          &lt;/div&gt;
+          &lt;div slot="footer"&gt;
+            &lt;p&gt;... buttons, etc ...&lt;/p&gt;
+          &lt;/div&gt;
         &lt;/sh-modal&gt;
       </code>
     </pre>
@@ -373,7 +376,6 @@
     <h2>Examples</h2>
 
     <h3 class="margin-t">Confirmation Modal</h3>
-    <lib-toolbar>
       <sh-button modal-trigger="demo-default">Open Confirmation Modal</sh-button>
       <sh-modal confirmation-events unique-id="demo-default" header="Modal Header">
         <div>
@@ -611,15 +613,250 @@
         </div>
         <div slot="footer">
           <p class="text-center">I <a href="#" affirm-trigger close-trigger>agree</a> to the terms and conditions.</p>
+          <belk-flex>
+            <sh-button reject-trigger close-trigger>Cancel</sh-button>
+            <sh-button variant="primary" affirm-trigger>Confirm</sh-button>
+          </belk-flex>
         </div>
       </sh-modal>
-    </lib-toolbar>
 
     <h3 class="margin-t">Variants</h3>
     <lib-toolbar>
       <a href="#demo-variant-primary">Primary via link</a>
-      <sh-modal variant="primary" unique-id="demo-variant-primary">
-        <p>"Primary" variant.</p>
+      <sh-modal variant="primary"
+      header="Primary Variant"
+      unique-id="demo-variant-primary">
+      <p>
+          Magna <a href="#" modal-trigger="demo-2">demo modal 2</a> commodo ullamco occaecat ut ex ea reprehenderit.
+          Deserunt laborum in proident aliquip dolore dolor cupidatat. Ex labore
+          nisi magna ut voluptate adipisicing adipisicing elit nostrud enim eu
+          velit reprehenderit. Do id cillum et aliqua culpa exercitation aliquip
+          incididunt ea amet. Nisi esse sit in fugiat culpa.
+        </p>
+
+        <p>
+          Esse ipsum reprehenderit id nostrud consectetur reprehenderit est
+          pariatur pariatur eiusmod. Nisi est exercitation cillum laborum
+          officia esse esse occaecat amet ad velit anim cupidatat. Fugiat
+          consequat ullamco dolor et occaecat sit id ex. Sunt cillum do proident
+          occaecat magna ullamco eiusmod adipisicing excepteur. Quis incididunt
+          mollit est labore fugiat mollit minim eu. Et fugiat ipsum velit anim
+          eiusmod nisi aliquip aute. Eiusmod deserunt ullamco consectetur est
+          duis anim nostrud anim aliqua nostrud.
+        </p>
+
+        <p>
+          Consequat est deserunt laboris mollit in fugiat deserunt cillum
+          laboris cillum non culpa labore. Deserunt irure culpa voluptate ex ex
+          in. Ullamco eiusmod incididunt eiusmod ipsum sint tempor exercitation
+          exercitation aliqua adipisicing deserunt aliquip esse culpa.
+        </p>
+
+        <p>
+          Cupidatat quis officia incididunt adipisicing eiusmod dolore id ut
+          Lorem qui anim et. Nisi consequat minim anim eiusmod aliqua eu
+          deserunt ex. Sunt labore duis nisi laboris Lorem enim labore cillum
+          enim enim et elit est ullamco. Ad proident excepteur quis enim
+          voluptate aute irure ipsum veniam dolore.
+        </p>
+        <p>
+          Magna <a href="#" modal-trigger="demo-2">demo modal 2</a> commodo ullamco occaecat ut ex ea reprehenderit.
+          Deserunt laborum in proident aliquip dolore dolor cupidatat. Ex labore
+          nisi magna ut voluptate adipisicing adipisicing elit nostrud enim eu
+          velit reprehenderit. Do id cillum et aliqua culpa exercitation aliquip
+          incididunt ea amet. Nisi esse sit in fugiat culpa.
+        </p>
+
+        <p>
+          Esse ipsum reprehenderit id nostrud consectetur reprehenderit est
+          pariatur pariatur eiusmod. Nisi est exercitation cillum laborum
+          officia esse esse occaecat amet ad velit anim cupidatat. Fugiat
+          consequat ullamco dolor et occaecat sit id ex. Sunt cillum do proident
+          occaecat magna ullamco eiusmod adipisicing excepteur. Quis incididunt
+          mollit est labore fugiat mollit minim eu. Et fugiat ipsum velit anim
+          eiusmod nisi aliquip aute. Eiusmod deserunt ullamco consectetur est
+          duis anim nostrud anim aliqua nostrud.
+        </p>
+
+        <p>
+          Consequat est deserunt laboris mollit in fugiat deserunt cillum
+          laboris cillum non culpa labore. Deserunt irure culpa voluptate ex ex
+          in. Ullamco eiusmod incididunt eiusmod ipsum sint tempor exercitation
+          exercitation aliqua adipisicing deserunt aliquip esse culpa.
+        </p>
+
+        <p>
+          Cupidatat quis officia incididunt adipisicing eiusmod dolore id ut
+          Lorem qui anim et. Nisi consequat minim anim eiusmod aliqua eu
+          deserunt ex. Sunt labore duis nisi laboris Lorem enim labore cillum
+          enim enim et elit est ullamco. Ad proident excepteur quis enim
+          voluptate aute irure ipsum veniam dolore.
+        </p>
+        <p>
+          Magna <a href="#" modal-trigger="demo-2">demo modal 2</a> commodo ullamco occaecat ut ex ea reprehenderit.
+          Deserunt laborum in proident aliquip dolore dolor cupidatat. Ex labore
+          nisi magna ut voluptate adipisicing adipisicing elit nostrud enim eu
+          velit reprehenderit. Do id cillum et aliqua culpa exercitation aliquip
+          incididunt ea amet. Nisi esse sit in fugiat culpa.
+        </p>
+
+        <p>
+          Esse ipsum reprehenderit id nostrud consectetur reprehenderit est
+          pariatur pariatur eiusmod. Nisi est exercitation cillum laborum
+          officia esse esse occaecat amet ad velit anim cupidatat. Fugiat
+          consequat ullamco dolor et occaecat sit id ex. Sunt cillum do proident
+          occaecat magna ullamco eiusmod adipisicing excepteur. Quis incididunt
+          mollit est labore fugiat mollit minim eu. Et fugiat ipsum velit anim
+          eiusmod nisi aliquip aute. Eiusmod deserunt ullamco consectetur est
+          duis anim nostrud anim aliqua nostrud.
+        </p>
+
+        <p>
+          Consequat est deserunt laboris mollit in fugiat deserunt cillum
+          laboris cillum non culpa labore. Deserunt irure culpa voluptate ex ex
+          in. Ullamco eiusmod incididunt eiusmod ipsum sint tempor exercitation
+          exercitation aliqua adipisicing deserunt aliquip esse culpa.
+        </p>
+
+        <p>
+          Cupidatat quis officia incididunt adipisicing eiusmod dolore id ut
+          Lorem qui anim et. Nisi consequat minim anim eiusmod aliqua eu
+          deserunt ex. Sunt labore duis nisi laboris Lorem enim labore cillum
+          enim enim et elit est ullamco. Ad proident excepteur quis enim
+          voluptate aute irure ipsum veniam dolore.
+        </p>
+        <p>
+          Magna <a href="#" modal-trigger="demo-2">demo modal 2</a> commodo ullamco occaecat ut ex ea reprehenderit.
+          Deserunt laborum in proident aliquip dolore dolor cupidatat. Ex labore
+          nisi magna ut voluptate adipisicing adipisicing elit nostrud enim eu
+          velit reprehenderit. Do id cillum et aliqua culpa exercitation aliquip
+          incididunt ea amet. Nisi esse sit in fugiat culpa.
+        </p>
+
+        <p>
+          Esse ipsum reprehenderit id nostrud consectetur reprehenderit est
+          pariatur pariatur eiusmod. Nisi est exercitation cillum laborum
+          officia esse esse occaecat amet ad velit anim cupidatat. Fugiat
+          consequat ullamco dolor et occaecat sit id ex. Sunt cillum do proident
+          occaecat magna ullamco eiusmod adipisicing excepteur. Quis incididunt
+          mollit est labore fugiat mollit minim eu. Et fugiat ipsum velit anim
+          eiusmod nisi aliquip aute. Eiusmod deserunt ullamco consectetur est
+          duis anim nostrud anim aliqua nostrud.
+        </p>
+
+        <p>
+          Consequat est deserunt laboris mollit in fugiat deserunt cillum
+          laboris cillum non culpa labore. Deserunt irure culpa voluptate ex ex
+          in. Ullamco eiusmod incididunt eiusmod ipsum sint tempor exercitation
+          exercitation aliqua adipisicing deserunt aliquip esse culpa.
+        </p>
+
+        <p>
+          Cupidatat quis officia incididunt adipisicing eiusmod dolore id ut
+          Lorem qui anim et. Nisi consequat minim anim eiusmod aliqua eu
+          deserunt ex. Sunt labore duis nisi laboris Lorem enim labore cillum
+          enim enim et elit est ullamco. Ad proident excepteur quis enim
+          voluptate aute irure ipsum veniam dolore.
+        </p>
+        <p>
+          Magna <a href="#" modal-trigger="demo-2">demo modal 2</a> commodo ullamco occaecat ut ex ea reprehenderit.
+          Deserunt laborum in proident aliquip dolore dolor cupidatat. Ex labore
+          nisi magna ut voluptate adipisicing adipisicing elit nostrud enim eu
+          velit reprehenderit. Do id cillum et aliqua culpa exercitation aliquip
+          incididunt ea amet. Nisi esse sit in fugiat culpa.
+        </p>
+
+        <p>
+          Esse ipsum reprehenderit id nostrud consectetur reprehenderit est
+          pariatur pariatur eiusmod. Nisi est exercitation cillum laborum
+          officia esse esse occaecat amet ad velit anim cupidatat. Fugiat
+          consequat ullamco dolor et occaecat sit id ex. Sunt cillum do proident
+          occaecat magna ullamco eiusmod adipisicing excepteur. Quis incididunt
+          mollit est labore fugiat mollit minim eu. Et fugiat ipsum velit anim
+          eiusmod nisi aliquip aute. Eiusmod deserunt ullamco consectetur est
+          duis anim nostrud anim aliqua nostrud.
+        </p>
+
+        <p>
+          Consequat est deserunt laboris mollit in fugiat deserunt cillum
+          laboris cillum non culpa labore. Deserunt irure culpa voluptate ex ex
+          in. Ullamco eiusmod incididunt eiusmod ipsum sint tempor exercitation
+          exercitation aliqua adipisicing deserunt aliquip esse culpa.
+        </p>
+
+        <p>
+          Cupidatat quis officia incididunt adipisicing eiusmod dolore id ut
+          Lorem qui anim et. Nisi consequat minim anim eiusmod aliqua eu
+          deserunt ex. Sunt labore duis nisi laboris Lorem enim labore cillum
+          enim enim et elit est ullamco. Ad proident excepteur quis enim
+          voluptate aute irure ipsum veniam dolore.
+        </p>
+        <p>
+          Magna <a href="#" modal-trigger="demo-2">demo modal 2</a> commodo ullamco occaecat ut ex ea reprehenderit.
+          Deserunt laborum in proident aliquip dolore dolor cupidatat. Ex labore
+          nisi magna ut voluptate adipisicing adipisicing elit nostrud enim eu
+          velit reprehenderit. Do id cillum et aliqua culpa exercitation aliquip
+          incididunt ea amet. Nisi esse sit in fugiat culpa.
+        </p>
+
+        <p>
+          Esse ipsum reprehenderit id nostrud consectetur reprehenderit est
+          pariatur pariatur eiusmod. Nisi est exercitation cillum laborum
+          officia esse esse occaecat amet ad velit anim cupidatat. Fugiat
+          consequat ullamco dolor et occaecat sit id ex. Sunt cillum do proident
+          occaecat magna ullamco eiusmod adipisicing excepteur. Quis incididunt
+          mollit est labore fugiat mollit minim eu. Et fugiat ipsum velit anim
+          eiusmod nisi aliquip aute. Eiusmod deserunt ullamco consectetur est
+          duis anim nostrud anim aliqua nostrud.
+        </p>
+
+        <p>
+          Consequat est deserunt laboris mollit in fugiat deserunt cillum
+          laboris cillum non culpa labore. Deserunt irure culpa voluptate ex ex
+          in. Ullamco eiusmod incididunt eiusmod ipsum sint tempor exercitation
+          exercitation aliqua adipisicing deserunt aliquip esse culpa.
+        </p>
+
+        <p>
+          Cupidatat quis officia incididunt adipisicing eiusmod dolore id ut
+          Lorem qui anim et. Nisi consequat minim anim eiusmod aliqua eu
+          deserunt ex. Sunt labore duis nisi laboris Lorem enim labore cillum
+          enim enim et elit est ullamco. Ad proident excepteur quis enim
+          voluptate aute irure ipsum veniam dolore.
+        </p>
+        <p>
+          Magna <a href="#" modal-trigger="demo-2">demo modal 2</a> commodo ullamco occaecat ut ex ea reprehenderit.
+          Deserunt laborum in proident aliquip dolore dolor cupidatat. Ex labore
+          nisi magna ut voluptate adipisicing adipisicing elit nostrud enim eu
+          velit reprehenderit. Do id cillum et aliqua culpa exercitation aliquip
+          incididunt ea amet. Nisi esse sit in fugiat culpa.
+        </p>
+
+        <p>
+          Esse ipsum reprehenderit id nostrud consectetur reprehenderit est
+          pariatur pariatur eiusmod. Nisi est exercitation cillum laborum
+          officia esse esse occaecat amet ad velit anim cupidatat. Fugiat
+          consequat ullamco dolor et occaecat sit id ex. Sunt cillum do proident
+          occaecat magna ullamco eiusmod adipisicing excepteur. Quis incididunt
+          mollit est labore fugiat mollit minim eu. Et fugiat ipsum velit anim
+          eiusmod nisi aliquip aute. Eiusmod deserunt ullamco consectetur est
+          duis anim nostrud anim aliqua nostrud.
+        </p>
+
+        <p>
+          Consequat est deserunt laboris mollit in fugiat deserunt cillum
+          laboris cillum non culpa labore. Deserunt irure culpa voluptate ex ex
+          in. Ullamco eiusmod incididunt eiusmod ipsum sint tempor exercitation
+          exercitation aliqua adipisicing deserunt aliquip esse culpa.
+        </p>
+
+        <p>
+          Cupidatat quis officia incididunt adipisicing eiusmod dolore id ut
+          Lorem qui anim et. Nisi consequat minim anim eiusmod aliqua eu
+          deserunt ex. Sunt labore duis nisi laboris Lorem enim labore cillum
+          enim enim et elit est ullamco. Ad proident excepteur quis enim
+          voluptate aute irure ipsum veniam dolore.
+        </p>
       </sh-modal>
     </lib-toolbar>
 
