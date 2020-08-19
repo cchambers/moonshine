@@ -6,14 +6,15 @@
   "description": "Drawer component.",
   "tags": ["utilities", "demo"],
   "requirements": {
-    "Button": [
-      ""
+    "DrawerTrigger": [
+      "Should have configurable active main text",
+      "Should have configurable active secondary text",
+      "Should have configurable inactive main text",
+      "Should have configurable inactive secondary text",
+      "Should have option for counting items in promo drawer"
     ],
     "Drawer": [
-      ""
-    ],
-    "Etc": [
-      ""
+      "Should have option for postion; top, left, bottom, right"
     ]
   }
 }

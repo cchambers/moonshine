@@ -32,96 +32,6 @@ sh-modal {
     }
   }
 
-  &[drawer="bottom"] {
-    height: 100vh;
-    transform: translateY(0) translateZ(0);
-    opacity: 1;
-    transition: none !important;
-    max-height: 100vh;
-
-
-    &.active {
-      .drawer-toggle {
-        background: $highlight-primary;
-        color: $lowlight-quinary; 
-        border-color: $lowlight-quinary;
-        .dt-headline {
-          font-size: 1.8rem;
-          color: $lowlight-primary;
-        }
-        .dt-subhead {
-          font-size: 1.2rem;
-          color: $lowlight-quinary;
-        }
-        .dt-icon {
-          color: $lowlight-primary;
-          belk-icon {
-            transform: rotate(180deg);
-          }
-        }
-      }
-    }
-
-    .drawer-toggle, 
-    .drawer-toggle > * {
-      transition: all 100ms linear;
-    }
-
-    .drawer-toggle {
-      position: absolute;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%) translateY(-100%);
-      border: 1px solid transparent;
-      border-bottom: none;
-      background: $lowlight-secondary;
-      color: $highlight-primary;
-      cursor: pointer;
-      padding: 0.5rem $little;
-      border-radius: 0.5rem 0.5rem 0 0;
-      display: flex;
-      font-family: 'Roboto', sans-serif;
-
-      .dt-headline {
-        font-size: 1.8rem;
-        line-height: 2rem;
-      }
-      .dt-subhead {
-        font-size: 1.2rem;
-        line-height: 1.6rem;
-      }
-
-      .dt-icon {
-        belk-icon {
-          transform-origin: center center;
-          transition: all 100ms linear;
-        }
-        margin-left: $little;
-        height: 100%;
-        margin-top: 0.25rem;
-      }
-    }
-
-    .content {
-      position: absolute;
-      bottom: 0;
-      margin: 0;
-      max-width: 100%;
-      transform: translateY(100%) translateZ(0);
-      transition: all 300ms $decel;
-      overflow: visible;
-      border-top: 1px solid $lowlight-quinary;
-    }
-    &.active {
-      .content {
-        transform: translateY(0) translateZ(0);
-      }
-    }
-    sh-modal-buttons {
-      display: none;
-    }
-  }
-
   &[reveal='left'] {
     transform: translateX(-200%);
   }
@@ -161,6 +71,7 @@ sh-modal {
     overflow-y: auto;
     @include md {
       height: auto;
+      overflow-y: auto;
       margin: 16.7rem auto;
       margin-left: 0;
       max-width: calc(100% - 5.5rem);
@@ -233,7 +144,8 @@ sh-modal {
 
   &.fullscreen {
     .content {
-      margin: 1.5rem;
+      $fullscreenMargin: 1.5rem;
+
       width: 100vw;
       max-width: initial;
       min-height: 100vh;

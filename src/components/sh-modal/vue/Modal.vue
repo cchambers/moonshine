@@ -3,27 +3,11 @@
     :variant="variant"
     :class="{ fullscreen: fullscreen, active: active }"
     :reveal="reveal"
-    :drawer="drawer"
     :id="uniqueId"
     :aria-labelledby="ariaID"
     :aria-describedby="ariaDescID">
     <div class="content" ref="content" :class="{ 'no-margin': noSpace }" :size="size">
       <div class="tab-lock" v-on:focus="modalButtonsFocus()" tabindex="0"></div>
-      <div v-if="drawer">
-        <div toggle-trigger class="drawer-toggle flex align-top">
-          <div v-if="!active">
-            <div class="dt-headline">{{ buttonHeadlineInactive }}</div>
-            <div class="dt-subhead">{{ buttonSubheadInactive }}</div>
-          </div>
-          <div v-else>
-            <div class="dt-headline">{{ buttonHeadlineActive }}</div>
-            <div class="dt-subhead">{{ itemCount }}{{ buttonSubheadActive }}</div>
-          </div>
-          <div class="dt-icon">
-            <belk-icon name="arrow-up" width="18"></belk-icon>
-          </div>
-        </div>
-      </div>
       <div v-if="!hideHeader" class="header">
         <div v-if="header" class="modal-title">
           <h3 :id="ariaHeaderID">
@@ -71,9 +55,6 @@ export default {
     confirmationEvents: Boolean,
     contentSelector: String,
     customClass: String,
-    drawer: String,
-    buttonText: String,
-    dynamicHTML: String,
     maxWidth: String,
     noHistory: Boolean,
     hideHeader: Boolean,
@@ -92,11 +73,6 @@ export default {
     startOpen: Boolean,
     formTarget: String,
     size: String,
-    buttonHeadlineActive: String,
-    buttonHeadlineInactive: String,
-    buttonSubheadActive: String,
-    buttonSubheadInactive: String,
-    countSelector: String,
   },
 
   data() {
@@ -120,7 +96,7 @@ export default {
       noSpace: false,
       openedCallback: undefined,
       closedCallback: undefined,
-      // dynamicHTML: undefined,
+      dynamicHTML: undefined,
       loadHtml: `<div class="bar"></div>
                 <div class="bar"></div>
                 <div class="bar"></div>
@@ -134,18 +110,6 @@ export default {
     };
   },
 
-  computed: {
-    itemCount() {
-      let count = 0;
-      console.log(this.$el);
-      if (this.countSelector && this.$el) {
-        const els = this.$el.querySelectorAll(this.countSelector);
-        count = els.length;
-      }
-      return count;
-    },
-  },
-
   mounted() {
     const self = this;
     self.modals = self.$el.querySelectorAll('.modal');
@@ -153,7 +117,7 @@ export default {
     self.ariaHeaderID = `aria-header-${self.uniqueId}`;
     self.ariaDescID = `aria-desc-${self.uniqueId}`;
     self.links = self.$el.querySelectorAll('a, input, button, [tabindex]:not(.tab-lock), [close-trigger]');
-    const container = (!this.drawer) ? document.querySelector('#sh-modals') : document.querySelector('#sh-modal-drawers');
+    const container = document.querySelector('#sh-modals');
     if (this.customClass) this.$refs.content.classList.add(this.customClass);
     if (container) {
       self.container = container;
@@ -310,14 +274,6 @@ export default {
       if (data.autoOpen) self.open();
     },
 
-    toggle() {
-      if (this.active) {
-        this.close();
-      } else {
-        this.open();
-      }
-    },
-
     open() {
       const self = this;
 
@@ -335,11 +291,7 @@ export default {
 
       if (!self.active) {
         self.$bus.$emit('modal-opening', self.uniqueId);
-        if (this.drawer) {
-          document.documentElement.classList.add('sh-modal-drawer-open');
-        } else {
-          document.documentElement.classList.add('sh-modal-open');
-        }
+        document.documentElement.classList.add('sh-modal-open');
         self.active = true;
         self.$bus.$emit('modal-opened', self.uniqueId);
         if (self.openedEvent) self.$bus.$emit(self.openedEvent, self.uniqueId);
@@ -361,11 +313,7 @@ export default {
     close(clearHash = true) {
       if (this.active) {
         this.$bus.$emit('modal-closing', this.uniqueId);
-        if (this.drawer) {
-          document.documentElement.classList.remove('sh-modal-drawer-open');
-        } else {
-          document.documentElement.classList.remove('sh-modal-open');
-        }
+        document.documentElement.classList.remove('sh-modal-open');
         this.active = false;
         this.$bus.$emit('modal-closed', this.uniqueId);
         if (this.closedEvent) this.$bus.$emit(this.closedEvent, this.uniqueId);
@@ -435,14 +383,6 @@ export default {
       }
 
       // internal affirmation triggers
-      const toggleTriggers = '[toggle-trigger]';
-      self.toggleTriggers = self.$el.querySelectorAll(toggleTriggers);
-      for (let y = 0; y < self.toggleTriggers.length; y += 1) {
-        const el = self.toggleTriggers[y];
-        el.addEventListener('click', self.toggle);
-      }
-
-      // internal affirmation triggers
       const affirmTriggers = '[affirm-trigger]';
       self.affirmTriggers = self.$el.querySelectorAll(affirmTriggers);
       for (let y = 0; y < self.affirmTriggers.length; y += 1) {
@@ -478,12 +418,8 @@ export default {
     createContainer() {
       const self = this;
       const container = document.createElement('div');
-      if (this.drawer) {
-        container.id = 'sh-modal-drawers';
-      } else {
-        container.id = 'sh-modals';
-        container.innerHTML = '<sh-modal-buttons></sh-modal-buttons>';
-      }
+      container.id = 'sh-modals';
+      container.innerHTML = '<sh-modal-buttons></sh-modal-buttons>';
       document.body.appendChild(container);
       self.container = container;
       self.container.addEventListener('click', (e) => {
@@ -577,8 +513,7 @@ export default {
     color: $accent-primary;
   }
 
-  #sh-modals,
-  #sh-modal-drawers {
+  #sh-modals {
     position: fixed;
     pointer-events: none;
     max-height: 0;
@@ -591,7 +526,7 @@ export default {
     background: rgba(0, 0, 0, 0.5);
     overflow: hidden;
     -webkit-overflow-scrolling: touch;
-    // transition: opacity 150ms ease;
+    transition: opacity 150ms ease;
     *:focus {
       outline: 2px solid $accent-tertiary;
     }
@@ -654,13 +589,6 @@ export default {
         }
       }
     }
-  }
-
-  #sh-modal-drawers {
-    opacity: 1;
-    max-height: 100vh;
-    background: none;
-    z-index: 89;
   }
 
   html {

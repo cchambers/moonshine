@@ -8,14 +8,33 @@
     <h2>Usage</h2>
     <pre>
       <code class="language-html">
-        &lt;belk-drawer header="Modal Header" unique-id="string"&gt;
-          &lt;div&gt;
-            &lt;p&gt;Default content slot, lorem ipsum doler.&lt;/p&gt;
-          &lt;/div&gt;
-          &lt;div slot="footer"&gt;
-            &lt;p&gt;... buttons, etc ...&lt;/p&gt;
-          &lt;/div&gt;
-        &lt;/belk-drawer&gt;
+          &lt;belk-drawer drawer="bottom"
+          overlay="none"
+          unique-id="demo-drawer"
+          button-headline-inactive="Today's Offers"
+          button-subhead-inactive="Tap for Savings Made Simple"
+          button-headline-active="Savings Made Simple"
+          button-subhead-active=" Offers"
+          count-selector=".belk-coupons &gt; belk-coupon"&gt;
+            &lt;div&gt;
+              &lt;div class="belk-coupons"&gt;
+                &lt;belk-coupon header-color="brand-belkblue" badge="Online Exclusive" discount="30" upc="12349876"&gt;&lt;/belk-coupon&gt;
+                &lt;belk-coupon header-color="brand-wildfuscia" ends="concludes Feb 14, 2020" badge="In-Store Only" discount="88" event-name="Lost a Good One" code="GREGOLSEN" upc="12345678" extra&gt;
+                  &lt;div slot="exclusions"&gt;
+                    Exclusions.
+                  &lt;/div&gt;
+                  &lt;div slot="description"&gt;
+                    Here's a descriptive paragraph that &lt;strong&gt;is HTML friendly&lt;/strong&gt;.
+                  &lt;/div&gt;
+                &lt;/belk-coupon&gt;
+                &lt;belk-coupon header-color="brand-deepteal" badge="Online and In-Store" discount="30" to-spend="100" event-name="Dirty Thirty" code="GET SOME" upc="12349876"&gt;
+                  &lt;div slot="exclusions"&gt;
+                    Here's some exclusions without a description... so the link is lower.
+                  &lt;/div&gt;
+                &lt;/belk-coupon&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/belk-drawer&gt;
       </code>
     </pre>
   </section>

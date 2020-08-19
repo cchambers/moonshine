@@ -973,39 +973,6 @@
     </lib-toolbar>
 
 
-    <h3 class="margin-t">Drawer Modal</h3>
-    <lib-toolbar>
-      <sh-button modal-trigger="demo-drawer">Open Drawer Modal</sh-button>
-      <sh-modal drawer="bottom"
-      overlay="none"
-      unique-id="demo-drawer"
-      button-headline-inactive="Today's Offers"
-      button-subhead-inactive="Tap for Savings Made Simple"
-      button-headline-active="Savings Made Simple"
-      button-subhead-active=" Offers"
-      count-selector=".belk-coupons > belk-coupon">
-        <div>
-          <div class="belk-coupons">
-            <belk-coupon header-color="brand-belkblue" badge="Online Exclusive" discount="30" upc="12349876"></belk-coupon>
-            <belk-coupon header-color="brand-wildfuscia" ends="concludes Feb 14, 2020" badge="In-Store Only" discount="88" event-name="Lost a Good One" code="GREGOLSEN" upc="12345678" extra>
-              <div slot="exclusions">
-                Here's some information about the coupon's exclusions.
-              </div>
-              <div slot="description">
-                Here's a descriptive paragraph that <strong>is HTML friendly</strong>.
-              </div>
-            </belk-coupon>
-            <belk-coupon header-color="brand-deepteal" badge="Online and In-Store" discount="30" to-spend="100" event-name="Dirty Thirty" code="GET SOME" upc="12349876">
-              <div slot="exclusions">
-                Here's some exclusions without a description... so the link is lower.
-              </div>
-            </belk-coupon>
-          </div>
-        </div>
-      </sh-modal>
-    </lib-toolbar>
-
-
     <sh-modal variant="primary" unique-id="dyn-modal">
       <div>Loading...</div>
     </sh-modal>

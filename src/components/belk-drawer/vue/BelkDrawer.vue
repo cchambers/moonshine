@@ -1,5 +1,5 @@
 <template>
-  <div class="sh-modal" role="dialog"
+  <div class="belk-drawer" role="dialog"
     :variant="variant"
     :class="{ fullscreen: fullscreen, active: active }"
     :reveal="reveal"
@@ -153,7 +153,7 @@ export default {
     self.ariaHeaderID = `aria-header-${self.uniqueId}`;
     self.ariaDescID = `aria-desc-${self.uniqueId}`;
     self.links = self.$el.querySelectorAll('a, input, button, [tabindex]:not(.tab-lock), [close-trigger]');
-    const container = (!this.drawer) ? document.querySelector('#sh-modals') : document.querySelector('#sh-modal-drawers');
+    const container = (!this.drawer) ? document.querySelector('#belk-drawers') : document.querySelector('#belk-drawer-drawers');
     if (this.customClass) this.$refs.content.classList.add(this.customClass);
     if (container) {
       self.container = container;
@@ -470,12 +470,7 @@ export default {
     createContainer() {
       const self = this;
       const container = document.createElement('div');
-      if (this.drawer) {
-        container.id = 'sh-modal-drawers';
-      } else {
-        container.id = 'sh-modals';
-        container.innerHTML = '<sh-modal-buttons></sh-modal-buttons>';
-      }
+      container.id = 'belk-drawers';
       document.body.appendChild(container);
       self.container = container;
       self.container.addEventListener('click', (e) => {
@@ -487,7 +482,7 @@ export default {
     mountToContainer() {
       const self = this;
       const id = self.uniqueId;
-      const exists = document.querySelector(`#sh-modals #${id}`);
+      const exists = document.querySelector(`#belk-drawers #${id}`);
       if (exists) exists.remove();
       setTimeout(() => {
         self.container.appendChild(self.$el);
@@ -598,7 +593,7 @@ export default {
     }
   }
 
-  #sh-modal-drawers {
+  #belk-drawers {
     opacity: 1;
     max-height: 100vh;
     background: none;
@@ -606,17 +601,17 @@ export default {
   }
 
   html {
-    &.sh-modal-open {
+    &.belk-drawer-open {
       > * {
         overflow: hidden !important;
       }
 
-      #sh-modals {
+      #belk-drawers {
         opacity: 1;
         pointer-events: initial;
         max-height: initial;
         overflow-y: auto;
-        sh-modal-buttons {
+        belk-drawer-buttons {
           display: block;
         }
       }
