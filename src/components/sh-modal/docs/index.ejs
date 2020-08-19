@@ -976,7 +976,14 @@
     <h3 class="margin-t">Drawer Modal</h3>
     <lib-toolbar>
       <sh-button modal-trigger="demo-drawer">Open Drawer Modal</sh-button>
-      <sh-modal drawer="bottom" overlay="none" unique-id="demo-drawer">
+      <sh-modal drawer="bottom"
+      overlay="none"
+      unique-id="demo-drawer"
+      button-headline-inactive="Today's Offers"
+      button-subhead-inactive="Tap for Savings Made Simple"
+      button-headline-active="Savings Made Simple"
+      button-subhead-active=" Offers"
+      count-selector=".belk-coupons > belk-coupon">
         <div>
           <div class="belk-coupons">
             <belk-coupon header-color="brand-belkblue" badge="Online Exclusive" discount="30" upc="12349876"></belk-coupon>

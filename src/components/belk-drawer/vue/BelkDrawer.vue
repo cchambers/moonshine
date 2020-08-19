@@ -20,7 +20,7 @@
             <div class="dt-subhead">{{ itemCount }}{{ buttonSubheadActive }}</div>
           </div>
           <div class="dt-icon">
-            <belk-icon name="arrow-up" width="18"></belk-icon>
+            <belk-icon name="arrow-up" width="16"></belk-icon>
           </div>
         </div>
       </div>
@@ -335,11 +335,7 @@ export default {
 
       if (!self.active) {
         self.$bus.$emit('modal-opening', self.uniqueId);
-        if (this.drawer) {
-          document.documentElement.classList.add('sh-modal-drawer-open');
-        } else {
-          document.documentElement.classList.add('sh-modal-open');
-        }
+        document.documentElement.classList.add('belk-drawer-open');
         self.active = true;
         self.$bus.$emit('modal-opened', self.uniqueId);
         if (self.openedEvent) self.$bus.$emit(self.openedEvent, self.uniqueId);
@@ -361,11 +357,7 @@ export default {
     close(clearHash = true) {
       if (this.active) {
         this.$bus.$emit('modal-closing', this.uniqueId);
-        if (this.drawer) {
-          document.documentElement.classList.remove('sh-modal-drawer-open');
-        } else {
-          document.documentElement.classList.remove('sh-modal-open');
-        }
+        document.documentElement.classList.remove('belk-drawer-open');
         this.active = false;
         this.$bus.$emit('modal-closed', this.uniqueId);
         if (this.closedEvent) this.$bus.$emit(this.closedEvent, this.uniqueId);
@@ -570,15 +562,9 @@ export default {
 </script>
 
 <style lang="scss" src="../style/default.scss"></style>
-<style lang="scss" src="../style/primary.scss"></style>
-<style lang="scss" src="../style/secondary.scss"></style>
 <style lang="scss">
-  a[modal-trigger] {
-    color: $accent-primary;
-  }
 
-  #sh-modals,
-  #sh-modal-drawers {
+  #belk-drawers {
     position: fixed;
     pointer-events: none;
     max-height: 0;
@@ -594,50 +580,6 @@ export default {
     // transition: opacity 150ms ease;
     *:focus {
       outline: 2px solid $accent-tertiary;
-    }
-    sh-modal-buttons {
-      display: none;
-      .sh-modal-buttons {
-        position: fixed;
-        z-index: 2;
-        pointer-events: all;
-        flex-direction: column;
-        right: 0;
-        top: 0rem;
-        color: $lowlight-primary;
-        @include md {
-          top: 13rem;
-          color: $highlight-primary;
-        }
-        @include lg {
-          left: calc(100% / 2 + 38.7rem);
-        }
-        button {
-          display: flex;
-          height: 5rem;
-          width: 5rem;
-          padding: 0 !important;
-          align-content: center;
-          justify-content: center;
-          color: inherit;
-          background: transparent;
-          cursor: pointer;
-          border: none;
-          outline: none;
-          transition: all 150ms $decel;
-          transform: scale(1) translateX(0);
-          transform-origin: center center;
-          &:hover,
-          &:focus {
-            transform: scale(1.3) translateX(0);
-          }
-          > belk-icon {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-          }
-        }
-      }
     }
 
     &[overlay] {

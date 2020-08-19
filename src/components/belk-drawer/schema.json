@@ -1,0 +1,19 @@
+{
+  "name": "Belk Drawer",
+  "category": "features",
+  "production": true,
+  "element": "belk-drawer",
+  "description": "Drawer component.",
+  "tags": ["utilities", "demo"],
+  "requirements": {
+    "Button": [
+      ""
+    ],
+    "Drawer": [
+      ""
+    ],
+    "Etc": [
+      ""
+    ]
+  }
+}
