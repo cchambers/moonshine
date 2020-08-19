@@ -10,7 +10,7 @@
     <div class="content" ref="content" :class="{ 'no-margin': noSpace }" :size="size">
       <div class="tab-lock" v-on:focus="modalButtonsFocus()" tabindex="0"></div>
       <div v-if="drawer">
-        <div toggle-trigger class="drawer-toggle">
+        <div toggle-trigger class="drawer-toggle flex align-top">
           <div v-if="!active">
             <div class="dt-headline">Today's Offers</div>
             <div class="dt-subhead">Tap for Savings Made Simple</div>
@@ -18,6 +18,9 @@
           <div v-else>
             <div class="dt-headline">Savings Made Simple</div>
             <div class="dt-subhead">[count] offers</div>
+          </div>
+          <div class="dt-icon">
+            <belk-icon name="arrow-up" width="18"></belk-icon>
           </div>
         </div>
       </div>
@@ -640,6 +643,7 @@ export default {
     opacity: 1;
     max-height: 100vh;
     background: none;
+    z-index: 89;
   }
 
   html {
