@@ -1,48 +1,30 @@
 <template>
   <div class="belk-drawer" role="dialog"
-    :variant="variant"
-    :class="{ fullscreen: fullscreen, active: active }"
+    :class="{ active: active }"
     :reveal="reveal"
     :drawer="drawer"
     :id="uniqueId"
     :aria-labelledby="ariaID"
     :aria-describedby="ariaDescID">
-    <div class="content" ref="content" :class="{ 'no-margin': noSpace }" :size="size">
-      <div class="tab-lock" v-on:focus="modalButtonsFocus()" tabindex="0"></div>
-      <div v-if="drawer">
-        <div toggle-trigger class="drawer-toggle flex align-top">
-          <div v-if="!active">
-            <div class="dt-headline">{{ buttonHeadlineInactive }}</div>
-            <div class="dt-subhead">{{ buttonSubheadInactive }}</div>
-          </div>
-          <div v-else>
-            <div class="dt-headline">{{ buttonHeadlineActive }}</div>
-            <div class="dt-subhead">{{ itemCount }}{{ buttonSubheadActive }}</div>
-          </div>
-          <div class="dt-icon">
-            <belk-icon name="arrow-up" width="16"></belk-icon>
-          </div>
+    <div class="content" ref="content" :size="size">
+      <!-- <div class="tab-lock" v-on:focus="modalButtonsFocus()" tabindex="0"></div> -->
+      <div toggle-trigger class="drawer-toggle flex align-top">
+        <div v-if="!active">
+          <div class="dt-headline">{{ buttonHeadlineInactive }}</div>
+          <div class="dt-subhead">{{ buttonSubheadInactive }}</div>
         </div>
-      </div>
-      <div v-if="!hideHeader" class="header">
-        <div v-if="header" class="modal-title">
-          <h3 :id="ariaHeaderID">
-            <slot name="header">{{ header }}</slot>
-          </h3>
+        <div v-else>
+          <div class="dt-headline">{{ buttonHeadlineActive }}</div>
+          <div class="dt-subhead">{{ itemCount }}{{ buttonSubheadActive }}</div>
+        </div>
+        <div class="dt-icon">
+          <belk-icon name="arrow-up" width="16"></belk-icon>
         </div>
       </div>
       <div class="body" :style="{ 'max-width': maxWidth }" ref="body" :id="ariaDescID">
-        <div v-if="contentUrl && !loaded" class="loading-anim" v-html="loadHtml"></div>
-        <template v-if="!dynamicHTML">
-          <slot>{{ content }}</slot>
-        </template>
-        <div v-if="dynamicHTML" v-html="dynamicHTML"></div>
-
+        <slot>{{ content }}</slot>
       </div>
-      <div class="footer">
-        <slot name="footer">{{ footer }}</slot>
-      </div>
-      <div class="tab-lock" v-on:focus="modalButtonsFocus()" tabindex="0"></div>
+      <!-- <div class="tab-lock" v-on:focus="modalButtonsFocus()" tabindex="0"></div> -->
     </div>
   </div>
 </template>
@@ -117,7 +99,6 @@ export default {
       ariaHeaderID: String,
       ariaDescID: String,
       links: Array,
-      noSpace: false,
       openedCallback: undefined,
       closedCallback: undefined,
       // dynamicHTML: undefined,
@@ -137,7 +118,6 @@ export default {
   computed: {
     itemCount() {
       let count = 0;
-      console.log(this.$el);
       if (this.countSelector && this.$el) {
         const els = this.$el.querySelectorAll(this.countSelector);
         count = els.length;
@@ -148,7 +128,6 @@ export default {
 
   mounted() {
     const self = this;
-    self.modals = self.$el.querySelectorAll('.modal');
     self.ariaID = `aria-${self.uniqueId}`;
     self.ariaHeaderID = `aria-header-${self.uniqueId}`;
     self.ariaDescID = `aria-desc-${self.uniqueId}`;
@@ -303,10 +282,6 @@ export default {
       if (data.html) self.dynamicHTML = data.html;
       if (typeof data.open === 'function') self.openedCallback = data.open;
       if (typeof data.close === 'function') self.closedCallback = data.close;
-      if (data.url) {
-        self.contentUrl = data.url;
-        self.loadContent();
-      }
       if (data.autoOpen) self.open();
     },
 
@@ -323,10 +298,6 @@ export default {
 
       if (self.confirmationEvents) self.affirmed = undefined;
 
-      if (!self.loaded && self.contentUrl) {
-        if (self.contentUrl !== self.loadedUrl) self.loadContent();
-      }
-
       if (self.overlay) {
         self.container.setAttribute('overlay', self.overlay);
       } else {
@@ -340,8 +311,6 @@ export default {
         self.$bus.$emit('modal-opened', self.uniqueId);
         if (self.openedEvent) self.$bus.$emit(self.openedEvent, self.uniqueId);
         if (self.openedCallback) self.openedCallback();
-
-        self.manageHeight();
 
         setTimeout(() => {
           self.$refs.content.focus();
@@ -487,70 +456,6 @@ export default {
       setTimeout(() => {
         self.container.appendChild(self.$el);
       });
-    },
-
-    manageHeight() {
-      if (this.$refs.content.offsetHeight > (window.innerHeight - 160)) {
-        this.noSpace = true;
-      }
-    },
-
-    doError() {
-      this.$refs.body.innerHTML = `<p class="error">There was a problem loading content from <a href='${window.location.host}${this.contentUrl}'>${window.location.host}${this.contentUrl}</a>.</p>`;
-    },
-
-    ajax(data = null) {
-      const self = this;
-      const xhr = new XMLHttpRequest();
-      const method = (data === null) ? 'GET' : 'POST';
-      let postData = data;
-      xhr.open(method, self.contentUrl, true);
-      if (method === 'POST') {
-        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        if (self.formTarget) {
-          const form = document.querySelector(self.formTarget);
-          if (form) postData = self.serialize(form);
-        }
-      }
-      xhr.send(postData);
-      xhr.onreadystatechange = () => {
-        const DONE = 4;
-        const OK = 200;
-        if (xhr.readyState === DONE) {
-          if (xhr.status === OK) {
-            self.loaded = true;
-            let response = xhr.responseText;
-            const pattern = /<body[^>]*>((.|[\n\r])*)<\/body>/im;
-            const arr = pattern.exec(response);
-            if (!arr) {
-              response = xhr.responseText;
-            } else {
-              // eslint-disable-next-line
-              response = arr[1];
-            }
-            // eslint-disable-next-line
-            let html = document.createElement('div');
-            html.innerHTML = response;
-
-            if (self.contentSelector) {
-              const contentTarget = html.querySelector(self.contentSelector);
-              if (contentTarget) html = contentTarget;
-              html = contentTarget;
-            }
-
-            if (!html) {
-              self.doError();
-            } else {
-              self.$refs.body.appendChild(html);
-              self.loadedUrl = self.contentUrl;
-              self.manageHeight();
-              self.$bus.$emit('modal-content-loaded', self.uniqueId);
-            }
-          } else {
-            self.doError();
-          }
-        }
-      };
     },
   },
 };

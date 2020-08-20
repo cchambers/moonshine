@@ -117,9 +117,6 @@ belk-drawer {
         transform: translateY(0) translateZ(0);
       }
     }
-    sh-modal-buttons {
-      display: none;
-    }
   }
 
   &[reveal='left'] {
@@ -151,7 +148,6 @@ belk-drawer {
     position: relative;
     background: $highlight-primary;
     pointer-events: all;
-    height: 100%;
     width: 100%;
     min-height: 12rem;
     flex-shrink: 0;
@@ -159,191 +155,22 @@ belk-drawer {
     margin: 0;
     height: 100vh;
     overflow-y: auto;
-    @include md {
-      height: auto;
-      margin: 16.7rem auto;
-      margin-left: 0;
-      max-width: calc(100% - 5.5rem);
-    }
-    @include lg {
-      margin-right: 1.5rem;
-      margin-left: 0;
-      max-width: 78rem;
-    }
-    &[size="double"] {
-      max-width: 128rem;
-    }
+    height: auto;
+  }
+
+  .belk-coupons {
+    padding: $little 0;
+    &::before { content: ''; min-width: $little; }
+    &::after { content: ''; min-width: $little; }
   }
 
   .body {
-    padding: 0 2rem 3rem 2rem;
     margin-left: auto;
     margin-right: auto;
-    @include md {
-      padding: 2rem;
-    }
-  }
-
-  .header {
-    display: flex;
-    justify-content: space-between;
-    height: auto;
-    position: sticky;
-    top: 0;
-    @include md {
-      height: auto;
-      position: static;
-    }
-
-    .modal-title {
-      background: $highlight-primary;
-      width: 100%;
-      padding-top: 2rem;
-    }
-
-    div,
-    h3 {
-      display: flex;
-      align-items: center;
-    }
-
-    h3 {
-      margin: 0;
-      padding-left: 2rem;
-    }
-
-    button {
-      outline: none;
-      border: none;
-      align-self: flex-end;
-    }
-  }
-
-  .footer {
-    padding: 2rem $rem;
-    margin-top: 0;
-    &:empty {
-      display: none;
-    }
+    overflow-y: auto;
   }
 
   [close-trigger] {
     cursor: pointer;
-  }
-
-  &.fullscreen {
-    .content {
-      margin: 1.5rem;
-      width: 100vw;
-      max-width: initial;
-      min-height: 100vh;
-      margin: 0;
-    }
-
-    .body {
-      width: 100%;
-      max-width: 102rem;
-      margin: 0 auto;
-      padding: 0;
-    }
-  }
-
-  .loading-anim {
-    height: 30rem;
-    width: 100%;
-
-    .bar {
-      height: 9%;
-      margin-top: 1%;
-      background: $lowlight-primary;
-      opacity: 0.05;
-      animation: loading 500ms infinite alternate backwards $ease;
-      transform: translateZ(0);
-    }
-
-    .bar:nth-child(1) {
-      -webkit-animation-delay: 100ms;
-      animation-delay: 100ms;
-    }
-
-    .bar:nth-child(2) {
-      -webkit-animation-delay: 200ms;
-      animation-delay: 200ms;
-    }
-
-    .bar:nth-child(3) {
-      -webkit-animation-delay: 300ms;
-      animation-delay: 300ms;
-    }
-
-    .bar:nth-child(4) {
-      -webkit-animation-delay: 400ms;
-      animation-delay: 400ms;
-    }
-
-    .bar:nth-child(5) {
-      -webkit-animation-delay: 500ms;
-      animation-delay: 500ms;
-    }
-
-    .bar:nth-child(6) {
-      -webkit-animation-delay: 600ms;
-      animation-delay: 600ms;
-    }
-
-    .bar:nth-child(7) {
-      -webkit-animation-delay: 700ms;
-      animation-delay: 700ms;
-    }
-
-    .bar:nth-child(8) {
-      -webkit-animation-delay: 800ms;
-      animation-delay: 800ms;
-    }
-
-    .bar:nth-child(9) {
-      -webkit-animation-delay: 900ms;
-      animation-delay: 900ms;
-    }
-
-    .bar:nth-child(10) {
-      -webkit-animation-delay: 1000ms;
-      animation-delay: 1000ms;
-    }
-
-    @keyframes loading {
-      0% {
-        opacity: 0;
-      }
-
-      100% {
-        opacity: 0.05;
-      }
-    }
-  }
-}
-
-
-@media print {
-  html.sh-modal-open {
-    body > * {
-      display: none;
-    }
-    body > #sh-modals {
-      display: block;
-      .sh-modal.active {
-        .modal-buttons {
-          display: none;
-        }
-        .content {
-          width: 100vw;
-          min-height: 100vh;
-          height: auto;
-          margin: 0;
-          max-height: initial;
-          max-width: initial;
-        }
-      }
-    }
   }
 }
