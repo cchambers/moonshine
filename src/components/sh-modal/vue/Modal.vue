@@ -600,7 +600,7 @@ export default {
       #sh-modals {
         opacity: 1;
         pointer-events: initial;
-        max-height: initial;
+        max-height: 100vh;
         overflow-y: auto;
         sh-modal-buttons {
           display: block;
