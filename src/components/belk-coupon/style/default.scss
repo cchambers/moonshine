@@ -66,8 +66,10 @@ belk-coupon {
     }
   }
 
+
+
   .coupon-wrapper {
-    padding: $little $rem;
+    padding: $rem;
     display: flex;
     flex: 1 1 auto;
     flex-direction: column;
@@ -193,6 +195,7 @@ belk-coupon {
     margin-top: $little;
     margin-left: -0.5em;
     margin-right: -0.5em;
+    height: 7rem;
   }
 
   .coupon-details {

@@ -63,7 +63,9 @@
           <belk-logo width="120"></belk-logo>
         </div>
       </div>
-      <div v-else-if="variant != 'offer' && !print" class="coupon-spacer"
+      <div v-else-if="variant != 'offer' && !print"
+        class="coupon-spacer"
+        style="max-height: 7rem;"
         :data-text="spacerText"></div>
       <div class="coupon-print" v-if="printable">
         <sh-button variant="belk-link"
