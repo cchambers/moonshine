@@ -10,7 +10,7 @@ belk-coupon {
     flex-basis: 25%;
   }
   belk-coupon + belk-coupon {
-    margin-left: 1.5rem;
+    margin-left: $little;
   }
 }
 
@@ -18,7 +18,7 @@ belk-coupon {
   display: block;
   flex-grow: 1;
   height: 100%;
-  min-width: 300px;
+  min-width: 280px;
   border: 1px solid $lowlight-primary;
   &.printable {
     border-style: dashed;
@@ -27,35 +27,35 @@ belk-coupon {
     .coupon-upc {
       display: flex;
       border: none;
-      margin-left: -1.5rem;
-      margin-right: -1.5rem;
+      margin-left: -$little;
+      margin-right: -$little;
       .coupon-logo {
         width: 120px;
         display: flex;
         align-items: center;
-        margin-left: 1.5rem;
-        padding-bottom: 1.5rem;
+        margin-left: $little;
+        padding-bottom: $little;
       }
     }
   }
 
   &.to-spend {
     .coupon-discount .coupon-secondary {
-      line-height: 3rem;
+      line-height: $rem;
       margin-top: 5rem;
       .s-t {
         font-size: 4.2rem;
       }
       .s-b {
-        font-size: 3rem;
+        font-size: $rem;
       }
     }
   }
 
   .coupon-spacer {
-    padding: 1.5rem 3rem;
+    padding: $little;
     display: flex;
-    height: calc(100% - 3rem);
+    height: calc(100% - $rem);
     flex-direction: column;
     color: $lowlight-primary;
     justify-content: flex-end;
@@ -75,7 +75,7 @@ belk-coupon {
     font-family: proxima-nova, sans-serif;
     font-weight: 900;
     font-style: normal;
-    font-size: 3rem;
+    font-size: $rem;
     margin-bottom: -1rem;
     margin-top: -1rem;
     margin-right: 30%;
@@ -87,7 +87,7 @@ belk-coupon {
     font-style: normal;
     font-size: 13.2rem;
     margin-top: -2rem;
-    margin-bottom: -3rem;
+    margin-bottom: -$rem;
 
     .actual {
       display: flex;
@@ -96,7 +96,7 @@ belk-coupon {
 
     .dollar {
       font-size: 5rem;
-      margin-top: 3rem;
+      margin-top: $rem;
     }
 
     .coupon-secondary {
@@ -145,6 +145,8 @@ belk-coupon {
         display: flex;
         &.active {
           background: $state-success;
+          color: $highlight-primary;
+          border-color: transparent;
           belk-icon {
             display: block;
           }
@@ -168,8 +170,8 @@ belk-coupon {
 
   .coupon-description {
     font-size: 1.4rem;
-    margin-left: -1.5rem;
-    margin-right: -1.5rem;
+    margin-left: -$little;
+    margin-right: -$little;
     text-align: center;
   }
 

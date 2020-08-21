@@ -5,28 +5,34 @@
     <div v-if="!noType" class="coupon-type">
       {{badge}}
     </div>
+    <div class="coupon-image"><slot name="image"></slot></div>
     <div class="coupon-spacer">
-      <div v-if="extra" class="coupon-extra" :class="headerColor">extra</div>
-      <div class="coupon-discount" :class="headerColor">
-        <div class="actual">
-          <span v-if="toSpend" class="dollar">$</span>
-          {{discount}}
+      <template v-if="variant=='default'">
+        <div v-if="extra" class="coupon-extra" :class="headerColor">extra</div>
+        <div class="coupon-discount" :class="headerColor">
+          <div class="actual">
+            <span v-if="toSpend" class="dollar">$</span>
+            {{discount}}
+            </div>
+          <div v-if="!toSpend" class="coupon-secondary">
+            <div class="s-t">%</div>
+            <div class="s-b">off</div>
           </div>
-        <div v-if="!toSpend" class="coupon-secondary">
-          <div class="s-t">%</div>
-          <div class="s-b">off</div>
+          <div v-else class="coupon-secondary">
+            <div class="s-t">off</div>
+            <div class="s-b">${{toSpend}}</div>
+          </div>
         </div>
-        <div v-else class="coupon-secondary">
-          <div class="s-t">off</div>
-          <div class="s-b">${{toSpend}}</div>
-        </div>
-      </div>
+      </template>
       <div v-if="eventName" class="coupon-event-name">{{eventName}}</div>
       <div class="coupon-use-code"
         v-if="code">Use Code: <span class="actual">{{code}}</span></div>
       <div v-if="ends" class="coupon-ends">{{ends}}</div>
       <div v-if="hasDescription" class="coupon-description">
           <slot name="description"></slot>
+          <template v-if="hasDetails">
+            <a href="#thismodal">Details</a>
+          </template>
       </div>
       <div hidden><slot name="exclusions"></slot></div>
       <div class="coupon-push"></div>
@@ -43,7 +49,7 @@
           active-icon="check">
           Add Coupon
         </sh-button>
-        <div hidden class="modal"></div>
+        <div hidden class="coupon-modal"></div>
       </div>
       <div v-if="upc" class="coupon-upc">
         <belk-barcode align-text="right" :code="upc"></belk-barcode>
@@ -72,7 +78,7 @@ export default {
     badge: String,
     upc: {
       type: String,
-      default: 'none-given',
+      default: undefined,
     },
     eventName: String,
     code: String,
@@ -97,15 +103,21 @@ export default {
       type: Boolean,
       default: false,
     },
+    variant: {
+      type: String,
+      default: 'default',
+    },
   },
 
   data() {
     return {
       added: true,
+      hasDetails: false,
       hasDescription: false,
       hasExclusions: false,
       hasEd: 'defaultid',
       exclusionsHTML: '',
+      detailsHTML: '',
       printId: 'defaultid',
       printable: false,
     };
@@ -124,8 +136,13 @@ export default {
       this.exclusionsHTML = this.$slots.exclusions[0].elm.innerHTML || '';
       this.makeExclusionsModal();
     }
+
+    if (this.hasDetails) {
+      this.detailsHTML = this.$slots.details[0].elm.innerHTML || '';
+      this.makeDetailsModal();
+    }
     
-    if (this.badge) {
+    if (this.badge && this.variant == 'default') {
       if (this.badge.indexOf('Store') >= 0) {
         this.printable = true;
         this.makePrintModal();
@@ -144,7 +161,7 @@ export default {
 
     makeExclusionsModal() {
       let self = this;
-      const el = self.$el.querySelector('.modal[hidden]');
+      const el = self.$el.querySelector('.coupon-modal[hidden]');
       if (el) {
         const html = `<sh-modal unique-id="${self.exclusionsId}">
           <div>${self.exclusionsHTML}</div>
@@ -153,9 +170,20 @@ export default {
       }
     },
 
+    makeDetailsModal() {
+      let self = this;
+      const el = self.$el.querySelector('.coupon-modal[hidden]');
+      if (el) {
+        const html = `<sh-modal unique-id="${self.exclusionsId}">
+          <div>${self.detailsHTML}</div>
+        </sh-modal>`;
+        el.innerHTML += html;
+      }
+    },
+
     makePrintModal() {
       let self = this;
-      const el = self.$el.querySelector('.modal[hidden]');
+      const el = self.$el.querySelector('.coupon-modal[hidden]');
       if (el) {
         const html = `<sh-modal printable unique-id="${self.printId}">
           <div>
@@ -180,3 +208,4 @@ export default {
 
 </script>
 <style lang="scss" src="../style/default.scss"></style>
+<style lang="scss" src="../style/offer.scss"></style>

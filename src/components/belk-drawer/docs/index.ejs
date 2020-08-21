@@ -400,6 +400,18 @@
       button-subhead-active=" Offers"
       count-selector=".belk-coupons > belk-coupon">
         <div class="belk-coupons">
+          <belk-coupon variant="offer">
+            <div slot="image">
+              TEST
+              <img src="via.placeholder.com/300x200" />
+            </div>
+            <div slot="description">
+              Here's a descriptive paragraph that <strong>is HTML friendly</strong>.
+            </div>
+            <div slot="exclusions">
+              Details about the offer.
+            </div>
+          </belk-coupon>
           <belk-coupon header-color="brand-belkblue" badge="Online Exclusive" discount="30" upc="12349876"></belk-coupon>
           <belk-coupon header-color="brand-wildfuscia" ends="concludes Feb 14, 2020" badge="In-Store Only" discount="88" event-name="Lost a Good One" code="GREGOLSEN" upc="12345678" extra>
             <div slot="exclusions">
