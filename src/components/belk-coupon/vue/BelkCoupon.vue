@@ -2,11 +2,9 @@
   <div class="belk-coupon"
     :class="{ printable: print, 'to-spend': toSpend }"
     :variant="variant">
-    <div v-if="!noType" class="coupon-type">
-      {{badge}}
-    </div>
+    <div v-if="badge" class="coupon-type">{{ badge }}</div>
     <div class="coupon-image"><slot name="image"></slot></div>
-    <div class="coupon-spacer">
+    <div class="coupon-wrapper">
       <template v-if="variant=='default'">
         <div v-if="extra" class="coupon-extra" :class="headerColor">extra</div>
         <div class="coupon-discount" :class="headerColor">
@@ -29,27 +27,35 @@
         v-if="code">Use Code: <span class="actual">{{code}}</span></div>
       <div v-if="ends" class="coupon-ends">{{ends}}</div>
       <div v-if="hasDescription" class="coupon-description">
-          <slot name="description"></slot>
-          <template v-if="hasDetails">
-            <a href="#thismodal">Details</a>
+        <slot name="description"></slot>
+        <template class="coupon-details" :hidden="!hasDetails && !print">
+          <template v-if="!print">
+            <sh-button variant="belk-link" :modal-trigger="detailsId">Details</sh-button>
           </template>
-      </div>
-      <div hidden><slot name="exclusions"></slot></div>
-      <div class="coupon-push"></div>
-      <div class="coupon-exclusions" :hidden="!hasExclusions && !print">
-        <template v-if="!print">
-          <a :href="'#'+exclusionsId">View Exclusions</a>
+          <div class="coupon-details-actual" v-else>{{ details }}</div>
         </template>
-        <div class="coupon-exclusions-actual" v-else>{{exclusions}}</div>
+      </div>
+      <div v-else-if="!print" class="coupon-spacer" :data-text="spacerText"></div>
+      <div hidden aria-hidden="true">
+        <slot name="details"></slot>
       </div>
       <div class="coupon-buttons" v-if="!print">
-        <sh-button variant="primary" toggle="once"
+        <sh-button v-if="variant != 'offer'" variant="primary" toggle="once"
           @click="addCoupon"
           active-text="Added"
           active-icon="check">
           Add Coupon
         </sh-button>
-        <div hidden class="coupon-modal"></div>
+        <sh-button v-if="link" variant="primary" outline
+          @click="doLink">
+          <template v-if="variant == 'offer'">
+          Shop Now
+          </template>
+          <template v-else>
+            Learn More
+          </template>
+        </sh-button>
+        <div hidden aria-hidden="true" class="coupon-modal"></div>
       </div>
       <div v-if="upc" class="coupon-upc">
         <belk-barcode align-text="right" :code="upc"></belk-barcode>
@@ -57,6 +63,8 @@
           <belk-logo width="120"></belk-logo>
         </div>
       </div>
+      <div v-else-if="variant != 'offer' && !print" class="coupon-spacer"
+        :data-text="spacerText"></div>
       <div class="coupon-print" v-if="printable">
         <sh-button variant="belk-link"
           @click="printCoupon">Print Coupon</sh-button>
@@ -92,8 +100,9 @@ export default {
       default: false,
     },
     ends: String,
-    exclusions: String,
+    details: String,
     headerColor: String,
+    link: String,
     noType: {
       type: Boolean,
       default: false,
@@ -107,16 +116,18 @@ export default {
       type: String,
       default: 'default',
     },
+    spacerText: {
+      type: String,
+      default: 'define [spacer-text]',
+    },
   },
 
   data() {
     return {
       added: true,
-      hasDetails: false,
       hasDescription: false,
-      hasExclusions: false,
+      hasDetails: false,
       hasEd: 'defaultid',
-      exclusionsHTML: '',
       detailsHTML: '',
       printId: 'defaultid',
       printable: false,
@@ -125,21 +136,16 @@ export default {
 
   created() {
     this.setUUID();
-    this.exclusionsId = `em-${this.uuid}`;
+    this.detailsId = `em-${this.uuid}`;
     this.printId = `pr-${this.uuid}`;
-    if (this.$slots.exclusions !== undefined) this.hasExclusions = true;
+    if (this.$slots.details !== undefined) this.hasDetails = true;
     if (this.$slots.description !== undefined) this.hasDescription = true;
   },
 
   mounted() {
-    if (this.hasExclusions) {
-      this.exclusionsHTML = this.$slots.exclusions[0].elm.innerHTML || '';
-      this.makeExclusionsModal();
-    }
-
     if (this.hasDetails) {
       this.detailsHTML = this.$slots.details[0].elm.innerHTML || '';
-      this.makeDetailsModal();
+      this.makeExclusionsModal();
     }
     
     if (this.badge && this.variant == 'default') {
@@ -155,6 +161,10 @@ export default {
       this.log('add coupon click handler');
     },
 
+    doLink() {
+      window.location.href = this.link;
+    },
+
     printCoupon() {
       this.$bus.$emit('open-modal', { id: this.printId });
     },
@@ -163,18 +173,7 @@ export default {
       let self = this;
       const el = self.$el.querySelector('.coupon-modal[hidden]');
       if (el) {
-        const html = `<sh-modal unique-id="${self.exclusionsId}">
-          <div>${self.exclusionsHTML}</div>
-        </sh-modal>`;
-        el.innerHTML += html;
-      }
-    },
-
-    makeDetailsModal() {
-      let self = this;
-      const el = self.$el.querySelector('.coupon-modal[hidden]');
-      if (el) {
-        const html = `<sh-modal unique-id="${self.exclusionsId}">
+        const html = `<sh-modal unique-id="${self.detailsId}">
           <div>${self.detailsHTML}</div>
         </sh-modal>`;
         el.innerHTML += html;
@@ -194,7 +193,7 @@ export default {
               code="${self.code}" 
               ends="${self.ends}"
               upc="${self.upc}"
-              exclusions="${self.exclusionsHTML}"
+              details="${self.detailsHTML}"
               description="${self.descriptionHTML}">
             </belk-coupon>  
           </div>

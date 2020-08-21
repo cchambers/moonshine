@@ -1,14 +1,7 @@
 .belk-coupon[variant="offer"] {
-  border: 1px solid red;
   min-width: auto;
   .coupon-description {
     order: 2;
     text-align: left;
-  }
-
-  .coupon-image {
-    height: 194px;
-    width: 260px;
-    background: red;
   }
 }

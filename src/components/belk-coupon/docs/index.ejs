@@ -77,7 +77,7 @@
           </td>
         </tr>
         <tr>
-          <td>exclusions</td>
+          <td>details</td>
           <td>
             Exclusion modal content.
           </td>
@@ -90,33 +90,33 @@
     <h2>Examples</h2>
     <h3>Default</h3>
     <div class="belk-coupons">
-      <belk-coupon header-color="brand-belkblue" badge="Online Exclusive" discount="30" upc="12349876"></belk-coupon>
-      <belk-coupon header-color="brand-wildfuscia" ends="concludes Feb 14, 2020" badge="In-Store Only" discount="88" event-name="Lost a Good One" code="GREGOLSEN" upc="12345678" extra>
-        <div slot="exclusions">
-          Here's some information about the coupon's exclusions.
-        </div>
-        <div slot="description">
+      <belk-coupon header-color="brand-belkblue" badge="Online Exclusive" discount="30" link="https://google.com"></belk-coupon>
+      <belk-coupon header-color="brand-wildfuscia" ends="concludes Feb 14, 2020" badge="In-Store Only" link="https://google.com" discount="88" event-name="Lost a Good One" code="GREGOLSEN" upc="12345678" extra>
+        <span slot="details">
+          Here's some information about the coupon's details.
+        </span>
+        <span slot="description">
           Here's a descriptive paragraph that <strong>is HTML friendly</strong>.
-        </div>
+        </span>
       </belk-coupon>
       <belk-coupon header-color="brand-deepteal" badge="Online and In-Store" discount="30" to-spend="100" event-name="Dirty Thirty" code="GET SOME" upc="12349876">
-        <div slot="exclusions">
-          Here's some exclusions without a description... so the link is lower.
-        </div>
+        <span slot="details">
+          Here's some details without a description... so the link is lower.
+        </span>
       </belk-coupon>
     </div>
-
+    <div class="pad"></div>
     <div class="belk-coupons">
-      <belk-coupon variant="offer">
+      <belk-coupon variant="offer" link="https://google.com">
         <div slot="image">
-          <img src="via.placeholder.com/300x200" />
+          <img src="https://via.placeholder.com/300x200" />
         </div>
-        <div slot="description">
+        <span slot="description">
           Here's a descriptive paragraph that <strong>is HTML friendly</strong>.
-        </div>
-        <div slot="exclusions">
+        </span>
+        <span slot="details">
           Details about the offer.
-        </div>
+        </span>
       </belk-coupon>
     </div>
   </section>
