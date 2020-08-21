@@ -6,7 +6,6 @@
       :class="background"
       :animate="animate" ref="content">
         <slot></slot>
-        <template v-if="html" v-html="html"></template>
       </div>
   </div>
 </template>

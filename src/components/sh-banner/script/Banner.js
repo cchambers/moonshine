@@ -9,9 +9,6 @@ export default {
     backgrounds: {
       type: String,
     },
-    baseCode: {
-      type: String,
-    },
     slideFrom: {
       type: String,
       default: 'bottom',
@@ -47,29 +44,25 @@ export default {
       backgroundArray: [],
       whichback: 0,
       revealed: true,
-      code: '',
-      html: undefined,
     };
   },
 
   created() {
-    if (this.baseCode) {
-      this.revealed = false;
-    }
+    if (this.revealEvent) this.revealed = false;
   },
 
   mounted() {
     const self = this;
     if (self.revealEvent && !this.revealed) {
       self.$bus.$on(self.revealEvent, () => {
-        self.renderCode(this.baseCode);
-        self.revealed = true;
-        self.$bus.$off(self.revealEvent);
+        if (!self.revealed) {
+          self.revealed = true;
+          self.init();
+          self.$bus.$off(self.revealEvent);
+        }
       });
     }
-    if (!this.baseCode) {
-      self.init();
-    }
+    self.init();
   },
 
   methods: {
@@ -77,11 +70,6 @@ export default {
       this.findCarousel();
       if (this.backgrounds) this.configureBackgrounds();
       this.loadImages();
-    },
-
-    renderCode(code) {
-      this.html = code;
-      setTimeout(this.init);
     },
 
     findCarousel() {
