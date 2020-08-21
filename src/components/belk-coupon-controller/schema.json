@@ -1,9 +1,0 @@
-{
-  "name": "Belk Coupon Controller",
-  "category": "features",
-  "production": true,
-  "element": "belk-coupon-controller",
-  "description": "Wrapper for Belk Coupons. Handles layout and styling mods for certain scenarios.",
-  "tags": ["coupons", "promo drawer"],
-  "requirements": {}
-}
