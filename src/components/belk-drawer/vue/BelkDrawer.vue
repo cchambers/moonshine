@@ -7,7 +7,7 @@
     :aria-labelledby="ariaID"
     :aria-describedby="ariaDescID">
     <div class="content" ref="content" :size="size">
-      <!-- <div class="tab-lock" v-on:focus="modalButtonsFocus()" tabindex="0"></div> -->
+      <!-- <div class="tab-lock" v-on:focus="focusButton()" tabindex="0"></div> -->
       <div toggle-trigger class="drawer-toggle flex align-top">
         <div v-if="!active">
           <div class="dt-headline">{{ buttonHeadlineInactive }}</div>
@@ -24,7 +24,7 @@
       <div class="body" :style="{ 'max-width': maxWidth }" ref="body" :id="ariaDescID">
         <slot>{{ content }}</slot>
       </div>
-      <!-- <div class="tab-lock" v-on:focus="modalButtonsFocus()" tabindex="0"></div> -->
+      <!-- <div class="tab-lock" v-on:focus="focusButton()" tabindex="0"></div> -->
     </div>
   </div>
 </template>
@@ -36,7 +36,7 @@ import ComponentPrototype from '../../component-prototype';
 export default {
   mixins: [ComponentPrototype],
 
-  name: 'Modal',
+  name: 'BelkDrawer',
 
   props: {
     uniqueId: {
@@ -195,7 +195,7 @@ export default {
 
     focusFirst() {
       if (this.links.length === 0) {
-        this.modalButtonsFocus();
+        this.focusButton();
       } else {
         this.links[0].focus();
       }
@@ -203,13 +203,13 @@ export default {
 
     focusLast() {
       if (this.links.length === 0) {
-        this.modalButtonsFocus();
+        this.focusButton();
       } else {
         this.links[this.links.length - 1].focus();
       }
     },
 
-    modalButtonsFocus() {
+    focusButton() {
       this.$bus.$emit('modal-buttons-focus');
     },
 
