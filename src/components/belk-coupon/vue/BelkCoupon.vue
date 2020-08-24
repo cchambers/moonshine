@@ -3,7 +3,7 @@
     :class="{ printable: print, 'to-spend': toSpend }"
     :variant="variant">
     <div v-if="badge" class="coupon-type">{{ badge }}</div>
-    <div class="coupon-image"><slot name="image"></slot></div>
+    <div class="coupon-image" v-if="image"><img :src="image" /></div>
     <div class="coupon-wrapper">
       <template v-if="variant=='default'">
         <div v-if="extra" class="coupon-extra" :class="headerColor">extra</div>
@@ -28,12 +28,15 @@
       <div v-if="ends" class="coupon-ends">{{ends}}</div>
       <div v-if="hasDescription" class="coupon-description">
         <slot name="description"></slot>
-        <template class="coupon-details" :hidden="!hasDetails && !print">
+        <span v-html="description"></span>
+        <span class="coupon-details px-10" :hidden="!hasDetails && !print">
           <template v-if="!print">
-            <sh-button variant="belk-link" :modal-trigger="detailsId">Details</sh-button>
+            <sh-button variant="belk-link"
+              v-if="details"
+              :modal-trigger="detailsId">Details</sh-button>
           </template>
           <div class="coupon-details-actual" v-else>{{ details }}</div>
-        </template>
+        </span>
       </div>
       <div v-else-if="!print" class="coupon-spacer" :data-text="spacerText"></div>
       <div hidden aria-hidden="true">
@@ -104,6 +107,8 @@ export default {
     ends: String,
     details: String,
     headerColor: String,
+    inDrawer: Boolean,
+    image: String,
     link: String,
     noType: {
       type: Boolean,
@@ -140,22 +145,24 @@ export default {
     this.setUUID();
     this.detailsId = `em-${this.uuid}`;
     this.printId = `pr-${this.uuid}`;
-    if (this.$slots.details !== undefined) this.hasDetails = true;
-    if (this.$slots.description !== undefined) this.hasDescription = true;
+    if (this.$slots.details !== undefined || this.details) this.hasDetails = true;
+    if (this.$slots.description !== undefined || this.description) this.hasDescription = true;
   },
 
   mounted() {
     if (this.hasDetails) {
-      this.detailsHTML = this.$slots.details[0].elm.innerHTML || '';
-      this.makeExclusionsModal();
+      this.detailsHTML = (this.$slots.details) ? this.$slots.details[0].elm.innerHTML : this.details;
+      this.makeDetailsModal();
     }
-    
-    if (this.badge && this.variant == 'default') {
-      if (this.badge.indexOf('Store') >= 0) {
-        this.printable = true;
-        this.makePrintModal();
-      }
-    } 
+
+    if (!this.inDrawer) {
+      if (this.badge && this.variant == 'default') {
+        if (this.badge.indexOf('Store') >= 0) {
+          this.printable = true;
+          this.makePrintModal();
+        }
+      } 
+    }
   },
 
   methods: {
@@ -171,13 +178,11 @@ export default {
       this.$bus.$emit('open-modal', { id: this.printId });
     },
 
-    makeExclusionsModal() {
+    makeDetailsModal() {
       let self = this;
       const el = self.$el.querySelector('.coupon-modal[hidden]');
       if (el) {
-        const html = `<sh-modal unique-id="${self.detailsId}">
-          <div>${self.detailsHTML}</div>
-        </sh-modal>`;
+        const html = `<sh-modal unique-id="${self.detailsId}"><div>${self.detailsHTML}</div></sh-modal>`;
         el.innerHTML += html;
       }
     },
@@ -196,7 +201,7 @@ export default {
               ends="${self.ends}"
               upc="${self.upc}"
               details="${self.detailsHTML}"
-              description="${self.descriptionHTML}">
+              description="${self.description}">
             </belk-coupon>  
           </div>
         </sh-modal>`;

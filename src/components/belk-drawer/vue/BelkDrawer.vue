@@ -7,8 +7,12 @@
     :aria-labelledby="ariaID"
     :aria-describedby="ariaDescID">
     <div class="content" ref="content" :size="size">
-      <!-- <div class="tab-lock" v-on:focus="focusButton()" tabindex="0"></div> -->
-      <div toggle-trigger class="drawer-toggle flex align-top">
+      <!-- <div class="tab-lock" :id="ariaID" v-on:focus="focusButton()" tabindex="0"></div> -->
+      <div tabindex="0"
+        v-hammer:tap="toggle"
+        v-on:keyup.enter="toggle"
+        v-on:keyup.space="toggle"
+        class="drawer-toggle flex align-top">
         <div v-if="!active">
           <div class="dt-headline">{{ buttonHeadlineInactive }}</div>
           <div class="dt-subhead">{{ buttonSubheadInactive }}</div>
@@ -21,8 +25,26 @@
           <belk-icon name="arrow-up" width="16"></belk-icon>
         </div>
       </div>
-      <div class="body" :style="{ 'max-width': maxWidth }" ref="body" :id="ariaDescID">
-        <slot>{{ content }}</slot>
+      <div class="body"
+        :class="{ 'off': !active }"
+        :id="ariaDescID"
+        ref="body">
+        <div class="belk-coupons">
+          <belk-coupon v-for="item in items" v-bind:key="item.index"
+            in-drawer="true"
+            :badge="item.badge"
+            :code="item.code"
+            :discount="item.discount"
+            :description="item.description"
+            :details="item.details"
+            :ends="item.ends"
+            :event-name="item.eventName"
+            :extra="item.extra"
+            :header-color="item.headerColor"
+            :image="item.image"
+            :link="item.link"
+            :upc="item.upc"></belk-coupon>
+        </div>
       </div>
       <!-- <div class="tab-lock" v-on:focus="focusButton()" tabindex="0"></div> -->
     </div>
@@ -46,6 +68,50 @@ export default {
     closeIcon: {
       type: String,
       default: 'close',
+    },
+    items: {
+      type: Array,
+      default() {
+        return [
+          {
+            headerColor: 'brand-wildfuscia',
+            ends: 'concludes Feb 14, 2020',
+            discount: '88',
+            eventName: 'Event Name',
+            description: 'Some <strong>awesome</strong> description!',
+            details: 'Some <strong>awesome</strong> details!',
+            code: '1EVENTCODE',
+            upc: '12345678',
+            extra: true,
+            image: 'https://assets.codepen.io/42746/test1.png',
+          },
+          {
+            headerColor: 'brand-belkblue',
+            discount: '20',
+            link: 'http://google.com',
+            eventName: 'Event Name',
+            code: '2EVENTCODE',
+            upc: '12345678',
+            image: 'https://assets.codepen.io/42746/test2.png',
+          },
+          {
+            headerColor: 'brand-belkblue',
+            discount: '20',
+            link: 'http://google.com',
+            eventName: 'Event Name',
+            code: '2EVENTCODE',
+            upc: '12345678',
+            image: 'https://assets.codepen.io/42746/test3.png',
+          },
+          {
+            link: 'http://google.com',
+            eventName: 'Something else',
+            code: '3EVENTCODE',
+            upc: '77777777',
+            image: 'https://via.placeholder.com/260x160',
+          },
+        ];
+      },
     },
     content: String,
     contentUrl: String,
@@ -78,7 +144,6 @@ export default {
     buttonHeadlineInactive: String,
     buttonSubheadActive: String,
     buttonSubheadInactive: String,
-    countSelector: String,
   },
 
   data() {
@@ -88,7 +153,6 @@ export default {
       affirmTriggers: [],
       closeTriggers: [],
       rejectTriggers: [],
-      container: null,
       loaded: false,
       loadedUrl: String,
       loading: false,
@@ -99,30 +163,16 @@ export default {
       ariaHeaderID: String,
       ariaDescID: String,
       links: Array,
-      openedCallback: undefined,
-      closedCallback: undefined,
-      // dynamicHTML: undefined,
-      loadHtml: `<div class="bar"></div>
-                <div class="bar"></div>
-                <div class="bar"></div>
-                <div class="bar"></div>
-                <div class="bar"></div>
-                <div class="bar"></div>
-                <div class="bar"></div>
-                <div class="bar"></div>
-                <div class="bar"></div>
-                <div class="bar"></div>`,
     };
   },
 
   computed: {
     itemCount() {
-      let count = 0;
-      if (this.countSelector && this.$el) {
-        const els = this.$el.querySelectorAll(this.countSelector);
-        count = els.length;
-      }
-      return count;
+      return (this.items) ? this.items.length : 0;
+    },
+
+    tabindex() {
+      return (this.active) ? '0' : '-1';
     },
   },
 
@@ -132,14 +182,7 @@ export default {
     self.ariaHeaderID = `aria-header-${self.uniqueId}`;
     self.ariaDescID = `aria-desc-${self.uniqueId}`;
     self.links = self.$el.querySelectorAll('a, input, button, [tabindex]:not(.tab-lock), [close-trigger]');
-    const container = (!this.drawer) ? document.querySelector('#belk-drawers') : document.querySelector('#belk-drawer-drawers');
     if (this.customClass) this.$refs.content.classList.add(this.customClass);
-    if (container) {
-      self.container = container;
-      self.mountToContainer();
-    } else {
-      self.createContainer();
-    }
     if (window.location.hash) {
       self.hashHandler({
         hash: window.location.hash.substr(1),
@@ -226,16 +269,7 @@ export default {
       });
 
       self.$bus.$on('close-modals', () => {
-        if (this.active) {
-          if (this.confirmationEvents) {
-            // if (this.affirmed) {
-            //   // self.$bus.$emit('modal-affirmed', self.uniqueId);
-            // } else {
-            self.$bus.$emit('modal-rejected', self.uniqueId);
-            // }
-          }
-          this.close();
-        }
+        if (this.active) this.close();
       });
 
       self.$bus.$on('modal-opening', () => {
@@ -245,18 +279,6 @@ export default {
       self.$bus.$on('open-modal', (data) => {
         if (data.url && data.url !== this.loadedUrl) this.loadedUrl = data.url;
         if (data.id === this.uniqueId) this.open();
-      });
-
-      self.$bus.$on('update-modal', (data) => {
-        const { params } = data;
-        const which = data.id;
-        if (which === self.uniqueId) {
-          if (params === 'close') {
-            self.close();
-          } else {
-            self.paramsHandler(params);
-          }
-        }
       });
 
       window.addEventListener('keyup', (e) => {
@@ -277,14 +299,6 @@ export default {
       }
     },
 
-    paramsHandler(data) {
-      const self = this;
-      if (data.html) self.dynamicHTML = data.html;
-      if (typeof data.open === 'function') self.openedCallback = data.open;
-      if (typeof data.close === 'function') self.closedCallback = data.close;
-      if (data.autoOpen) self.open();
-    },
-
     toggle() {
       if (this.active) {
         this.close();
@@ -297,12 +311,6 @@ export default {
       const self = this;
 
       if (self.confirmationEvents) self.affirmed = undefined;
-
-      if (self.overlay) {
-        self.container.setAttribute('overlay', self.overlay);
-      } else {
-        self.container.removeAttribute('overlay');
-      }
 
       if (!self.active) {
         self.$bus.$emit('modal-opening', self.uniqueId);
@@ -435,28 +443,6 @@ export default {
         });
       }
     },
-
-    createContainer() {
-      const self = this;
-      const container = document.createElement('div');
-      container.id = 'belk-drawers';
-      document.body.appendChild(container);
-      self.container = container;
-      self.container.addEventListener('click', (e) => {
-        if (e.target === self.container) self.$bus.$emit('close-modals');
-      });
-      self.mountToContainer();
-    },
-
-    mountToContainer() {
-      const self = this;
-      const id = self.uniqueId;
-      const exists = document.querySelector(`#belk-drawers #${id}`);
-      if (exists) exists.remove();
-      setTimeout(() => {
-        self.container.appendChild(self.$el);
-      });
-    },
   },
 };
 </script>
@@ -464,7 +450,7 @@ export default {
 <style lang="scss" src="../style/default.scss"></style>
 <style lang="scss">
 
-  #belk-drawers {
+  #belk-drawer {
     position: fixed;
     pointer-events: none;
     max-height: 0;
@@ -498,7 +484,7 @@ export default {
     }
   }
 
-  #belk-drawers {
+  #belk-drawer {
     opacity: 1;
     max-height: 100vh;
     background: none;
@@ -511,7 +497,7 @@ export default {
         overflow: hidden !important;
       }
 
-      #belk-drawers {
+      #belk-drawer {
         opacity: 1;
         pointer-events: initial;
         max-height: initial;

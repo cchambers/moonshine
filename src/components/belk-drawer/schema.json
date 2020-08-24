@@ -1,7 +1,8 @@
 {
   "name": "Belk Drawer",
-  "category": "features",
+  "category": "aa",
   "production": true,
+  "prioritize": true,
   "element": "belk-drawer",
   "description": "Drawer component.",
   "tags": ["utilities", "demo"],

@@ -11,11 +11,11 @@
     v-bind:aria-controls="ariaControls"
     class="sh-button">
     <slot name="before-text"></slot>
-    <span class="active-icon"
-      v-if="activeIcon"><belk-icon width="25"
-      :name="activeIcon"></belk-icon></span>
-    <span class="actual-text"><slot></slot></span>
-    <span class="active-text" v-if="isActive">{{activeText}}</span>
+    <div class="active-icon"
+      v-if="activeIcon"><belk-icon width="20" height="20"
+      :name="activeIcon"></belk-icon></div>
+    <div class="actual-text"><slot></slot></div>
+    <div class="active-text" v-if="isActive">{{activeText}}</div>
     <slot name="after-text"></slot>
   </button>
 </template>
@@ -86,7 +86,7 @@ export default {
     },
 
     tapHandler(e) {
-      this.ripple(e);
+      // this.ripple(e);
       if (this.toggle) this.doToggle();
       if (this.clickEvent) {
         e.preventDefault();

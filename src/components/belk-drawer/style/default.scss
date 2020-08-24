@@ -1,10 +1,6 @@
 
-belk-drawer {
-  display: none;
-}
-
 .belk-drawer {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
@@ -19,9 +15,6 @@ belk-drawer {
   transition: all 300ms $ease, opacity 350ms linear;
   transition-delay: 10ms;
   transform-origin: top center;
-  @include md {
-    transform: scale(0.7) rotateX(-60deg) translateY(20%) translateZ(0);
-  }
   &.active {
     opacity: 1 !important;
     max-height: initial;
@@ -119,31 +112,6 @@ belk-drawer {
     }
   }
 
-  &[reveal='left'] {
-    transform: translateX(-200%);
-  }
-
-  &[reveal='right'] {
-    transform: translateX(200%);
-  }
-
-  &[reveal='top'] {
-    transform: translateY(-200%);
-  }
-
-  &[reveal='bottom'] {
-    transform: translateY(200%);
-  }
-
-  &[reveal='fade'] {
-    transform: translateX(0) translateY(0) translateZ(0) scale(1) rotate(0);
-    opacity: 0;
-  }
-
-  &[reveal='none'] {
-    transform: scale(1);
-  }
-
   .content {
     position: relative;
     background: $highlight-primary;
@@ -172,5 +140,55 @@ belk-drawer {
 
   [close-trigger] {
     cursor: pointer;
+  }
+
+  .belk-coupon {
+    width: 260px;
+
+    .coupon-details {
+      margin-left: 0.5em;
+      sh-button {
+        font-size: 8px;
+      }
+    }
+
+    .coupon-description {
+      order: 2;
+      text-align: left;
+    }
+
+    .coupon-wrapper {
+      padding: $little;
+      justify-content: flex-start;
+    }
+  
+    .coupon-buttons {
+      margin-top: 0;
+      flex-direction: row;
+      white-space: pre;
+      sh-button {
+        font-size: 7px;
+        margin-top: 0;
+        + sh-button {
+          margin-left: 0.8rem;
+        }
+      }
+    }
+
+    .coupon-extra,
+    .coupon-discount,
+    .coupon-ends,
+    .coupon-event-name,
+    .coupon-use-code,
+    .coupon-upc,
+    .coupon-print {
+      max-height: 0;
+      overflow: hidden;
+      margin: 0;
+    }
+
+    .coupon-spacer {
+      display: none;
+    }
   }
 }
