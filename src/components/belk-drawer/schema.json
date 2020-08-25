@@ -1,6 +1,6 @@
 {
   "name": "Belk Drawer",
-  "category": "aa",
+  "category": "features",
   "production": true,
   "prioritize": true,
   "element": "belk-drawer",

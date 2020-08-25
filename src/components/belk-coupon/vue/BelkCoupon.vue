@@ -24,7 +24,7 @@
       </template>
       <div v-if="eventName" class="coupon-event-name">{{eventName}}</div>
       <div class="coupon-use-code"
-        v-if="code">Use Code: <span class="actual">{{code}}</span></div>
+        v-if="code">{{code}}</div>
       <div v-if="ends" class="coupon-ends">{{ends}}</div>
       <div v-if="hasDescription" class="coupon-description">
         <slot name="description"></slot>
@@ -50,14 +50,7 @@
           Add Coupon
         </sh-button>
         <sh-button v-if="link" variant="primary" outline
-          @click="doLink">
-          <template v-if="variant == 'offer'">
-          Shop Now
-          </template>
-          <template v-else>
-            Learn More
-          </template>
-        </sh-button>
+          @click="doLink">Shop Now</sh-button>
         <div hidden aria-hidden="true" class="coupon-modal"></div>
       </div>
       <div v-if="upc" class="coupon-upc">

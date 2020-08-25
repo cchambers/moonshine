@@ -100,6 +100,7 @@
       bottom: 0;
       margin: 0;
       max-width: 100%;
+      min-height: 30rem;
       transform: translateY(100%) translateZ(0);
       transition: all 300ms $decel;
       overflow: visible;
@@ -126,7 +127,8 @@
     height: auto;
   }
 
-  .belk-coupons {
+  .slides,
+  .belk-offers {
     padding: $little 0;
     &::before { content: ''; min-width: $little; }
     &::after { content: ''; min-width: $little; }
@@ -142,15 +144,17 @@
     cursor: pointer;
   }
 
+  .slides belk-coupon {
+    height: 100%;
+  }
+
+  belk-coupon {
+    flex-grow: 1;
+  }
+
   .belk-coupon {
     width: 260px;
-
-    .coupon-details {
-      margin-left: 0.5em;
-      sh-button {
-        font-size: 8px;
-      }
-    }
+    height: 100%;
 
     .coupon-description {
       order: 2;
@@ -159,6 +163,7 @@
 
     .coupon-wrapper {
       padding: $little;
+      padding-bottom: 0;
       justify-content: flex-start;
     }
   

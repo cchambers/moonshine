@@ -20,12 +20,18 @@ belk-coupon {
   flex-direction: column;
   flex-grow: 1;
   height: 100%;
-  min-width: 200px;
+  width: 300px;
   border: 1px solid $lowlight-primary;
   &.printable {
     border-style: dashed;
     margin: 0 auto;
     max-width: 300px;
+    @media print {
+      margin-top: 100px;
+    }
+    .coupon-description {
+      display: none;
+    }
     .coupon-upc {
       display: flex;
       border: none;
@@ -74,6 +80,7 @@ belk-coupon {
   .coupon-wrapper {
     padding: $rem;
     padding-top: $little;
+    padding-bottom: 0;
     display: flex;
     flex: 1 1 auto;
     flex-direction: column;
@@ -84,9 +91,6 @@ belk-coupon {
       display: flex;
       justify-content: center;
       margin-bottom: $little;
-      &:last-child {
-        margin-bottom: 0;
-      }
     }
   }
 
@@ -95,9 +99,12 @@ belk-coupon {
     font-weight: 900;
     font-style: normal;
     font-size: $rem;
-    margin-bottom: -1rem;
-    margin-top: -1rem;
     margin-right: 30%;
+    margin-bottom: 0;
+  }
+
+  .coupon-extra ~ .coupon-discount {
+    margin-top: -$rem;
   }
 
   .coupon-discount {
@@ -105,8 +112,7 @@ belk-coupon {
     font-weight: 900;
     font-style: normal;
     font-size: 13.2rem;
-    margin-top: -2rem;
-    margin-bottom: -$little;
+    margin-bottom: -2.5rem;
 
     .actual {
       display: flex;
@@ -146,12 +152,14 @@ belk-coupon {
   }
 
   .coupon-use-code {
-    .actual {
-      font-weight: bold;
-      color: $lowlight-primary;
-      margin-left: 1rem;
-      text-transform: uppercase;
-    }
+    justify-content: flex-start;
+    margin-bottom: 0;
+    // .actual {
+    //   font-weight: bold;
+    //   color: $lowlight-primary;
+    //   margin-left: 1rem;
+    //   text-transform: uppercase;
+    // }
   }
 
   .coupon-buttons {
@@ -189,16 +197,20 @@ belk-coupon {
   .coupon-print {
     justify-content: flex-start;
     margin-top: -2.4em;
+    sh-button {
+      font-size: 8px;
+    }
   }
 
   .coupon-description {
     font-size: 14px;
-    text-align: center;
+    justify-content: flex-start;
     display: block;
   }
 
   .coupon-ends {
-    font-weight: bold;
+    justify-content: flex-start;
+    margin-bottom: 0;
   }
 
   .coupon-upc {

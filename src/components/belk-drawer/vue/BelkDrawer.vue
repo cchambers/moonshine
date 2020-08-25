@@ -12,6 +12,7 @@
         v-hammer:tap="toggle"
         v-on:keyup.enter="toggle"
         v-on:keyup.space="toggle"
+        ref="button"
         class="drawer-toggle flex align-top">
         <div v-if="!active">
           <div class="dt-headline">{{ buttonHeadlineInactive }}</div>
@@ -29,22 +30,7 @@
         :class="{ 'off': !active }"
         :id="ariaDescID"
         ref="body">
-        <div class="belk-coupons">
-          <belk-coupon v-for="item in items" v-bind:key="item.index"
-            in-drawer="true"
-            :badge="item.badge"
-            :code="item.code"
-            :discount="item.discount"
-            :description="item.description"
-            :details="item.details"
-            :ends="item.ends"
-            :event-name="item.eventName"
-            :extra="item.extra"
-            :header-color="item.headerColor"
-            :image="item.image"
-            :link="item.link"
-            :upc="item.upc"></belk-coupon>
-        </div>
+        <belk-offers variant="promos" unique-id="promo-offers" :items="items"></belk-offers>
       </div>
       <!-- <div class="tab-lock" v-on:focus="focusButton()" tabindex="0"></div> -->
     </div>
@@ -69,50 +55,50 @@ export default {
       type: String,
       default: 'close',
     },
-    items: {
-      type: Array,
-      default() {
-        return [
-          {
-            headerColor: 'brand-wildfuscia',
-            ends: 'concludes Feb 14, 2020',
-            discount: '88',
-            eventName: 'Event Name',
-            description: 'Some <strong>awesome</strong> description!',
-            details: 'Some <strong>awesome</strong> details!',
-            code: '1EVENTCODE',
-            upc: '12345678',
-            extra: true,
-            image: 'https://assets.codepen.io/42746/test1.png',
-          },
-          {
-            headerColor: 'brand-belkblue',
-            discount: '20',
-            link: 'http://google.com',
-            eventName: 'Event Name',
-            code: '2EVENTCODE',
-            upc: '12345678',
-            image: 'https://assets.codepen.io/42746/test2.png',
-          },
-          {
-            headerColor: 'brand-belkblue',
-            discount: '20',
-            link: 'http://google.com',
-            eventName: 'Event Name',
-            code: '2EVENTCODE',
-            upc: '12345678',
-            image: 'https://assets.codepen.io/42746/test3.png',
-          },
-          {
-            link: 'http://google.com',
-            eventName: 'Something else',
-            code: '3EVENTCODE',
-            upc: '77777777',
-            image: 'https://via.placeholder.com/260x160',
-          },
-        ];
-      },
-    },
+    // items: {
+    //   type: Array,
+    //   default() {
+    //     return [
+    //       {
+    //         headerColor: 'brand-wildfuscia',
+    //         ends: 'concludes Feb 14, 2020',
+    //         discount: '88',
+    //         eventName: 'Event Name',
+    //         description: 'Some <strong>awesome</strong> description that has details!',
+    //         details: 'Some <strong>awesome</strong> details!',
+    //         code: '1EVENTCODE',
+    //         upc: '12345678',
+    //         extra: true,
+    //         image: 'https://assets.codepen.io/42746/test1.png',
+    //       },
+    //       {
+    //         headerColor: 'brand-belkblue',
+    //         discount: '20',
+    //         link: 'http://google.com',
+    //         eventName: 'Event Name',
+    //         code: '2EVENTCODE',
+    //         upc: '12345678',
+    //         image: 'https://assets.codepen.io/42746/test2.png',
+    //       },
+    //       {
+    //         headerColor: 'brand-belkblue',
+    //         discount: '20',
+    //         link: 'http://google.com',
+    //         eventName: 'Event Name',
+    //         code: '2EVENTCODE',
+    //         upc: '12345678',
+    //         image: 'https://assets.codepen.io/42746/test3.png',
+    //       },
+    //       {
+    //         link: 'http://google.com',
+    //         eventName: 'Something else',
+    //         code: '3EVENTCODE',
+    //         upc: '77777777',
+    //         image: 'https://via.placeholder.com/260x160',
+    //       },
+    //     ];
+    //   },
+    // },
     content: String,
     contentUrl: String,
     alwaysReload: Boolean,
@@ -151,6 +137,7 @@ export default {
       triggers: [],
       triggerLinks: [],
       affirmTriggers: [],
+      items: [],
       closeTriggers: [],
       rejectTriggers: [],
       loaded: false,
@@ -189,13 +176,32 @@ export default {
         event: false,
       });
     }
-
-    if (self.openTriggerEvent) self.$bus.$on(self.openTriggerEvent, self.open);
-    if (self.closeTriggerEvent) self.$bus.$on(self.closeTriggerEvent, self.close);
     if (self.startOpen) self.open();
   },
 
   methods: {
+
+    eventDebounced() {
+      this.debounce(this.watchedEventHandler, 100);
+    },
+
+    enableWatchEvents() {
+      window.addEventListener('scroll', this.watchedEventHandler, true);
+      window.addEventListener('touchmove', this.watchedEventHandler, true);
+      window.addEventListener('click', this.watchedEventHandler);
+    },
+
+    disableWatchEvents() {
+      window.removeEventListener('scroll', this.watchedEventHandler, true);
+      window.removeEventListener('touchmove', this.watchedEventHandler, true);
+      window.removeEventListener('click', this.watchedEventHandler);
+    },
+
+    watchedEventHandler(e) {
+      if (this.elementContains(this.$el, e.target) || e.target.hasAttribute('toggle-trigger')) return;
+      this.close(true, 'WATCHED');
+    },
+
     doPrint() {
       window.print();
     },
@@ -253,7 +259,7 @@ export default {
     },
 
     focusButton() {
-      this.$bus.$emit('modal-buttons-focus');
+      this.$refs.button.focus();
     },
 
     events() {
@@ -272,8 +278,9 @@ export default {
         if (this.active) this.close();
       });
 
-      self.$bus.$on('modal-opening', () => {
-        self.close(false);
+      self.$bus.$on('modal-opening', (id) => {
+        if (this.uniqueId === id) return;
+        self.close(false, 'TEST');
       });
 
       self.$bus.$on('open-modal', (data) => {
@@ -287,12 +294,25 @@ export default {
       });
 
       self.$bus.$on('hashchange', this.hashHandler);
+
+      self.$bus.$on('add-drawer-item', self.addItemHandler);
+      self.$bus.$on('update-drawer-items', self.updateItemsHandler);
+    },
+
+    addItemHandler(data) {
+      this.log(data);
+    },
+
+    updateItemsHandler(event) {
+      const { data } = event;
+      this.items = data;
+      this.$bus.$emit('update-offer-items', { which: 'promo-offers', data });
     },
 
     hashHandler(data) {
       const { hash, event } = data;
       if (hash === '') {
-        if (this.active) this.close(false);
+        if (this.active) this.close(false, 'TEST');
       } else if (hash === this.uniqueId) {
         if (event) event.preventDefault();
         this.open();
@@ -309,19 +329,15 @@ export default {
 
     open() {
       const self = this;
-
-      if (self.confirmationEvents) self.affirmed = undefined;
-
       if (!self.active) {
         self.$bus.$emit('modal-opening', self.uniqueId);
         document.documentElement.classList.add('belk-drawer-open');
         self.active = true;
+        this.log(self.active);
         self.$bus.$emit('modal-opened', self.uniqueId);
-        if (self.openedEvent) self.$bus.$emit(self.openedEvent, self.uniqueId);
-        if (self.openedCallback) self.openedCallback();
-
         setTimeout(() => {
           self.$refs.content.focus();
+          self.enableWatchEvents();
         }, 200);
       }
 
@@ -331,16 +347,18 @@ export default {
       }
     },
 
-    close(clearHash = true) {
-      if (this.active) {
-        this.$bus.$emit('modal-closing', this.uniqueId);
+    close(clearHash = true, str) {
+      this.log(str);
+      this.log('closing');
+      const self = this;
+      if (self.active) {
+        self.$bus.$emit('modal-closing', self.uniqueId);
         document.documentElement.classList.remove('belk-drawer-open');
-        this.active = false;
-        this.$bus.$emit('modal-closed', this.uniqueId);
-        if (this.closedEvent) this.$bus.$emit(this.closedEvent, this.uniqueId);
-        if (this.closedCallback) this.closedCallback();
+        self.active = false;
+        self.$bus.$emit('modal-closed', self.uniqueId);
+        self.disableWatchEvents();
       }
-      if (clearHash) this.clearHash();
+      if (clearHash) self.clearHash();
     },
 
     clearHash() {
@@ -376,36 +394,14 @@ export default {
       for (let x = 0, l = self.triggers.length; x < l; x += 1) {
         const el = self.triggers[x];
         el.addEventListener('click', (e) => {
-          const data = el.dataset;
           e.preventDefault();
           window.location.hash = `#${self.uniqueId}`;
-          if (data) {
-            self.$bus.$emit('modal-trigger-data', {
-              id: self.uniqueId,
-              data,
-            });
-          }
-        });
-      }
-
-      const triggerLinks = `[href="#${self.uniqueId}"]`;
-      self.triggerLinks = document.querySelectorAll(triggerLinks);
-      for (let x = 0, l = self.triggerLinks.length; x < l; x += 1) {
-        const el = self.triggerLinks[x];
-        el.addEventListener('click', () => {
-          const data = el.dataset;
-          if (data) {
-            self.$bus.$emit('modal-trigger-data', {
-              id: self.uniqueId,
-              data,
-            });
-          }
         });
       }
 
       // internal affirmation triggers
       const toggleTriggers = '[toggle-trigger]';
-      self.toggleTriggers = self.$el.querySelectorAll(toggleTriggers);
+      self.toggleTriggers = document.querySelectorAll(toggleTriggers);
       for (let y = 0; y < self.toggleTriggers.length; y += 1) {
         const el = self.toggleTriggers[y];
         el.addEventListener('click', self.toggle);
