@@ -113,6 +113,14 @@
     }
   }
 
+  &[scrolling] {
+    .belk-offers {
+      justify-content: flex-start;
+      &::before { content: ''; min-width: $little; }
+      &::after { content: ''; min-width: $little; }
+    }
+  }
+
   .content {
     position: relative;
     background: $highlight-primary;
@@ -127,11 +135,9 @@
     height: auto;
   }
 
-  .slides,
   .belk-offers {
+    justify-content: center;
     padding: $little 0;
-    &::before { content: ''; min-width: $little; }
-    &::after { content: ''; min-width: $little; }
   }
 
   .body {

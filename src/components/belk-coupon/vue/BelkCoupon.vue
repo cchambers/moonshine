@@ -1,5 +1,6 @@
 <template>
   <div class="belk-coupon"
+    :id="id"
     :class="{ printable: print, 'to-spend': toSpend }"
     :variant="variant">
     <div v-if="badge" class="coupon-type">{{ badge }}</div>
@@ -132,11 +133,17 @@ export default {
       detailsHTML: '',
       printId: 'defaultid',
       printable: false,
+      id: undefined,
     };
   },
 
   created() {
     this.setUUID();
+    if (this.uniqueId) {
+      this.id = this.uniqueId;
+    } else {
+      this.id = this.uuid;
+    }
     this.detailsId = `em-${this.uuid}`;
     this.printId = `pr-${this.uuid}`;
     if (this.$slots.details !== undefined || this.details) this.hasDetails = true;

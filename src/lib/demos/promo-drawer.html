@@ -7,22 +7,56 @@
 </style>
 
 <script>
-var demo = {
-  addMore() {
-    console.log('derp');
-  },
-}
+  var demo = {
+    generateOffer() {
+      return {
+        description: 'Some <strong>awesome</strong> description that has details!',
+        details: 'Some <strong>awesome</strong> details!',
+        image: 'https://via.placeholder.com/260x160/'+ (Math.random() * 0xfffff * 1000000).toString(16).slice(0, 6) +'/FFFFFF',
+      }
+    },
+
+    addMore(amount = 1, there = false) {
+      // generate [amount] random coupons, 
+      var offers = demo.generateOffer(amount);
+      sh.emit('drawer-add', { where: there, what: offers });
+    },
+
+    move(which, where) {
+      sh.emit('drawer-move', { from: which, to: where });
+    }
+  }
+
+  function disablePinkButtons() {
+    var btns = document.querySelectorAll('.pink-button');
+    btns[0].disabled = true;
+    btns[1].disabled = true;
+  }
+
+  document.addEventListener('drawer-item-removed', function (e) {
+    if (e.detail.id == 'pink') disablePinkButtons();
+  })
+
 </script>
 
 <div class="pad">
-  <button onclick="event.stopPropagation();demo.addMore()">
-    Add Coupons
+  <button onclick="event.stopPropagation();demo.addMore(1)">
+    Add Promo Offer (1)
   </button>
+  <!-- <button onclick="event.stopPropagation();demo.addMore(3, 1)">
+    Add (3) Promo Offers in position 1
+  </button> -->
   <button onclick="event.stopPropagation();demo.remove(0)">
-    Remove Coupon 1
+    Remove Coupon in position 1
   </button>
   <button onclick="event.stopPropagation();demo.move(2, -1)">
-    Move Coupon 2 -> 1
+    Move Coupon in position 2 -> 1
+  </button>
+  <button class="pink-button" onclick="event.stopPropagation();demo.move('#pink', -1)">
+    Move PINK Coupon Left
+  </button>
+  <button class="pink-button" onclick="event.stopPropagation();demo.move('#pink', 1)">
+    Move PINK Coupon Right
   </button>
 </div>
 
@@ -30,8 +64,7 @@ var demo = {
   <section>
     <h2 class="pad-t">Coupons</h2>
     <script>
-      window.coupons = [
-        {
+      window.coupons = [{
           headerColor: "brand-belkblue",
           badge: "Online Exclusive",
           discount: "30",
@@ -52,8 +85,7 @@ var demo = {
         }
       ];
 
-      window.offers = [
-        {
+      window.offers = [{
           headerColor: 'brand-wildfuscia',
           ends: 'concludes Feb 14, 2020',
           discount: '88',
@@ -84,30 +116,13 @@ var demo = {
           image: 'https://assets.codepen.io/42746/test3.png',
         }
       ]
-</script>
 
     </script>
 
-    <belk-offers data-obj="coupons"  unique-id="coupons" variant="coupons"></belk-offers>
+    </script>
+
+    <belk-offers data-obj="coupons" unique-id="coupons" variant="coupons"></belk-offers>
     <hr />
-
-    <script>
-      
-
-    </script>
-
-    <div class="pad">
-      <button onclick="javascript:demo.addOffers()">
-        Add 3 Offers
-      </button>
-      <button>
-        Remove Offer 1
-      </button>
-      <button>
-        Move Offer 2 -> 1
-      </button>
-    </div>
-
     <h2 class="pad-t">Offers</h2>
     <belk-offers data-obj="offers" unique-id="offers" variant="offers"></belk-offers>
   </section>
@@ -116,6 +131,7 @@ var demo = {
 </div>
 <script>
   window.promoDrawer = [{
+      id: 'pink',
       headerColor: 'brand-wildfuscia',
       ends: 'concludes Feb 14, 2020',
       discount: '88',
@@ -144,13 +160,6 @@ var demo = {
       code: '2EVENTCODE',
       upc: '12345678',
       image: 'https://assets.codepen.io/42746/test3.png',
-    },
-    {
-      link: 'http://google.com',
-      eventName: 'Something else',
-      code: '3EVENTCODE',
-      upc: '77777777',
-      image: 'https://via.placeholder.com/260x160',
     }
   ];
 

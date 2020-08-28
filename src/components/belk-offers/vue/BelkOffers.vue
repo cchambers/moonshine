@@ -36,6 +36,10 @@ export default {
     active(val) {
       if (val) this.log(val);
     },
+
+    items(val) {
+      this.log('items changed', val.length);
+    },
   },
 
   data() {
@@ -64,7 +68,6 @@ export default {
 
     updateItemsHandler(event) {
       if (event.which === this.uniqueId) {
-        console.log('ok', event);
         this.items = event.data;
       }
     },

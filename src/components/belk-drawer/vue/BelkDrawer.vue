@@ -4,7 +4,7 @@
     :reveal="reveal"
     :drawer="drawer"
     :id="uniqueId"
-    :scrolling="scrollable"
+    :scrolling="scrolling"
     :aria-labelledby="ariaID"
     :aria-describedby="ariaDescID">
     <!-- <div class="tab-lock" :id="ariaID" v-on:focus="focusButton()" tabindex="0"></div> -->
@@ -66,50 +66,6 @@ export default {
       type: String,
       default: 'close',
     },
-    // items: {
-    //   type: Array,
-    //   default() {
-    //     return [
-    //       {
-    //         headerColor: 'brand-wildfuscia',
-    //         ends: 'concludes Feb 14, 2020',
-    //         discount: '88',
-    //         eventName: 'Event Name',
-    //         description: 'Some <strong>awesome</strong> description that has details!',
-    //         details: 'Some <strong>awesome</strong> details!',
-    //         code: '1EVENTCODE',
-    //         upc: '12345678',
-    //         extra: true,
-    //         image: 'https://assets.codepen.io/42746/test1.png',
-    //       },
-    //       {
-    //         headerColor: 'brand-belkblue',
-    //         discount: '20',
-    //         link: 'http://google.com',
-    //         eventName: 'Event Name',
-    //         code: '2EVENTCODE',
-    //         upc: '12345678',
-    //         image: 'https://assets.codepen.io/42746/test2.png',
-    //       },
-    //       {
-    //         headerColor: 'brand-belkblue',
-    //         discount: '20',
-    //         link: 'http://google.com',
-    //         eventName: 'Event Name',
-    //         code: '2EVENTCODE',
-    //         upc: '12345678',
-    //         image: 'https://assets.codepen.io/42746/test3.png',
-    //       },
-    //       {
-    //         link: 'http://google.com',
-    //         eventName: 'Something else',
-    //         code: '3EVENTCODE',
-    //         upc: '77777777',
-    //         image: 'https://via.placeholder.com/260x160',
-    //       },
-    //     ];
-    //   },
-    // },
     content: String,
     contentUrl: String,
     alwaysReload: Boolean,
@@ -138,7 +94,6 @@ export default {
     startOpen: Boolean,
     formTarget: String,
     size: String,
-    scrollable: Boolean,
     buttonHeadlineActive: String,
     buttonHeadlineInactive: String,
     buttonSubheadActive: String,
@@ -164,6 +119,7 @@ export default {
       ariaHeaderID: String,
       ariaDescID: String,
       links: Array,
+      scrolling: false,
     };
   },
 
@@ -174,6 +130,18 @@ export default {
 
     tabindex() {
       return (this.active) ? '0' : '-1';
+    },
+  },
+
+  watch: {
+    items(val) {
+      const width = val.length * 280;
+      const wider = (width > window.innerWidth);
+      if (wider) {
+        this.scrolling = true;
+      } else {
+        this.scrolling = false;
+      }
     },
   },
 
@@ -272,12 +240,48 @@ export default {
 
       self.$bus.$on('hashchange', this.hashHandler);
 
-      self.$bus.$on('add-drawer-item', self.addItemHandler);
-      self.$bus.$on('update-drawer-items', self.updateItemsHandler);
+      self.$bus.$on('drawer-add', self.addItemHandler);
+      self.$bus.$on('drawer-move', self.moveItemHandler);
+      self.$bus.$on('drawer-remove', self.removeItemHandler);
+      self.$bus.$on('drawer-replace', self.updateItemsHandler);
     },
 
-    addItemHandler(data) {
-      this.log(data);
+    addItemHandler(event) {
+      const items = event.data.what;
+      const where = event.data.where || this.items.length;
+      const isArray = Array.isArray(items);
+      if (isArray) {
+        this.items.splice(where, 0, ...items);
+      } else {
+        this.items.splice(where, 0, items);
+      }
+    },
+
+    moveItemHandler(event) {
+      const { from } = event.data;
+      let oldIndex = false;
+      if (typeof from === 'number') {
+        oldIndex = from;
+      } else {
+        for (let x = 0, l = this.items.length; x < l; x += 1) {
+          if (this.items[x].id === from) {
+            this.oldIndex = x;
+          }
+        }
+      }
+      if (!oldIndex) return;
+      const newIndex = event.data.to;
+      if (!newIndex || !oldIndex) return;
+      const arr = [...this.items];
+      if (newIndex >= arr.length) {
+        let k = newIndex - arr.length + 1;
+        while (k) {
+          k -= 1;
+          arr.push(undefined);
+        }
+      }
+      arr.splice(newIndex, 0, arr.splice(oldIndex, 1)[0]);
+      this.items = arr;
     },
 
     updateItemsHandler(event) {
