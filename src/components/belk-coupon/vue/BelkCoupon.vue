@@ -3,7 +3,7 @@
     :class="{ printable: print, 'to-spend': toSpend }"
     :variant="variant">
     <div v-if="badge" class="coupon-type">{{ badge }}</div>
-    <div class="coupon-image" v-if="image"><img :src="image" /></div>
+    <div class="coupon-image" v-if="hasImage"><img :src="image" /></div>
     <div class="coupon-wrapper">
       <template v-if="variant=='default'">
         <div v-if="extra" class="coupon-extra" :class="headerColor">extra</div>
@@ -127,6 +127,7 @@ export default {
       added: true,
       hasDescription: false,
       hasDetails: false,
+      hasImage: false,
       hasEd: 'defaultid',
       detailsHTML: '',
       printId: 'defaultid',
@@ -140,6 +141,7 @@ export default {
     this.printId = `pr-${this.uuid}`;
     if (this.$slots.details !== undefined || this.details) this.hasDetails = true;
     if (this.$slots.description !== undefined || this.description) this.hasDescription = true;
+    if (this.$slots.image !== undefined || this.image) this.hasImage = true;
   },
 
   mounted() {

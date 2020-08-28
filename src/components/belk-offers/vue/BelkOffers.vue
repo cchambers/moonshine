@@ -1,7 +1,6 @@
 <template>
   <div class="belk-offers"
     :variant="variant">
-    <slot></slot>
     <belk-coupon v-for="item in items" v-bind:key="item.index"
       in-drawer="true"
       :badge="item.badge"
@@ -30,16 +29,24 @@ export default {
     itemData: String,
     uniqueId: String,
     variant: String,
+    dataObj: String,
+  },
+
+  watch: {
+    active(val) {
+      if (val) this.log(val);
+    },
   },
 
   data() {
     return {
       items: [],
+      active: 0,
     };
   },
 
   mounted() {
-    console.log(this.itemData);
+    if (typeof window[this.dataObj] === 'object') this.items = window[this.dataObj];
   },
 
   methods: {
@@ -49,16 +56,27 @@ export default {
     },
 
     addItemHandler(event) {
-      if (event.data.which === this.uniqueId) {
+      if (event.which === this.uniqueId) {
         const { data } = event;
         this.items.push(data);
       }
     },
 
     updateItemsHandler(event) {
-      const { data } = event;
-      this.items = data.items;
-      console.log(data);
+      if (event.which === this.uniqueId) {
+        console.log('ok', event);
+        this.items = event.data;
+      }
+    },
+
+    shiftItemsHandler(event) {
+      this.log(event);
+      // TODO: this
+    },
+
+    activate(which) {
+      this.$bus.$emit('offer-focus-changing', { id: this.uniqueId, active: this.active });
+      this.active = which;
     },
   },
 

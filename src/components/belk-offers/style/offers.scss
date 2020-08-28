@@ -1,4 +1,17 @@
 
 .belk-offers[variant="offers"] {
-  border: 1px solid tomato;
+  .coupon-extra,
+  .coupon-discount,
+  .coupon-ends,
+  .coupon-event-name,
+  .coupon-use-code,
+  .coupon-upc,
+  .coupon-print {
+    max-height: 0;
+    overflow: hidden;
+    margin: 0;
+  }
+  .coupon-spacer {
+    display: none;
+  }
 }

@@ -4,10 +4,21 @@
     :reveal="reveal"
     :drawer="drawer"
     :id="uniqueId"
+    :scrolling="scrollable"
     :aria-labelledby="ariaID"
     :aria-describedby="ariaDescID">
+    <!-- <div class="tab-lock" :id="ariaID" v-on:focus="focusButton()" tabindex="0"></div> -->
     <div class="content" ref="content" :size="size">
-      <!-- <div class="tab-lock" :id="ariaID" v-on:focus="focusButton()" tabindex="0"></div> -->
+      <div v-if="!hideControls" class="controls">
+        <button :aria-controls="uniqueId"
+          class="arrow next" v-hammer:tap="nextHandler">
+          <belk-icon width="20" name="arrow-right"></belk-icon>
+        </button>
+        <button :aria-controls="uniqueId"
+          class="arrow previous" v-hammer:tap="previousHandler">
+          <belk-icon width="20" name="arrow-left"></belk-icon>
+        </button>
+      </div>
       <div tabindex="0"
         v-hammer:tap="toggle"
         v-on:keyup.enter="toggle"
@@ -108,6 +119,7 @@ export default {
     drawer: String,
     buttonText: String,
     dynamicHTML: String,
+    dataObj: String,
     maxWidth: String,
     noHistory: Boolean,
     hideHeader: Boolean,
@@ -126,6 +138,7 @@ export default {
     startOpen: Boolean,
     formTarget: String,
     size: String,
+    scrollable: Boolean,
     buttonHeadlineActive: String,
     buttonHeadlineInactive: String,
     buttonSubheadActive: String,
@@ -140,6 +153,7 @@ export default {
       items: [],
       closeTriggers: [],
       rejectTriggers: [],
+      hideControls: true,
       loaded: false,
       loadedUrl: String,
       loading: false,
@@ -165,6 +179,10 @@ export default {
 
   mounted() {
     const self = this;
+    if (typeof window[this.dataObj] === 'object') {
+      const startWith = window[this.dataObj];
+      this.setItems(startWith);
+    }
     self.ariaID = `aria-${self.uniqueId}`;
     self.ariaHeaderID = `aria-header-${self.uniqueId}`;
     self.ariaDescID = `aria-desc-${self.uniqueId}`;
@@ -180,11 +198,6 @@ export default {
   },
 
   methods: {
-
-    eventDebounced() {
-      this.debounce(this.watchedEventHandler, 100);
-    },
-
     enableWatchEvents() {
       window.addEventListener('scroll', this.watchedEventHandler, true);
       window.addEventListener('touchmove', this.watchedEventHandler, true);
@@ -204,42 +217,6 @@ export default {
 
     doPrint() {
       window.print();
-    },
-
-    serialize(form) {
-      // Setup our serialized data
-      const serialized = [];
-
-      // Loop through each field in the form
-      for (let i = 0; i < form.elements.length; i += 1) {
-        const field = form.elements[i];
-        if (!field.name
-          || field.disabled
-          || field.type === 'file'
-          || field.type === 'reset'
-          || field.type === 'submit'
-          || field.type === 'button') {
-          // eslint-disable-next-line
-          continue;
-        }
-
-        // If a multi-select, get all selections
-        if (field.type === 'select-multiple') {
-          for (let n = 0; n < field.options.length; n += 1) {
-            // eslint-disable-next-line
-            if (!field.options[n].selected) continue;
-            const name = encodeURIComponent(field.name);
-            const value = encodeURIComponent(field.options[n].value);
-            serialized.push(`${name}=${value}`);
-          }
-        } else if ((field.type !== 'checkbox' && field.type !== 'radio') || field.checked) {
-          const name = encodeURIComponent(field.name);
-          const value = encodeURIComponent(field.value);
-          serialized.push(`${name}=${value}`);
-        }
-      }
-
-      return serialized.join('&');
     },
 
     focusFirst() {
@@ -280,7 +257,7 @@ export default {
 
       self.$bus.$on('modal-opening', (id) => {
         if (this.uniqueId === id) return;
-        self.close(false, 'TEST');
+        self.close(false);
       });
 
       self.$bus.$on('open-modal', (data) => {
@@ -305,14 +282,20 @@ export default {
 
     updateItemsHandler(event) {
       const { data } = event;
-      this.items = data;
-      this.$bus.$emit('update-offer-items', { which: 'promo-offers', data });
+      this.setItems(data);
+    },
+
+    setItems(data) {
+      setTimeout(() => {
+        this.items = data;
+        this.$bus.$emit('update-offer-items', { which: 'promo-offers', data });
+      }, 100);
     },
 
     hashHandler(data) {
       const { hash, event } = data;
       if (hash === '') {
-        if (this.active) this.close(false, 'TEST');
+        if (this.active) this.close(false);
       } else if (hash === this.uniqueId) {
         if (event) event.preventDefault();
         this.open();
@@ -333,7 +316,6 @@ export default {
         self.$bus.$emit('modal-opening', self.uniqueId);
         document.documentElement.classList.add('belk-drawer-open');
         self.active = true;
-        this.log(self.active);
         self.$bus.$emit('modal-opened', self.uniqueId);
         setTimeout(() => {
           self.$refs.content.focus();
@@ -347,9 +329,7 @@ export default {
       }
     },
 
-    close(clearHash = true, str) {
-      this.log(str);
-      this.log('closing');
+    close(clearHash = true) {
       const self = this;
       if (self.active) {
         self.$bus.$emit('modal-closing', self.uniqueId);
@@ -439,6 +419,25 @@ export default {
         });
       }
     },
+
+    focus() {
+      const activeSlide = this.$el.querySelector('.active');
+      if (activeSlide) activeSlide.focus();
+    },
+
+    nextHandler() {
+      const len = this.items.length;
+      let which = this.active + this.perNext;
+      if (which >= len) which -= len;
+      this.activate(which);
+    },
+
+    previousHandler() {
+      const len = this.items.length;
+      let which = this.active - this.perNext;
+      if (which < 0) which += len;
+      this.activate(which);
+    },
   },
 };
 </script>
@@ -489,9 +488,6 @@ export default {
 
   html {
     &.belk-drawer-open {
-      > * {
-        overflow: hidden !important;
-      }
 
       #belk-drawer {
         opacity: 1;

@@ -1,0 +1,158 @@
+<sh-svglib></sh-svglib>
+<style>
+  body {
+    overflow: scroll !important
+  }
+
+</style>
+
+<script>
+var demo = {
+  addMore() {
+    console.log('derp');
+  },
+}
+</script>
+
+<div class="pad">
+  <button onclick="event.stopPropagation();demo.addMore()">
+    Add Coupons
+  </button>
+  <button onclick="event.stopPropagation();demo.remove(0)">
+    Remove Coupon 1
+  </button>
+  <button onclick="event.stopPropagation();demo.move(2, -1)">
+    Move Coupon 2 -> 1
+  </button>
+</div>
+
+<div class="pad">
+  <section>
+    <h2 class="pad-t">Coupons</h2>
+    <script>
+      window.coupons = [
+        {
+          headerColor: "brand-belkblue",
+          badge: "Online Exclusive",
+          discount: "30",
+          link: "https://google.com"
+        },
+        {
+          headerColor: "brand-wildfuscia",
+          ends: "concludes Feb 14, 2020",
+          badge: "In-Store Only",
+          link: "https://google.com",
+          discount: "20",
+          eventName: "Fun Stuff",
+          code: "Use Code: 2020SUCKS",
+          upc: "12345678",
+          extra: "true",
+          details: "Here's some information about the coupon's details.",
+          description: "Here's a descriptive paragraph that <strong>is HTML friendly</strong>."
+        }
+      ];
+
+      window.offers = [
+        {
+          headerColor: 'brand-wildfuscia',
+          ends: 'concludes Feb 14, 2020',
+          discount: '88',
+          eventName: 'Event Name',
+          description: 'Some <strong>awesome</strong> description that has details!',
+          details: 'Some <strong>awesome</strong> details!',
+          code: '1EVENTCODE',
+          upc: '12345678',
+          extra: true,
+          image: 'https://assets.codepen.io/42746/test1.png',
+        },
+        {
+          headerColor: 'brand-belkblue',
+          discount: '20',
+          link: 'http://google.com',
+          eventName: 'Event Name',
+          code: '2EVENTCODE',
+          upc: '12345678',
+          image: 'https://assets.codepen.io/42746/test2.png',
+        },
+        {
+          headerColor: 'brand-belkblue',
+          discount: '20',
+          link: 'http://google.com',
+          eventName: 'Event Name',
+          code: '2EVENTCODE',
+          upc: '12345678',
+          image: 'https://assets.codepen.io/42746/test3.png',
+        }
+      ]
+</script>
+
+    </script>
+
+    <belk-offers data-obj="coupons"  unique-id="coupons" variant="coupons"></belk-offers>
+    <hr />
+
+    <script>
+      
+
+    </script>
+
+    <div class="pad">
+      <button onclick="javascript:demo.addOffers()">
+        Add 3 Offers
+      </button>
+      <button>
+        Remove Offer 1
+      </button>
+      <button>
+        Move Offer 2 -> 1
+      </button>
+    </div>
+
+    <h2 class="pad-t">Offers</h2>
+    <belk-offers data-obj="offers" unique-id="offers" variant="offers"></belk-offers>
+  </section>
+
+  <section style="padding-top:100vh;"></section>
+</div>
+<script>
+  window.promoDrawer = [{
+      headerColor: 'brand-wildfuscia',
+      ends: 'concludes Feb 14, 2020',
+      discount: '88',
+      eventName: 'Event Name',
+      description: 'Some <strong>awesome</strong> description that has details!',
+      details: 'Some <strong>awesome</strong> details!',
+      code: '1EVENTCODE',
+      upc: '12345678',
+      extra: true,
+      image: 'https://assets.codepen.io/42746/test1.png',
+    },
+    {
+      headerColor: 'brand-belkblue',
+      discount: '20',
+      link: 'http://google.com',
+      eventName: 'Event Name',
+      code: '2EVENTCODE',
+      upc: '12345678',
+      image: 'https://assets.codepen.io/42746/test2.png',
+    },
+    {
+      headerColor: 'brand-belkblue',
+      discount: '20',
+      link: 'http://google.com',
+      eventName: 'Event Name',
+      code: '2EVENTCODE',
+      upc: '12345678',
+      image: 'https://assets.codepen.io/42746/test3.png',
+    },
+    {
+      link: 'http://google.com',
+      eventName: 'Something else',
+      code: '3EVENTCODE',
+      upc: '77777777',
+      image: 'https://via.placeholder.com/260x160',
+    }
+  ];
+
+</script>
+<belk-drawer drawer="bottom" overlay="none" unique-id="promo-drawer" data-obj="promoDrawer" button-headline-inactive="Today's Offers" button-subhead-inactive="Tap for Savings Made Simple" button-headline-active="Savings Made Simple" button-subhead-active=" Offers"></belk-drawer>

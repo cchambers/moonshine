@@ -196,4 +196,34 @@
       display: none;
     }
   }
+
+  .controls {
+    >* {
+      height: 4.5rem;
+      width: 4.5rem;
+      color: $lowlight-primary;
+      display: flex;
+      align-content: center;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      position: absolute;
+      // border-radius: 5px;
+      outline: 0;
+      border: 1px solid $highlight-primary;
+      background: $highlight-primary;
+    }
+
+    .arrow {
+      top: 50%;
+      transform: translateY(-50%);
+      width: 4.5rem;
+      &.next {
+        right: 0;
+      }
+      &.previous {
+        left: 0;
+      }
+    }
+  }
 }
