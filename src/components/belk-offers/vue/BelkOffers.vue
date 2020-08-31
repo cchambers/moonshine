@@ -1,7 +1,7 @@
 <template>
   <div class="belk-offers"
     :variant="variant">
-    <belk-coupon v-for="item in items" v-bind:key="item.index"
+    <belk-coupon v-for="item in items" v-bind:key="item.id"
       in-drawer="true"
       :badge="item.badge"
       :code="item.code"
@@ -36,10 +36,6 @@ export default {
     active(val) {
       if (val) this.log(val);
     },
-
-    items(val) {
-      this.log('items changed', val.length);
-    },
   },
 
   data() {
@@ -59,16 +55,27 @@ export default {
       this.$bus.$on('update-offer-items', this.updateItemsHandler);
     },
 
+    addItem(data) {
+      const obj = data;
+      const id = this.makeUUID();
+      if (!obj.id) obj.id = id;
+      this.items.push(obj);
+    },
+
     addItemHandler(event) {
       if (event.which === this.uniqueId) {
         const { data } = event;
-        this.items.push(data);
+        this.addItem(data);
       }
     },
 
     updateItemsHandler(event) {
       if (event.which === this.uniqueId) {
-        this.items = event.data;
+        const arr = event.data;
+        this.items = [];
+        for (let x = 0, l = arr.length; x < l; x += 1) {
+          this.addItem(arr[x]);
+        }
       }
     },
 

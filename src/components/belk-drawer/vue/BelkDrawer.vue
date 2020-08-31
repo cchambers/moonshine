@@ -41,7 +41,7 @@
         :class="{ 'off': !active }"
         :id="ariaDescID"
         ref="body">
-        <belk-offers variant="promos" unique-id="promo-offers" :items="items"></belk-offers>
+        <belk-offers variant="promos" unique-id="promo-offers"></belk-offers>
       </div>
       <!-- <div class="tab-lock" v-on:focus="focusButton()" tabindex="0"></div> -->
     </div>
@@ -142,6 +142,7 @@ export default {
       } else {
         this.scrolling = false;
       }
+      this.$bus.$emit('update-offer-items', { which: 'promo-offers', data: val });
     },
   },
 
@@ -257,31 +258,16 @@ export default {
       }
     },
 
+    removeItemHandler(event) {
+      const index = event.data.which;
+      if (this.items[index]) {
+        this.items.splice(index, 1);
+      }
+    },
+
     moveItemHandler(event) {
-      const { from } = event.data;
-      let oldIndex = false;
-      if (typeof from === 'number') {
-        oldIndex = from;
-      } else {
-        for (let x = 0, l = this.items.length; x < l; x += 1) {
-          if (this.items[x].id === from) {
-            this.oldIndex = x;
-          }
-        }
-      }
-      if (!oldIndex) return;
-      const newIndex = event.data.to;
-      if (!newIndex || !oldIndex) return;
-      const arr = [...this.items];
-      if (newIndex >= arr.length) {
-        let k = newIndex - arr.length + 1;
-        while (k) {
-          k -= 1;
-          arr.push(undefined);
-        }
-      }
-      arr.splice(newIndex, 0, arr.splice(oldIndex, 1)[0]);
-      this.items = arr;
+      console.log(event);
+      this.$bus.$emit('update-offer-items-x', event);
     },
 
     updateItemsHandler(event) {
@@ -292,7 +278,6 @@ export default {
     setItems(data) {
       setTimeout(() => {
         this.items = data;
-        this.$bus.$emit('update-offer-items', { which: 'promo-offers', data });
       }, 100);
     },
 

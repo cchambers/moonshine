@@ -24,7 +24,11 @@
 
     move(which, where) {
       sh.emit('drawer-move', { from: which, to: where });
-    }
+    },
+
+    remove(which) {
+      sh.emit('drawer-remove', { which: which });
+    },
   }
 
   function disablePinkButtons() {
@@ -49,15 +53,15 @@
   <button onclick="event.stopPropagation();demo.remove(0)">
     Remove Coupon in position 1
   </button>
-  <button onclick="event.stopPropagation();demo.move(2, -1)">
-    Move Coupon in position 2 -> 1
+  <button onclick="event.stopPropagation();demo.move(1, 0)">
+    Move Coupon in position 1 -> 0
   </button>
-  <button class="pink-button" onclick="event.stopPropagation();demo.move('#pink', -1)">
+  <!-- <button class="pink-button" onclick="event.stopPropagation();demo.move('#pink', -1)">
     Move PINK Coupon Left
   </button>
   <button class="pink-button" onclick="event.stopPropagation();demo.move('#pink', 1)">
     Move PINK Coupon Right
-  </button>
+  </button> -->
 </div>
 
 <div class="pad">
@@ -131,7 +135,6 @@
 </div>
 <script>
   window.promoDrawer = [{
-      id: 'pink',
       headerColor: 'brand-wildfuscia',
       ends: 'concludes Feb 14, 2020',
       discount: '88',
