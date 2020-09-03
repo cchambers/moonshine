@@ -9,16 +9,6 @@
     :aria-describedby="ariaDescID">
     <!-- <div class="tab-lock" :id="ariaID" v-on:focus="focusButton()" tabindex="0"></div> -->
     <div class="content" ref="content" :size="size">
-      <div v-if="!hideControls" class="controls">
-        <button :aria-controls="uniqueId"
-          class="arrow next" v-hammer:tap="nextHandler">
-          <belk-icon width="20" name="arrow-right"></belk-icon>
-        </button>
-        <button :aria-controls="uniqueId"
-          class="arrow previous" v-hammer:tap="previousHandler">
-          <belk-icon width="20" name="arrow-left"></belk-icon>
-        </button>
-      </div>
       <div tabindex="0"
         v-hammer:tap="toggle"
         v-on:keyup.enter="toggle"
@@ -41,7 +31,17 @@
         :class="{ 'off': !active }"
         :id="ariaDescID"
         ref="body">
+        <button aria-controls="promo-offers"
+          v-if="scrolling" class="arrow previous"
+          :disabled="scrollPrevDisabled" v-hammer:tap="previousHandler">
+          <belk-icon width="10" name="arrow-left"></belk-icon>
+        </button>
         <belk-offers variant="promos" unique-id="promo-offers"></belk-offers>
+        <button aria-controls="promo-offers"
+          v-if="scrolling" class="arrow next"
+          :disabled="scrollNextDisabled" v-hammer:tap="nextHandler">
+          <belk-icon width="10" name="arrow-right"></belk-icon>
+        </button>
       </div>
       <!-- <div class="tab-lock" v-on:focus="focusButton()" tabindex="0"></div> -->
     </div>
@@ -120,6 +120,8 @@ export default {
       ariaDescID: String,
       links: Array,
       scrolling: false,
+      scrollPrevDisabled: true,
+      scrollNextDisabled: false,
     };
   },
 
@@ -130,6 +132,11 @@ export default {
 
     tabindex() {
       return (this.active) ? '0' : '-1';
+    },
+
+    maxScroll() {
+      const el = this.$refs.body;
+      return el.scrollWidth - el.clientWidth;
     },
   },
 
@@ -245,6 +252,26 @@ export default {
       self.$bus.$on('drawer-move', self.moveItemHandler);
       self.$bus.$on('drawer-remove', self.removeItemHandler);
       self.$bus.$on('drawer-replace', self.updateItemsHandler);
+
+      let scrollTimeout;
+      self.$refs.body.addEventListener('scroll', () => {
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(self.scrollHandler, 20);
+      });
+    },
+
+    scrollHandler() {
+      const el = this.$refs.body;
+      if (el.scrollLeft >= this.maxScroll) {
+        this.scrollNextDisabled = true;
+      } else {
+        this.scrollNextDisabled = false;
+      }
+      if (el.scrollLeft === 0) {
+        this.scrollPrevDisabled = true;
+      } else {
+        this.scrollPrevDisabled = false;
+      }
     },
 
     addItemHandler(event) {
@@ -420,17 +447,24 @@ export default {
     },
 
     nextHandler() {
-      const len = this.items.length;
-      let which = this.active + this.perNext;
-      if (which >= len) which -= len;
-      this.activate(which);
+      const el = this.$refs.body;
+      let dist = el.scrollLeft + el.offsetWidth / 3;
+      if (dist > (self.maxScroll)) {
+        dist = self.maxScroll;
+      }
+      el.scrollLeft = dist;
     },
 
     previousHandler() {
-      const len = this.items.length;
-      let which = this.active - this.perNext;
-      if (which < 0) which += len;
-      this.activate(which);
+      const el = this.$refs.body;
+      let dist = el.scrollLeft - el.offsetWidth / 3;
+      if (dist < 0) {
+        dist = 0;
+        this.scrollPrevDisabled = true;
+      } else if (this.scrollPrevDisabled) {
+        this.scrollPrevDisabled = false;
+      }
+      el.scrollLeft = dist;
     },
   },
 };
