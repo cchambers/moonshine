@@ -58,9 +58,7 @@ export default {
 
     addItem(data) {
       const obj = data;
-      if (!obj.id) {
-        obj.id = `o${this.makeUUID()}`;
-      }
+      if (!obj.id) obj.id = `o${this.makeUUID()}`;
       this.items.push(obj);
     },
 
@@ -90,11 +88,6 @@ export default {
           this.addItem(arr[x]);
         }
       }
-    },
-
-    shiftItemsHandler(event) {
-      this.log(event);
-      // TODO: this
     },
 
     activate(which) {
