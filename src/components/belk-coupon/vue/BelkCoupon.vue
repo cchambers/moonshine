@@ -45,7 +45,7 @@
       </div>
       <div class="coupon-buttons" v-if="!print">
         <sh-button v-if="variant != 'offer'" variant="primary" toggle="once"
-          @click="addCoupon"
+          ajax="/add-coupon/"
           active-text="Added"
           active-icon="check">
           Add Coupon
@@ -149,6 +149,8 @@ export default {
     if (this.$slots.details !== undefined || this.details) this.hasDetails = true;
     if (this.$slots.description !== undefined || this.description) this.hasDescription = true;
     if (this.$slots.image !== undefined || this.image) this.hasImage = true;
+
+    this.checkApplied();
   },
 
   mounted() {
@@ -168,10 +170,6 @@ export default {
   },
 
   methods: {
-    addCoupon() {
-      this.log('add coupon click handler');
-    },
-
     doLink() {
       window.location.href = this.link;
     },
@@ -186,6 +184,16 @@ export default {
       if (el) {
         const html = `<sh-modal unique-id="${self.detailsId}"><div>${self.detailsHTML}</div></sh-modal>`;
         el.innerHTML += html;
+      }
+    },
+
+    checkApplied() {
+      if (window.SessionAttributes) {
+        if (window.SessionAttributes.hasOwnProperty('APPLIED_COUPONS') &&
+            Array.isArray(window.SessionAttributes.APPLIED_COUPONS) &&
+            window.SessionAttributes.APPLIED_COUPONS.indexOf(this.code.toUpperCase()) !== -1) {
+              this.log('ALREADY APPLIED?');
+            }
       }
     },
 

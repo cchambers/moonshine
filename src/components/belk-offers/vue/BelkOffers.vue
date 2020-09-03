@@ -52,13 +52,15 @@ export default {
   methods: {
     events() {
       this.$bus.$on('add-offer-item', this.addItemHandler);
+      this.$bus.$on('move-offer-item', this.addItemHandler);
       this.$bus.$on('update-offer-items', this.updateItemsHandler);
     },
 
     addItem(data) {
       const obj = data;
-      const id = this.makeUUID();
-      if (!obj.id) obj.id = id;
+      if (!obj.id) {
+        obj.id = `o${this.makeUUID()}`;
+      }
       this.items.push(obj);
     },
 
@@ -66,6 +68,17 @@ export default {
       if (event.which === this.uniqueId) {
         const { data } = event;
         this.addItem(data);
+      }
+    },
+
+    moveItemHandler(event) {
+      if (event.which === this.uniqueId) {
+        const { from } = event.data;
+        const { to } = event.data;
+        const arr = [...this.items];
+        const it = arr.splice(from, 1)[0];
+        arr.splice(to, 0, it);
+        this.items = arr;
       }
     },
 

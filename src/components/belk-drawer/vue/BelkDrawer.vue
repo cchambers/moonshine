@@ -266,8 +266,12 @@ export default {
     },
 
     moveItemHandler(event) {
-      console.log(event);
-      this.$bus.$emit('update-offer-items-x', event);
+      const { from } = event.data;
+      const { to } = event.data;
+      const arr = [...this.items];
+      const it = arr.splice(from, 1)[0];
+      arr.splice(to, 0, it);
+      this.setItems(arr);
     },
 
     updateItemsHandler(event) {
@@ -277,7 +281,8 @@ export default {
 
     setItems(data) {
       setTimeout(() => {
-        this.items = data;
+        this.$set(this, 'items', data);
+        this.$forceUpdate();
       }, 100);
     },
 

@@ -29,6 +29,7 @@ export default {
   name: 'Button',
 
   props: {
+    ajax: String,
     variant: {
       type: String,
       default: 'default',
@@ -57,6 +58,7 @@ export default {
       buttonEl: this.$refs.button,
       isRole: false,
       once: false,
+      disabled: false,
     };
   },
 
@@ -86,7 +88,13 @@ export default {
     },
 
     tapHandler(e) {
+      if (this.disabled) return;
       // this.ripple(e);
+      if (this.toggle && !this.ajax) this.doToggle();
+      if (this.ajax) {
+        this.disabled = true;
+        this.sendRequest();
+      }
       if (this.toggle) this.doToggle();
       if (this.clickEvent) {
         e.preventDefault();
@@ -101,6 +109,26 @@ export default {
           group: this.group,
         });
       }
+    },
+
+    sendRequest() {
+      const url = this.ajax;
+      fetch(url, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        credentials: 'same-origin',
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (data) {
+            if (this.toggle) this.doToggle();
+          }
+          this.disabled = false;
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
     },
 
     ripple(e) {
