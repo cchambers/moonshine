@@ -1,0 +1,21 @@
+{
+  "name": "Belk Drawer",
+  "category": "features",
+  "production": true,
+  "prioritize": true,
+  "element": "belk-drawer",
+  "description": "Drawer component.",
+  "tags": ["utilities", "demo"],
+  "requirements": {
+    "DrawerTrigger": [
+      "Should have configurable active main text",
+      "Should have configurable active secondary text",
+      "Should have configurable inactive main text",
+      "Should have configurable inactive secondary text",
+      "Should have option for counting items in promo drawer"
+    ],
+    "Drawer": [
+      "Should have option for postion; top, left, bottom, right"
+    ]
+  }
+}

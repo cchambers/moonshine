@@ -167,7 +167,6 @@ export default {
 
     focus() {
       const activeSlide = this.$el.querySelector('.active');
-      window.test = activeSlide;
       if (activeSlide) activeSlide.focus();
       if (this.variant === 'secondary') {
         if (this.vertical) {

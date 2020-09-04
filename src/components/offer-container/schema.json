@@ -1,0 +1,14 @@
+{
+  "name": "Offer Container",
+  "category": "features",
+  "production": true,
+  "element": "offer-container",
+  "description": "Data-driven flexbox coupon/offer container.",
+  "tags": ["utilities", "coupons", "offers"],
+  "requirements": {
+    "Element One": [],
+    "Element Two": [],
+    "a11y": [],
+    "states": []
+  }
+}
