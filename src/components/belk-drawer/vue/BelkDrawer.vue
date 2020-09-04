@@ -36,7 +36,7 @@
           :disabled="scrollPrevDisabled" v-hammer:tap="previousHandler">
           <belk-icon width="10" name="arrow-left"></belk-icon>
         </button>
-        <belk-offers variant="promos" unique-id="promo-offers"></belk-offers>
+        <offer-container variant="promos" unique-id="promo-offers"></offer-container>
         <button aria-controls="promo-offers"
           v-if="scrolling" class="arrow next"
           :disabled="scrollNextDisabled" v-hammer:tap="nextHandler">
@@ -92,6 +92,10 @@ export default {
     overlay: String,
     printable: Boolean,
     startOpen: Boolean,
+    scrollSpeed: {
+      type: Number,
+      default: 3,
+    },
     formTarget: String,
     size: String,
     buttonHeadlineActive: String,
@@ -448,7 +452,7 @@ export default {
 
     nextHandler() {
       const el = this.$refs.body;
-      let dist = el.scrollLeft + el.offsetWidth / 3;
+      let dist = el.scrollLeft + el.offsetWidth / this.scrollSpeed;
       if (dist > (self.maxScroll)) {
         dist = self.maxScroll;
       }
@@ -457,7 +461,7 @@ export default {
 
     previousHandler() {
       const el = this.$refs.body;
-      let dist = el.scrollLeft - el.offsetWidth / 3;
+      let dist = el.scrollLeft - el.offsetWidth / this.scrollSpeed;
       if (dist < 0) {
         dist = 0;
         this.scrollPrevDisabled = true;

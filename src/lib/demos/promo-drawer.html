@@ -53,8 +53,8 @@
   <button onclick="event.stopPropagation();demo.remove(0)">
     Remove Coupon in position 1
   </button>
-  <button onclick="event.stopPropagation();demo.move(1, 0)">
-    Move Coupon in position 1 -> 0
+  <button onclick="event.stopPropagation();demo.move(2, 0)">
+    Move Coupon in position 2 -> 0
   </button>
   <!-- <button class="pink-button" onclick="event.stopPropagation();demo.move('#pink', -1)">
     Move PINK Coupon Left
@@ -125,10 +125,10 @@
 
     </script>
 
-    <belk-offers data-obj="coupons" unique-id="coupons" variant="coupons"></belk-offers>
+    <offer-container data-obj="coupons" unique-id="coupons" variant="coupons"></offer-container>
     <hr />
     <h2 class="pad-t">Offers</h2>
-    <belk-offers data-obj="offers" unique-id="offers" variant="offers"></belk-offers>
+    <offer-container data-obj="offers" unique-id="offers" variant="offers"></offer-container>
   </section>
 
   <section style="padding-top:100vh;"></section>
@@ -167,4 +167,4 @@
   ];
 
 </script>
-<belk-drawer drawer="bottom" overlay="none" unique-id="promo-drawer" data-obj="promoDrawer" button-headline-inactive="Today's Offers" button-subhead-inactive="Tap for Savings Made Simple" button-headline-active="Savings Made Simple" button-subhead-active=" Offers"></belk-drawer>
+<belk-drawer drawer="bottom" overlay="none" unique-id="pd" data-obj="promoDrawer" button-headline-inactive="Today's Offers" button-subhead-inactive="Tap for Savings Made Simple" button-headline-active="Savings Made Simple" button-subhead-active=" Offers"></belk-drawer>

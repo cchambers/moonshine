@@ -1,5 +1,5 @@
 <template>
-  <div class="belk-offers"
+  <div class="offer-container"
     :variant="variant">
     <belk-coupon v-for="item in items" v-bind:key="item.id"
       in-drawer="true"
@@ -24,7 +24,7 @@ import ComponentPrototype from '../../component-prototype';
 export default {
   mixins: [ComponentPrototype],
 
-  name: 'BelkOffers',
+  name: 'OfferContainer',
   props: {
     itemData: String,
     uniqueId: String,

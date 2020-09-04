@@ -1,8 +1,8 @@
 {
-  "name": "Belk Offers",
+  "name": "Offer Container",
   "category": "features",
   "production": true,
-  "element": "belk-offers",
+  "element": "offer-container",
   "description": "Data-driven flexbox coupon/offer container.",
   "tags": ["utilities", "coupons", "offers"],
   "requirements": {

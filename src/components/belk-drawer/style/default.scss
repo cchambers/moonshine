@@ -116,7 +116,7 @@ $buttonWidth: $rem;
   }
 
   &[scrolling] {
-    .belk-offers {
+    .offer-container {
       justify-content: flex-start;
       &::before { content: ''; min-width: $buttonWidth; }
       &::after { content: ''; min-width: $buttonWidth; }
@@ -137,7 +137,7 @@ $buttonWidth: $rem;
     height: auto;
   }
 
-  .belk-offers {
+  .offer-container {
     justify-content: center;
     padding: $little 0;
   }
