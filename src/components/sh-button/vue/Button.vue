@@ -11,11 +11,11 @@
     v-bind:aria-controls="ariaControls"
     class="sh-button">
     <slot name="before-text"></slot>
-    <span class="active-icon"
-      v-if="activeIcon"><belk-icon width="25"
-      :name="activeIcon"></belk-icon></span>
-    <span class="actual-text"><slot></slot></span>
-    <span class="active-text" v-if="isActive">{{activeText}}</span>
+    <div class="active-icon"
+      v-if="activeIcon"><belk-icon width="20" height="20"
+      :name="activeIcon"></belk-icon></div>
+    <div class="actual-text"><slot></slot></div>
+    <div class="active-text" v-if="isActive">{{activeText}}</div>
     <slot name="after-text"></slot>
   </button>
 </template>
@@ -29,6 +29,7 @@ export default {
   name: 'Button',
 
   props: {
+    ajax: String,
     variant: {
       type: String,
       default: 'default',
@@ -38,7 +39,7 @@ export default {
     group: String,
     closeTrigger: Boolean,
     printTrigger: Boolean,
-    toggle: Boolean,
+    toggle: String,
     round: String,
     outline: Boolean,
     clickEvent: String,
@@ -56,6 +57,8 @@ export default {
       emitData: null,
       buttonEl: this.$refs.button,
       isRole: false,
+      once: false,
+      disabled: false,
     };
   },
 
@@ -85,7 +88,13 @@ export default {
     },
 
     tapHandler(e) {
-      this.ripple(e);
+      if (this.disabled) return;
+      // this.ripple(e);
+      if (this.toggle && !this.ajax) this.doToggle();
+      if (this.ajax) {
+        this.disabled = true;
+        this.sendRequest();
+      }
       if (this.toggle) this.doToggle();
       if (this.clickEvent) {
         e.preventDefault();
@@ -100,6 +109,26 @@ export default {
           group: this.group,
         });
       }
+    },
+
+    sendRequest() {
+      const url = this.ajax;
+      fetch(url, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        credentials: 'same-origin',
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (data) {
+            if (this.toggle) this.doToggle();
+          }
+          this.disabled = false;
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
     },
 
     ripple(e) {
@@ -117,6 +146,11 @@ export default {
     },
 
     doToggle() {
+      if (this.toggle === 'once' && !this.once) {
+        this.once = true;
+      } else {
+        return;
+      }
       if (this.group && this.isActive) return;
       this.isActive = !this.isActive;
     },

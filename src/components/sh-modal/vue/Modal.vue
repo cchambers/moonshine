@@ -509,10 +509,6 @@ export default {
 <style lang="scss" src="../style/primary.scss"></style>
 <style lang="scss" src="../style/secondary.scss"></style>
 <style lang="scss">
-  a[modal-trigger] {
-    color: $accent-primary;
-  }
-
   #sh-modals {
     position: fixed;
     pointer-events: none;
@@ -600,7 +596,7 @@ export default {
       #sh-modals {
         opacity: 1;
         pointer-events: initial;
-        max-height: initial;
+        max-height: 100vh;
         overflow-y: auto;
         sh-modal-buttons {
           display: block;

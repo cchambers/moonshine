@@ -41,8 +41,6 @@ glob.sync('src/components/**/schema.json')
   });
 
   // iterate and split into categories
-
-
   Object.entries(schema).forEach((item) => {
     const key = item[0];
     const value = item[1];
