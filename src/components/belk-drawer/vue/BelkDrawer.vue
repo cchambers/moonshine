@@ -283,8 +283,14 @@ export default {
       const where = event.data.where || this.items.length;
       const isArray = Array.isArray(items);
       if (isArray) {
-        this.items.splice(where, 0, ...items);
+        const arr = [...items];
+        arr.forEach((item) => {
+          // eslint-disable-next-line no-param-reassign
+          item.inDrawer = true;
+        });
+        this.items.splice(where, 0, arr);
       } else {
+        items.inDrawer = true;
         this.items.splice(where, 0, items);
       }
     },

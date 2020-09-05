@@ -52,12 +52,15 @@
         </sh-button>
         <sh-button v-if="link" variant="primary" outline
           @click="doLink">Shop Now</sh-button>
-        <div hidden aria-hidden="true" class="coupon-modal"></div>
+        <div hidden aria-hidden="true" class="coupon-modal">
+          <div class="print-modal"></div>
+          <div class="details-modal"></div>
+        </div>
       </div>
       <div v-if="upc" class="coupon-upc">
         <belk-barcode align-text="right" :code="upc"></belk-barcode>
         <div class="coupon-logo" v-if="print">
-          <belk-logo width="120"></belk-logo>
+          <belk-logo width="120" color="lowlight-primary"></belk-logo>
         </div>
       </div>
       <div v-else-if="variant != 'offer' && !print"
@@ -160,11 +163,8 @@ export default {
     }
 
     if (!this.inDrawer) {
-      console.log('yes', this.discount);
       if (this.badge && this.variant == 'default') {
-        console.log('ok', this.discount);
         if (this.badge.indexOf('Store') >= 0) {
-          console.log('mm', this.discount);
           this.printable = true;
           this.makePrintModal();
         }
@@ -181,15 +181,6 @@ export default {
       this.$bus.$emit('open-modal', { id: this.printId });
     },
 
-    makeDetailsModal() {
-      let self = this;
-      const el = self.$el.querySelector('.coupon-modal[hidden]');
-      if (el) {
-        const html = `<sh-modal unique-id="${self.detailsId}"><div>${self.detailsHTML}</div></sh-modal>`;
-        el.innerHTML += html;
-      }
-    },
-
     checkApplied() {
       if (window.SessionAttributes) {
         if (window.SessionAttributes.hasOwnProperty('APPLIED_COUPONS') &&
@@ -200,9 +191,18 @@ export default {
       }
     },
 
+    makeDetailsModal() {
+      let self = this;
+      const el = self.$el.querySelector('.coupon-modal[hidden] .details-modal');
+      if (el) {
+        const html = `<sh-modal unique-id="${self.detailsId}"><div>${self.detailsHTML}</div></sh-modal>`;
+        el.innerHTML += html;
+      }
+    },
+
     makePrintModal() {
       let self = this;
-      const el = self.$el.querySelector('.coupon-modal[hidden]');
+      const el = self.$el.querySelector('.coupon-modal[hidden] .print-modal');
       if (el) {
         const html = `<sh-modal printable unique-id="${self.printId}">
           <div>

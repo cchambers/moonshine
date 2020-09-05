@@ -2,7 +2,7 @@
   <div class="offer-container"
     :variant="variant">
     <belk-coupon v-for="item in items" v-bind:key="item.id"
-      in-drawer="true"
+      :in-drawer="item.inDrawer"
       :badge="item.badge"
       :code="item.code"
       :discount="item.discount"
