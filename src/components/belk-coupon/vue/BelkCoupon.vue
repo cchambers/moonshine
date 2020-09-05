@@ -160,8 +160,11 @@ export default {
     }
 
     if (!this.inDrawer) {
+      console.log('yes', this.discount);
       if (this.badge && this.variant == 'default') {
+        console.log('ok', this.discount);
         if (this.badge.indexOf('Store') >= 0) {
+          console.log('mm', this.discount);
           this.printable = true;
           this.makePrintModal();
         }

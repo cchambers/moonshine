@@ -14,6 +14,7 @@
       :header-color="item.headerColor"
       :image="item.image"
       :link="item.link"
+      :printable="item.printable"
       :upc="item.upc"></belk-coupon>
   </div>
 </template>
