@@ -57,7 +57,7 @@
       <div v-if="upc" class="coupon-upc">
         <belk-barcode align-text="right" :code="upc"></belk-barcode>
         <div class="coupon-logo" v-if="print">
-          <belk-logo width="120"></belk-logo>
+          <belk-logo width="120" color="lowlight-primary"></belk-logo>
         </div>
       </div>
       <div v-else-if="variant != 'offer' && !print"
@@ -160,11 +160,8 @@ export default {
     }
 
     if (!this.inDrawer) {
-      console.log('yes', this.discount);
       if (this.badge && this.variant == 'default') {
-        console.log('ok', this.discount);
         if (this.badge.indexOf('Store') >= 0) {
-          console.log('mm', this.discount);
           this.printable = true;
           this.makePrintModal();
         }
