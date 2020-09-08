@@ -141,11 +141,6 @@ export default {
     tabindex() {
       return (this.active) ? '0' : '-1';
     },
-
-    maxScroll() {
-      const el = this.$refs.body;
-      return el.scrollWidth - el.clientWidth;
-    },
   },
 
   watch: {
@@ -278,9 +273,14 @@ export default {
       });
     },
 
+    maxScroll() {
+      const el = this.$refs.body;
+      return el.scrollWidth - el.clientWidth;
+    },
+
     scrollHandler() {
       const el = this.$refs.body;
-      if (el.scrollLeft >= this.maxScroll) {
+      if (el.scrollLeft >= this.maxScroll()) {
         this.scrollNextDisabled = true;
       } else {
         this.scrollNextDisabled = false;
@@ -307,6 +307,7 @@ export default {
         items.inDrawer = true;
         this.items.splice(where, 0, items);
       }
+      setTimeout(this.scrollHandler);
     },
 
     removeItemHandler(event) {
@@ -331,9 +332,10 @@ export default {
     },
 
     attractHandler() {
-      // if (this.active) return;
+      if (this.active) return;
       this.attractMode = true;
-      setTimeout(() => {
+
+      this.attractTimeout = setTimeout(() => {
         this.attractMode = false;
       }, 2000);
     },
@@ -356,7 +358,7 @@ export default {
     },
 
     toggle() {
-      if (this.active) {
+      if (this.active || this.attractMode) {
         this.close();
       } else {
         this.open();
@@ -391,6 +393,7 @@ export default {
         self.$bus.$emit('modal-closed', self.uniqueId);
         self.disableWatchEvents();
       }
+      if (self.attractMode) self.attractMode = false;
       if (clearHash) self.clearHash();
     },
 
@@ -481,8 +484,9 @@ export default {
     nextHandler() {
       const el = this.$refs.body;
       let dist = el.scrollLeft + el.offsetWidth / this.scrollSpeed;
-      if (dist > (self.maxScroll)) {
-        dist = self.maxScroll;
+      const max = this.maxScroll();
+      if (dist > (max)) {
+        dist = max;
       }
       el.scrollLeft = dist;
     },
@@ -490,12 +494,7 @@ export default {
     previousHandler() {
       const el = this.$refs.body;
       let dist = el.scrollLeft - el.offsetWidth / this.scrollSpeed;
-      if (dist < 0) {
-        dist = 0;
-        this.scrollPrevDisabled = true;
-      } else if (this.scrollPrevDisabled) {
-        this.scrollPrevDisabled = false;
-      }
+      if (dist < 0) dist = 0;
       el.scrollLeft = dist;
     },
   },

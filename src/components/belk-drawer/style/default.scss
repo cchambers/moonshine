@@ -65,8 +65,12 @@ $buttonWidth: $rem;
       pointer-events: none;
       background: rgba(255,255,255,0.75);
       transition: opacity 250ms linear;
+      .wiggle {
+        animation: wiggle 1s;
+      }
       .content {
         transform: translateY(80%) translateZ(0);
+        @include box-shadow(3);
       }
     }
 
@@ -264,5 +268,20 @@ $buttonWidth: $rem;
         left: 0;
       }
     }
+  }
+}
+
+@keyframes wiggle {
+  0% {
+    transform: translateY(80%) translateZ(0);
+  }
+  25% {
+    transform: translateY(75%) translateZ(0);
+  }
+  50% {
+    transform: translateY(80%) translateZ(0);
+  }
+  100% {
+    transform: translateY(75%) translateZ(0);
   }
 }
