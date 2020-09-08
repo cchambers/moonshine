@@ -333,6 +333,8 @@ export default {
     moveItemHandler(event) {
       const { from } = event.data;
       const { to } = event.data;
+      if (!this.items[to]) return;
+      if (!this.items[from]) return;
       const arr = [...this.items];
       const it = arr.splice(from, 1)[0];
       arr.splice(to, 0, it);
