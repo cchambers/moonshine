@@ -8,7 +8,7 @@ $buttonWidth: $rem;
   right: 0;
   height: 0;
   overflow: hidden;
-  opacity: 0;
+  opacity: 1;
   pointer-events: none;
   align-items: center;
   display: flex;
@@ -17,24 +17,29 @@ $buttonWidth: $rem;
   transition: all 300ms $ease, opacity 350ms linear;
   transition-delay: 10ms;
   transform-origin: top center;
+  &[offscreen] {
+    .content {
+      transform: translateZ(0) translateY(125%) !important;
+    }
+  }
   &.active {
-    opacity: 1 !important;
     max-height: initial;
     height: auto;
     @include md {
       transform: translateX(0) translateY(0) translateZ(0) scale(1) rotate(0) !important;
-      transform: scale(0.7) rotateX(-60deg) translateY(20%) translateZ(0);
     }
+  }
+
+  .hide-body {
+    opacity: 0.5;
   }
 
   &[drawer="bottom"] {
     height: 100vh;
     transform: translateY(0) translateZ(0);
-    opacity: 1;
     transition: none !important;
     max-height: 100vh;
-
-
+    
     &.active {
       .drawer-toggle {
         background: $highlight-primary;
@@ -54,6 +59,27 @@ $buttonWidth: $rem;
             transform: rotate(180deg);
           }
         }
+      }
+      .content {
+        transform: translateY(0) translateZ(0);
+      }
+    }
+
+    &[attract] {
+      pointer-events: none;
+      background: rgba(255,255,255,0.75);
+      transition: opacity 250ms linear;
+      .arrow,
+      .offer-container::before,
+      .offer-container::after {
+        max-width: 0;
+      }
+      .wiggle {
+        animation: wiggle 1s;
+      }
+      .content {
+        transform: translateY(80%) translateZ(0);
+        background: $lowlight-secondary;
       }
     }
 
@@ -107,11 +133,6 @@ $buttonWidth: $rem;
       transition: all 300ms $decel;
       overflow: visible;
       border-top: 1px solid $lowlight-quinary;
-    }
-    &.active {
-      .content {
-        transform: translateY(0) translateZ(0);
-      }
     }
   }
 
@@ -256,5 +277,20 @@ $buttonWidth: $rem;
         left: 0;
       }
     }
+  }
+}
+
+@keyframes wiggle {
+  0% {
+    transform: translateY(80%) translateZ(0);
+  }
+  25% {
+    transform: translateY(75%) translateZ(0);
+  }
+  50% {
+    transform: translateY(80%) translateZ(0);
+  }
+  100% {
+    transform: translateY(75%) translateZ(0);
   }
 }

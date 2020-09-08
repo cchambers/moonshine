@@ -615,22 +615,18 @@ ol.lower-alpha {
 }
 
 .sub-layer {
-  position: relative;
   z-index: -1;
 }
 
 .bottom-layer {
-  position: relative;
   z-index: 1;
 }
 
 .middle-layer {
-  position: relative;
   z-index: 2;
 }
 
 .top-layer {
-  position: relative;
   z-index: 3;
 }
 
