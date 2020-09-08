@@ -13,8 +13,8 @@
     <div class="content" ref="content" :size="size" @mouseover="mouseOverHandler">
       <div tabindex="0"
         v-hammer:tap="toggle"
-        v-on:keyup.enter="toggle"
-        v-on:keyup.space="toggle"
+        v-on:keydown.enter="toggle"
+        v-on:keydown.space="toggle"
         v-on:keydown.tab="toggleTabHandler"
         ref="button"
         role="button"
@@ -389,7 +389,6 @@ export default {
     toggleTabHandler() {
       if (!this.active) {
         const target = document.querySelector('a, input, button, [tabindex]:not(.tab-lock), [close-trigger]');
-        console.log('target', target);
         if (target) target.focus();
       }
     },
