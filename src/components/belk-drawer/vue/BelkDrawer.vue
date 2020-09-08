@@ -400,6 +400,7 @@ export default {
         document.documentElement.classList.add('belk-drawer-open');
         self.active = true;
         self.$bus.$emit('modal-opened', self.uniqueId);
+        self.scrollHandler();
         setTimeout(() => {
           self.$refs.content.focus();
           self.enableWatchEvents();
