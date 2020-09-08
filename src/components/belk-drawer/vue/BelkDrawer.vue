@@ -9,14 +9,17 @@
     :scrolling="scrolling"
     :aria-labelledby="ariaID"
     :aria-describedby="ariaDescID">
-    <!-- <div class="tab-lock" :id="ariaID" v-on:focus="focusButton()" tabindex="0"></div> -->
+    <div class="tab-lock" v-if="active" v-on:focus="focusButton()" tabindex="0"></div>
     <div class="content" ref="content" :size="size" @mouseover="mouseOverHandler">
       <div tabindex="0"
         v-hammer:tap="toggle"
         v-on:keyup.enter="toggle"
         v-on:keyup.space="toggle"
+        v-on:keydown.tab="toggleTabHandler"
         ref="button"
-        class="drawer-toggle flex align-top">
+        role="button"
+        class="drawer-toggle flex align-top"
+        :id="ariaID">
         <div v-if="!active">
           <div class="dt-headline">{{ buttonHeadlineInactive }}</div>
           <div class="dt-subhead">{{ buttonSubheadInactive }}</div>
@@ -45,7 +48,7 @@
           <belk-icon width="10" name="arrow-right"></belk-icon>
         </button>
       </div>
-      <!-- <div class="tab-lock" v-on:focus="focusButton()" tabindex="0"></div> -->
+      <div class="tab-lock" v-if="active" v-on:focus="focusButton()" tabindex="0"></div>
     </div>
   </div>
 </template>
@@ -380,6 +383,14 @@ export default {
         this.close();
       } else {
         this.open();
+      }
+    },
+
+    toggleTabHandler() {
+      if (!this.active) {
+        const target = document.querySelector('a, input, button, [tabindex]:not(.tab-lock), [close-trigger]');
+        console.log('target', target);
+        if (target) target.focus();
       }
     },
 
