@@ -72,6 +72,10 @@ export default {
       type: Number,
       default: 1000,
     },
+    attractDelay: {
+      type: Number,
+      default: 2000,
+    },
     content: String,
     contentUrl: String,
     alwaysReload: Boolean,
@@ -96,13 +100,11 @@ export default {
     reveal: String,
     variant: String,
     overlay: String,
-    printable: Boolean,
     startOpen: Boolean,
     scrollSpeed: {
       type: Number,
       default: 3,
     },
-    formTarget: String,
     size: String,
     buttonHeadlineActive: String,
     buttonHeadlineInactive: String,
@@ -114,6 +116,7 @@ export default {
     return {
       isReady: false,
       attractMode: false,
+      attractTimeout: 0,
       triggers: [],
       triggerLinks: [],
       affirmTriggers: [],
@@ -152,6 +155,10 @@ export default {
       if (val) {
         if (this.attractMode) this.attractMode = false;
       }
+    },
+
+    attractMode(val) {
+      if (!val) clearTimeout(this.attractTimeout);
     },
 
     items(val) {
@@ -308,7 +315,7 @@ export default {
           // eslint-disable-next-line no-param-reassign
           item.inDrawer = true;
         });
-        this.items.splice(where, 0, arr);
+        this.items.splice(where, 0, ...arr);
       } else {
         items.inDrawer = true;
         this.items.splice(where, 0, items);
@@ -342,7 +349,7 @@ export default {
       this.attractMode = true;
       this.attractTimeout = setTimeout(() => {
         this.attractMode = false;
-      }, 2000);
+      }, this.attractDelay);
     },
 
     mouseOverHandler() {
