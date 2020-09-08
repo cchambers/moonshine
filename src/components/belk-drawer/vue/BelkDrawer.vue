@@ -4,6 +4,8 @@
     :reveal="reveal"
     :drawer="drawer"
     :id="uniqueId"
+    :offscreen="!isReady"
+    :attract="attractMode"
     :scrolling="scrolling"
     :aria-labelledby="ariaID"
     :aria-describedby="ariaDescID">
@@ -28,7 +30,7 @@
         </div>
       </div>
       <div class="body"
-        :class="{ 'off': !active }"
+        :class="{ 'hide-body': (!active && !attractMode) }"
         :id="ariaDescID"
         ref="body">
         <button aria-controls="promo-offers"
@@ -106,6 +108,8 @@ export default {
 
   data() {
     return {
+      isReady: false,
+      attractMode: false,
       triggers: [],
       triggerLinks: [],
       affirmTriggers: [],
@@ -145,6 +149,12 @@ export default {
   },
 
   watch: {
+    active(val) {
+      if (val) {
+        if (this.attractMode) this.attractMode = false;
+      }
+    },
+
     items(val) {
       const width = val.length * 280;
       const wider = (width > window.innerWidth);
@@ -174,7 +184,10 @@ export default {
         event: false,
       });
     }
-    if (self.startOpen) self.open();
+    if (self.startOpen) {
+      self.open();
+    }
+    this.isReady = true;
   },
 
   methods: {
@@ -256,6 +269,7 @@ export default {
       self.$bus.$on('drawer-move', self.moveItemHandler);
       self.$bus.$on('drawer-remove', self.removeItemHandler);
       self.$bus.$on('drawer-replace', self.updateItemsHandler);
+      self.$bus.$on('drawer-attract', self.attractHandler);
 
       let scrollTimeout;
       self.$refs.body.addEventListener('scroll', () => {
@@ -314,6 +328,14 @@ export default {
     updateItemsHandler(event) {
       const { data } = event;
       this.setItems(data);
+    },
+
+    attractHandler() {
+      // if (this.active) return;
+      this.attractMode = true;
+      setTimeout(() => {
+        this.attractMode = false;
+      }, 2000);
     },
 
     setItems(data) {

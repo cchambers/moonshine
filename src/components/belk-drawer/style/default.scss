@@ -8,7 +8,7 @@ $buttonWidth: $rem;
   right: 0;
   height: 0;
   overflow: hidden;
-  opacity: 0;
+  opacity: 1;
   pointer-events: none;
   align-items: center;
   display: flex;
@@ -18,24 +18,25 @@ $buttonWidth: $rem;
   transition-delay: 10ms;
   transform-origin: top center;
   &.active {
-    opacity: 1 !important;
     max-height: initial;
     height: auto;
     @include md {
       transform: translateX(0) translateY(0) translateZ(0) scale(1) rotate(0) !important;
-      transform: scale(0.7) rotateX(-60deg) translateY(20%) translateZ(0);
     }
+  }
+
+  .hide-body {
+    opacity: 0.5;
   }
 
   &[drawer="bottom"] {
     height: 100vh;
     transform: translateY(0) translateZ(0);
-    opacity: 1;
     transition: none !important;
     max-height: 100vh;
-
-
-    &.active {
+    
+    &.active,
+    &[attract] {
       .drawer-toggle {
         background: $highlight-primary;
         color: $lowlight-quinary; 
@@ -54,6 +55,18 @@ $buttonWidth: $rem;
             transform: rotate(180deg);
           }
         }
+      }
+      .content {
+        transform: translateY(0) translateZ(0);
+      }
+    }
+
+    &[attract] {
+      pointer-events: none;
+      background: rgba(255,255,255,0.75);
+      transition: opacity 250ms linear;
+      .content {
+        transform: translateY(80%) translateZ(0);
       }
     }
 
@@ -107,11 +120,6 @@ $buttonWidth: $rem;
       transition: all 300ms $decel;
       overflow: visible;
       border-top: 1px solid $lowlight-quinary;
-    }
-    &.active {
-      .content {
-        transform: translateY(0) translateZ(0);
-      }
     }
   }
 

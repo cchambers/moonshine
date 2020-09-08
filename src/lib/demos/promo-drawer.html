@@ -29,6 +29,10 @@
     remove(which) {
       sh.emit('drawer-remove', { which: which });
     },
+
+    attract(which) {
+      sh.emit('drawer-attract');
+    },
   }
 
   // function disablePinkButtons() {
@@ -55,6 +59,9 @@
   </button>
   <button onclick="event.stopPropagation();demo.move(2, 0)">
     Move Coupon in position 2 -> 0
+  </button>
+  <button onclick="event.stopPropagation();demo.attract()">
+    Attract Mode
   </button>
   <!-- <button class="pink-button" onclick="event.stopPropagation();demo.move('#pink', -1)">
     Move PINK Coupon Left
