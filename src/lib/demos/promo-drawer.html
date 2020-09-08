@@ -1,7 +1,19 @@
 <sh-svglib></sh-svglib>
 <style>
   body {
-    overflow: scroll !important
+    overflow: scroll !important;
+    background: #00afa8;
+  }
+
+  button.demo-button {
+    padding: 0.8rem 1.6rem;
+    cursor: pointer;
+  }
+
+  .container {
+    max-width: 1020rem;
+    margin: 0 auto;
+    background: white;
   }
 
 </style>
@@ -18,7 +30,13 @@
 
     addMore(amount = 1, there = false) {
       // generate [amount] random coupons, 
-      var offers = demo.generateOffer(amount);
+      var offers = (amount === 1) ? demo.generateOffer() : [];
+      if (amount > 1) {
+        for (var x = 0; x < amount; x += 1) {
+          offers.push(demo.generateOffer());
+        }
+      }
+      console.log(offers);
       sh.emit('drawer-add', { where: there, what: offers });
     },
 
@@ -28,6 +46,10 @@
 
     remove(which) {
       sh.emit('drawer-remove', { which: which });
+    },
+
+    attract(which) {
+      sh.emit('drawer-attract');
     },
   }
 
@@ -43,28 +65,25 @@
 
 </script>
 
-<div class="pad">
-  <button onclick="event.stopPropagation();demo.addMore(1)">
+<div class="pad-little flex center sticky top-layer back-brand-deepteal" style="opacity: 0.8">
+  <button class="demo-button" onclick="event.stopPropagation();demo.addMore(1)">
     Add Promo Offer (1)
   </button>
-  <!-- <button onclick="event.stopPropagation();demo.addMore(3, 1)">
+  <button class="demo-button" onclick="event.stopPropagation();demo.addMore(3, 1)">
     Add (3) Promo Offers in position 1
-  </button> -->
-  <button onclick="event.stopPropagation();demo.remove(0)">
+  </button>
+  <button class="demo-button" onclick="event.stopPropagation();demo.remove(0)">
     Remove Coupon in position 1
   </button>
-  <button onclick="event.stopPropagation();demo.move(2, 0)">
+  <button class="demo-button" onclick="event.stopPropagation();demo.move(2, 0)">
     Move Coupon in position 2 -> 0
   </button>
-  <!-- <button class="pink-button" onclick="event.stopPropagation();demo.move('#pink', -1)">
-    Move PINK Coupon Left
+  <button class="demo-button" onclick="event.stopPropagation();demo.attract()">
+    Attract Mode
   </button>
-  <button class="pink-button" onclick="event.stopPropagation();demo.move('#pink', 1)">
-    Move PINK Coupon Right
-  </button> -->
 </div>
 
-<div class="pad">
+<div class="pad container">
   <section>
     <h2 class="pad-y lowlight-primary">Coupons</h2>
     <script>

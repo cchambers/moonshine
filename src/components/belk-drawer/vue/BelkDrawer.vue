@@ -4,11 +4,13 @@
     :reveal="reveal"
     :drawer="drawer"
     :id="uniqueId"
+    :offscreen="!isReady"
+    :attract="attractMode"
     :scrolling="scrolling"
     :aria-labelledby="ariaID"
     :aria-describedby="ariaDescID">
     <!-- <div class="tab-lock" :id="ariaID" v-on:focus="focusButton()" tabindex="0"></div> -->
-    <div class="content" ref="content" :size="size">
+    <div class="content" ref="content" :size="size" @mouseover="mouseOverHandler">
       <div tabindex="0"
         v-hammer:tap="toggle"
         v-on:keyup.enter="toggle"
@@ -28,7 +30,7 @@
         </div>
       </div>
       <div class="body"
-        :class="{ 'off': !active }"
+        :class="{ 'hide-body': (!active && !attractMode) }"
         :id="ariaDescID"
         ref="body">
         <button aria-controls="promo-offers"
@@ -66,6 +68,14 @@ export default {
       type: String,
       default: 'close',
     },
+    showDelay: {
+      type: Number,
+      default: 1000,
+    },
+    attractDelay: {
+      type: Number,
+      default: 2000,
+    },
     content: String,
     contentUrl: String,
     alwaysReload: Boolean,
@@ -90,13 +100,11 @@ export default {
     reveal: String,
     variant: String,
     overlay: String,
-    printable: Boolean,
     startOpen: Boolean,
     scrollSpeed: {
       type: Number,
       default: 3,
     },
-    formTarget: String,
     size: String,
     buttonHeadlineActive: String,
     buttonHeadlineInactive: String,
@@ -106,6 +114,9 @@ export default {
 
   data() {
     return {
+      isReady: false,
+      attractMode: false,
+      attractTimeout: 0,
       triggers: [],
       triggerLinks: [],
       affirmTriggers: [],
@@ -137,14 +148,19 @@ export default {
     tabindex() {
       return (this.active) ? '0' : '-1';
     },
-
-    maxScroll() {
-      const el = this.$refs.body;
-      return el.scrollWidth - el.clientWidth;
-    },
   },
 
   watch: {
+    active(val) {
+      if (val) {
+        if (this.attractMode) this.attractMode = false;
+      }
+    },
+
+    attractMode(val) {
+      if (!val) clearTimeout(this.attractTimeout);
+    },
+
     items(val) {
       const width = val.length * 280;
       const wider = (width > window.innerWidth);
@@ -174,7 +190,12 @@ export default {
         event: false,
       });
     }
-    if (self.startOpen) self.open();
+    if (self.startOpen) {
+      self.open();
+    }
+    setTimeout(() => {
+      this.isReady = true;
+    }, this.showDelay);
   },
 
   methods: {
@@ -256,6 +277,7 @@ export default {
       self.$bus.$on('drawer-move', self.moveItemHandler);
       self.$bus.$on('drawer-remove', self.removeItemHandler);
       self.$bus.$on('drawer-replace', self.updateItemsHandler);
+      self.$bus.$on('drawer-attract', self.attractHandler);
 
       let scrollTimeout;
       self.$refs.body.addEventListener('scroll', () => {
@@ -264,9 +286,14 @@ export default {
       });
     },
 
+    maxScroll() {
+      const el = this.$refs.body;
+      return el.scrollWidth - el.clientWidth;
+    },
+
     scrollHandler() {
       const el = this.$refs.body;
-      if (el.scrollLeft >= this.maxScroll) {
+      if (el.scrollLeft >= this.maxScroll()) {
         this.scrollNextDisabled = true;
       } else {
         this.scrollNextDisabled = false;
@@ -288,11 +315,12 @@ export default {
           // eslint-disable-next-line no-param-reassign
           item.inDrawer = true;
         });
-        this.items.splice(where, 0, arr);
+        this.items.splice(where, 0, ...arr);
       } else {
         items.inDrawer = true;
         this.items.splice(where, 0, items);
       }
+      setTimeout(this.scrollHandler);
     },
 
     removeItemHandler(event) {
@@ -314,6 +342,18 @@ export default {
     updateItemsHandler(event) {
       const { data } = event;
       this.setItems(data);
+    },
+
+    attractHandler() {
+      if (this.active) return;
+      this.attractMode = true;
+      this.attractTimeout = setTimeout(() => {
+        this.attractMode = false;
+      }, this.attractDelay);
+    },
+
+    mouseOverHandler() {
+      if (this.attractMode) this.open();
     },
 
     setItems(data) {
@@ -369,6 +409,7 @@ export default {
         self.$bus.$emit('modal-closed', self.uniqueId);
         self.disableWatchEvents();
       }
+      if (self.attractMode) self.attractMode = false;
       if (clearHash) self.clearHash();
     },
 
@@ -459,8 +500,9 @@ export default {
     nextHandler() {
       const el = this.$refs.body;
       let dist = el.scrollLeft + el.offsetWidth / this.scrollSpeed;
-      if (dist > (self.maxScroll)) {
-        dist = self.maxScroll;
+      const max = this.maxScroll();
+      if (dist > (max)) {
+        dist = max;
       }
       el.scrollLeft = dist;
     },
@@ -468,12 +510,7 @@ export default {
     previousHandler() {
       const el = this.$refs.body;
       let dist = el.scrollLeft - el.offsetWidth / this.scrollSpeed;
-      if (dist < 0) {
-        dist = 0;
-        this.scrollPrevDisabled = true;
-      } else if (this.scrollPrevDisabled) {
-        this.scrollPrevDisabled = false;
-      }
+      if (dist < 0) dist = 0;
       el.scrollLeft = dist;
     },
   },
