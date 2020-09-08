@@ -156,6 +156,8 @@ $buttonWidth: $rem;
 
   .hide-body {
     opacity: 0.5;
+    display: none;
+    transition-delay: display 50ms;
   }
 
   .content {
