@@ -10,7 +10,7 @@
     :aria-labelledby="ariaID"
     :aria-describedby="ariaDescID">
     <!-- <div class="tab-lock" :id="ariaID" v-on:focus="focusButton()" tabindex="0"></div> -->
-    <div class="content" ref="content" :size="size">
+    <div class="content" ref="content" :size="size" @mouseover="mouseOverHandler">
       <div tabindex="0"
         v-hammer:tap="toggle"
         v-on:keyup.enter="toggle"
@@ -67,6 +67,10 @@ export default {
     closeIcon: {
       type: String,
       default: 'close',
+    },
+    showDelay: {
+      type: Number,
+      default: 1000,
     },
     content: String,
     contentUrl: String,
@@ -182,7 +186,9 @@ export default {
     if (self.startOpen) {
       self.open();
     }
-    this.isReady = true;
+    setTimeout(() => {
+      this.isReady = true;
+    }, this.showDelay);
   },
 
   methods: {
@@ -334,10 +340,13 @@ export default {
     attractHandler() {
       if (this.active) return;
       this.attractMode = true;
-
       this.attractTimeout = setTimeout(() => {
         this.attractMode = false;
       }, 2000);
+    },
+
+    mouseOverHandler() {
+      if (this.attractMode) this.open();
     },
 
     setItems(data) {
@@ -358,7 +367,7 @@ export default {
     },
 
     toggle() {
-      if (this.active || this.attractMode) {
+      if (this.active) {
         this.close();
       } else {
         this.open();

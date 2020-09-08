@@ -17,6 +17,11 @@ $buttonWidth: $rem;
   transition: all 300ms $ease, opacity 350ms linear;
   transition-delay: 10ms;
   transform-origin: top center;
+  &[offscreen] {
+    .content {
+      transform: translateZ(0) translateY(125%) !important;
+    }
+  }
   &.active {
     max-height: initial;
     height: auto;
@@ -35,8 +40,7 @@ $buttonWidth: $rem;
     transition: none !important;
     max-height: 100vh;
     
-    &.active,
-    &[attract] {
+    &.active {
       .drawer-toggle {
         background: $highlight-primary;
         color: $lowlight-quinary; 
@@ -65,12 +69,17 @@ $buttonWidth: $rem;
       pointer-events: none;
       background: rgba(255,255,255,0.75);
       transition: opacity 250ms linear;
+      .arrow,
+      .offer-container::before,
+      .offer-container::after {
+        max-width: 0;
+      }
       .wiggle {
         animation: wiggle 1s;
       }
       .content {
         transform: translateY(80%) translateZ(0);
-        @include box-shadow(3);
+        background: $lowlight-secondary;
       }
     }
 
