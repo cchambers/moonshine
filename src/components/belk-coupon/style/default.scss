@@ -60,13 +60,24 @@ belk-coupon {
     }
   }
 
+  .coupon-description + .coupon-spacer {
+    display: none;
+  }
+
   .coupon-spacer {
     flex-grow: 3;
     height: 100%;
     display: flex;
     align-items: center;
+    padding: $little;
+    text-align: center;
+    &:not([data-text]) {
+      margin-top: auto;
+      margin-bottom: 0;
+    }
     &[data-text] {
-      background: $highlight-tertiary;
+      background: $highlight-secondary;
+      font-size: 1.4rem;
       &:after {
         display: block;
         content: attr(data-text);
@@ -88,7 +99,7 @@ belk-coupon {
     flex: 1 1 auto;
     flex-direction: column;
     color: $lowlight-primary;
-    justify-content: flex-end;
+    justify-content: flex-start;
 
     > * {
       display: flex;

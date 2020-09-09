@@ -39,34 +39,42 @@
           <div class="coupon-details-actual" v-else>{{ details }}</div>
         </span>
       </div>
-      <div v-else-if="!print" class="coupon-spacer"></div>
+      <div class="coupon-spacer"></div>
       <div hidden aria-hidden="true">
         <slot name="details"></slot>
       </div>
-      <div class="coupon-buttons" v-if="!print">
-        <sh-button v-if="variant != 'offer'" variant="primary" toggle="once"
+      <div class="coupon-buttons" v-if="!print && link || !print && code">
+        <sh-button v-if="variant != 'offer' && code" variant="primary" toggle="once"
           ajax="/add-coupon/"
           active-text="Added"
           active-icon="check">
           Add Coupon
         </sh-button>
         <sh-button v-if="link" variant="primary" outline
-          @click="doLink">Shop Now</sh-button>
+          @click="doLink">{{ linkText }}</sh-button>
         <div hidden aria-hidden="true" class="coupon-modal">
           <div class="print-modal"></div>
           <div class="details-modal"></div>
         </div>
       </div>
+      <div v-if="!code && !link && upc"
+        class="coupon-spacer"
+        data-text="In-Store Only"
+        style="height: 10.5rem"></div>
+      <div v-else-if="!code && !link && !upc"
+        class="coupon-spacer"
+        data-text="Applied Automatically at Checkout"
+        style="max-height: 18rem; margin-top: auto"></div>
       <div v-if="upc" class="coupon-upc">
         <belk-barcode align-text="right" :code="upc"></belk-barcode>
         <div class="coupon-logo" v-if="print">
           <belk-logo width="120" color="lowlight-primary"></belk-logo>
         </div>
       </div>
-      <div v-else-if="variant != 'offer' && !print"
+      <div v-else-if="variant != 'offer' && !print && !upc && code"
         class="coupon-spacer"
-        style="max-height: 7rem;"
-        :data-text="spacerText"></div>
+        style="max-height: 5.5rem;"
+        data-text="Online Only"></div>
       <div class="coupon-print" v-if="printable">
         <sh-button variant="belk-link"
           v-hammer:tap="printCoupon">Print Coupon</sh-button>
@@ -126,6 +134,12 @@ export default {
     },
   },
 
+  computed: {
+    linkText() {
+      return (this.inDrawer && this.variant === 'offer') ? 'Learn More' : 'Shop Now';
+    },
+  },
+
   data() {
     return {
       added: true,
@@ -164,7 +178,7 @@ export default {
 
     if (!this.inDrawer) {
       if (this.badge && this.variant == 'default') {
-        if (this.badge.indexOf('Store') >= 0) {
+        if (this.badge.indexOf('Store') >= 0 && this.upc) {
           this.printable = true;
           this.makePrintModal();
         }
