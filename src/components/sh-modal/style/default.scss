@@ -243,6 +243,9 @@ sh-modal {
     }
     body > #sh-modals {
       display: block;
+      .sh-modal-buttons {
+        display: none;
+      }
       .sh-modal.active {
         .modal-buttons {
           display: none;

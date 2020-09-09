@@ -195,7 +195,10 @@ export default {
       let self = this;
       const el = self.$el.querySelector('.coupon-modal[hidden] .details-modal');
       if (el) {
-        const html = `<sh-modal unique-id="${self.detailsId}"><div>${self.detailsHTML}</div></sh-modal>`;
+        let html = `<sh-modal unique-id="${self.detailsId}"><div>${self.detailsHTML}</div></sh-modal>`;
+        if (this.inDrawer) {
+          html = html.replace('<sh-modal', '<sh-modal no-events');
+        }
         el.innerHTML += html;
       }
     },

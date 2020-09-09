@@ -1,7 +1,7 @@
 <template>
   <div class="sh-modal-buttons">
     <div class="tab-lock" v-on:focus="modalFocusLast()" tabindex="0"></div>
-    <button close-trigger>
+    <button v-hammer:tap="closeModals">
       <belk-icon v-if="closeActive" name="close" width="28">Close Modal</belk-icon>
     </button>
     <button v-if="printActive" print-trigger hidden>
@@ -30,6 +30,10 @@ export default {
   methods: {
     doPrint() {
       window.print();
+    },
+
+    closeModals() {
+      this.$bus.$emit('close-modals');
     },
 
     modalFocusFirst() {
