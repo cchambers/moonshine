@@ -83,7 +83,7 @@
     Move Coupon in position 2 -> 0
   </button>
   <button class="demo-button" onclick="event.stopPropagation();demo.attract()">
-    Attract Mode
+    Emit Attract Event
   </button>
 </div>
 
@@ -115,6 +115,7 @@
           headerColor: "brand-belkblue",
           badge: "Online Exclusive",
           discount: "30",
+          code: "Use Code: THREETIMES",
           eventName: "Three Zero!",
           link: "https://google.com"
         },
@@ -122,10 +123,8 @@
           headerColor: "brand-wildfuscia",
           ends: "concludes Feb 14th, 2020",
           badge: "In-Store Only",
-          link: "https://google.com",
           discount: "20",
           eventName: "Fun Stuff",
-          code: "Use Code: 2020SUCKS",
           upc: "12345678",
           extra: "true",
           details: "Here's some information about the coupon's details.",
@@ -134,12 +133,9 @@
         {
           headerColor: "brand-deepteal",
           ends: "concludes Nov 4th, 2020",
-          badge: "In-Store Only",
-          link: "https://google.com",
+          badge: "Free In-Store or Curbside Pickup",
           discount: "45",
           eventName: "Go Vote",
-          code: "Use Code: PLSVOTE",
-          upc: "12345678",
           details: "Here's some extra information about the coupon's details.",
           description: "Here's a descriptive paragraph that <strong>is HTML friendly</strong>."
         }
@@ -179,11 +175,11 @@
 
     </script>
     <offer-container data-obj="coupons" unique-id="coupons" variant="coupons"></offer-container>
-    <h2 class="pad-y lowlight-primary">Offers</h2>
-    <offer-container data-obj="offers" unique-id="offers" variant="offers"></offer-container>
+    <h2 class="pad-y lowlight-primary">Offers</h2> 
+    <offer-container data-obj="offers" unique-id="offers" variant="offers"></offer-container> 
   </section>
 
-  <section style="padding-top:100vh;"></section>
+  <div style="padding-top:100vh;"></div>
 </div>
 <script>
   window.promoDrawer = [{

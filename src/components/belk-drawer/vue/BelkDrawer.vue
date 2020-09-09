@@ -9,14 +9,17 @@
     :scrolling="scrolling"
     :aria-labelledby="ariaID"
     :aria-describedby="ariaDescID">
-    <!-- <div class="tab-lock" :id="ariaID" v-on:focus="focusButton()" tabindex="0"></div> -->
+    <div class="tab-lock" v-if="active" v-on:focus="focusButton()" tabindex="0"></div>
     <div class="content" ref="content" :size="size" @mouseover="mouseOverHandler">
       <div tabindex="0"
         v-hammer:tap="toggle"
-        v-on:keyup.enter="toggle"
-        v-on:keyup.space="toggle"
+        v-on:keydown.enter="toggle"
+        v-on:keydown.space="toggle"
+        v-on:keydown.tab="toggleTabHandler"
         ref="button"
-        class="drawer-toggle flex align-top">
+        role="button"
+        class="drawer-toggle flex align-top"
+        :id="ariaID">
         <div v-if="!active">
           <div class="dt-headline">{{ buttonHeadlineInactive }}</div>
           <div class="dt-subhead">{{ buttonSubheadInactive }}</div>
@@ -45,7 +48,7 @@
           <belk-icon width="10" name="arrow-right"></belk-icon>
         </button>
       </div>
-      <!-- <div class="tab-lock" v-on:focus="focusButton()" tabindex="0"></div> -->
+      <div class="tab-lock" v-if="active" v-on:focus="focusButton()" tabindex="0"></div>
     </div>
   </div>
 </template>
@@ -252,12 +255,11 @@ export default {
         if (this.active) self.focusLast();
       });
 
-      self.$bus.$on('close-modals', () => {
-        if (this.active) this.close();
-      });
+      // self.$bus.$on('close-modals', () => {
+      //   if (this.active) this.close();
+      // });
 
-      self.$bus.$on('modal-opening', (id) => {
-        if (this.uniqueId === id) return;
+      self.$bus.$on('modal-opening', () => {
         self.close(false);
       });
 
@@ -359,6 +361,10 @@ export default {
     },
 
     setItems(data) {
+      data.forEach((item) => {
+        // eslint-disable-next-line no-param-reassign
+        item.inDrawer = true;
+      });
       setTimeout(() => {
         this.$set(this, 'items', data);
         this.$forceUpdate();
@@ -383,6 +389,13 @@ export default {
       }
     },
 
+    toggleTabHandler() {
+      if (!this.active) {
+        const target = document.querySelector('a, input, button, [tabindex]:not(.tab-lock), [close-trigger]');
+        if (target) target.focus();
+      }
+    },
+
     open() {
       const self = this;
       if (!self.active) {
@@ -390,6 +403,7 @@ export default {
         document.documentElement.classList.add('belk-drawer-open');
         self.active = true;
         self.$bus.$emit('modal-opened', self.uniqueId);
+        self.scrollHandler();
         setTimeout(() => {
           self.$refs.content.focus();
           self.enableWatchEvents();
@@ -405,10 +419,10 @@ export default {
     close(clearHash = true) {
       const self = this;
       if (self.active) {
-        self.$bus.$emit('modal-closing', self.uniqueId);
+        self.$bus.$emit('drawer-closing', self.uniqueId);
         document.documentElement.classList.remove('belk-drawer-open');
         self.active = false;
-        self.$bus.$emit('modal-closed', self.uniqueId);
+        self.$bus.$emit('drawer-closed', self.uniqueId);
         self.disableWatchEvents();
       }
       if (self.attractMode) self.attractMode = false;

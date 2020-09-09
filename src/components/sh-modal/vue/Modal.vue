@@ -61,6 +61,7 @@ export default {
     fullscreen: Boolean,
     openTriggerEvent: String,
     openedEvent: String,
+    noEvents: Boolean,
     closeTriggerEvent: String,
     closedEvent: String,
     focusTarget: String,
@@ -275,6 +276,7 @@ export default {
     },
 
     open() {
+      this.log('ok');
       const self = this;
 
       if (self.confirmationEvents) self.affirmed = undefined;
@@ -290,7 +292,7 @@ export default {
       }
 
       if (!self.active) {
-        self.$bus.$emit('modal-opening', self.uniqueId);
+        if (!self.noEvents) self.$bus.$emit('modal-opening', self.uniqueId);
         document.documentElement.classList.add('sh-modal-open');
         self.active = true;
         self.$bus.$emit('modal-opened', self.uniqueId);
@@ -312,7 +314,7 @@ export default {
 
     close(clearHash = true) {
       if (this.active) {
-        this.$bus.$emit('modal-closing', this.uniqueId);
+        if (!self.noEvents) this.$bus.$emit('modal-closing', this.uniqueId);
         document.documentElement.classList.remove('sh-modal-open');
         this.active = false;
         this.$bus.$emit('modal-closed', this.uniqueId);
@@ -424,6 +426,7 @@ export default {
       self.container = container;
       self.container.addEventListener('click', (e) => {
         if (e.target === self.container) self.$bus.$emit('close-modals');
+        e.stopPropagation();
       });
       self.mountToContainer();
     },
