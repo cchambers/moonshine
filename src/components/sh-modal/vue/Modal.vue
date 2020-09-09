@@ -276,7 +276,6 @@ export default {
     },
 
     open() {
-      this.log('ok');
       const self = this;
 
       if (self.confirmationEvents) self.affirmed = undefined;
