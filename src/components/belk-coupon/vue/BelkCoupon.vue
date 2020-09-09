@@ -34,12 +34,12 @@
           <template v-if="!print">
             <sh-button variant="belk-link"
               v-if="details"
-              :modal-trigger="detailsId">Details</sh-button>
+              v-hammer:tap="openDetailsModal">Details</sh-button>
           </template>
           <div class="coupon-details-actual" v-else>{{ details }}</div>
         </span>
       </div>
-      <div v-else-if="!print" class="coupon-spacer" :data-text="spacerText"></div>
+      <div v-else-if="!print" class="coupon-spacer"></div>
       <div hidden aria-hidden="true">
         <slot name="details"></slot>
       </div>
@@ -69,7 +69,7 @@
         :data-text="spacerText"></div>
       <div class="coupon-print" v-if="printable">
         <sh-button variant="belk-link"
-          @click="printCoupon">Print Coupon</sh-button>
+          v-hammer:tap="printCoupon">Print Coupon</sh-button>
       </div>
     </div>
   </div>
@@ -179,6 +179,10 @@ export default {
 
     printCoupon() {
       this.$bus.$emit('open-modal', { id: this.printId });
+    },
+
+    openDetailsModal() {
+      this.$bus.$emit('open-modal', { id: this.detailsId });
     },
 
     checkApplied() {
