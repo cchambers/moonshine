@@ -3,7 +3,9 @@ sh-button[variant="primary"] {
     color: $highlight-primary;
     background-color: $lowlight-primary;
     border: 2px solid transparent;
-    > span {
+    .actual-text span,
+    .active-text,
+    .active-icon {
       font-weight: 600;
       text-transform: none;
       font-size: 1.8em;
@@ -23,7 +25,7 @@ sh-button[variant="primary"] {
   &[outline] button {
     color: $lowlight-primary;
     &:hover {
-      border: 0.2em solid $lowlight-primary;
+      border: 2px solid $lowlight-primary;
       background: $lowlight-primary;
     }
   }

@@ -1,6 +1,6 @@
 {
   "name": "Belk Icon",
-  "category": "base",
+  "category": "features",
   "production": true,
   "element": "belk-icon",
   "description": "Icon display component.",

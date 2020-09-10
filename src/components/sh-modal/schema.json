@@ -2,6 +2,7 @@
   "name": "Modal",
   "category": "components",
   "production": true,
+  "prioritize": true,
   "element": "sh-modal",
   "description": "Modal component.",
   "tags": ["utilities", "demo"],

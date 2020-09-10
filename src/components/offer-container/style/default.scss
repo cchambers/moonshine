@@ -1,0 +1,16 @@
+.offer-container {
+  display: flex;
+  belk-coupon {
+    flex-grow: 0;
+    flex-shrink: 0;
+  }
+  belk-coupon + belk-coupon {
+    margin-left: $little;
+  }
+  .coupon-details {
+    margin-left: 0.5em;
+    sh-button {
+      font-size: 8px;
+    }
+  }
+}

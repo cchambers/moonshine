@@ -1,0 +1,73 @@
+<%- htmlWebpackPlugin.options.docsHead %>
+
+<title><%= htmlWebpackPlugin.options.title %></title>
+
+<div class="documentation contain">
+  <h1>Belk Drawer</h1>
+
+  <section id="examples">
+    <h2>Examples</h2>
+      <sh-button toggle-trigger="promo-drawer">Toggle Drawer Modal</sh-button>
+      <script>
+        window.promoDrawer = [{
+            headerColor: 'brand-wildfuscia',
+            ends: 'concludes Feb 14, 2020',
+            discount: '88',
+            eventName: 'Event Name',
+            description: 'Some <strong>awesome</strong> description that has details!',
+            details: 'Some <strong>awesome</strong> details!',
+            code: '1EVENTCODE',
+            upc: '12345678',
+            extra: true,
+            image: 'https://assets.codepen.io/42746/test1.png',
+          },
+          {
+            headerColor: 'brand-belkblue',
+            discount: '20',
+            link: 'http://google.com',
+            eventName: 'Event Name',
+            code: '2EVENTCODE',
+            upc: '12345678',
+            image: 'https://assets.codepen.io/42746/test2.png',
+          },
+          {
+            headerColor: 'brand-belkblue',
+            discount: '20',
+            link: 'http://google.com',
+            eventName: 'Event Name',
+            code: '2EVENTCODE',
+            upc: '12345678',
+            image: 'https://assets.codepen.io/42746/test3.png',
+          },
+          {
+            link: 'http://google.com',
+            eventName: 'Something else',
+            code: '3EVENTCODE',
+            upc: '77777777',
+            image: 'https://via.placeholder.com/260x160',
+          }];
+      </script>
+      <belk-drawer drawer="bottom"
+      overlay="none"
+      unique-id="promo-drawer"
+      data-obj="promoDrawer"
+      button-headline-inactive="Today's Offers"
+      button-subhead-inactive="Tap for Savings Made Simple"
+      button-headline-active="Savings Made Simple"
+      button-subhead-active=" Offers"></belk-drawer>
+  </section>
+
+  <section id="changelog">
+    <h2>Changelog</h2>
+    <dl>
+      <dt>1.0.0</dt>
+      <dd>Drawer was forked from modal (1.3.2); unique attributes added.</dd>
+    </dl>
+  </section>
+
+  <section>
+    <div style="height: 200vh"></div>
+  </section>
+</div>
+
+<%- htmlWebpackPlugin.options.docsFoot %>

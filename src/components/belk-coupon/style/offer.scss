@@ -1,0 +1,14 @@
+.belk-coupon[variant="offer"] {
+  min-width: auto;
+  .coupon-description {
+    order: 2;
+    text-align: left;
+  }
+
+  .coupon-buttons {
+    margin-top: 0;
+    sh-button {
+      flex-grow: 0;
+    }
+  }
+}

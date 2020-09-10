@@ -44,6 +44,7 @@ export default {
     const obj = {
       format: this.format,
       lineColor: this.color,
+      background: null,
       width: this.width,
       height: this.height,
       displayValue: true,
