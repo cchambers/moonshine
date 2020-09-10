@@ -47,7 +47,9 @@
         <sh-button v-if="variant != 'offer' && code" variant="primary" toggle="once"
           ajax="/add-coupon/"
           active-text="Added"
-          active-icon="check">
+          active-icon="check"
+          :unique-id="addCouponId"
+          :ajax-success="code + '-data'">
           Add Coupon
         </sh-button>
         <sh-button v-if="link" variant="primary" outline
@@ -151,6 +153,7 @@ export default {
       printId: 'defaultid',
       printable: false,
       id: undefined,
+      addCouponId: undefined,
     };
   },
 
@@ -163,10 +166,13 @@ export default {
     }
     this.detailsId = `em-${this.uuid}`;
     this.printId = `pr-${this.uuid}`;
+    if (this.code) {
+      this.$bus.$on(`${this.code}-data`, this.handleAddCoupon);
+      this.addCouponId = `ac-${this.uuid}`;
+    }
     if (this.$slots.details !== undefined || this.details) this.hasDetails = true;
     if (this.$slots.description !== undefined || this.description) this.hasDescription = true;
     if (this.$slots.image !== undefined || this.image) this.hasImage = true;
-
     this.checkApplied();
   },
 
@@ -199,14 +205,26 @@ export default {
       this.$bus.$emit('open-modal', { id: this.detailsId });
     },
 
+    handleAddCoupon(data) {
+      if (data.cpnDetails) {
+        if (data.cpnDetails.isApplied) this.toggleButton();
+      } else {
+        this.log('COUPON: error in ajax response.');
+      }
+    },
+
     checkApplied() {
       if (window.SessionAttributes) {
         if (window.SessionAttributes.hasOwnProperty('APPLIED_COUPONS') &&
             Array.isArray(window.SessionAttributes.APPLIED_COUPONS) &&
             window.SessionAttributes.APPLIED_COUPONS.indexOf(this.code.toUpperCase()) !== -1) {
-              this.log('ALREADY APPLIED?');
+              this.toggleButton();
             }
       }
+    },
+
+    toggleButton() {
+      this.$bus.$emit('button-toggle', { which: this.addCouponId });
     },
 
     makeDetailsModal() {
