@@ -255,12 +255,11 @@ export default {
         if (this.active) self.focusLast();
       });
 
-      self.$bus.$on('close-modals', () => {
-        if (this.active) this.close();
-      });
+      // self.$bus.$on('close-modals', () => {
+      //   if (this.active) this.close();
+      // });
 
-      self.$bus.$on('modal-opening', (id) => {
-        if (this.uniqueId === id) return;
+      self.$bus.$on('modal-opening', () => {
         self.close(false);
       });
 
@@ -362,6 +361,10 @@ export default {
     },
 
     setItems(data) {
+      data.forEach((item) => {
+        // eslint-disable-next-line no-param-reassign
+        item.inDrawer = true;
+      });
       setTimeout(() => {
         this.$set(this, 'items', data);
         this.$forceUpdate();
@@ -416,10 +419,10 @@ export default {
     close(clearHash = true) {
       const self = this;
       if (self.active) {
-        self.$bus.$emit('modal-closing', self.uniqueId);
+        self.$bus.$emit('drawer-closing', self.uniqueId);
         document.documentElement.classList.remove('belk-drawer-open');
         self.active = false;
-        self.$bus.$emit('modal-closed', self.uniqueId);
+        self.$bus.$emit('drawer-closed', self.uniqueId);
         self.disableWatchEvents();
       }
       if (self.attractMode) self.attractMode = false;

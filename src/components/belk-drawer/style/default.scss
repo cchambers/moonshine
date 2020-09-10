@@ -242,6 +242,7 @@ $buttonWidth: $rem;
       sh-button {
         font-size: 7px;
         margin-top: 0;
+        flex-grow: 0;
         + sh-button {
           margin-left: 0.8rem;
         }

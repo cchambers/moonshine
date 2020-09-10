@@ -30,6 +30,7 @@ export default {
 
   props: {
     ajax: String,
+    ajaxSuccess: String,
     variant: {
       type: String,
       default: 'default',
@@ -49,6 +50,7 @@ export default {
     ariaRole: String,
     ariaControls: String,
     type: String,
+    uniqueId: String,
   },
 
   data() {
@@ -80,6 +82,10 @@ export default {
           if (data.group === self.group) self.groupHandler(data);
         });
       }
+
+      self.$bus.$on('button-toggle', (data) => {
+        if (data.which === this.uniqueId) this.doToggle();
+      });
     },
 
     groupHandler(data) {
@@ -121,13 +127,13 @@ export default {
       })
         .then((response) => response.json())
         .then((data) => {
-          if (data) {
-            if (this.toggle) this.doToggle();
-          }
+          if (this.ajaxSuccess) {
+            this.$bus.$emit(this.ajaxSuccess, data);
+          } else if (this.toggle) this.doToggle();
           this.disabled = false;
         })
         .catch((error) => {
-          console.error('Error:', error);
+          this.error(error, 1);
         });
     },
 

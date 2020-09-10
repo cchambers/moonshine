@@ -34,42 +34,52 @@
           <template v-if="!print">
             <sh-button variant="belk-link"
               v-if="details"
-              :modal-trigger="detailsId">Details</sh-button>
+              v-hammer:tap="openDetailsModal">Details</sh-button>
           </template>
           <div class="coupon-details-actual" v-else>{{ details }}</div>
         </span>
       </div>
-      <div v-else-if="!print" class="coupon-spacer" :data-text="spacerText"></div>
+      <div class="coupon-spacer"></div>
       <div hidden aria-hidden="true">
         <slot name="details"></slot>
       </div>
-      <div class="coupon-buttons" v-if="!print">
-        <sh-button v-if="variant != 'offer'" variant="primary" toggle="once"
+      <div class="coupon-buttons" v-if="!print && link || !print && code">
+        <sh-button v-if="variant != 'offer' && code" variant="primary" toggle="once"
           ajax="/add-coupon/"
           active-text="Added"
-          active-icon="check">
+          active-icon="check"
+          :unique-id="addCouponId"
+          :ajax-success="code + '-data'">
           Add Coupon
         </sh-button>
         <sh-button v-if="link" variant="primary" outline
-          @click="doLink">Shop Now</sh-button>
+          @click="doLink">{{ linkText }}</sh-button>
         <div hidden aria-hidden="true" class="coupon-modal">
           <div class="print-modal"></div>
           <div class="details-modal"></div>
         </div>
       </div>
+      <div v-if="!code && !link && upc"
+        class="coupon-spacer"
+        data-text="In-Store Only"
+        style="height: 10.5rem"></div>
+      <div v-else-if="!code && !link && !upc"
+        class="coupon-spacer"
+        data-text="Applied Automatically at Checkout"
+        style="max-height: 18rem; margin-top: auto"></div>
       <div v-if="upc" class="coupon-upc">
         <belk-barcode align-text="right" :code="upc"></belk-barcode>
         <div class="coupon-logo" v-if="print">
           <belk-logo width="120" color="lowlight-primary"></belk-logo>
         </div>
       </div>
-      <div v-else-if="variant != 'offer' && !print"
+      <div v-else-if="variant != 'offer' && !print && !upc && code"
         class="coupon-spacer"
-        style="max-height: 7rem;"
-        :data-text="spacerText"></div>
+        style="max-height: 5.5rem;"
+        data-text="Online Only"></div>
       <div class="coupon-print" v-if="printable">
         <sh-button variant="belk-link"
-          @click="printCoupon">Print Coupon</sh-button>
+          v-hammer:tap="printCoupon">Print Coupon</sh-button>
       </div>
     </div>
   </div>
@@ -126,6 +136,12 @@ export default {
     },
   },
 
+  computed: {
+    linkText() {
+      return (this.inDrawer && this.variant === 'offer') ? 'Learn More' : 'Shop Now';
+    },
+  },
+
   data() {
     return {
       added: true,
@@ -137,6 +153,7 @@ export default {
       printId: 'defaultid',
       printable: false,
       id: undefined,
+      addCouponId: undefined,
     };
   },
 
@@ -149,11 +166,14 @@ export default {
     }
     this.detailsId = `em-${this.uuid}`;
     this.printId = `pr-${this.uuid}`;
+    if (this.code) {
+      this.checkApplied();
+      this.$bus.$on(`${this.code}-data`, this.handleAddCoupon);
+      this.addCouponId = `ac-${this.uuid}`;
+    }
     if (this.$slots.details !== undefined || this.details) this.hasDetails = true;
     if (this.$slots.description !== undefined || this.description) this.hasDescription = true;
     if (this.$slots.image !== undefined || this.image) this.hasImage = true;
-
-    this.checkApplied();
   },
 
   mounted() {
@@ -164,7 +184,7 @@ export default {
 
     if (!this.inDrawer) {
       if (this.badge && this.variant == 'default') {
-        if (this.badge.indexOf('Store') >= 0) {
+        if (this.badge.indexOf('Store') >= 0 && this.upc) {
           this.printable = true;
           this.makePrintModal();
         }
@@ -181,21 +201,40 @@ export default {
       this.$bus.$emit('open-modal', { id: this.printId });
     },
 
+    openDetailsModal() {
+      this.$bus.$emit('open-modal', { id: this.detailsId });
+    },
+
+    handleAddCoupon(data) {
+      if (data.cpnDetails) {
+        if (data.cpnDetails.isApplied) this.toggleButton();
+      } else {
+        this.log('COUPON: error in ajax response.');
+      }
+    },
+
     checkApplied() {
       if (window.SessionAttributes) {
         if (window.SessionAttributes.hasOwnProperty('APPLIED_COUPONS') &&
             Array.isArray(window.SessionAttributes.APPLIED_COUPONS) &&
             window.SessionAttributes.APPLIED_COUPONS.indexOf(this.code.toUpperCase()) !== -1) {
-              this.log('ALREADY APPLIED?');
+              this.toggleButton();
             }
       }
+    },
+
+    toggleButton() {
+      this.$bus.$emit('button-toggle', { which: this.addCouponId });
     },
 
     makeDetailsModal() {
       let self = this;
       const el = self.$el.querySelector('.coupon-modal[hidden] .details-modal');
       if (el) {
-        const html = `<sh-modal unique-id="${self.detailsId}"><div>${self.detailsHTML}</div></sh-modal>`;
+        let html = `<sh-modal unique-id="${self.detailsId}"><div>${self.detailsHTML}</div></sh-modal>`;
+        if (this.inDrawer) {
+          html = html.replace('<sh-modal', '<sh-modal no-events');
+        }
         el.innerHTML += html;
       }
     },
