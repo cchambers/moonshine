@@ -84,7 +84,7 @@ export default {
       }
 
       self.$bus.$on('button-toggle', (data) => {
-        if (data.which == this.uniqueId) this.doToggle();
+        if (data.which === this.uniqueId) this.doToggle();
       });
     },
 
@@ -129,13 +129,11 @@ export default {
         .then((data) => {
           if (this.ajaxSuccess) {
             this.$bus.$emit(this.ajaxSuccess, data);
-          } else {
-            if (this.toggle) this.doToggle();
-          }
+          } else if (this.toggle) this.doToggle();
           this.disabled = false;
         })
         .catch((error) => {
-          console.error('Error:', error);
+          this.error(error, 1);
         });
     },
 
