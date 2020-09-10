@@ -167,13 +167,13 @@ export default {
     this.detailsId = `em-${this.uuid}`;
     this.printId = `pr-${this.uuid}`;
     if (this.code) {
+      this.checkApplied();
       this.$bus.$on(`${this.code}-data`, this.handleAddCoupon);
       this.addCouponId = `ac-${this.uuid}`;
     }
     if (this.$slots.details !== undefined || this.details) this.hasDetails = true;
     if (this.$slots.description !== undefined || this.description) this.hasDescription = true;
     if (this.$slots.image !== undefined || this.image) this.hasImage = true;
-    this.checkApplied();
   },
 
   mounted() {
