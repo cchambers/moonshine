@@ -54,10 +54,6 @@
         </sh-button>
         <sh-button v-if="link" variant="primary" outline
           @click="doLink">{{ linkText }}</sh-button>
-        <div hidden aria-hidden="true" class="coupon-modal">
-          <div class="print-modal"></div>
-          <div class="details-modal"></div>
-        </div>
       </div>
       <div v-if="!code && !link && upc"
         class="coupon-spacer"
@@ -82,6 +78,10 @@
           v-hammer:tap="printCoupon">Print Coupon</sh-button>
       </div>
     </div>
+    <div hidden aria-hidden="true" class="coupon-modal">
+      <div class="print-modal" ref="ptmodal"></div>
+      <div class="details-modal" ref="dtmodal"></div>
+    </div>
   </div>
 </template>
 
@@ -96,17 +96,11 @@ export default {
 
   props: {
     badge: String,
-    upc: {
-      type: String,
-      default: undefined,
-    },
+    upc: Number,
     eventName: String,
     code: String,
     description: String,
-    discount: {
-      type: String,
-      default: '00',
-    },
+    discount: Number,
     extra: {
       type: Boolean,
       default: false,
@@ -202,6 +196,7 @@ export default {
     },
 
     openDetailsModal() {
+      this.log(this.detailsId);
       this.$bus.$emit('open-modal', { id: this.detailsId });
     },
 
@@ -229,7 +224,7 @@ export default {
 
     makeDetailsModal() {
       let self = this;
-      const el = self.$el.querySelector('.coupon-modal[hidden] .details-modal');
+      const el = self.$refs.dtmodal;
       if (el) {
         let html = `<sh-modal unique-id="${self.detailsId}"><div>${self.detailsHTML}</div></sh-modal>`;
         if (this.inDrawer) {
@@ -241,7 +236,7 @@ export default {
 
     makePrintModal() {
       let self = this;
-      const el = self.$el.querySelector('.coupon-modal[hidden] .print-modal');
+      const el = self.$refs.ptmodal;
       if (el) {
         const html = `<sh-modal printable unique-id="${self.printId}">
           <div>
