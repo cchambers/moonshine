@@ -98,7 +98,10 @@ export default {
     badge: String,
     upc: Number,
     eventName: String,
-    code: String,
+    code: {
+      type: String,
+      default: '',
+    },
     description: String,
     discount: Number,
     extra: {
@@ -172,7 +175,7 @@ export default {
 
   mounted() {
     if (this.hasDetails) {
-      this.detailsHTML = (this.$slots.details) ? this.$slots.details[0].elm.innerHTML : this.details;
+      this.detailsHTML = this.details;
       this.makeDetailsModal();
     }
 
