@@ -1,20 +1,10 @@
 .offer-container {
   display: flex;
   flex-wrap: wrap;
-  margin-left: -1rem;
   belk-coupon {
     flex-grow: 0;
     flex-shrink: 0;
     margin-left: 1rem;
-    width: calc(100% - 1rem);
-    min-width: 300px;
-    margin-bottom: 1rem;
-    @include md {
-      width: calc(50% - 1rem);
-    }
-    @include lg {
-      width: calc(25% - 1rem);
-    }
   }
   .coupon-details {
     margin-left: 0.5em;

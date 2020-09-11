@@ -5,6 +5,18 @@
 <div class="documentation contain">
   <h1>Belk Drawer</h1>
 
+  <section id="usage">
+    <h2>Usage</h2>
+    <pre>
+      <code class="language-javascript">
+        sh.emit('drawer-add', { where: positionOrId, what: offers });
+        sh.emit('drawer-move', { from: positionOrId, to: position });
+        sh.emit('drawer-remove', { which: positionOrId });
+        sh.emit('drawer-modify', { which: positionOrId, what: { item: value, other: otherValue }});
+      </code>
+    </pre>
+  </section>
+  
 
   <section id="reference" class="baseline30">
       <h2>Reference</h2>
