@@ -109,8 +109,13 @@ belk-coupon {
     font-weight: 900;
     font-style: normal;
     font-size: $rem;
-    margin-right: 30%;
+    height: $rem;
     margin-bottom: 0;
+    position: relative;
+    span {
+      position: absolute;
+      left: 30%;
+    }
   }
 
   .coupon-extra ~ .coupon-discount {

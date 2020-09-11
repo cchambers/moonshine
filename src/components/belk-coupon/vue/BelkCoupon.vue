@@ -7,7 +7,7 @@
     <div class="coupon-image" v-if="hasImage"><img :src="image" /></div>
     <div class="coupon-wrapper">
       <template v-if="variant=='default'">
-        <div v-if="extra" class="coupon-extra" :class="headerColor">extra</div>
+        <div v-if="extra" class="coupon-extra" :class="headerColor"><span>extra</span></div>
         <div class="coupon-discount" :class="headerColor">
           <div class="actual">
             <span v-if="toSpend" class="dollar">$</span>
