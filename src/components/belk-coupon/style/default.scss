@@ -114,7 +114,8 @@ belk-coupon {
     position: relative;
     span {
       position: absolute;
-      left: 30%;
+      left: 50%;
+      transform: translateX(-90%);
     }
   }
 
