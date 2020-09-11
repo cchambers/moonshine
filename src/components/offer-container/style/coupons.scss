@@ -1,6 +1,18 @@
 
 .offer-container[variant="coupons"] {
+  margin-left: -1rem;
   .coupon-image {
     display: none;
+  }
+  belk-coupon {
+    min-width: 300px;
+    width: calc(100% - 1rem);
+    margin-bottom: 1rem;
+    @include md {
+      width: calc(50% - 1rem);
+    }
+    @include lg {
+      width: calc(25% - 1rem);
+    }
   }
 }
