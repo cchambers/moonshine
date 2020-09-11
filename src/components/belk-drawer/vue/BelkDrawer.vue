@@ -254,6 +254,7 @@ export default {
 
       self.$bus.$on('drawer-add', self.addItemHandler);
       self.$bus.$on('drawer-move', self.moveItemHandler);
+      self.$bus.$on('drawer-modify', self.modifyItemHandler);
       self.$bus.$on('drawer-remove', self.removeItemHandler);
       self.$bus.$on('drawer-replace', self.updateItemsHandler);
       self.$bus.$on('drawer-attract', self.attractHandler);
@@ -310,14 +311,22 @@ export default {
     },
 
     moveItemHandler(event) {
-      const { from } = event.data;
-      const { to } = event.data;
+      const { from, to } = event.data;
       if (!this.items[to]) return;
       if (!this.items[from]) return;
       const arr = [...this.items];
       const it = arr.splice(from, 1)[0];
       arr.splice(to, 0, it);
       this.setItems(arr);
+    },
+
+    modifyItemHandler(event) {
+      const { which, what } = event.data;
+      const item = this.items[which];
+      if (!item || !what) return;
+      Object.keys(what).forEach((thing) => {
+        this.$set(this.items[which], thing, what[thing]);
+      });
     },
 
     updateItemsHandler(event) {

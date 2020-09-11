@@ -10,9 +10,6 @@ belk-coupon {
     flex-grow: 0;
     flex-shrink: 0;
   }
-  belk-coupon + belk-coupon {
-    margin-left: $little;
-  }
 }
 
 .belk-coupon {
@@ -20,7 +17,6 @@ belk-coupon {
   flex-direction: column;
   flex-grow: 1;
   height: 100%;
-  width: 300px;
   border: 1px solid $lowlight-primary;
   &.printable {
     border-style: dashed;
@@ -210,7 +206,7 @@ belk-coupon {
 
   .coupon-print {
     justify-content: flex-start;
-    margin-top: -2.4em;
+    margin-top: -38px;
     sh-button {
       font-size: 8px;
     }
@@ -231,7 +227,7 @@ belk-coupon {
     margin-left: -0.5em;
     margin-right: -0.5em;
     margin-top: -0.5em;
-    height: 7rem;
+    height: 70px;
   }
 
   .coupon-details-actual {
