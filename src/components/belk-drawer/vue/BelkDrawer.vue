@@ -252,6 +252,10 @@ export default {
 
       self.$bus.$on('hashchange', this.hashHandler);
 
+      self.$bus.$on('drawer-toggle', self.toggle);
+      self.$bus.$on('drawer-open', self.open);
+      self.$bus.$on('drawer-close', self.close);
+
       self.$bus.$on('drawer-add', self.addItemHandler);
       self.$bus.$on('drawer-move', self.moveItemHandler);
       self.$bus.$on('drawer-modify', self.modifyItemHandler);
