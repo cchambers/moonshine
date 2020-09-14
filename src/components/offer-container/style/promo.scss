@@ -1,4 +1,8 @@
 
-.offer-container[variant="promo"] {
-  border: 1px solid tomato;
+.offer-container[variant="promos"] {
+  flex-wrap: nowrap;
+  margin-left: -1rem;
+  belk-coupon {
+    width: 260px;
+  }
 }

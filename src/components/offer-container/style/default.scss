@@ -1,11 +1,10 @@
 .offer-container {
   display: flex;
+  flex-wrap: wrap;
   belk-coupon {
     flex-grow: 0;
     flex-shrink: 0;
-  }
-  belk-coupon + belk-coupon {
-    margin-left: $little;
+    margin-left: 1rem;
   }
   .coupon-details {
     margin-left: 0.5em;

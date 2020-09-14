@@ -10,7 +10,7 @@
     :aria-labelledby="ariaID"
     :aria-describedby="ariaDescID">
     <div class="tab-lock" v-if="active" v-on:focus="focusButton()" tabindex="0"></div>
-    <div class="content" ref="content" :size="size" @mouseover="mouseOverHandler">
+    <div class="content" ref="content" @mouseover="mouseOverHandler">
       <div tabindex="0"
         v-hammer:tap="toggle"
         v-on:keydown.enter="toggle"
@@ -67,10 +67,6 @@ export default {
       type: String,
       required: true,
     },
-    closeIcon: {
-      type: String,
-      default: 'close',
-    },
     showDelay: {
       type: Number,
       default: 1000,
@@ -80,23 +76,12 @@ export default {
       default: 2000,
     },
     content: String,
-    contentUrl: String,
-    alwaysReload: Boolean,
-    confirmationEvents: Boolean,
-    contentSelector: String,
     customClass: String,
-    drawer: String,
-    buttonText: String,
-    dynamicHTML: String,
+    drawer: {
+      type: String,
+      default: 'bottom',
+    },
     dataObj: String,
-    maxWidth: String,
-    noHistory: Boolean,
-    hideHeader: Boolean,
-    fullscreen: Boolean,
-    openTriggerEvent: String,
-    openedEvent: String,
-    closeTriggerEvent: String,
-    closedEvent: String,
     focusTarget: String,
     header: String,
     footer: String,
@@ -108,7 +93,6 @@ export default {
       type: Number,
       default: 3,
     },
-    size: String,
     buttonHeadlineActive: String,
     buttonHeadlineInactive: String,
     buttonSubheadActive: String,
@@ -122,16 +106,10 @@ export default {
       attractTimeout: 0,
       triggers: [],
       triggerLinks: [],
-      affirmTriggers: [],
       items: [],
       closeTriggers: [],
-      rejectTriggers: [],
       hideControls: true,
-      loaded: false,
-      loadedUrl: String,
-      loading: false,
       active: false,
-      affirmed: undefined,
       blockHistory: false,
       ariaID: String,
       ariaHeaderID: String,
@@ -264,7 +242,6 @@ export default {
       });
 
       self.$bus.$on('open-modal', (data) => {
-        if (data.url && data.url !== this.loadedUrl) this.loadedUrl = data.url;
         if (data.id === this.uniqueId) this.open();
       });
 
@@ -275,8 +252,13 @@ export default {
 
       self.$bus.$on('hashchange', this.hashHandler);
 
+      self.$bus.$on('drawer-toggle', self.toggle);
+      self.$bus.$on('drawer-open', self.open);
+      self.$bus.$on('drawer-close', self.close);
+
       self.$bus.$on('drawer-add', self.addItemHandler);
       self.$bus.$on('drawer-move', self.moveItemHandler);
+      self.$bus.$on('drawer-modify', self.modifyItemHandler);
       self.$bus.$on('drawer-remove', self.removeItemHandler);
       self.$bus.$on('drawer-replace', self.updateItemsHandler);
       self.$bus.$on('drawer-attract', self.attractHandler);
@@ -333,14 +315,22 @@ export default {
     },
 
     moveItemHandler(event) {
-      const { from } = event.data;
-      const { to } = event.data;
+      const { from, to } = event.data;
       if (!this.items[to]) return;
       if (!this.items[from]) return;
       const arr = [...this.items];
       const it = arr.splice(from, 1)[0];
       arr.splice(to, 0, it);
       this.setItems(arr);
+    },
+
+    modifyItemHandler(event) {
+      const { which, what } = event.data;
+      const item = this.items[which];
+      if (!item || !what) return;
+      Object.keys(what).forEach((thing) => {
+        this.$set(this.items[which], thing, what[thing]);
+      });
     },
 
     updateItemsHandler(event) {
@@ -450,11 +440,6 @@ export default {
       }
     },
 
-    loadContent() {
-      this.loading = true;
-      this.ajax();
-    },
-
     configureTriggers() {
       const self = this;
       const selector = `[modal-trigger="${self.uniqueId}"]`;
@@ -467,44 +452,12 @@ export default {
         });
       }
 
-      // internal affirmation triggers
+      // external toggle triggers
       const toggleTriggers = '[toggle-trigger]';
       self.toggleTriggers = document.querySelectorAll(toggleTriggers);
       for (let y = 0; y < self.toggleTriggers.length; y += 1) {
         const el = self.toggleTriggers[y];
         el.addEventListener('click', self.toggle);
-      }
-
-      // internal affirmation triggers
-      const affirmTriggers = '[affirm-trigger]';
-      self.affirmTriggers = self.$el.querySelectorAll(affirmTriggers);
-      for (let y = 0; y < self.affirmTriggers.length; y += 1) {
-        const el = self.affirmTriggers[y];
-        el.addEventListener('click', () => {
-          self.affirmed = true;
-          if (self.confirmationEvents) self.$bus.$emit('modal-affirmed', self.uniqueId);
-        });
-      }
-
-      // internal rejection triggers
-      const rejectTriggers = '[reject-trigger]';
-      self.rejectTriggers = self.$el.querySelectorAll(rejectTriggers);
-      for (let y = 0; y < self.rejectTriggers.length; y += 1) {
-        const el = self.rejectTriggers[y];
-        el.addEventListener('click', () => {
-          self.affirmed = false;
-          if (self.confirmationEvents) self.$bus.$emit('modal-rejected', self.uniqueId);
-        });
-      }
-
-      // internal close triggers
-      const closeSelector = '[close-trigger]';
-      self.closeTriggers = self.$el.querySelectorAll(closeSelector);
-      for (let y = 0; y < self.closeTriggers.length; y += 1) {
-        const el = self.closeTriggers[y];
-        el.addEventListener('click', () => {
-          self.$bus.$emit('close-modals');
-        });
       }
     },
 
@@ -517,9 +470,7 @@ export default {
       const el = this.$refs.body;
       let dist = el.scrollLeft + el.offsetWidth / this.scrollSpeed;
       const max = this.maxScroll();
-      if (dist > (max)) {
-        dist = max;
-      }
+      if (dist > (max)) dist = max;
       el.scrollLeft = dist;
     },
 

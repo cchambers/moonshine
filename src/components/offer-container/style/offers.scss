@@ -1,5 +1,6 @@
 
 .offer-container[variant="offers"] {
+  margin-left: -1rem;
   .coupon-extra,
   .coupon-discount,
   .coupon-ends,
@@ -13,5 +14,16 @@
   }
   .coupon-spacer {
     display: none;
+  }
+  belk-coupon {
+    min-width: 300px;
+    width: calc(100% - 1rem);
+    margin-bottom: 1rem;
+    @include md {
+      width: calc(50% - 1rem);
+    }
+    @include lg {
+      width: calc(25% - 1rem);
+    }
   }
 }
