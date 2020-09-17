@@ -1,7 +1,6 @@
 
 .offer-container[variant="offers"] {
   margin-left: -1rem;
-  .coupon-extra,
   .coupon-discount,
   .coupon-ends,
   .coupon-event-name,
@@ -12,7 +11,8 @@
     overflow: hidden;
     margin: 0;
   }
-  .coupon-spacer {
+  .coupon-spacer,
+  .coupon-extra {
     display: none;
   }
   belk-coupon {
