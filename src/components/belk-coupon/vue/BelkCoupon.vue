@@ -25,7 +25,9 @@
       </template>
       <div v-if="eventName" class="coupon-event-name">{{eventName}}</div>
       <div class="coupon-use-code"
-        v-if="code">{{code}}</div>
+        v-if="code">{{codeText}}{{code}}</div>
+      <div class="coupon-use-code"
+        v-else>{{codeText}}</div>
       <div v-if="ends" class="coupon-ends">{{ends}}</div>
       <div v-if="hasDescription" class="coupon-description">
         <slot name="description"></slot>
@@ -136,6 +138,18 @@ export default {
   computed: {
     linkText() {
       return (this.inDrawer && this.variant === 'offer') ? 'Learn More' : 'Shop Now';
+    },
+
+    codeText() {
+      if (!this.code) {
+        if (this.upc) {
+          return 'Scan Barcode in Store';
+        } else {
+          return 'No Code Needed';
+        }
+      } else {
+        return 'Use Code: ';
+      }
     },
   },
 
