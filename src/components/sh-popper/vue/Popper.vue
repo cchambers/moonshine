@@ -18,7 +18,7 @@
         <div class="popper-content">
           <slot name="content">{{ content }}</slot>
         </div>
-        <div class="popper-arrow" x-arrow></div>
+        <div v-if="visibleArrow" class="popper-arrow" x-arrow></div>
       </div>
     </transition>
   </div>
@@ -142,21 +142,32 @@ export default {
       currentPlacement: '',
       content: 'empty',
       popperOptions: {
-        modifiers: {
-          offset: {
-            offset: '0, -3px',
+        modifiers: [
+          {
+            name: 'flip',
+            options: {
+              enabled: true,
+              fallbackPlacements: ['top', 'right'],
+            },
           },
-          flip: {
-            behavior: ['bottom'],
+          {
+            name: 'offset',
+            options: {
+              offset: [10, 20],
+            },
           },
-          computeStyle: {
-            x: 'left',
+          // {
+          //   name: 'placement',
+          //   options: 'left',
+          // },
+          {
+            name: 'preventOverflow',
+            options: {
+              padding: 0,
+              priority: ['left', 'right'],
+            },
           },
-          preventOverflow: {
-            padding: 0,
-            priority: ['left', 'right'],
-          },
-        },
+        ],
       },
     };
   },
@@ -311,15 +322,15 @@ export default {
             this.popperOptions.modifiers = {
               ...this.popperOptions.modifiers,
             };
-            this.popperOptions.modifiers.offset.offset = this.offset;
-            this.popperOptions.modifiers.preventOverflow = {
-              ...this.popperOptions.modifiers.preventOverflow,
-            };
-            this.popperOptions.modifiers.preventOverflow.boundariesElement = boundariesElement;
+            // this.popperOptions.modifiers.offset = this.offset;
+            // this.popperOptions.modifiers.preventOverflow = {
+            //   ...this.popperOptions.modifiers.preventOverflow,
+            // };
+            // this.popperOptions.modifiers.preventOverflow.boundariesElement = boundariesElement;
           }
         }
 
-        this.popperOptions.onCreate = () => {
+        this.popperOptions.onFirstUpdate = () => {
           this.$bus.$emit('created', this);
           this.$nextTick(this.updatePopper);
         };
@@ -361,7 +372,7 @@ export default {
 
     updatePopper() {
       const test = this.popperJS
-        ? this.popperJS.scheduleUpdate()
+        ? this.popperJS.update()
         : this.createPopper();
       return test;
     },

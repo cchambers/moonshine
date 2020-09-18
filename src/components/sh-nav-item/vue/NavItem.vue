@@ -291,7 +291,7 @@ export default {
           }
         }
 
-        this.popperOptions.onCreate = () => {
+        this.popperOptions.onFirstUpdate = () => {
           this.$emit('created', this);
           this.$nextTick(this.updatePopper);
         };
@@ -316,7 +316,7 @@ export default {
 
     updatePopper() {
       const test = this.popperJS
-        ? this.popperJS.scheduleUpdate()
+        ? this.popperJS.update()
         : this.createPopper();
       return test;
     },
