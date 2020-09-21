@@ -77,6 +77,7 @@ sh-popper {
 
   .popper-actual {
     width: auto;
+    min-width: 30rem;
     max-width: 102rem;
     z-index: 90;
 

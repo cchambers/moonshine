@@ -147,24 +147,20 @@ export default {
             name: 'flip',
             options: {
               enabled: true,
-              fallbackPlacements: ['top', 'right'],
+              fallbackPlacements: ['top', 'bottom'],
             },
           },
           {
             name: 'offset',
             options: {
-              offset: [10, 20],
+              offset: [150, 0],
             },
           },
-          // {
-          //   name: 'placement',
-          //   options: 'left',
-          // },
           {
             name: 'preventOverflow',
             options: {
               padding: 0,
-              priority: ['left', 'right'],
+              priority: ['top', 'bottom'],
             },
           },
         ],
@@ -314,20 +310,6 @@ export default {
 
         if (this.popperJS && this.popperJS.destroy) {
           this.popperJS.destroy();
-        }
-
-        if (this.boundariesSelector) {
-          const boundariesElement = document.querySelector(this.boundariesSelector) || document.querySelector('#main');
-          if (boundariesElement) {
-            this.popperOptions.modifiers = {
-              ...this.popperOptions.modifiers,
-            };
-            // this.popperOptions.modifiers.offset = this.offset;
-            // this.popperOptions.modifiers.preventOverflow = {
-            //   ...this.popperOptions.modifiers.preventOverflow,
-            // };
-            // this.popperOptions.modifiers.preventOverflow.boundariesElement = boundariesElement;
-          }
         }
 
         this.popperOptions.onFirstUpdate = () => {
