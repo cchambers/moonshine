@@ -18,7 +18,7 @@
         <div class="popper-content">
           <slot name="content">{{ content }}</slot>
         </div>
-        <div class="popper-arrow" x-arrow></div>
+        <div v-if="visibleArrow" class="popper-arrow" x-arrow></div>
       </div>
     </transition>
   </div>
@@ -142,21 +142,28 @@ export default {
       currentPlacement: '',
       content: 'empty',
       popperOptions: {
-        modifiers: {
-          offset: {
-            offset: '0, -3px',
+        modifiers: [
+          {
+            name: 'flip',
+            options: {
+              enabled: true,
+              fallbackPlacements: ['top', 'bottom'],
+            },
           },
-          flip: {
-            behavior: ['bottom'],
+          {
+            name: 'offset',
+            options: {
+              offset: [150, 0],
+            },
           },
-          computeStyle: {
-            x: 'left',
+          {
+            name: 'preventOverflow',
+            options: {
+              padding: 0,
+              priority: ['top', 'bottom'],
+            },
           },
-          preventOverflow: {
-            padding: 0,
-            priority: ['left', 'right'],
-          },
-        },
+        ],
       },
     };
   },
@@ -305,21 +312,7 @@ export default {
           this.popperJS.destroy();
         }
 
-        if (this.boundariesSelector) {
-          const boundariesElement = document.querySelector(this.boundariesSelector) || document.querySelector('#main');
-          if (boundariesElement) {
-            this.popperOptions.modifiers = {
-              ...this.popperOptions.modifiers,
-            };
-            this.popperOptions.modifiers.offset.offset = this.offset;
-            this.popperOptions.modifiers.preventOverflow = {
-              ...this.popperOptions.modifiers.preventOverflow,
-            };
-            this.popperOptions.modifiers.preventOverflow.boundariesElement = boundariesElement;
-          }
-        }
-
-        this.popperOptions.onCreate = () => {
+        this.popperOptions.onFirstUpdate = () => {
           this.$bus.$emit('created', this);
           this.$nextTick(this.updatePopper);
         };
@@ -361,7 +354,7 @@ export default {
 
     updatePopper() {
       const test = this.popperJS
-        ? this.popperJS.scheduleUpdate()
+        ? this.popperJS.update()
         : this.createPopper();
       return test;
     },

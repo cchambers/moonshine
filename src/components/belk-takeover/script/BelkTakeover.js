@@ -100,7 +100,7 @@ export default {
       if (this.poppers.length) {
         this.poppers.forEach((popper) => {
           if (typeof popper.update === 'function') {
-            popper.update();
+            popper.forceUpdate();
           } else {
             this.log('update still unavailable');
           }
