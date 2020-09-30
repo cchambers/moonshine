@@ -1,6 +1,6 @@
 {
   "name": "View Swapper",
-  "category": "base",
+  "category": "components",
   "production": true,
   "element": "sh-view-swapper",
   "description": "Demonstration component.",

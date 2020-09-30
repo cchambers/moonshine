@@ -20,28 +20,62 @@
   </section>
 
   <section>
-    <h2>Font Control</h2>
+    <h2 id="font-control">Font Control</h2>
 
-    <h3>Size</h3>
+    <h3 class="pad-t">Alignment</h3>
+    <div class="flex-inline col">
+      <code>text-right</code>
+      <code>text-center</code>
+      <code>text-left</code>
+    </div>
+    <div data-mod="text" class="demo">
+      <p>Configure text alignment.</p>
+    </div>
 
-    <h3>Style</h3>
+    <h3 class="pad-t">Size</h3>
+    <div class="flex-inline col">
+      <code>px-<input type="number" min="1" max="100" value="18"></code>
+    </div>
+    <div data-mod="px" class="demo">
+      <p>Set the font size in rem-equivalient pixel units. Values range from 1 to 100.</p>
+    </div>
 
-    <h3>Weight</h3>
+    <h3 class="pad-t">Line Height</h3>
+    <div class="flex-inline col">
+      <code>lh-<input type="number" min="1" max="100" value="32"></code>
+    </div>
+    <div data-mod="lh" class="demo">
+      <p>Set the line-height in rem-equivalient pixel units. Values range from 1 to 100.</p>
+    </div>
 
-    
+    <h3 class="pad-t" id="font-weight">Font Weight</h3>
+
+    <div class="flex-inline col">
+      <code>wt-<input type="number" min="100" max="900" value="32" step="100"></code>
+      <code>light</code>
+      <code>normal</code>
+      <code>heavy</code>
+      <code>bold</code>
+    </div>
+    <p>Set the line-height in rem-equivalient pixel units. Values range from 1 to 100.</p>
+    <p>ex: <code>[class="wt-600"]</code></p>
+
+    <h3 class="pad-t" id="font-style">Style</h3>
+    <div class="flex-inline col">
+      <code>style-italic</code>
+      <code>style-normal</code>
+    </div>
+    <p>Changes the style of the text. Options are pretty limited here, but there are other ways to <a href="#text-deco">decorate</a> below.</p>
+
     <ul>
-      <li>font size</li>
-      <li>font style</li>
-      <li>font weight</li>
       <li>font color</li>
       <li>font deco</li>
-      <li>font line height</li>
       <li>font treatments (pre-configured combinations of the above)</li>
     </ul>
   </section>
 
   <section>
-    <h2></h2>
+    <h2 id="positioning">Positioning</h2>
   </section>
 </div>
 <%- htmlWebpackPlugin.options.docsFoot %>
