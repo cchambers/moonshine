@@ -716,18 +716,22 @@ ol.lower-alpha {
 
 /* Font modifiers: */
 
-.light {
+.light,
+.wt-light {
   font-weight: 300;
 }
 
-.normal {
+.normal,
+.wt-normal {
   font-weight: 400;
 }
 
-.bold {
+.bold,
+.wt-bold {
   font-weight: 700;
 }
 
+.wt-heavy,
 .heavy {
   font-weight: 800;
 }

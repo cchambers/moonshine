@@ -110,7 +110,11 @@
 
     <h2 class="pad-y lowlight-primary">Coupons</h2>
     <script>
-      window.coupons = [{
+      window.pageData = {
+        coupons: [],
+        offers: [],
+      }
+      pageData.coupons = [{
           headerColor: "brand-belkblue",
           badge: "Online & In-Store",
           extra: true,
@@ -161,7 +165,7 @@
         },
       ];
 
-      window.offers = [{
+      pageData.offers = [{
           headerColor: 'brand-wildfuscia',
           ends: 'concludes Feb 14, 2020',
           discount: '88',
@@ -194,36 +198,10 @@
       ]
 
     </script>
-    <offer-container data-obj="coupons" unique-id="coupons" variant="coupons"></offer-container>
+    <offer-container data-obj="pageData.coupons" unique-id="coupons" variant="coupons"></offer-container>
     <h2 class="pad-y lowlight-primary">Offers</h2> 
-    <offer-container data-obj="offers" unique-id="offers" variant="offers"></offer-container> 
+    <offer-container data-obj="pageData.offers" unique-id="offers" variant="offers"></offer-container> 
   </section>
 </div>
-<script>
-  window.promoDrawer = [{
-      description: 'Some <strong>awesome</strong> description that has details!',
-      details: 'Some <strong>awesome</strong> details!',
-      code: '1EVENTCODE',
-      upc: '12345678',
-      image: 'https://assets.codepen.io/42746/test1.png',
-    },
-    {
-      headerColor: 'brand-belkblue',
-      discount: '20',
-      link: 'http://google.com',
-      code: '2EVENTCODE',
-      upc: '12345678',
-      image: 'https://assets.codepen.io/42746/test2.png',
-    },
-    {
-      headerColor: 'brand-belkblue',
-      discount: '20',
-      link: 'http://google.com',
-      code: '2EVENTCODE',
-      upc: '12345678',
-      image: 'https://assets.codepen.io/42746/test3.png',
-    }
-  ];
 
-</script>
-<belk-drawer drawer="bottom" overlay="none" unique-id="pd" data-obj="promoDrawer" button-headline-inactive="Today's Offers" button-subhead-inactive="Tap for Savings Made Simple" button-headline-active="Savings Made Simple" button-subhead-active=" Offers"></belk-drawer>
+<belk-drawer drawer="bottom" overlay="none" unique-id="pd" button-headline-inactive="Today's Offers" button-subhead-inactive="Tap for Savings Made Simple" button-headline-active="Savings Made Simple" button-subhead-active=" Offers"></belk-drawer>

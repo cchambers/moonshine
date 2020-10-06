@@ -81,7 +81,6 @@ export default {
       type: String,
       default: 'bottom',
     },
-    dataObj: String,
     focusTarget: String,
     header: String,
     footer: String,
@@ -156,8 +155,9 @@ export default {
 
   mounted() {
     const self = this;
-    if (typeof window[this.dataObj] === 'object') {
-      const startWith = window[this.dataObj];
+    if (typeof window.pageData === 'object') {
+      const { promos, coupons, offers } = window.pageData;
+      const startWith = [...promos, ...coupons, ...offers];
       this.setItems(startWith);
     }
     self.ariaID = `aria-${self.uniqueId}`;
@@ -193,7 +193,7 @@ export default {
     },
 
     watchedEventHandler(e) {
-      if (this.elementContains(this.$el, e.target) || e.target.hasAttribute('toggle-trigger')) return;
+      if (this.elementContains(this.$el, e.target)) return;
       this.close(true, 'WATCHED');
     },
 
@@ -397,6 +397,7 @@ export default {
         setTimeout(() => {
           self.$refs.content.focus();
           self.enableWatchEvents();
+          self.scrollHandler();
         }, 200);
       }
 

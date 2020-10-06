@@ -1,12 +1,12 @@
 <%- htmlWebpackPlugin.options.docsHead %>
 
 <title>Global Object-Oriented Classes</title>
-<div class="documentation contain">
+<div class="documentation contain baseline30">
   <section>
   <h1>Legos</h1>
-    <p>"The focus of OOCSS is the idea of treating page elements as objects, giving all these objects classes, treating objects’ classes as single entities in style sheets, and taking it from there."</p>
-    <p>Writing CSS outside of the head of your document causes a scenario where a page must be re-rendered as the CSS is encoutered. One way to bypass this is to create massive/unwieldly blocks of super specific CSS that only apply to one thing on the page. This creates massive CSS files that then have to be transferred to your user.</p>
-    <p>OO classes give you the ability to make presentation-related adjustments to content (and in our case, components) with the easy-to-remember class names listed below.</p>
+  <p>The focus of OOCSS is the idea of treating page elements as objects, giving all these objects classes, treating objects’ classes as single entities in style sheets, and taking it from there.</p>
+  <p>Writing CSS outside of the head of your document causes a scenario where a page must be re-rendered as the CSS is encoutered. One way to bypass this is to create massive/unwieldly blocks of super specific CSS that only apply to one thing on the page. This creates massive CSS files that then have to be transferred to your user.</p>
+  <p>OO classes give you the ability to make presentation-related adjustments to content (and in our case, components) with the easy-to-remember class names listed below.</p>
   </section>
 
   <section>
@@ -49,16 +49,17 @@
     </div>
 
     <h3 class="pad-t" id="font-weight">Font Weight</h3>
-
     <div class="flex-inline col">
-      <code>wt-<input type="number" min="100" max="900" value="32" step="100"></code>
-      <code>light</code>
-      <code>normal</code>
-      <code>heavy</code>
-      <code>bold</code>
+      <code>wt-<input type="number" min="100" max="900" value="100"></code>
+      <code>wt-light</code>
+      <code>wt-normal</code>
+      <code>wt-bold</code>
+      <code>wt-heavy</code>
     </div>
-    <p>Set the line-height in rem-equivalient pixel units. Values range from 1 to 100.</p>
-    <p>ex: <code>[class="wt-600"]</code></p>
+    <div data-mod="wt" class="demo">
+        <p>Set the font weight. Values range from 100 to 900 and step by 100.</p>
+        <p>ex: <code>[class="wt-600"]</code></p>
+    </div>
 
     <h3 class="pad-t" id="font-style">Style</h3>
     <div class="flex-inline col">
@@ -76,6 +77,14 @@
 
   <section>
     <h2 id="positioning">Positioning</h2>
+  </section>
+
+  <section>
+    <h2 id="grid">Grid</h2>
+  </section>
+
+  <section>
+    <h2 id="flex">Flex</h2>
   </section>
 </div>
 <%- htmlWebpackPlugin.options.docsFoot %>
