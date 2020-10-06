@@ -4,5 +4,21 @@
   margin-left: -1rem;
   belk-coupon {
     width: 260px;
+    .coupon-discount,
+    .coupon-ends,
+    .coupon-event-name,
+    .coupon-use-code,
+    .coupon-upc,
+    .coupon-type,
+    .coupon-print {
+      max-height: 0;
+      overflow: hidden;
+      margin: 0;
+      border: none;
+    }
+    .coupon-spacer,
+    .coupon-extra {
+      display: none;
+    }
   }
 }

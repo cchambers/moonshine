@@ -47,7 +47,18 @@ export default {
   },
 
   mounted() {
-    if (typeof window[this.dataObj] === 'object') this.items = window[this.dataObj];
+    if (typeof window[this.dataObj] === 'object') {
+      this.items = window[this.dataObj];
+      return;
+    }
+    if (this.dataObj) {
+      const split = this.dataObj.split('.');
+      if (split.length) {
+        if (typeof window[split[0]][split[1]] === 'object') {
+          this.items = window[split[0]][split[1]];
+        }
+      }
+    }
   },
 
   methods: {
