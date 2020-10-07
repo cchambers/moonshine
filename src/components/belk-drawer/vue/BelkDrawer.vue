@@ -353,7 +353,6 @@ export default {
 
     setItems(data) {
       data.forEach((item) => {
-        console.log('no here');
         // eslint-disable-next-line no-param-reassign
         item.inDrawer = true;
       });
