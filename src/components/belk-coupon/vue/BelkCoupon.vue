@@ -197,15 +197,12 @@ export default {
     }
 
     if (!this.inDrawer) {
-      console.log('not in drawer',this.badge,this.variant);
       if (this.badge && this.variant == 'default') {
         if (this.badge.toLowerCase().indexOf('store') >= 0 && this.upc) {
           this.printable = true;
           this.makePrintModal();
         }
       }
-    } else {
-      console.log('IN',this.badge,this.variant);
     }
   },
 
