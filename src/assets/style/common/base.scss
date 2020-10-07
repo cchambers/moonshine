@@ -778,6 +778,11 @@ ol.lower-alpha {
   font-style: normal;
 }
 
+.ws-nowrap,
+.nowrap:not(.flex) {
+  white-space: nowrap
+}
+
 .text-right {
   text-align: right;
 }
