@@ -18,6 +18,7 @@ belk-coupon {
   flex-grow: 1;
   height: 100%;
   border: 1px solid $lowlight-primary;
+  font-size: 16px;
   &.printable {
     border-style: dashed;
     margin: 0 auto;

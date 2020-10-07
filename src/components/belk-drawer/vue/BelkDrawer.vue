@@ -157,7 +157,8 @@ export default {
     const self = this;
     if (typeof window.pageData === 'object') {
       const { promos, coupons, offers } = window.pageData;
-      const startWith = [...promos, ...coupons, ...offers];
+      // must clone this array to avoid direct reference
+      const startWith = JSON.parse(JSON.stringify([...promos, ...coupons, ...offers]));
       this.setItems(startWith);
     }
     self.ariaID = `aria-${self.uniqueId}`;
@@ -352,6 +353,7 @@ export default {
 
     setItems(data) {
       data.forEach((item) => {
+        console.log('no here');
         // eslint-disable-next-line no-param-reassign
         item.inDrawer = true;
       });

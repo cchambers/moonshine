@@ -113,7 +113,10 @@ export default {
     ends: String,
     details: String,
     headerColor: String,
-    inDrawer: Boolean,
+    inDrawer: {
+      type: Boolean,
+      default: false,
+    },
     image: String,
     link: String,
     noType: {
@@ -194,12 +197,15 @@ export default {
     }
 
     if (!this.inDrawer) {
+      console.log('not in drawer',this.badge,this.variant);
       if (this.badge && this.variant == 'default') {
-        if (this.badge.indexOf('Store') >= 0 && this.upc) {
+        if (this.badge.toLowerCase().indexOf('store') >= 0 && this.upc) {
           this.printable = true;
           this.makePrintModal();
         }
-      } 
+      }
+    } else {
+      console.log('IN',this.badge,this.variant);
     }
   },
 
