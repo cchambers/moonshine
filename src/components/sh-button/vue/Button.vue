@@ -133,7 +133,7 @@ export default {
           this.disabled = false;
         })
         .catch((error) => {
-          this.error(error, 1);
+          this.log(error, 1);
         });
     },
 
