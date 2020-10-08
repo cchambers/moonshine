@@ -156,9 +156,7 @@ export default {
   mounted() {
     const self = this;
     if (typeof window.pageData === 'object') {
-      const { promos, coupons, offers } = window.pageData;
-      // must clone this array to avoid direct reference
-      const startWith = JSON.parse(JSON.stringify([...promos, ...coupons, ...offers]));
+      const startWith = window.pageData.offers.filter((item) => (item.promos));
       this.setItems(startWith);
     }
     self.ariaID = `aria-${self.uniqueId}`;
