@@ -37,7 +37,7 @@ export default {
     type: String,
     noOffersText: {
       type: String,
-      default: 'None at the moment.'
+      default: 'None at the moment.',
     }
   },
 
