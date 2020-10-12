@@ -38,7 +38,7 @@ export default {
     noOffersText: {
       type: String,
       default: 'None at the moment.',
-    }
+    },
   },
 
   watch: {
