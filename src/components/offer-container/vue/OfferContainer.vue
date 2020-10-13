@@ -16,6 +16,9 @@
       :link="item.link"
       :printable="item.printable"
       :upc="item.upc"></belk-coupon>
+      <div v-if="items.length == 0" class="offer-container-banner">
+        {{ noOffersText }}
+      </div>
   </div>
 </template>
 
@@ -32,6 +35,10 @@ export default {
     variant: String,
     dataObj: String,
     type: String,
+    noOffersText: {
+      type: String,
+      default: 'None at the moment.',
+    },
   },
 
   watch: {
