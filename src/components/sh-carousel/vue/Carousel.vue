@@ -20,14 +20,20 @@
         v-if="!hideArrows" class="arrow previous" v-hammer:tap="previousHandler">
         <belk-icon width="20" :name="previousArrow"></belk-icon>
       </button>
-      <ul v-if="!hideDots" ref="dots" class="dots"></ul>
-      <button :aria-controls="carouselId"
-        class="button play"
-        :aria-label="playLabel"
-        :disabled="isFocused"
-        v-hammer:tap="play">
-        {{ mode }}
-      </button>
+      <div class="play">
+        <button :aria-controls="carouselId"
+          class="button "
+          :aria-label="playLabel"
+          :disabled="isFocused"
+          v-hammer:tap="play">
+          {{ mode }}
+        </button>
+        <ul ref="dots" class="dots">
+          <li v-for="(dot,index) in dots" v-bind:key="index" v-bind:class="{ active: dot.active }">
+            ●
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </template>
