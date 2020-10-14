@@ -118,8 +118,8 @@ export default {
         }
       };
 
-      const savedResponse = (window.sessionAttributes) ?
-        window.SessionAttributes.AVAILABLE_BRDS : false;
+      const savedResponse = (window.sessionAttributes)
+        ? window.SessionAttributes.AVAILABLE_BRDS : false;
       if (savedResponse) {
         self.handleBRD(savedResponse);
       } else {
