@@ -2,6 +2,7 @@
 
 sh-carousel[variant="primary"] {
   margin: 0 0 6rem;
+
   .slides {
     position: absolute;
     top: 0;
@@ -54,6 +55,7 @@ sh-carousel[variant="primary"] {
         border: none; 
         background-color: transparent;
         margin-right: 1rem;
+        color: $lowlight-primary;
       }
     }
     .arrow {
@@ -86,6 +88,7 @@ sh-carousel[variant="primary"] {
           color: $lowlight-primary;
         }
       }
+
     }
   }
 
