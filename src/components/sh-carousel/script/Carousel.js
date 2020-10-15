@@ -70,7 +70,7 @@ export default {
 
   computed: {
     mode() {
-      return (!this.playing) ? 'stopped' : 'playing';
+      return (!this.playing) ? '▐▐' : '▶';
     },
 
     delayTimer() {
@@ -103,7 +103,11 @@ export default {
       this.slides.forEach((slide, index) => {
         if (index === val) {
           slide.classList.add('active');
-        } else if (slide.classList.contains('active')) slide.classList.remove('active');
+          this.dots[index].active = true;
+        } else if (slide.classList.contains('active')) {
+          slide.classList.remove('active');
+          this.dots[index].active = false;
+        }
       });
 
       if (this.userTriggered) this.focus();
@@ -236,6 +240,9 @@ export default {
       const slides = this.$slots.slides[0];
       this.list = slides.elm;
       this.slides = slides.elm.children;
+      this.slides.forEach(() => {
+        this.dots.push({ active: false });
+      });
     },
 
     setChangeDelay(time) {
