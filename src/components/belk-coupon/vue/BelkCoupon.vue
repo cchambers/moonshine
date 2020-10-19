@@ -38,7 +38,7 @@
               v-if="details"
               v-hammer:tap="openDetailsModal">Details</sh-button>
           </template>
-          <div class="coupon-details-actual" v-else>{{ details }}</div>
+          <div class="coupon-details-actual" v-else v-html="detailsHTML"></div>
         </span>
       </div>
       <div class="coupon-spacer"></div>
@@ -204,6 +204,10 @@ export default {
         }
       }
     }
+
+    if (this.print) {
+
+    }
   },
 
   methods: {
@@ -266,8 +270,8 @@ export default {
               code="${self.code}" 
               ends="${self.ends}"
               upc="${self.upc}"
-              details="${self.detailsHTML}"
-              description="${self.description}">
+              description="${self.description}"
+              details="${self.detailsHTML}">
             </belk-coupon>  
           </div>
         </sh-modal>`;
