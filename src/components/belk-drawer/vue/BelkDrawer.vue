@@ -156,7 +156,9 @@ export default {
   mounted() {
     const self = this;
     if (typeof window.pageData === 'object') {
-      const startWith = window.pageData.offers.filter((item) => (item.promos));
+      const { offers } = window.pageData;
+      const startWith = JSON.parse(JSON.stringify([...offers]));
+      startWith.filter((item) => (item.promos));
       this.setItems(startWith);
     }
     self.ariaID = `aria-${self.uniqueId}`;
