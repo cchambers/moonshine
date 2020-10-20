@@ -31,6 +31,9 @@ sh-popper {
 
     .reference {
       position: relative;
+      > span {
+        display: block; // fix for Safari click handling
+      }
     }
 
     a {
