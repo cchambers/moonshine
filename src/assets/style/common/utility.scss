@@ -70,14 +70,14 @@
     @if is-list($actual) {
       .#{$name}-#{$edge} {
         @each $side in $actual {
-          #{$mod}-#{$side}: #{$rem};
+          #{$mod}#{$side}: #{$rem};
         }
       }
     }
 
     @else {
       .#{$name}-#{$edge} {
-        #{$mod}-#{$actual}: #{$rem};
+        #{$mod}#{$actual}: #{$rem};
       }
     }
   }
