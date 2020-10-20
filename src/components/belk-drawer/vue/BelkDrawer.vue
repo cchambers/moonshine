@@ -157,7 +157,7 @@ export default {
     const self = this;
     if (typeof window.pageData === 'object') {
       const { offers } = window.pageData;
-      const startWith = JSON.parse(JSON.stringify([...offers]));
+      let startWith = JSON.parse(JSON.stringify([...offers]));
       startWith = startWith.filter((item) => (item.promos));
       this.setItems(startWith);
     }
