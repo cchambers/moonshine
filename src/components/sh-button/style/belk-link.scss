@@ -7,6 +7,9 @@ sh-button[variant="belk-link"] {
       color: $accent-primary;
       border-bottom: 1px solid $accent-primary;
     }
+    &:active {
+      background: transparent !important;
+    }
   }
   &:hover {
     .actual-text {
