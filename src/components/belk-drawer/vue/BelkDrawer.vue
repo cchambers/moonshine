@@ -81,7 +81,6 @@ export default {
       type: String,
       default: 'bottom',
     },
-    dataObj: String,
     focusTarget: String,
     header: String,
     footer: String,
@@ -156,8 +155,10 @@ export default {
 
   mounted() {
     const self = this;
-    if (typeof window[this.dataObj] === 'object') {
-      const startWith = window[this.dataObj];
+    if (typeof window.pageData === 'object') {
+      const { offers } = window.pageData;
+      const startWith = JSON.parse(JSON.stringify([...offers]));
+      startWith.filter((item) => (item.promos));
       this.setItems(startWith);
     }
     self.ariaID = `aria-${self.uniqueId}`;
@@ -193,7 +194,7 @@ export default {
     },
 
     watchedEventHandler(e) {
-      if (this.elementContains(this.$el, e.target) || e.target.hasAttribute('toggle-trigger')) return;
+      if (this.elementContains(this.$el, e.target)) return;
       this.close(true, 'WATCHED');
     },
 
@@ -251,6 +252,10 @@ export default {
       });
 
       self.$bus.$on('hashchange', this.hashHandler);
+
+      self.$bus.$on('drawer-toggle', self.toggle);
+      self.$bus.$on('drawer-open', self.open);
+      self.$bus.$on('drawer-close', self.close);
 
       self.$bus.$on('drawer-add', self.addItemHandler);
       self.$bus.$on('drawer-move', self.moveItemHandler);
@@ -393,6 +398,7 @@ export default {
         setTimeout(() => {
           self.$refs.content.focus();
           self.enableWatchEvents();
+          self.scrollHandler();
         }, 200);
       }
 

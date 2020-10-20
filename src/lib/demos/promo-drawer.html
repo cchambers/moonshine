@@ -28,7 +28,9 @@
       return {
         description: 'Some <strong>awesome</strong> description that has details!',
         details: 'Some <strong>awesome</strong> details!',
-        image: 'https://via.placeholder.com/260x160/'+ (Math.random() * 0xfffff * 1000000).toString(16).slice(0, 6) +'/FFFFFF',
+        image: 'https://via.placeholder.com/260x160/' + (Math.random() * 0xfffff * 1000000)
+          .toString(16)
+          .slice(0, 6) + '/FFFFFF',
       }
     },
 
@@ -40,16 +42,23 @@
           offers.push(demo.generateOffer());
         }
       }
-      console.log(offers);
-      sh.emit('drawer-add', { where: there, what: offers });
+      sh.emit('drawer-add', {
+        where: there,
+        what: offers
+      });
     },
 
     move(which, where) {
-      sh.emit('drawer-move', { from: which, to: where });
+      sh.emit('drawer-move', {
+        from: which,
+        to: where
+      });
     },
 
     remove(which) {
-      sh.emit('drawer-remove', { which: which });
+      sh.emit('drawer-remove', {
+        which: which
+      });
     },
 
     attract(which) {
@@ -106,113 +115,108 @@
     </div>
 
     <div class="pad-micro">
-        <img src="https://via.placeholder.com/1620x800" alt="">
-      </div>
+      <img src="https://via.placeholder.com/1620x800" alt="">
+    </div>
 
     <h2 class="pad-y lowlight-primary">Coupons</h2>
     <script>
-      window.coupons = [{
-          headerColor: "brand-belkblue",
-          badge: "Online Exclusive",
-          discount: "30",
-          code: "Use Code: THREETIMES",
-          eventName: "Three Zero!",
-          link: "https://google.com"
-        },
-        {
-          headerColor: "brand-wildfuscia",
-          ends: "concludes Feb 14th, 2020",
-          badge: "In-Store Only",
-          discount: "20",
-          eventName: "Fun Stuff",
-          upc: "12345678",
-          extra: "true",
-          details: "Here's some information about the coupon's details.",
-          description: "Here's a descriptive paragraph that <strong>is HTML friendly</strong>."
-        },
-        {
-          headerColor: "brand-deepteal",
-          ends: "concludes Nov 4th, 2020",
-          badge: "Free In-Store or Curbside Pickup",
-          discount: "45",
-          eventName: "Go Vote",
-          details: "Here's some extra information about the coupon's details.",
-          description: "Here's a descriptive paragraph that <strong>is HTML friendly</strong>."
-        }
-      ];
-
-      window.offers = [{
-          headerColor: 'brand-wildfuscia',
-          ends: 'concludes Feb 14, 2020',
-          discount: '88',
-          eventName: 'Event Name',
-          description: 'Some <strong>awesome</strong> description that has details!',
-          details: 'Some <strong>awesome</strong> details!',
-          code: '1EVENTCODE',
-          upc: '12345678',
-          extra: true,
-          image: 'https://assets.codepen.io/42746/test1.png',
-        },
-        {
-          headerColor: 'brand-belkblue',
-          discount: '20',
-          link: 'http://google.com',
-          eventName: 'Event Name',
-          code: '2EVENTCODE',
-          upc: '12345678',
-          image: 'https://assets.codepen.io/42746/test2.png',
-        },
-        {
-          headerColor: 'brand-belkblue',
-          discount: '20',
-          link: 'http://google.com',
-          eventName: 'Event Name',
-          code: '2EVENTCODE',
-          upc: '12345678',
-          image: 'https://assets.codepen.io/42746/test3.png',
-        }
-      ]
+      window.pageData = {
+          offers: [{
+              coupons: true,
+              promos: true,
+              headerColor: "brand-belkblue",
+              badge: "Online & In-Store",
+              extra: true,
+              discount: "15",
+              eventName: "Elite Savings Event",
+              code: "ELITEDAY15",
+              upc: "81982086",
+              ends: "Ends Thurs, 9/17 at 11:59pm ET",
+              description: "Extra 15% off with Belk Rewards Elite credit card & coupon on top of today's coupon.",
+              details: "<div class='coupon-exclusions-modal-header'>Offer Exclusions &amp; Restrictions</div><div class='coupon-exclusions-modal-event'>Elite Savings Event</div><div class='coupon-exclusions-modal-details'>Extra 15% off with Belk Rewards Elite credit card &amp; coupon on top of today’s coupon</div><div class='coupon-exclusions-modal-validity'>Ends Thurs, 9/17 at 11:59pm ET</div><div class='coupon-exclusions-modal-content'>*Excludes Doorbusters, Daily Deals, Weekly Spotlight, Clearance, Red Dot, Superbuys, Adidas, Alegria, Assets, baby gear, beauty department, Billabong, Birkenstock, Brahmin, Bric,’s, Brighton, Capri Candle, Champion, Chubbies, Coach, Cole Haan shoes, Columbia, Converse, Dansko, DKNY, Donald Pliner, Donna Karen apparel, Draper James, Eileen Fisher apparel and shoes, Eileen West sleepwear, Free People, Frye handbags, shoes and men’s furnishings, Habitual, Herend, Hey Dude, Hunter Boots, Hurley, Instant Pot, Jack Rogers, Johnston &amp; Murphy shoes and belts, Juliska, Kate Spade, Kitchen Electrics, Koolaburra, Lauren Ralph Lauren women’s sportswear, dresses, handbags, jewelry &amp; accessories, Le Creuset, Leegin, Levi’s, Lilly Pulitzer, Merrell, Michael Kors, Nike, Polo Ralph Lauren, Premium Toys, Puma, Quiksilver, Reef, Rhone, Roxy apparel and shoes, Sam Edelman, select designer handbags, select designer intimates, select designer sunglasses, select kitchen cookware, prep &amp; bakeware, select men’s designer basics, smart home department, smart wearables, Sorel, Spanx, Spartina, Teva apparel and shoes, Timberland, Tommy John, Tumi, UGG, Under Armour, Vince Camuto shoes, Vineyard Vines, Vionic, Vitamix, Wacoal, What Goes Around Comes Around and fine jewelry trunk shows and service plans. Not valid on prior purchases, special orders or trunk shows, select online exclusive brands and items shipped directly from vendors on belk.com or Belk gift cards. Additional brand exclusions may apply. Belk Rewards Mastercard® is issued by Synchrony Bank pursuant to a license by Mastercard International Incorporated. Mastercard is a registered trademark, and the circles design is a trademark of Mastercard International Incorporated. All Belk Rewards credit card purchases are subject to credit approval. Valid in stores and online September 14-17, 2020 until 11:59pm.</div>",
+              link: "search?prefn1=couponCodes&prefv1=ELITESAVES"
+            },
+            {
+              coupons: true,
+              headerColor: "brand-belkblue",
+              badge: "Online & In-Store",
+              extra: true,
+              discount: "10",
+              eventName: "Cardholder Savings Day",
+              code: "REWARD10",
+              upc: "81982086",
+              ends: "Today Only, Ends at 11:59pm ET",
+              description: "Extra 10% off with Belk Rewards credit card & coupon on top of today's coupon.",
+              details: "<div class='coupon-exclusions-modal-header'>Offer Exclusions &amp; Restrictions</div><div class='coupon-exclusions-modal-event'>Elite Savings Event</div><div class='coupon-exclusions-modal-details'>Extra 15% off with Belk Rewards Elite credit card &amp; coupon on top of today’s coupon</div><div class='coupon-exclusions-modal-validity'>Ends Thurs, 9/17 at 11:59pm ET</div><div class='coupon-exclusions-modal-content'>*Excludes Doorbusters, Daily Deals, Weekly Spotlight, Clearance, Red Dot, Superbuys, Adidas, Alegria, Assets, baby gear, beauty department, Billabong, Birkenstock, Brahmin, Bric,’s, Brighton, Capri Candle, Champion, Chubbies, Coach, Cole Haan shoes, Columbia, Converse, Dansko, DKNY, Donald Pliner, Donna Karen apparel, Draper James, Eileen Fisher apparel and shoes, Eileen West sleepwear, Free People, Frye handbags, shoes and men’s furnishings, Habitual, Herend, Hey Dude, Hunter Boots, Hurley, Instant Pot, Jack Rogers, Johnston &amp; Murphy shoes and belts, Juliska, Kate Spade, Kitchen Electrics, Koolaburra, Lauren Ralph Lauren women’s sportswear, dresses, handbags, jewelry &amp; accessories, Le Creuset, Leegin, Levi’s, Lilly Pulitzer, Merrell, Michael Kors, Nike, Polo Ralph Lauren, Premium Toys, Puma, Quiksilver, Reef, Rhone, Roxy apparel and shoes, Sam Edelman, select designer handbags, select designer intimates, select designer sunglasses, select kitchen cookware, prep &amp; bakeware, select men’s designer basics, smart home department, smart wearables, Sorel, Spanx, Spartina, Teva apparel and shoes, Timberland, Tommy John, Tumi, UGG, Under Armour, Vince Camuto shoes, Vineyard Vines, Vionic, Vitamix, Wacoal, What Goes Around Comes Around and fine jewelry trunk shows and service plans. Not valid on prior purchases, special orders or trunk shows, select online exclusive brands and items shipped directly from vendors on belk.com or Belk gift cards. Additional brand exclusions may apply. Belk Rewards Mastercard® is issued by Synchrony Bank pursuant to a license by Mastercard International Incorporated. Mastercard is a registered trademark, and the circles design is a trademark of Mastercard International Incorporated. All Belk Rewards credit card purchases are subject to credit approval. Valid in stores and online September 14-17, 2020 until 11:59pm.</div>",
+              link: "search?prefn1=couponCodes&prefv1=REWARD10"
+            },
+            {
+              coupons: true,
+              headerColor: "brand-wildfuscia",
+              badge: "Online Exclusive",
+              extra: true,
+              discount: "60",
+              eventName: "Fall Stock Up Sale",
+              code: "STOCKUPNOW",
+              ends: "Ends Sun, 9/20 at 11:59pm ET",
+              description: "60% off regular & sale Belk exclusive & select national brands purchases (<strong>50% off select national brands;</strong> 20% off select designer brands).",
+              details: "<div class='coupon-exclusions-modal-header'>Offer Exclusions &amp; Restrictions</div><div class='coupon-exclusions-modal-event'>Fall Stock Up Sale</div><div class='coupon-exclusions-modal-details'>60% off regular &amp; sale Belk exclusive &amp; select national brands purchases (<b>50% off select national brands</b>; 20% off select designer brands)</div><div class='coupon-exclusions-modal-validity'>Ends Sun, 9/20 at 11:59pm ET</div><div class='coupon-exclusions-modal-content'>*Excludes Doorbusters, Daily Deals, Weekly Spotlight, Clearance, Red Dot, Superbuys, Adidas, Alegria, Assets, baby gear, beauty department, Belk Silverworks, Billabong, Birkenstock, Brahmin, Bric,’s, Brighton, Capri Candle, Champion, Chubbies, Coach, Cole Haan shoes, Columbia, Converse, Dansko, DKNY, Donald Pliner, Donna Karen apparel, Draper James, Eileen Fisher apparel and shoes, Eileen West sleepwear, Fine Jewelry, Free People, Frye handbags, shoes and men’s furnishings, Habitual, Herend, Hey Dude, Hunter Boots, Hurley, Instant Pot, Jack Rogers, Johnston &amp; Murphy shoes and belts, Juliska, Kate Spade, Kitchen Electrics, Koolaburra, Lauren Ralph Lauren women’s sportswear, dresses, handbags, jewelry &amp; accessories, Le Creuset, Leegin, Levi’s, Lilly Pulitzer, Merrell, Michael Kors, Nike, Polo Ralph Lauren, Premium Toys, Puma, Quiksilver, Reef, Rhone, Roxy apparel and shoes, Sam Edelman, select designer handbags, select designer intimates, select designer sunglasses, select kitchen cookware, prep &amp; bakeware, select men’s designer basics, smart home department, smart wearables, Sorel, Spanx, Spartina, Teva apparel and shoes, Timberland, Tommy John, Tumi, UGG, Under Armour, Vince Camuto shoes, Vineyard Vines, Vionic, Vitamix, Wacoal, What Goes Around Comes Around and fine jewelry trunk shows and service plans. Not valid on prior purchases, special orders or trunk shows, select online exclusive brands and items shipped directly from vendors on belk.com or Belk gift cards. Additional brand exclusions may apply. Valid online September 16-20, 2020 until 11:59pm.</div>",
+              link: "search?prefn1=couponCodes&prefv1=STOCKUPNOW"
+            },
+            {
+              coupons: true,
+              headerColor: "brand-deepteal",
+              badge: "In-Store Only",
+              extra: true,
+              discount: "60",
+              upc: "16981553",
+              eventName: "Fall Stock Up Sale",
+              ends: "Ends Sun, 9/20 at 11:59pm ET",
+              description: "60% off regular & sale Belk exclusive & select national brands purchases (<strong>50% off select national brands;</strong> 20% off select designer brands).",
+              details: "<div class='coupon-exclusions-modal-header'>Offer Exclusions &amp; Restrictions</div><div class='coupon-exclusions-modal-event'>Fall Stock Up Sale</div><div class='coupon-exclusions-modal-details'>60% off regular &amp; sale Belk exclusive &amp; select national brands purchases (<b>50% off select national brands</b>; 20% off select designer brands)</div><div class='coupon-exclusions-modal-validity'>Ends Sun, 9/20 at 11:59pm ET</div><div class='coupon-exclusions-modal-content'>*Excludes Doorbusters, Daily Deals, Weekly Spotlight, Clearance, Red Dot, Superbuys, Adidas, Alegria, Assets, baby gear, beauty department, Belk Silverworks, Billabong, Birkenstock, Brahmin, Bric,’s, Brighton, Capri Candle, Champion, Chubbies, Coach, Cole Haan shoes, Columbia, Converse, Dansko, DKNY, Donald Pliner, Donna Karen apparel, Draper James, Eileen Fisher apparel and shoes, Eileen West sleepwear, Fine Jewelry, Free People, Frye handbags, shoes and men’s furnishings, Habitual, Herend, Hey Dude, Hunter Boots, Hurley, Instant Pot, Jack Rogers, Johnston &amp; Murphy shoes and belts, Juliska, Kate Spade, Kitchen Electrics, Koolaburra, Lauren Ralph Lauren women’s sportswear, dresses, handbags, jewelry &amp; accessories, Le Creuset, Leegin, Levi’s, Lilly Pulitzer, Merrell, Michael Kors, Nike, Polo Ralph Lauren, Premium Toys, Puma, Quiksilver, Reef, Rhone, Roxy apparel and shoes, Sam Edelman, select designer handbags, select designer intimates, select designer sunglasses, select kitchen cookware, prep &amp; bakeware, select men’s designer basics, smart home department, smart wearables, Sorel, Spanx, Spartina, Teva apparel and shoes, Timberland, Tommy John, Tumi, UGG, Under Armour, Vince Camuto shoes, Vineyard Vines, Vionic, Vitamix, Wacoal, What Goes Around Comes Around and fine jewelry trunk shows and service plans. Not valid on prior purchases, special orders or trunk shows, select online exclusive brands and items shipped directly from vendors on belk.com or Belk gift cards. Additional brand exclusions may apply. Valid online September 16-20, 2020 until 11:59pm.</div>",
+            },
+            {
+              offers: true,
+              headerColor: 'brand-wildfuscia',
+              ends: 'concludes Feb 14, 2020',
+              discount: '88',
+              eventName: 'Event Name',
+              description: 'Some <strong>awesome</strong> description that has details!',
+              details: 'Some <strong>awesome</strong> details!',
+              code: '1EVENTCODE',
+              upc: '12345678',
+              extra: true,
+              image: 'https://assets.codepen.io/42746/test1.png',
+            },
+            {
+              offers: true,
+              headerColor: 'brand-belkblue',
+              discount: '20',
+              link: 'http://google.com',
+              eventName: 'Event Name',
+              code: '2EVENTCODE',
+              upc: '12345678',
+              image: 'https://assets.codepen.io/42746/test2.png',
+            },
+            {
+              offers: true,
+              promos: true,
+              headerColor: 'brand-belkblue',
+              discount: '20',
+              link: 'http://google.com',
+              eventName: 'Event Name',
+              code: '2EVENTCODE',
+              upc: '12345678',
+              image: 'https://assets.codepen.io/42746/test3.png',
+            }
+          ]
+      };
 
     </script>
-    <offer-container data-obj="coupons" unique-id="coupons" variant="coupons"></offer-container>
-    <h2 class="pad-y lowlight-primary">Offers</h2> 
-    <offer-container data-obj="offers" unique-id="offers" variant="offers"></offer-container> 
+    <offer-container data-obj="pageData.coupons" unique-id="coupons" type="coupons" variant="coupons"></offer-container>
+    <h2 class="pad-y lowlight-primary">Offers</h2>
+    <offer-container data-obj="pageData.offers" unique-id="offers" type="offers" variant="offers"></offer-container>
   </section>
-
-  <div style="padding-top:100vh;"></div>
 </div>
-<script>
-  window.promoDrawer = [{
-      headerColor: 'brand-wildfuscia',
-      ends: 'concludes Feb 14, 2020',
-      discount: '88',
-      eventName: 'Event Name',
-      description: 'Some <strong>awesome</strong> description that has details!',
-      details: 'Some <strong>awesome</strong> details!',
-      code: '1EVENTCODE',
-      upc: '12345678',
-      extra: true,
-      image: 'https://assets.codepen.io/42746/test1.png',
-    },
-    {
-      headerColor: 'brand-belkblue',
-      discount: '20',
-      link: 'http://google.com',
-      eventName: 'Event Name',
-      code: '2EVENTCODE',
-      upc: '12345678',
-      image: 'https://assets.codepen.io/42746/test2.png',
-    },
-    {
-      headerColor: 'brand-belkblue',
-      discount: '20',
-      link: 'http://google.com',
-      eventName: 'Event Name',
-      code: '2EVENTCODE',
-      upc: '12345678',
-      image: 'https://assets.codepen.io/42746/test3.png',
-    }
-  ];
 
-</script>
-<belk-drawer drawer="bottom" overlay="none" unique-id="pd" data-obj="promoDrawer" button-headline-inactive="Today's Offers" button-subhead-inactive="Tap for Savings Made Simple" button-headline-active="Savings Made Simple" button-subhead-active=" Offers"></belk-drawer>
+<belk-drawer drawer="bottom" overlay="none" unique-id="pd" button-headline-inactive="Today's Offers" button-subhead-inactive="Tap for Savings Made Simple" button-headline-active="Savings Made Simple" button-subhead-active=" Offers"></belk-drawer>

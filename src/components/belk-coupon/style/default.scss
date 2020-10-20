@@ -16,8 +16,8 @@ belk-coupon {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  height: 100%;
   border: 1px solid $lowlight-primary;
+  font-size: 16px;
   &.printable {
     border-style: dashed;
     margin: 0 auto;
@@ -33,12 +33,20 @@ belk-coupon {
       border: none;
       height: auto;
       margin-top: $little;
+      margin-left: auto;
+      margin-right: auto;
+      width: 100%;
       .coupon-logo {
-        width: 120px;
+        width: 25%;
         display: flex;
         align-items: center;
-        margin-left: $little;
-        padding-bottom: $little;
+        padding-top: $little;
+        position: absolute;
+        right: 0;
+      }
+      belk-barcode {
+        width: 70%;
+        left: 0;
       }
     }
   }
@@ -48,32 +56,29 @@ belk-coupon {
       line-height: $rem;
       margin-top: 5rem;
       .s-t {
-        font-size: 4.2rem;
+        font-size: 42px;
       }
       .s-b {
-        font-size: $rem;
+        font-size: 32px;
       }
     }
   }
 
-  .coupon-description + .coupon-spacer {
-    display: none;
-  }
 
   .coupon-spacer {
     flex-grow: 3;
     height: 100%;
     display: flex;
-    align-items: center;
-    padding: $little;
-    text-align: center;
     &:not([data-text]) {
       margin-top: auto;
       margin-bottom: 0;
     }
     &[data-text] {
       background: $highlight-secondary;
-      font-size: 1.4rem;
+      font-size: 14px;
+      padding: $little;
+      align-items: center;
+      text-align: center;
       &:after {
         display: block;
         content: attr(data-text);
@@ -83,7 +88,7 @@ belk-coupon {
 
   .coupon-image {
     img {
-      max-width: 100%;
+      width: 100%;
     }
   }
 
@@ -109,8 +114,14 @@ belk-coupon {
     font-weight: 900;
     font-style: normal;
     font-size: $rem;
-    margin-right: 30%;
-    margin-bottom: 0;
+    min-height: $rem;
+    margin-bottom: 0.5rem;
+    position: relative;
+    span {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-90%);
+    }
   }
 
   .coupon-extra ~ .coupon-discount {
@@ -207,6 +218,9 @@ belk-coupon {
   .coupon-print {
     justify-content: flex-start;
     margin-top: -38px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
     sh-button {
       font-size: 8px;
     }
@@ -227,10 +241,22 @@ belk-coupon {
     margin-left: -0.5em;
     margin-right: -0.5em;
     margin-top: -0.5em;
-    height: 70px;
+    height: 0;
+    padding-bottom: 30%;
+    position: relative;
+    height: 0;
+    belk-barcode {
+      position: absolute;
+      height: 100%;
+      width: 100%;
+    }
   }
 
   .coupon-details-actual {
     font-size: 1rem;
   }
+}
+
+offer-container .belk-coupon {
+  height: 100%;
 }

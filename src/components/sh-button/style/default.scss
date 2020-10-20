@@ -31,6 +31,7 @@ sh-button {
     border: 0;
     display: inline-flex;
     width: 100%;
+    font: inherit !important;
     align-items: center;
     justify-content: center;
     flex-direction: row;

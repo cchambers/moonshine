@@ -7,7 +7,7 @@
     <div class="coupon-image" v-if="hasImage"><img :src="image" /></div>
     <div class="coupon-wrapper">
       <template v-if="variant=='default'">
-        <div v-if="extra" class="coupon-extra" :class="headerColor">extra</div>
+        <div v-if="extra" class="coupon-extra" :class="headerColor"><span>extra</span></div>
         <div class="coupon-discount" :class="headerColor">
           <div class="actual">
             <span v-if="toSpend" class="dollar">$</span>
@@ -25,7 +25,9 @@
       </template>
       <div v-if="eventName" class="coupon-event-name">{{eventName}}</div>
       <div class="coupon-use-code"
-        v-if="code">{{code}}</div>
+        v-if="code">{{codeText}}{{code}}</div>
+      <div class="coupon-use-code"
+        v-else>{{codeText}}</div>
       <div v-if="ends" class="coupon-ends">{{ends}}</div>
       <div v-if="hasDescription" class="coupon-description">
         <slot name="description"></slot>
@@ -36,7 +38,7 @@
               v-if="details"
               v-hammer:tap="openDetailsModal">Details</sh-button>
           </template>
-          <div class="coupon-details-actual" v-else>{{ details }}</div>
+          <div class="coupon-details-actual" v-else v-html="detailsHTML"></div>
         </span>
       </div>
       <div class="coupon-spacer"></div>
@@ -111,7 +113,10 @@ export default {
     ends: String,
     details: String,
     headerColor: String,
-    inDrawer: Boolean,
+    inDrawer: {
+      type: Boolean,
+      default: false,
+    },
     image: String,
     link: String,
     noType: {
@@ -136,6 +141,18 @@ export default {
   computed: {
     linkText() {
       return (this.inDrawer && this.variant === 'offer') ? 'Learn More' : 'Shop Now';
+    },
+
+    codeText() {
+      if (!this.code) {
+        if (this.upc) {
+          return 'Scan Barcode in Store';
+        } else {
+          return 'No Code Needed';
+        }
+      } else {
+        return 'Use Code: ';
+      }
     },
   },
 
@@ -181,11 +198,15 @@ export default {
 
     if (!this.inDrawer) {
       if (this.badge && this.variant == 'default') {
-        if (this.badge.indexOf('Store') >= 0 && this.upc) {
+        if (this.badge.toLowerCase().indexOf('store') >= 0 && this.upc) {
           this.printable = true;
           this.makePrintModal();
         }
-      } 
+      }
+    }
+
+    if (this.print) {
+
     }
   },
 
@@ -249,8 +270,8 @@ export default {
               code="${self.code}" 
               ends="${self.ends}"
               upc="${self.upc}"
-              details="${self.detailsHTML}"
-              description="${self.description}">
+              description="${self.description}"
+              details="${self.detailsHTML}">
             </belk-coupon>  
           </div>
         </sh-modal>`;

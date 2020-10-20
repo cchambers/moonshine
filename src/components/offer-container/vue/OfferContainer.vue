@@ -16,6 +16,9 @@
       :link="item.link"
       :printable="item.printable"
       :upc="item.upc"></belk-coupon>
+      <div v-if="items.length == 0" class="offer-container-banner">
+        {{ noOffersText }}
+      </div>
   </div>
 </template>
 
@@ -31,6 +34,11 @@ export default {
     uniqueId: String,
     variant: String,
     dataObj: String,
+    type: String,
+    noOffersText: {
+      type: String,
+      default: 'None at the moment.',
+    },
   },
 
   watch: {
@@ -47,7 +55,9 @@ export default {
   },
 
   mounted() {
-    if (typeof window[this.dataObj] === 'object') this.items = window[this.dataObj];
+    if (typeof window.pageData === 'object' && this.type) {
+      this.items = window.pageData.offers.filter((item) => (item[this.type]));
+    }
   },
 
   methods: {

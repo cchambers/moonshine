@@ -57,8 +57,17 @@ export default {
   methods: {
     setupEvents() {
       const self = this;
+      self.$bus.$on('smooth-scroll', self.smoothScrollHandler);
       self.$bus.$on('get-user-data', self.clearForEmit);
       self.$bus.$on('bag-update', self.bagUpdateHandler);
+    },
+
+    smoothScrollHandler(event) {
+      const delay = event.detail.delay || 2000;
+      document.documentElement.classList.remove('no-smooth-scroll');
+      setTimeout(() => {
+        document.documentElement.classList.add('no-smooth-scroll');
+      }, delay);
     },
 
     clearForEmit() {
@@ -109,7 +118,8 @@ export default {
         }
       };
 
-      const savedResponse = window.SessionAttributes.AVAILABLE_BRDS;
+      const savedResponse = (window.sessionAttributes)
+        ? window.SessionAttributes.AVAILABLE_BRDS : false;
       if (savedResponse) {
         self.handleBRD(savedResponse);
       } else {

@@ -1,8 +1,4 @@
 
-$base: 3.2;
-
-$rem: #{$base}rem;
-
 
 $box-model-mods: (
   "pad": "padding",
@@ -18,6 +14,9 @@ $edges: (
   "l": ("-left"),
   "r": ("-right")
 );
+
+$base: 3.2;
+$rem: #{$base}rem;
 
 $mod-amounts: ("-atomic": #{$base/8}rem,
   "-micro": #{$base/4}rem,
@@ -41,7 +40,7 @@ $highlight-tertiary: rgb(220, 220, 220);
 $highlight-quaternary: rgb(255, 255, 255);
 $highlight-quinary: rgb(230, 230, 230);
 
-$lowlight-primary: rgb(25, 25, 25);
+$lowlight-primary: rgb(2, 2, 2);
 $lowlight-secondary: rgb(39, 40, 34);
 $lowlight-tertiary: rgb(0, 51, 129);
 $lowlight-quaternary: rgb(100, 100, 100);
