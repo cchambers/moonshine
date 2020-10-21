@@ -1,18 +1,24 @@
 <template>
-  <div class="belk-coupon"
+  <div
+    class="belk-coupon"
     :id="id"
     :class="{ printable: print, 'to-spend': toSpend }"
-    :variant="variant">
+    :variant="variant"
+  >
     <div v-if="badge" class="coupon-type">{{ badge }}</div>
-    <div class="coupon-image" v-if="hasImage"><img :src="image" /></div>
+    <div class="coupon-image" v-if="hasImage">
+      <img :src="image" />
+    </div>
     <div class="coupon-wrapper">
       <template v-if="variant=='default'">
-        <div v-if="extra" class="coupon-extra" :class="headerColor"><span>extra</span></div>
+        <div v-if="extra" class="coupon-extra" :class="headerColor">
+          <span>extra</span>
+        </div>
         <div class="coupon-discount" :class="headerColor">
           <div class="actual">
             <span v-if="toSpend" class="dollar">$</span>
             {{discount}}
-            </div>
+          </div>
           <div v-if="!toSpend" class="coupon-secondary">
             <div class="s-t">%</div>
             <div class="s-b">off</div>
@@ -24,18 +30,15 @@
         </div>
       </template>
       <div v-if="eventName" class="coupon-event-name">{{eventName}}</div>
-      <div class="coupon-use-code"
-        v-if="code">{{codeText}}{{code}}</div>
-      <div class="coupon-use-code"
-        v-else>{{codeText}}</div>
+      <div class="coupon-use-code" v-if="code">{{codeText}}{{code}}</div>
+      <div class="coupon-use-code" v-else>{{codeText}}</div>
       <div v-if="ends" class="coupon-ends">{{ends}}</div>
       <div v-if="hasDescription" class="coupon-description">
         <slot name="description"></slot>
         <span v-html="description"></span>
-        <span class="coupon-details px-10" :hidden="!hasDetails && !print">
+        <span class="coupon-details px-12" :hidden="!hasDetails && !print">
           <template v-if="!print">
-            <sh-button variant="belk-link"
-              v-if="details"
+            <sh-button variant="belk-link" v-if="details"
               v-hammer:tap="openDetailsModal">Details</sh-button>
           </template>
           <div class="coupon-details-actual" v-else v-html="detailsHTML"></div>
@@ -46,25 +49,30 @@
         <slot name="details"></slot>
       </div>
       <div class="coupon-buttons" v-if="!print && link || !print && code">
-        <sh-button v-if="variant != 'offer' && code" variant="primary" toggle="once"
+        <sh-button
+          v-if="variant != 'offer' && code"
+          variant="primary"
+          toggle="once"
           ajax="/add-coupon/"
           active-text="Added"
           active-icon="check"
           :unique-id="addCouponId"
-          :ajax-success="code + '-data'">
-          Add Coupon
-        </sh-button>
-        <sh-button v-if="link" variant="primary" outline
-          @click="doLink">{{ linkText }}</sh-button>
+          :ajax-success="code + '-data'"
+        >Add Coupon</sh-button>
+        <sh-button v-if="link" variant="primary" outline @click="doLink">{{ linkText }}</sh-button>
       </div>
-      <div v-if="!code && !link && upc"
+      <div
+        v-if="!code && !link && upc"
         class="coupon-spacer"
         data-text="In-Store Only"
-        style="height: 10.5rem"></div>
-      <div v-else-if="!code && !link && !upc"
+        style="height: 10.5rem"
+      ></div>
+      <div
+        v-else-if="!code && !link && !upc"
         class="coupon-spacer"
         data-text="Applied Automatically at Checkout"
-        style="max-height: 18rem; margin-top: auto"></div>
+        style="max-height: 18rem; margin-top: auto"
+      ></div>
       <div v-if="upc" class="coupon-upc">
         <template v-if="print">
           <belk-barcode :code="upc"></belk-barcode>
@@ -77,13 +85,14 @@
           <belk-logo width="120" color="lowlight-primary"></belk-logo>
         </div>
       </div>
-      <div v-else-if="variant != 'offer' && !print && !upc && code"
+      <div
+        v-else-if="variant != 'offer' && !print && !upc && code"
         class="coupon-spacer"
-        style="max-height: 5.5rem;"
-        data-text="Online Only"></div>
+        style="padding-top: 13%; padding-bottom: 13%; height: 0;"
+        data-text="Online Only"
+      ></div>
       <div class="coupon-print" v-if="printable">
-        <sh-button variant="belk-link"
-          v-hammer:tap="printCoupon">Print Coupon</sh-button>
+        <sh-button variant="belk-link" v-hammer:tap="printCoupon">Print Coupon</sh-button>
       </div>
     </div>
     <div hidden aria-hidden="true" class="coupon-modal">
@@ -95,12 +104,12 @@
 
 <script>
 /* eslint-disable */
-import ComponentPrototype from '../../component-prototype';
+import ComponentPrototype from "../../component-prototype";
 
 export default {
   mixins: [ComponentPrototype],
 
-  name: 'BelkCoupon',
+  name: "BelkCoupon",
 
   props: {
     badge: String,
@@ -108,58 +117,64 @@ export default {
     eventName: String,
     code: {
       type: String,
-      default: '',
+      default: ""
     },
+    customLink: String,
     description: String,
     discount: Number,
     extra: {
       type: Boolean,
-      default: false,
+      default: false
     },
     ends: String,
     details: String,
+    detailsPrint: String,
     headerColor: String,
     inDrawer: {
       type: Boolean,
-      default: false,
+      default: false
     },
     image: String,
     link: String,
     noType: {
       type: Boolean,
-      default: false,
+      default: false
     },
     toSpend: Number,
+    pdf: String,
     print: {
       type: Boolean,
-      default: false,
+      default: false
     },
     variant: {
       type: String,
-      default: 'default',
+      default: "default"
     },
     spacerText: {
       type: String,
-      default: 'define [spacer-text]',
-    },
+      default: "define [spacer-text]"
+    }
   },
 
   computed: {
     linkText() {
-      return (this.inDrawer && this.variant === 'offer') ? 'Learn More' : 'Shop Now';
+      let text =
+        this.inDrawer && this.variant === "offer" ? "Learn More" : "Shop Now";
+      if (this.customLink) text = this.customLink;
+      return text;
     },
 
     codeText() {
       if (!this.code) {
         if (this.upc) {
-          return 'Scan Barcode in Store';
+          return "Scan Barcode in Store";
         } else {
-          return 'No Code Needed';
+          return "No Code Needed";
         }
       } else {
-        return 'Use Code: ';
+        return "Use Code: ";
       }
-    },
+    }
   },
 
   data() {
@@ -168,12 +183,12 @@ export default {
       hasDescription: false,
       hasDetails: false,
       hasImage: false,
-      hasEd: 'defaultid',
-      detailsHTML: '',
-      printId: 'defaultid',
+      hasEd: "defaultid",
+      detailsHTML: "",
+      printId: "defaultid",
       printable: false,
       id: undefined,
-      addCouponId: undefined,
+      addCouponId: undefined
     };
   },
 
@@ -191,8 +206,10 @@ export default {
       this.$bus.$on(`${this.code}-data`, this.handleAddCoupon);
       this.addCouponId = `ac-${this.uuid}`;
     }
-    if (this.$slots.details !== undefined || this.details) this.hasDetails = true;
-    if (this.$slots.description !== undefined || this.description) this.hasDescription = true;
+    if (this.$slots.details !== undefined || this.details)
+      this.hasDetails = true;
+    if (this.$slots.description !== undefined || this.description)
+      this.hasDescription = true;
     if (this.$slots.image !== undefined || this.image) this.hasImage = true;
   },
 
@@ -203,8 +220,8 @@ export default {
     }
 
     if (!this.inDrawer) {
-      if (this.badge && this.variant == 'default') {
-        if (this.badge.toLowerCase().indexOf('store') >= 0 && this.upc) {
+      if (this.badge && this.variant == "default") {
+        if (this.badge.toLowerCase().indexOf("store") >= 0 && this.upc) {
           this.printable = true;
           this.makePrintModal();
         }
@@ -212,7 +229,6 @@ export default {
     }
 
     if (this.print) {
-
     }
   },
 
@@ -222,46 +238,53 @@ export default {
     },
 
     printCoupon() {
-      this.$bus.$emit('open-modal', { id: this.printId });
+      this.$bus.$emit("open-modal", { id: this.printId });
     },
 
     openDetailsModal() {
-      this.$bus.$emit('open-modal', { id: this.detailsId });
+      this.$bus.$emit("open-modal", { id: this.detailsId });
     },
 
     handleAddCoupon(data) {
       if (data.cpnDetails) {
         if (data.cpnDetails.isApplied) this.toggleButton();
       } else {
-        this.log('COUPON: error in ajax response.');
+        this.log("COUPON: error in ajax response.");
       }
     },
 
     checkApplied() {
       if (window.SessionAttributes) {
-        if (window.SessionAttributes.hasOwnProperty('APPLIED_COUPONS') &&
-            Array.isArray(window.SessionAttributes.APPLIED_COUPONS) &&
-            window.SessionAttributes.APPLIED_COUPONS.indexOf(this.code.toUpperCase()) !== -1) {
-              this.toggleButton();
-            }
+        if (
+          window.SessionAttributes.hasOwnProperty("APPLIED_COUPONS") &&
+          Array.isArray(window.SessionAttributes.APPLIED_COUPONS) &&
+          window.SessionAttributes.APPLIED_COUPONS.indexOf(
+            this.code.toUpperCase()
+          ) !== -1
+        ) {
+          this.toggleButton();
+        }
       }
     },
 
     toggleButton() {
-      this.$bus.$emit('button-toggle', { which: this.addCouponId });
+      this.$bus.$emit("button-toggle", { which: this.addCouponId });
     },
 
     makeDetailsModal() {
       let self = this;
       const el = self.$refs.dtmodal;
-      let header = '';
+      let header = "";
       if (el) {
-        if (self.eventName) header += `<p class="bold px-18 margin-b-atomic">${self.eventName}</p>`;
-        if (self.description) header += `<p class="bold margin-b-atomic">${self.description}</p>`;
-        if (self.ends) header += `<p class="bold margin-b-atomic">${self.ends}</p>`;
+        if (self.eventName)
+          header += `<p class="bold px-18 margin-b-atomic">${self.eventName}</p>`;
+        if (self.description)
+          header += `<p class="bold margin-b-atomic">${self.description}</p>`;
+        if (self.ends)
+          header += `<p class="bold margin-b-atomic">${self.ends}</p>`;
         let html = `<sh-modal unique-id="${self.detailsId}" header="Offer Exclusions & Restrictions"><div>${header}${self.detailsHTML}</div></sh-modal>`;
         if (this.inDrawer) {
-          html = html.replace('<sh-modal', '<sh-modal no-events');
+          html = html.replace("<sh-modal", "<sh-modal no-events");
         }
         el.innerHTML += html;
       }
@@ -271,7 +294,16 @@ export default {
       let self = this;
       const el = self.$refs.ptmodal;
       if (el) {
-        const html = `<sh-modal printable unique-id="${self.printId}">
+        if (self.pdf) {
+          const html = `<sh-modal printable unique-id="${self.printId}">
+          <div>
+            ${self.pdf}
+          </div>
+        </sh-modal>`;
+          el.innerHTML += html;
+        } else {
+          const details = (self.detailsPrint) ? self.detailsPrint : self.detailsHTML;
+          const html = `<sh-modal printable unique-id="${self.printId}">
           <div>
             <belk-coupon print no-type
               extra="${self.extra}"
@@ -281,17 +313,16 @@ export default {
               ends="${self.ends}"
               upc="${self.upc}"
               description="${self.description}"
-              details="${self.detailsHTML}">
+              details="${details}">
             </belk-coupon>  
           </div>
         </sh-modal>`;
-        el.innerHTML += html;
+          el.innerHTML += html;
+        }
       }
-    },
-  },
-
+    }
+  }
 };
-
 </script>
 <style lang="scss" src="../style/default.scss"></style>
 <style lang="scss" src="../style/offer.scss"></style>
