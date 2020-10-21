@@ -157,8 +157,8 @@ export default {
     const self = this;
     if (typeof window.pageData === 'object') {
       const { offers } = window.pageData;
-      const startWith = JSON.parse(JSON.stringify([...offers]));
-      startWith.filter((item) => (item.promos));
+      let startWith = JSON.parse(JSON.stringify([...offers]));
+      startWith = startWith.filter((item) => (item.promos));
       this.setItems(startWith);
     }
     self.ariaID = `aria-${self.uniqueId}`;

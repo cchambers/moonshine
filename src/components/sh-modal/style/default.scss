@@ -81,6 +81,9 @@ sh-modal {
       margin-left: 0;
       max-width: 78rem;
     }
+    &.no-space {
+      margin-top: 0;
+    }
     &[size="double"] {
       max-width: 128rem;
     }
