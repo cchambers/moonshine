@@ -6,7 +6,7 @@
     :id="uniqueId"
     :aria-labelledby="ariaID"
     :aria-describedby="ariaDescID">
-    <div class="content" ref="content" :class="{ 'no-margin': noSpace }" :size="size">
+    <div class="content" ref="content" :class="{ 'no-space': noSpace }" :size="size">
       <div class="tab-lock" v-on:focus="modalButtonsFocus()" tabindex="0"></div>
       <div v-if="!hideHeader" class="header">
         <div v-if="header" class="modal-title">

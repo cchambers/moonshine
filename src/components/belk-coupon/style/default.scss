@@ -21,9 +21,9 @@ belk-coupon {
   &.printable {
     border-style: dashed;
     margin: 0 auto;
-    max-width: 300px;
+    max-width: 36rem;
     @media print {
-      margin-top: 100px;
+      margin-top: 10rem;
     }
     .coupon-spacer {
       display: none;
@@ -36,11 +36,11 @@ belk-coupon {
       margin-left: auto;
       margin-right: auto;
       width: 100%;
+      padding-bottom: 20%;
       .coupon-logo {
         width: 25%;
         display: flex;
         align-items: center;
-        padding-top: $little;
         position: absolute;
         right: 0;
       }
@@ -178,6 +178,7 @@ belk-coupon {
   .coupon-use-code {
     justify-content: flex-start;
     margin-bottom: 0;
+    line-height: 2.8rem;
     // .actual {
     //   font-weight: bold;
     //   color: $lowlight-primary;
@@ -238,6 +239,7 @@ belk-coupon {
   .coupon-ends {
     justify-content: flex-start;
     margin-bottom: 0;
+    font-size: 14px;
   }
 
   .coupon-upc {
