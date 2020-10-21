@@ -66,7 +66,13 @@
         data-text="Applied Automatically at Checkout"
         style="max-height: 18rem; margin-top: auto"></div>
       <div v-if="upc" class="coupon-upc">
-        <belk-barcode align-text="right" :code="upc"></belk-barcode>
+        <template v-if="print">
+          <belk-barcode :code="upc"></belk-barcode>
+        </template>
+        <template v-else>
+          <belk-barcode align-text="right" :code="upc"></belk-barcode>
+        </template>
+
         <div class="coupon-logo" v-if="print">
           <belk-logo width="120" color="lowlight-primary"></belk-logo>
         </div>
@@ -248,8 +254,12 @@ export default {
     makeDetailsModal() {
       let self = this;
       const el = self.$refs.dtmodal;
+      let header = '';
       if (el) {
-        let html = `<sh-modal unique-id="${self.detailsId}"><div>${self.detailsHTML}</div></sh-modal>`;
+        if (self.eventName) header += `<p class="bold px-18 margin-b-atomic">${self.eventName}</p>`;
+        if (self.description) header += `<p class="bold margin-b-atomic">${self.description}</p>`;
+        if (self.ends) header += `<p class="bold margin-b-atomic">${self.ends}</p>`;
+        let html = `<sh-modal unique-id="${self.detailsId}" header="Offer Exclusions & Restrictions"><div>${header}${self.detailsHTML}</div></sh-modal>`;
         if (this.inDrawer) {
           html = html.replace('<sh-modal', '<sh-modal no-events');
         }

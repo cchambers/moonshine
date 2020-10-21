@@ -48,7 +48,7 @@ sh-button {
       display: none;
     }
     .actual-text {
-      white-space: no-wrap;
+      white-space: nowrap;
     }
     &.active {
       background: $accent-tertiary;
