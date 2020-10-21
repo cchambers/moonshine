@@ -178,6 +178,7 @@ belk-coupon {
   .coupon-use-code {
     justify-content: flex-start;
     margin-bottom: 0;
+    line-height: 2.8rem;
     // .actual {
     //   font-weight: bold;
     //   color: $lowlight-primary;
@@ -238,6 +239,7 @@ belk-coupon {
   .coupon-ends {
     justify-content: flex-start;
     margin-bottom: 0;
+    font-size: 14px;
   }
 
   .coupon-upc {
