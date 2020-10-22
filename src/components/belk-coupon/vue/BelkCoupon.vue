@@ -65,7 +65,7 @@
         v-if="!code && !link && upc"
         class="coupon-spacer"
         data-text="In-Store Only"
-        style="height: 10.5rem"
+        style="min-height: 10.5rem"
       ></div>
       <div
         v-else-if="!code && !link && !upc"

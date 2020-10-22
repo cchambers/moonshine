@@ -193,7 +193,7 @@ belk-coupon {
 
     sh-button {
       margin: 0;
-      flex-basis: 50%;
+      flex-basis: auto;
       flex-grow: 1;
 
       button {
@@ -252,8 +252,13 @@ belk-coupon {
     height: 0;
     belk-barcode {
       position: absolute;
+      top: 0;
+      left: 0;
       height: 100%;
       width: 100%;
+      svg {
+        height: auto;
+      }
     }
   }
 
@@ -264,4 +269,8 @@ belk-coupon {
 
 offer-container .belk-coupon {
   height: 100%;
+}
+
+.IE11 .belk-coupon .belk-barcode svg {
+  top: -10px;
 }
