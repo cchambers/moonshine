@@ -96,12 +96,11 @@ export default {
     tapHandler(e) {
       if (this.disabled) return;
       // this.ripple(e);
-      if (this.toggle && !this.ajax) this.doToggle();
       if (this.ajax) {
         this.disabled = true;
         this.sendRequest();
       }
-      if (this.toggle) this.doToggle();
+      if (this.toggle && !this.ajax) this.doToggle();
       if (this.clickEvent) {
         e.preventDefault();
         this.$bus.$emit(this.clickEvent, {

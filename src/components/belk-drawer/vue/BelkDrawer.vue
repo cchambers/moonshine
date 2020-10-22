@@ -149,7 +149,9 @@ export default {
       } else {
         this.scrolling = false;
       }
-      this.$bus.$emit('update-offer-items', { which: 'promo-offers', data: val });
+      setTimeout(() => {
+        this.$bus.$emit('update-offer-items', { which: 'promo-offers', data: val });
+      }, 0);
     },
   },
 

@@ -4,6 +4,9 @@
   margin-left: -1rem;
   belk-coupon {
     width: 260px;
+    &:last-child {
+      margin-right: 1rem;
+    }
     .coupon-discount,
     .coupon-ends,
     .coupon-event-name,
