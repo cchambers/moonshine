@@ -29,7 +29,7 @@
           <div class="dt-subhead">{{ itemCount }}{{ buttonSubheadActive }}</div>
         </div>
         <div class="dt-icon">
-          <belk-icon name="arrow-up" width="16"></belk-icon>
+          <belk-icon name="arrow-up" width="16" height="20"></belk-icon>
         </div>
       </div>
       <div class="body"
