@@ -168,6 +168,9 @@ belk-coupon {
     line-height: 2.6rem;
     color: $lowlight-primary;
     border-bottom: 1px solid $lowlight-primary;
+    &:empty {
+      display: none;
+    }
   }
 
   .coupon-event-name {
