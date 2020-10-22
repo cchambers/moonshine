@@ -372,7 +372,8 @@ export default {
       }
     },
 
-    toggle() {
+    toggle(e) {
+      if (e) e.srcEvent.stopPropagation();
       if (this.active) {
         this.close();
       } else {
