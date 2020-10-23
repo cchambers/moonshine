@@ -17,6 +17,7 @@ belk-coupon {
   flex-direction: column;
   flex-grow: 1;
   flex-shrink: 0;
+  flex-basis: 100%;
   border: 1px solid $lowlight-primary;
   font-size: 16px;
   &.printable {
