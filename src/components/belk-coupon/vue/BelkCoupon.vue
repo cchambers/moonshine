@@ -113,7 +113,7 @@ export default {
     eventName: String,
     code: {
       type: String,
-      default: ""
+      default: '',
     },
     customLink: String,
     description: String,
@@ -144,19 +144,20 @@ export default {
     },
     variant: {
       type: String,
-      default: "default"
+      default: 'default'
     },
     spacerText: {
       type: String,
-      default: "define [spacer-text]"
+      default: 'define [spacer-text]'
     }
   },
 
   computed: {
     linkText() {
-      let text =
-        this.inDrawer && this.variant === 'offer' ? 'Learn More' : 'Shop Now';
+      let text = this.inDrawer && this.variant === 'offer'
+        ? 'Learn More' : 'Shop Now';
       if (this.customLink) text = this.customLink;
+      console.log(this.customLink);
       return text;
     },
 

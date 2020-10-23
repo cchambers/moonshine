@@ -16,6 +16,7 @@ belk-coupon {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+  flex-shrink: 0;
   border: 1px solid $lowlight-primary;
   font-size: 16px;
   &.printable {
@@ -69,11 +70,11 @@ belk-coupon {
     display: none;
     @include md {
       flex-grow: 3;
-      height: 100%;
       display: flex;
       &:not([data-text]) {
         margin-top: auto;
         margin-bottom: 0;
+        height: 0;
       }
       &[data-text] {
         background: $highlight-secondary;
@@ -100,7 +101,9 @@ belk-coupon {
     padding-top: $little;
     padding-bottom: 0;
     display: flex;
-    flex: 1 1 auto;
+    flex-grow: 1;
+    flex-shrink: 0;
+    flex-basis: auto;
     flex-direction: column;
     color: $lowlight-primary;
     justify-content: flex-start;
@@ -109,6 +112,9 @@ belk-coupon {
       display: flex;
       justify-content: center;
       margin-bottom: $little;
+      flex-grow: 0;
+      flex-shrink: 0;
+      flex-basis: auto;
     }
   }
 
@@ -268,8 +274,4 @@ belk-coupon {
   .coupon-details-actual {
     font-size: 12px;
   }
-}
-
-offer-container .belk-coupon {
-  height: 100%;
 }
