@@ -66,31 +66,6 @@ belk-coupon {
     }
   }
 
-
-  .coupon-spacer {
-    display: none;
-    @include md {
-      flex-grow: 3;
-      display: flex;
-      &:not([data-text]) {
-        margin-top: auto;
-        margin-bottom: 0;
-        height: 0;
-      }
-      &[data-text] {
-        background: $highlight-secondary;
-        font-size: 14px;
-        padding: $little;
-        align-items: center;
-        text-align: center;
-        &:after {
-          display: block;
-          content: attr(data-text);
-        }
-      }
-    }
-  }
-
   .coupon-image {
     img {
       width: 100%;
@@ -116,6 +91,30 @@ belk-coupon {
       flex-grow: 0;
       flex-shrink: 0;
       flex-basis: auto;
+    }
+
+    .coupon-spacer {
+      display: none;
+      @include md {
+        flex-grow: 3;
+        display: flex;
+        &:not([data-text]) {
+          margin-top: auto;
+          margin-bottom: 0;
+          height: 0;
+        }
+        &[data-text] {
+          background: $highlight-secondary;
+          font-size: 14px;
+          padding: $little;
+          align-items: center;
+          text-align: center;
+          &:after {
+            display: block;
+            content: attr(data-text);
+          }
+        }
+      }
     }
   }
 
@@ -256,16 +255,24 @@ belk-coupon {
     margin-left: -0.5em;
     margin-right: -0.5em;
     margin-top: -0.5em;
+    margin-bottom: 0;
     height: 0;
-    padding-bottom: 30%;
     position: relative;
     height: 0;
+    padding-bottom: 10rem;
+    @include md {
+      padding-bottom: 28%;
+      margin-bottom: $little;
+    }
     belk-barcode {
       position: absolute;
       top: 0;
-      left: 0;
       height: 100%;
       width: 100%;
+      max-width: 30rem;
+      @include md {
+        max-width: auto;
+      }
       svg {
         height: auto;
       }
