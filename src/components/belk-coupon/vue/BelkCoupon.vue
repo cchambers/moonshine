@@ -35,7 +35,7 @@
       <div v-if="hasDescription" class="coupon-description">
         <slot name="description"></slot>
         <span v-html="description"></span>
-        <span class="coupon-details px-12" :hidden="!hasDetails && !print">
+        <span class="coupon-details-x px-12" :hidden="!hasDetails && !print">
           <template v-if="!print">
             <sh-button variant="belk-link" v-if="details"
               v-hammer:tap="openDetailsModal">Details</sh-button>
@@ -84,10 +84,10 @@
       <div
         v-else-if="variant != 'offer' && !print && !upc && code"
         class="coupon-spacer"
-        style="padding-top: 13%; padding-bottom: 13%; height: 0;"
+        style="padding-top: 12%; padding-bottom: 13%; height: 0;"
         data-text="Online Only"
       ></div>
-      <div class="coupon-print" v-if="printable">
+      <div class="coupon-print low-off" v-if="printable">
         <sh-button variant="belk-link" v-hammer:tap="printCoupon">Print Coupon</sh-button>
       </div>
     </div>
@@ -157,7 +157,6 @@ export default {
       let text = this.inDrawer && this.variant === 'offer'
         ? 'Learn More' : 'Shop Now';
       if (this.customLink) text = this.customLink;
-      console.log(this.customLink);
       return text;
     },
 
@@ -228,9 +227,6 @@ export default {
           this.makePrintModal();
         }
       }
-    }
-
-    if (this.print) {
     }
   },
 
