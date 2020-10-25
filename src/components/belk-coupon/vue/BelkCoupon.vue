@@ -87,7 +87,7 @@
         style="padding-top: 12%; padding-bottom: 13%; height: 0;"
         data-text="Online Only"
       ></div>
-      <div class="coupon-print" v-if="printable">
+      <div class="coupon-print low-off" v-if="printable">
         <sh-button variant="belk-link" v-hammer:tap="printCoupon">Print Coupon</sh-button>
       </div>
     </div>
