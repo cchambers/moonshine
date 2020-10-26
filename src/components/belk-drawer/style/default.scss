@@ -33,7 +33,7 @@ $buttonWidth: $rem;
   }
   &[offscreen] {
     .content {
-      transform: translateZ(0) translateY(125%) !important;
+      transform: translateZ(0) translateY(150%) !important;
     }
   }
   &.active {
@@ -104,7 +104,7 @@ $buttonWidth: $rem;
       position: absolute;
       top: 0;
       left: 50%;
-      transform: translateX(-50%) translateY(calc(-100% + 0.5px));
+      transform: translateX(-50%) translateY(-100%);
       border: 1px solid transparent;
       border-bottom: none;
       background: $lowlight-secondary;
@@ -136,8 +136,9 @@ $buttonWidth: $rem;
     }
 
     .content {
-      position: absolute;
+      position: fixed;
       bottom: 0;
+      left: 0;
       margin: 0;
       max-width: 100%;
       transform: translateY(100%) translateZ(0);
@@ -222,7 +223,6 @@ $buttonWidth: $rem;
 
   .belk-coupon {
     width: 260px;
-    height: 100%;
 
     .coupon-description {
       order: 2;

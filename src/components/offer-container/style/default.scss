@@ -2,11 +2,12 @@
   display: flex;
   flex-wrap: wrap;
   belk-coupon {
+    display: flex;
     flex-grow: 0;
     flex-shrink: 0;
     margin-left: 1rem;
   }
-  .coupon-details {
+  .coupon-details-x {
     margin-left: 0.5rem;
     sh-button {
       font-size: 8px;

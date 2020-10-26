@@ -5,6 +5,7 @@
       :in-drawer="item.inDrawer"
       :badge="item.badge"
       :code="item.code"
+      :custom-link="item.customLink"
       :discount="item.discount"
       :description="item.description"
       :details="item.details"
