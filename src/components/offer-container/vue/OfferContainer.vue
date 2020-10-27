@@ -9,6 +9,7 @@
       :discount="item.discount"
       :description="item.description"
       :details="item.details"
+      :details-print="item.detailsPrint"
       :ends="item.ends"
       :event-name="item.eventName"
       :extra="item.extra"
