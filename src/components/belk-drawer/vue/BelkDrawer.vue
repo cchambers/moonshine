@@ -159,9 +159,11 @@ export default {
     const self = this;
     if (typeof window.pageData === 'object') {
       const { offers } = window.pageData;
-      let startWith = JSON.parse(JSON.stringify([...offers]));
-      startWith = startWith.filter((item) => (item.promos));
-      this.setItems(startWith);
+      if (offers.length) {
+        let startWith = JSON.parse(JSON.stringify([...offers]));
+        startWith = startWith.filter((item) => (item.promos));
+        this.setItems(startWith);
+      }
     }
     self.ariaID = `aria-${self.uniqueId}`;
     self.ariaHeaderID = `aria-header-${self.uniqueId}`;
