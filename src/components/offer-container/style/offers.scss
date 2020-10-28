@@ -25,5 +25,11 @@
     @include lg {
       width: calc(25% - 1rem);
     }
+
+    .belk-coupon {
+      .coupon-description {
+        order: 2;
+      }
+    }
   }
 }
