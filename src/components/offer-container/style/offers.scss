@@ -6,11 +6,13 @@
   .coupon-event-name,
   .coupon-use-code,
   .coupon-upc,
-  .coupon-print {
+  .coupon-print,
+  .coupon-spacer {
     max-height: 0;
     overflow: hidden;
     margin-top: 0;
     margin-bottom: 0;
+    padding: 0;
   }
   .coupon-extra {
     display: none;
