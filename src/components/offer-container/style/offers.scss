@@ -6,8 +6,7 @@
   .coupon-event-name,
   .coupon-use-code,
   .coupon-upc,
-  .coupon-print,
-  .coupon-spacer {
+  .coupon-print {
     max-height: 0;
     overflow: hidden;
     margin-top: 0;
@@ -31,6 +30,9 @@
     .belk-coupon {
       .coupon-description {
         order: 2;
+      }
+      .coupon-spacer {
+        order: 3;
       }
     }
   }

@@ -56,6 +56,7 @@
           v-if="variant != 'offer' && code"
           variant="primary"
           toggle="once"
+          class="coupon-add-button"
           :ajax="ajaxUrl"
           ref="addButton"
           active-text="Added"
@@ -209,7 +210,6 @@ export default {
     this.detailsId = `em-${this.uuid}`;
     this.printId = `pr-${this.uuid}`;
     if (this.code) {
-      this.checkApplied();
       this.$bus.$on(`${this.code}-data`, this.handleAddCoupon);
       this.addCouponId = `ac-${this.uuid}`;
     }
@@ -226,6 +226,8 @@ export default {
       this.detailsHTML = this.details;
       this.makeDetailsModal();
     }
+
+    if (this.code && !this.print) this.checkApplied();
 
     if (!this.inDrawer) {
       if (this.badge && this.variant == 'default') {
@@ -276,7 +278,7 @@ export default {
           Array.isArray(window.SessionAttributes.APPLIED_COUPONS) &&
           window.SessionAttributes.APPLIED_COUPONS.indexOf(
             this.code.toUpperCase()
-          ) !== -1
+          ) >= 0
         ) {
           this.toggleButton();
         }
@@ -284,7 +286,8 @@ export default {
     },
 
     toggleButton() {
-      this.$bus.$emit('button-toggle', { which: this.addCouponId });
+      this.$bus.$emit(`${this.addCouponId}-button-toggle`);
+      console.log('trying toggle', `${this.addCouponId}-button-toggle`, this.$el);
     },
 
     makeDetailsModal() {

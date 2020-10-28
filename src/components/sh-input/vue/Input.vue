@@ -11,8 +11,8 @@
 </template>
 
 <script>
-import InputPrototype from '../../input-prototype';
 import ComponentPrototype from '../../component-prototype';
+import InputPrototype from '../../input-prototype';
 import ValidationBehavior from '../../validation-behavior';
 
 export default {

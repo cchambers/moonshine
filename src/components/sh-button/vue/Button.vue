@@ -74,6 +74,7 @@ export default {
     if (this.ariaRole) this.isRole = this.ariaRole;
 
     this.buttonEl.addEventListener('click', this.tapHandler);
+    this.$bus.$on(`${this.uniqueId}-button-toggle`, this.doToggle);
   },
 
   methods: {
