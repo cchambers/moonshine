@@ -30,34 +30,36 @@ belk-coupon {
     }
   }
   &.printable {
-    border-style: dashed;
-    margin: 0 auto;
-    max-width: 36rem;
-    @media print {
-      margin-top: 10rem;
-    }
-    .coupon-spacer {
-      display: none;
-    }
-    .coupon-upc {
-      display: flex;
-      border: none;
-      height: auto;
-      margin-top: $little;
-      margin-left: auto;
-      margin-right: auto;
-      width: 100%;
-      padding-bottom: 20%;
-      .coupon-logo {
-        width: 25%;
-        display: flex;
-        align-items: center;
-        position: absolute;
-        right: 0;
+    .coupon-warpper {
+      border-style: dashed;
+      margin: 0 auto;
+      max-width: 36rem;
+      @media print {
+        margin-top: 10rem;
       }
-      belk-barcode {
-        width: 70%;
-        left: 0;
+      .coupon-spacer {
+        display: none !important;
+      }
+      .coupon-upc {
+        display: flex;
+        border: none;
+        height: auto;
+        margin-top: $little;
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
+        padding-bottom: 20%;
+        .coupon-logo {
+          width: 25%;
+          display: flex;
+          align-items: center;
+          position: absolute;
+          right: 0;
+        }
+        belk-barcode {
+          width: 70%;
+          left: 0;
+        }
       }
     }
   }
