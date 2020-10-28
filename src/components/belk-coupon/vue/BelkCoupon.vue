@@ -287,7 +287,6 @@ export default {
 
     toggleButton() {
       this.$bus.$emit(`${this.addCouponId}-button-toggle`);
-      console.log('trying toggle', `${this.addCouponId}-button-toggle`, this.$el);
     },
 
     makeDetailsModal() {
