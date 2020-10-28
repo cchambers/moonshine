@@ -2,18 +2,22 @@
   <div
     class="belk-coupon"
     :id="id"
-    :class="{ printable: print, 'to-spend': toSpend }"
+    :class="{ printable: print, 'to-spend': toSpend, 'has-code': hasCode }"
     :variant="variant">
     <div v-if="badge" class="coupon-type">{{ badge }}</div>
-    <div class="coupon-image" v-if="hasImage">
+    <div v-hammer:tap="doLink" class="coupon-image" v-if="hasImage">
       <img :src="image" />
     </div>
     <div class="coupon-wrapper">
       <template v-if="variant=='default'">
-        <div v-if="extra" class="coupon-extra" :class="headerColor">
+        <div v-if="extra" class="coupon-extra"
+          v-hammer:tap="clickAdd"
+          :class="headerColor">
           <span>extra</span>
         </div>
-        <div class="coupon-discount" :class="headerColor">
+        <div class="coupon-discount"
+          v-hammer:tap="clickAdd"
+          :class="headerColor">
           <div class="actual">
             <span v-if="toSpend" class="dollar">$</span>
             {{discount}}
@@ -53,6 +57,7 @@
           variant="primary"
           toggle="once"
           :ajax="ajaxUrl"
+          ref="addButton"
           active-text="Added"
           active-icon="check"
           :unique-id="addCouponId"
@@ -63,7 +68,7 @@
         v-if="!code && !link && upc"
         class="coupon-spacer"
         data-text="In-Store Only"
-        style="min-height: 10.5rem"></div>
+        style="min-height: 7.5rem"></div>
       <div
         v-else-if="!code && !link && !upc"
         class="coupon-spacer"
@@ -183,6 +188,7 @@ export default {
       added: true,
       hasDescription: false,
       hasDetails: false,
+      hasCode: false,
       hasImage: false,
       hasEd: 'defaultid',
       detailsHTML: '',
@@ -212,6 +218,7 @@ export default {
     if (this.$slots.description !== undefined || this.description)
       this.hasDescription = true;
     if (this.$slots.image !== undefined || this.image) this.hasImage = true;
+    if (this.code) this.hasCode = true;
   },
 
   mounted() {
@@ -231,8 +238,15 @@ export default {
   },
 
   methods: {
+    clickAdd() {
+      if (this.code) {
+        const target = this.$refs.addButton.querySelector('button');
+        if (target) target.click()
+      }
+    },
+
     doLink() {
-      window.location.href = this.link;
+      if (this.link) window.location.href = this.link;
     },
 
     printCoupon() {
