@@ -2,7 +2,7 @@
   <div
     class="belk-coupon"
     :id="id"
-    :class="{ printable: print, 'to-spend': toSpend }"
+    :class="{ printable: print, 'to-spend': toSpend, 'has-code': hasCode }"
     :variant="variant">
     <div v-if="badge" class="coupon-type">{{ badge }}</div>
     <div v-hammer:tap="doLink" class="coupon-image" v-if="hasImage">
@@ -218,6 +218,7 @@ export default {
     if (this.$slots.description !== undefined || this.description)
       this.hasDescription = true;
     if (this.$slots.image !== undefined || this.image) this.hasImage = true;
+    if (this.code) this.hasCode = true;
   },
 
   mounted() {

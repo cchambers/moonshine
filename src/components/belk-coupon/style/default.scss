@@ -20,6 +20,12 @@ belk-coupon {
   flex-basis: 100%;
   border: 1px solid $lowlight-primary;
   font-size: 16px;
+  &.has-code {
+    .coupon-discount,
+    .coupon-extra {
+      cursor: pointer;
+    }
+  }
   &.printable {
     border-style: dashed;
     margin: 0 auto;
