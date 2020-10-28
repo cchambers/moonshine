@@ -25,6 +25,9 @@ belk-coupon {
     .coupon-extra {
       cursor: pointer;
     }
+    sh-button + sh-button {
+      margin-top: $little;
+    }
   }
   &.printable {
     border-style: dashed;
@@ -228,9 +231,7 @@ belk-coupon {
         }
       }
 
-      +sh-button {
-        margin-top: $little;
-      }
+      
     }
   }
 
