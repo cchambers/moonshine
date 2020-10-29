@@ -17,6 +17,7 @@
       :image="item.image"
       :link="item.link"
       :printable="item.printable"
+      :spacer-text="item.spacerText"
       :upc="item.upc"></belk-coupon>
       <div v-if="items.length == 0" class="offer-container-banner">
         {{ noOffersText }}

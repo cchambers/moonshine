@@ -73,8 +73,8 @@
       <div
         v-else-if="!code && !link && !upc"
         class="coupon-spacer"
-        data-text="Applied Automatically at Checkout"
-        style="max-height: 18rem; margin-top: auto"
+        :data-text="spacerText"
+        style="height: 16.5rem; margin-top: auto"
       ></div>
       <div v-if="upc" class="coupon-upc">
         <template v-if="print">
@@ -90,7 +90,7 @@
       <div
         v-else-if="variant != 'offer' && !print && !upc && code"
         class="coupon-spacer"
-        style="padding-top: 12%; padding-bottom: 13%; height: 0;"
+        style="padding-top: 12%; padding-bottom: 13%; max-height: 0 !important"
         data-text="Online Only"
       ></div>
       <div class="coupon-print low-off" v-if="printable">
@@ -154,7 +154,7 @@ export default {
     },
     spacerText: {
       type: String,
-      default: 'define [spacer-text]'
+      default: 'Applied Automatically at Checkout'
     }
   },
 
