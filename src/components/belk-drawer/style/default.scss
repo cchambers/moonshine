@@ -118,10 +118,12 @@ $buttonWidth: $rem;
       .dt-headline {
         font-size: 1.8rem;
         line-height: 2rem;
+        white-space: pre;
       }
       .dt-subhead {
         font-size: 1.2rem;
         line-height: 1.6rem;
+        white-space: pre;
       }
 
       .dt-icon {
