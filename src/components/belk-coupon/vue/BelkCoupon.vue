@@ -5,7 +5,7 @@
     :class="{ printable: print, 'to-spend': toSpend, 'has-code': hasCode }"
     :variant="variant">
     <div v-if="badge" class="coupon-type">{{ badge }}</div>
-    <div v-hammer:tap="doLink" class="coupon-image" v-if="hasImage">
+    <div v-hammer:tap="addOrLink" class="coupon-image" v-if="hasImage">
       <img :src="image" />
     </div>
     <div class="coupon-wrapper">
@@ -240,11 +240,18 @@ export default {
   },
 
   methods: {
-    clickAdd() {
+
+    addOrLink() {
       if (this.code) {
-        const target = this.$refs.addButton.querySelector('button');
-        if (target) target.click()
+        this.clickAdd();
+      } else {
+        this.doLink();
       }
+    },
+
+    clickAdd() {
+      const target = this.$refs.addButton.querySelector('button');
+      if (target) target.click()
     },
 
     doLink() {
