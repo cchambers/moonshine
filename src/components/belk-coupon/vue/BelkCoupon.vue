@@ -5,18 +5,18 @@
     :class="{ printable: print, 'to-spend': toSpend, 'has-code': hasCode }"
     :variant="variant">
     <div v-if="badge" class="coupon-type">{{ badge }}</div>
-    <div v-hammer:tap="addOrLink" class="coupon-image" v-if="hasImage">
+    <div @click="addOrLink" class="coupon-image" v-if="hasImage">
       <img :src="image" />
     </div>
     <div class="coupon-wrapper">
       <template v-if="variant=='default'">
         <div v-if="extra" class="coupon-extra"
-          v-hammer:tap="clickAdd"
+          @click="clickAdd"
           :class="headerColor">
           <span>extra</span>
         </div>
         <div class="coupon-discount"
-          v-hammer:tap="clickAdd"
+          @click="clickAdd"
           :class="headerColor">
           <div class="actual">
             <span v-if="toSpend" class="dollar">$</span>
@@ -42,7 +42,7 @@
         <span class="coupon-details-x px-12" :hidden="!hasDetails && !print">
           <template v-if="!print">
             <sh-button variant="belk-link" v-if="details"
-              v-hammer:tap="openDetailsModal">Details</sh-button>
+              @click="openDetailsModal">Details</sh-button>
           </template>
           <div class="coupon-details-actual" v-else v-html="detailsHTML"></div>
         </span>
@@ -255,14 +255,20 @@ export default {
     },
 
     doLink() {
-      if (this.link) window.location.href = this.link;
+      if (this.link) {
+        if (this.link.startsWith('/')) {
+          window.location.href = this.link;
+        } else {
+          window.open(this.link, '_blank');
+        }
+      }
     },
 
     printCoupon() {
       this.$bus.$emit('open-modal', { id: this.printId });
     },
 
-    openDetailsModal() {
+    openDetailsModal(e) {
       this.$bus.$emit('open-modal', { id: this.detailsId });
     },
 

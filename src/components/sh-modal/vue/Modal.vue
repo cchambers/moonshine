@@ -220,12 +220,12 @@ export default {
             self.$bus.$emit('modal-rejected', self.uniqueId);
             // }
           }
-          this.close();
+          this.close(true, 'close-modals event');
         }
       });
 
       self.$bus.$on('modal-opening', () => {
-        self.close(false);
+        self.close(false, 'modal-opening');
       });
 
       self.$bus.$on('open-modal', (data) => {
@@ -238,7 +238,7 @@ export default {
         const which = data.id;
         if (which === self.uniqueId) {
           if (params === 'close') {
-            self.close();
+            self.close(true, 'update-modal event');
           } else {
             self.paramsHandler(params);
           }
@@ -256,7 +256,7 @@ export default {
     hashHandler(data) {
       const { hash, event } = data;
       if (hash === '') {
-        if (this.active) this.close(false);
+        if (this.active) this.close(false, 'hash handler');
       } else if (hash === this.uniqueId) {
         if (event) event.preventDefault();
         this.open();
@@ -311,7 +311,8 @@ export default {
       }
     },
 
-    close(clearHash = true) {
+    close(clearHash = true, from) {
+      if (from && window.modalDebug) this.log(`modal close from: ${from}`);
       if (this.active) {
         if (!self.noEvents) this.$bus.$emit('modal-closing', this.uniqueId);
         document.documentElement.classList.remove('sh-modal-open');
@@ -411,7 +412,7 @@ export default {
       for (let y = 0; y < self.closeTriggers.length; y += 1) {
         const el = self.closeTriggers[y];
         el.addEventListener('click', () => {
-          self.$bus.$emit('close-modals');
+          if (!self.noEvents) self.$bus.$emit('close-modals');
         });
       }
     },
