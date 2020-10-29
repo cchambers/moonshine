@@ -186,6 +186,7 @@ $buttonWidth: $rem;
     overflow-y: auto;
     position: relative;
     scroll-behavior: smooth;
+    overscroll-behavior: contain;
     .arrow {
       position: fixed;
       top: 0;
