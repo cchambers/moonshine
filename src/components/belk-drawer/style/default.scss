@@ -44,7 +44,7 @@ $buttonWidth: $rem;
     }
   }
   &[drawer="bottom"] {
-    height: 100vh;
+    height: 100%;
     transform: translateY(0) translateZ(0);
     transition: none !important;
     max-height: 100vh;
