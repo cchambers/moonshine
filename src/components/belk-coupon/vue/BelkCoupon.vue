@@ -255,7 +255,13 @@ export default {
     },
 
     doLink() {
-      if (this.link) window.location.href = this.link;
+      if (this.link) {
+        if (this.link.startsWith('/')) {
+          window.location.href = this.link;
+        } else {
+          window.open(this.link, '_blank');
+        }
+      }
     },
 
     printCoupon() {

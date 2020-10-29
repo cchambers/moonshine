@@ -312,7 +312,7 @@ export default {
     },
 
     close(clearHash = true, from) {
-      if (from && window.modalDebug) this.log(`from: ${from}`);
+      if (from && window.modalDebug) this.log(`modal close from: ${from}`);
       if (this.active) {
         if (!self.noEvents) this.$bus.$emit('modal-closing', this.uniqueId);
         document.documentElement.classList.remove('sh-modal-open');
