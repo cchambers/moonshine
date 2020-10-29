@@ -33,7 +33,6 @@
         </div>
       </div>
       <div class="body"
-        :class="{ 'hide-body': (!active && !attractMode) }"
         :id="ariaDescID"
         ref="body">
         <button aria-controls="promo-offers"
