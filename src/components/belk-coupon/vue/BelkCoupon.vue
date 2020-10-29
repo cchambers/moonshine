@@ -269,7 +269,6 @@ export default {
     },
 
     openDetailsModal(e) {
-      console.log(e);
       this.$bus.$emit('open-modal', { id: this.detailsId });
     },
 
