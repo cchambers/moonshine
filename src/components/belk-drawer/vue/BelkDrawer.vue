@@ -199,7 +199,6 @@ export default {
 
     watchedEventHandler(e) {
       if (this.elementContains(this.$el, e.target)) return;
-      console.log(e.target);
       this.close(true, 'WATCHED');
     },
 
