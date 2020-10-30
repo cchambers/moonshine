@@ -90,6 +90,20 @@
             Stall time between slides to allow for transitions.
           </td>
         </tr>
+        <tr>
+          <td>closable</td>
+          <td>Boolean</td>
+          <td>
+            Adds a close button to the banner.
+          </td>
+        </tr>
+        <tr>
+          <td>close-param</td>
+          <td>String</td>
+          <td>
+            LocalStorage parameter to pre-close the banner.
+          </td>
+        </tr>
       </tbody>
     </table>
 
@@ -137,9 +151,9 @@
 
   <section id="examples">
     <h2>Examples</h2>
-    <h3>Background Control</h3>
+    <h3>Background Control + closable</h3>
     <div class="pad-b">
-      <sh-banner variant="primary" backgrounds="brand-mysticpurple, brand-wildfuscia, brand-classicblue">
+      <sh-banner closable variant="primary" class="highlight-primary" backgrounds="brand-mysticpurple, brand-wildfuscia, brand-classicblue">
         <sh-carousel id="pre-header-carousel" variant="primary" autoplay="6000" hide-controls>
           <ul slot="slides">
             <li>

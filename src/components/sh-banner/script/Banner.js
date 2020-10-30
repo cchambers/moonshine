@@ -29,6 +29,7 @@ export default {
       type: String,
       default: '400',
     },
+    closable: Boolean,
     revealEvent: {
       type: String,
     },
@@ -70,6 +71,10 @@ export default {
       this.findCarousel();
       if (this.backgrounds) this.configureBackgrounds();
       this.loadImages();
+    },
+
+    closeBanner() {
+      this.$el.classList.add('closed');
     },
 
     findCarousel() {
