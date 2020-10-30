@@ -30,6 +30,9 @@ sh-banner {
       height: 100%;
       sh-button {
         height: 100%;
+        &:hover {
+          opacity: 0.8;
+        }
       }
       .sh-button {
         width: 3rem;
