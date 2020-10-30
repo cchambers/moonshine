@@ -8,8 +8,8 @@ Vue.config.productionTip = false;
 
 /* IE-11 Polyfills */
 // import 'document-register-element/build/document-register-element';
-import './assets/script/polyfills.js'
-import 'whatwg-fetch'
+import './assets/script/polyfills.js';
+import 'whatwg-fetch';
 
 /* HammerJS (touch support) */
 import {
