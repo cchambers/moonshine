@@ -97,7 +97,7 @@ $buttonWidth: $rem;
     }
 
     .drawer-toggle {
-      position: fixed;
+      position: absolute;
       top: 0;
       left: 50%;
       transform: translateX(-50%) translateY(-100%) translateZ(0);
@@ -310,4 +310,9 @@ $buttonWidth: $rem;
   100% {
     transform: translateY(75%) translateZ(0);
   }
+}
+
+
+.IE11 .belk-drawer button.arrow {
+  display: none !important;
 }
