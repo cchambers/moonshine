@@ -45,13 +45,13 @@ $brand-orange: rgb(255, 127, 64);
 $brand-red: rgb(237, 28, 36);
 $brand-pink: rgb(221, 23, 129);
 $brand-purple: rgb(100, 77, 144);
-
+// END BRAND VARS
+// BEGIN MARKETING VARS
 $seasonal-primary: $brand-green;
 $seasonal-secondary: $brand-orange;
 $seasonal-tertiary: rgb(219, 0, 50);
 $brand-wildfuscia: $brand-pink;
-// END BRAND VARS
-
+// END MARKETING VARS
 // THEME VARS
 $highlight-primary: rgb(254, 254, 254);
 $highlight-secondary: rgb(245, 245, 245);
@@ -70,11 +70,11 @@ $accent-secondary: rgb(6, 103, 160);
 $accent-tertiary: rgb(157, 208, 230);
 $accent-quaternary: rgb(129, 177, 210);
 $accent-quinary: $brand-teal;
+// END THEME VARS
 
 $state-success: rgb(77, 122, 57);
 $state-caution: rgb(255, 245, 169);
 $state-error: rgb(204, 0, 0);
-// END THEME VARS
 
 $ease: cubic-bezier(0.4, 0, 0.2, 1);
 $decel: cubic-bezier(0, 0, 0.2, 1);
@@ -110,6 +110,7 @@ $colors: (
   "brand-red": $brand-red,
   "brand-pink": $brand-pink,
   "brand-purple": $brand-purple,
+  "brand-wildfuscia": $brand-pink,
   "seasonal-primary": $seasonal-primary,
   "seasonal-secondary": $seasonal-secondary,
   "seasonal-tertiary": $seasonal-tertiary
