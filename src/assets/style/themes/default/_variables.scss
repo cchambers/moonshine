@@ -33,7 +33,26 @@ $big: #{$base*1.5}rem;
 $huge: #{$base*2}rem;
 $mega: #{$base*2.5}rem;
 
-
+// BEGIN BRAND VARS
+$brand-black: rgb(0, 0, 0);
+$brand-darkblue: rgb(20,55,125);
+$brand-blue:  rgb(0,118,190);
+$brand-teal: rgb(0,163,158);
+$brand-green: rgb(149, 201, 61);
+$brand-lime: rgb(196,216,46); 
+$brand-yellow: rgb(255,214,0);
+$brand-orange: rgb(255, 127, 64);
+$brand-red: rgb(237, 28, 36);
+$brand-pink: rgb(221, 23, 129);
+$brand-purple: rgb(100, 77, 144);
+// END BRAND VARS
+// BEGIN MARKETING VARS
+$seasonal-primary: $brand-green;
+$seasonal-secondary: $brand-orange;
+$seasonal-tertiary: rgb(219, 0, 50);
+$brand-wildfuscia: $brand-pink;
+// END MARKETING VARS
+// THEME VARS
 $highlight-primary: rgb(254, 254, 254);
 $highlight-secondary: rgb(245, 245, 245);
 $highlight-tertiary: rgb(220, 220, 220);
@@ -41,33 +60,27 @@ $highlight-quaternary: rgb(255, 255, 255);
 $highlight-quinary: rgb(230, 230, 230);
 
 $lowlight-primary: rgb(2, 2, 2);
-$lowlight-secondary: rgb(39, 40, 34);
-$lowlight-tertiary: rgb(0, 51, 129);
+$lowlight-secondary: rgb(45, 45, 45);
+$lowlight-tertiary: $brand-darkblue;
 $lowlight-quaternary: rgb(100, 100, 100);
 $lowlight-quinary: rgb(76, 76, 76);
 
-$accent-primary: rgb(0, 115, 207);
+$accent-primary: $brand-blue;
 $accent-secondary: rgb(6, 103, 160);
 $accent-tertiary: rgb(157, 208, 230);
 $accent-quaternary: rgb(129, 177, 210);
-$accent-quinary: rgb(59, 221, 174);
+$accent-quinary: $brand-teal;
+// END THEME VARS
 
-$brand-belkblue: #0033a1;
-$brand-wildfuscia: #df1783;
-$brand-classicblue: #0071ce;
-$brand-deepteal: #00afa8;
-$brand-festivelime: #c2d500;
-$brand-goldenhour: #ffda00;
-$brand-peachyred: #fd495c;
-$brand-mysticpurple: #773dbd;
-
-$state-success: #4D7A39;
+$state-success: rgb(77, 122, 57);
+$state-caution: rgb(255, 245, 169);
+$state-error: rgb(204, 0, 0);
 
 $ease: cubic-bezier(0.4, 0, 0.2, 1);
 $decel: cubic-bezier(0, 0, 0.2, 1);
 $accel: cubic-bezier(0.4, 0, 1, 1);
 
-$docsGradient: linear-gradient(45deg, var(--brand-classicblue), var(--brand-deepteal));
+$docsGradient: linear-gradient(45deg, var(--brand-blue), var(--brand-teal));
 
 $colors: (
   "transparent": transparent,
@@ -86,14 +99,21 @@ $colors: (
   "accent-tertiary": $accent-tertiary,
   "accent-quaternary": $accent-quaternary,
   "accent-quinary": $accent-quinary,
-  "brand-belkblue": #0033a1,
-  "brand-wildfuscia": #df1783,
-  "brand-classicblue": #0071ce,
-  "brand-deepteal": #00afa8,
-  "brand-festivelime": #c2d500,
-  "brand-goldenhour": #ffda00,
-  "brand-peachyred": #fd495c,
-  "brand-mysticpurple": #773dbd,
+  "brand-black": $brand-black,
+  "brand-darkblue": $brand-darkblue,
+  "brand-blue": $brand-blue,
+  "brand-teal": $brand-teal,
+  "brand-green": $brand-green,
+  "brand-lime": $brand-lime,
+  "brand-yellow": $brand-yellow,
+  "brand-orange": $brand-orange,
+  "brand-red": $brand-red,
+  "brand-pink": $brand-pink,
+  "brand-purple": $brand-purple,
+  "brand-wildfuscia": $brand-pink,
+  "seasonal-primary": $seasonal-primary,
+  "seasonal-secondary": $seasonal-secondary,
+  "seasonal-tertiary": $seasonal-tertiary
 );
 
 $libBreak: 800px;

@@ -2,18 +2,22 @@
   <div
     class="belk-coupon"
     :id="id"
-    :class="{ printable: print, 'to-spend': toSpend }"
+    :class="{ printable: print, 'to-spend': toSpend, 'has-code': hasCode }"
     :variant="variant">
     <div v-if="badge" class="coupon-type">{{ badge }}</div>
-    <div class="coupon-image" v-if="hasImage">
+    <div @click="addOrLink" class="coupon-image" v-if="hasImage">
       <img :src="image" />
     </div>
     <div class="coupon-wrapper">
       <template v-if="variant=='default'">
-        <div v-if="extra" class="coupon-extra" :class="headerColor">
+        <div v-if="extra" class="coupon-extra"
+          @click="clickAdd"
+          :class="headerColor">
           <span>extra</span>
         </div>
-        <div class="coupon-discount" :class="headerColor">
+        <div class="coupon-discount"
+          @click="clickAdd"
+          :class="headerColor">
           <div class="actual">
             <span v-if="toSpend" class="dollar">$</span>
             {{discount}}
@@ -38,7 +42,7 @@
         <span class="coupon-details-x px-12" :hidden="!hasDetails && !print">
           <template v-if="!print">
             <sh-button variant="belk-link" v-if="details"
-              v-hammer:tap="openDetailsModal">Details</sh-button>
+              @click="openDetailsModal">Details</sh-button>
           </template>
           <div class="coupon-details-actual" v-else v-html="detailsHTML"></div>
         </span>
@@ -52,7 +56,9 @@
           v-if="variant != 'offer' && code"
           variant="primary"
           toggle="once"
+          class="coupon-add-button"
           :ajax="ajaxUrl"
+          ref="addButton"
           active-text="Added"
           active-icon="check"
           :unique-id="addCouponId"
@@ -63,12 +69,12 @@
         v-if="!code && !link && upc"
         class="coupon-spacer"
         data-text="In-Store Only"
-        style="min-height: 10.5rem"></div>
+        style="min-height: 7.5rem"></div>
       <div
         v-else-if="!code && !link && !upc"
         class="coupon-spacer"
-        data-text="Applied Automatically at Checkout"
-        style="max-height: 18rem; margin-top: auto"
+        :data-text="spacerText"
+        style="height: 16.5rem; margin-top: auto"
       ></div>
       <div v-if="upc" class="coupon-upc">
         <template v-if="print">
@@ -84,7 +90,7 @@
       <div
         v-else-if="variant != 'offer' && !print && !upc && code"
         class="coupon-spacer"
-        style="padding-top: 12%; padding-bottom: 13%; height: 0;"
+        style="padding-top: 12%; padding-bottom: 13%; max-height: 0 !important"
         data-text="Online Only"
       ></div>
       <div class="coupon-print low-off" v-if="printable">
@@ -148,7 +154,7 @@ export default {
     },
     spacerText: {
       type: String,
-      default: 'define [spacer-text]'
+      default: 'Applied Automatically at Checkout'
     }
   },
 
@@ -183,6 +189,7 @@ export default {
       added: true,
       hasDescription: false,
       hasDetails: false,
+      hasCode: false,
       hasImage: false,
       hasEd: 'defaultid',
       detailsHTML: '',
@@ -203,7 +210,6 @@ export default {
     this.detailsId = `em-${this.uuid}`;
     this.printId = `pr-${this.uuid}`;
     if (this.code) {
-      this.checkApplied();
       this.$bus.$on(`${this.code}-data`, this.handleAddCoupon);
       this.addCouponId = `ac-${this.uuid}`;
     }
@@ -212,6 +218,7 @@ export default {
     if (this.$slots.description !== undefined || this.description)
       this.hasDescription = true;
     if (this.$slots.image !== undefined || this.image) this.hasImage = true;
+    if (this.code) this.hasCode = true;
   },
 
   mounted() {
@@ -219,6 +226,8 @@ export default {
       this.detailsHTML = this.details;
       this.makeDetailsModal();
     }
+
+    if (this.code && !this.print) this.checkApplied();
 
     if (!this.inDrawer) {
       if (this.badge && this.variant == 'default') {
@@ -231,15 +240,35 @@ export default {
   },
 
   methods: {
+
+    addOrLink() {
+      if (this.code) {
+        this.clickAdd();
+      } else {
+        this.doLink();
+      }
+    },
+
+    clickAdd() {
+      const target = this.$refs.addButton.querySelector('button');
+      if (target) target.click()
+    },
+
     doLink() {
-      window.location.href = this.link;
+      if (this.link) {
+        if (this.link.startsWith('/')) {
+          window.location.href = this.link;
+        } else {
+          window.open(this.link, '_blank');
+        }
+      }
     },
 
     printCoupon() {
       this.$bus.$emit('open-modal', { id: this.printId });
     },
 
-    openDetailsModal() {
+    openDetailsModal(e) {
       this.$bus.$emit('open-modal', { id: this.detailsId });
     },
 
@@ -262,7 +291,7 @@ export default {
           Array.isArray(window.SessionAttributes.APPLIED_COUPONS) &&
           window.SessionAttributes.APPLIED_COUPONS.indexOf(
             this.code.toUpperCase()
-          ) !== -1
+          ) >= 0
         ) {
           this.toggleButton();
         }
@@ -270,7 +299,7 @@ export default {
     },
 
     toggleButton() {
-      this.$bus.$emit('button-toggle', { which: this.addCouponId });
+      this.$bus.$emit(`${this.addCouponId}-button-toggle`);
     },
 
     makeDetailsModal() {

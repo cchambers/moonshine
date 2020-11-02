@@ -20,35 +20,46 @@ belk-coupon {
   flex-basis: 100%;
   border: 1px solid $lowlight-primary;
   font-size: 16px;
-  &.printable {
-    border-style: dashed;
-    margin: 0 auto;
-    max-width: 36rem;
-    @media print {
-      margin-top: 10rem;
+  &.has-code {
+    .coupon-discount,
+    .coupon-extra {
+      cursor: pointer;
     }
-    .coupon-spacer {
-      display: none;
-    }
-    .coupon-upc {
-      display: flex;
-      border: none;
-      height: auto;
+    sh-button + sh-button {
       margin-top: $little;
-      margin-left: auto;
-      margin-right: auto;
-      width: 100%;
-      padding-bottom: 20%;
-      .coupon-logo {
-        width: 25%;
-        display: flex;
-        align-items: center;
-        position: absolute;
-        right: 0;
+    }
+  }
+  &.printable {
+    .coupon-wrapper {
+      border-style: dashed;
+      margin: 0 auto;
+      max-width: 36rem;
+      @media print {
+        margin-top: 10rem;
       }
-      belk-barcode {
-        width: 70%;
-        left: 0;
+      .coupon-spacer {
+        display: none !important;
+      }
+      .coupon-upc {
+        display: flex;
+        border: none;
+        height: auto;
+        margin-top: $little;
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
+        padding-bottom: 20%;
+        .coupon-logo {
+          width: 25%;
+          display: flex;
+          align-items: center;
+          position: absolute;
+          right: 0;
+        }
+        belk-barcode {
+          width: 70%;
+          left: 0;
+        }
       }
     }
   }
@@ -222,15 +233,13 @@ belk-coupon {
         }
       }
 
-      +sh-button {
-        margin-top: $little;
-      }
+      
     }
   }
 
   .coupon-print {
     justify-content: flex-start;
-    margin-top: -37px;
+    margin-top: -35px;
     margin-left: auto;
     margin-right: auto;
     width: 100%;

@@ -33,7 +33,6 @@
         </div>
       </div>
       <div class="body"
-        :class="{ 'hide-body': (!active && !attractMode) }"
         :id="ariaDescID"
         ref="body">
         <button aria-controls="promo-offers"
@@ -159,9 +158,11 @@ export default {
     const self = this;
     if (typeof window.pageData === 'object') {
       const { offers } = window.pageData;
-      let startWith = JSON.parse(JSON.stringify([...offers]));
-      startWith = startWith.filter((item) => (item.promos));
-      this.setItems(startWith);
+      if (offers) {
+        let startWith = JSON.parse(JSON.stringify([...offers]));
+        startWith = startWith.filter((item) => (item.promos));
+        this.setItems(startWith);
+      }
     }
     self.ariaID = `aria-${self.uniqueId}`;
     self.ariaHeaderID = `aria-header-${self.uniqueId}`;
@@ -241,7 +242,7 @@ export default {
       // });
 
       self.$bus.$on('modal-opening', () => {
-        self.close(false);
+        self.close(false, 'modal-opening');
       });
 
       self.$bus.$on('open-modal', (data) => {
@@ -257,7 +258,9 @@ export default {
 
       self.$bus.$on('drawer-toggle', self.toggle);
       self.$bus.$on('drawer-open', self.open);
-      self.$bus.$on('drawer-close', self.close);
+      self.$bus.$on('drawer-close', () => {
+        self.close(true, 'drawer-close');
+      });
 
       self.$bus.$on('drawer-add', self.addItemHandler);
       self.$bus.$on('drawer-move', self.moveItemHandler);
@@ -367,7 +370,7 @@ export default {
     hashHandler(data) {
       const { hash, event } = data;
       if (hash === '') {
-        if (this.active) this.close(false);
+        if (this.active) this.close(false, 'hashHandler');
       } else if (hash === this.uniqueId) {
         if (event) event.preventDefault();
         this.open();
@@ -377,7 +380,7 @@ export default {
     toggle(e) {
       if (e) e.srcEvent.stopPropagation();
       if (this.active) {
-        this.close();
+        this.close(true, 'toggle');
       } else {
         this.open();
       }
@@ -411,7 +414,8 @@ export default {
       }
     },
 
-    close(clearHash = true) {
+    close(clearHash = true, from) {
+      if (from && window.modalDebug) this.log(`drawer close from: ${from}`);
       const self = this;
       if (self.active) {
         self.$bus.$emit('drawer-closing', self.uniqueId);

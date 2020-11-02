@@ -25,7 +25,8 @@
     "mdn-polyfills": "^5.20.0",
     "vue": "^2.6.10",
     "vue-custom-element": "^3.2.7",
-    "vue2-hammer": "^2.1.2"
+    "vue2-hammer": "^2.1.2",
+    "whatwg-fetch": "^3.4.1"
   },
   "devDependencies": {
     "@ascendancyy/vue-cli-plugin-stylelint": "^1.1.2",
