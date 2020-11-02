@@ -26,16 +26,14 @@ export default {
         'brand-blue',
         'brand-teal',
         'brand-green',
-        'brand-lime',
         'brand-yellow',
-        'brand-orange',
         'brand-red',
+        'brand-crimson',
         'brand-pink',
         'brand-purple',
-        'seasonal-primary',
-        'seasonal-secondary',
-        'seasonal-tertiary',
-        'brand-wildfuscia',
+        'seasonal-red',
+        'seasonal-green',
+        'seasonal-orange',
         'highlight-primary',
         'highlight-secondary',
         'highlight-tertiary',
@@ -70,6 +68,7 @@ export default {
       height: $rem;
       width: $rem;
       border-radius: 50%;
+      @include box-shadow(1);
     }
     .name {
       flex-grow: 0;
