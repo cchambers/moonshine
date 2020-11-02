@@ -70,6 +70,7 @@ export default {
       height: $rem;
       width: $rem;
       border-radius: 50%;
+      @include box-shadow(1);
     }
     .name {
       flex-grow: 0;
