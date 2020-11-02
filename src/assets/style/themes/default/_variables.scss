@@ -36,7 +36,7 @@ $mega: #{$base*2.5}rem;
 // BEGIN BRAND VARS
 $brand-black: rgb(0, 0, 0);
 $brand-darkblue: rgb(20,55,125);
-$brand-belkblue:  rgb(0,118,190);
+$brand-blue:  rgb(0,118,190);
 $brand-teal: rgb(0,163,158);
 $brand-green: rgb(149, 201, 61);
 $brand-lime: rgb(196,216,46); 
@@ -65,13 +65,14 @@ $lowlight-tertiary: $brand-darkblue;
 $lowlight-quaternary: rgb(100, 100, 100);
 $lowlight-quinary: rgb(76, 76, 76);
 
-$accent-primary: $brand-belkblue;
+$accent-primary: $brand-blue;
 $accent-secondary: rgb(6, 103, 160);
 $accent-tertiary: rgb(157, 208, 230);
 $accent-quaternary: rgb(129, 177, 210);
-$accent-quinary: $brand-deepteal;
+$accent-quinary: $brand-teal;
 
 $state-success: rgb(77, 122, 57);
+$state-caution: rgb(255, 245, 169);
 $state-error: rgb(204, 0, 0);
 // END THEME VARS
 
@@ -79,7 +80,7 @@ $ease: cubic-bezier(0.4, 0, 0.2, 1);
 $decel: cubic-bezier(0, 0, 0.2, 1);
 $accel: cubic-bezier(0.4, 0, 1, 1);
 
-$docsGradient: linear-gradient(45deg, var(--brand-classicblue), var(--brand-deepteal));
+$docsGradient: linear-gradient(45deg, var(--brand-blue), var(--brand-teal));
 
 $colors: (
   "transparent": transparent,
@@ -100,7 +101,7 @@ $colors: (
   "accent-quinary": $accent-quinary,
   "brand-black": $brand-black,
   "brand-darkblue": $brand-darkblue,
-  "brand-belkblue": $brand-belkblue,
+  "brand-blue": $brand-blue,
   "brand-teal": $brand-teal,
   "brand-green": $brand-green,
   "brand-lime": $brand-lime,
