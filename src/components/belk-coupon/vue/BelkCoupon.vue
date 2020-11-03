@@ -274,7 +274,8 @@ export default {
 
     handleAddCoupon(data) {
       if (data.cpnDetails) {
-        if (data.cpnDetails.isValid == true) {
+        if (data.cpnDetails.isValid === true) {
+          this.$bus.$emit('coupon-added', data);
           this.toggleButton();
         } else {
           this.log(`COUPON: invalid code: ${this.code}`);
