@@ -241,6 +241,10 @@ export default {
 
   methods: {
 
+    events() {
+      this.$bus.$on('ie11', this.checkApplied);
+    },
+
     addOrLink() {
       if (this.code) {
         this.clickAdd();
