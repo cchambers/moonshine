@@ -20,7 +20,12 @@ const app = {
     if (iOSCheck) document.querySelector('html').classList.add('iOS');
 
     const IE11Check = !(window.ActiveXObject) && 'ActiveXObject' in window;
-    if (IE11Check) document.querySelector('html').classList.add('IE11');
+    if (IE11Check) {
+      document.querySelector('html').classList.add('IE11');
+      setTimeout(() => {
+        window.sh.emit('ie11');
+      }, 200);
+    }
 
     const demos = document.querySelectorAll('lib-toolbar');
     for (let x = 0, l = demos.length; x < l; x += 1) {

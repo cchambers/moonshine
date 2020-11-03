@@ -1,6 +1,10 @@
 
 $buttonWidth: $rem;
 
+.menu-active .belk-drawer {
+  z-index: 0 !important;
+}
+
 .belk-drawer {
   position: fixed;
   z-index: 60;
