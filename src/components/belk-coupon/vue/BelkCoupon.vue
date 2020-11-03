@@ -240,7 +240,6 @@ export default {
   },
 
   methods: {
-
     events() {
       this.$bus.$on('ie11', this.checkApplied);
     },
