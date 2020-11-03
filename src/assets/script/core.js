@@ -24,7 +24,7 @@ const app = {
       document.querySelector('html').classList.add('IE11');
       setTimeout(() => {
         window.sh.emit('ie11');
-      }, 200);
+      }, 2500);
     }
 
     const demos = document.querySelectorAll('lib-toolbar');
