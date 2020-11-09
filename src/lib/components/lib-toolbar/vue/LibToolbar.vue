@@ -1,8 +1,7 @@
 <template>
   <div class="lib-toolbar"
     v-bind:class="{ active: active, fullscreen: fullscreen }">
-    <div ref="component" class="component" v-html="html"></div>
-    <div class="control-wrap">
+        <div class="control-wrap">
       <div class="control">
         <template v-if="isActive">
           <sh-button round
@@ -29,6 +28,7 @@
         </sh-button>
       </div>
     </div>
+    <div ref="component" class="component" v-html="html"></div>
     <div class="editor" ref="editor"></div>
   </div>
 </template>
