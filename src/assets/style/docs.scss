@@ -108,20 +108,12 @@ a {
 a:hover {
   color: #115f91;
 }
-$containMargin: 8rem;
+$containMargin: 4rem;
 
 /* grid */
 .contain {
-  width: calc(100% - #{$containMargin});
   max-width: 128rem;
-  margin: 0 auto;
-  margin-left: $containMargin;
-}
-
-.nav-shown {
-  .contain {
-    margin-left: calc(#{$containMargin} / 2);
-  }
+  margin: 0 $containMargin;
 }
 
 .row {
@@ -503,9 +495,7 @@ $containMargin: 8rem;
 
   section {
     display: block;
-    padding: 0 $rem;
     margin-bottom: 6rem;
-    background-color: $highlight-quaternary;
 
     > h2 {
       font-size: 2.2rem;
