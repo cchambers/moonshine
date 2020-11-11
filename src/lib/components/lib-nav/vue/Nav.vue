@@ -11,10 +11,10 @@
           </div> -->
           <div id="nav-search">
             <input v-model="search"
+            @keydown="checkBlock"
             @keyup="doSearch"
             type="text"
             ref="search"
-            disabled
             placeholder="Search">
           </div>
           <div id="prod-toggle"
@@ -52,6 +52,12 @@
         </div>
       </nav>
     </div>
+
+    <ul class="filtered-results">
+      <li v-for="item in filteredResults" v-bind:key="item.index">
+        {{ item.name }}: {{ item.description }}
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -66,6 +72,7 @@ export default {
   data() {
     return {
       search: '',
+      searchable: [],
       results: [],
       filteredResults: [],
       items: {},
@@ -82,6 +89,8 @@ export default {
         this.handleActive();
       } else {
         document.documentElement.classList.remove('nav-shown');
+        this.filteredResults = [];
+        this.$refs.search.value = '';
       }
     },
   },
@@ -90,6 +99,7 @@ export default {
     const self = this;
     setTimeout(() => {
       self.items = window.schema;
+      self.buildSearchable();
       document.body.classList.add('ready');
     });
 
@@ -120,6 +130,13 @@ export default {
       this.$bus.$on('nav-toggled', this.navToggledHandler);
     },
 
+    buildSearchable() {
+      const cats = Object.values(this.items);
+      for (let x = 0, l = cats.length; x < l; x += 1) {
+        this.searchable.push(...Object.values(cats[x]));
+      }
+    },
+
     shouldHide(prod) {
       const hide = (this.prodFilter && !prod);
       return hide;
@@ -127,7 +144,10 @@ export default {
 
     handleActive() {
       const activeEl = document.querySelector(`nav [href$="${window.location.pathname}"]`);
-      if (activeEl) activeEl.classList.add('active');
+      if (activeEl) {
+        activeEl.classList.add('active');
+      }
+      this.$refs.search.focus();
     },
 
     toggleNav() {
@@ -147,14 +167,23 @@ export default {
       window.location.pathname = '/';
     },
 
+    checkBlock(e) {
+      if (e.which === 192) e.preventDefault();
+    },
+
     /* eslint-disable */
     doSearch(e) {
       let value = this.search;
       if (value === "") {
         this.filteredResults = [];
       } else {
-        let filteredResults = [];
+        value = value.toLowerCase();
+        this.filteredResults = this.searchable.filter((item) => 
+          ((item.name.toLowerCase().indexOf(value) >= 0)
+          || (item.description.toLowerCase().indexOf(value) >= 0)) 
+          );
       }
+      console.log(this.filteredResults);
     },
 
     isCurrent(element) {
@@ -177,6 +206,24 @@ a {
     .search-highlight {
       color: inherit;
     }
+  }
+}
+.filtered-results {
+  position: absolute;
+  top: 4.5rem;
+  left: 26rem;
+  width: calc(100% - 26rem);
+  height: calc(100% - 4.5rem);
+  overflow-y: auto;
+  background: linear-gradient(270deg, var(--brand-blue), var(--brand-teal));
+  color: $highlight-secondary;
+  z-index: 10;
+  max-height: 100%;
+  &:empty {
+    max-height: 0;
+  };
+  li {
+    padding: $little;
   }
 }
 </style>
