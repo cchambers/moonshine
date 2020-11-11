@@ -224,6 +224,10 @@ a {
   };
   li {
     padding: $little;
+    opacity: 0.9;
+    &:hover {
+      opacity: 1;
+    }
   }
 }
 </style>
