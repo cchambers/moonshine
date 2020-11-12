@@ -11,7 +11,6 @@
           &lt;sh-accordion&gt;new component&lt;/sh-accordion&gt;
       </code>
     </pre>
-
   </section>
 
   <section id="reference" class="baseline30">
@@ -46,9 +45,15 @@
       </thead>
       <tbody>
         <tr>
-          <td>default</td>
+          <td>header</td>
           <td>
-            Text content.
+            Accordion header, the clickable bit.
+          </td>
+        </tr>
+        <tr>
+          <td>body</td>
+          <td>
+            Accordion content, the descriptive bit that opens when the header is clicked.
           </td>
         </tr>
       </tbody>
@@ -187,6 +192,66 @@
       <sh-accordion variant="secondary" group="demo-group">
         <div slot="header">
           <h4>Second Example</h4>
+        </div>
+        <div slot="body">
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur laborum aspernatur, tempore omnis, est ad animi voluptatem facilis itaque, totam beatae architecto sed. Ipsum veritatis sed, obcaecati dolorem perspiciatis esse.</p>
+        </div>
+      </sh-accordion>
+    </lib-toolbar>
+
+    <h3>Variants: Primary</h3>
+    <lib-toolbar>
+      <sh-accordion variant="primary" group="demo-group">
+        <div slot="header">
+          <h4>Primary Example</h4>
+        </div>
+        <div slot="body">
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur laborum aspernatur, tempore omnis, est ad animi voluptatem facilis itaque, totam beatae architecto sed. Ipsum veritatis sed, obcaecati dolorem perspiciatis esse.</p>
+        </div>
+      </sh-accordion>
+      <sh-accordion variant="primary" group="demo-group">
+        <div slot="header">
+          <h4>Primary Part Deux</h4>
+        </div>
+        <div slot="body">
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur laborum aspernatur, tempore omnis, est ad animi voluptatem facilis itaque, totam beatae architecto sed. Ipsum veritatis sed, obcaecati dolorem perspiciatis esse.</p>
+        </div>
+      </sh-accordion>
+    </lib-toolbar>
+
+    <h3>Variants: Secondary</h3>
+    <lib-toolbar>
+      <sh-accordion variant="secondary" group="demo-group">
+        <div slot="header">
+          <h4>Secondary Example</h4>
+        </div>
+        <div slot="body">
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur laborum aspernatur, tempore omnis, est ad animi voluptatem facilis itaque, totam beatae architecto sed. Ipsum veritatis sed, obcaecati dolorem perspiciatis esse.</p>
+        </div>
+      </sh-accordion>
+      <sh-accordion variant="secondary" group="demo-group">
+        <div slot="header">
+          <h4>Secondary Part Deux</h4>
+        </div>
+        <div slot="body">
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur laborum aspernatur, tempore omnis, est ad animi voluptatem facilis itaque, totam beatae architecto sed. Ipsum veritatis sed, obcaecati dolorem perspiciatis esse.</p>
+        </div>
+      </sh-accordion>
+    </lib-toolbar>
+
+    <h3>Variants: Tertiary</h3>
+    <lib-toolbar>
+      <sh-accordion variant="tertiary" group="demo-group">
+        <div slot="header">
+          <h4>Tertiary Example</h4>
+        </div>
+        <div slot="body">
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur laborum aspernatur, tempore omnis, est ad animi voluptatem facilis itaque, totam beatae architecto sed. Ipsum veritatis sed, obcaecati dolorem perspiciatis esse.</p>
+        </div>
+      </sh-accordion>
+      <sh-accordion variant="tertiary" group="demo-group">
+        <div slot="header">
+          <h4>Tertiary Part Deux</h4>
         </div>
         <div slot="body">
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur laborum aspernatur, tempore omnis, est ad animi voluptatem facilis itaque, totam beatae architecto sed. Ipsum veritatis sed, obcaecati dolorem perspiciatis esse.</p>

@@ -30,6 +30,7 @@ belk-coupon {
     }
   }
   &.printable {
+    border: none;
     .coupon-wrapper {
       border-style: dashed;
       margin: 0 auto;
@@ -276,6 +277,7 @@ belk-coupon {
     belk-barcode {
       position: absolute;
       top: 0;
+      left: 0;
       height: 100%;
       width: 100%;
       max-width: 30rem;

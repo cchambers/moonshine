@@ -3,7 +3,7 @@ $buttonWidth: $rem;
 
 .belk-drawer {
   position: fixed;
-  z-index: 60;
+  z-index: 3;
   overflow: hidden;
   opacity: 1;
   pointer-events: none;
@@ -42,6 +42,7 @@ $buttonWidth: $rem;
     
     &.active {
       max-height: initial;
+      z-index: 60;
       height: auto;
       @include md {
         transform: translateX(0) translateY(0) translateZ(0) scale(1) rotate(0) !important;
