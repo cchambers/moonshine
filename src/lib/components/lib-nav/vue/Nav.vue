@@ -58,7 +58,11 @@
 
     <ul class="filtered-results">
       <li v-for="item in filteredResults" v-bind:key="item.index">
-        {{ item.name }}: {{ item.description }}
+        <a :href="'/components/' + item.element"
+          class="pad-little">
+          <strong>{{ item.name }}</strong>:
+          <span class="item-desc">{{ item.description }}</span>
+        </a>
       </li>
     </ul>
   </div>
@@ -186,7 +190,6 @@ export default {
           || (item.description.toLowerCase().indexOf(value) >= 0)) 
           );
       }
-      console.log(this.filteredResults);
     },
 
     isCurrent(element) {
@@ -222,14 +225,24 @@ a {
   color: $highlight-secondary;
   z-index: 10;
   max-height: 100%;
+  list-style: none;
+  padding: 0;
   &:empty {
     max-height: 0;
   };
-  li {
+  li:nth-child(odd) {
+    background: rgba(255,255,255,0.15);
+  }
+  a {
+    color: $highlight-primary;
+    display: block;
     padding: $little;
     opacity: 0.9;
     &:hover {
       opacity: 1;
+    }
+    .item-desc {
+      opacity: 0.75;
     }
   }
 }
