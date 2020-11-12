@@ -29,7 +29,10 @@
               <div class="header" cat="tools">Tools</div>
               <ul>
                 <li>
-                  <a href="/tools/oo-class-list">OO Class List</a>
+                  <a href="/utilities/classes">Classes</a>
+                </li>
+                <li>
+                  <a href="/utilities/colors">Colors</a>
                 </li>
                 <li>
                   <a href="/tools/shared-modal-list">Shared Modals</a>

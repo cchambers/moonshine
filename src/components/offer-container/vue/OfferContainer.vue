@@ -65,22 +65,27 @@ export default {
 
   methods: {
     events() {
-      this.$bus.$on('add-offer-item', this.addItemHandler);
-      this.$bus.$on('move-offer-item', this.addItemHandler);
-      this.$bus.$on('update-offer-items', this.updateItemsHandler);
+      this.$bus.$on('add-item', (data) => {
+        this.addItemHandler(data);
+      });
+      this.$bus.$on(`add-${this.uniqueId}`, this.addItemHandler);
+      this.$bus.$on('move-item', this.moveItemHandler);
+      this.$bus.$on('update-items', this.updateItemsHandler);
     },
 
-    addItem(data) {
+    addItem(data, index) {
       const obj = data;
       if (!obj.id) obj.id = `o${this.makeUUID()}`;
-      this.items.push(obj);
+      if (!index) {
+        this.items.push(obj);
+      } else {
+        this.items.splice(index, 0, obj);
+      }
     },
 
     addItemHandler(event) {
-      if (event.which === this.uniqueId) {
-        const { data } = event;
-        this.addItem(data);
-      }
+      const { data } = event;
+      if (data) this.addItem(data.what, data.where);
     },
 
     moveItemHandler(event) {
