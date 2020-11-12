@@ -37,7 +37,7 @@ export default {
       default: null,
     },
     resolution: {
-      // 'Begin automatically cycling',
+      // 'Size of carousel',
       type: String,
       default: null,
     },
