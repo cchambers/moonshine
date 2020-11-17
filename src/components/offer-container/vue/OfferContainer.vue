@@ -65,27 +65,41 @@ export default {
 
   methods: {
     events() {
-      this.$bus.$on('add-item', (data) => {
-        this.addItemHandler(data);
-      });
+      this.$bus.$on('add-item', this.addItemHandler);
       this.$bus.$on(`add-${this.uniqueId}`, this.addItemHandler);
       this.$bus.$on('move-item', this.moveItemHandler);
       this.$bus.$on('update-items', this.updateItemsHandler);
     },
 
-    addItem(data, index) {
-      const obj = data;
+    addItem(what, where) {
+      const obj = what;
       if (!obj.id) obj.id = `o${this.makeUUID()}`;
-      if (!index) {
+      if (!where) {
         this.items.push(obj);
       } else {
-        this.items.splice(index, 0, obj);
+        this.items.splice(where, 0, obj);
       }
     },
 
+    // addItemHandler(event) {
+    //   const { data } = event;
+    //   if (data.where) {
+    //     this.addItem(data.what, data.where);
+    //   } else {
+    //     this.addItem(data);
+    //   }
+    // },
+
     addItemHandler(event) {
-      const { data } = event;
-      if (data) this.addItem(data.what, data.where);
+      const { what } = event.data;
+      const where = event.data.where || this.items.length;
+      const isArray = Array.isArray(what);
+      if (isArray) {
+        const arr = [...what];
+        this.items.splice(where, 0, ...arr);
+      } else {
+        this.items.splice(where, 0, what);
+      }
     },
 
     moveItemHandler(event) {

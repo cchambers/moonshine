@@ -32,6 +32,9 @@
                   <a href="/utilities/classes">Classes</a>
                 </li>
                 <li>
+                  <a href="/utilities/typography">Typography</a>
+                </li>
+                <li>
                   <a href="/utilities/colors">Colors</a>
                 </li>
                 <li>

@@ -4,6 +4,7 @@
 @mixin font-primary {
   font-family: proxima-nova, sans-serif;
   font-style: normal;
+  font-weight: 400;
 }
 
 .font-primary {
@@ -11,31 +12,31 @@
 }
 
 .wt-900 {
-  font-weight: 900;
+  font-weight: 900 !important;
 }
 
 .wt-800 {
-  font-weight: 800;
+  font-weight: 800 !important;
 }
 
 .wt-700 {
-  font-weight: 700;
+  font-weight: 700 !important;
 }
 
 .wt-600 {
-  font-weight: 600;
+  font-weight: 600 !important;
 }
 
 .wt-500 {
-  font-weight: 500;
+  font-weight: 500 !important;
 }
 
 .wt-400 {
-  font-weight: 400;
+  font-weight: 400 !important;
 }
 
 .wt-300 {
-  font-weight: 300;
+  font-weight: 300 !important;
 }
 
 // Proxima Nova Black
