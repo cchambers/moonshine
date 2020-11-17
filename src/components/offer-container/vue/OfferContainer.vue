@@ -65,10 +65,9 @@ export default {
 
   methods: {
     events() {
-      this.$bus.$on('add-item', this.addItemHandler);
       this.$bus.$on(`add-${this.uniqueId}`, this.addItemHandler);
-      this.$bus.$on('move-item', this.moveItemHandler);
-      this.$bus.$on('update-items', this.updateItemsHandler);
+      this.$bus.$on(`move-${this.uniqueId}`, this.moveItemHandler);
+      this.$bus.$on(`update-items-${this.uniqueId}`, this.updateItemsHandler);
     },
 
     addItem(what, where) {
@@ -114,12 +113,10 @@ export default {
     },
 
     updateItemsHandler(event) {
-      if (event.which === this.uniqueId) {
-        const arr = event.data;
-        this.items = [];
-        for (let x = 0, l = arr.length; x < l; x += 1) {
-          this.addItem(arr[x]);
-        }
+      const arr = event.data;
+      this.items = [];
+      for (let x = 0, l = arr.length; x < l; x += 1) {
+        this.addItem(arr[x]);
       }
     },
 

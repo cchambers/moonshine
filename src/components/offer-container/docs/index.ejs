@@ -12,6 +12,16 @@
       </code>
     </pre>
 
+    <h2 class="pad-t">Live Modificiation</h2>
+    <p>"Where" is optional and will default to the end of the list...</p>
+    <pre>
+      <code class="language-javascript">
+        sh.emit('add-{unique-id}', { what: offers, where: positionOrId });
+        sh.emit('move-{unique-id}', { from: positionOrId, to: position });
+        sh.emit('update-items-{unique-id}', { which: positionOrId });
+      </code>
+    </pre>
+
   </section>
 
   <section id="reference" class="baseline30">
@@ -28,9 +38,9 @@
       </thead>
       <tbody>
         <tr>
-          <td>hidden</td>
-          <td>Boolean</td>
-          <td>Hide from view.</td>
+          <td>unique-id</td>
+          <td>String</td>
+          <td>Container ID (required).</td>
         </tr>
       </tbody>
     </table>
