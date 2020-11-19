@@ -151,7 +151,7 @@ export default {
         this.scrolling = false;
       }
       setTimeout(() => {
-        this.$bus.$emit('update-offer-items', { which: 'promo-offers', data: val });
+        this.$bus.$emit('update-items-promo-offers', { which: 'promo-offers', data: val });
       }, 0);
     },
   },

@@ -1,9 +1,15 @@
 <%- htmlWebpackPlugin.options.docsHead %>
-
-<title><%= htmlWebpackPlugin.options.title %></title>
-
+<title>Global Object-Oriented Classes</title>
 <div class="documentation contain">
-  <h1>OO Classes</h1>
+  <h1>Utility Classes</h1>
+  <section>
+    <h2>Legos</h2>
+    <p>The focus of OOCSS is the idea of treating page elements as objects, giving all these objects classes, treating objects’ classes as single entities in style sheets, and taking it from there.</p>
+    <p>Writing CSS outside of the head of your document causes a scenario where a page must be re-rendered as the CSS is encoutered. One way to bypass this is to create massive/unwieldly blocks of super specific CSS that only apply to one thing on the page. This creates massive CSS files that then have to be transferred to your user.</p>
+    <p>OO classes give you the ability to make presentation-related adjustments to content (and in our case, components) with the easy-to-remember class names listed below.</p>
+    <p>Looking for <a href='/utilities/colors'>colors?</a></p>
+  </section>
+
   <section id="usage">
     <h2>Usage</h2>
     <p>
@@ -68,6 +74,38 @@
   <section id="box-model">
     <h2>Box Model</h2>
 
+    <p>"Amount" is defined by these names: </p>
+    <ul>
+      <li><code>-micro</code> (approx 8)</li>
+      <li><code>-little</code> (approx 16)</li>
+      <li>none (32)</li>
+      <li><code>-big</code> (approx 48)</li>
+      <li><code>-huge</code> (approx 64)</li>
+      <li><code>-mega</code> (approx 80)</li>
+    </ul>
+
+    <p>"Sides" are defined here:</p>
+    <ul>
+      <li>
+        <code>-x</code> - left AND right sides combined.
+      </li>
+      <li>
+        <code>-y</code> - top AND bottom sides combined.
+      </li>
+      <li>
+        <code>-t</code> - top
+      </li>
+      <li>
+        <code>-r</code> - right
+      </li>
+      <li>
+        <code>-b</code> - bottom
+      </li>
+      <li>
+        <code>-l</code> - left
+      </li>
+    </ul>
+
     <h3>Padding</h3>
     <table class="class-defs">
       <thead>
@@ -82,18 +120,7 @@
             <code class="language-css">.pad{-edge}{-amount}</code>
           </td>
           <td>
-            <ul>
-              <li>
-                Modify the padding of an element.
-              </li>
-              <li>
-                  Left+right edge combined is <code>x</code>, top+bottom edges combined
-                  is <code>y</code>. Other options are "t", "r", "b", "l".
-              </li>
-              <li>
-                Options for 'amount' are: <em>none</em>, 'quarter', 'half', and 'double'.
-              </li>
-            </ul>
+            Modify the padding of an element.
           </td>
         </tr>
       </tbody>
@@ -113,19 +140,7 @@
             <code class="language-css">.margin{-edge}{-amount}</code>
           </td>
           <td>
-            <ul>
-              <li>
-                Modify the margin of an element. Left+right edge combined is <code>x</code>, top+bottom edges combined
-                is <code>y</code>.
-              </li>
-              <li>
-                  Left+right edge combined is <code>x</code>, top+bottom edges combined
-                  is <code>y</code>. Other options are "t", "r", "b", "l".
-              </li>
-              <li>
-                Options for 'amount' are: <em>none</em>, 'quarter', 'half', and 'double'.
-              </li>
-            </ul>
+            Modify the margin of an element.
           </td>
         </tr>
         <tr>
@@ -133,18 +148,7 @@
             <code class="language-css">.pull{-edge}{-amount}</code>
           </td>
           <td>
-            <ul>
-              <li>
-                Modify the negative margin of an element.
-              </li>
-              <li>
-                  Left+right edge combined is <code>x</code>, top+bottom edges combined
-                  is <code>y</code>. Other options are "t", "r", "b", "l".
-              </li>
-              <li>
-                Options for 'amount' are: <em>none</em>, 'quarter', 'half', and 'double'.
-              </li>
-            </ul>
+            Modify the negative margin of an element.
           </td>
         </tr>
       </tbody>
@@ -152,206 +156,98 @@
   </section>
   </section>
 
-  <section id="typography">
-    <h2>Typography</h2>
+  <section id="grid">
+    <h2>Grid</h2>
+    <div class="grid-demo flow">
+      <div class="srow">
+        <div class="scol-5-6"></div>
+        <div class="scol-1-6"></div>
+      </div>
+      <div class="srow">
+        <div class="scol-1-2">
+          <div class="srow">
+            <div class="scol-1-4"></div>
+            <div class="scol-1-4"></div>
+            <div class="scol-1-4"></div>
+            <div class="scol-1-4"></div>
+          </div>
+        </div>
+        <div class="scol-1-2"></div>
+      </div>
 
-    <h3 id="alignment">Size and Line Height</h3>
-    <table class="class-defs">
-      <thead>
-        <tr>
-          <th>Class</th>
-          <th>Effect</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>
-            <code class="language-css">.pxNN</code>
-          </td>
-          <td>
-            <ul>
-              <li>
-                Set the [responsive] font size of a piece of content.
-              </li>
-              <li>
-                Options range from 10-100. ex: .px62
-              </li>
-            </ul>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <code class="language-css">.lhNN</code>
-          </td>
-          <td>
-            <ul>
-              <li>
-                Set the [responsive] line height of a piece of content.
-              </li>
-              <li>
-                Options range from 10-100. ex: .lh30
-              </li>
-            </ul>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+      <div class="row desktop">
+        <div class="scol-1-3"></div>
+        <div class="scol-1-3"></div>
+        <div class="scol-1-3"></div>
+      </div>
 
-    <h3 id="alignment">Alignment</h3>
-    <table class="class-defs">
-      <thead>
-        <tr>
-          <th>Class</th>
-          <th>Effect</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>
-            <code class="language-css">.text-right</code>
-          </td>
-          <td>
-            Right align text.
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <code class="language-css">.text-left</code>
-          </td>
-          <td>
-            Left align text.
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <code class="language-css">.text-center</code>
-          </td>
-          <td>
-            Center align text.
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <code class="language-css">.text-justify</code>
-          </td>
-          <td>
-            Align text justified.
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <code class="language-css">.force-justify</code>
-          </td>
-          <td>
-            Align text justified forced (justifies the last line and single-line paragraphs).
-          </td>
-        </tr>
-      </tbody>
-    </table>
+      <div class="row desktop">
+        <div class="scol-1-4"></div>
+        <div class="scol-1-4"></div>
+        <div class="scol-1-4"></div>
+        <div class="scol-1-4"></div>
+      </div>
 
-    <h3 id="alignment">Casing</h3>
-    <table class="class-defs">
-      <thead>
-        <tr>
-          <th>Class</th>
-          <th>Effect</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>
-            <code class="language-css">.uppercase</code>
-          </td>
-          <td>
-            <div class="uppercase">Uppercased text.</div>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <code class="language-css">.lowercase</code>
-          </td>
-          <td>
-            <div class="lowercase">Lowercased text.</div>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <code class="language-css">.normalcase</code>
-          </td>
-          <td>
-            <div class="normalcase">Normal casing.</div>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <code class="language-css">.titlecase</code>
-          </td>
-          <td>
-            <div class="titlecase">Title Casing.</div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+      <div class="row desktop">
+        <div class="scol-1-5"></div>
+        <div class="scol-1-5"></div>
+        <div class="scol-1-5"></div>
+        <div class="scol-1-5"></div>
+        <div class="scol-1-5"></div>
+      </div>
 
-    <h3 id="alignment">Style</h3>
-    <table class="class-defs">
-      <thead>
-        <tr>
-          <th>Class</th>
-          <th>Effect</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>
-            <code class="language-css">.strike</code>
-          </td>
-          <td>
-            <div class="strike">Strikethrough text.</div>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <code class="language-css">.italic</code>
-          </td>
-          <td>
-            <div class="italic">Italicized text.</div>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <code class="language-css">.light</code>
-          </td>
-          <td>
-            <div class="light">Light (weight) text.</div>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <code class="language-css">.normal</code>
-          </td>
-          <td>
-            <div class="normal">Normal (weight) text.</div>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <code class="language-css">.bold</code>
-          </td>
-          <td>
-            <div class="bold">Bold (weight) text.</div>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <code class="language-css">.heavy</code>
-          </td>
-          <td>
-            <div class="heavy">Heavy (weight) text.</div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+      <div class="srow">
+        <div class="scol-1-5"></div>
+        <div class="scol-4-5"></div>
+      </div>
+
+      <div class="srow">
+        <div class="scol-2-5"></div>
+        <div class="scol-3-5"></div>
+      </div>
+
+      <div class="srow">
+        <div class="scol-2-5"></div>
+        <div class="scol-3-5">
+          <div class="scol-1-4"></div>
+          <div class="scol-3-4"></div>
+        </div>
+      </div>
+
+      <div class="srow">
+        <div class="scol-1-4"></div>
+        <div class="scol-3-4"></div>
+      </div>
+
+      <div class="srow">
+        <div class="scol-1-4"></div>
+        <div class="scol-1-2">
+          <div class="scol-1-6"></div>
+          <div class="scol-1-6"></div>
+          <div class="scol-1-6"></div>
+          <div class="scol-1-6"></div>
+          <div class="scol-1-6"></div>
+          <div class="scol-1-6"></div>
+        </div>
+        <div class="scol-1-4"></div>
+      </div>
+
+      <div class="srow">
+        <div class="scol-1-2">
+          <div class="scol-1-4"></div>
+          <div class="scol-1-4"></div>
+          <div class="scol-1-4"></div>
+          <div class="scol-1-4"></div>
+        </div>
+        <div class="scol-1-2">
+          <div class="scol-1-8"></div>
+          <div class="scol-1-8"></div>
+          <div class="scol-1-8"></div>
+          <div class="scol-1-8"></div>
+          <div class="scol-1-2"></div>
+        </div>
+      </div>
+    </div>
   </section>
 
   <section id="changelog">

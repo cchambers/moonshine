@@ -11,10 +11,10 @@
           </div> -->
           <div id="nav-search">
             <input v-model="search"
+            @keydown="checkBlock"
             @keyup="doSearch"
             type="text"
             ref="search"
-            disabled
             placeholder="Search">
           </div>
           <div id="prod-toggle"
@@ -29,7 +29,13 @@
               <div class="header" cat="tools">Tools</div>
               <ul>
                 <li>
-                  <a href="/tools/oo-class-list">OO Class List</a>
+                  <a href="/utilities/classes">Classes</a>
+                </li>
+                <li>
+                  <a href="/utilities/typography">Typography</a>
+                </li>
+                <li>
+                  <a href="/utilities/colors">Colors</a>
                 </li>
                 <li>
                   <a href="/tools/shared-modal-list">Shared Modals</a>
@@ -52,6 +58,16 @@
         </div>
       </nav>
     </div>
+
+    <ul class="filtered-results">
+      <li v-for="item in filteredResults" v-bind:key="item.index">
+        <a :href="'/components/' + item.element"
+          class="pad-little">
+          <strong>{{ item.name }}</strong>:
+          <span class="item-desc">{{ item.description }}</span>
+        </a>
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -66,6 +82,7 @@ export default {
   data() {
     return {
       search: '',
+      searchable: [],
       results: [],
       filteredResults: [],
       items: {},
@@ -82,6 +99,8 @@ export default {
         this.handleActive();
       } else {
         document.documentElement.classList.remove('nav-shown');
+        this.filteredResults = [];
+        this.$refs.search.value = '';
       }
     },
   },
@@ -90,6 +109,7 @@ export default {
     const self = this;
     setTimeout(() => {
       self.items = window.schema;
+      self.buildSearchable();
       document.body.classList.add('ready');
     });
 
@@ -120,6 +140,13 @@ export default {
       this.$bus.$on('nav-toggled', this.navToggledHandler);
     },
 
+    buildSearchable() {
+      const cats = Object.values(this.items);
+      for (let x = 0, l = cats.length; x < l; x += 1) {
+        this.searchable.push(...Object.values(cats[x]));
+      }
+    },
+
     shouldHide(prod) {
       const hide = (this.prodFilter && !prod);
       return hide;
@@ -127,7 +154,10 @@ export default {
 
     handleActive() {
       const activeEl = document.querySelector(`nav [href$="${window.location.pathname}"]`);
-      if (activeEl) activeEl.classList.add('active');
+      if (activeEl) {
+        activeEl.classList.add('active');
+      }
+      this.$refs.search.focus();
     },
 
     toggleNav() {
@@ -147,13 +177,21 @@ export default {
       window.location.pathname = '/';
     },
 
+    checkBlock(e) {
+      if (e.which === 192) e.preventDefault();
+    },
+
     /* eslint-disable */
     doSearch(e) {
       let value = this.search;
       if (value === "") {
         this.filteredResults = [];
       } else {
-        let filteredResults = [];
+        value = value.toLowerCase();
+        this.filteredResults = this.searchable.filter((item) => 
+          ((item.name.toLowerCase().indexOf(value) >= 0)
+          || (item.description.toLowerCase().indexOf(value) >= 0)) 
+          );
       }
     },
 
@@ -176,6 +214,38 @@ a {
   &:hover {
     .search-highlight {
       color: inherit;
+    }
+  }
+}
+.filtered-results {
+  position: absolute;
+  top: 4.5rem;
+  left: 26rem;
+  width: calc(100% - 26rem);
+  height: calc(100% - 4.5rem);
+  overflow-y: auto;
+  background: linear-gradient(270deg, var(--brand-blue), var(--brand-teal));
+  color: $highlight-secondary;
+  z-index: 10;
+  max-height: 100%;
+  list-style: none;
+  padding: 0;
+  &:empty {
+    max-height: 0;
+  };
+  li:nth-child(odd) {
+    background: rgba(255,255,255,0.15);
+  }
+  a {
+    color: $highlight-primary;
+    display: block;
+    padding: $little;
+    opacity: 0.9;
+    &:hover {
+      opacity: 1;
+    }
+    .item-desc {
+      opacity: 0.75;
     }
   }
 }

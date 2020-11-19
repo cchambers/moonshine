@@ -160,9 +160,10 @@
     </lib-toolbar>
 
     <h3>Background Fade Control with Carousel</h3>
+    <p>Sped up to show the effect.</p>
     <div class="pad-b">
-      <sh-banner variant="primary" class="highlight-primary" backgrounds="brand-mysticpurple, brand-wildfuscia, brand-classicblue">
-        <sh-carousel id="pre-header-carousel" variant="primary" autoplay="6000" hide-controls>
+      <sh-banner variant="primary" class="highlight-primary" backgrounds="brand-purple, brand-pink, brand-blue, brand-green, seasonal-orange">
+        <sh-carousel id="pre-header-carousel" variant="primary" autoplay="2000" hide-controls>
           <ul slot="slides">
             <li>
               <!-- this has a slide link -->
@@ -181,18 +182,31 @@
           </ul>
         </sh-carousel>
       </sh-banner>
-      <sh-button click-event="show-banner">Click to Reveal Banner</sh-button>
-      <div hover-event="show-banner">Hover to Reveal Banner</div>
-      <sh-banner reveal-event="show-banner">
-        <img data-src="https://picsum.photos/200/300" alt="">
-      </sh-banner>
     </div>
 
 
-    <h3>Adaptable Content</h3>
+    <h3>Reveal Events</h3>
+    <lib-toolbar>
+      <h4>Hover</h4>
+      <div hover-event="hover-banner">Hover to Reveal Banner</div>
+      <sh-banner reveal-event="hover-banner">
+        <img data-src="https://picsum.photos/200/300" alt="">
+      </sh-banner>
+
+      <h4 class="pad-t">Click</h4>
+      <sh-button click-event="click-banner" variant="primary">Click to Reveal Banner</sh-button>
+      <sh-banner reveal-event="click-banner">
+        <img data-src="https://picsum.photos/200/300?2" alt="">
+      </sh-banner>
+
+    </lib-toolbar>
+
+
+
+
+    <!-- <h3>Adaptable Content</h3>
     <lib-toolbar>
       <sh-banner variant="primary" class="font-primary">
-        <!-- DEFAULT -->
         <sh-adapt-content>
           <div slot="sm">
             <div class="pad-y">
@@ -233,7 +247,7 @@
           </div>
         </sh-adapt-content>
       </sh-banner>
-    </lib-toolbar>
+    </lib-toolbar> -->
 
   </section>
 

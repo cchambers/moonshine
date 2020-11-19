@@ -7,8 +7,8 @@ lib-toolbar {
     opacity: 0.05;
     transition: all 400ms $ease;
     transition-delay: 0.1s;
-    top: -2.5rem;
-    right: 3rem;
+    top: 0;
+    right: $little;
     z-index: 2;
 
     i {
@@ -104,7 +104,6 @@ lib-toolbar {
       }
 
       .control-wrap {
-        top: -6rem;
         opacity: 1;
       }
     }
