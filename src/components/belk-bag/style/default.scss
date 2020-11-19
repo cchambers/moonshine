@@ -11,6 +11,11 @@ belk-bag {
     flex-direction: row;
     align-content: flex-start;
     align-items: center;
+    background: $accent-primary;
+
+    .reference > div {
+      white-space: pre;
+    }
 
     belk-icon {
       margin: 0;

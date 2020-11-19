@@ -174,7 +174,7 @@ export default {
         this.$bus.$emit('popper-opening', this.uuid);
         if (this.popperJS) this.popperJS.enableEventListeners();
         this.updatePopper();
-        if (this.hasCurtain) this.$bus.$emit('show-curtain', this.foreground);
+        if (this.hasCurtain) this.$bus.$emit('show-curtain', this.$refs.target);
         if (this.link) this.link.setAttribute('aria-expanded', true);
         this.$bus.$emit('popper-opened', this.uuid);
       } else {
