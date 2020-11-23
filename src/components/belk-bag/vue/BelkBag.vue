@@ -1,6 +1,6 @@
 <template>
   <div class="belk-bag" :variant="variant" v-bind:class="{ active: itemCount > 0 }">
-    <sh-popper reference-id="belk-bag">
+    <sh-popper offset-x="-41" reference-id="belk-bag">
       <div slot="reference">
         <div class="bag-icon">
           <belk-icon width="30" height="40" name="bag">shopping bag</belk-icon>
@@ -67,10 +67,6 @@ export default {
   created() {
     if (this.count) this.itemCount = this.count;
     if (this.total) this.subTotal = this.subTotal;
-  },
-
-  mounted() {
-    console.log(this.total, this.subTotal);
   },
 
   methods: {

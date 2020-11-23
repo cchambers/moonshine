@@ -18,7 +18,6 @@
         <div class="popper-content">
           <slot name="content">{{ content }}</slot>
         </div>
-        <div v-if="visibleArrow" class="popper-arrow" x-arrow></div>
       </div>
     </transition>
   </div>
@@ -119,6 +118,8 @@ export default {
       type: Boolean,
       default: false,
     },
+    offsetX: 0,
+    offsetY: 0,
     options: {
       type: Object,
       default() {
@@ -153,7 +154,7 @@ export default {
           {
             name: 'offset',
             options: {
-              offset: [150, 0],
+              offset: [this.offsetX, (this.offsetY || null)],
             },
           },
           {

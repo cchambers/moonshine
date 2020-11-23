@@ -89,7 +89,7 @@ sh-popper {
     }
 
     &[data-popper-placement^="top"] {
-      margin-bottom: $arrowHeight;
+      margin-bottom: $arrowHeight !important;
     }
 
     &[data-popper-placement^="top"] .popper-arrow {
