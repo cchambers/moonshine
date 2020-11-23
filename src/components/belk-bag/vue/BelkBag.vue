@@ -8,7 +8,7 @@
         </div>
         <div class="bag-total">{{ totalPrice }}</div>
       </div>
-      <div slot="content">
+      <div class="bag-content" slot="content">
         <div v-if="itemCount > 0">
           <ul>
             <li>Item 1</li>
