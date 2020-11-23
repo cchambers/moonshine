@@ -60,6 +60,7 @@ belk-coupon {
         belk-barcode {
           width: 70%;
           left: 0;
+          transform: none !important;
         }
       }
     }
@@ -277,7 +278,8 @@ belk-coupon {
     belk-barcode {
       position: absolute;
       top: 0;
-      left: 0;
+      left: 50%;
+      transform: translateX(-50%);
       height: 100%;
       width: 100%;
       max-width: 30rem;

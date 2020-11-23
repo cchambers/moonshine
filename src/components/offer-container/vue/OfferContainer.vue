@@ -13,7 +13,7 @@
       :ends="item.ends"
       :event-name="item.eventName"
       :extra="item.extra"
-      :toSpend="item.toSpend"
+      :to-spend="item.toSpend"
       :header-color="item.headerColor"
       :image="item.image"
       :link="item.link"

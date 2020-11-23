@@ -1,9 +1,9 @@
 <template>
   <div class="belk-bag" :variant="variant" v-bind:class="{ active: itemCount > 0 }">
-    <sh-popper reference-id="belk-bag" has-curtain>
+    <sh-popper reference-id="belk-bag">
       <div slot="reference">
         <div class="bag-icon">
-          <belk-icon width="30" name="bag">shopping bag</belk-icon>
+          <belk-icon width="30" height="40" name="bag">shopping bag</belk-icon>
           <div class="bag-count">{{ itemCount }}</div>
         </div>
         <div class="bag-total">{{ totalPrice }}</div>
@@ -37,7 +37,7 @@ export default {
   props: {
     count: Number,
     total: {
-      type: String,
+      type: Number,
       default: 0,
     },
   },
@@ -64,8 +64,13 @@ export default {
     };
   },
 
-  mounted() {
+  created() {
     if (this.count) this.itemCount = this.count;
+    if (this.total) this.subTotal = this.subTotal;
+  },
+
+  mounted() {
+    console.log(this.total, this.subTotal);
   },
 
   methods: {
