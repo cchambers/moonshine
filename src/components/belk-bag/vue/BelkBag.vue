@@ -1,13 +1,13 @@
 <template>
   <div class="belk-bag" :variant="variant" v-bind:class="{ active: itemCount > 0 }">
-    <sh-popper reference-id="belk-bag" has-curtain>
-      <span slot="reference">
+    <sh-popper offset-x="-41" reference-id="belk-bag">
+      <div slot="reference">
         <div class="bag-icon">
-          <belk-icon width="30" name="bag">shopping bag</belk-icon>
+          <belk-icon width="30" height="40" name="bag">shopping bag</belk-icon>
           <div class="bag-count">{{ itemCount }}</div>
         </div>
         <div class="bag-total">{{ totalPrice }}</div>
-      </span>
+      </div>
       <div slot="content">
         <div v-if="itemCount > 0">
           <ul>
@@ -36,13 +36,16 @@ export default {
   name: 'BelkBag',
   props: {
     count: Number,
-    price: String,
+    total: {
+      type: Number,
+      default: 0,
+    },
   },
 
   computed: {
     totalPrice() {
-      const { price } = this;
-      if (parseInt(this.price, 10) === 0) {
+      const total = parseInt(this.total, 10);
+      if (total === 0) {
         return 'Bag';
       }
       const formatter = new Intl.NumberFormat('en-US', {
@@ -50,20 +53,20 @@ export default {
         currency: 'USD',
         minimumFractionDigits: 2,
       });
-
-      return formatter.format(price);
+      return formatter.format(total);
     },
   },
 
   data() {
     return {
       itemCount: 0,
-      subTotal: false,
+      subTotal: 0,
     };
   },
 
-  mounted() {
+  created() {
     if (this.count) this.itemCount = this.count;
+    if (this.total) this.subTotal = this.subTotal;
   },
 
   methods: {

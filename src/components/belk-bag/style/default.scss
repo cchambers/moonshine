@@ -5,6 +5,13 @@ belk-bag {
   font-size: 1.4rem;
   color: $lowlight-primary;
 
+  .bag-count {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    padding-top: 5px;
+  }
+
   .belk-bag {
     // color: $highlight-primary;
     display: flex;
@@ -12,9 +19,15 @@ belk-bag {
     align-content: flex-start;
     align-items: center;
 
+    .reference > div {
+      white-space: pre;
+      display: flex;
+    }
+
     belk-icon {
       margin: 0;
       color: transparent;
+      margin-top: -5px;
     }
 
     .bag-background {
@@ -46,12 +59,13 @@ belk-bag {
 
   .bag-total {
     margin-left: 1rem;
+    padding-top: 5px;
+    display: flex;
+    align-items: center;
   }
 
   .bag-icon {
     position: relative;
-    height: 3rem;
-
     .belk-icon {
       display: flex;
     }
@@ -88,12 +102,6 @@ belk-bag {
   &[bag-state="2"] {
     .has-products {
       display: block;
-    }
-  }
-
-  @include md {
-    .bag-icon {
-      height: 3rem;
     }
   }
 }
