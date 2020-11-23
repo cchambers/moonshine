@@ -1,6 +1,6 @@
 <template>
   <div class="belk-bag" :variant="variant" v-bind:class="{ active: itemCount > 0 }">
-    <sh-popper offset-x="-41" reference-id="belk-bag">
+    <sh-popper offset-x="-41" placement="bottom" reference-id="belk-bag">
       <div slot="reference">
         <div class="bag-icon">
           <belk-icon width="30" height="40" name="bag">shopping bag</belk-icon>
@@ -17,7 +17,7 @@
           </ul>
         </div>
         <div v-if="itemCount === 0">
-          <div class="content-asset">
+          <div>
             <h1>Your bag is empty &amp; could use some love.</h1>
             <p>Sign in to see items you may have added to your bag.</p>
           </div>

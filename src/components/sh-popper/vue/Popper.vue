@@ -120,12 +120,6 @@ export default {
     },
     offsetX: 0,
     offsetY: 0,
-    options: {
-      type: Object,
-      default() {
-        return {};
-      },
-    },
     placement: {
       type: String,
       default: 'bottom',
@@ -140,7 +134,6 @@ export default {
       popperJS: null,
       showPopper: false,
       mobile: false,
-      currentPlacement: '',
       content: 'empty',
       popperOptions: {
         modifiers: [
@@ -348,7 +341,7 @@ export default {
       this.appendedArrow = true;
 
       const arrow = document.createElement('div');
-      arrow.setAttribute('x-arrow', '');
+      arrow.setAttribute('data-popper-arrow', '');
       arrow.className = 'popper-arrow';
       element.appendChild(arrow);
     },
