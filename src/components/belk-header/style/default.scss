@@ -41,6 +41,7 @@
       display: flex;
       align-items: center;
       cursor: pointer;
+      border-radius: 5px;
 
       &.coupon-action {
         display: none;
@@ -267,7 +268,7 @@
     }
   }
 
-  @include xl {
+  @include md {
     .primary {
       display: flex;
 
@@ -292,12 +293,13 @@
     .iconbar {
       .iconbar-context,
       .bag-total {
-        display: block;
+        display: flex;
+      }
+      .iconbar-context {
+        flex-direction: column;
       }
     }
-  }
 
-  @include xl {
     .contain {
       padding: 0 2rem;
     }

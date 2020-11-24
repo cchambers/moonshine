@@ -18,7 +18,7 @@
         <div class="popper-content">
           <slot name="content">{{ content }}</slot>
         </div>
-        <div class="popper-arrow" x-arrow></div>
+        <div class="popper-arrow" data-popper-arrow></div>
       </div>
     </transition>
   </div>
@@ -177,7 +177,7 @@ export default {
     if (this.link) {
       this.link.setAttribute('aria-haspopup', true);
       this.link.setAttribute('aria-expanded', false);
-      if (this.hasArrow) this.link.innerHTML += '<belk-icon name="arrow-down" width="20"></belk-icon>';
+      if (this.hasArrow) this.link.innerHTML += '<belk-icon name="arrow-down" width="10" class="margin-l-atomic"></belk-icon>';
     }
 
     if (this.trigger === 'click') {
