@@ -18,7 +18,6 @@
         <div class="popper-content">
           <slot name="content">{{ content }}</slot>
         </div>
-        <div v-if="visibleArrow" class="popper-arrow" x-arrow></div>
       </div>
     </transition>
   </div>
@@ -119,12 +118,8 @@ export default {
       type: Boolean,
       default: false,
     },
-    options: {
-      type: Object,
-      default() {
-        return {};
-      },
-    },
+    offsetX: 0,
+    offsetY: 0,
     placement: {
       type: String,
       default: 'bottom',
@@ -139,7 +134,6 @@ export default {
       popperJS: null,
       showPopper: false,
       mobile: false,
-      currentPlacement: '',
       content: 'empty',
       popperOptions: {
         modifiers: [
@@ -153,7 +147,7 @@ export default {
           {
             name: 'offset',
             options: {
-              offset: [150, 0],
+              offset: [this.offsetX, (this.offsetY || null)],
             },
           },
           {
@@ -174,7 +168,7 @@ export default {
         this.$bus.$emit('popper-opening', this.uuid);
         if (this.popperJS) this.popperJS.enableEventListeners();
         this.updatePopper();
-        if (this.hasCurtain) this.$bus.$emit('show-curtain', this.foreground);
+        if (this.hasCurtain) this.$bus.$emit('show-curtain', this.$refs.target);
         if (this.link) this.link.setAttribute('aria-expanded', true);
         this.$bus.$emit('popper-opened', this.uuid);
       } else {
@@ -347,7 +341,7 @@ export default {
       this.appendedArrow = true;
 
       const arrow = document.createElement('div');
-      arrow.setAttribute('x-arrow', '');
+      arrow.setAttribute('data-popper-arrow', '');
       arrow.className = 'popper-arrow';
       element.appendChild(arrow);
     },

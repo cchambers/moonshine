@@ -59,7 +59,6 @@ sh-popper {
     height: 0;
     border-style: solid;
     position: absolute;
-    margin: $_aw;
     z-index: 0;
     border-width: $_aw;
 
@@ -67,7 +66,6 @@ sh-popper {
       content: '';
       display: block;
       position: absolute;
-      top: 1px;
       left: 0;
       width: 0;
       height: 0;
@@ -89,7 +87,7 @@ sh-popper {
     }
 
     &[data-popper-placement^="top"] {
-      margin-bottom: $arrowHeight;
+      margin-bottom: $arrowHeight !important;
     }
 
     &[data-popper-placement^="top"] .popper-arrow {
@@ -97,12 +95,11 @@ sh-popper {
       border-bottom-width: 0;
       border-color: $lowlight-primary transparent transparent transparent;
       bottom: -$arrowHeight;
-      left: 50%;
       margin-top: 0;
       margin-bottom: 0;
 
       &::before {
-        top: 1px;
+        top: -9px;
         border-color: $highlight-primary transparent transparent transparent;
       }
     }
@@ -116,12 +113,12 @@ sh-popper {
       border-bottom-width: $arrowHeight;
       border-color: transparent transparent $lowlight-primary transparent;
       top: -$arrowHeight;
-      left: 50%;
       margin-top: 0;
       margin-bottom: 0;
 
       &::before {
         border-color: transparent transparent $highlight-primary transparent;
+        top: 1px;
       }
     }
 
@@ -133,7 +130,6 @@ sh-popper {
       border-width: $arrowHeight $_aw $_aw 0;
       border-color: transparent $lowlight-primary transparent transparent;
       left: -$_aw;
-      top: calc(50% - #{ $_aw });
       margin-left: 0;
       margin-right: 0;
     }
@@ -146,7 +142,6 @@ sh-popper {
       border-width: $_aw 0 $_aw $arrowHeight;
       border-color: transparent transparent transparent $lowlight-primary;
       right: -$_aw;
-      top: calc(50% - #{ $_aw });
       margin-left: 0;
       margin-right: 0;
     }

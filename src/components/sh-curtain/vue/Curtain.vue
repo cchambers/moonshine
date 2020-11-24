@@ -44,7 +44,7 @@ export default {
         }
         if (zIndex < 8) {
           this.targetEl = target;
-          target.style.zIndex = 9;
+          target.style.zIndex = 91;
         }
       }
       setTimeout(() => {
