@@ -267,7 +267,7 @@
     }
   }
 
-  @include xl {
+  @include md {
     .primary {
       display: flex;
 
@@ -292,12 +292,13 @@
     .iconbar {
       .iconbar-context,
       .bag-total {
-        display: block;
+        display: flex;
+      }
+      .iconbar-context {
+        flex-direction: column;
       }
     }
-  }
 
-  @include xl {
     .contain {
       padding: 0 2rem;
     }

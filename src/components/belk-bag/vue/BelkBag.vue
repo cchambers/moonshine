@@ -10,11 +10,11 @@
       </div>
       <div class="bag-content" slot="content">
         <div v-if="itemCount > 0">
-          <ul>
-            <li>Item 1</li>
-            <li>Item 2</li>
-            <li>Item 3</li>
-          </ul>
+          <component
+            ref="itemList"
+            v-bind:is="belkProductList"
+            v-bind:product-array="items"
+            variant="secondary"></component>
         </div>
         <div v-if="itemCount === 0">
           <div>
@@ -28,6 +28,7 @@
 </template>
 
 <script>
+import BelkProductList from '../../belk-product-list/vue/BelkProductList.vue';
 import ComponentPrototype from '../../component-prototype';
 
 export default {
@@ -40,6 +41,7 @@ export default {
       type: Number,
       default: 0,
     },
+    belkProductList: BelkProductList,
   },
 
   computed: {
