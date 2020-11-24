@@ -126,7 +126,7 @@ export default {
   "title": "PFG Long Sleeve Button Down Bahama Shirt",
   "url": "https://www.belk.com/p/columbia-pfg-long-sleeve-button-down-bahama-shirt/18015461396561.html?_br_psugg_q=shirts",
   "price": 44.99,
-  "pid": "18015461396561",
+  "pid": "8015461396561",
   "reviews": ["4.8182"],
   "brand": "Columbia",
   "sale_price_range": [44.99, 44.99],
