@@ -44,6 +44,10 @@ export default {
     belkProductList: BelkProductList,
   },
 
+  components: {
+    BelkProductList,
+  },
+
   computed: {
     totalPrice() {
       const total = parseInt(this.total, 10);
