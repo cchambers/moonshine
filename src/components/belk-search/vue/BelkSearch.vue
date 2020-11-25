@@ -446,10 +446,14 @@ export default {
 
     selectInput() {
       const self = this;
-      setTimeout(() => {
-        self.inputEl.focus();
-        self.inputEl.setSelectionRange(0, self.value.length);
-      }, 10);
+      if (self.isMobile() && self.variant !== 'modal') {
+        self.triggerModalSearch();
+      } else {
+        setTimeout(() => {
+          self.inputEl.focus();
+          self.inputEl.setSelectionRange(0, self.value.length);
+        }, 10);
+      }
     },
 
     removeHighlight(arr) {
