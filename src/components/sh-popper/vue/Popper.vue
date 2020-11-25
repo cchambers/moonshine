@@ -165,17 +165,17 @@ export default {
   watch: {
     showPopper(value) {
       if (value) {
-        this.$bus.$emit('popper-opening', this.uuid);
+        this.$bus.$emit('popper-opening', this);
         if (this.popperJS) this.popperJS.enableEventListeners();
         this.updatePopper();
         if (this.hasCurtain) this.$bus.$emit('show-curtain', this.$refs.target);
         if (this.link) this.link.setAttribute('aria-expanded', true);
-        this.$bus.$emit('popper-opened', this.uuid);
+        this.$bus.$emit('popper-opened', this);
       } else {
-        this.$bus.$emit('popper-closing', this.uuid);
+        this.$bus.$emit('popper-closing', this);
         if (this.hasCurtain) this.$bus.$emit('hide-curtain', this);
         if (this.link) this.link.setAttribute('aria-expanded', false);
-        this.$bus.$emit('popper-closed', this.uuid);
+        this.$bus.$emit('popper-closed', this);
       }
     },
 
@@ -207,22 +207,18 @@ export default {
   methods: {
     events() {
       const self = this;
-      this.$bus.$on('popper-opening', (which) => {
-        if (which !== self.uuid) self.doClose();
+      self.$bus.$on('popper-opening', (el) => {
+        if (el === self) return;
+        self.close();
       });
 
-      this.$bus.$on('breakpoint-mobile', () => {
+      self.$bus.$on('breakpoint-mobile', () => {
         self.mobile = true;
       });
 
-      this.$bus.$on('breakpoint-desktop', () => {
+      self.$bus.$on('breakpoint-desktop', () => {
         self.mobile = false;
       });
-
-      // this.$bus.$on('popper-opening', (el) => {
-      //   if (el === this) return;
-      //   if (self.closingTimer) clearTimeout(self.closingTimer);
-      // });
     },
 
     ready() {

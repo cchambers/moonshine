@@ -36,8 +36,14 @@
       align-self: flex-end;
     }
 
+    a.iconbar-action {
+      padding: $micro;
+    }
+
     .iconbar-action {
-      padding: 1rem;
+      .popper-target {
+        padding: $micro;
+      }
       display: flex;
       align-items: center;
       cursor: pointer;

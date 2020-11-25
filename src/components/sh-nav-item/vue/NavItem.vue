@@ -150,11 +150,13 @@ export default {
   watch: {
     showPopper(value) {
       if (value) {
+        this.$bus.$emit('popper-opening', this);
         if (this.popperJS) this.popperJS.enableEventListeners();
         this.updatePopper();
         this.$bus.$emit('show-curtain', this.foreground);
         if (this.link) this.link.setAttribute('aria-expanded', true);
       } else {
+        this.$bus.$emit('popper-closing', this);
         this.$bus.$emit('hide-curtain', this);
         if (this.link) this.link.setAttribute('aria-expanded', false);
       }
@@ -201,9 +203,9 @@ export default {
   methods: {
     events() {
       const self = this;
-      this.$bus.$on('show-nav', (which) => {
-        if (which !== self.uuid) self.close();
-      });
+      // this.$bus.$on('show-nav', (which) => {
+      //   if (which !== self.uuid) self.close();
+      // });
 
       this.$bus.$on('breakpoint-mobile', () => {
         self.mobile = true;
@@ -213,9 +215,9 @@ export default {
         self.mobile = false;
       });
 
-      this.$bus.$on('navitem-opening', (el) => {
+      this.$bus.$on('popper-opening', (el) => {
         if (el === this) return;
-        if (self.closingTimer) clearTimeout(self.closingTimer);
+        self.close();
       });
     },
 
@@ -261,7 +263,6 @@ export default {
 
     show() {
       this.showPopper = true;
-      this.$bus.$emit('navitem-opening', this);
     },
 
     close() {
@@ -337,7 +338,7 @@ export default {
       if (!this.mobile) {
         clearTimeout(this.timer);
         this.timer = setTimeout(() => {
-          this.$bus.$emit('show-nav', this.uuid);
+          this.$bus.$emit('popper-opening', this);
           this.$set(this, 'showPopper', true);
         }, this.delayOnMouseOver);
       }
