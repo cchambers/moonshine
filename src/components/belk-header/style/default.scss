@@ -15,6 +15,22 @@
     flex-basis: auto;
     padding: 0 2rem;
   }
+  
+  .nav-divider {
+    margin-left: .5rem;
+    padding-right: .5rem;
+    position: relative;
+
+    &:before {
+      content: '';
+      position: absolute;
+      left: 0;
+      background-color: rgba(116,116,116,0.5);
+      width: 1px;
+      height: 20px;
+      top: calc(50% - 10px);
+    }
+  }
 
   .sh-nav-item {
     position: relative;
@@ -60,7 +76,7 @@
 
     .iconbar-context {
       display: none;
-      margin-left: 1rem;
+      margin-left: .5rem;
     }
 
     .bag-total {
@@ -195,8 +211,6 @@
 
   // Media Queries
   @include md {
-    border-bottom: 0;
-
     belk-logo {
       margin-left: 0;
       margin-right: 2rem;
