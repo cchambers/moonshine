@@ -121,21 +121,28 @@ export default {
       currentPlacement: '',
       content: 'empty',
       popperOptions: {
-        modifiers: {
-          offset: {
-            offset: '0, -3px',
+        modifiers: [
+          {
+            name: 'flip',
+            options: {
+              enabled: false,
+              fallbackPlacements: ['bottom'],
+            },
           },
-          flip: {
-            behavior: ['bottom'],
+          {
+            name: 'offset',
+            options: {
+              offset: [10, 0],
+            },
           },
-          computeStyle: {
-            x: 'left',
+          {
+            name: 'preventOverflow',
+            options: {
+              padding: 0,
+              priority: ['top', 'bottom'],
+            },
           },
-          preventOverflow: {
-            padding: 0,
-            priority: ['left', 'right'],
-          },
-        },
+        ],
       },
     };
   },
@@ -149,7 +156,6 @@ export default {
         if (this.link) this.link.setAttribute('aria-expanded', true);
       } else {
         this.$bus.$emit('hide-curtain', this);
-        if (this.popperJS) this.popperJS.disableEventListeners();
         if (this.link) this.link.setAttribute('aria-expanded', false);
       }
     },
@@ -263,11 +269,18 @@ export default {
     },
 
     doDestroy() {
-      if (this.showPopper) return;
+      if (this.showPopper) {
+        return;
+      }
 
       if (this.popperJS) {
         this.popperJS.destroy();
         this.popperJS = null;
+      }
+
+      if (this.appendedToBody) {
+        this.appendedToBody = false;
+        document.body.removeChild(this.popper.parentElement);
       }
     },
 

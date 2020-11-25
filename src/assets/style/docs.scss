@@ -66,12 +66,6 @@ footer {
   display: block;
 }
 
-section > h1 {
-  margin-top: 3.4rem;
-  margin-bottom: 2.5rem;
-  // margin-left: 3rem;
-}
-
 dt {
   line-height: 3rem;
 }
@@ -491,6 +485,8 @@ $containMargin: 6rem;
     color: $accent-primary;
     font-size: 5rem;
     line-height: 5rem;
+    margin-top: 3.4rem;
+    margin-bottom: 2.5rem;
   }
 
   section {

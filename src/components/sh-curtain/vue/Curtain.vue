@@ -20,7 +20,7 @@ export default {
 
   watch: {
     targetEl(val, old) {
-      if (val !== old) {
+      if (old) {
         this.lastTargetEl = old;
       } else {
         this.lastTargetEl = val;
@@ -37,12 +37,12 @@ export default {
     show(el) {
       const target = el;
       if (target) {
-        const zIndex = target.style.zIndex || 0;
+        const z = target.style.zIndex || 0;
         const pos = target.style.position;
         if (pos !== 'absolute' && pos !== 'relative') {
           target.style.pos = 'relative';
         }
-        if (zIndex < 8) {
+        if (z < 8) {
           this.targetEl = target;
           target.style.zIndex = 91;
         }
@@ -55,11 +55,7 @@ export default {
     },
 
     hide() {
-      if (this.lastTargetEl) {
-        this.lastTargetEl.style.zIndex = '';
-        this.lastTargetEl.style.position = '';
-        this.lastTargetEl = null;
-      }
+      console.log('hiding');
       this.$bus.$emit('curtain-hiding');
       this.active = false;
       this.$bus.$emit('curtain-hidden');
