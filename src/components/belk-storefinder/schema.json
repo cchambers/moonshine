@@ -1,7 +1,7 @@
 {
   "name": "BelkStorefinder",
   "category": "base",
-  "production": false,
+  "production": true,
   "element": "belk-storefinder",
   "description": "Demonstration component.",
   "tags": ["utilities", "demo"],

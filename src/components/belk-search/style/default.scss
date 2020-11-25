@@ -26,7 +26,6 @@ belk-search {
     border: 2px solid $lowlight-primary;
     border-radius: 1rem;
     transition: box-shadow 250ms $ease;
-    z-index: 30;
 
     &.active {
       @include box-shadow(1);
