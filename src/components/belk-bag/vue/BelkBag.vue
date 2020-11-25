@@ -3,7 +3,7 @@
     <sh-popper offset-x="-41" placement="bottom" reference-id="belk-bag">
       <div slot="reference">
         <div class="bag-icon">
-          <belk-icon width="30" height="40" name="bag">shopping bag</belk-icon>
+          <belk-icon width="29" height="40" name="bag">shopping bag</belk-icon>
           <div class="bag-count">{{ itemCount }}</div>
         </div>
         <div class="bag-total">{{ totalPrice }}</div>
