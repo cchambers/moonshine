@@ -22,8 +22,6 @@ export default {
     targetEl(val, old) {
       if (old) {
         this.lastTargetEl = old;
-      } else {
-        this.lastTargetEl = val;
       }
     },
   },
@@ -45,6 +43,11 @@ export default {
         if (z < 8) {
           this.targetEl = target;
           target.style.zIndex = 91;
+          if (this.lastTarget) {
+            this.lastTarget.style.zIndex = '';
+            this.lastTarget.style.postition = '';
+          }
+          this.lastTarget = target;
         }
       }
       setTimeout(() => {
@@ -55,7 +58,6 @@ export default {
     },
 
     hide() {
-      console.log('hiding');
       this.$bus.$emit('curtain-hiding');
       this.active = false;
       this.$bus.$emit('curtain-hidden');

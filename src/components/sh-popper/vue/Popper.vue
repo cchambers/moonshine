@@ -209,7 +209,7 @@ export default {
       const self = this;
       self.$bus.$on('popper-opening', (el) => {
         if (el === self) return;
-        self.close();
+        self.doClose();
       });
 
       self.$bus.$on('breakpoint-mobile', () => {
