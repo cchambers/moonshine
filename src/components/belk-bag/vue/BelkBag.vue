@@ -14,7 +14,8 @@
             ref="itemList"
             v-bind:is="belkProductList"
             v-bind:product-array="items"
-            variant="secondary"></component>
+            variant="secondary">
+          </component>
         </div>
         <div v-if="itemCount === 0">
           <div>
@@ -67,6 +68,7 @@ export default {
     return {
       itemCount: 0,
       subTotal: 0,
+      items: [],
     };
   },
 

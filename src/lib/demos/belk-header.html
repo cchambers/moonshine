@@ -13,9 +13,8 @@
           </div>
 
           <div class="primary-utility">
-            <div class="store-locator">
-              <a href="/stores/" fill="store">Find a Store</a>
-            </div>
+            
+            <belk-storefinder></belk-storefinder>
 
             <sh-nav-item boundaries-selector="#primary-nav" variant="primary" has-arrow foreground-selector="#header .primary">
               <div slot="reference" id="rewards-link">
@@ -62,8 +61,7 @@
             <belk-logo class="logo" variant="header" width="96"></belk-logo>
           </a>
 
-          <belk-search ></belk-search>
-
+          <belk-search></belk-search>
           <sh-modal unique-id="search-modal" variant="secondary" fullscreen hide-header>
             <div class="flex sticky cross-middle">
                 <belk-search id="mobile-search"  variant="modal" class="flex-item double"></belk-search>

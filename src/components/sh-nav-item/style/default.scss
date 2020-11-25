@@ -12,6 +12,7 @@ sh-nav-item {
   .sh-nav-item {
     display: inline-block;
     color: $lowlight-primary;
+    height: 100%;
 
     &:hover {
       .reference a {
@@ -24,6 +25,7 @@ sh-nav-item {
     border-bottom: none;
     display: inline-flex;
     cursor: pointer;
+    height: 100%;
 
     button {
       display: none;
@@ -37,6 +39,7 @@ sh-nav-item {
       position: relative;
       display: flex;
       align-items: center;
+      height: 100%;
       transition: all 150ms $ease;
       color: $lowlight-primary;
       cursor: pointer;
