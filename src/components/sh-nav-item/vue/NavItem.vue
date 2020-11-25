@@ -273,41 +273,40 @@ export default {
 
     createPopper() {
       this.$nextTick(() => {
+        if (this.visibleArrow) {
+          this.appendArrow(this.popper);
+        }
+
+        if (this.appendToBody && !this.appendedToBody) {
+          this.appendedToBody = true;
+          document.body.appendChild(this.popper.parentElement);
+        }
+
         if (this.popperJS && this.popperJS.destroy) {
           this.popperJS.destroy();
         }
 
-        if (this.boundariesSelector) {
-          const boundariesElement = document.querySelector(this.boundariesSelector) || document.querySelector('#main');
-          if (boundariesElement) {
-            this.popperOptions.modifiers = {
-              ...this.popperOptions.modifiers,
-            };
-            this.popperOptions.modifiers.offset.offset = this.offset;
-            this.popperOptions.modifiers.preventOverflow = {
-              ...this.popperOptions.modifiers.preventOverflow,
-            };
-            this.popperOptions.modifiers.preventOverflow.boundariesElement = boundariesElement;
-          }
-        }
-
         this.popperOptions.onFirstUpdate = () => {
-          this.$emit('created', this);
+          this.$bus.$emit('created', this);
           this.$nextTick(this.updatePopper);
         };
 
-        this.popperJS = new CreatePopper(this.referenceElm, this.popper, this.popperOptions);
+        this.popperJS = new CreatePopper(
+          this.referenceElm,
+          this.popper,
+          this.popperOptions,
+        );
       });
     },
 
     destroyPopper() {
       off(this.referenceElm, 'click', this.doToggle);
-      off(this.referenceElm, 'mouseup', this.close);
-      off(this.referenceElm, 'mousedown', this.show);
-      off(this.referenceElm, 'focus', this.show);
-      off(this.referenceElm, 'blur', this.close);
-      off(this.referenceElm, 'mouseout', this.mouseoutHandler);
-      off(this.referenceElm, 'mouseover', this.mouseoverHandler);
+      off(this.referenceElm, 'mouseup', this.doClose);
+      off(this.referenceElm, 'mousedown', this.doShow);
+      off(this.referenceElm, 'focus', this.doShow);
+      off(this.referenceElm, 'blur', this.doClose);
+      off(this.referenceElm, 'mouseout', this.onMouseOut);
+      off(this.referenceElm, 'mouseover', this.onMouseOver);
       off(document, 'click', this.handleDocumentClick);
 
       this.showPopper = false;
