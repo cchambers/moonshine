@@ -365,15 +365,13 @@ export default {
       self.$bus.$on('search-term', self.searchTermHandler);
 
       window.addEventListener('resize', self.placeholderHandler);
-      window.addEventListener('popper-opening', self.forceBlur);
       if (this.variant === 'modal') {
         self.$bus.$on('focus-search', self.modalHandler);
       }
     },
 
     modalHandler() {
-      this.inputEl.focus();
-      this.focusHandler();
+      this.selectInput();
     },
 
     searchTermHandler(data) {
@@ -429,12 +427,7 @@ export default {
     },
 
     focusHandler() {
-      if (this.isMobile() && this.variant !== 'modal') {
-        this.triggerModalSearch();
-      } else {
-        this.isFocused = true;
-        this.selectInput();
-      }
+      this.isFocused = true;
     },
 
     triggerModalSearch() {
@@ -502,15 +495,17 @@ export default {
     },
 
     forceBlur(e) {
-      let clear = false;
-      if (typeof e === 'object') {
-        const key = e.charCode || e.keyCode;
-        if (key === 27 || e.target === this.$refs.clear) clear = true;
-      }
-      if (document.activeElement === this.inputEl) this.inputEl.blur();
-      this.isFocused = false;
+      if (this.isFocused) {
+        let clear = false;
+        if (typeof e === 'object') {
+          const key = e.charCode || e.keyCode;
+          if (key === 27 || e.target === this.$refs.clear) clear = true;
+        }
+        if (document.activeElement === this.inputEl) this.inputEl.blur();
+        this.isFocused = false;
 
-      if (clear) this.clearSearch(clear);
+        if (clear) this.clearSearch(clear);
+      }
     },
 
     clearSearch(focus = true) {
