@@ -66,9 +66,9 @@ export default {
 
   data() {
     return {
+      items: [],
       itemCount: 0,
       subTotal: 0,
-      items: [],
     };
   },
 

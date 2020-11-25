@@ -48,7 +48,7 @@ let delegations = {
     }, {
       target: '[nav-trigger]',
       handler() {
-        EventBus.$emit('show-nav');
+        EventBus.$emit('popper-opening');
         EventBus.$emit('show-curtain');
       }
     }, {

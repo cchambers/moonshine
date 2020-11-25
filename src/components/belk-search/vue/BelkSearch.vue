@@ -360,12 +360,12 @@ export default {
       });
 
       self.$on('active-descendant', self.activeDescendantHandler);
-      self.$bus.$on('navitem-opening', self.forceBlur);
+      self.$bus.$on('popper-opening', self.forceBlur);
       self.$bus.$on('close-search', self.forceBlur);
       self.$bus.$on('search-term', self.searchTermHandler);
 
       window.addEventListener('resize', self.placeholderHandler);
-      window.addEventListener('navitem-opening', self.forceBlur);
+      window.addEventListener('popper-opening', self.forceBlur);
       if (this.variant === 'modal') {
         self.$bus.$on('focus-search', self.modalHandler);
       }
