@@ -40,13 +40,14 @@
     }
 
     .iconbar-action {
-      .popper-target {
+      .reference > a,
+      .reference > div {
         padding: $micro;
       }
+      border-radius: 5px;
       display: flex;
       align-items: center;
       cursor: pointer;
-      border-radius: 5px;
 
       &.coupon-action {
         display: none;
