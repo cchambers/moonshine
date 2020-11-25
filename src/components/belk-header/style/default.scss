@@ -36,8 +36,14 @@
       align-self: flex-end;
     }
 
+    a.iconbar-action {
+      padding: $micro;
+    }
+
     .iconbar-action {
-      padding: 1rem;
+      .popper-target {
+        padding: $micro;
+      }
       display: flex;
       align-items: center;
       cursor: pointer;
@@ -158,7 +164,6 @@
     max-width: 58rem;
     flex: 1;
     margin: 0 auto;
-    z-index: 26; //for existing header structure in isml
 
     .belk-search button {
       display: flex;
