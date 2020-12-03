@@ -5,8 +5,10 @@
       boundaries-selector="#primary-nav"
       variant="primary"
       has-arrow
-      foreground-selector="#header .primary">
+      foreground-selector="#header .primary"
+    >
       <div slot="reference">
+        <belk-icon name="map-pin" width="9" class="margin-r-atomic"></belk-icon>
         <span>{{ storeName }}</span>
       </div>
       <div slot="content">
@@ -33,6 +35,7 @@
     <a v-else
       class="findastore-link"
       :href="storefinderLink">
+      <belk-icon name="map-pin" width="9" class="margin-r-atomic"></belk-icon>
       Find a Store
     </a>
 

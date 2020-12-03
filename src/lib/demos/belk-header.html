@@ -14,7 +14,9 @@
 
           <div class="primary-utility">
             
-            <belk-storefinder></belk-storefinder>
+            <belk-storefinder
+              :storelink="/store/"
+            ></belk-storefinder>
             
             <div class="nav-divider"></div>
 
@@ -64,10 +66,11 @@
           </sh-button>
 
           <a class="logo-link" href="#">
-            <belk-logo class="logo" variant="header"></belk-logo>
+            <belk-logo class="logo" width="96" variant="header"></belk-logo>
           </a>
 
           <belk-search></belk-search>
+
           <sh-modal unique-id="search-modal" variant="secondary" fullscreen hide-header>
             <div class="flex sticky cross-middle">
                 <belk-search id="mobile-search"  variant="modal" class="flex-item double"></belk-search>
@@ -80,11 +83,16 @@
           <div class="iconbar">
 
             <a href="coupons" class="iconbar-action coupon-action">
-              <belk-icon width="30" name="coupon"></belk-icon>
+              <belk-icon width="29" name="coupon"></belk-icon>
               <div class="iconbar-context">Coupons</div>
             </a>
 
-            <sh-nav-item class="iconbar-action account-action" variant="primary" has-arrow foreground-selector="#header .belk-header">
+            <sh-nav-item 
+              class="iconbar-action account-action" 
+              variant="primary" 
+              has-arrow 
+              foreground-selector=".primary,.secondary"
+            >
               <a
                 slot="reference"
                 id="signin-link"

@@ -131,14 +131,6 @@ export default {
   name: 'BelkSearch',
 
   props: {
-    lowerPlaceholder: {
-      type: String,
-      default: 'Search',
-    },
-    upperPlaceholder: {
-      type: String,
-      default: 'What can we help you find?',
-    },
     variant: {
       type: String,
       default: 'default',
@@ -153,7 +145,7 @@ export default {
     return {
       value: '',
       searchValue: '',
-      placeholder: '',
+      placeholder: 'Search',
       valueLength: 0,
       triggerResults: 1,
       highlightIndex: -1,
@@ -342,7 +334,6 @@ export default {
     this.productsEl = this.$refs.suggestedProducts;
     this.headerEl = document.querySelector('belk-header');
     this.configureAria();
-    this.placeholderHandler();
     this.recentSearches();
 
     if (window.location.params) {
@@ -364,7 +355,6 @@ export default {
       self.$bus.$on('close-search', self.forceBlur);
       self.$bus.$on('search-term', self.searchTermHandler);
 
-      window.addEventListener('resize', self.placeholderHandler);
       if (this.variant === 'modal') {
         self.$bus.$on('focus-search', self.modalHandler);
       }
@@ -433,15 +423,6 @@ export default {
     triggerModalSearch() {
       window.location.hash = 'search-modal';
       this.$bus.$emit('focus-search', 'mobile-search');
-    },
-
-    placeholderHandler() {
-      const self = this;
-      clearTimeout(self.placeholderTimer);
-      self.placeholderTimer = setTimeout(() => {
-        const text = (window.innerWidth < 768) ? self.lowerPlaceholder : self.upperPlaceholder;
-        self.placeholder = text;
-      }, 100);
     },
 
     selectInput() {

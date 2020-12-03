@@ -14,6 +14,10 @@ sh-nav-item {
     color: $lowlight-primary;
     height: 100%;
 
+    .reference a {
+      border-radius: 5px;
+    }
+    
     &:hover {
       .reference a {
         background: $highlight-secondary;
