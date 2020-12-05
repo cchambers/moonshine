@@ -25,7 +25,8 @@
         v-on:keydown.down="highlightHandler"
         v-on:keydown.up="highlightHandler"
         :placeholder="placeholder"
-        @focus="focusHandler"/>
+        @focus="focusHandler"
+      />
       <button class="clear-search" aria-role="button"
         aria-label="clear search field"
         ref="clear"
@@ -120,6 +121,7 @@
 
 <style lang="scss" src="../style/default.scss"></style>
 <style lang="scss" src="../style/variant-modal.scss"></style>
+<style lang="scss" src="../style/variant-desktop.scss"></style>
 
 <script>
 import BelkProductList from '../../belk-product-list/vue/BelkProductList.vue';
@@ -256,7 +258,6 @@ export default {
         default:
           break;
       }
-      // this.selectInput();
     },
 
     value(val) {
@@ -354,14 +355,6 @@ export default {
       self.$bus.$on('popper-opening', self.forceBlur);
       self.$bus.$on('close-search', self.forceBlur);
       self.$bus.$on('search-term', self.searchTermHandler);
-
-      if (this.variant === 'modal') {
-        self.$bus.$on('focus-search', self.modalHandler);
-      }
-    },
-
-    modalHandler() {
-      this.selectInput();
     },
 
     searchTermHandler(data) {
@@ -420,21 +413,12 @@ export default {
       this.isFocused = true;
     },
 
-    triggerModalSearch() {
-      window.location.hash = 'search-modal';
-      this.$bus.$emit('focus-search', 'mobile-search');
-    },
-
     selectInput() {
       const self = this;
-      if (self.isMobile() && self.variant !== 'modal') {
-        self.triggerModalSearch();
-      } else {
-        setTimeout(() => {
-          self.inputEl.focus();
-          self.inputEl.setSelectionRange(0, self.value.length);
-        }, 10);
-      }
+      setTimeout(() => {
+        self.inputEl.focus();
+        self.inputEl.setSelectionRange(0, self.value.length);
+      }, 10);
     },
 
     removeHighlight(arr) {

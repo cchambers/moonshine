@@ -1,11 +1,20 @@
 /* default styling */
+#header {
+  display:inline;
+
+  * {
+    box-sizing: border-box;
+    &:after,&:before {
+      box-sizing: inherit;
+    }
+  }
+}
+
 .belk-header {
-  display: flex;
-  flex-direction: column;
+  display: inline;
   position: relative;
   background: $highlight-primary;
   color: $lowlight-primary;
-  border-bottom: 1px solid currentColor;
 
   .contain {
     width: 100%;
@@ -123,6 +132,10 @@
     display: flex;
     align-items: center;
     background: $highlight-primary;
+    position: sticky;
+    top: 0;
+    z-index: 29;
+    border-bottom: 1px solid currentColor;
 
     .contain {
       justify-content: space-between;
@@ -169,6 +182,7 @@
   .logo-link {
     display: inline-flex;
     flex-shrink: 0;
+    margin-right: auto;
   }
 
   belk-logo {
@@ -184,7 +198,7 @@
     flex: 1;
     margin: 0 auto;
     z-index: 7;
-    
+
     .belk-search button {
       display: flex;
       align-items: center;
@@ -350,37 +364,19 @@
 }
 
 //State Changes
-belk-header.search-active ~ .belk-header {
-  @media (max-width: breakpoint("md")) {
-    .primary {
-      max-height: 0;
-      overflow: hidden;
-    }
+// belk-header.search-active ~ .belk-header {
+//   @media (max-width: breakpoint("md")) {
+//     .primary {
+//       max-height: 0;
+//       overflow: hidden;
+//     }
 
-    .secondary {
-      .contain {
-        belk-search {
-          margin-left: 0;
-
-          & ~ * {
-            max-width: 0;
-            overflow: hidden;
-          }
-
-          .search-results {
-            position: fixed;
-            top: 5.1rem;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            height: calc(100vh - 5.1rem);
-          }
-        }
-
-        sh-button.close-search {
-          max-width: initial;
-        }
-      }
-    }
-  }
-}
+//     .secondary {
+//       .contain {
+//         sh-button.close-search {
+//           max-width: initial;
+//         }
+//       }
+//     }
+//   }
+// }

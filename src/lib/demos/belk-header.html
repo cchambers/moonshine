@@ -68,10 +68,21 @@
           <a class="logo-link" href="#">
             <belk-logo class="logo" width="96" variant="header"></belk-logo>
           </a>
-
-          <belk-search></belk-search>
-
-          <sh-modal unique-id="search-modal" variant="secondary" fullscreen hide-header>
+          
+          <!-- Search -->
+          <a href="#search-modal" class="hide-md">
+            <belk-icon name="search" width="30">Open Mobile Search</belk-icon>
+          </a>
+          <belk-search
+            variant="desktop"
+          ></belk-search>
+          <sh-modal 
+            unique-id="search-modal" 
+            variant="secondary" 
+            fullscreen 
+            hide-header
+            hide-buttons
+          >
             <div class="flex sticky cross-middle">
                 <belk-search id="mobile-search"  variant="modal" class="flex-item double"></belk-search>
                 <div class="sh-button close-search" tabindex="0" click-event="close-search" close-trigger aria-label="closes modal">

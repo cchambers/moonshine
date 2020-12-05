@@ -1,0 +1,7 @@
+belk-search[variant="desktop"] {
+    display: none;
+
+    @include md {
+        display: inline-flex;
+    }
+}
