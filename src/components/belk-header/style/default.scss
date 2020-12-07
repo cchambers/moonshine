@@ -112,6 +112,7 @@
     align-items: center;
     display: flex;
     background: $highlight-primary;
+    position: relative;
 
     .primary-utility {
       display: none;
@@ -134,7 +135,7 @@
     background: $highlight-primary;
     position: sticky;
     top: 0;
-    z-index: 29;
+    z-index: 7;
     border-bottom: 1px solid currentColor;
 
     .contain {
