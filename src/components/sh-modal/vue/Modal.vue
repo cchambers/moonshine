@@ -3,15 +3,12 @@
     :variant="variant"
     :class="{
       fullscreen: fullscreen,
-      active: active,
-      'hide-buttons': hideButtons
+      active: active
     }"
-    :hide-buttons="hideButtons"
     :reveal="reveal"
     :id="uniqueId"
     :aria-labelledby="ariaID"
     :aria-describedby="ariaDescID">
-    <sh-modal-buttons></sh-modal-buttons>
     <div class="content" ref="content" :class="{ 'no-space': noSpace }" :size="size">
       <div class="tab-lock" v-on:focus="modalButtonsFocus()" tabindex="0"></div>
       <div v-if="!hideHeader" class="header">
@@ -64,8 +61,8 @@ export default {
     maxWidth: String,
     noHistory: Boolean,
     hideHeader: Boolean,
-    fullscreen: Boolean,
     hideButtons: Boolean,
+    fullscreen: Boolean,
     openTriggerEvent: String,
     openedEvent: String,
     noEvents: Boolean,
@@ -130,11 +127,6 @@ export default {
     if (container) {
       self.container = container;
       self.mountToContainer();
-      if (this.hideButtons) {
-        container.classList.add('hide-buttons');
-      } else {
-        container.classList.remove('hide-buttons');
-      }
     } else {
       self.createContainer();
     }
@@ -304,6 +296,7 @@ export default {
 
       if (!self.active) {
         if (!self.noEvents) self.$bus.$emit('modal-opening', self.uniqueId);
+        if (self.hideButtons) self.$bus.$emit('modal-buttons-hide');
         document.documentElement.classList.add('sh-modal-open');
         self.active = true;
         self.$bus.$emit('modal-opened', self.uniqueId);
@@ -433,6 +426,7 @@ export default {
       const self = this;
       const container = document.createElement('div');
       container.id = 'sh-modals';
+      container.innerHTML = '<sh-modal-buttons></sh-modal-buttons>';
       document.body.appendChild(container);
       self.container = container;
       self.container.addEventListener('click', (e) => {
