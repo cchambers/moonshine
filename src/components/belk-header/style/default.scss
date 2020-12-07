@@ -1,6 +1,10 @@
 /* default styling */
 #header {
-  display:inline;
+  border-bottom: 1px solid currentColor;
+  position: sticky;
+  top:0;
+  width: 100%;
+  z-index: 7;
 
   * {
     box-sizing: border-box;
@@ -11,7 +15,6 @@
 }
 
 .belk-header {
-  display: inline;
   position: relative;
   background: $highlight-primary;
   color: $lowlight-primary;
@@ -133,10 +136,6 @@
     display: flex;
     align-items: center;
     background: $highlight-primary;
-    position: sticky;
-    top: 0;
-    z-index: 7;
-    border-bottom: 1px solid currentColor;
 
     .contain {
       justify-content: space-between;
