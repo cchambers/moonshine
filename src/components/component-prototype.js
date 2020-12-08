@@ -22,7 +22,8 @@ const ComponentPrototype = {
   },
 
   methods: {
-    debounce(name = 'default', func, wait, immediate) {
+    debounce(name = 'default', func, wait = 100, immediate) {
+      if (!this.timers) this.timers = {};
       return (...args) => {
         const context = this;
         const later = () => {

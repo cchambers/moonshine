@@ -1,3 +1,4 @@
+/* eslint-disable */
 import ComponentPrototype from '../../component-prototype';
 
 export default {
