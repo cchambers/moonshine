@@ -1,6 +1,6 @@
 <sh-svglib></sh-svglib>
 
-<div>
+<div style="overflow-y: auto">
 
   <belk-header></belk-header>
   <header class="belk-header">
@@ -16,7 +16,7 @@
 
           <div class="nav-divider"></div>
 
-          <sh-nav-item boundaries-selector="#primary-nav" variant="primary" has-arrow foreground-selector="#header .primary">
+          <sh-nav-item boundaries-selector="#primary-nav" has-arrow foreground-selector="#header .primary">
             <div slot="reference" id="rewards-link">
               <a href="#">
                 Belk <span fill-data="user-tier">&nbsp;</span> Rewards
@@ -31,7 +31,7 @@
             </div>
           </sh-nav-item>
 
-          <sh-nav-item boundaries-selector="#primary-nav" variant="primary" has-arrow foreground-selector="#header .primary">
+          <sh-nav-item boundaries-selector="#primary-nav" has-arrow foreground-selector="#header .primary">
             <div slot="reference" id="giftcards-link">
               <a href="#">
                 Gift Cards
@@ -68,7 +68,7 @@
           </a>
         </div>
         <belk-search variant="desktop"></belk-search>
-        <sh-modal unique-id="search-modal" variant="secondary" fullscreen hide-header hide-buttons>
+        <sh-modal unique-id="search-modal" variant="secondary" fullscreen hide-header hide-buttons focus-target="belk-search input">
           <div class="flex sticky cross-middle">
             <belk-search id="mobile-search" variant="modal" class="flex-item double"></belk-search>
             <div class="sh-button close-search" tabindex="0" click-event="close-search" close-trigger aria-label="closes modal">

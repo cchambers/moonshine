@@ -175,7 +175,6 @@ export default {
 
   created() {
     if (this.variant !== 'default') this.hasPointer = false;
-    console.log(this, this.variant, this.hasPointer);
   },
 
   mounted() {
