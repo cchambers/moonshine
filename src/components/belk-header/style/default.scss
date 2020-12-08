@@ -1,15 +1,19 @@
+$primary-nav-height: 4.8rem;
+$secondary-nav-height: 6.2rem;
+
 .belk-header {
   position: relative;
   background: $highlight-primary;
   color: $lowlight-primary;
 
   .contain {
-    width: 100%;
+    box-sizing: border-box;
     margin: 0 auto;
     flex-grow: 0;
     flex-shrink: 0;
     flex-basis: auto;
     padding: 0 1.6rem;
+    width: 100%;
   }
   
   .nav-divider {
@@ -31,6 +35,10 @@
 
   .sh-nav-item {
     position: relative;
+
+    a {
+      text-decoration: none;
+    }
   }
 
   .pre:empty,
@@ -58,6 +66,7 @@
       .reference > a,
       .reference > div {
         padding: 12px 13px;
+        box-sizing: border-box;
       }
       border-radius: 5px;
       display: flex;
@@ -94,7 +103,7 @@
   }
 
   .primary {
-    height: 4.8rem;
+    height: $primary-nav-height;
     align-items: center;
     display: flex;
     background: $highlight-primary;
@@ -103,6 +112,11 @@
     .primary-utility {
       display: none;
       padding-left: 1rem;
+      height: $primary-nav-height;
+
+      belk-storefinder {
+        height: $primary-nav-height;
+      }
     }
 
     .primary-promo {
@@ -259,6 +273,10 @@
       .primary-utility {
         display: flex;
 
+        sh-nav-item .reference {
+          height: $primary-nav-height;
+        }
+
         .store-locator {
           padding-right: 0;
           border-right: none;
@@ -283,13 +301,16 @@
     }
 
     .secondary {
-      height: 6.2rem;
+      height: $secondary-nav-height;
       display: flex;
       align-items: center;
 
       sh-nav-item.minibag-action .belk-icon {
         max-width: initial;
         height: auto;
+      }
+      sh-nav-item {
+        height: $secondary-nav-height;
       }
     }
 
@@ -329,6 +350,7 @@
 
           a {
             padding: 0.8rem;
+            box-sizing: border-box;
           }
         }
       }
