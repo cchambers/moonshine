@@ -1,11 +1,8 @@
 .belk-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+  position: relative;
+  // top: 0;
   background: $highlight-primary;
   color: $lowlight-primary;
-  z-index: 7;
 
   .contain {
     width: 100%;
@@ -95,6 +92,10 @@
   .contain {
     display: flex;
     align-items: center;
+  }
+
+  .header-top {
+    position: relative;
   }
 
   .primary {
