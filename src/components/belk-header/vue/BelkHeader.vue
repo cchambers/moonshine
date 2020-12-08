@@ -10,11 +10,25 @@ export default {
 
   name: 'BelkHeader',
 
+  props: {
+    primaryTrigger: {
+      type: Number,
+      default: 30,
+    },
+    tertiaryTrigger: {
+      type: Number,
+      default: 600,
+    },
+  },
+
   data() {
     return {
+      actual: {},
       bagEl: {},
       navEl: {},
       searchEl: {},
+      state: 'default',
+      lastScrollTop: 0,
       loggedIn: false,
       headerData: {
         name: 'Sign In',
@@ -48,7 +62,7 @@ export default {
   },
 
   mounted() {
-    this.actual = document.querySelector('#header .belk-header');
+    this.actual = document.querySelector('header.belk-header');
     this.bagEl = document.querySelector('belk-bag');
     this.setupEvents();
     this.getData();
@@ -191,6 +205,21 @@ export default {
 
     bagState(num) {
       this.actual.setAttribute('bag-state', num);
+    },
+
+    scrollHandler() {
+      this.$bus.$on('scroll-event', () => {
+        const st = window.pageYOffset || document.documentElement.scrollTop;
+        const scrollingDown = (st > this.lastScrollTop);
+        if (scrollingDown) {
+          this.log('scrolling down');
+        }
+        this.lastScrollTop = st <= 0 ? 0 : st;
+      });
+    },
+
+    scrollState(num) {
+      this.actual.setAttribute('scroll-state', num);
     },
 
     updateContainers(data) {

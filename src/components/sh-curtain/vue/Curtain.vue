@@ -35,6 +35,7 @@ export default {
     show(el) {
       const target = el;
       if (target) {
+        console.log(target);
         const z = target.style.zIndex || 0;
         const pos = target.style.position;
         if (pos !== 'absolute' && pos !== 'relative') {

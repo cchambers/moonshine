@@ -1,51 +1,95 @@
 <sh-svglib></sh-svglib>
 
-<div style="overflow-y: auto">
+<belk-header id="top"></belk-header>
 
-  <belk-header></belk-header>
-  <header class="belk-header">
-    <div class="primary">
-      <div id="primary-nav" class="contain">
-        <div class="primary-promo">
-          <belk-promo free-shipping="49"></belk-promo>
-        </div>
+<header class="belk-header">
+  <div class="primary-and-secondary relative">
+    <div class="pre-and-primary relative">
+      <div class="pre-header-slot">
+        <sh-banner id="pre-header-banner" variant="primary" class="o-hide back-seasonal-green pad-y-atomic low-off">
+          <sh-carousel id="pre-header-carousel" variant="primary" autoplay="6000" hide-controls>
+            <ul slot="slides">
+              <li>
+                <a href="/coupons-online-and-in-store/">
+                  <div class="font-primary text-center color-lowlight-primary pad-y-quarter fontsize-carousel">
+                    <p>Cardholder Exclusive! <span class="wt-700"> Extra 7% </span> on top of today's coupon, clearance, doorbusters and beauty! – Ends 11/25 <span class="margin-l-little cta">GET COUPON</span></p>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="/search/?prefn1=eventCodeID&amp;prefv1=20B1DB43%7C20B2DB43%7C20B3DB43%7C20B4DB43">
+                  <div class="font-primary text-center color-lowlight-primary pad-y-quarter fontsize-carousel">
+                    <p>1000+ <span class="wt-700"> Black Friday Doorbusters </span> ends 11/28 <span class="margin-l-little cta">SHOP NOW</span></p>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="/customer-service/free-store-pickup/">
+                  <div class="font-primary text-center color-lowlight-primary pad-y-quarter fontsize-carousel">
+                    <p>Get it Today! <span class="wt-700">Extra 10% off </span> with in-store or Contactless Curbside Pickup <span class="margin-l-little cta">LEARN MORE</span></p>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </sh-carousel>
+        </sh-banner>
+      </div>
 
-        <div class="primary-utility">
+      <div class="primary">
+        <div id="primary-nav" class="contain">
+          <div class="primary-promo">
+            <belk-promo free-shipping="49"></belk-promo>
+          </div>
 
-          <belk-storefinder :storelink="/store/"></belk-storefinder>
+          <div class="primary-utility">
 
-          <div class="nav-divider"></div>
+            <belk-storefinder :storelink="/store/"></belk-storefinder>
 
-          <sh-nav-item boundaries-selector="#primary-nav" has-arrow foreground-selector="#header .primary">
-            <div slot="reference" id="rewards-link">
-              <a href="#">
-                Belk <span fill-data="user-tier">&nbsp;</span> Rewards
-              </a>
-            </div>
-            <div slot="content" id="rewards-menu">
-              <ul>
-                <li><a href="#">Pay My Bill</a></li>
-                <li><a href="#">Manage My Account</a></li>
-                <li><a href="#">My Rewards Benefits</a></li>
-              </ul>
-            </div>
-          </sh-nav-item>
+            <div class="nav-divider"></div>
 
-          <sh-nav-item boundaries-selector="#primary-nav" has-arrow foreground-selector="#header .primary">
-            <div slot="reference" id="giftcards-link">
-              <a href="#">
-                Gift Cards
-              </a>
-            </div>
-            <div slot="content" id="giftcards-menu">
-              <ul>
-                <li><a href="#">Send a Gift Card by Mail</a></li>
-                <li><a href="#">Send an eGift Card</a></li>
-                <li><a href="#">Check My Gift Card Balance</a></li>
-              </ul>
-            </div>
-          </sh-nav-item>
+            <sh-nav-item boundaries-selector="#primary-nav" has-arrow foreground-selector="header .pre-and-primary">
+              <div slot="reference" id="rewards-link">
+                <a href="#">
+                  Belk <span fill-data="user-tier">&nbsp;</span> Rewards
+                </a>
+              </div>
+              <div slot="content" id="rewards-menu">
+                <ul>
+                  <li>
+                    <a href="#">Pay My Bill</a>
+                  </li>
+                  <li>
+                    <a href="#">Manage My Account</a>
+                  </li>
+                  <li>
+                    <a href="#">My Rewards Benefits</a>
+                  </li>
+                </ul>
+              </div>
+            </sh-nav-item>
 
+            <sh-nav-item boundaries-selector="#primary-nav" has-arrow foreground-selector="header .pre-and-primary">
+              <div slot="reference" id="giftcards-link">
+                <a href="#">
+                  Gift Cards
+                </a>
+              </div>
+              <div slot="content" id="giftcards-menu">
+                <ul>
+                  <li>
+                    <a href="#">Send a Gift Card by Mail</a>
+                  </li>
+                  <li>
+                    <a href="#">Send an eGift Card</a>
+                  </li>
+                  <li>
+                    <a href="#">Check My Gift Card Balance</a>
+                  </li>
+                </ul>
+              </div>
+            </sh-nav-item>
+
+          </div>
         </div>
       </div>
     </div>
@@ -84,7 +128,7 @@
             <div class="iconbar-context">Coupons</div>
           </a>
 
-          <sh-nav-item class="iconbar-action account-action" variant="primary" foreground-selector="#header">
+          <sh-nav-item class="iconbar-action account-action" foreground-selector="header .primary-and-secondary">
             <a slot="reference" id="signin-link" href="#" class="highlight-quinary">
               <belk-icon width="30" name="person"></belk-icon>
               <div class="iconbar-context">
@@ -106,116 +150,147 @@
         </div>
       </div>
     </div>
+  </div>
 
-    <nav class="tertiary">
-      <div class="contain">
-        <sh-nav-item boundaries-selector="body" variant="mega" foreground-selector="header.belk-header">
-          <div slot="reference" id="women-link">
-            Women
-          </div>
-          <div slot="content" id="women-menu">
-            <ul>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-            </ul>
-          </div>
-        </sh-nav-item>
-        <sh-nav-item boundaries-selector="body" variant="mega" foreground-selector="header.belk-header">
-          <div slot="reference" id="men-link">
-            Men
-          </div>
-          <div slot="content" id="men-menu">
-            <ul>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-            </ul>
-          </div>
-        </sh-nav-item>
-        <sh-nav-item boundaries-selector="body" variant="mega" foreground-selector="header.belk-header">
-          <div slot="reference" id="kids-link">
-            Kids
-          </div>
-          <div slot="content" id="kids-menu">
-            <ul>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-            </ul>
-          </div>
-        </sh-nav-item>
-        <sh-nav-item boundaries-selector="body" variant="mega" foreground-selector="header.belk-header">
-          <div slot="reference" id="beauty-link">
-            Beauty
-          </div>
-          <div slot="content" id="beauty-menu">
-            <ul>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-            </ul>
-          </div>
-        </sh-nav-item>
+  <nav class="tertiary">
+    <div class="contain">
+      <sh-nav-item boundaries-selector="body" variant="mega" foreground-selector="header.belk-header">
+        <div slot="reference" id="women-link">
+          Women
+        </div>
+        <div slot="content" id="women-menu">
+          <ul>
+            <li>
+              <a href="#">Link</a></li>
+            <li>
+              <a href="#">Link</a></li>
+            <li>
+              <a href="#">Link</a></li>
+            <li>
+              <a href="#">Link</a></li>
+          </ul>
+        </div>
+      </sh-nav-item>
+      <sh-nav-item boundaries-selector="body" variant="mega" foreground-selector="header.belk-header">
+        <div slot="reference" id="men-link">
+          Men
+        </div>
+        <div slot="content" id="men-menu">
+          <ul>
+            <li>
+              <a href="#">Link</a></li>
+            <li>
+              <a href="#">Link</a></li>
+            <li>
+              <a href="#">Link</a></li>
+            <li><a href="#">Link</a></li>
+          </ul>
+        </div>
+      </sh-nav-item>
+      <sh-nav-item boundaries-selector="body" variant="mega" foreground-selector="header.belk-header">
+        <div slot="reference" id="kids-link">
+          Kids
+        </div>
+        <div slot="content" id="kids-menu">
+          <ul>
+            <li><a href="#">Link</a></li>
+            <li><a href="#">Link</a></li>
+            <li><a href="#">Link</a></li>
+            <li><a href="#">Link</a></li>
+          </ul>
+        </div>
+      </sh-nav-item>
+      <sh-nav-item boundaries-selector="body" variant="mega" foreground-selector="header.belk-header">
+        <div slot="reference" id="beauty-link">
+          Beauty
+        </div>
+        <div slot="content" id="beauty-menu">
+          <ul>
+            <li><a href="#">Link</a></li>
+            <li><a href="#">Link</a></li>
+            <li><a href="#">Link</a></li>
+            <li><a href="#">Link</a></li>
+          </ul>
+        </div>
+      </sh-nav-item>
 
-        <sh-nav-item boundaries-selector="body" variant="mega" foreground-selector="header.belk-header">
-            <div slot="reference" id="2women-link">
-              Women
-            </div>
-            <div slot="content" id="2women-menu">
-              <ul>
-                <li><a href="#">Link</a></li>
-                <li><a href="#">Link</a></li>
-                <li><a href="#">Link</a></li>
-                <li><a href="#">Link</a></li>
-              </ul>
-            </div>
-          </sh-nav-item>
-          <sh-nav-item boundaries-selector="body" variant="mega" foreground-selector="header.belk-header">
-            <div slot="reference" id="2men-link">
-              Men
-            </div>
-            <div slot="content" id="2men-menu">
-              <ul>
-                <li><a href="#">Link</a></li>
-                <li><a href="#">Link</a></li>
-                <li><a href="#">Link</a></li>
-                <li><a href="#">Link</a></li>
-              </ul>
-            </div>
-          </sh-nav-item>
-          <sh-nav-item boundaries-selector="body" variant="mega" foreground-selector="header.belk-header">
-            <div slot="reference" id="2kids-link">
-              Kids
-            </div>
-            <div slot="content" id="2kids-menu">
-              <ul>
-                <li><a href="#">Link</a></li>
-                <li><a href="#">Link</a></li>
-                <li><a href="#">Link</a></li>
-                <li><a href="#">Link</a></li>
-              </ul>
-            </div>
-          </sh-nav-item>
-          <sh-nav-item boundaries-selector="body" variant="mega" foreground-selector="header.belk-header">
-            <div slot="reference" id="2beauty-link">
-              Beauty
-            </div>
-            <div slot="content" id="2beauty-menu">
-              <ul>
-                <li><a href="#">Link</a></li>
-                <li><a href="#">Link</a></li>
-                <li><a href="#">Link</a></li>
-                <li><a href="#">Link</a></li>
-              </ul>
-            </div>
-          </sh-nav-item>
-    </nav>
-</div>
+      <sh-nav-item boundaries-selector="body" variant="mega" foreground-selector="header.belk-header">
+        <div slot="reference" id="2women-link">
+          Women
+        </div>
+        <div slot="content" id="2women-menu">
+          <ul>
+            <li><a href="#">Link</a></li>
+            <li><a href="#">Link</a></li>
+            <li><a href="#">Link</a></li>
+            <li><a href="#">Link</a></li>
+          </ul>
+        </div>
+      </sh-nav-item>
+      <sh-nav-item boundaries-selector="body" variant="mega" foreground-selector="header.belk-header">
+        <div slot="reference" id="2men-link">
+          Men
+        </div>
+        <div slot="content" id="2men-menu">
+          <ul>
+            <li><a href="#">Link</a></li>
+            <li><a href="#">Link</a></li>
+            <li><a href="#">Link</a></li>
+            <li><a href="#">Link</a></li>
+          </ul>
+        </div>
+      </sh-nav-item>
+      <sh-nav-item boundaries-selector="body" variant="mega" foreground-selector="header.belk-header">
+        <div slot="reference" id="2kids-link">
+          Kids
+        </div>
+        <div slot="content" id="2kids-menu">
+          <ul>
+            <li><a href="#">Link</a></li>
+            <li><a href="#">Link</a></li>
+            <li><a href="#">Link</a></li>
+            <li><a href="#">Link</a></li>
+          </ul>
+        </div>
+      </sh-nav-item>
+      <sh-nav-item boundaries-selector="body" variant="mega" foreground-selector="header.belk-header">
+        <div slot="reference" id="2beauty-link">
+          Beauty
+        </div>
+        <div slot="content" id="2beauty-menu">
+          <ul>
+            <li><a href="#">Link</a></li>
+            <li><a href="#">Link</a></li>
+            <li><a href="#">Link</a></li>
+            <li><a href="#">Link</a></li>
+          </ul>
+        </div>
+      </sh-nav-item>
+  </nav>
+
+  <div class="post-header-slot">
+      <sh-banner id="post-header-banner" variant="primary" class="o-hide back-seasonal-green pad-y-atomic high-off">
+        <sh-carousel id="post-header-carousel" variant="primary" autoplay="6000" hide-controls>
+          <ul slot="slides">
+            <li><a href="/coupons-online-and-in-store/">
+                <div class="font-primary text-center color-lowlight-primary pad-y-quarter fontsize-carousel">
+                  <p>Cardholder Exclusive! <span class="wt-700"> Extra 7% </span> on top of today's coupon, clearance, doorbusters and beauty! – Ends 11/25 <span class="margin-l-little cta">GET COUPON</span></p>
+                </div>
+              </a></li>
+            <li><a href="/search/?prefn1=eventCodeID&amp;prefv1=20B1DB43%7C20B2DB43%7C20B3DB43%7C20B4DB43">
+                <div class="font-primary text-center color-lowlight-primary pad-y-quarter fontsize-carousel">
+                  <p>1000+ <span class="wt-700"> Black Friday Doorbusters </span> ends 11/28 <span class="margin-l-little cta">SHOP NOW</span></p>
+                </div>
+              </a></li>
+            <li><a href="/customer-service/free-store-pickup/">
+                <div class="font-primary text-center color-lowlight-primary pad-y-quarter fontsize-carousel">
+                  <p>Get it Today! <span class="wt-700">Extra 10% off </span> with in-store or Contactless Curbside Pickup <span class="margin-l-little cta">LEARN MORE</span></p>
+                </div>
+              </a></li>
+          </ul>
+        </sh-carousel>
+      </sh-banner>
+    </div>
 </header>
 
 <div style="padding-top: 400vh;background: linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);"></div>

@@ -286,6 +286,35 @@ export default {
       }
     },
 
+    opts() {
+      const self = this;
+      return {
+        modifiers: [{
+          name: 'flip',
+          options: {
+            enabled: true,
+            behavior: ['left-start'],
+          },
+        },
+        {
+          name: 'placement',
+          options: 'left-start',
+        },
+        {
+          name: 'preventOverflow',
+          options: {
+            priority: ['top'],
+            padding: 0,
+          },
+        },
+        ],
+        onFirstUpdate: () => {
+          self.$emit('created', self);
+          self.$nextTick(self.updatePopper);
+        },
+      };
+    },
+
     createPopper() {
       this.$nextTick(() => {
         if (this.visibleArrow) {
@@ -301,15 +330,10 @@ export default {
           this.popperJS.destroy();
         }
 
-        this.popperOptions.onFirstUpdate = () => {
-          this.$bus.$emit('created', this);
-          this.$nextTick(this.updatePopper);
-        };
-
         this.popperJS = new CreatePopper(
           this.referenceElm,
           this.popper,
-          this.popperOptions,
+          this.opts(),
         );
       });
     },
