@@ -35,7 +35,6 @@ export default {
     show(el) {
       const target = el;
       if (target) {
-        console.log(target);
         const z = target.style.zIndex || 0;
         const pos = target.style.position;
         if (pos !== 'absolute' && pos !== 'relative') {
@@ -54,6 +53,7 @@ export default {
       setTimeout(() => {
         this.$bus.$emit('curtain-showing');
         this.active = true;
+        document.documentElement.classList.add('curtain');
         this.$bus.$emit('curtain-shown');
       });
     },
@@ -61,6 +61,7 @@ export default {
     hide() {
       this.$bus.$emit('curtain-hiding');
       this.active = false;
+      document.documentElement.classList.remove('curtain');
       this.$bus.$emit('curtain-hidden');
     },
 

@@ -163,6 +163,8 @@
   }
 
   .tertiary {
+    border-bottom: 1px $lowlight-primary;
+
     sh-nav-item {
       margin-right: $little;
       &:last-child {
