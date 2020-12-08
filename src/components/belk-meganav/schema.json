@@ -1,0 +1,14 @@
+{
+  "name": "Belk Meganav",
+  "category": "base",
+  "production": false,
+  "element": "belk-meganav",
+  "description": "Demonstration component.",
+  "tags": ["utilities", "demo"],
+  "requirements": {
+    "Element One": [],
+    "Element Two": [],
+    "a11y": [],
+    "states": []
+  }
+}
