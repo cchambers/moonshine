@@ -4,6 +4,24 @@
   background: $highlight-primary;
   color: $lowlight-primary;
 
+  &[state="1"] {
+    .pre-header-slot {
+      max-height: 0;
+      overflow: hidden;
+    }
+  }
+
+  &[state="2"] {
+    .pre-header-slot {
+      max-height: 0;
+      overflow: hidden;
+    }
+    .tertiary {
+      max-height: 0;
+      overflow: hidden;
+    }
+  }
+
   .contain {
     display: flex;
     align-items: center;
