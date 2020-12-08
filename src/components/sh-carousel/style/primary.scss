@@ -12,6 +12,7 @@ sh-carousel[variant="primary"] {
     &.config {
       position: static;
       ul > * {
+        height: auto;
         position: static;
       }
     }
@@ -21,6 +22,7 @@ sh-carousel[variant="primary"] {
     >* {
       display: block;
       position: absolute;
+      height: 100%;
       width: 100%;
       transition: all 300ms $ease;
       opacity: 0;
