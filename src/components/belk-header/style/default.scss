@@ -5,6 +5,8 @@
   color: $lowlight-primary;
 
   .contain {
+    display: flex;
+    align-items: center;
     width: 100%;
     margin: 0 auto;
     flex-grow: 0;
@@ -89,11 +91,6 @@
     }
   }
 
-  .contain {
-    display: flex;
-    align-items: center;
-  }
-
   .primary {
     height: 4.8rem;
     align-items: center;
@@ -167,9 +164,9 @@
 
     sh-nav-item {
       margin-right: $little;
-      &:last-child {
-        margin-right: 0;
-      }
+      // &:last-child {
+      //   margin-right: 0;
+      // }
     }
 
     .popper-target {
@@ -348,7 +345,6 @@
     }
 
     .contain {
-      padding: 0 1.6rem;
       max-width: 96rem;
     }
 
