@@ -2,7 +2,7 @@
   <div class="sh-nav-item"
     v-bind:class="{ 'touch': mobile }"
     :active="active">
-    <div class="popper-target" ref="target">
+    <div class="popper-target" :class="{ active: showPopper }" ref="target">
       <div class="reference">
         <slot name="reference"></slot>
       </div>
@@ -18,10 +18,10 @@
         <div class="popper-content">
           <slot name="content">{{ content }}</slot>
         </div>
-        <div class="popper-arrow" data-popper-arrow></div>
+        <div class="popper-arrow" v-if="hasPointer" data-popper-arrow></div>
       </div>
     </transition>
-  </div>
+</div>
 </template>
 
 <script>
@@ -80,10 +80,6 @@ export default {
       type: String,
       default: '.documentation',
     },
-    offset: {
-      type: String,
-      default: '0',
-    },
     forceShow: {
       type: Boolean,
       default: false,
@@ -118,6 +114,7 @@ export default {
       popperJS: null,
       showPopper: false,
       mobile: false,
+      hasPointer: true,
       currentPlacement: '',
       content: 'empty',
       popperOptions: {
@@ -174,6 +171,11 @@ export default {
         this.showPopper = false;
       }
     },
+  },
+
+  created() {
+    if (this.variant !== 'default') this.hasPointer = false;
+    console.log(this, this.variant, this.hasPointer);
   },
 
   mounted() {

@@ -1,140 +1,223 @@
 <sh-svglib></sh-svglib>
 
-<div id="page">
-  <header id="header">
-    <belk-header></belk-header>
+<div>
 
-    <div class="belk-header">
+  <belk-header></belk-header>
+  <header class="belk-header">
+    <div class="primary">
+      <div id="primary-nav" class="contain">
+        <div class="primary-promo">
+          <belk-promo free-shipping="49"></belk-promo>
+        </div>
 
-      <div class="primary">
-        <div id="primary-nav" class="contain">
+        <div class="primary-utility">
 
-          <div class="primary-promo">
-            <belk-promo free-shipping="49"></belk-promo>
-          </div>
+          <belk-storefinder :storelink="/store/"></belk-storefinder>
 
-          <div class="primary-utility">
-            
-            <belk-storefinder
-              :storelink="/store/"
-            ></belk-storefinder>
-            
-            <div class="nav-divider"></div>
+          <div class="nav-divider"></div>
 
-            <sh-nav-item 
-              boundaries-selector="#primary-nav" 
-              variant="primary" 
-              has-arrow 
-              foreground-selector="#header .primary">
-              <div slot="reference" id="rewards-link">
-                <a href="#">
-                  Belk <span fill-data="user-tier">&nbsp;</span> Rewards
-                </a>
-              </div>
-              <div slot="content" id="rewards-menu">
-                <ul>
-                  <li><a href="#">Pay My Bill</a></li>
-                  <li><a href="#">Manage My Account</a></li>
-                  <li><a href="#">My Rewards Benefits</a></li>
-                </ul>
-              </div>
-            </sh-nav-item>
+          <sh-nav-item boundaries-selector="#primary-nav" variant="primary" has-arrow foreground-selector="#header .primary">
+            <div slot="reference" id="rewards-link">
+              <a href="#">
+                Belk <span fill-data="user-tier">&nbsp;</span> Rewards
+              </a>
+            </div>
+            <div slot="content" id="rewards-menu">
+              <ul>
+                <li><a href="#">Pay My Bill</a></li>
+                <li><a href="#">Manage My Account</a></li>
+                <li><a href="#">My Rewards Benefits</a></li>
+              </ul>
+            </div>
+          </sh-nav-item>
 
-            <sh-nav-item boundaries-selector="#primary-nav" variant="primary" has-arrow foreground-selector="#header .primary">
-              <div slot="reference" id="giftcards-link">
-                <a href="#">
-                  Gift Cards
-                </a>
-              </div>
-              <div slot="content" id="giftcards-menu">
-                <ul>
-                  <li><a href="#">Send a Gift Card by Mail</a></li>
-                  <li><a href="#">Send an eGift Card</a></li>
-                  <li><a href="#">Check My Gift Card Balance</a></li>
-                </ul>
-              </div>
-            </sh-nav-item>
-            
-          </div>
+          <sh-nav-item boundaries-selector="#primary-nav" variant="primary" has-arrow foreground-selector="#header .primary">
+            <div slot="reference" id="giftcards-link">
+              <a href="#">
+                Gift Cards
+              </a>
+            </div>
+            <div slot="content" id="giftcards-menu">
+              <ul>
+                <li><a href="#">Send a Gift Card by Mail</a></li>
+                <li><a href="#">Send an eGift Card</a></li>
+                <li><a href="#">Check My Gift Card Balance</a></li>
+              </ul>
+            </div>
+          </sh-nav-item>
+
         </div>
       </div>
+    </div>
 
-      <div class="secondary">
-        <div class="contain">
+    <div class="secondary">
+      <div class="contain">
 
-          <sh-button class="nav-trigger">
-            <belk-icon width="30" name="menu"></belk-icon>
-          </sh-button>
+        <sh-button class="nav-trigger">
+          <belk-icon width="30" name="menu"></belk-icon>
+        </sh-button>
 
-          <a class="logo-link" href="#">
-            <belk-logo class="logo" width="96" variant="header"></belk-logo>
-          </a>
-          
-          <!-- Search -->
-          <a href="#search-modal" class="hide-md">
+        <a class="logo-link" href="#">
+          <belk-logo class="logo" width="96" variant="header"></belk-logo>
+        </a>
+
+        <!-- Search -->
+        <div class="high-off">
+          <a href="#search-modal">
             <belk-icon name="search" width="30">Open Mobile Search</belk-icon>
           </a>
-          <belk-search
-            variant="desktop"
-          ></belk-search>
-          <sh-modal 
-            unique-id="search-modal" 
-            variant="secondary" 
-            fullscreen 
-            hide-header
-            hide-buttons>
-            <div class="flex sticky cross-middle">
-                <belk-search id="mobile-search"  variant="modal" class="flex-item double"></belk-search>
-                <div class="sh-button close-search" tabindex="0" click-event="close-search" close-trigger aria-label="closes modal">
-                  Cancel
-                </div>
+        </div>
+        <belk-search variant="desktop"></belk-search>
+        <sh-modal unique-id="search-modal" variant="secondary" fullscreen hide-header hide-buttons>
+          <div class="flex sticky cross-middle">
+            <belk-search id="mobile-search" variant="modal" class="flex-item double"></belk-search>
+            <div class="sh-button close-search" tabindex="0" click-event="close-search" close-trigger aria-label="closes modal">
+              Cancel
             </div>
-          </sh-modal>
+          </div>
+        </sh-modal>
 
-          <div class="iconbar">
+        <div class="iconbar">
 
-            <a href="coupons" class="iconbar-action coupon-action">
-              <belk-icon width="29" name="coupon"></belk-icon>
-              <div class="iconbar-context">Coupons</div>
-            </a>
+          <a href="coupons" class="iconbar-action coupon-action">
+            <belk-icon width="29" name="coupon"></belk-icon>
+            <div class="iconbar-context">Coupons</div>
+          </a>
 
-            <sh-nav-item 
-              class="iconbar-action account-action" 
-              variant="primary" 
-              has-arrow 
-              foreground-selector=".primary,.secondary"
-            >
-              <a
-                slot="reference"
-                id="signin-link"
-                href="#"
-                class="highlight-quinary"
-              >
-                <belk-icon width="30" name="person"></belk-icon>
-                <div class="iconbar-context">
-                  <div class="greet">
-                    Hi, <span class="data-user-name">Sign In</span>
-                  </div>
-                  <div><span>My&nbsp;</span>Account</div>
+          <sh-nav-item class="iconbar-action account-action" variant="primary" foreground-selector="#header">
+            <a slot="reference" id="signin-link" href="#" class="highlight-quinary">
+              <belk-icon width="30" name="person"></belk-icon>
+              <div class="iconbar-context">
+                <div class="greet">
+                  Hi, <span class="data-user-name">Sign In</span>
                 </div>
-              </a>
-              <div id="signin-menu" class="iconbar-context">
-                <sh-button variant="primary">Sign in</sh-button>
-                <sh-button>Create an Account</sh-button>
+                <div><span>My&nbsp;</span>Account</div>
               </div>
-            </sh-nav-item>
-
-            <div class="iconbar-action minibag-action">
-              <belk-bag
-                slot="reference"
-                id="bag-link"
-              ></belk-bag>
+            </a>
+            <div id="signin-menu" class="iconbar-context">
+              <sh-button variant="primary">Sign in</sh-button>
+              <sh-button>Create an Account</sh-button>
             </div>
+          </sh-nav-item>
+
+          <div class="iconbar-action minibag-action">
+            <belk-bag slot="reference" id="bag-link"></belk-bag>
           </div>
         </div>
       </div>
-      
-  </div>
-  </header>
+    </div>
+
+    <nav class="tertiary">
+      <div class="contain">
+        <sh-nav-item boundaries-selector="body" variant="mega" foreground-selector="header.belk-header">
+          <div slot="reference" id="women-link">
+            Women
+          </div>
+          <div slot="content" id="women-menu">
+            <ul>
+              <li><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li>
+            </ul>
+          </div>
+        </sh-nav-item>
+        <sh-nav-item boundaries-selector="body" variant="mega" foreground-selector="header.belk-header">
+          <div slot="reference" id="men-link">
+            Men
+          </div>
+          <div slot="content" id="men-menu">
+            <ul>
+              <li><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li>
+            </ul>
+          </div>
+        </sh-nav-item>
+        <sh-nav-item boundaries-selector="body" variant="mega" foreground-selector="header.belk-header">
+          <div slot="reference" id="kids-link">
+            Kids
+          </div>
+          <div slot="content" id="kids-menu">
+            <ul>
+              <li><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li>
+            </ul>
+          </div>
+        </sh-nav-item>
+        <sh-nav-item boundaries-selector="body" variant="mega" foreground-selector="header.belk-header">
+          <div slot="reference" id="beauty-link">
+            Beauty
+          </div>
+          <div slot="content" id="beauty-menu">
+            <ul>
+              <li><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li>
+            </ul>
+          </div>
+        </sh-nav-item>
+
+        <sh-nav-item boundaries-selector="body" variant="mega" foreground-selector="header.belk-header">
+            <div slot="reference" id="2women-link">
+              Women
+            </div>
+            <div slot="content" id="2women-menu">
+              <ul>
+                <li><a href="#">Link</a></li>
+                <li><a href="#">Link</a></li>
+                <li><a href="#">Link</a></li>
+                <li><a href="#">Link</a></li>
+              </ul>
+            </div>
+          </sh-nav-item>
+          <sh-nav-item boundaries-selector="body" variant="mega" foreground-selector="header.belk-header">
+            <div slot="reference" id="2men-link">
+              Men
+            </div>
+            <div slot="content" id="2men-menu">
+              <ul>
+                <li><a href="#">Link</a></li>
+                <li><a href="#">Link</a></li>
+                <li><a href="#">Link</a></li>
+                <li><a href="#">Link</a></li>
+              </ul>
+            </div>
+          </sh-nav-item>
+          <sh-nav-item boundaries-selector="body" variant="mega" foreground-selector="header.belk-header">
+            <div slot="reference" id="2kids-link">
+              Kids
+            </div>
+            <div slot="content" id="2kids-menu">
+              <ul>
+                <li><a href="#">Link</a></li>
+                <li><a href="#">Link</a></li>
+                <li><a href="#">Link</a></li>
+                <li><a href="#">Link</a></li>
+              </ul>
+            </div>
+          </sh-nav-item>
+          <sh-nav-item boundaries-selector="body" variant="mega" foreground-selector="header.belk-header">
+            <div slot="reference" id="2beauty-link">
+              Beauty
+            </div>
+            <div slot="content" id="2beauty-menu">
+              <ul>
+                <li><a href="#">Link</a></li>
+                <li><a href="#">Link</a></li>
+                <li><a href="#">Link</a></li>
+                <li><a href="#">Link</a></li>
+              </ul>
+            </div>
+          </sh-nav-item>
+    </nav>
+</div>
+</header>
+
+<div style="padding-top: 400vh;background: linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);"></div>
 </div>
 <sh-curtain id="curtain"></sh-curtain>

@@ -6,7 +6,7 @@ belk-storefinder {
 
     .findastore-link {
         border-radius: 5px;
-        color: var(--lowlight-primary);
+        color: $lowlight-primary;
         height: 100%;
         display: inline-flex;
         align-items: center;
@@ -15,7 +15,7 @@ belk-storefinder {
 
         &:hover {
             background: #f5f5f5;
-            background: var(--highlight-secondary);
+            background: $highlight-secondary;
         }
     }
 }

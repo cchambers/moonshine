@@ -12,7 +12,6 @@ sh-nav-item {
   .sh-nav-item {
     display: inline-block;
     color: $lowlight-primary;
-    height: 100%;
 
     .reference a {
       border-radius: 5px;
@@ -29,7 +28,6 @@ sh-nav-item {
     border-bottom: none;
     display: inline-flex;
     cursor: pointer;
-    height: 100%;
 
     button {
       display: none;
