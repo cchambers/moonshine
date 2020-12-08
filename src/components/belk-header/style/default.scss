@@ -1,24 +1,35 @@
 .belk-header {
-  position: relative;
-  // top: 0;
+  position: fixed;
+  width: 100%;
+  top: 0;
   background: $highlight-primary;
   color: $lowlight-primary;
 
-  &[state="1"] {
+  .pre-header-slot {
+    max-height: 100px;
+    transition: max-height 100ms $accel;
+  }
+
+  .tertiary {
+    max-height: 60px;
+    transition: max-height 100ms $accel;
+  }
+
+  &[scroll-state="1"] {
     .pre-header-slot {
-      max-height: 0;
-      overflow: hidden;
+      max-height: 0 !important;
+      overflow: hidden !important;
     }
   }
 
-  &[state="2"] {
+  &[scroll-state="2"] {
     .pre-header-slot {
-      max-height: 0;
-      overflow: hidden;
+      max-height: 0 !important;
+      overflow: hidden !important;
     }
     .tertiary {
-      max-height: 0;
-      overflow: hidden;
+      max-height: 0 !important;
+      overflow: hidden !important;
     }
   }
 
