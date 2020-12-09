@@ -81,10 +81,7 @@ sh-nav-item {
   }
 
   .popper-actual {
-    width: auto;
-    max-width: 102rem;
-    z-index: 90;
-
+    z-index: 92;
     &[fill] {
       width: 100%;
     }

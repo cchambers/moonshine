@@ -117,6 +117,7 @@ export default {
       hasPointer: true,
       currentPlacement: '',
       content: 'empty',
+      popper: false,
       popperOptions: {
         modifiers: [
           {
@@ -307,6 +308,12 @@ export default {
             padding: 0,
           },
         },
+        {
+          name: 'computeStyles',
+          options: {
+            adaptive: false, // true by default
+          },
+        },
         ],
         onFirstUpdate: () => {
           self.$emit('created', self);
@@ -317,10 +324,6 @@ export default {
 
     createPopper() {
       this.$nextTick(() => {
-        if (this.visibleArrow) {
-          this.appendArrow(this.popper);
-        }
-
         if (this.appendToBody && !this.appendedToBody) {
           this.appendedToBody = true;
           document.body.appendChild(this.popper.parentElement);

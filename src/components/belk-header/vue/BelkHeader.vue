@@ -17,7 +17,7 @@ export default {
     },
     tertiaryTrigger: {
       type: Number,
-      default: 600,
+      default: 300,
     },
   },
 
@@ -74,6 +74,7 @@ export default {
       self.$bus.$on('smooth-scroll', self.smoothScrollHandler);
       self.$bus.$on('get-user-data', self.clearForEmit);
       self.$bus.$on('bag-update', self.bagUpdateHandler);
+      this.$bus.$on('scroll-event', self.scrollHandler);
     },
 
     smoothScrollHandler(event) {
@@ -208,14 +209,21 @@ export default {
     },
 
     scrollHandler() {
-      this.$bus.$on('scroll-event', () => {
-        const st = window.pageYOffset || document.documentElement.scrollTop;
-        const scrollingDown = (st > this.lastScrollTop);
-        if (scrollingDown) {
-          this.log('scrolling down');
-        }
-        this.lastScrollTop = st <= 0 ? 0 : st;
-      });
+      const st = window.pageYOffset || document.documentElement.scrollTop;
+      const scrollingDown = (st > this.lastScrollTop);
+      let state = 0;
+
+      if (scrollingDown) { // scrolling down
+        state = (st >= this.primaryTrigger) ? 1 : 0; // distance for primary trigger
+        this.scrollDist += (st - this.lastScrollTop);
+        if (this.scrollDist > this.tertiaryTrigger) state = 2;
+      } else { // scrolling up
+        state = 1;
+        this.scrollDist = 0;
+        if (st < this.primaryTrigger) state = 0;
+      }
+      this.scrollState(state);
+      this.lastScrollTop = st <= 0 ? 0 : st;
     },
 
     scrollState(num) {
