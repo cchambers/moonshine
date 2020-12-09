@@ -208,7 +208,8 @@ export default {
       this.actual.setAttribute('bag-state', num);
     },
 
-    scrollHandler() {
+    scrollHandler(e) {
+      if (this.elementContains(this.$el, e.target)) return;
       const st = window.pageYOffset || document.documentElement.scrollTop;
       const scrollingDown = (st > this.lastScrollTop);
       let state = 0;
