@@ -2,7 +2,7 @@
   <div class="sh-svglib">
     <svg>
       <defs>
-        <g v-for="(data, name) in icons" v-bind:key="name" v-html="data.svg" :id="name"></g>
+        <g v-for="(data, name) in activeIcons" v-html="data.svg" v-bind:key="name" :id="name"></g>
       </defs>
     </svg>
   </div>
@@ -111,6 +111,7 @@ export default {
   data() {
     return {
       icons: iconJSON,
+      activeIcons: {},
     };
   },
 
@@ -122,6 +123,7 @@ export default {
   methods: {
     setup(el) {
       const target = el;
+      this.activeIcons[target.name] = this.icons[target.name];
       target.viewbox = this.icons[target.name].viewbox;
       target.configured = true;
     },
