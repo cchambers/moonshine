@@ -166,6 +166,10 @@ $secondary-nav-height: 6.2rem;
       justify-content: space-between;
     }
 
+    .mobile-search-trigger {
+      margin-left: auto;
+    }
+
     sh-button.close-search {
       max-width: 0;
       order: 2;
@@ -228,8 +232,8 @@ $secondary-nav-height: 6.2rem;
           content: '';
           position: absolute;
           background: $lowlight-primary;
-          height: 0.5rem;
-          bottom: 0.5rem;
+          height: 0.3rem;
+          bottom: 0;
           left: 0;
           right: 0;
         }
