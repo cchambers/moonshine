@@ -450,6 +450,9 @@ html, body {
   .high-off {
     display: none;
   }
+
+  .show-md { display: inline-flex; }
+  .hide-md { display: none; }
 }
 
 .border-solid {
@@ -635,11 +638,11 @@ ol.lower-alpha {
 }
 
 .middle-layer {
-  z-index: 5;
+  z-index: 2;
 }
 
 .top-layer {
-  z-index: 10;
+  z-index: 3;
 }
 
 /* Padding: */

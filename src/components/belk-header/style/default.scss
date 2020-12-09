@@ -1,6 +1,15 @@
 $primary-nav-height: 4.8rem;
 $secondary-nav-height: 6.2rem;
 
+//temporary styles
+#header {
+  position: fixed;
+  width: 100%;
+  background: $highlight-primary;
+  z-index: 6;
+  border-bottom: 1px solid;
+}
+
 .belk-header {
   position: relative;
   // top: 0;
