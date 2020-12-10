@@ -5,7 +5,7 @@
       boundaries-selector="#primary-nav"
       variant="primary"
       has-arrow
-      foreground-selector="#header .primary"
+      :foreground-selector="foreground"
     >
       <div slot="reference">
         <belk-icon name="map-pin" width="9" class="margin-r-atomic"></belk-icon>
@@ -54,6 +54,10 @@ export default {
     storefinderLink: {
       type: String,
       default: '/stores/',
+    },
+    foreground: {
+      type: String,
+      default: '',
     },
   },
 

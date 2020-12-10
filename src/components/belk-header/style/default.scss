@@ -208,22 +208,25 @@ $secondary-nav-height: 6.2rem;
     }
   }
 
+  //initial meganav styles
   .tertiary {
     border-bottom: 1px $lowlight-primary;
 
+    > .contain {
+      display: none;
+    }
+
     sh-nav-item {
-      margin-right: $little;
-      
       .reference {
         height: 5rem;
         line-height: 1.2;
         display: inline-flex;
         align-items: center;
+        padding: 0 8px;
         justify-content: center;
         text-align: center;
       }
     }
-
     .popper-target {
       line-height: 4.5rem;
       &.active {
@@ -242,6 +245,39 @@ $secondary-nav-height: 6.2rem;
     .popper-content {
       width: 100vw;
       overflow-y: auto;
+      box-sizing: border-box;
+      max-height: calc(100vh - 250px);
+      height: 100%;
+
+      .contain {
+        flex-direction: column;
+
+        .mm__cat.mm__cat--horizontal {
+          column-count: 4;
+          column-gap: 4rem;
+          width: 100%;
+
+          > .view-all a {
+            border-top: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 1rem;
+          }
+
+          > li {
+            // break-inside: avoid;
+            margin-bottom: 2rem;
+          }
+        }
+        .cat-ad-banner {
+          margin-top: 2rem;
+        }
+        a.mm__cta.mm__cta--l2 {
+          font-weight: bold;
+        }
+        ul.mm__cat.mm__cat--l3 .view-all {
+          display: none;
+        }
+      }
     }
   }
 
@@ -427,6 +463,17 @@ $secondary-nav-height: 6.2rem;
         }
       }
     }
+
+    .tertiary {
+      > .contain {
+        display: flex;
+      }
+    }
+
+    //scroll states for site wrapper
+    & ~ #wrapper {
+      padding-top: 193px;
+    }
   }
 
   @include xl {
@@ -435,21 +482,3 @@ $secondary-nav-height: 6.2rem;
     }
   }
 }
-
-//State Changes
-// belk-header.search-active ~ .belk-header {
-//   @media (max-width: breakpoint("md")) {
-//     .primary {
-//       max-height: 0;
-//       overflow: hidden;
-//     }
-
-//     .secondary {
-//       .contain {
-//         sh-button.close-search {
-//           max-width: initial;
-//         }
-//       }
-//     }
-//   }
-// }
