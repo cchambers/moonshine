@@ -189,6 +189,7 @@ export default {
       this.hasPointer = false;
       this.isClosable = true;
     }
+    if (this.closable) this.isClosable = true;
   },
 
   mounted() {
