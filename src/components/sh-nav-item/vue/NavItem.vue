@@ -17,8 +17,8 @@
         v-show="!disabled && showPopper">
         <div class="popper-content">
           <div v-if="isClosable" class="popper-close">
-            <button @click="closeModals">
-              <belk-icon v-if="closeActive" name="close" width="28">Close Modal</belk-icon>
+            <button close-trigger>
+              <belk-icon name="close" width="28">Close Modal</belk-icon>
             </button>
           </div>
           <slot name="content">{{ content }}</slot>
