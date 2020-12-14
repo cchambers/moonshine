@@ -16,6 +16,11 @@
         ref="popper"
         v-show="!disabled && showPopper">
         <div class="popper-content">
+          <div v-if="isClosable" class="popper-close">
+            <button @click="closeModals">
+              <belk-icon v-if="closeActive" name="close" width="28">Close Modal</belk-icon>
+            </button>
+          </div>
           <slot name="content">{{ content }}</slot>
         </div>
         <div class="popper-arrow" v-if="hasPointer" data-popper-arrow></div>
@@ -55,6 +60,10 @@ export default {
     variant: {
       type: String,
       default: 'default',
+    },
+    closable: {
+      type: Boolean,
+      default: false,
     },
     hasArrow: {
       type: Boolean,
@@ -114,6 +123,7 @@ export default {
       popperJS: null,
       showPopper: false,
       mobile: false,
+      isClosable: false,
       hasPointer: true,
       currentPlacement: '',
       content: 'empty',
@@ -175,7 +185,10 @@ export default {
   },
 
   created() {
-    if (this.variant !== 'default') this.hasPointer = false;
+    if (this.variant !== 'default') {
+      this.hasPointer = false;
+      this.isClosable = true;
+    }
   },
 
   mounted() {
@@ -221,6 +234,8 @@ export default {
         if (el === this) return;
         self.close();
       });
+
+      this.$bus.$on('close-modals', self.close);
     },
 
     initPopper() {
