@@ -21,6 +21,7 @@ $secondary-nav-height: 6.2rem;
     -webkit-overflow-scrolling: touch;
     top: 0px;
     max-width: 736px;
+    display: none;
   }
 
   &[scroll-state="1"] {
