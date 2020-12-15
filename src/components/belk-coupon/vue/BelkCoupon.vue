@@ -158,6 +158,13 @@ export default {
     }
   },
 
+  watch: {
+    code(val, old) {
+      if (old) this.$bus.$off(`${old}-data`);
+      this.configureDataListener();
+    },
+  },
+
   computed: {
     linkText() {
       let text = this.inDrawer && this.variant === 'offer'
@@ -209,10 +216,7 @@ export default {
     }
     this.detailsId = `em-${this.uuid}`;
     this.printId = `pr-${this.uuid}`;
-    if (this.code) {
-      this.$bus.$on(`${this.code}-data`, this.handleAddCoupon);
-      this.addCouponId = `ac-${this.uuid}`;
-    }
+    if (this.code) this.configureDataListener();
     if (this.$slots.details !== undefined || this.details)
       this.hasDetails = true;
     if (this.$slots.description !== undefined || this.description)
@@ -265,6 +269,11 @@ export default {
           window.open(this.link, '_blank');
         }
       }
+    },
+
+    configureDataListener() {
+      this.$bus.$on(`${this.code}-data`, this.handleAddCoupon);
+      this.addCouponId = `ac-${this.uuid}`;
     },
 
     printCoupon() {
