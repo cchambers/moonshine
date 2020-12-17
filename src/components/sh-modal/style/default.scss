@@ -19,6 +19,7 @@ sh-modal {
   transition: all 300ms $ease, opacity 350ms linear;
   transition-delay: 10ms;
   transform-origin: top center;
+
   @include md {
     transform: scale(0.7) rotateX(-60deg) translateY(20%) translateZ(0);
   }

@@ -2,7 +2,7 @@
   <div class="sh-nav-item"
     v-bind:class="{ 'touch': mobile }"
     :active="active">
-    <div class="popper-target" ref="target">
+    <div class="popper-target" :class="{ active: showPopper }" ref="target">
       <div class="reference">
         <slot name="reference"></slot>
       </div>
@@ -16,12 +16,17 @@
         ref="popper"
         v-show="!disabled && showPopper">
         <div class="popper-content">
+          <div v-if="isClosable" class="popper-close">
+            <button close-trigger>
+              <belk-icon name="close" width="28">Close Modal</belk-icon>
+            </button>
+          </div>
           <slot name="content">{{ content }}</slot>
         </div>
-        <div class="popper-arrow" x-arrow></div>
+        <div class="popper-arrow" v-if="hasPointer" data-popper-arrow></div>
       </div>
     </transition>
-  </div>
+</div>
 </template>
 
 <script>
@@ -56,6 +61,10 @@ export default {
       type: String,
       default: 'default',
     },
+    closable: {
+      type: Boolean,
+      default: false,
+    },
     hasArrow: {
       type: Boolean,
       default: false,
@@ -79,10 +88,6 @@ export default {
     boundariesSelector: {
       type: String,
       default: '.documentation',
-    },
-    offset: {
-      type: String,
-      default: '0',
     },
     forceShow: {
       type: Boolean,
@@ -118,24 +123,34 @@ export default {
       popperJS: null,
       showPopper: false,
       mobile: false,
+      isClosable: false,
+      hasPointer: true,
       currentPlacement: '',
       content: 'empty',
+      popper: false,
       popperOptions: {
-        modifiers: {
-          offset: {
-            offset: '0, -3px',
+        modifiers: [
+          {
+            name: 'flip',
+            options: {
+              enabled: false,
+              fallbackPlacements: ['bottom'],
+            },
           },
-          flip: {
-            behavior: ['bottom'],
+          {
+            name: 'offset',
+            options: {
+              offset: [10, 0],
+            },
           },
-          computeStyle: {
-            x: 'left',
+          {
+            name: 'preventOverflow',
+            options: {
+              padding: 0,
+              priority: ['top', 'bottom'],
+            },
           },
-          preventOverflow: {
-            padding: 0,
-            priority: ['left', 'right'],
-          },
-        },
+        ],
       },
     };
   },
@@ -143,13 +158,14 @@ export default {
   watch: {
     showPopper(value) {
       if (value) {
+        this.$bus.$emit('popper-opening', this);
         if (this.popperJS) this.popperJS.enableEventListeners();
         this.updatePopper();
         this.$bus.$emit('show-curtain', this.foreground);
         if (this.link) this.link.setAttribute('aria-expanded', true);
       } else {
+        this.$bus.$emit('popper-closing', this);
         this.$bus.$emit('hide-curtain', this);
-        if (this.popperJS) this.popperJS.disableEventListeners();
         if (this.link) this.link.setAttribute('aria-expanded', false);
       }
     },
@@ -168,6 +184,14 @@ export default {
     },
   },
 
+  created() {
+    if (this.variant !== 'default') {
+      this.hasPointer = false;
+      this.isClosable = true;
+    }
+    if (this.closable) this.isClosable = true;
+  },
+
   mounted() {
     this.referenceElm = this.$refs.target;
     this.popper = this.$refs.popper;
@@ -177,7 +201,7 @@ export default {
     if (this.link) {
       this.link.setAttribute('aria-haspopup', true);
       this.link.setAttribute('aria-expanded', false);
-      if (this.hasArrow) this.link.innerHTML += '<belk-icon name="arrow-down" width="20"></belk-icon>';
+      if (this.hasArrow) this.link.innerHTML += '<belk-icon name="arrow-down" width="10" class="margin-l-atomic"></belk-icon>';
     }
 
     if (this.trigger === 'click') {
@@ -195,9 +219,9 @@ export default {
   methods: {
     events() {
       const self = this;
-      this.$bus.$on('show-nav', (which) => {
-        if (which !== self.uuid) self.close();
-      });
+      // this.$bus.$on('show-nav', (which) => {
+      //   if (which !== self.uuid) self.close();
+      // });
 
       this.$bus.$on('breakpoint-mobile', () => {
         self.mobile = true;
@@ -207,10 +231,12 @@ export default {
         self.mobile = false;
       });
 
-      this.$bus.$on('navitem-opening', (el) => {
+      this.$bus.$on('popper-opening', (el) => {
         if (el === this) return;
-        if (self.closingTimer) clearTimeout(self.closingTimer);
+        self.close();
       });
+
+      this.$bus.$on('close-modals', self.close);
     },
 
     initPopper() {
@@ -255,7 +281,6 @@ export default {
 
     show() {
       this.showPopper = true;
-      this.$bus.$emit('navitem-opening', this);
     },
 
     close() {
@@ -263,51 +288,83 @@ export default {
     },
 
     doDestroy() {
-      if (this.showPopper) return;
+      if (this.showPopper) {
+        return;
+      }
 
       if (this.popperJS) {
         this.popperJS.destroy();
         this.popperJS = null;
       }
+
+      if (this.appendedToBody) {
+        this.appendedToBody = false;
+        document.body.removeChild(this.popper.parentElement);
+      }
+    },
+
+    opts() {
+      const self = this;
+      return {
+        modifiers: [{
+          name: 'flip',
+          options: {
+            enabled: true,
+            behavior: ['left-start'],
+          },
+        },
+        {
+          name: 'placement',
+          options: 'left-start',
+        },
+        {
+          name: 'preventOverflow',
+          options: {
+            priority: ['top'],
+            padding: 0,
+          },
+        },
+        {
+          name: 'computeStyles',
+          options: {
+            adaptive: false, // true by default
+          },
+        },
+        ],
+        onFirstUpdate: () => {
+          self.$emit('created', self);
+          self.$nextTick(self.updatePopper);
+        },
+      };
     },
 
     createPopper() {
       this.$nextTick(() => {
+        if (this.appendToBody && !this.appendedToBody) {
+          this.appendedToBody = true;
+          document.body.appendChild(this.popper.parentElement);
+        }
+
         if (this.popperJS && this.popperJS.destroy) {
           this.popperJS.destroy();
         }
 
-        if (this.boundariesSelector) {
-          const boundariesElement = document.querySelector(this.boundariesSelector) || document.querySelector('#main');
-          if (boundariesElement) {
-            this.popperOptions.modifiers = {
-              ...this.popperOptions.modifiers,
-            };
-            this.popperOptions.modifiers.offset.offset = this.offset;
-            this.popperOptions.modifiers.preventOverflow = {
-              ...this.popperOptions.modifiers.preventOverflow,
-            };
-            this.popperOptions.modifiers.preventOverflow.boundariesElement = boundariesElement;
-          }
-        }
-
-        this.popperOptions.onFirstUpdate = () => {
-          this.$emit('created', this);
-          this.$nextTick(this.updatePopper);
-        };
-
-        this.popperJS = new CreatePopper(this.referenceElm, this.popper, this.popperOptions);
+        this.popperJS = new CreatePopper(
+          this.referenceElm,
+          this.popper,
+          this.opts(),
+        );
       });
     },
 
     destroyPopper() {
       off(this.referenceElm, 'click', this.doToggle);
-      off(this.referenceElm, 'mouseup', this.close);
-      off(this.referenceElm, 'mousedown', this.show);
-      off(this.referenceElm, 'focus', this.show);
-      off(this.referenceElm, 'blur', this.close);
-      off(this.referenceElm, 'mouseout', this.mouseoutHandler);
-      off(this.referenceElm, 'mouseover', this.mouseoverHandler);
+      off(this.referenceElm, 'mouseup', this.doClose);
+      off(this.referenceElm, 'mousedown', this.doShow);
+      off(this.referenceElm, 'focus', this.doShow);
+      off(this.referenceElm, 'blur', this.doClose);
+      off(this.referenceElm, 'mouseout', this.onMouseOut);
+      off(this.referenceElm, 'mouseover', this.onMouseOver);
       off(document, 'click', this.handleDocumentClick);
 
       this.showPopper = false;
@@ -325,7 +382,7 @@ export default {
       if (!this.mobile) {
         clearTimeout(this.timer);
         this.timer = setTimeout(() => {
-          this.$bus.$emit('show-nav', this.uuid);
+          this.$bus.$emit('popper-opening', this);
           this.$set(this, 'showPopper', true);
         }, this.delayOnMouseOver);
       }

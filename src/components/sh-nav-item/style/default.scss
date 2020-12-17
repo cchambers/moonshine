@@ -13,6 +13,10 @@ sh-nav-item {
     display: inline-block;
     color: $lowlight-primary;
 
+    .reference a {
+      border-radius: 5px;
+    }
+    
     &:hover {
       .reference a {
         background: $highlight-secondary;
@@ -37,6 +41,7 @@ sh-nav-item {
       position: relative;
       display: flex;
       align-items: center;
+      height: 100%;
       transition: all 150ms $ease;
       color: $lowlight-primary;
       cursor: pointer;
@@ -76,10 +81,7 @@ sh-nav-item {
   }
 
   .popper-actual {
-    width: auto;
-    max-width: 102rem;
-    z-index: 90;
-
+    z-index: 92;
     &[fill] {
       width: 100%;
     }

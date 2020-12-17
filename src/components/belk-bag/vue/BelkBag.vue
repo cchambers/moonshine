@@ -1,23 +1,24 @@
 <template>
   <div class="belk-bag" :variant="variant" v-bind:class="{ active: itemCount > 0 }">
-    <sh-popper reference-id="belk-bag" has-curtain>
-      <span slot="reference">
+    <sh-popper offset-x="-41" placement="bottom" reference-id="belk-bag">
+      <div slot="reference">
         <div class="bag-icon">
-          <belk-icon width="30" name="bag">shopping bag</belk-icon>
+          <belk-icon width="30" height="36" name="bag">shopping bag</belk-icon>
           <div class="bag-count">{{ itemCount }}</div>
         </div>
         <div class="bag-total">{{ totalPrice }}</div>
-      </span>
-      <div slot="content">
+      </div>
+      <div class="bag-content" slot="content">
         <div v-if="itemCount > 0">
-          <ul>
-            <li>Item 1</li>
-            <li>Item 2</li>
-            <li>Item 3</li>
-          </ul>
+          <component
+            ref="itemList"
+            v-bind:is="belkProductList"
+            v-bind:product-array="items"
+            variant="secondary">
+          </component>
         </div>
         <div v-if="itemCount === 0">
-          <div class="content-asset">
+          <div>
             <h1>Your bag is empty &amp; could use some love.</h1>
             <p>Sign in to see items you may have added to your bag.</p>
           </div>
@@ -28,6 +29,7 @@
 </template>
 
 <script>
+import BelkProductList from '../../belk-product-list/vue/BelkProductList.vue';
 import ComponentPrototype from '../../component-prototype';
 
 export default {
@@ -36,13 +38,21 @@ export default {
   name: 'BelkBag',
   props: {
     count: Number,
-    price: String,
+    total: {
+      type: Number,
+      default: 0,
+    },
+    belkProductList: BelkProductList,
+  },
+
+  components: {
+    BelkProductList,
   },
 
   computed: {
     totalPrice() {
-      const { price } = this;
-      if (parseInt(this.price, 10) === 0) {
+      const total = parseInt(this.total, 10);
+      if (total === 0) {
         return 'Bag';
       }
       const formatter = new Intl.NumberFormat('en-US', {
@@ -50,20 +60,21 @@ export default {
         currency: 'USD',
         minimumFractionDigits: 2,
       });
-
-      return formatter.format(price);
+      return formatter.format(total);
     },
   },
 
   data() {
     return {
+      items: [],
       itemCount: 0,
-      subTotal: false,
+      subTotal: 0,
     };
   },
 
-  mounted() {
+  created() {
     if (this.count) this.itemCount = this.count;
+    if (this.total) this.subTotal = this.subTotal;
   },
 
   methods: {

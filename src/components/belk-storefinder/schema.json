@@ -1,0 +1,14 @@
+{
+  "name": "BelkStorefinder",
+  "category": "base",
+  "production": true,
+  "element": "belk-storefinder",
+  "description": "Demonstration component.",
+  "tags": ["utilities", "demo"],
+  "requirements": {
+    "Element One": [],
+    "Element Two": [],
+    "a11y": [],
+    "states": []
+  }
+}

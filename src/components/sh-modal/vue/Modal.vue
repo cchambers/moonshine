@@ -1,7 +1,10 @@
 <template>
   <div class="sh-modal" role="dialog"
     :variant="variant"
-    :class="{ fullscreen: fullscreen, active: active }"
+    :class="{
+      fullscreen: fullscreen,
+      active: active
+    }"
     :reveal="reveal"
     :id="uniqueId"
     :aria-labelledby="ariaID"
@@ -58,6 +61,7 @@ export default {
     maxWidth: String,
     noHistory: Boolean,
     hideHeader: Boolean,
+    hideButtons: Boolean,
     fullscreen: Boolean,
     openTriggerEvent: String,
     openedEvent: String,
@@ -292,6 +296,7 @@ export default {
 
       if (!self.active) {
         if (!self.noEvents) self.$bus.$emit('modal-opening', self.uniqueId);
+        if (self.hideButtons) self.$bus.$emit('modal-buttons-hide');
         document.documentElement.classList.add('sh-modal-open');
         self.active = true;
         self.$bus.$emit('modal-opened', self.uniqueId);
