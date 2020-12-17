@@ -1,5 +1,10 @@
 $timing: 1s;
 
+html.curtain,
+html.curtain body {
+  overflow: hidden;
+}
+
 sh-curtain {
   .sh-curtain {
     display: block;

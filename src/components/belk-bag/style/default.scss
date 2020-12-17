@@ -62,7 +62,7 @@ belk-bag {
   }
 
   .bag-total {
-    margin-left: 1rem;
+    margin-left: .5rem;
     padding-top: 5px;
     display: flex;
     align-items: center;
@@ -70,6 +70,7 @@ belk-bag {
 
   .bag-icon {
     position: relative;
+    display: inline-flex;
     .belk-icon {
       display: flex;
     }
@@ -77,7 +78,7 @@ belk-bag {
     svg {
       position: absolute;
       bottom: 0;
-      left: 0;
+      left: 2px;
     }
   }
 }

@@ -2,7 +2,7 @@
   <div class="sh-nav-item"
     v-bind:class="{ 'touch': mobile }"
     :active="active">
-    <div class="popper-target" ref="target">
+    <div class="popper-target" :class="{ active: showPopper }" ref="target">
       <div class="reference">
         <slot name="reference"></slot>
       </div>
@@ -16,12 +16,17 @@
         ref="popper"
         v-show="!disabled && showPopper">
         <div class="popper-content">
+          <div v-if="isClosable" class="popper-close">
+            <button close-trigger>
+              <belk-icon name="close" width="28">Close Modal</belk-icon>
+            </button>
+          </div>
           <slot name="content">{{ content }}</slot>
         </div>
-        <div class="popper-arrow" data-popper-arrow></div>
+        <div class="popper-arrow" v-if="hasPointer" data-popper-arrow></div>
       </div>
     </transition>
-  </div>
+</div>
 </template>
 
 <script>
@@ -56,6 +61,10 @@ export default {
       type: String,
       default: 'default',
     },
+    closable: {
+      type: Boolean,
+      default: false,
+    },
     hasArrow: {
       type: Boolean,
       default: false,
@@ -79,10 +88,6 @@ export default {
     boundariesSelector: {
       type: String,
       default: '.documentation',
-    },
-    offset: {
-      type: String,
-      default: '0',
     },
     forceShow: {
       type: Boolean,
@@ -118,8 +123,11 @@ export default {
       popperJS: null,
       showPopper: false,
       mobile: false,
+      isClosable: false,
+      hasPointer: true,
       currentPlacement: '',
       content: 'empty',
+      popper: false,
       popperOptions: {
         modifiers: [
           {
@@ -176,6 +184,14 @@ export default {
     },
   },
 
+  created() {
+    if (this.variant !== 'default') {
+      this.hasPointer = false;
+      this.isClosable = true;
+    }
+    if (this.closable) this.isClosable = true;
+  },
+
   mounted() {
     this.referenceElm = this.$refs.target;
     this.popper = this.$refs.popper;
@@ -219,6 +235,8 @@ export default {
         if (el === this) return;
         self.close();
       });
+
+      this.$bus.$on('close-modals', self.close);
     },
 
     initPopper() {
@@ -285,12 +303,43 @@ export default {
       }
     },
 
+    opts() {
+      const self = this;
+      return {
+        modifiers: [{
+          name: 'flip',
+          options: {
+            enabled: true,
+            behavior: ['left-start'],
+          },
+        },
+        {
+          name: 'placement',
+          options: 'left-start',
+        },
+        {
+          name: 'preventOverflow',
+          options: {
+            priority: ['top'],
+            padding: 0,
+          },
+        },
+        {
+          name: 'computeStyles',
+          options: {
+            adaptive: false, // true by default
+          },
+        },
+        ],
+        onFirstUpdate: () => {
+          self.$emit('created', self);
+          self.$nextTick(self.updatePopper);
+        },
+      };
+    },
+
     createPopper() {
       this.$nextTick(() => {
-        if (this.visibleArrow) {
-          this.appendArrow(this.popper);
-        }
-
         if (this.appendToBody && !this.appendedToBody) {
           this.appendedToBody = true;
           document.body.appendChild(this.popper.parentElement);
@@ -300,15 +349,10 @@ export default {
           this.popperJS.destroy();
         }
 
-        this.popperOptions.onFirstUpdate = () => {
-          this.$bus.$emit('created', this);
-          this.$nextTick(this.updatePopper);
-        };
-
         this.popperJS = new CreatePopper(
           this.referenceElm,
           this.popper,
-          this.popperOptions,
+          this.opts(),
         );
       });
     },
