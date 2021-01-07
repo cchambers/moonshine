@@ -66,6 +66,8 @@ export default {
     this.bagEl = document.querySelector('belk-bag');
     this.setupEvents();
     this.getData();
+    const tert = document.querySelector('nav.lazy');
+    if (tert) tert.classList.remove('lazy');
   },
 
   methods: {
