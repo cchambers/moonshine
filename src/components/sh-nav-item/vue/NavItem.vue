@@ -214,6 +214,7 @@ export default {
     }
 
     this.initPopper();
+    this.show = true;
   },
 
   methods: {
@@ -320,8 +321,8 @@ export default {
         {
           name: 'preventOverflow',
           options: {
-            priority: ['top'],
             padding: 0,
+            rootBoundary: 'viewport',
           },
         },
         {

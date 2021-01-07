@@ -4,7 +4,6 @@
     v-on:keyup.enter="tapHandler"
     :close-trigger="closeTrigger"
     :print-trigger="printTrigger"
-    v-hammer:tap="tapHandler"
     :value="defaultValue"
     v-bind:role="ariaRole"
     v-bind:aria-selected="isActive"
