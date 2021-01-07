@@ -4,7 +4,9 @@ $_aw: $arrowWidth/2;
 
 sh-nav-item {
   position: relative;
-
+  [slot] {
+    display: none;
+  }
   i {
     pointer-events: none;
   }
@@ -189,5 +191,16 @@ sh-nav-item {
 
   belk-icon.arrow-down {
     align-self: flex-end;
+  }
+
+  .layout-horizontal {
+    column-count: 4;
+    @include lg {
+      column-count: 5;
+    }
+    @include xl {
+      column-count: 6;
+    }
+    column-gap: $rem;
   }
 }

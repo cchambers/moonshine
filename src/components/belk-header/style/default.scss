@@ -17,11 +17,8 @@ $secondary-nav-height: 6.2rem;
 
   .tertiary {
     background: $highlight-primary;
-    width: 87.5%;
     -webkit-overflow-scrolling: touch;
     top: 0px;
-    max-width: 736px;
-    display: none;
   }
 
   &[scroll-state="1"] {
@@ -161,7 +158,6 @@ $secondary-nav-height: 6.2rem;
   }
 
   .secondary {
-    height: 5rem;
     display: flex;
     align-items: center;
     background: $highlight-primary;
@@ -252,8 +248,8 @@ $secondary-nav-height: 6.2rem;
       height: 100%;
 
       .popper-close {
-        display: flex;
-        justify-content: flex-end;
+        position: fixed;
+        right: $rem;
 
         button {
           background-color: transparent;
@@ -379,17 +375,13 @@ $secondary-nav-height: 6.2rem;
     }
 
     .secondary {
-      height: $secondary-nav-height;
       display: flex;
       align-items: center;
 
       sh-nav-item.minibag-action .belk-icon {
         max-width: initial;
         height: auto;
-      }
-      sh-nav-item {
-        height: $secondary-nav-height;
-      }
+      } 
     }
 
     belk-search {
