@@ -230,7 +230,7 @@ export default {
     },
 
     scrollState(num) {
-      this.actual.setAttribute('scroll-state', num);
+      if (this.actual) this.actual.setAttribute('scroll-state', num);
     },
 
     updateContainers(data) {
