@@ -123,7 +123,7 @@ export default {
   methods: {
     setup(el) {
       const target = el;
-      this.activeIcons[target.name] = this.icons[target.name];
+      this.$set(this.activeIcons, target.name, this.icons[target.name]);
       target.viewbox = this.icons[target.name].viewbox;
       target.configured = true;
     },
