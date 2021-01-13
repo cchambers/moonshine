@@ -142,7 +142,10 @@ export default {
       type: Boolean,
       default: false
     },
-    toSpend: Number,
+    toSpend: {
+      type: Number,
+      default: false
+    },
     pdf: String,
     print: {
       type: Boolean,
@@ -356,6 +359,7 @@ export default {
               code="${self.code}" 
               ends="${self.ends}"
               upc="${self.upc}"
+              to-spend="${self.toSpend}"
               description="${self.description}"
               details="${details}">
             </belk-coupon>  
