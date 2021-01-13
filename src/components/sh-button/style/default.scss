@@ -174,16 +174,15 @@ sh-button {
   &:not([variant]) {
     background-color: transparent;
 
-    span {
-      text-decoration: underline;
-    }
-
     button {
       &:hover,
       &.active {
         color: $lowlight-primary;
         text-decoration: none;
         text-decoration-color: $lowlight-primary;
+        .actual-text > span {
+          text-decoration: underline;
+        }
       }
     }
   }
