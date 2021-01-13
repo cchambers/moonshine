@@ -356,6 +356,7 @@ export default {
               code="${self.code}" 
               ends="${self.ends}"
               upc="${self.upc}"
+              to-spend="${self.toSpend}"
               description="${self.description}"
               details="${details}">
             </belk-coupon>  
