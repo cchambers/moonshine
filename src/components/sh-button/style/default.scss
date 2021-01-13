@@ -44,6 +44,9 @@ sh-button {
     cursor: pointer;
     overflow: hidden;
     background-color: transparent;
+    > * {
+      pointer-events: none;
+    }
     .active-text {
       display: none;
     }
