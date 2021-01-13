@@ -142,7 +142,10 @@ export default {
       type: Boolean,
       default: false
     },
-    toSpend: Number,
+    toSpend: {
+      type: Number,
+      default: false
+    },
     pdf: String,
     print: {
       type: Boolean,
