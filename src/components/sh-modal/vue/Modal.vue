@@ -284,8 +284,8 @@ export default {
 
       if (self.confirmationEvents) self.affirmed = undefined;
 
-      if (!self.loaded && self.contentUrl) {
-        if (self.contentUrl !== self.loadedUrl) self.loadContent();
+      if (self.alwaysReload || (!self.loaded && self.contentUrl)) {
+        if (self.alwaysReload || (self.contentUrl !== self.loadedUrl)) self.loadContent();
       }
 
       if (self.overlay) {
@@ -325,6 +325,7 @@ export default {
         this.$bus.$emit('modal-closed', this.uniqueId);
         if (this.closedEvent) this.$bus.$emit(this.closedEvent, this.uniqueId);
         if (this.closedCallback) this.closedCallback();
+        if (self.alwaysReload) this.loaded = false;
       }
       if (clearHash) this.clearHash();
     },
