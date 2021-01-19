@@ -24,6 +24,7 @@
           <slot>{{ content }}</slot>
         </template>
         <div v-if="dynamicHTML" v-html="dynamicHTML"></div>
+        <div ref="ajax"></div>
 
       </div>
       <div class="footer">
@@ -499,7 +500,8 @@ export default {
             if (!html) {
               self.doError();
             } else {
-              self.$refs.body.appendChild(html);
+              self.$refs.ajax.innerHTML = '';
+              self.$refs.ajax.appendChild(html);
               self.loadedUrl = self.contentUrl;
               self.manageHeight();
               self.$bus.$emit('modal-content-loaded', self.uniqueId);
