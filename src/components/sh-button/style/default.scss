@@ -38,12 +38,12 @@ sh-button {
     padding: 0 1.6em;
     min-height: 4.5em;
     min-width: 4.5em;
-    color: $lowlight-primary !important;
+    color: $lowlight-primary ;
     transition: all 250ms $decel !important;
     font-size: 1em;
     cursor: pointer;
     overflow: hidden;
-    background-color: transparent !important;
+    background-color: transparent;
     > * {
       pointer-events: none;
     }
@@ -177,9 +177,10 @@ sh-button {
     button {
       &:hover,
       &.active {
-        color: $lowlight-primary;
+        color: $lowlight-primary !important;
         text-decoration: none;
         text-decoration-color: $lowlight-primary;
+        background-color: transparent !important;
         .actual-text > span {
           text-decoration: underline;
         }
