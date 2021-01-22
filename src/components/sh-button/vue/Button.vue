@@ -48,7 +48,10 @@ export default {
     link: Boolean,
     ariaRole: String,
     ariaControls: String,
-    type: String,
+    type: {
+      type: String,
+      default: 'button',
+    },
     uniqueId: String,
   },
 
