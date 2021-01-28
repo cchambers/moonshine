@@ -107,9 +107,10 @@
 <script>
 /* eslint-disable */
 import ComponentPrototype from "../../component-prototype";
+import UtagBehavior from "../../utag-behavior";
 
 export default {
-  mixins: [ComponentPrototype],
+  mixins: [ComponentPrototype, UtagBehavior],
 
   name: "BelkCoupon",
 
