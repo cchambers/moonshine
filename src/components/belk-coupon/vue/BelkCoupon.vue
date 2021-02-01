@@ -145,7 +145,7 @@ export default {
     },
     toSpend: {
       type: Number,
-      default: false
+      default: NaN,
     },
     pdf: String,
     print: {
@@ -262,11 +262,12 @@ export default {
 
     clickAdd() {
       const target = this.$refs.addButton.querySelector('button');
-      if (target) target.click()
+      if (target) target.click();
     },
 
     doLink() {
       if (this.link) {
+        this.tagEvent();
         if (this.link.startsWith('/')) {
           window.location.href = this.link;
         } else {
@@ -290,6 +291,7 @@ export default {
 
     handleAddCoupon(data) {
       if (data.cpnDetails) {
+        this.tagEvent();
         if (data.cpnDetails.isValid === true) {
           this.$bus.$emit('coupon-added', data);
           this.toggleButton();

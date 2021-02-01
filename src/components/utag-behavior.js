@@ -6,10 +6,6 @@ const UtagBehavior = {
     },
   },
 
-  created() {
-    this.inputId = (this.uniqueId) ? this.uniqueId : `input-${this.uuid}`;
-  },
-
   methods: {
     tagEvent() {
       if (window.utag && this.aali) {
@@ -18,6 +14,7 @@ const UtagBehavior = {
           link_name: this.aali,
         });
       }
+      return this;
     },
   },
 };
