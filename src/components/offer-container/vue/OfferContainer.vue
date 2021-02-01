@@ -4,6 +4,7 @@
     <belk-coupon v-for="item in items" v-bind:key="item.id"
       :in-drawer="item.inDrawer"
       :badge="item.badge"
+      :aali="item.aali"
       :code="item.code"
       :custom-link="item.customLink"
       :discount="item.discount"
