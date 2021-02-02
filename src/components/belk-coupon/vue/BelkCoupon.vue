@@ -291,7 +291,6 @@ export default {
 
     handleAddCoupon(data) {
       if (data.cpnDetails) {
-        this.tagEvent();
         if (data.cpnDetails.isValid === true) {
           this.$bus.$emit('coupon-added', data);
           this.toggleButton();
