@@ -7,12 +7,14 @@ const UtagBehavior = {
   },
 
   methods: {
-    tagEvent() {
-      if (window.utag && this.aali) {
+    tagEvent(tag) {
+      if (window.utag && tag) {
         window.utag.link({
           event_name: 'internal_campaign_click',
-          link_name: this.aali,
+          link_name: tag,
         });
+      } else {
+        this.log(`Tag error: ${tag}`);
       }
       return this;
     },
