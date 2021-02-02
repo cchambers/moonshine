@@ -159,7 +159,9 @@ export default {
     spacerText: {
       type: String,
       default: 'Applied Automatically at Checkout'
-    }
+    },
+    linkTag: String,
+    couponTag: String,
   },
 
   watch: {
@@ -267,7 +269,7 @@ export default {
 
     doLink() {
       if (this.link) {
-        this.tagEvent();
+        if (this.linkTag) this.tagEvent(this.linkTag);
         if (this.link.startsWith('/')) {
           window.location.href = this.link;
         } else {
@@ -290,7 +292,9 @@ export default {
     },
 
     handleAddCoupon(data) {
+      
       if (data.cpnDetails) {
+        if (this.addTag) this.tagEvent(this.addTag);
         if (data.cpnDetails.isValid === true) {
           this.$bus.$emit('coupon-added', data);
           this.toggleButton();
