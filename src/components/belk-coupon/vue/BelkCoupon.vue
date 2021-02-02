@@ -161,7 +161,7 @@ export default {
       default: 'Applied Automatically at Checkout'
     },
     linkTag: String,
-    addTag: String,
+    couponTag: String,
   },
 
   watch: {
