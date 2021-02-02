@@ -1,11 +1,4 @@
 const UtagBehavior = {
-  props: {
-    aali: {
-      type: String,
-      value: false,
-    },
-  },
-
   methods: {
     tagEvent(tag) {
       if (window.utag && tag) {
