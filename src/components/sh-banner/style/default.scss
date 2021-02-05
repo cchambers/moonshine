@@ -1,6 +1,13 @@
 sh-banner {
   display: block;
   position: relative;
+  opacity: 0;
+  overflow: hidden;
+  transform: translateZ(0); 
+  transition: opacity 100ms ease-in;
+  &[vce-ready] {
+    opacity: 1;
+  }
 
   .sh-banner {
     display: block;
