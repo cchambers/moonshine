@@ -292,7 +292,6 @@ export default {
     },
 
     handleAddCoupon(data) {
-      
       if (data.cpnDetails) {
         if (this.couponTag) this.tagEvent(this.couponTag);
         if (data.cpnDetails.isValid === true) {
