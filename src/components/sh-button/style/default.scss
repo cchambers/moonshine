@@ -52,6 +52,7 @@ sh-button {
     }
     .actual-text {
       white-space: nowrap;
+      display: flex;
     }
     &.active {
       background: $accent-tertiary;
@@ -59,7 +60,7 @@ sh-button {
         display: none;
       }
       .active-text {
-        display: block;
+        display: flex;
       }
     }
 
