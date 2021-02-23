@@ -1,13 +1,10 @@
 const UtagBehavior = {
   methods: {
-    tagEvent(tag) {
-      if (window.utag && tag) {
-        window.utag.link({
-          event_name: 'internal_campaign_click',
-          link_name: tag,
-        });
+    tagEvent(obj) {
+      if (window.utag && obj) {
+        window.utag.link(obj);
       } else {
-        this.log(`Tag error: ${tag}`);
+        this.log('Tag error.');
       }
       return this;
     },
