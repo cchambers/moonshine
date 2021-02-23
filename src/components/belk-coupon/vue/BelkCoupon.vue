@@ -269,7 +269,10 @@ export default {
 
     doLink() {
       if (this.link) {
-        if (this.linkTag) this.tagEvent(this.linkTag);
+        if (this.linkTag) this.tagEvent({
+          event_name: 'promodrawer-coupon-click',
+          promodrawer_contentcode: this.linkTag,
+        });
         if (this.link.startsWith('/')) {
           window.location.href = this.link;
         } else {
@@ -293,7 +296,11 @@ export default {
 
     handleAddCoupon(data) {
       if (data.cpnDetails) {
-        if (this.couponTag) this.tagEvent(this.couponTag);
+        if (this.couponTag) this.tagEvent({
+          event_name: 'promodrawer-coupon-click',
+          promodrawer_coupon: this.code,
+          promodrawer_contentcode: this.couponTag,
+        });
         if (data.cpnDetails.isValid === true) {
           this.$bus.$emit('coupon-added', data);
           this.toggleButton();
