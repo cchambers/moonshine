@@ -6,6 +6,10 @@
   "description": "View, add, or print coupons.",
   "tags": ["marketing", "tile"],
   "requirements": {
-    "Container": []
+    "Container": [],
+    "Tagging": [
+      "After coupon added",
+      "After link activated"
+    ]
   }
 }
