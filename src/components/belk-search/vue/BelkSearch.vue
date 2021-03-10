@@ -27,18 +27,19 @@
         :placeholder="placeholder"
         @focus="focusHandler"
       />
-      <button class="clear-search" aria-role="button"
+      <button class="clear-search flex" aria-role="button"
         aria-label="clear search field"
         ref="clear"
         v-if="valueLength>0"
         v-hammer:tap="forceBlur">
         <belk-icon name="close" width="24">Clear Input</belk-icon>
       </button>
-      <button aria-role="button"
+      <button class="flex" aria-role="button"
         aria-label="perform search"
         ref="search"
-        v-hammer:tap="doSearch">
-        <belk-icon name="search" width="24">Perform Search Action</belk-icon>
+        v-hammer:tap="doSearch"
+        :disabled="isEmpty">
+        <belk-icon name="search" width="30" height="30">Perform Search Action</belk-icon>
       </button>
     </div>
     <div ref="loading" class="search-loading">
@@ -154,6 +155,7 @@ export default {
       noResults: false,
       filled: false,
       isFocused: false,
+      isEmpty: true,
       id: '',
       inputEl: {},
       ignoreKeys: [37, 39, 91, 16, 13],
@@ -263,6 +265,7 @@ export default {
     value(val) {
       if (this.inputEl.value !== val) this.inputEl.value = val;
       this.valueLength = val.length;
+      this.isEmpty = (val.length === 0);
     },
 
     recents(arr) {
