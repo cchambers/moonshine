@@ -9,6 +9,18 @@
   \_______/  \_______|\_______/ \__|\__|\_______|\_______/ \_______/
 / */
 
+@import url(https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Round);
+.material-icons-round { font-family: 'Material Icons Round' !important; }
+.material-icons { font-family: 'Material Icons' !important; }
+
+i.material-icons,
+i.material-icons-round {
+  display: inline-flex;
+  vertical-align: middle;
+  line-height: 1em;
+  font-size: inherit;
+}
+
 html {
   font-size: 10px;
   box-sizing: border-box;

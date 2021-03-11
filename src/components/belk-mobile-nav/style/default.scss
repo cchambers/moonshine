@@ -13,6 +13,23 @@ belk-mobile-nav {
     transform-origin: top center;
     overflow: hidden;
 
+    &.active {
+      opacity: 1 !important;
+      pointer-events: all;
+      .overlay {
+        opacity: 1;
+      }
+      .container {
+        transform: translateX(0) translateZ(0);
+        opacity: 1;
+      }
+    }
+
+    button {
+      padding-top: 0; // stupid default styles...
+      padding-bottom: 0; // stupid default styles...
+    }
+
     .overlay{
       @include background-opacity($lowlight-primary, 0.6);
       position: absolute;
@@ -23,7 +40,10 @@ belk-mobile-nav {
       opacity: 0;
       transition: all 300ms $ease, opacity 350ms linear;
     }
+
     .container {
+      display: flex;
+      flex-direction: column;
       transform: translateX(-100%) translateZ(0);
       transition: all 300ms $ease, opacity 350ms linear;
       overflow-x: hidden;
@@ -37,43 +57,69 @@ belk-mobile-nav {
         max-width: 78rem;
       }
     }
-    &.active {
-      opacity: 1 !important;
-      pointer-events: all;
-      .overlay {
-        opacity: 1;
+
+    nav.secondary {
+      margin-top: auto;
+      background: $highlight-secondary;
+      border-top: 1px solid $highlight-tertiary;
+      line-height: 3.4rem;
+      padding-bottom: 13rem;
+      font-size: 1.4rem;
+      a {
+        padding-left: $micro;
+        color: $lowlight-primary;
       }
-      .container {
-        transform: translateX(0) translateZ(0);
-        opacity: 1;
+      .heading {
+        text-transform: uppercase;
+        display: flex;
+        align-items: center;
+        color: $lowlight-quaternary;
+        padding-left: $micro;
+        &:after {
+          display: block;
+          content: '';
+          text-transform: uppercase;
+          background: $lowlight-quaternary;
+          margin-left: $micro;
+          height: 1px;
+          width: 80%;
+          flex-shrink: 1;
+        }
       }
     }
+
     button.top {
       outline: 0;
       border: 0;
       cursor: pointer;
       width: 100%;
-    }
-
-    .container {
+      position: sticky;
+      top: 0;
+      background-color: $highlight-tertiary;
     }
 
     .sh-accordion {
       border-top: 1px solid $highlight-tertiary;
-      .header {
+      button.header {
         line-height: 4.6rem;
         padding-left: $micro;
         padding-right: $micro;
         font-size: 1.8rem;
         font-weight: bold;
+        color: $lowlight-primary;
         a {
           color: $lowlight-primary;
+          display:  block;
+          text-decoration: none;
         }
         i {
           font-size: 2.2rem;
           display: flex;
           color: $lowlight-quaternary;
         }
+      }
+      .accordion-collapse {
+        transition: none;
       }
       .body .header {
         font-weight: normal;
@@ -93,6 +139,5 @@ belk-mobile-nav {
         padding-left: $mega;
       }
     }
-
   }
 }
