@@ -15,7 +15,7 @@ sh-accordion {
     }
 
     &.active {
-      .accordion-collapse {
+      [aria-expanded="true"] > .accordion-collapse {
         display: block;
         max-height: 200vh;
         transition: all 250ms $ease;

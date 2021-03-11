@@ -3,10 +3,10 @@
     :id="uniqueId"
     :variant="variant"
     v-bind:class="{ 'active': ariaExpanded }">
-    <button v-if="variant" class="header" :id="headerId" :aria-controls="ariaControlsId"
+    <button class="header" :id="headerId" :aria-controls="ariaControlsId"
       v-hammer:tap="toggleActive">
       <slot name="header"></slot>
-      <i class="material-icons-round">{{ iconHandler }}</i>
+      <i v-if="variant" class="material-icons-round">{{ iconHandler }}</i>
     </button>
     <div :aria-expanded="ariaExpanded" :aria-labelled-by="headerId" role="region">
       <div :id="ariaControlsId" class="accordion-collapse">
