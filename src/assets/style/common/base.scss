@@ -17,6 +17,13 @@ html {
   }
 }
 
+
+.scroll-block {
+  > * {
+    overflow: hidden !important;
+  }
+}
+
 html, body {
   scroll-behavior: smooth;
 }

@@ -1,7 +1,48 @@
 <sh-svglib></sh-svglib>
 
 <belk-header id="top"></belk-header>
+<belk-mobile-nav>
+  <div slot="primary">
+    <ul>
+      <li>
+        <sh-accordion>
+            <div slot="header">
+              First thing
+            </div>
+            <div slot="body">
+            <sh-accordion>
+                <div slot="header">
+                  <a href="https://google.com">INCEPTION</a>
+                </div>
+                <div slot="body">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                </div>
+              </sh-accordion>
+            </div>
+          </sh-accordion>
+      </li>
 
+      <li>
+          <sh-accordion>
+              <div slot="header">
+                Second & Thing
+              </div>
+              <div slot="body">
+              <sh-accordion>
+                  <div slot="header">
+                    Inside Second & Things 
+                  </div>
+                  <div slot="body">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  </div>
+                </sh-accordion>
+              </div>
+            </sh-accordion>
+        </li>
+
+    </ul>
+  </div>
+</belk-mobile-nav>
 <header class="belk-header">
   <div class="primary-secondary-tertiary relative">
     <div class="primary-and-secondary relative">
@@ -98,7 +139,7 @@
       <div class="secondary">
         <div class="contain">
 
-          <sh-button class="nav-trigger">
+          <sh-button class="nav-trigger" click-event="show-mobile-nav">
             <belk-icon width="30" name="menu"></belk-icon>
           </sh-button>
 

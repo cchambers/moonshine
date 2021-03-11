@@ -2,7 +2,7 @@
 
 belk-mobile-nav {
   .belk-mobile-nav {
-    position: absolute;
+    position: fixed;
     z-index: 10;
     top: 0;
     left: 0;
@@ -26,7 +26,8 @@ belk-mobile-nav {
     .container {
       transform: translateX(-100%) translateZ(0);
       transition: all 300ms $ease, opacity 350ms linear;
-      overflow: hidden;
+      overflow-x: hidden;
+      overflow-y: auto;
       background: $highlight-primary;
       height: 100vh;
       width: 100vw;
