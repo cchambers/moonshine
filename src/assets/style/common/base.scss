@@ -467,7 +467,7 @@ html, body {
   }
 
   .high-off {
-    display: none;
+    display: none !important;
   }
 
   .show-md { display: inline-flex; }

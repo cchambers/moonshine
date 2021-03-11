@@ -98,9 +98,9 @@ export default {
       this.$bus.$emit('accordion-opening', payload);
       this.ariaExpanded = true;
       this.$bus.$emit('accordion-opened', payload);
-      setTimeout(() => {
-        this.$el.scrollIntoView();
-      }, 100);
+      // setTimeout(() => {
+      //   this.$el.scrollIntoView();
+      // }, 100);
     },
 
     events() {

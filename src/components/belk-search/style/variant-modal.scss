@@ -1,5 +1,5 @@
 belk-search[variant="modal"] {
-  margin: 9px 6px;
+  margin: $micro;
   width: auto;
   flex: 1;
 
@@ -9,7 +9,7 @@ belk-search[variant="modal"] {
       .search-results {
         bottom: 0;
         left: 0;
-        position: fixed;
+        position: absolute;
         right: 0;
         top: 51px;
         height: calc(100vh - 51px);
@@ -33,14 +33,14 @@ belk-search[variant="modal"] {
     }
   }
 
-  &+.sh-button {
-    color: #000;
-    margin-right: 9px;
-    min-width: unset;
-    padding: 0;
-    text-transform: none;
-    font-size: 12px;
-    font-weight: 400;
-    text-decoration: none;
-  }
+  // &+.sh-button {
+  //   color: #000;
+  //   margin-right: 9px;
+  //   min-width: unset;
+  //   padding: 0;
+  //   text-transform: none;
+  //   font-size: 12px;
+  //   font-weight: 400;
+  //   text-decoration: none;
+  // }
 }

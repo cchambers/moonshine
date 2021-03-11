@@ -48,6 +48,7 @@ belk-mobile-nav {
       transition: all 300ms $ease, opacity 350ms linear;
       overflow-x: hidden;
       overflow-y: auto;
+      @include no-scroll-bar();
       background: $highlight-primary;
       height: 100vh;
       width: 100vw;
@@ -68,9 +69,11 @@ belk-mobile-nav {
       a {
         padding-left: $micro;
         color: $lowlight-primary;
+        text-decoration: none;
       }
       .heading {
         text-transform: uppercase;
+        white-space: nowrap;
         display: flex;
         align-items: center;
         color: $lowlight-quaternary;
@@ -94,8 +97,24 @@ belk-mobile-nav {
       cursor: pointer;
       width: 100%;
       position: sticky;
+      z-index: 1;
       top: 0;
       background-color: $highlight-tertiary;
+    }
+
+    sh-accordion[sub="false"] {
+      .body {
+        display: none !important;
+      }
+      button.header {
+        div, a {
+          display: flex;
+          width: 100%;
+        }
+        i {
+          display: none !important;
+        }
+      }
     }
 
     .sh-accordion {
