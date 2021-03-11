@@ -12,21 +12,39 @@ belk-mobile-nav {
     transition-delay: 10ms;
     transform-origin: top center;
     overflow: hidden;
-    background: rgba(20,20,20,0);
+
+    .overlay{
+      @include background-opacity($lowlight-primary, 0.6);
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      opacity: 0;
+      transition: all 300ms $ease, opacity 350ms linear;
+    }
     .container {
-      max-width: 0;
+      transform: translateX(-100%) translateZ(0);
       transition: all 300ms $ease, opacity 350ms linear;
       overflow: hidden;
       background: $highlight-primary;
       height: 100vh;
       width: 100vw;
+      max-width: calc(100% - 5.5rem);
+      opacity: 1;
+      @include lg {
+        max-width: 78rem;
+      }
     }
     &.active {
       opacity: 1 !important;
       pointer-events: all;
-      background: rgba(20,20,20,0.5);
+      .overlay {
+        opacity: 1;
+      }
       .container {
-        max-width: 85%;
+        transform: translateX(0) translateZ(0);
+        opacity: 1;
       }
     }
     button.top {
