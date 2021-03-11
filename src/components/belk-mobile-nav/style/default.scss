@@ -1,9 +1,79 @@
 /* default styling */
 
 belk-mobile-nav {
-  display: inline-flex;
-
   .belk-mobile-nav {
-    color: tomato;
+    position: absolute;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    transition-delay: 10ms;
+    transform-origin: top center;
+    overflow: hidden;
+    background: rgba(20,20,20,0);
+    .container {
+      max-width: 0;
+      transition: all 300ms $ease, opacity 350ms linear;
+      overflow: hidden;
+      background: $highlight-primary;
+      height: 100vh;
+      width: 100vw;
+    }
+    &.active {
+      opacity: 1 !important;
+      pointer-events: all;
+      background: rgba(20,20,20,0.5);
+      .container {
+        max-width: 85%;
+      }
+    }
+    button.top {
+      outline: 0;
+      border: 0;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    .container {
+    }
+
+    .sh-accordion {
+      border-top: 1px solid $highlight-tertiary;
+      .header {
+        line-height: 4.6rem;
+        padding-left: $micro;
+        padding-right: $micro;
+        font-size: 1.8rem;
+        font-weight: bold;
+        a {
+          color: $lowlight-primary;
+        }
+        i {
+          font-size: 2.2rem;
+          display: flex;
+          color: $lowlight-quaternary;
+        }
+      }
+      .body .header {
+        font-weight: normal;
+        padding-left: $rem;
+        font-size: 1.4rem;
+      }
+      .body {
+        line-height: 4.6rem;
+        border-top: 1px solid $highlight-tertiary;
+      }
+
+      .body .body {
+        padding-left: $rem;
+      }
+
+      .body .body .body {
+        padding-left: $mega;
+      }
+    }
+
   }
 }

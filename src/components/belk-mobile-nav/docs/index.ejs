@@ -121,18 +121,22 @@
   <section id="examples">
     <h2>Examples</h2>
     <h3>Default</h3>
-      <belk-mobile-nav>
+
+    <sh-button class="nav-trigger" click-event="show-mobile-nav">
+      <belk-icon width="30" name="menu"></belk-icon>
+    </sh-button>
+      <belk-mobile-nav active>
         <div slot="primary">
           <ul>
             <li>
               <sh-accordion>
                   <div slot="header">
-                    TEST
+                    First thing
                   </div>
                   <div slot="body">
                   <sh-accordion>
                       <div slot="header">
-                        INCEPTION
+                        <a href="https://google.com">INCEPTION</a>
                       </div>
                       <div slot="body">
                         Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -141,12 +145,25 @@
                   </div>
                 </sh-accordion>
             </li>
+
             <li>
-              <a href="#test">Level ONE 2</a>
-            </li>
-            <li>
-              <a href="#test">Level ONE 3</a>
-            </li>
+                <sh-accordion>
+                    <div slot="header">
+                      Second & Thing
+                    </div>
+                    <div slot="body">
+                    <sh-accordion>
+                        <div slot="header">
+                          Inside Second & Things 
+                        </div>
+                        <div slot="body">
+                          Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        </div>
+                      </sh-accordion>
+                    </div>
+                  </sh-accordion>
+              </li>
+
           </ul>
         </div>
       </belk-mobile-nav>

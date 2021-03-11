@@ -30,6 +30,12 @@ export default {
 
   mounted() {
     if (window.location.hash) this.hashHandler(window.location.hash.substr(1));
+    const headerLink = this.$refs.button.querySelector('a');
+    if (headerLink) {
+      headerLink.addEventListener('click', (e) => {
+        e.stopPropagation();
+      });
+    }
   },
 
   computed: {
