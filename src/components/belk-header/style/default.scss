@@ -120,6 +120,7 @@ $secondary-nav-height: 6.2rem;
 
     .iconbar-context {
       display: none;
+      margin-left: 0.4rem;
     }
 
     .bag-total {
@@ -416,11 +417,8 @@ $secondary-nav-height: 6.2rem;
         justify-content: flex-start;
       }
       sh-nav-item.account-action {
-        #signin-link {
-          belk-icon[name="arrow-down"] {
-            display: block;
-            margin-bottom: .3rem;
-          }
+        .arrow-icon {
+          margin-bottom: 0.6rem;
         }
       }
     }
@@ -451,8 +449,11 @@ $secondary-nav-height: 6.2rem;
     }
   }
 
-  @include xl {
-    .contain {
+  .contain {
+    @include lg {
+      max-width: 96rem;
+    }
+    @include xl {
       max-width: 128rem;
     }
   }

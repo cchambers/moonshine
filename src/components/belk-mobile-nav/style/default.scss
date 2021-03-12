@@ -99,7 +99,7 @@ belk-mobile-nav {
       position: sticky;
       z-index: 1;
       top: 0;
-      background-color: $highlight-tertiary;
+      background-color: $highlight-secondary;
     }
 
     sh-accordion[sub="false"] {
@@ -113,6 +113,28 @@ belk-mobile-nav {
         }
         i {
           display: none !important;
+        }
+      }
+    }
+
+    .view-all {
+      display: flex;
+      a { 
+        width: 100%; 
+        padding-left: $rem;
+      }
+    }
+
+    ul.l3 {
+      list-style: none;
+      li {
+        display: flex;
+        border-top: 1px solid $highlight-tertiary;
+        a {
+          display: flex;
+          width: 100%;
+          padding-left: $big;
+          text-decoration: none;
         }
       }
     }
@@ -148,14 +170,6 @@ belk-mobile-nav {
       .body {
         line-height: 4.6rem;
         border-top: 1px solid $highlight-tertiary;
-      }
-
-      .body .body {
-        padding-left: $rem;
-      }
-
-      .body .body .body {
-        padding-left: $mega;
       }
     }
   }
