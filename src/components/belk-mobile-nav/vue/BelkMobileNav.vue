@@ -16,7 +16,7 @@
         class="top flex back-highlight-secondary lowlight-primary bold pad-x-micro px-18 lh-50">
         Menu
         <belk-icon name="close" height="22" width="22"
-          class="lowlight-tertiary">Close Menu</belk-icon>
+          class="lowlight-quaternary">Close Menu</belk-icon>
       </button>
       <nav class="primary"
         :id="ariaDescID"

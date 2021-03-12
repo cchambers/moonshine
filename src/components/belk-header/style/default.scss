@@ -319,15 +319,22 @@ $secondary-nav-height: 6.2rem;
     }
   }
 
+  & ~ #wrapper {
+    padding-top: 10.8rem;
+  }
+
   // Media Queries
   @include md {
+    & ~ #wrapper {
+      padding-top: 14rem;
+    }
+
     .contain {
       justify-content: space-between;
     }
 
     .primary {
       display: flex;
-      
       .primary-promo {
         justify-content: left;
       }
@@ -432,7 +439,7 @@ $secondary-nav-height: 6.2rem;
       
       .contain {
         .menu-utility-user.mega,
-        .close_menu,
+        .close-menu,
         .mobile-link {
           display: none;
         }
@@ -445,14 +452,12 @@ $secondary-nav-height: 6.2rem;
 
     //scroll states for site wrapper
     & ~ #wrapper {
-      padding-top: 193px;
+      padding-top: 19rem;
     }
   }
 
   .contain {
-    @include lg {
-      max-width: 96rem;
-    }
+    max-width: 96rem;
     @include xl {
       max-width: 128rem;
     }
