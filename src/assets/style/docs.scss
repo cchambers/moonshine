@@ -479,6 +479,11 @@ $containMargin: 6rem;
 .documentation {
   transition: all 200ms $ease;
 
+  svg {
+    height: 100%;
+    width: 100%;
+  }
+
   > h1 {
     font-family: "Menlo", monospace;
     font-weight: 100;

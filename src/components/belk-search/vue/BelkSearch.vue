@@ -26,6 +26,7 @@
         v-on:keydown.up="highlightHandler"
         :placeholder="placeholder"
         @focus="focusHandler"
+        @blur="forceBlur"
       />
       <button class="clear-search flex" aria-role="button"
         aria-label="clear search field"
