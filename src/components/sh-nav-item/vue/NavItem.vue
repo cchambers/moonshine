@@ -237,6 +237,7 @@ export default {
         self.close();
       });
 
+      this.$bus.$on('modal-opening', self.close);
       this.$bus.$on('close-modals', self.close);
     },
 

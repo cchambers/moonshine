@@ -52,8 +52,8 @@ $secondary-nav-height: 6.2rem;
   }
   
   .nav-divider {
-    margin-left: .5rem;
-    padding-right: .5rem;
+    margin-left: $micro;
+    padding-right: $micro;
     position: relative;
     display: none;
 
@@ -146,10 +146,10 @@ $secondary-nav-height: 6.2rem;
       belk-storefinder {
         height: $primary-nav-height;
       }
-      .sh-nav-item {
-        a {
-          padding: 0 0.8rem;
-        }
+      a {
+        padding: 0 $micro;
+        line-height: 3.6rem;
+        font-size: 1.4rem;
       }
     }
 
@@ -266,6 +266,10 @@ $secondary-nav-height: 6.2rem;
           display: none;
         }
       }
+    }
+
+    .l2 > li {
+      font-weight: bold;
     }
   }
 
