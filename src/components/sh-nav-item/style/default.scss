@@ -25,6 +25,14 @@ sh-nav-item {
       }
     }
   }
+  
+  .arrow-icon {
+    display: none;
+    margin-left: 0.4rem;
+    @include lg {
+      display: block;
+    }
+  }
 
   .popper-target {
     border-bottom: none;

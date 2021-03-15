@@ -1,10 +1,10 @@
 {
-  "name": "Belk Storefinder",
+  "name": "Belk Mobile Nav",
   "category": "base",
   "production": true,
-  "element": "belk-storefinder",
-  "description": "Store locator.",
-  "tags": ["locator", "store locator"],
+  "element": "belk-mobile-nav",
+  "description": "Mobile navigation.",
+  "tags": ["navigation", "flyout", "drawer"],
   "requirements": {
     "Element One": [],
     "Element Two": [],

@@ -28,6 +28,13 @@ belk-bag {
       display: flex;
     }
 
+    h4 {
+      font-size: 1.8rem;
+      font-weight: bold;
+      padding: 0 $rem;
+      text-align: center;
+    }
+
     belk-icon {
       margin: 0;
       color: transparent;
@@ -62,8 +69,8 @@ belk-bag {
   }
 
   .bag-total {
-    margin-left: .5rem;
-    padding-top: 5px;
+    padding-top: 0.5rem;
+    margin-left: 0.4rem;
     display: flex;
     align-items: center;
   }

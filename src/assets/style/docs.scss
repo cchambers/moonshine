@@ -1,7 +1,4 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700,800,400italic,700italic,800italic);
-@import url(https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Round);
-.material-icons-round { font-family: 'Material Icons Round' !important; }
-.material-icons { font-family: 'Material Icons' !important; }
 
 @mixin vartype {
   font-family:
@@ -73,10 +70,10 @@ dt {
   line-height: 3rem;
 }
 
-svg {
-  width: 100%;
-  height: 100%;
-}
+// svg {
+//   width: 100%;
+//   height: 100%;
+// }
 
 // img {
 //   display: inline-block;
@@ -481,6 +478,11 @@ $containMargin: 6rem;
 
 .documentation {
   transition: all 200ms $ease;
+
+  svg {
+    height: 100%;
+    width: 100%;
+  }
 
   > h1 {
     font-family: "Menlo", monospace;
@@ -1032,13 +1034,6 @@ html.iOS {
   }
 }
 
-i.material-icons,
-i.material-icons-round {
-  display: inline-flex;
-  vertical-align: middle;
-  line-height: 1em;
-  font-size: inherit;
-}
 
 .gradient-text {
   background: $docsGradient;

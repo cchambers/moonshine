@@ -12,7 +12,7 @@ $secondary-nav-height: 6.2rem;
 
   .pre-header-slot {
     max-height: 100px;
-    transition: max-height 100ms $accel;
+    transition: max-height 100ms linear;
   }
 
   .tertiary {
@@ -52,8 +52,8 @@ $secondary-nav-height: 6.2rem;
   }
   
   .nav-divider {
-    margin-left: .5rem;
-    padding-right: .5rem;
+    margin-left: $micro;
+    padding-right: $micro;
     position: relative;
     display: none;
 
@@ -120,7 +120,7 @@ $secondary-nav-height: 6.2rem;
 
     .iconbar-context {
       display: none;
-      margin-left: .5rem;
+      margin-left: 0.4rem;
     }
 
     .bag-total {
@@ -147,6 +147,11 @@ $secondary-nav-height: 6.2rem;
       belk-storefinder {
         height: $primary-nav-height;
       }
+      a {
+        padding: 0 $micro;
+        line-height: 3.6rem;
+        font-size: 1.4rem;
+      }
     }
 
     .primary-promo {
@@ -166,10 +171,6 @@ $secondary-nav-height: 6.2rem;
       justify-content: space-between;
     }
 
-    .mobile-search-trigger {
-      margin-left: auto;
-    }
-
     sh-button.close-search {
       max-width: 0;
       order: 2;
@@ -184,27 +185,6 @@ $secondary-nav-height: 6.2rem;
         text-decoration: underline;
         text-transform: capitalize;
       }
-    }
-
-    sh-nav-item.account-action {
-      #signin-link {
-        belk-icon[name="person"] {
-          width: 2.6rem;
-
-          .belk-icon {
-            max-width: 100%;
-          }
-        }
-
-        belk-icon[name="arrow-down"] {
-          display: none;
-        }
-      }
-    }
-
-    sh-nav-item.minibag-action .belk-icon {
-      max-width: 2.2rem;
-      height: auto;
     }
   }
 
@@ -254,7 +234,8 @@ $secondary-nav-height: 6.2rem;
         button {
           background-color: transparent;
           border: none;
-          color: #000;
+          color: $lowlight-primary;
+          cursor: pointer;
         }
       }
 
@@ -287,6 +268,10 @@ $secondary-nav-height: 6.2rem;
           display: none;
         }
       }
+    }
+
+    .l2 > li {
+      font-weight: bold;
     }
   }
 
@@ -335,15 +320,22 @@ $secondary-nav-height: 6.2rem;
     }
   }
 
+  & ~ #wrapper {
+    padding-top: 10.8rem;
+  }
+
   // Media Queries
   @include md {
+    & ~ #wrapper {
+      padding-top: 14rem;
+    }
+
     .contain {
       justify-content: space-between;
     }
 
     .primary {
       display: flex;
-      
       .primary-promo {
         justify-content: left;
       }
@@ -414,15 +406,6 @@ $secondary-nav-height: 6.2rem;
           padding-right: 1.6rem;
           border-right: 1px solid #979797;
         }
-
-        .sh-nav-item {
-          display: inline-block;
-
-          a {
-            padding: 0.8rem;
-            box-sizing: border-box;
-          }
-        }
       }
     }
 
@@ -436,23 +419,14 @@ $secondary-nav-height: 6.2rem;
       }
     }
 
-    .contain {
-      max-width: 96rem;
-    }
 
     .secondary {
       .contain {
         justify-content: flex-start;
       }
       sh-nav-item.account-action {
-        #signin-link {
-          belk-icon[name="arrow-down"] {
-            display: block;
-            margin-bottom: .3rem;
-          }
-        }
-        .iconbar-context {
-          margin-top: auto;
+        .arrow-icon {
+          margin-bottom: 0.6rem;
         }
       }
     }
@@ -466,7 +440,7 @@ $secondary-nav-height: 6.2rem;
       
       .contain {
         .menu-utility-user.mega,
-        .close_menu,
+        .close-menu,
         .mobile-link {
           display: none;
         }
@@ -479,12 +453,13 @@ $secondary-nav-height: 6.2rem;
 
     //scroll states for site wrapper
     & ~ #wrapper {
-      padding-top: 193px;
+      padding-top: 19rem;
     }
   }
 
-  @include xl {
-    .contain {
+  .contain {
+    max-width: 96rem;
+    @include xl {
       max-width: 128rem;
     }
   }
