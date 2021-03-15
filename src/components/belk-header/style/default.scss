@@ -234,7 +234,8 @@ $secondary-nav-height: 6.2rem;
         button {
           background-color: transparent;
           border: none;
-          color: #000;
+          color: $lowlight-primary;
+          cursor: pointer;
         }
       }
 
