@@ -1,7 +1,10 @@
 <template>
   <div class="sh-modal" role="dialog"
     :variant="variant"
-    :class="{ fullscreen: fullscreen, active: active }"
+    :class="{
+      fullscreen: fullscreen,
+      active: active
+    }"
     :reveal="reveal"
     :id="uniqueId"
     :aria-labelledby="ariaID"
@@ -21,6 +24,7 @@
           <slot>{{ content }}</slot>
         </template>
         <div v-if="dynamicHTML" v-html="dynamicHTML"></div>
+        <div ref="ajax"></div>
 
       </div>
       <div class="footer">
@@ -58,6 +62,7 @@ export default {
     maxWidth: String,
     noHistory: Boolean,
     hideHeader: Boolean,
+    hideButtons: Boolean,
     fullscreen: Boolean,
     openTriggerEvent: String,
     openedEvent: String,
@@ -280,8 +285,8 @@ export default {
 
       if (self.confirmationEvents) self.affirmed = undefined;
 
-      if (!self.loaded && self.contentUrl) {
-        if (self.contentUrl !== self.loadedUrl) self.loadContent();
+      if (self.alwaysReload || (!self.loaded && self.contentUrl)) {
+        if (self.alwaysReload || (self.contentUrl !== self.loadedUrl)) self.loadContent();
       }
 
       if (self.overlay) {
@@ -292,6 +297,7 @@ export default {
 
       if (!self.active) {
         if (!self.noEvents) self.$bus.$emit('modal-opening', self.uniqueId);
+        if (self.hideButtons) self.$bus.$emit('modal-buttons-hide');
         document.documentElement.classList.add('sh-modal-open');
         self.active = true;
         self.$bus.$emit('modal-opened', self.uniqueId);
@@ -320,6 +326,7 @@ export default {
         this.$bus.$emit('modal-closed', this.uniqueId);
         if (this.closedEvent) this.$bus.$emit(this.closedEvent, this.uniqueId);
         if (this.closedCallback) this.closedCallback();
+        if (self.alwaysReload) this.loaded = false;
       }
       if (clearHash) this.clearHash();
     },
@@ -493,7 +500,8 @@ export default {
             if (!html) {
               self.doError();
             } else {
-              self.$refs.body.appendChild(html);
+              self.$refs.ajax.innerHTML = '';
+              self.$refs.ajax.appendChild(html);
               self.loadedUrl = self.contentUrl;
               self.manageHeight();
               self.$bus.$emit('modal-content-loaded', self.uniqueId);

@@ -46,9 +46,10 @@ const app = {
       app.interactionHandler('mouse');
     });
 
-    const scrollDebounced = app.debounce(() => {
+    const scrollDebounced = app.debounce((event) => {
       app.interactionHandler('mouse');
-    }, 100);
+      window.sh.emit('scroll-event', event);
+    }, 100, 'scroll-debounce');
     window.addEventListener('scroll', scrollDebounced, true);
 
     const touchDebounced = app.debounce(() => {
@@ -81,11 +82,12 @@ const app = {
     return result;
   },
 
-  debounce(func, wait = 100) {
-    let timeout;
+  timers: {},
+
+  debounce(func, wait = 100, name = 'default') {
     return function (...args) {
-      clearTimeout(timeout);
-      timeout = setTimeout(() => {
+      clearTimeout(app.timers[name]);
+      app.timers[name] = setTimeout(() => {
         func.apply(this, args);
       }, wait);
     };

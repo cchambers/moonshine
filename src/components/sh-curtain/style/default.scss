@@ -1,3 +1,10 @@
+$timing: 1s;
+
+html.curtain,
+html.curtain body {
+  overflow: hidden;
+}
+
 sh-curtain {
   .sh-curtain {
     display: block;
@@ -7,14 +14,15 @@ sh-curtain {
     left: 0;
     bottom: 0;
     opacity: 0;
+    // max-height: 0;
     background: rgba(25, 25, 25, 0.5);
     z-index: 8;
-    transition: none;
     pointer-events: none;
+    transition: opacity 1s $ease 5ms, max-height 0 linear 1s;
 
     &.active {
-      transition: all 250ms $ease;
       opacity: 1;
+      max-height: initial;
       pointer-events: initial;
     }
 

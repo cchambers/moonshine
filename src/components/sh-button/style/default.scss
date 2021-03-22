@@ -38,17 +38,21 @@ sh-button {
     padding: 0 1.6em;
     min-height: 4.5em;
     min-width: 4.5em;
-    color: $lowlight-primary;
+    color: $lowlight-primary ;
     transition: all 250ms $decel !important;
     font-size: 1em;
     cursor: pointer;
     overflow: hidden;
     background-color: transparent;
+    > * {
+      pointer-events: none;
+    }
     .active-text {
       display: none;
     }
     .actual-text {
       white-space: nowrap;
+      display: flex;
     }
     &.active {
       background: $accent-tertiary;
@@ -56,7 +60,7 @@ sh-button {
         display: none;
       }
       .active-text {
-        display: block;
+        display: flex;
       }
     }
 
@@ -171,16 +175,16 @@ sh-button {
   &:not([variant]) {
     background-color: transparent;
 
-    span {
-      text-decoration: underline;
-    }
-
     button {
       &:hover,
       &.active {
-        color: $lowlight-primary;
+        color: $lowlight-primary !important;
         text-decoration: none;
         text-decoration-color: $lowlight-primary;
+        background-color: transparent !important;
+        .actual-text > span {
+          text-decoration: underline;
+        }
       }
     }
   }

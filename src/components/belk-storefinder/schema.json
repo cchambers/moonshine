@@ -1,0 +1,14 @@
+{
+  "name": "Belk Storefinder",
+  "category": "base",
+  "production": true,
+  "element": "belk-storefinder",
+  "description": "Store locator.",
+  "tags": ["locator", "store locator"],
+  "requirements": {
+    "Element One": [],
+    "Element Two": [],
+    "a11y": [],
+    "states": []
+  }
+}

@@ -1,7 +1,4 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700,800,400italic,700italic,800italic);
-@import url(https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Round);
-.material-icons-round { font-family: 'Material Icons Round' !important; }
-.material-icons { font-family: 'Material Icons' !important; }
 
 @mixin vartype {
   font-family:
@@ -38,17 +35,20 @@ body {
   font-family: "Open Sans";
   background-color: $highlight-primary;
   color: $lowlight-quaternary;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  overflow: hidden;
 }
-
+html.docs {
+  body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+  }
+}
 header.lib-header {
   display: block;
 }
@@ -66,20 +66,14 @@ footer {
   display: block;
 }
 
-section > h1 {
-  margin-top: 3.4rem;
-  margin-bottom: 2.5rem;
-  // margin-left: 3rem;
-}
-
 dt {
   line-height: 3rem;
 }
 
-svg {
-  width: 100%;
-  height: 100%;
-}
+// svg {
+//   width: 100%;
+//   height: 100%;
+// }
 
 // img {
 //   display: inline-block;
@@ -485,12 +479,19 @@ $containMargin: 6rem;
 .documentation {
   transition: all 200ms $ease;
 
+  svg {
+    height: 100%;
+    width: 100%;
+  }
+
   > h1 {
     font-family: "Menlo", monospace;
     font-weight: 100;
     color: $accent-primary;
     font-size: 5rem;
     line-height: 5rem;
+    margin-top: 3.4rem;
+    margin-bottom: 2.5rem;
   }
 
   section {
@@ -953,7 +954,7 @@ pre .line-highlight {
 
 // TODO: everything else... find a new place for this
 
-html {
+html.docs {
   position: fixed;
   height: 100vh;
   width: 100vw;
@@ -1033,13 +1034,6 @@ html.iOS {
   }
 }
 
-i.material-icons,
-i.material-icons-round {
-  display: inline-flex;
-  vertical-align: middle;
-  line-height: 1em;
-  font-size: inherit;
-}
 
 .gradient-text {
   background: $docsGradient;

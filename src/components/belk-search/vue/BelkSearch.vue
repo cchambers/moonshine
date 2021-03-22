@@ -25,19 +25,22 @@
         v-on:keydown.down="highlightHandler"
         v-on:keydown.up="highlightHandler"
         :placeholder="placeholder"
-        @focus="focusHandler"/>
-      <button class="clear-search" aria-role="button"
+        @focus="focusHandler"
+        @blur="forceBlur"
+      />
+      <button class="clear-search flex" aria-role="button"
         aria-label="clear search field"
         ref="clear"
         v-if="valueLength>0"
         v-hammer:tap="forceBlur">
         <belk-icon name="close" width="24">Clear Input</belk-icon>
       </button>
-      <button aria-role="button"
+      <button class="flex" aria-role="button"
         aria-label="perform search"
         ref="search"
-        v-hammer:tap="doSearch">
-        <belk-icon name="search" width="24">Perform Search Action</belk-icon>
+        v-hammer:tap="doSearch"
+        :disabled="isEmpty">
+        <belk-icon name="search" width="30" height="30">Perform Search Action</belk-icon>
       </button>
     </div>
     <div ref="loading" class="search-loading">
@@ -120,6 +123,7 @@
 
 <style lang="scss" src="../style/default.scss"></style>
 <style lang="scss" src="../style/variant-modal.scss"></style>
+<style lang="scss" src="../style/variant-desktop.scss"></style>
 
 <script>
 import BelkProductList from '../../belk-product-list/vue/BelkProductList.vue';
@@ -131,14 +135,6 @@ export default {
   name: 'BelkSearch',
 
   props: {
-    lowerPlaceholder: {
-      type: String,
-      default: 'Search',
-    },
-    upperPlaceholder: {
-      type: String,
-      default: 'What can we help you find?',
-    },
     variant: {
       type: String,
       default: 'default',
@@ -153,13 +149,14 @@ export default {
     return {
       value: '',
       searchValue: '',
-      placeholder: '',
+      placeholder: 'Search',
       valueLength: 0,
       triggerResults: 1,
       highlightIndex: -1,
       noResults: false,
       filled: false,
       isFocused: false,
+      isEmpty: true,
       id: '',
       inputEl: {},
       ignoreKeys: [37, 39, 91, 16, 13],
@@ -264,12 +261,12 @@ export default {
         default:
           break;
       }
-      // this.selectInput();
     },
 
     value(val) {
       if (this.inputEl.value !== val) this.inputEl.value = val;
       this.valueLength = val.length;
+      this.isEmpty = (val.length === 0);
     },
 
     recents(arr) {
@@ -342,7 +339,6 @@ export default {
     this.productsEl = this.$refs.suggestedProducts;
     this.headerEl = document.querySelector('belk-header');
     this.configureAria();
-    this.placeholderHandler();
     this.recentSearches();
 
     if (window.location.params) {
@@ -360,20 +356,9 @@ export default {
       });
 
       self.$on('active-descendant', self.activeDescendantHandler);
-      self.$bus.$on('navitem-opening', self.forceBlur);
+      self.$bus.$on('popper-opening', self.forceBlur);
       self.$bus.$on('close-search', self.forceBlur);
       self.$bus.$on('search-term', self.searchTermHandler);
-
-      window.addEventListener('resize', self.placeholderHandler);
-      window.addEventListener('navitem-opening', self.forceBlur);
-      if (this.variant === 'modal') {
-        self.$bus.$on('focus-search', self.modalHandler);
-      }
-    },
-
-    modalHandler() {
-      this.inputEl.focus();
-      this.focusHandler();
     },
 
     searchTermHandler(data) {
@@ -429,26 +414,7 @@ export default {
     },
 
     focusHandler() {
-      if (this.isMobile() && this.variant !== 'modal') {
-        this.triggerModalSearch();
-      } else {
-        this.isFocused = true;
-        this.selectInput();
-      }
-    },
-
-    triggerModalSearch() {
-      window.location.hash = 'search-modal';
-      this.$bus.$emit('focus-search', 'mobile-search');
-    },
-
-    placeholderHandler() {
-      const self = this;
-      clearTimeout(self.placeholderTimer);
-      self.placeholderTimer = setTimeout(() => {
-        const text = (window.innerWidth < 768) ? self.lowerPlaceholder : self.upperPlaceholder;
-        self.placeholder = text;
-      }, 100);
+      this.isFocused = true;
     },
 
     selectInput() {
@@ -502,15 +468,17 @@ export default {
     },
 
     forceBlur(e) {
-      let clear = false;
-      if (typeof e === 'object') {
-        const key = e.charCode || e.keyCode;
-        if (key === 27 || e.target === this.$refs.clear) clear = true;
-      }
-      if (document.activeElement === this.inputEl) this.inputEl.blur();
-      this.isFocused = false;
+      if (this.isFocused) {
+        let clear = false;
+        if (typeof e === 'object') {
+          const key = e.charCode || e.keyCode;
+          if (key === 27 || e.target === this.$refs.clear) clear = true;
+        }
+        if (document.activeElement === this.inputEl) this.inputEl.blur();
+        this.isFocused = false;
 
-      if (clear) this.clearSearch(clear);
+        if (clear) this.clearSearch(clear);
+      }
     },
 
     clearSearch(focus = true) {

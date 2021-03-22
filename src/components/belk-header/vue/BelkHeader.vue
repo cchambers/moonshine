@@ -10,11 +10,25 @@ export default {
 
   name: 'BelkHeader',
 
+  props: {
+    primaryTrigger: {
+      type: Number,
+      default: 30,
+    },
+    tertiaryTrigger: {
+      type: Number,
+      default: 300,
+    },
+  },
+
   data() {
     return {
+      actual: {},
       bagEl: {},
       navEl: {},
       searchEl: {},
+      state: 'default',
+      lastScrollTop: 0,
       loggedIn: false,
       headerData: {
         name: 'Sign In',
@@ -48,10 +62,12 @@ export default {
   },
 
   mounted() {
-    this.actual = document.querySelector('#header .belk-header');
+    this.actual = document.querySelector('header.belk-header');
     this.bagEl = document.querySelector('belk-bag');
     this.setupEvents();
     this.getData();
+    const tert = document.querySelector('nav.lazy');
+    if (tert) tert.classList.remove('lazy');
   },
 
   methods: {
@@ -60,6 +76,7 @@ export default {
       self.$bus.$on('smooth-scroll', self.smoothScrollHandler);
       self.$bus.$on('get-user-data', self.clearForEmit);
       self.$bus.$on('bag-update', self.bagUpdateHandler);
+      this.$bus.$on('scroll-event', self.scrollHandler);
     },
 
     smoothScrollHandler(event) {
@@ -191,6 +208,29 @@ export default {
 
     bagState(num) {
       this.actual.setAttribute('bag-state', num);
+    },
+
+    scrollHandler(e) {
+      if (this.elementContains(this.$el, e.target)) return;
+      const st = window.pageYOffset || document.documentElement.scrollTop;
+      const scrollingDown = (st > this.lastScrollTop);
+      let state = 0;
+
+      if (scrollingDown) { // scrolling down
+        state = (st >= this.primaryTrigger) ? 1 : 0; // distance for primary trigger
+        this.scrollDist += (st - this.lastScrollTop);
+        if (this.scrollDist > this.tertiaryTrigger) state = 2;
+      } else { // scrolling up
+        state = 1;
+        this.scrollDist = 0;
+        if (st < this.primaryTrigger) state = 0;
+      }
+      this.scrollState(state);
+      this.lastScrollTop = st <= 0 ? 0 : st;
+    },
+
+    scrollState(num) {
+      if (this.actual) this.actual.setAttribute('scroll-state', num);
     },
 
     updateContainers(data) {

@@ -3,7 +3,7 @@
     <sh-popper offset-x="-41" placement="bottom" reference-id="belk-bag">
       <div slot="reference">
         <div class="bag-icon">
-          <belk-icon width="30" height="40" name="bag">shopping bag</belk-icon>
+          <belk-icon width="33" height="40" name="bag">shopping bag</belk-icon>
           <div class="bag-count">{{ itemCount }}</div>
         </div>
         <div class="bag-total">{{ totalPrice }}</div>
@@ -14,12 +14,15 @@
             ref="itemList"
             v-bind:is="belkProductList"
             v-bind:product-array="items"
-            variant="secondary"></component>
+            variant="secondary">
+          </component>
         </div>
         <div v-if="itemCount === 0">
           <div>
-            <h1>Your bag is empty &amp; could use some love.</h1>
-            <p>Sign in to see items you may have added to your bag.</p>
+            <h4>Your bag is empty &amp; could use some love.</h4>
+            <p class="pad-little text-center">
+              Sign in to see items you may have added to your bag.
+            </p>
           </div>
         </div>
       </div>
@@ -65,6 +68,7 @@ export default {
 
   data() {
     return {
+      items: [],
       itemCount: 0,
       subTotal: 0,
     };

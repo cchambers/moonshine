@@ -26,7 +26,6 @@ belk-search {
     border: 2px solid $lowlight-primary;
     border-radius: 1rem;
     transition: box-shadow 250ms $ease;
-    z-index: 30;
 
     &.active {
       @include box-shadow(1);
@@ -40,7 +39,7 @@ belk-search {
 
     &:not([state="0"]) {
       .search-input::after {
-        border-bottom: 1px solid $lowlight-quaternary;
+        border-bottom: 1px solid $highlight-tertiary;
       }
     }
 
@@ -54,10 +53,6 @@ belk-search {
       min-width: 2.8rem;
       transition: background 250ms $ease;
       color: $lowlight-primary;
-
-      &:hover {
-        background: $highlight-secondary;
-      }
 
       @include md {
         height: 3.6rem;
@@ -77,11 +72,8 @@ belk-search {
       display: flex;
       justify-content: center;
       cursor: pointer;
-      padding: 0 1rem;
-
-      .belk-icon {
-        height: 30px;
-        flex-grow: 1;
+      &[disabled] {
+        pointer-events: none;
       }
     }
 
@@ -121,7 +113,7 @@ belk-search {
         left: 50%;
         content: '';
         height: 1px;
-        width: calc(100% - 3rem);
+        width: calc(100% - 2rem);
         border-bottom: 1px solid transparent;
         transform: translateX(-50%);
         opacity: 0;
@@ -149,11 +141,21 @@ belk-search {
     }
 
     .search-recent {
-      .sh-button {
-        color: var(--accent-secondary);
-        font-weight: 400;
-        text-decoration: underline;
+      sh-button .sh-button {
         text-transform: none;
+        span {
+          background: transparent;
+          border: none;
+          border-bottom: 1px solid currentColor;
+          color: $accent-secondary;
+          display: inline-block;
+          font-size: 1.4rem;
+          font-weight: 400;
+          line-height: 1;
+          padding: 0 0 .1rem;
+          transition: none;
+          text-decoration: none;
+        }
       }
     }
 
@@ -207,6 +209,11 @@ belk-search {
 
       .products {
         ul {
+          @include md {
+            border-left: 1px solid $highlight-tertiary;
+          }
+        }
+        a.view-more{
           @include md {
             border-left: 1px solid $highlight-tertiary;
           }

@@ -27,6 +27,7 @@ $mod-amounts: ("-atomic": #{$base/8}rem,
   "-mega": #{$base*2.5}rem);
 $inv: "";
 
+$atomic: #{$base/8}rem;
 $micro: #{$base/4}rem;
 $little: #{$base/2}rem;
 $big: #{$base*1.5}rem;
@@ -121,5 +122,5 @@ $breakpoints: (
   "sm": 480px,
   "md": 768px,
   "lg": 960px,
-  "xl": 1200px
+  "xl": 1280px
 );

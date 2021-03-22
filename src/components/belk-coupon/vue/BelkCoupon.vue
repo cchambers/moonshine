@@ -107,9 +107,10 @@
 <script>
 /* eslint-disable */
 import ComponentPrototype from "../../component-prototype";
+import UtagBehavior from "../../utag-behavior";
 
 export default {
-  mixins: [ComponentPrototype],
+  mixins: [ComponentPrototype, UtagBehavior],
 
   name: "BelkCoupon",
 
@@ -142,7 +143,10 @@ export default {
       type: Boolean,
       default: false
     },
-    toSpend: Number,
+    toSpend: {
+      type: Number,
+      default: NaN,
+    },
     pdf: String,
     print: {
       type: Boolean,
@@ -155,7 +159,16 @@ export default {
     spacerText: {
       type: String,
       default: 'Applied Automatically at Checkout'
-    }
+    },
+    linkTag: String,
+    couponTag: String,
+  },
+
+  watch: {
+    code(val, old) {
+      if (old) this.$bus.$off(`${old}-data`);
+      this.configureDataListener();
+    },
   },
 
   computed: {
@@ -209,10 +222,7 @@ export default {
     }
     this.detailsId = `em-${this.uuid}`;
     this.printId = `pr-${this.uuid}`;
-    if (this.code) {
-      this.$bus.$on(`${this.code}-data`, this.handleAddCoupon);
-      this.addCouponId = `ac-${this.uuid}`;
-    }
+    if (this.code) this.configureDataListener();
     if (this.$slots.details !== undefined || this.details)
       this.hasDetails = true;
     if (this.$slots.description !== undefined || this.description)
@@ -254,17 +264,26 @@ export default {
 
     clickAdd() {
       const target = this.$refs.addButton.querySelector('button');
-      if (target) target.click()
+      if (target) target.click();
     },
 
     doLink() {
       if (this.link) {
+        if (this.linkTag) this.tagEvent({
+          event_name: 'promodrawer-coupon-click',
+          promodrawer_contentcode: this.linkTag,
+        });
         if (this.link.startsWith('/')) {
           window.location.href = this.link;
         } else {
           window.open(this.link, '_blank');
         }
       }
+    },
+
+    configureDataListener() {
+      this.$bus.$on(`${this.code}-data`, this.handleAddCoupon);
+      this.addCouponId = `ac-${this.uuid}`;
     },
 
     printCoupon() {
@@ -277,6 +296,11 @@ export default {
 
     handleAddCoupon(data) {
       if (data.cpnDetails) {
+        if (this.couponTag) this.tagEvent({
+          event_name: 'promodrawer-coupon-click',
+          promodrawer_coupon: this.code,
+          promodrawer_contentcode: this.couponTag,
+        });
         if (data.cpnDetails.isValid === true) {
           this.$bus.$emit('coupon-added', data);
           this.toggleButton();
@@ -347,6 +371,7 @@ export default {
               code="${self.code}" 
               ends="${self.ends}"
               upc="${self.upc}"
+              to-spend="${self.toSpend}"
               description="${self.description}"
               details="${details}">
             </belk-coupon>  

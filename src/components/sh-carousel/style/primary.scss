@@ -12,6 +12,7 @@ sh-carousel[variant="primary"] {
     &.config {
       position: static;
       ul > * {
+        height: auto;
         position: static;
       }
     }
@@ -88,7 +89,6 @@ sh-carousel[variant="primary"] {
           color: $lowlight-primary;
         }
       }
-
     }
   }
 
