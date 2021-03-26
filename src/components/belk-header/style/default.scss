@@ -224,7 +224,7 @@ $secondary-nav-height: 6.2rem;
       width: 100vw;
       overflow-y: auto;
       box-sizing: border-box;
-      max-height: calc(100vh - 250px);
+      // max-height: calc(100vh - 250px);
       height: 100%;
 
       .popper-close {
@@ -241,30 +241,17 @@ $secondary-nav-height: 6.2rem;
 
       .contain {
         flex-direction: column;
-
-        .mm__cat.mm__cat--horizontal {
-          column-count: 4;
-          column-gap: 4rem;
-          width: 100%;
-
-          > .view-all a {
-            border-top: 1px solid #eee;
-            border-bottom: 1px solid #eee;
-            margin-bottom: 1rem;
-          }
-
-          > li {
-            // break-inside: avoid;
-            margin-bottom: 2rem;
-          }
+        > li {
+          // break-inside: avoid;
+          margin-bottom: 2rem;
         }
         .cat-ad-banner {
           margin-top: 2rem;
         }
-        a.mm__cta.mm__cta--l2 {
+        .l2 {
           font-weight: bold;
         }
-        ul.mm__cat.mm__cat--l3 .view-all {
+        ul.l3 .view-all {
           display: none;
         }
       }
@@ -461,6 +448,45 @@ $secondary-nav-height: 6.2rem;
     max-width: 96rem;
     @include xl {
       max-width: 128rem;
+    }
+  }
+
+  .layout-horizontal {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    max-width: 96rem;
+    max-height: calc(100vh - 250px);
+    @include xl {
+      max-width: 128rem;
+    }
+
+    > li {
+      margin-left: $little;
+      margin-right: $little;
+      margin-top: $little;
+      width: 25%;
+    }
+
+    .view-all a {
+      border-top: 1px solid $highlight-tertiary;
+      border-bottom: 1px solid $highlight-tertiary;
+      font-weight: bold;
+    }
+
+    a {
+      display: block;
+      padding: 0 $micro;
+      line-height: 3.6rem;
+      &:hover {
+        background-color: $highlight-secondary;
+      }
+    }
+
+
+    .l3 .view-all {
+      display: none;
     }
   }
 }
