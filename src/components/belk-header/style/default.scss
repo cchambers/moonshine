@@ -10,6 +10,23 @@ $secondary-nav-height: 6.2rem;
   z-index: 6;
   border-bottom: 1px solid currentColor;
 
+  &.is-user {
+    .unregistered {
+      display: none;
+    }
+    .registered {
+      display: block;
+    }
+  }
+
+  .registered {
+    display: none;
+  }
+
+  .unregistered {
+    display: block;
+  }
+
   .pre-header-slot {
     max-height: 100px;
     transition: max-height 100ms linear;
