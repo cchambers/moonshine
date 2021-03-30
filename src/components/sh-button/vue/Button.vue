@@ -119,6 +119,13 @@ export default {
           group: this.group,
         });
       }
+      if (this.link) {
+        if (this.target) {
+          window.open(this.link, this.target);
+        } else {
+          window.location.href = this.link;
+        }
+      }
     },
 
     sendRequest() {
