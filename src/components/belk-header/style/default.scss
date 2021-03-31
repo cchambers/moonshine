@@ -19,6 +19,10 @@ $secondary-nav-height: 6.2rem;
     }
   }
 
+  sh-nav-item a:hover {
+    background: $highlight-tertiary;
+  }
+
   .registered {
     display: none;
   }
@@ -165,9 +169,13 @@ $secondary-nav-height: 6.2rem;
         height: $primary-nav-height;
       }
       a {
+        display: flex;
         padding: 0 $micro;
         line-height: 3.6rem;
         font-size: 1.4rem;
+        &:hover {
+          background: $highlight-tertiary;
+        }
       }
     }
 
@@ -428,10 +436,30 @@ $secondary-nav-height: 6.2rem;
       .contain {
         justify-content: flex-start;
       }
-      sh-nav-item.account-action {
-        .arrow-icon {
-          margin-bottom: 0.6rem;
-        }
+    }
+
+    sh-nav-item.account-action {
+      .arrow-icon {
+        margin-bottom: 0.6rem;
+      }
+      .popper-content {
+        width: 24rem;
+      }
+      sh-button {
+        margin-bottom: $micro;
+        margin-left: 0;
+        display: block;
+      }
+      ul li a {
+        display: flex;
+        padding: 12px;
+      }
+      i[class^="icon-"] {
+        display: block;
+        padding-right: $little;
+        width: 23px;
+        text-align: center;
+        font-size: 21px;
       }
     }
 
