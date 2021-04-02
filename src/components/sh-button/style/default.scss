@@ -38,7 +38,8 @@ sh-button {
     padding: 0 1.6em;
     min-height: 4.5em;
     min-width: 4.5em;
-    color: $lowlight-primary ;
+    border-radius: 5px;
+    color: $lowlight-primary;
     transition: all 250ms $decel !important;
     font-size: 1em;
     cursor: pointer;
