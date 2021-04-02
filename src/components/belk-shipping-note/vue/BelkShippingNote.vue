@@ -27,14 +27,23 @@ export default {
   data() {
     return {
       activemsg: this.altmsg || this.msg,
+      subTotal: 0,
     };
+  },
+
+  watch: {
+    freeShipping(val) {
+      if (this.subTotal >= val) this.activemsg = this.msg;
+    },
   },
 
   methods: {
     events() {
-      this.$bus.$on('free-shipping', () => {
-        this.freeShipping = true;
-        this.activemsg = this.msg;
+      this.$bus.$on('user-data', (data) => {
+        this.subTotal = data.subTotal;
+      });
+      this.$bus.$on('free-shipping', (val) => {
+        this.freeShipping = val;
       });
     },
   },

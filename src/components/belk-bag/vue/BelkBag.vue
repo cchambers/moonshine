@@ -16,6 +16,7 @@
           </div>
           <component
             ref="freeShippingMessage"
+            class="text-center"
             v-bind:is="belkShippingNote">
           </component>
           <component
@@ -60,7 +61,7 @@ export default {
 
   components: {
     BelkProductList,
-    BelkShippingList,
+    BelkShippingNote,
   },
 
   computed: {
