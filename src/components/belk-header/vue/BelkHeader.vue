@@ -68,6 +68,7 @@ export default {
     this.getData();
     const tert = document.querySelector('nav.lazy');
     if (tert) tert.classList.remove('lazy');
+    this.updateHeightProp();
   },
 
   methods: {
@@ -227,6 +228,12 @@ export default {
       }
       this.scrollState(state);
       this.lastScrollTop = st <= 0 ? 0 : st;
+
+      this.updateHeightProp();
+    },
+
+    updateHeightProp() {
+      setTimeout(() => { document.documentElement.style.setProperty('--header-height', this.actual.clientHeight); });
     },
 
     scrollState(num) {

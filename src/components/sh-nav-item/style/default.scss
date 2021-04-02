@@ -163,7 +163,7 @@ sh-nav-item {
   .popper-content {
     background: $highlight-primary;
     color: $lowlight-primary;
-    padding: 1rem;
+    padding: $micro;
     border: 1px solid $lowlight-primary;
 
     ul {
