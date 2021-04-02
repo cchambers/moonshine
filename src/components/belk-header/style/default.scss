@@ -10,15 +10,30 @@ $secondary-nav-height: 6.2rem;
   z-index: 6;
   border-bottom: 1px solid currentColor;
 
-  .pre-header-slot {
-    max-height: 100px;
-    transition: max-height 100ms $accel;
+  &.is-user {
+    .unregistered {
+      display: none;
+    }
+    .registered {
+      display: block;
+    }
   }
 
-  .tertiary {
-    background: $highlight-primary;
-    -webkit-overflow-scrolling: touch;
-    top: 0px;
+  sh-nav-item a:hover {
+    background: $highlight-secondary;
+  }
+
+  .registered {
+    display: none;
+  }
+
+  .unregistered {
+    display: block;
+  }
+
+  .pre-header-slot {
+    max-height: 100px;
+    transition: max-height 100ms linear;
   }
 
   &[scroll-state="1"] {
@@ -52,8 +67,8 @@ $secondary-nav-height: 6.2rem;
   }
   
   .nav-divider {
-    margin-left: .5rem;
-    padding-right: .5rem;
+    margin-left: $micro;
+    padding-right: $micro;
     position: relative;
     display: none;
 
@@ -120,7 +135,7 @@ $secondary-nav-height: 6.2rem;
 
     .iconbar-context {
       display: none;
-      margin-left: .5rem;
+      margin-left: 0.4rem;
     }
 
     .bag-total {
@@ -147,6 +162,13 @@ $secondary-nav-height: 6.2rem;
       belk-storefinder {
         height: $primary-nav-height;
       }
+      a {
+        display: flex;
+        align-items: center;
+        padding: 0 $micro;
+        line-height: 3.6rem;
+        font-size: 1.4rem;
+      }
     }
 
     .primary-promo {
@@ -166,10 +188,6 @@ $secondary-nav-height: 6.2rem;
       justify-content: space-between;
     }
 
-    .mobile-search-trigger {
-      margin-left: auto;
-    }
-
     sh-button.close-search {
       max-width: 0;
       order: 2;
@@ -185,32 +203,14 @@ $secondary-nav-height: 6.2rem;
         text-transform: capitalize;
       }
     }
-
-    sh-nav-item.account-action {
-      #signin-link {
-        belk-icon[name="person"] {
-          width: 2.6rem;
-
-          .belk-icon {
-            max-width: 100%;
-          }
-        }
-
-        belk-icon[name="arrow-down"] {
-          display: none;
-        }
-      }
-    }
-
-    sh-nav-item.minibag-action .belk-icon {
-      max-width: 2.2rem;
-      height: auto;
-    }
   }
 
   //initial meganav styles
   .tertiary {
     border-bottom: 1px $lowlight-primary;
+    background: $highlight-primary;
+    -webkit-overflow-scrolling: touch;
+    top: 0px;
 
     sh-nav-item {
       display: none;
@@ -244,8 +244,9 @@ $secondary-nav-height: 6.2rem;
       width: 100vw;
       overflow-y: auto;
       box-sizing: border-box;
-      max-height: calc(100vh - 250px);
+      // max-height: calc(100vh - 250px);
       height: 100%;
+      padding: 0;
 
       .popper-close {
         position: fixed;
@@ -254,39 +255,31 @@ $secondary-nav-height: 6.2rem;
         button {
           background-color: transparent;
           border: none;
-          color: #000;
+          color: $lowlight-primary;
+          cursor: pointer;
         }
       }
 
       .contain {
         flex-direction: column;
-
-        .mm__cat.mm__cat--horizontal {
-          column-count: 4;
-          column-gap: 4rem;
-          width: 100%;
-
-          > .view-all a {
-            border-top: 1px solid #eee;
-            border-bottom: 1px solid #eee;
-            margin-bottom: 1rem;
-          }
-
-          > li {
-            // break-inside: avoid;
-            margin-bottom: 2rem;
-          }
+        > li {
+          // break-inside: avoid;
+          margin-bottom: 2rem;
         }
         .cat-ad-banner {
           margin-top: 2rem;
         }
-        a.mm__cta.mm__cta--l2 {
+        .l2 {
           font-weight: bold;
         }
-        ul.mm__cat.mm__cat--l3 .view-all {
+        ul.l3 .view-all {
           display: none;
         }
       }
+    }
+
+    .l2 > li {
+      font-weight: bold;
     }
   }
 
@@ -335,15 +328,22 @@ $secondary-nav-height: 6.2rem;
     }
   }
 
+  & ~ #wrapper {
+    padding-top: 10.8rem;
+  }
+
   // Media Queries
   @include md {
+    & ~ #wrapper {
+      padding-top: 14rem;
+    }
+
     .contain {
       justify-content: space-between;
     }
 
     .primary {
       display: flex;
-      
       .primary-promo {
         justify-content: left;
       }
@@ -414,15 +414,6 @@ $secondary-nav-height: 6.2rem;
           padding-right: 1.6rem;
           border-right: 1px solid #979797;
         }
-
-        .sh-nav-item {
-          display: inline-block;
-
-          a {
-            padding: 0.8rem;
-            box-sizing: border-box;
-          }
-        }
       }
     }
 
@@ -436,24 +427,36 @@ $secondary-nav-height: 6.2rem;
       }
     }
 
-    .contain {
-      max-width: 96rem;
-    }
 
     .secondary {
       .contain {
         justify-content: flex-start;
       }
-      sh-nav-item.account-action {
-        #signin-link {
-          belk-icon[name="arrow-down"] {
-            display: block;
-            margin-bottom: .3rem;
-          }
-        }
-        .iconbar-context {
-          margin-top: auto;
-        }
+    }
+
+    sh-nav-item.account-action {
+      .arrow-icon {
+        margin-bottom: 0.6rem;
+      }
+      .popper-content {
+        width: 24rem;
+        padding: $little;
+      }
+      sh-button {
+        margin-bottom: $little;
+        margin-left: 0;
+        display: block;
+      }
+      ul li a {
+        display: flex;
+        padding: 12px;
+      }
+      i[class^="icon-"] {
+        display: block;
+        padding-right: $little;
+        width: 23px;
+        text-align: center;
+        font-size: 21px;
       }
     }
 
@@ -466,7 +469,7 @@ $secondary-nav-height: 6.2rem;
       
       .contain {
         .menu-utility-user.mega,
-        .close_menu,
+        .close-menu,
         .mobile-link {
           display: none;
         }
@@ -479,13 +482,51 @@ $secondary-nav-height: 6.2rem;
 
     //scroll states for site wrapper
     & ~ #wrapper {
-      padding-top: 193px;
+      padding-top: 19rem;
     }
   }
 
-  @include xl {
-    .contain {
+  .contain {
+    max-width: 96rem;
+    @include xl {
       max-width: 128rem;
+    }
+  }
+
+  .layout-horizontal {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    max-width: 96rem;
+    max-height: calc(100vh - 250px);
+    max-height: calc(100vh - var(--header-height));
+    @include xl {
+      max-width: 128rem;
+    }
+
+    > li {
+      margin-left: $little;
+      margin-right: $little;
+      margin-top: $little;
+      width: 25%;
+    }
+
+    .view-all a {
+      border-top: 1px solid $highlight-tertiary;
+      border-bottom: 1px solid $highlight-tertiary;
+      font-weight: bold;
+    }
+
+    a {
+      display: block;
+      padding: 0 $micro;
+      line-height: 3.6rem;
+    }
+
+
+    .l3 .view-all {
+      display: none;
     }
   }
 }

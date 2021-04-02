@@ -3,24 +3,36 @@
     <sh-popper offset-x="-41" placement="bottom" reference-id="belk-bag">
       <div slot="reference">
         <div class="bag-icon">
-          <belk-icon width="30" height="36" name="bag">shopping bag</belk-icon>
+          <belk-icon width="33" height="40" name="bag">shopping bag</belk-icon>
           <div class="bag-count">{{ itemCount }}</div>
         </div>
         <div class="bag-total">{{ totalPrice }}</div>
       </div>
       <div class="bag-content" slot="content">
         <div v-if="itemCount > 0">
+          <div>
+            <span class="bold">Bag Subtotal</span>
+            <span>{{ subTotal }}</span>
+          </div>
+          <component
+            ref="freeShippingMessage"
+            class="text-center"
+            v-bind:is="belkShippingNote">
+          </component>
           <component
             ref="itemList"
             v-bind:is="belkProductList"
             v-bind:product-array="items"
             variant="secondary">
           </component>
+          <sh-button class="primary" link="/shopping-bag">View Bag &amp; Checkout</sh-button>
         </div>
         <div v-if="itemCount === 0">
           <div>
-            <h1>Your bag is empty &amp; could use some love.</h1>
-            <p>Sign in to see items you may have added to your bag.</p>
+            <h4>Your bag is empty &amp; could use some love.</h4>
+            <p class="pad-little text-center">
+              Sign in to see items you may have added to your bag.
+            </p>
           </div>
         </div>
       </div>
@@ -30,6 +42,7 @@
 
 <script>
 import BelkProductList from '../../belk-product-list/vue/BelkProductList.vue';
+import BelkShippingNote from '../../belk-shipping-note/vue/BelkShippingNote.vue';
 import ComponentPrototype from '../../component-prototype';
 
 export default {
@@ -43,10 +56,12 @@ export default {
       default: 0,
     },
     belkProductList: BelkProductList,
+    belkShippingNote: BelkShippingNote,
   },
 
   components: {
     BelkProductList,
+    BelkShippingNote,
   },
 
   computed: {

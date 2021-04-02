@@ -201,7 +201,7 @@ export default {
     if (this.link) {
       this.link.setAttribute('aria-haspopup', true);
       this.link.setAttribute('aria-expanded', false);
-      if (this.hasArrow) this.link.innerHTML += '<belk-icon name="arrow-down" width="10" class="margin-l-atomic"></belk-icon>';
+      if (this.hasArrow) this.link.innerHTML += '<belk-icon class="arrow-icon" name="arrow-down" width="6" class="margin-l-atomic"></belk-icon>';
     }
 
     if (this.trigger === 'click') {
@@ -237,6 +237,7 @@ export default {
         self.close();
       });
 
+      this.$bus.$on('modal-opening', self.close);
       this.$bus.$on('close-modals', self.close);
     },
 

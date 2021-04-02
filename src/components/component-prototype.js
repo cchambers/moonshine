@@ -82,6 +82,10 @@ const ComponentPrototype = {
       return false;
     },
 
+    getNested(obj, ...args) {
+      return args.reduce((obj, level) => obj && obj[level], obj)
+    },
+
     log(...args) {
       window.sh.log = window.sh.log || []; // store logs to an array for reference
       let level = args[args.length - 1];
@@ -110,6 +114,13 @@ const ComponentPrototype = {
     return {
       uuid: String,
     };
+  },
+
+  created() {
+    const globalVariantControl = this.getNested(window.utag_data, 'variantControl', this.$options.name);
+    const directVariantControl = this.getNested(window.utag_data, 'variantControl', this.uniqueId);
+    if (globalVariantControl && !directVariantControl) this.variant = globalVariantControl;
+    if (directVariantControl) this.variant = directVariantControl;
   },
 
   mounted() {

@@ -61,6 +61,7 @@ export default {
           } else {
             string = 'Elites get <span class="uppercase">Free</span> Shipping every day';
           }
+          this.$bus.$emit('free-shipping', true);
           break;
 
         case 'premier':
@@ -69,6 +70,7 @@ export default {
           } else {
             string = `<span class="uppercase">Free</span> Shipping @ $${this.freeShippingPremier}`;
           }
+          this.$bus.$emit('free-shipping', freeShippingPremier);
           break;
 
         case 'standard':
@@ -77,6 +79,7 @@ export default {
           } else {
             string = `<span class="uppercase">Free</span> Shipping @ $${this.freeShippingStandard}`;
           }
+          this.$bus.$emit('free-shipping', freeShippingStandard);
           break;
 
         default:
@@ -85,6 +88,7 @@ export default {
           } else {
             string = `<span class="uppercase">Free</span> Shipping @ $${this.freeShipping}`;
           }
+          this.$bus.$emit('free-shipping', freeShipping);
           break;
       }
 
