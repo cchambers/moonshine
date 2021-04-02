@@ -163,7 +163,7 @@ sh-nav-item {
   .popper-content {
     background: $highlight-primary;
     color: $lowlight-primary;
-    padding: 1rem;
+    padding: $micro;
     border: 1px solid $lowlight-primary;
 
     ul {
@@ -173,16 +173,6 @@ sh-nav-item {
       li {
         list-style: none;
         white-space: nowrap;
-
-        a {
-          display: block;
-          color: currentColor;
-          padding: 0.6rem;
-
-          &:hover {
-            background-color: $highlight-secondary;
-          }
-        }
       }
     }
   }
@@ -199,16 +189,5 @@ sh-nav-item {
 
   belk-icon.arrow-down {
     align-self: flex-end;
-  }
-
-  .layout-horizontal {
-    column-count: 4;
-    @include lg {
-      column-count: 5;
-    }
-    @include xl {
-      column-count: 6;
-    }
-    column-gap: $rem;
   }
 }
