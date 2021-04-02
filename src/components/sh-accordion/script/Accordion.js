@@ -30,6 +30,12 @@ export default {
 
   mounted() {
     if (window.location.hash) this.hashHandler(window.location.hash.substr(1));
+    const headerLink = this.$refs.button.querySelector('a');
+    if (headerLink) {
+      headerLink.addEventListener('click', (e) => {
+        e.stopPropagation();
+      });
+    }
   },
 
   computed: {
@@ -92,9 +98,9 @@ export default {
       this.$bus.$emit('accordion-opening', payload);
       this.ariaExpanded = true;
       this.$bus.$emit('accordion-opened', payload);
-      setTimeout(() => {
-        this.$el.scrollIntoView();
-      }, 100);
+      // setTimeout(() => {
+      //   this.$el.scrollIntoView();
+      // }, 100);
     },
 
     events() {

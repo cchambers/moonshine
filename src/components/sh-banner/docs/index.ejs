@@ -90,10 +90,24 @@
             Stall time between slides to allow for transitions.
           </td>
         </tr>
+        <tr>
+          <td>closable</td>
+          <td>String</td>
+          <td>
+            Make a closable banner. The value of this property is used to generate a localStorage value to keep the banner closed on subsequent page loads. Automatically incorporates close button and ADA. 
+          </td>
+        </tr>
+        <tr>
+          <td>close-param</td>
+          <td>String</td>
+          <td>
+            LocalStorage parameter to pre-close the banner.
+          </td>
+        </tr>
       </tbody>
     </table>
 
-    <h3 id="slots">Slots</h3>
+    <!-- <h3 id="slots">Slots</h3>
     <table class="slots">
       <thead>
         <tr>
@@ -109,7 +123,7 @@
           </td>
         </tr>
       </tbody>
-    </table>
+    </table> -->
 
     <h3 id="events">Events</h3>
 
@@ -137,40 +151,62 @@
 
   <section id="examples">
     <h2>Examples</h2>
-    <h3>Background Control</h3>
+    <h3>Closable Banner</h3>
+    <p>If you do not see a banner, try clearing your cache. It sets a localStorage item based on the <code>closable</code> value. You could try changing that too, I suppose :)</p>
+    <lib-toolbar>
+      <sh-banner closable="closable-demo-banner" variant="primary" class="back-highlight-secondary lowlight-secondary case-upper font-primary wt-bold text-center">
+        <div class="pad-y-atomic">Some text</div>
+      </sh-banner>
+    </lib-toolbar>
+
+    <h3>Background Fade Control with Carousel</h3>
+    <p>Sped up to show the effect.</p>
     <div class="pad-b">
-      <sh-banner variant="primary" backgrounds="brand-mysticpurple, brand-wildfuscia, brand-classicblue">
-        <sh-carousel id="pre-header-carousel" variant="primary" autoplay="6000" hide-controls>
+      <sh-banner variant="primary" class="highlight-primary" backgrounds="brand-purple, brand-pink, brand-blue, brand-green, seasonal-orange">
+        <sh-carousel id="pre-header-carousel" variant="primary" autoplay="2000" hide-controls>
           <ul slot="slides">
             <li>
               <!-- this has a slide link -->
               <a href="#link1">
-                <div class="case-upper font-primary text-center color-highlight-primary pad-y-quarter">
+                <div class="case-upper font-primary text-center color-highlight-primary pad-y-atomic">
                   <p><span class="wt-700">Extra 60% off </span> your favorite brands <span class="cta">do it now</span></p>
                 </div>
               </a>
             </li>
             <li>
               <!-- this has multiple links -->
-              <div class="case-upper font-primary text-center color-highlight-primary pad-y-quarter">
+              <div class="case-upper font-primary text-center color-highlight-primary pad-y-atomic">
                 <p><span class="wt-700">Extra 20% off </span> <a class="cta" href="#regular">regular</a> and <a class="cta" href="#sale">sale</a> purchases with your rewards credit card</p>
               </div>
             </li>
           </ul>
         </sh-carousel>
       </sh-banner>
-      <sh-button click-event="show-banner">Click to Reveal Banner</sh-button>
-      <div hover-event="show-banner">Hover to Reveal Banner</div>
-      <sh-banner reveal-event="show-banner">
-        <img data-src="https://picsum.photos/200/300" alt="">
-      </sh-banner>
     </div>
 
 
-    <h3>Adaptable Content</h3>
+    <h3>Reveal Events</h3>
+    <lib-toolbar>
+      <h4>Hover</h4>
+      <div hover-event="hover-banner">Hover to Reveal Banner</div>
+      <sh-banner reveal-event="hover-banner">
+        <img data-src="https://picsum.photos/200/300" alt="">
+      </sh-banner>
+
+      <h4 class="pad-t">Click</h4>
+      <sh-button click-event="click-banner" variant="primary">Click to Reveal Banner</sh-button>
+      <sh-banner reveal-event="click-banner">
+        <img data-src="https://picsum.photos/200/300?2" alt="">
+      </sh-banner>
+
+    </lib-toolbar>
+
+
+
+
+    <!-- <h3>Adaptable Content</h3>
     <lib-toolbar>
       <sh-banner variant="primary" class="font-primary">
-        <!-- DEFAULT -->
         <sh-adapt-content>
           <div slot="sm">
             <div class="pad-y">
@@ -211,7 +247,7 @@
           </div>
         </sh-adapt-content>
       </sh-banner>
-    </lib-toolbar>
+    </lib-toolbar> -->
 
   </section>
 
@@ -220,8 +256,10 @@
     <dl>
       <dt>0.1.0</dt>
       <dd>Banner is under development.</dd>
-      <!-- <dt>1.0.0</dt>
-      <dd>Banner is ready for use.</dd> -->
+      <dt>1.0.0</dt>
+      <dd>Banner is ready for use.</dd>
+      <dt>1.1.0</dt>
+      <dd>Closable added.</dd>
     </dl>
   </section>
 </div>

@@ -28,7 +28,7 @@
           v-hammer:tap="play">
           {{ mode }}
         </button>
-        <ul ref="dots" class="dots">
+        <ul v-if="!hideDots" ref="dots" class="dots">
           <li v-for="(dot,index) in dots" v-bind:key="index" v-bind:class="{ active: dot.active }">
             ●
           </li>

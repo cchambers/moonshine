@@ -15,18 +15,24 @@ const ComponentPrototype = {
     },
   },
 
+  data() {
+    return {
+      timers: [],
+    };
+  },
+
   methods: {
-    debounce(func, wait, immediate) {
-      let timeout;
+    debounce(name = 'default', func, wait = 100, immediate) {
+      if (!this.timers) this.timers = {};
       return (...args) => {
         const context = this;
         const later = () => {
-          timeout = null;
+          this.timers[name] = null;
           if (!immediate) func.apply(context, args);
         };
-        const callNow = immediate && !timeout;
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
+        const callNow = immediate && !this.timers[name];
+        clearTimeout(this.timers[name]);
+        this.timers[name] = setTimeout(later, wait);
         if (callNow) func.apply(context, args);
       };
     },

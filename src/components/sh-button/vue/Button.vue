@@ -4,7 +4,6 @@
     v-on:keyup.enter="tapHandler"
     :close-trigger="closeTrigger"
     :print-trigger="printTrigger"
-    v-hammer:tap="tapHandler"
     :value="defaultValue"
     v-bind:role="ariaRole"
     v-bind:aria-selected="isActive"
@@ -49,7 +48,10 @@ export default {
     link: Boolean,
     ariaRole: String,
     ariaControls: String,
-    type: String,
+    type: {
+      type: String,
+      default: 'button',
+    },
     uniqueId: String,
   },
 
@@ -72,6 +74,9 @@ export default {
     this.buttonEl = this.$refs.button;
     if (this.active) this.isActive = true;
     if (this.ariaRole) this.isRole = this.ariaRole;
+
+    this.buttonEl.addEventListener('click', this.tapHandler);
+    this.$bus.$on(`${this.uniqueId}-button-toggle`, this.doToggle);
   },
 
   methods: {
@@ -102,7 +107,7 @@ export default {
       }
       if (this.toggle && !this.ajax) this.doToggle();
       if (this.clickEvent) {
-        e.preventDefault();
+        if (e) e.preventDefault();
         this.$bus.$emit(this.clickEvent, {
           el: this,
           value: this.buttonEl.value,
@@ -133,6 +138,7 @@ export default {
         })
         .catch((error) => {
           this.log(error, 1);
+          this.disabled = false;
         });
     },
 

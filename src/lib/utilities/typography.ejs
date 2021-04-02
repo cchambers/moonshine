@@ -1,0 +1,300 @@
+<%- htmlWebpackPlugin.options.docsHead %>
+<title>Typography</title>
+<div class="documentation contain">
+  <h1>Typography</h1>
+  <section>
+    <p>Looking for <a href='/utilities/colors'>colors</a>?</p>
+    <p>Looking for <a href='/utilities/utilities'>spacing</a>?</p>
+  </section>
+
+  <section id="usage">
+    <h2>Usage</h2>
+    <p>
+      <sh-tooltip tip="Object-oriented">OO</sh-tooltip> classes that can be used to style or space content. They are not
+      used in component creation, but the variables used to create them are.
+    </p>
+    <pre>
+      <code class="language-html">
+        &lt;p class="px30 font-primary wt-800"&gt;Lorem ipsum dolor...&lt;/p&gt;
+      </code>
+    </pre>
+
+    <lib-toolbar>
+      <div class="px30 font-primary wt-800">Lorem ipsum dolor...</div>
+    </lib-toolbar>
+  </section>
+
+  <section id="Family">
+    <h2>Family</h2>
+    <table class="class-defs">
+      <thead>
+        <tr>
+          <th>Class</th>
+          <th>Effect</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <em>default</em>
+          </td>
+          <td>
+              <ul>
+                <li>Roboto</li>
+                <li class="wt-600">Roboto + <code class="language-css">.wt-600</code></li>
+                <li class="wt-700">Roboto + <code class="language-css">.wt-700</code></li>
+                <li class="wt-800">Roboto + <code class="language-css">.wt-800</code></li>
+                <li class="wt-900">Roboto + <code class="language-css">.wt-900</code></li>
+              </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code class="language-css">.font-primary</code>
+          </td>
+          <td class="font-primary">
+            <ul>
+              <li>Proxima Nova</li>
+              <li class="wt-500">Proxima Nova + <code class="language-css">.wt-500</code></li>
+              <li class="wt-600"> Proxima Nova + <code class="language-css">.wt-600</code></li>
+              <li class="wt-700">Proxima Nova + <code class="language-css">.wt-700</code></li>
+              <li class="wt-800">Proxima Nova + <code class="language-css">.wt-800</code></li>
+              <li class="wt-900"> Proxima Nova + <code class="language-css">.wt-900</code></li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="size">
+    <h2>Size</h3>
+    <table class="class-defs">
+      <thead>
+        <tr>
+          <th>Class</th>
+          <th>Effect</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <code class="language-css">.px-NN</code>
+          </td>
+          <td>
+            <ul>
+              <li>
+                Set the [responsive] font size of a piece of content.
+              </li>
+              <li>
+                Options range from 10-100. ex: .px-62
+              </li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="lineheight">
+      <h2>Line Height</h3>
+      <table class="class-defs">
+        <thead>
+          <tr>
+            <th>Class</th>
+            <th>Effect</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <code class="language-css">.lh-NN</code>
+            </td>
+            <td>
+              <ul>
+                <li>
+                  Set the [responsive] line height of a piece of content.
+                </li>
+                <li>
+                  Options range from 10-100. ex: .lh-30
+                </li>
+              </ul>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+  <section id="style">
+
+    <h2 id="style">Style</h2>
+    <table class="class-defs">
+      <thead>
+        <tr>
+          <th>Class</th>
+          <th>Effect</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <code class="language-css">.strike</code>
+          </td>
+          <td>
+            <div class="strike">Strikethrough text.</div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code class="language-css">.italic</code>
+          </td>
+          <td>
+            <div class="italic">Italicized text.</div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code class="language-css">.light</code>
+          </td>
+          <td>
+            <div class="light">Light (weight) text.</div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code class="language-css">.normal</code>
+          </td>
+          <td>
+            <div class="normal">Normal (weight) text.</div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code class="language-css">.bold</code>
+          </td>
+          <td>
+            <div class="bold">Bold (weight) text.</div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code class="language-css">.heavy</code>
+          </td>
+          <td>
+            <div class="heavy">Heavy (weight) text.</div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="alignment">
+    <h3 id="alignment">Alignment</h3>
+    <table class="class-defs">
+      <thead>
+        <tr>
+          <th>Class</th>
+          <th>Effect</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <code class="language-css">.text-right</code>
+          </td>
+          <td class="text-right">
+            Right align text.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code class="language-css">.text-left</code>
+          </td>
+          <td class="text-left">
+            Left align text.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code class="language-css">.text-center</code>
+          </td>
+          <td class="text-center">
+            Center align text.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code class="language-css">.text-justify</code>
+          </td>
+          <td class="text-justify">
+            Align text justified.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code class="language-css">.force-justify</code>
+          </td>
+          <td class="force-justify">
+            Align text justified forced (justifies the last line and single-line paragraphs).
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="casing">
+    <h2>Casing</h3>
+    <table class="class-defs">
+      <thead>
+        <tr>
+          <th>Class</th>
+          <th>Effect</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <code class="language-css">.case-upper</code>
+          </td>
+          <td>
+            <div class="case-upper">Uppercased text.</div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code class="language-css">.case-lower</code>
+          </td>
+          <td>
+            <div class="case-lower">Lowercased text.</div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code class="language-css">.case-normal</code>
+          </td>
+          <td>
+            <div class="case-normal">Normal casing.</div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code class="language-css">.cast-title</code>
+          </td>
+          <td>
+            <div class="case-title">Title Casing.</div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="changelog">
+    <h2>Changelog</h2>
+    <dl>
+      <dt>1.0.0</dt>
+      <dd>Basicss integration.</dd>
+    </dl>
+  </section>
+</div>
+
+<%- htmlWebpackPlugin.options.docsFoot %>

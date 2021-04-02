@@ -3,18 +3,13 @@ $buttonWidth: $rem;
 
 .belk-drawer {
   position: fixed;
-  z-index: 2;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 0;
+  z-index: 3;
   overflow: hidden;
   opacity: 1;
   pointer-events: none;
   align-items: center;
   display: flex;
   flex-direction: column;
-  max-height: 0;
   transition: all 300ms $ease, opacity 350ms linear;
   transition-delay: 10ms;
   transform-origin: top center;
@@ -36,20 +31,22 @@ $buttonWidth: $rem;
       transform: translateZ(0) translateY(150%) !important;
     }
   }
-  &.active {
-    max-height: initial;
-    height: auto;
-    @include md {
-      transform: translateX(0) translateY(0) translateZ(0) scale(1) rotate(0) !important;
-    }
-  }
   &[drawer="bottom"] {
-    height: 100vh;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    max-height: 100vh;
     transform: translateY(0) translateZ(0);
     transition: none !important;
-    max-height: 100vh;
+    overflow: visible;
     
     &.active {
+      max-height: initial;
+      z-index: 60;
+      height: auto;
+      @include md {
+        transform: translateX(0) translateY(0) translateZ(0) scale(1) rotate(0) !important;
+      }
       .drawer-toggle {
         background: $highlight-primary;
         color: $lowlight-quinary; 
@@ -104,7 +101,7 @@ $buttonWidth: $rem;
       position: absolute;
       top: 0;
       left: 50%;
-      transform: translateX(-50%) translateY(-100%);
+      transform: translateX(-50%) translateY(-100%) translateZ(0);
       border: 1px solid transparent;
       border-bottom: none;
       background: $lowlight-secondary;
@@ -118,10 +115,12 @@ $buttonWidth: $rem;
       .dt-headline {
         font-size: 1.8rem;
         line-height: 2rem;
+        white-space: pre;
       }
       .dt-subhead {
         font-size: 1.2rem;
         line-height: 1.6rem;
+        white-space: pre;
       }
 
       .dt-icon {
@@ -136,9 +135,10 @@ $buttonWidth: $rem;
     }
 
     .content {
-      position: fixed;
+      position: absolute;
       bottom: 0;
       left: 0;
+      right: 0;
       margin: 0;
       max-width: 100%;
       transform: translateY(100%) translateZ(0);
@@ -158,7 +158,7 @@ $buttonWidth: $rem;
   .hide-body {
     opacity: 0.5;
     display: none;
-    transition-delay: display 50ms;
+    transition-delay: display 300ms;
   }
 
   .content {
@@ -170,7 +170,7 @@ $buttonWidth: $rem;
     flex-shrink: 0;
     flex-grow: 0;
     margin: 0;
-    height: 100vh;
+    height: 100%;
     overflow-y: auto;
     height: auto;
   }
@@ -186,6 +186,7 @@ $buttonWidth: $rem;
     overflow-y: auto;
     position: relative;
     scroll-behavior: smooth;
+    overscroll-behavior: contain;
     .arrow {
       position: fixed;
       top: 0;
@@ -310,4 +311,9 @@ $buttonWidth: $rem;
   100% {
     transform: translateY(75%) translateZ(0);
   }
+}
+
+
+.IE11 .belk-drawer button.arrow {
+  display: none !important;
 }

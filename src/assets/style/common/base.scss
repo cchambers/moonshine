@@ -9,11 +9,30 @@
   \_______/  \_______|\_______/ \__|\__|\_______|\_______/ \_______/
 / */
 
+@import url(https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Round);
+.material-icons-round { font-family: 'Material Icons Round' !important; }
+.material-icons { font-family: 'Material Icons' !important; }
+
+i.material-icons,
+i.material-icons-round {
+  display: inline-flex;
+  vertical-align: middle;
+  line-height: 1em;
+  font-size: inherit;
+}
+
 html {
-  font-size: 8px;
+  font-size: 10px;
   box-sizing: border-box;
   @include md {
     font-size: 10px;
+  }
+}
+
+
+.scroll-block {
+  > * {
+    overflow: hidden !important;
   }
 }
 
@@ -212,18 +231,21 @@ html, body {
   float: left;
 }
 
-.srow>[class*=scol-] {
-  float: none;
-}
-
-.srow::after,
-.scontain::after,
-[class*=scol-]::after {
-  content: ".";
-  display: block;
-  height: 0;
-  overflow: hidden;
-  line-height: 0
+@include low {
+  .srow>[class*=scol-],
+  .row>[class*=scol-] {
+    float: none;
+    width: 100%;
+  }
+  .srow::after,
+  .scontain::after,
+  [class*=scol-]::after {
+    content: ".";
+    display: block;
+    height: 0;
+    overflow: hidden;
+    line-height: 0
+  }
 }
 
 @media (max-width: 768px) {
@@ -315,129 +337,128 @@ html, body {
     width: calc(100% / 2.99999);
   }
 }
-@include md {
-  .scol-1-1 {
-    width: 100%;
-  }
 
-  .scol-3-4 {
-    width: 75%;
-  }
+.scol-1-1 {
+  width: 100%;
+}
 
-  .scol-1-2 {
-    width: 50%;
-  }
+.scol-3-4 {
+  width: 75%;
+}
 
-  .scol-1-4 {
-    width: 25%;
-  }
+.scol-1-2 {
+  width: 50%;
+}
 
-  .scol-1-5 {
-    width: 20%;
-  }
+.scol-1-4 {
+  width: 25%;
+}
 
-  .scol-2-5 {
-    width: 40%;
-  }
+.scol-1-5 {
+  width: 20%;
+}
 
-  .scol-3-5 {
-    width: 60%;
-  }
+.scol-2-5 {
+  width: 40%;
+}
 
-  .scol-4-5 {
-    width: 80%;
-  }
+.scol-3-5 {
+  width: 60%;
+}
 
-  .scol-1-6 {
-    width: calc(100% / 6);
-  }
+.scol-4-5 {
+  width: 80%;
+}
 
-  .scol-5-6 {
-    width: 83.33%;
-    width: calc(100% - (100% / 5.99999));
-  }
+.scol-1-6 {
+  width: calc(100% / 6);
+}
 
-  .scol-7-8 {
-    width: 87.5%;
-  }
+.scol-5-6 {
+  width: 83.33%;
+  width: calc(100% - (100% / 5.99999));
+}
 
-  .scol-1-8 {
-    width: 12.5%;
-  }
+.scol-7-8 {
+  width: 87.5%;
+}
 
-  .scol-3-8 {
-    width: 37.5%;
-  }
+.scol-1-8 {
+  width: 12.5%;
+}
 
-  .scol-1-3 {
-    width: calc(100% / 3);
-  }
+.scol-3-8 {
+  width: 37.5%;
+}
 
-  .scol-2-3 {
-    width: 66.66%;
-  }
+.scol-1-3 {
+  width: calc(100% / 3);
+}
 
-  .spush-1-1 {
-    margin-left: 100%;
-  }
+.scol-2-3 {
+  width: 66.66%;
+}
 
-  .spush-3-4 {
-    margin-left: 75%;
-  }
+.spush-1-1 {
+  margin-left: 100%;
+}
 
-  .spush-1-2 {
-    margin-left: 50%;
-  }
+.spush-3-4 {
+  margin-left: 75%;
+}
 
-  .spush-1-4 {
-    margin-left: 25%;
-  }
+.spush-1-2 {
+  margin-left: 50%;
+}
 
-  .spush-1-5 {
-    margin-left: 20%;
-  }
+.spush-1-4 {
+  margin-left: 25%;
+}
 
-  .spush-2-5 {
-    margin-left: 40%;
-  }
+.spush-1-5 {
+  margin-left: 20%;
+}
 
-  .spush-3-5 {
-    margin-left: 60%;
-  }
+.spush-2-5 {
+  margin-left: 40%;
+}
 
-  .spush-4-5 {
-    margin-left: 80%;
-  }
+.spush-3-5 {
+  margin-left: 60%;
+}
 
-  .spush-1-6 {
-    margin-left: calc(100% / 6);
-  }
+.spush-4-5 {
+  margin-left: 80%;
+}
 
-  .spush-5-6 {
-    margin-left: 83.33%;
-    width: calc(100% - (100% / 5.99999));
-  }
+.spush-1-6 {
+  margin-left: calc(100% / 6);
+}
 
-  .spush-7-8 {
-    margin-left: 87.5%;
-  }
+.spush-5-6 {
+  margin-left: 83.33%;
+  width: calc(100% - (100% / 5.99999));
+}
 
-  .spush-1-8 {
-    margin-left: 12.5%;
-  }
+.spush-7-8 {
+  margin-left: 87.5%;
+}
 
-  .spush-3-8 {
-    margin-left: 37.5%;
-  }
+.spush-1-8 {
+  margin-left: 12.5%;
+}
 
-  .spush-1-3 {
-    margin-left: calc(100% / 3);
-  }
+.spush-3-8 {
+  margin-left: 37.5%;
+}
 
-  .spush-2-3 {
-    margin-left: 66.66%;
-    width: calc(100% / 2.99999);
-  }
+.spush-1-3 {
+  margin-left: calc(100% / 3);
+}
+
+.spush-2-3 {
+  margin-left: 66.66%;
+  width: calc(100% / 2.99999);
 }
 
 @media (min-width: 768px) {
@@ -446,8 +467,11 @@ html, body {
   }
 
   .high-off {
-    display: none;
+    display: none !important;
   }
+
+  .show-md { display: inline-flex; }
+  .hide-md { display: none; }
 }
 
 .border-solid {

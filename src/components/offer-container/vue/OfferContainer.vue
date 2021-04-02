@@ -4,18 +4,23 @@
     <belk-coupon v-for="item in items" v-bind:key="item.id"
       :in-drawer="item.inDrawer"
       :badge="item.badge"
+      :coupon-tag="item.couponTag"
+      :link-tag="item.linkTag"
       :code="item.code"
       :custom-link="item.customLink"
       :discount="item.discount"
       :description="item.description"
       :details="item.details"
+      :details-print="item.detailsPrint"
       :ends="item.ends"
       :event-name="item.eventName"
       :extra="item.extra"
+      :to-spend="item.toSpend"
       :header-color="item.headerColor"
       :image="item.image"
       :link="item.link"
       :printable="item.printable"
+      :spacer-text="item.spacerText"
       :upc="item.upc"></belk-coupon>
       <div v-if="items.length == 0" class="offer-container-banner">
         {{ noOffersText }}
@@ -63,21 +68,39 @@ export default {
 
   methods: {
     events() {
-      this.$bus.$on('add-offer-item', this.addItemHandler);
-      this.$bus.$on('move-offer-item', this.addItemHandler);
-      this.$bus.$on('update-offer-items', this.updateItemsHandler);
+      this.$bus.$on(`add-${this.uniqueId}`, this.addItemHandler);
+      this.$bus.$on(`move-${this.uniqueId}`, this.moveItemHandler);
+      this.$bus.$on(`update-items-${this.uniqueId}`, this.updateItemsHandler);
     },
 
-    addItem(data) {
-      const obj = data;
+    addItem(what, where) {
+      const obj = what;
       if (!obj.id) obj.id = `o${this.makeUUID()}`;
-      this.items.push(obj);
+      if (!where) {
+        this.items.push(obj);
+      } else {
+        this.items.splice(where, 0, obj);
+      }
     },
+
+    // addItemHandler(event) {
+    //   const { data } = event;
+    //   if (data.where) {
+    //     this.addItem(data.what, data.where);
+    //   } else {
+    //     this.addItem(data);
+    //   }
+    // },
 
     addItemHandler(event) {
-      if (event.which === this.uniqueId) {
-        const { data } = event;
-        this.addItem(data);
+      const { what } = event.data;
+      const where = event.data.where || this.items.length;
+      const isArray = Array.isArray(what);
+      if (isArray) {
+        const arr = [...what];
+        this.items.splice(where, 0, ...arr);
+      } else {
+        this.items.splice(where, 0, what);
       }
     },
 
@@ -93,12 +116,10 @@ export default {
     },
 
     updateItemsHandler(event) {
-      if (event.which === this.uniqueId) {
-        const arr = event.data;
-        this.items = [];
-        for (let x = 0, l = arr.length; x < l; x += 1) {
-          this.addItem(arr[x]);
-        }
+      const arr = event.data;
+      this.items = [];
+      for (let x = 0, l = arr.length; x < l; x += 1) {
+        this.addItem(arr[x]);
       }
     },
 

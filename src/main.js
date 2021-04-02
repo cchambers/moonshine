@@ -8,7 +8,8 @@ Vue.config.productionTip = false;
 
 /* IE-11 Polyfills */
 // import 'document-register-element/build/document-register-element';
-import './assets/script/polyfills.js'
+import './assets/script/polyfills.js';
+import 'whatwg-fetch';
 
 /* HammerJS (touch support) */
 import {
@@ -41,6 +42,7 @@ if (process.env.NODE_ENV !== 'production') {
   require('./lib/components/lib-header/vue');
   require('./lib/components/lib-icons/vue');
   require('./lib/components/lib-content/vue');
+  require('./lib/components/lib-colors/vue');
   require('./lib/components/lib-section-links/vue');
   require('./lib/components/lib-notify/vue');
   require('./lib/components/lib-reqs/vue');

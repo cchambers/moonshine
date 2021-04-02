@@ -1,0 +1,26 @@
+<%- htmlWebpackPlugin.options.docsHead %>
+
+<title><%= htmlWebpackPlugin.options.title %></title>
+
+<div class="documentation contain">
+  <h1>Colors</h1>
+  <section id="usage">
+    <h2>Usage</h2>
+    <p>
+      The colors in the following list are accessible in multiple ways throughout the framework. Primarly, you will see them used as classes, ex: <code>.lowlight-primary</code> for text or <code>.back-lowlight-primary</code> for a background.
+    </p>
+    <lib-colors></lib-colors>
+  </section>
+
+  <section id="changelog">
+    <h2>Changelog</h2>
+    <dl>
+      <dt>1.0.0</dt>
+      <dd>Original color set.</dd>
+      <dt>2.0.0</dt>
+      <dd>New colors added in Fall 2020.</dd>
+    </dl>
+  </section>
+</div>
+
+<%- htmlWebpackPlugin.options.docsFoot %>

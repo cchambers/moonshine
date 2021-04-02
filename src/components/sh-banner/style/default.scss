@@ -1,15 +1,57 @@
 sh-banner {
   display: block;
   position: relative;
+  opacity: 0;
+  overflow: hidden;
+  transform: translateZ(0); 
+  transition: opacity 100ms ease-in;
+  &[vce-ready] {
+    opacity: 1;
+  }
 
   .sh-banner {
     display: block;
     position: relative;
+    &.closed {
+      max-height: 0 !important;
+      overflow: hidden;
+    }
   }
 
   &[reveal="fade"] {
     .sh-banner {
       opacity: 0;
+    }
+  }
+  &[closable] {
+    .sh-banner {
+      max-height: 12rem;
+      transition: max-height 300ms $decel;
+    }
+    .banner-closable {
+      position: absolute;
+      top: 0; 
+      right: 0;
+      display: flex;
+      align-items: center;
+      height: 100%;
+      sh-button {
+        height: 100%;
+        &:hover {
+          opacity: 0.8;
+        }
+      }
+      .sh-button {
+        width: 3rem;
+        height: 100%;
+        min-height: auto;
+        min-width: auto;
+        padding: 0;
+        color: inherit;
+      }
+      .actual-text {
+        display: flex;
+      }
     }
   }
 

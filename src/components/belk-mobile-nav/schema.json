@@ -1,0 +1,14 @@
+{
+  "name": "Belk Mobile Nav",
+  "category": "base",
+  "production": true,
+  "element": "belk-mobile-nav",
+  "description": "Mobile navigation.",
+  "tags": ["navigation", "flyout", "drawer"],
+  "requirements": {
+    "Element One": [],
+    "Element Two": [],
+    "a11y": [],
+    "states": []
+  }
+}

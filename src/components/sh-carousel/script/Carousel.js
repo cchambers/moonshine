@@ -1,3 +1,4 @@
+/* eslint-disable */
 import ComponentPrototype from '../../component-prototype';
 
 export default {
@@ -37,7 +38,7 @@ export default {
       default: null,
     },
     resolution: {
-      // 'Begin automatically cycling',
+      // 'Size of carousel',
       type: String,
       default: null,
     },
@@ -128,7 +129,7 @@ export default {
 
     events() {
       const self = this;
-      const resizeDebounced = self.debounce(self.autoSize, 100);
+      const resizeDebounced = self.debounce('carousel-as', self.autoSize, 100);
       window.addEventListener('resize', resizeDebounced, true);
     },
 

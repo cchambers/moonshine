@@ -29,6 +29,10 @@ export default {
       type: String,
       default: '400',
     },
+    closable: {
+      type: String,
+      value: false,
+    },
     revealEvent: {
       type: String,
     },
@@ -40,7 +44,9 @@ export default {
       carousel: undefined,
       carouselId: undefined,
       carouselSpeed: 5000,
+      closed: false,
       background: undefined,
+      isClosable: false,
       backgroundArray: [],
       whichback: 0,
       revealed: true,
@@ -49,6 +55,11 @@ export default {
 
   created() {
     if (this.revealEvent) this.revealed = false;
+    if (this.closable) {
+      this.isClosable = true;
+      const wasClosed = this.getItem(`${this.closable}-closed`);
+      if (wasClosed) this.closed = true;
+    }
   },
 
   mounted() {
@@ -70,6 +81,11 @@ export default {
       this.findCarousel();
       if (this.backgrounds) this.configureBackgrounds();
       this.loadImages();
+    },
+
+    closeBanner() {
+      this.closed = true;
+      this.setItem(`${this.closable}-closed`, true);
     },
 
     findCarousel() {

@@ -1,7 +1,7 @@
 <template>
-  <div class="sh-modal-buttons">
+  <div class="sh-modal-buttons" :hidden="this.hidden">
     <div class="tab-lock" v-on:focus="modalFocusLast()" tabindex="0"></div>
-    <button v-hammer:tap="closeModals">
+    <button @click="closeModals">
       <belk-icon v-if="closeActive" name="close" width="28">Close Modal</belk-icon>
     </button>
     <button v-if="printActive" print-trigger hidden>
@@ -24,6 +24,7 @@ export default {
     return {
       printActive: false,
       closeActive: true,
+      hidden: false,
     };
   },
 
@@ -32,7 +33,8 @@ export default {
       window.print();
     },
 
-    closeModals() {
+    closeModals(e) {
+      e.stopPropagation();
       this.$bus.$emit('close-modals');
     },
 
@@ -47,6 +49,14 @@ export default {
     events() {
       this.$bus.$on('modal-buttons-focus', () => {
         this.$el.querySelector('button').focus();
+      });
+
+      this.$bus.$on('modal-buttons-hide', () => {
+        this.hidden = true;
+      });
+
+      this.$bus.$on('modal-closed', () => {
+        if (this.hidden) this.hidden = false;
       });
     },
   },
