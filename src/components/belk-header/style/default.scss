@@ -10,15 +10,30 @@ $secondary-nav-height: 6.2rem;
   z-index: 6;
   border-bottom: 1px solid currentColor;
 
+  &.is-user {
+    .unregistered {
+      display: none;
+    }
+    .registered {
+      display: block;
+    }
+  }
+
+  sh-nav-item a:hover {
+    background: $highlight-secondary;
+  }
+
+  .registered {
+    display: none;
+  }
+
+  .unregistered {
+    display: block;
+  }
+
   .pre-header-slot {
     max-height: 100px;
     transition: max-height 100ms linear;
-  }
-
-  .tertiary {
-    background: $highlight-primary;
-    -webkit-overflow-scrolling: touch;
-    top: 0px;
   }
 
   &[scroll-state="1"] {
@@ -148,6 +163,8 @@ $secondary-nav-height: 6.2rem;
         height: $primary-nav-height;
       }
       a {
+        display: flex;
+        align-items: center;
         padding: 0 $micro;
         line-height: 3.6rem;
         font-size: 1.4rem;
@@ -191,6 +208,9 @@ $secondary-nav-height: 6.2rem;
   //initial meganav styles
   .tertiary {
     border-bottom: 1px $lowlight-primary;
+    background: $highlight-primary;
+    -webkit-overflow-scrolling: touch;
+    top: 0px;
 
     sh-nav-item {
       display: none;
@@ -224,8 +244,9 @@ $secondary-nav-height: 6.2rem;
       width: 100vw;
       overflow-y: auto;
       box-sizing: border-box;
-      max-height: calc(100vh - 250px);
+      // max-height: calc(100vh - 250px);
       height: 100%;
+      padding: 0;
 
       .popper-close {
         position: fixed;
@@ -241,30 +262,17 @@ $secondary-nav-height: 6.2rem;
 
       .contain {
         flex-direction: column;
-
-        .mm__cat.mm__cat--horizontal {
-          column-count: 4;
-          column-gap: 4rem;
-          width: 100%;
-
-          > .view-all a {
-            border-top: 1px solid #eee;
-            border-bottom: 1px solid #eee;
-            margin-bottom: 1rem;
-          }
-
-          > li {
-            // break-inside: avoid;
-            margin-bottom: 2rem;
-          }
+        > li {
+          // break-inside: avoid;
+          margin-bottom: 2rem;
         }
         .cat-ad-banner {
           margin-top: 2rem;
         }
-        a.mm__cta.mm__cta--l2 {
+        .l2 {
           font-weight: bold;
         }
-        ul.mm__cat.mm__cat--l3 .view-all {
+        ul.l3 .view-all {
           display: none;
         }
       }
@@ -424,10 +432,31 @@ $secondary-nav-height: 6.2rem;
       .contain {
         justify-content: flex-start;
       }
-      sh-nav-item.account-action {
-        .arrow-icon {
-          margin-bottom: 0.6rem;
-        }
+    }
+
+    sh-nav-item.account-action {
+      .arrow-icon {
+        margin-bottom: 0.6rem;
+      }
+      .popper-content {
+        width: 24rem;
+        padding: $little;
+      }
+      sh-button {
+        margin-bottom: $little;
+        margin-left: 0;
+        display: block;
+      }
+      ul li a {
+        display: flex;
+        padding: 12px;
+      }
+      i[class^="icon-"] {
+        display: block;
+        padding-right: $little;
+        width: 23px;
+        text-align: center;
+        font-size: 21px;
       }
     }
 
@@ -461,6 +490,43 @@ $secondary-nav-height: 6.2rem;
     max-width: 96rem;
     @include xl {
       max-width: 128rem;
+    }
+  }
+
+  .layout-horizontal {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    max-width: 96rem;
+    max-height: calc(100vh - 250px);
+    max-height: calc(100vh - var(--header-height));
+    @include xl {
+      max-width: 128rem;
+    }
+
+    > li {
+      margin-left: $little;
+      margin-right: $little;
+      margin-top: $little;
+      width: 25%;
+    }
+
+    .view-all a {
+      border-top: 1px solid $highlight-tertiary;
+      border-bottom: 1px solid $highlight-tertiary;
+      font-weight: bold;
+    }
+
+    a {
+      display: block;
+      padding: 0 $micro;
+      line-height: 3.6rem;
+    }
+
+
+    .l3 .view-all {
+      display: none;
     }
   }
 }

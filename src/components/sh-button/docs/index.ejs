@@ -62,8 +62,15 @@
           <td>
             <ul>
               <li>Change the size of the button.</li>
-              <li>Options are: "sm"</li>
+              <li>Option: "sm"</li>
             </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>click-event</td>
+          <td>String</td>
+          <td>
+            Configure a button to emit a specific event on click. 
           </td>
         </tr>
       </tbody>
@@ -164,18 +171,16 @@
     <h3 class="margin-b-little" id="size">Size</h3>
     <lib-toolbar>
       <sh-button variant="primary" size="sm">Primary Small</sh-button>
-      <sh-button variant="primary" size="md">Primary Default</sh-button>
-      <sh-button variant="primary" full size="sm">Primary Small Full</sh-button>
-      <sh-button variant="primary" full>Primary Default Full</sh-button>
-      <hr/>
+      <sh-button variant="primary">Primary Default</sh-button>
+      <div class="pad-t"></div>
       <sh-button variant="secondary" size="sm">Secondary Small</sh-button>
-      <sh-button variant="secondary" size="md">Secondary Default</sh-button>
-      <sh-button variant="secondary" full size="sm">Secondary Small Full</sh-button>
-      <sh-button variant="secondary" full>Secondary Default Full</sh-button>
-      <hr/>
+      <sh-button variant="secondary">Secondary Default</sh-button>
+      <div class="pad-t"></div>
       <sh-button variant="tertiary" size="sm">Tertiary Small</sh-button>
-      <sh-button variant="tertiary" size="md">Tertiary Default</sh-button>
-      <sh-button variant="tertiary" full size="sm">Tertiary Small Full</sh-button>
+      <sh-button variant="tertiary">Tertiary Default</sh-button>
+      <div class="pad-t"></div>
+      <sh-button variant="primary" full>Primary Default Full</sh-button>
+      <sh-button variant="secondary" full>Secondary Default Full</sh-button>
       <sh-button variant="tertiary" full>Tertiary Default Full</sh-button>
     </lib-toolbar>
 
@@ -203,43 +208,33 @@
       </belk-flex>
     </lib-toolbar>
 
-    <h3 class="margin-b-little" id="scaling">Scaling</h3>
+    <!-- <h3 class="margin-b-little" id="scaling">Scaling</h3>
     <lib-toolbar>
-      <div class="text-center">
-        <div class="pad-t-little">
-          <sh-button scale="120">scale = 120</sh-button>
-          <sh-button scale="120" variant="primary">Primary</sh-button>
-        </div>
-        <div class="pad-t-little">
-          <sh-button scale="110">scale = 110</sh-button>
-          <sh-button scale="110" variant="primary">Primary</sh-button>
-        </div>
-        <div class="pad-t-little">
-          <sh-button>DEFAULT</sh-button>
-          <sh-button variant="primary">Primary</sh-button>
-        </div>
-        <div class="pad-t-little">
-          <sh-button scale="90">scale = 90</sh-button>
-          <sh-button scale="90" variant="primary">Primary</sh-button>
-        </div>
-        <div class="pad-t-little">
-          <sh-button scale="80">scale = 80</sh-button>
-          <sh-button scale="80" variant="primary">Primary</sh-button>
-        </div>
-        <div class="pad-t-little">
-          <sh-button scale="70">scale = 70</sh-button>
-          <sh-button scale="70" variant="primary">Primary</sh-button>
-        </div>
-        <div class="pad-t-little">
-          <sh-button scale="60">scale = 60</sh-button>
-          <sh-button scale="60" variant="primary">Primary</sh-button>
-        </div>
-        <div class="pad-t-little">
-          <sh-button scale="50">scale = 50</sh-button>
-          <sh-button scale="50" variant="primary">Primary</sh-button>
-        </div>
+      <div class="pad-t-little">
+        <sh-button scale="120" variant="primary">Primary</sh-button>
       </div>
-    </lib-toolbar>
+      <div class="pad-t-little">
+        <sh-button scale="110" variant="primary">Primary</sh-button>
+      </div>
+      <div class="pad-t-little">
+        <sh-button variant="primary">Primary</sh-button>
+      </div>
+      <div class="pad-t-little">
+        <sh-button scale="90" variant="primary">Primary</sh-button>
+      </div>
+      <div class="pad-t-little">
+        <sh-button scale="80" variant="primary">Primary</sh-button>
+      </div>
+      <div class="pad-t-little">
+        <sh-button scale="70" variant="primary">Primary</sh-button>
+      </div>
+      <div class="pad-t-little">
+        <sh-button scale="60" variant="primary">Primary</sh-button>
+      </div>
+      <div class="pad-t-little">
+        <sh-button scale="50" variant="primary">Primary</sh-button>
+      </div>
+    </lib-toolbar> -->
     
   </section>
 
@@ -248,6 +243,9 @@
     <dl>
       <dt>1.0.0</dt>
       <dd>Component was created.</dd>
+      <dt>2.0.0</dt>
+      <dd>Style was changed.</dd>
+      <dd>Scaling was removed.</dd>
     </dl>
   </section>
 </div>

@@ -1,0 +1,53 @@
+<template>
+  <div class="belk-shipping-note"
+    :variant="variant">
+    {{ activemsg }}
+  </div>
+</template>
+
+<script>
+import ComponentPrototype from '../../component-prototype';
+
+export default {
+  mixins: [ComponentPrototype],
+
+  name: 'BelkShippingNote',
+
+  props: {
+    msg: {
+      type: String,
+      default: 'Congrats! You\'ve earned FREE Shipping.',
+    },
+    altmsg: {
+      type: String,
+      default: false,
+    },
+  },
+
+  data() {
+    return {
+      activemsg: this.altmsg || this.msg,
+      subTotal: 0,
+    };
+  },
+
+  watch: {
+    freeShipping(val) {
+      if (this.subTotal >= val) this.activemsg = this.msg;
+    },
+  },
+
+  methods: {
+    events() {
+      this.$bus.$on('user-data', (data) => {
+        this.subTotal = data.subTotal;
+      });
+      this.$bus.$on('free-shipping', (val) => {
+        this.freeShipping = val;
+      });
+    },
+  },
+
+};
+</script>
+<style lang="scss" src="../style/default.scss"></style>

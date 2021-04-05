@@ -10,12 +10,22 @@
       </div>
       <div class="bag-content" slot="content">
         <div v-if="itemCount > 0">
+          <div>
+            <span class="bold">Bag Subtotal</span>
+            <span>{{ subTotal }}</span>
+          </div>
+          <component
+            ref="freeShippingMessage"
+            class="text-center"
+            v-bind:is="belkShippingNote">
+          </component>
           <component
             ref="itemList"
             v-bind:is="belkProductList"
             v-bind:product-array="items"
             variant="secondary">
           </component>
+          <sh-button class="primary" link="/shopping-bag">View Bag &amp; Checkout</sh-button>
         </div>
         <div v-if="itemCount === 0">
           <div>
@@ -32,10 +42,12 @@
 
 <script>
 import BelkProductList from '../../belk-product-list/vue/BelkProductList.vue';
+import BelkShippingNote from '../../belk-shipping-note/vue/BelkShippingNote.vue';
 import ComponentPrototype from '../../component-prototype';
+import MoneyFormatter from '../../money-formatter';
 
 export default {
-  mixins: [ComponentPrototype],
+  mixins: [ComponentPrototype, MoneyFormatter],
 
   name: 'BelkBag',
   props: {
@@ -45,10 +57,12 @@ export default {
       default: 0,
     },
     belkProductList: BelkProductList,
+    belkShippingNote: BelkShippingNote,
   },
 
   components: {
     BelkProductList,
+    BelkShippingNote,
   },
 
   computed: {
@@ -57,12 +71,7 @@ export default {
       if (total === 0) {
         return 'Bag';
       }
-      const formatter = new Intl.NumberFormat('en-US', {
-        style: 'currency',
-        currency: 'USD',
-        minimumFractionDigits: 2,
-      });
-      return formatter.format(total);
+      return this.format(total);
     },
   },
 
