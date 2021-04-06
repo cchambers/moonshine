@@ -9,13 +9,19 @@
     v-bind:aria-selected="isActive"
     v-bind:aria-controls="ariaControls"
     class="sh-button">
+    <div v-if="beforeIcon" class="button-icon before">
+      <belk-icon :name="beforeIcon" height="18" width="18"></belk-icon>
+    </div>
     <slot name="before-text"></slot>
-    <div class="active-icon"
+    <!-- <div class="active-icon"
       v-if="activeIcon"><belk-icon width="20" height="20"
-      :name="activeIcon"></belk-icon></div>
+      :name="activeIcon"></belk-icon></div> -->
     <div class="actual-text"><slot></slot></div>
     <div class="active-text" v-if="isActive">{{activeText}}</div>
     <slot name="after-text"></slot>
+    <div v-if="icon" class="button-icon after">
+      <belk-icon :name="icon" height="13" width="13"></belk-icon>
+    </div>
   </button>
 </template>
 
@@ -36,6 +42,8 @@ export default {
     },
     activeText: String,
     activeIcon: String,
+    beforeIcon: String,
+    icon: String,
     group: String,
     closeTrigger: Boolean,
     printTrigger: Boolean,
@@ -46,6 +54,7 @@ export default {
     defaultValue: String,
     active: Boolean,
     link: Boolean,
+    size: String,
     ariaRole: String,
     ariaControls: String,
     type: {

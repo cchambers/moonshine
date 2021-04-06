@@ -150,22 +150,27 @@
 
   <section id="examples">
     <h2>Examples</h2>
-
-    <h3 class="margin-b-little">Default</h3>
-    <lib-toolbar>
+    <!-- <lib-toolbar>
       <sh-button variant="primary" toggle>Toggle Button</sh-button>
       <sh-button variant="primary">
         <i class="material-icons" slot="before-text">close</i>With Icon<i class="material-icons" slot="after-text">check</i>
       </sh-button>
       <sh-button variant="primary">With Active Icon</sh-button>
-    </lib-toolbar>
+    </lib-toolbar> -->
 
-    
     <h3 class="margin-b-little" id="variants">Variants</h3>
     <lib-toolbar>
       <sh-button variant="primary">Primary</sh-button>
       <sh-button variant="secondary">Secondary</sh-button>
       <sh-button variant="tertiary">Tertiary</sh-button>
+    </lib-toolbar>
+
+    <h3 class="margin-b-little" id="with-icon">With Icon</h3>
+    <lib-toolbar>
+      <sh-button variant="primary" icon="arrow-right">Primary</sh-button>
+      <sh-button variant="secondary" icon="arrow-right">Secondary</sh-button>
+      <div class="pad-t"></div>
+      <sh-button variant="tertiary" size="sm" before-icon="print">Print</sh-button>
     </lib-toolbar>
 
     <h3 class="margin-b-little" id="size">Size</h3>
@@ -246,6 +251,7 @@
       <dt>2.0.0</dt>
       <dd>Style was changed.</dd>
       <dd>Scaling was removed.</dd>
+      <dd>Icon handling and animation added.</dd>
     </dl>
   </section>
 </div>
