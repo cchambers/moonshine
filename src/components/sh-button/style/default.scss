@@ -78,7 +78,7 @@ sh-button {
         transform: translateX(4px) translateY(2px) translateZ(0);
         transition: transform 200ms $accel;
         &.before {
-          transform: translateX(-4px) translateY(2px) translateZ(0);
+          transform: translateX(0) translateY(2px) translateZ(0);
         }
       }
     }
