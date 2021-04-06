@@ -1,19 +1,19 @@
 sh-button[variant=tertiary] {
   button {
     color: $brand-blue;
-    box-shadow: inset 1px 0px 0 $highlight-tertiary,
-      inset -1px 0px 0 $highlight-tertiary,
-      inset 0px 1px 0 $highlight-tertiary,
-      inset 0px -1px 0 $highlight-tertiary;
+    box-shadow: inset 1px 0px 0 $lowlight-tertiary,
+      inset -1px 0px 0 $lowlight-tertiary,
+      inset 0px 1px 0 $lowlight-tertiary,
+      inset 0px -1px 0 $lowlight-tertiary;
     transition: none;
 
     &:hover,
     &.active {
       background: $highlight-secondary;
-      box-shadow: inset 2px 0px 0 $highlight-tertiary,
-        inset -2px 0px 0 $highlight-tertiary,
-        inset 0px 2px 0 $highlight-tertiary,
-        inset 0px -2px 0 $highlight-tertiary;
+      box-shadow: inset 2px 0px 0 $lowlight-tertiary,
+        inset -2px 0px 0 $lowlight-tertiary,
+        inset 0px 2px 0 $lowlight-tertiary,
+        inset 0px -2px 0 $lowlight-tertiary;
     }
   }
 }
