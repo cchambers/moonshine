@@ -130,7 +130,6 @@ export default {
             } catch (e) {
               // Oh well...
             }
-
             self.handleHeader(res);
           }
         }
@@ -175,8 +174,8 @@ export default {
       this.$set(this.headerData, 'auth', data.userDetails.authenticated);
       this.$set(this.headerData, 'qty', data.cartQty);
       this.$set(this.headerData, 'total', data.subTotal);
-      this.$set(this.headerData, 'store', data.storeName);
-      if (this.headerData.auth) this.$el.classList.add('is-user');
+      this.$set(this.headerData, 'store', data.storeDetails);
+      if (this.headerData.auth) this.actual.classList.add('is-user');
       this.baseData = true;
     },
 
@@ -233,7 +232,7 @@ export default {
     },
 
     updateHeightProp() {
-      setTimeout(() => { document.documentElement.style.setProperty('--header-height', this.actual.clientHeight); });
+      setTimeout(() => { document.documentElement.style.setProperty('--header-height', `${this.actual.clientHeight}px`); });
     },
 
     scrollState(num) {
@@ -245,12 +244,14 @@ export default {
       const values = Object.values(data);
       for (let i = 0; i < keys.length; i += 1) {
         const val = values[i];
-        const els = document.querySelectorAll(`[fill="${keys[i]}"]`);
-        els.forEach((el) => {
-          const target = el;
-          target.innerText = val;
-          target.setAttribute('filled', true);
-        });
+        if (val) {
+          const els = document.querySelectorAll(`[data-fill="${keys[i]}"]`);
+          els.forEach((el) => {
+            const target = el;
+            target.innerText = val;
+            target.setAttribute('filled', true);
+          });
+        }
       }
     },
   },
