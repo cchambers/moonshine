@@ -234,7 +234,7 @@ sh-button {
     transform: translateX(0) translateY(2px) translateZ(0);
     transition: transform 200ms $decel;
     &.before {
-      margin-left: -5px;
+      margin-left: 0;
       margin-right: $micro;
     }
   }
