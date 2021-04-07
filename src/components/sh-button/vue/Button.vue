@@ -4,7 +4,13 @@
     v-on:keyup.enter="tapHandler"
     :close-trigger="closeTrigger"
     :print-trigger="printTrigger"
-    :value="defaultValue"
+    :value="value"
+    :name="name"
+    :form="form"
+    :formaction="formaction"
+    :formmethod="formmethod"
+    :formtarget="formtarget"
+    :disabled="disabled"
     v-bind:role="ariaRole"
     v-bind:aria-selected="isActive"
     v-bind:aria-controls="ariaControls"
@@ -51,16 +57,23 @@ export default {
     round: String,
     outline: Boolean,
     clickEvent: String,
-    defaultValue: String,
     active: Boolean,
     link: Boolean,
     size: String,
     ariaRole: String,
     ariaControls: String,
+    value: String,
+    name: String,
     type: {
       type: String,
       default: 'button',
     },
+    form: String,
+    formaction: String,
+    formmethod: String,
+    formtarget: String,
+    disabled: Boolean,
+    autofocus: Boolean,
     uniqueId: String,
   },
 
