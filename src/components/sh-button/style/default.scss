@@ -26,6 +26,13 @@ sh-button {
     &[scale="50"] { font-size: 0.5rem; }
   }
 
+  &[full] {
+    display: flex !important;
+    width: 100% !important;
+    margin-top: $micro;
+    margin-left: 0;
+  }
+
   button {
     position: relative;
     border: 0;
