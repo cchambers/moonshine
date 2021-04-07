@@ -38,7 +38,7 @@
             </ul>
           </td>
         </tr>
-        <tr>
+        <!-- <tr>
           <td>toggle</td>
           <td>Boolean</td>
           <td>
@@ -46,7 +46,7 @@
               <li>Make button have a toggle state.</li>
             </ul>
           </td>
-        </tr>
+        </tr> -->
         <tr>
           <td>round</td>
           <td>Boolean</td>
@@ -80,6 +80,45 @@
           <td>String</td>
           <td>
             Configure a button to emit a specific event on click. 
+          </td>
+        </tr>
+        <tr>
+          <td>type</td>
+          <td>String</td>
+          <td>
+            <ul>
+              <li>The default behavior of the button.</li>
+              <li>Possible values are: submit, reset, button</li>
+              <li>Defaults to: button</li>
+            </ul> 
+          </td>
+        </tr>
+        <tr>
+          <td>form</td>
+          <td>String</td>
+          <td>
+            The <code>form</code> element to associate the button with (its form owner). The value of this attribute must be the id of a <code>form</code> in the same document. (If this attribute is not set, the <code>button</code> is associated with its ancestor <code>form</code> element, if any.)
+          </td>
+        </tr>
+        <tr>
+          <td>formaction</td>
+          <td>String</td>
+          <td>
+            The URL that processes the information submitted by the button. Overrides the action attribute of the button's form owner. Does nothing if there is no form owner.
+          </td>
+        </tr>
+        <tr>
+          <td>formmethod</td>
+          <td>String</td>
+          <td>
+            If the button is a submit button (it's inside/associated with a <code>form</code> and doesn't have type="button"), this attribute specifies the HTTP method used to submit the form. Possible values: post, get.
+          </td>
+        </tr>
+        <tr>
+          <td>formtarget</td>
+          <td>String</td>
+          <td>
+            If the button is a submit button, this attribute is a author-defined name or standardized, underscore-prefixed keyword indicating where to display the response from submitting the form. This is the name of, or keyword for, a browsing context (a tab, window, or <code>iframe</code>).
           </td>
         </tr>
       </tbody>
