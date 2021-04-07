@@ -2,21 +2,19 @@
   <div class="belk-storefinder">
     <sh-nav-item
       v-if="hasStoreAddress"
-      variant="primary"
       has-arrow
       boundaries-selector="#primary-nav"
-      foreground-selector="header .pre-and-primary"
-    >
+      foreground-selector="header .pre-and-primary">
       <div slot="reference" class="sf-link">
         <belk-icon name="map-pin" width="9" class="margin-r-atomic"></belk-icon>
         <span>{{ storeData.storeName }}</span>
       </div>
       <div slot="content">
         <ul>
-          <li class="store-hours">
+          <li class="margin-b-little">
             Open Today {{ storeData.storeHours }}
           </li>
-          <li class="store-address">
+          <li class="margin-b-little">
             <div>{{ storeData.address1 }}</div>
             <div>{{ storeData.address2 }}</div>
             <div>
@@ -24,7 +22,7 @@
               <span>{{ storeData.stateCode }}</span>,
               <span>{{ storeData.postalCode }}</span>
             </div>
-            <div>{{ storeData.phoneNumber }}</div>
+            <div class="bold">{{ storeData.phoneNumber }}</div>
           </li>
           <li>
             <a :href="storefinderLink">
@@ -75,7 +73,6 @@ export default {
       this.$bus.$on('user-data', this.handleUserData);
     },
     handleUserData(data) {
-      console.log(data);
       if (data.store) {
         this.storeData = data.store;
         this.hasStoreAddress = true;

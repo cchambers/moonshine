@@ -34,6 +34,12 @@ belk-header {
     background: $highlight-secondary;
   }
 
+  [filled="true"] {
+    display: inline-block;
+    margin-left: 0.25em;
+    margin-right: 0.25em;
+  }
+
   .registered {
     display: none;
   }
@@ -124,9 +130,10 @@ belk-header {
     }
 
     .iconbar-action {
-      .reference > a,
-      .reference > div {
-        padding: 12px 13px;
+      .popper-target > a,
+      .popper-target > div {
+        display: flex;
+        padding: $micro;
         box-sizing: border-box;
       }
       border-radius: 5px;
@@ -173,7 +180,7 @@ belk-header {
       belk-storefinder {
         height: $primary-nav-height;
       }
-      a {
+      a, .nav-link {
         display: flex;
         align-items: center;
         padding: 0 $micro;
@@ -223,21 +230,16 @@ belk-header {
     -webkit-overflow-scrolling: touch;
     top: 0px;
 
-    sh-nav-item {
-      display: none;
-
-      .reference {
-        height: 5rem;
-        line-height: 1.2;
-        display: inline-flex;
-        align-items: center;
-        padding: 0 8px;
-        justify-content: center;
-        text-align: center;
-      }
-    }
     .popper-target {
       line-height: 4.5rem;
+      height: 5rem;
+      line-height: 1.2;
+      display: inline-flex;
+      align-items: center;
+      padding: 0 $micro;
+      > div {
+        background-color: transparent !important;
+      }
       &.active {
         &:after {
           display: block;
@@ -276,9 +278,6 @@ belk-header {
         > li {
           // break-inside: avoid;
           margin-bottom: 2rem;
-        }
-        .cat-ad-banner {
-          margin-top: 2rem;
         }
         .l2 {
           font-weight: bold;
@@ -364,7 +363,7 @@ belk-header {
       .primary-utility {
         display: flex;
 
-        sh-nav-item .reference {
+        sh-nav-item .popper-target {
           height: $primary-nav-height;
         }
 
@@ -512,12 +511,15 @@ belk-header {
     }
   }
 
-  .layout-horizontal {
+  .horizontal {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     margin: 0 auto;
     max-width: 96rem;
+
+    max-height: calc(100vh - 250px);
+    max-height: calc(100vh - var(--header-height));
     @include xl {
       max-width: 128rem;
     }

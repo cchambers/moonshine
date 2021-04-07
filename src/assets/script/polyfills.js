@@ -1,8 +1,38 @@
-/* eslint-disable */ 
+/* eslint-disable */
 
 (function () {
+  String.prototype.toTitleCase = function () {
+    'use strict';
+    const ignore = 'and,the,in,with,an,or,at,of,a,to,for'.split(',');
+    let text = this.toString();
+    let split = text.split(' ');
+    for (let x = 0; x < split.length; x++) {
+      if (x > 0) {
+        if (ignore.indexOf(split[x].toLowerCase()) < 0) {
+          split[x] = split[x].replace(/\w\S*/g, (txt) => {
+            return txt.charAt(0)
+              .toUpperCase() + txt.substr(1)
+              .toLowerCase();
+          })
+        };
+      } else {
+        split[x] = split[x].replace(/\w\S*/g, (txt) => {
+          return txt.charAt(0)
+            .toUpperCase() + txt.substr(1)
+            .toLowerCase();
+        })
+      }
+    }
+    return split.join(' ');
+  }
+  
+
   function CustomEvent(event, params) {
-    params = params || { bubbles: false, cancelable: false, detail: null };
+    params = params || {
+      bubbles: false,
+      cancelable: false,
+      detail: null
+    };
     const evt = document.createEvent('CustomEvent');
     evt.initCustomEvent(event, params.bubbles, params.cancelable, params.detail);
     return evt;
@@ -34,8 +64,9 @@
   }
 
   if (!Array.prototype.forEach) {
-    Array.prototype.forEach = function (callback/* , thisArg */) {
-      let T; let
+    Array.prototype.forEach = function (callback /* , thisArg */ ) {
+      let T;
+      let
         k;
 
       if (this === null) {
@@ -104,12 +135,12 @@
         value: function prepend() {
           var argArr = Array.prototype.slice.call(arguments),
             docFrag = document.createDocumentFragment();
-  
+
           argArr.forEach(function (argItem) {
             var isNode = argItem instanceof Node;
             docFrag.appendChild(isNode ? argItem : document.createTextNode(String(argItem)));
           });
-  
+
           this.insertBefore(docFrag, this.firstChild);
         }
       });

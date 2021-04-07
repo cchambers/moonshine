@@ -243,14 +243,17 @@ export default {
       const keys = Object.keys(data);
       const values = Object.values(data);
       for (let i = 0; i < keys.length; i += 1) {
-        const val = values[i];
+        let val = values[i];
         if (val) {
-          const els = document.querySelectorAll(`[data-fill="${keys[i]}"]`);
-          els.forEach((el) => {
-            const target = el;
-            target.innerText = val;
-            target.setAttribute('filled', true);
-          });
+          setTimeout(() => {
+            const els = document.querySelectorAll(`[data-fill="${keys[i]}"]`);
+            els.forEach((el) => {
+              const target = el;
+              if (typeof val === 'string' && val === val.toUpperCase()) val = val.toTitleCase();
+              target.innerText = val;
+              target.setAttribute('filled', true);
+            });
+          }, 50);
         }
       }
     },
