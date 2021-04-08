@@ -1,15 +1,18 @@
 sh-button[variant=secondary] {
   button {
-    color: $highlight-primary;
-    background-color: $accent-primary;
+    color: $brand-blue;
+    box-shadow: inset 1px 0px 0 $brand-blue,
+                inset -1px 0px 0 $brand-blue,
+                inset 0px 1px 0 $brand-blue,
+                inset 0px -1px 0 $brand-blue;
+    transition: none;
 
     &:hover,
     &.active {
-      background-color: $accent-tertiary;
+      box-shadow: inset 2px 0px 0 $brand-blue,
+      inset -2px 0px 0 $brand-blue,
+      inset 0px 2px 0 $brand-blue,
+      inset 0px -2px 0 $brand-blue;
     }
-  }
-
-  &[outline] button {
-    color: $accent-primary;
   }
 }

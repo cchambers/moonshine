@@ -44,9 +44,10 @@
 import BelkProductList from '../../belk-product-list/vue/BelkProductList.vue';
 import BelkShippingNote from '../../belk-shipping-note/vue/BelkShippingNote.vue';
 import ComponentPrototype from '../../component-prototype';
+import MoneyFormatter from '../../money-formatter';
 
 export default {
-  mixins: [ComponentPrototype],
+  mixins: [ComponentPrototype, MoneyFormatter],
 
   name: 'BelkBag',
   props: {
@@ -70,12 +71,7 @@ export default {
       if (total === 0) {
         return 'Bag';
       }
-      const formatter = new Intl.NumberFormat('en-US', {
-        style: 'currency',
-        currency: 'USD',
-        minimumFractionDigits: 2,
-      });
-      return formatter.format(total);
+      return this.format(total);
     },
   },
 
