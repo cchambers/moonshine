@@ -1,0 +1,36 @@
+/* default styling */
+
+belk-pass {
+  display: inline-flex;
+
+  .belk-pass {
+    border: 1px solid $accent-primary;
+    display: flex;
+    align-items: center;
+    min-width: 34rem;
+    input {
+      border: 0;
+      outline: 0;
+      line-height: 3.4rem;
+      font-size: 1.4rem;
+      display: block;
+      width: 100%;
+      padding: $micro;
+    }
+    .pass-input {
+      width: 100%;
+      flex-shrink: 1;
+    }
+    .pass-toggle {
+      display: flex;
+      align-items: center;
+      padding: $micro;
+      color: $lowlight-tertiary;
+      cursor: pointer;
+      height: 100%;
+      i {
+        font-size: 2rem;
+      }
+    }
+  }
+}

@@ -23,4 +23,18 @@ export default {
   mounted() {
     this.html = this.$slots.default[0].elm.innerHTML;
   },
+
+  methods: {
+    events() {
+      this.$bus.$on(`${this.tipId}-show`, () => {
+        this.active = true;
+      });
+      this.$bus.$on(`${this.tipId}-hide`, () => {
+        this.active = false;
+      });
+      this.$bus.$on(`${this.tipId}-update`, (data) => {
+        this.tip = data.tip;
+      });
+    },
+  },
 };

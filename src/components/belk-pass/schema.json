@@ -1,0 +1,20 @@
+{
+  "name": "Belk Pass",
+  "category": "features",
+  "production": true,
+  "element": "belk-pass",
+  "description": "Password input component.",
+  "tags": ["form elements", "password"],
+  "requirements": {
+    "Input": [
+      "accept a password"
+    ],
+    "Popper": [
+      "show when [hint] is active",
+      "do not close while user is typing?"
+    ],
+    "a11y": [
+      "Popper will alert password rules that are present"
+    ]
+  }
+}
