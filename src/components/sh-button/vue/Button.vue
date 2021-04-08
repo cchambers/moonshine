@@ -10,7 +10,7 @@
     :formaction="formaction"
     :formmethod="formmethod"
     :formtarget="formtarget"
-    :disabled="disabled"
+    :disabled="isDisabled"
     v-bind:role="ariaRole"
     v-bind:aria-selected="isActive"
     v-bind:aria-controls="ariaControls"
@@ -84,12 +84,13 @@ export default {
       buttonEl: this.$refs.button,
       isRole: false,
       once: false,
-      disabled: false,
+      isDisabled: false,
     };
   },
 
   created() {
     if (this.link) this.ariaRole = 'link';
+    if (this.disabled) this.isDisabled = true;
   },
 
   mounted() {
@@ -121,10 +122,10 @@ export default {
     },
 
     tapHandler(e) {
-      if (this.disabled) return;
+      if (this.isDisabled) return;
       // this.ripple(e);
       if (this.ajax) {
-        this.disabled = true;
+        this.isDisabled = true;
         this.sendRequest();
       }
       if (this.toggle && !this.ajax) this.doToggle();
@@ -163,11 +164,11 @@ export default {
           if (this.ajaxSuccess) {
             this.$bus.$emit(this.ajaxSuccess, data);
           } else if (this.toggle) this.doToggle();
-          this.disabled = false;
+          this.isDisabled = false;
         })
         .catch((error) => {
           this.log(error, 1);
-          this.disabled = false;
+          this.isDisabled = false;
         });
     },
 
