@@ -25,12 +25,6 @@ export default {
     defaultValue: String,
   },
 
-  data() {
-    return {
-      test: 'ok',
-    };
-  },
-
   methods: {
     keyupHandler(e) {
       const val = e.target.value;

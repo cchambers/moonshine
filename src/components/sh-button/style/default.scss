@@ -56,6 +56,13 @@ sh-button {
     &[scale="50"] { font-size: 0.5rem; }
   }
 
+  &[full] {
+    display: flex !important;
+    width: 100% !important;
+    margin-top: $micro;
+    margin-left: 0;
+  }
+
   button {
     position: relative;
     border: 0;
@@ -78,7 +85,7 @@ sh-button {
         transform: translateX(4px) translateY(2px) translateZ(0);
         transition: transform 200ms $accel;
         &.before {
-          transform: translateX(-4px) translateY(2px) translateZ(0);
+          transform: translateX(0) translateY(2px) translateZ(0);
         }
       }
     }

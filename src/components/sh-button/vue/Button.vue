@@ -4,7 +4,13 @@
     v-on:keyup.enter="tapHandler"
     :close-trigger="closeTrigger"
     :print-trigger="printTrigger"
-    :value="defaultValue"
+    :value="value"
+    :name="name"
+    :form="form"
+    :formaction="formaction"
+    :formmethod="formmethod"
+    :formtarget="formtarget"
+    :disabled="isDisabled"
     v-bind:role="ariaRole"
     v-bind:aria-selected="isActive"
     v-bind:aria-controls="ariaControls"
@@ -51,16 +57,23 @@ export default {
     round: String,
     outline: Boolean,
     clickEvent: String,
-    defaultValue: String,
     active: Boolean,
     link: Boolean,
     size: String,
     ariaRole: String,
     ariaControls: String,
+    value: String,
+    name: String,
     type: {
       type: String,
       default: 'button',
     },
+    form: String,
+    formaction: String,
+    formmethod: String,
+    formtarget: String,
+    disabled: Boolean,
+    autofocus: Boolean,
     uniqueId: String,
   },
 
@@ -71,12 +84,13 @@ export default {
       buttonEl: this.$refs.button,
       isRole: false,
       once: false,
-      disabled: false,
+      isDisabled: false,
     };
   },
 
   created() {
     if (this.link) this.ariaRole = 'link';
+    if (this.disabled) this.isDisabled = true;
   },
 
   mounted() {
@@ -108,10 +122,10 @@ export default {
     },
 
     tapHandler(e) {
-      if (this.disabled) return;
+      if (this.isDisabled) return;
       // this.ripple(e);
       if (this.ajax) {
-        this.disabled = true;
+        this.isDisabled = true;
         this.sendRequest();
       }
       if (this.toggle && !this.ajax) this.doToggle();
@@ -150,11 +164,11 @@ export default {
           if (this.ajaxSuccess) {
             this.$bus.$emit(this.ajaxSuccess, data);
           } else if (this.toggle) this.doToggle();
-          this.disabled = false;
+          this.isDisabled = false;
         })
         .catch((error) => {
           this.log(error, 1);
-          this.disabled = false;
+          this.isDisabled = false;
         });
     },
 
