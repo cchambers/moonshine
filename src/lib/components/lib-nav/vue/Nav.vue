@@ -162,6 +162,7 @@ export default {
 
     toggleNav() {
       this.navShown = !this.navShown;
+      if (this.navShown) this.$refs.search.focus();
     },
 
     toggleFilter() {

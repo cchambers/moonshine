@@ -1,0 +1,138 @@
+<%- htmlWebpackPlugin.options.docsHead %>
+
+<title><%= htmlWebpackPlugin.options.title %></title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.2.0/zxcvbn.js"></script>
+<div class="documentation contain">
+  <h1>Belk Pass</h1>
+  <section id="usage">
+    <h2>Usage</h2>
+    <pre>
+      <code class="language-html">
+          &lt;belk-pass&gt;new component&lt;/belk-pass&gt;
+      </code>
+    </pre>
+
+  </section>
+
+  <section id="reference" class="baseline30">
+    <h2>Reference</h2>
+    <h3 id="attributes">Attributes</h3>
+
+    <table class="attributes">
+      <thead>
+        <tr>
+          <th>Attribute</th>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>hidden</td>
+          <td>Boolean</td>
+          <td>Hide from view.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3 id="slots">Slots</h3>
+
+    <table class="slots">
+      <thead>
+        <tr>
+          <th>Slot</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>default</td>
+          <td>
+            Text content.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3 id="methods">Public Methods</h3>
+
+        <!-- <table class="methods">
+      <thead>
+        <tr>
+          <th>Function</th>
+          <th>Params</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>snap</td>
+          <td>
+            <ul>
+              <li>
+                none
+              </li>
+            </ul>
+          </td>
+          <td>
+            Perform snap animation and halve text.
+          </td>
+        </tr>
+      </tbody> -->
+    </table>
+
+    <!-- <h3 id="events">Events</h3>
+
+    <table class="events">
+      <thead>
+        <tr>
+          <th>Event</th>
+          <th>Payload Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>event-name</td>
+          <td>
+            Type
+          </td>
+          <td>
+            Fires when something happens.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section> -->
+
+  <section id="examples">
+    <h2>Examples</h2>
+    <h3>Default</h3>
+    <lib-toolbar>
+      <h4>Default</h4>
+      <!-- <div class="flex center">
+        <belk-pass></belk-pass>
+      </div> -->
+      <h4 class="margin-t">With <code>zxcvb</code> Meter</h4>
+      <div class="flex center">
+        <belk-pass hint></belk-pass>
+      </div>
+    </lib-toolbar>
+  </section>
+
+  <section id="changelog">
+    <h2>Changelog</h2>
+    <dl>
+      <dt>0.1.0</dt>
+      <dd>Belk Pass is under development.</dd>
+    </dl>
+  </section>
+
+  <!-- Uncomment this section when you have written requirements in the schema.json!
+    <section id="requirements">
+    <h2>Requirements</h2>
+    <lib-reqs></lib-reqs>
+  </section> -->
+</div>
+
+<%- htmlWebpackPlugin.options.docsFoot %>

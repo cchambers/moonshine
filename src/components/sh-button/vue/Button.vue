@@ -10,18 +10,24 @@
     :formaction="formaction"
     :formmethod="formmethod"
     :formtarget="formtarget"
-    :disabled="disabled"
+    :disabled="isDisabled"
     v-bind:role="ariaRole"
     v-bind:aria-selected="isActive"
     v-bind:aria-controls="ariaControls"
     class="sh-button">
+    <div v-if="beforeIcon" class="button-icon before">
+      <belk-icon :name="beforeIcon" height="18" width="18"></belk-icon>
+    </div>
     <slot name="before-text"></slot>
-    <div class="active-icon"
+    <!-- <div class="active-icon"
       v-if="activeIcon"><belk-icon width="20" height="20"
-      :name="activeIcon"></belk-icon></div>
+      :name="activeIcon"></belk-icon></div> -->
     <div class="actual-text"><slot></slot></div>
     <div class="active-text" v-if="isActive">{{activeText}}</div>
     <slot name="after-text"></slot>
+    <div v-if="icon" class="button-icon after">
+      <belk-icon :name="icon" height="13" width="13"></belk-icon>
+    </div>
   </button>
 </template>
 
@@ -42,6 +48,8 @@ export default {
     },
     activeText: String,
     activeIcon: String,
+    beforeIcon: String,
+    icon: String,
     group: String,
     closeTrigger: Boolean,
     printTrigger: Boolean,
@@ -51,6 +59,7 @@ export default {
     clickEvent: String,
     active: Boolean,
     link: Boolean,
+    size: String,
     ariaRole: String,
     ariaControls: String,
     value: String,
@@ -75,12 +84,13 @@ export default {
       buttonEl: this.$refs.button,
       isRole: false,
       once: false,
-      disabled: false,
+      isDisabled: false,
     };
   },
 
   created() {
     if (this.link) this.ariaRole = 'link';
+    if (this.disabled) this.isDisabled = true;
   },
 
   mounted() {
@@ -112,10 +122,10 @@ export default {
     },
 
     tapHandler(e) {
-      if (this.disabled) return;
+      if (this.isDisabled) return;
       // this.ripple(e);
       if (this.ajax) {
-        this.disabled = true;
+        this.isDisabled = true;
         this.sendRequest();
       }
       if (this.toggle && !this.ajax) this.doToggle();
@@ -154,11 +164,11 @@ export default {
           if (this.ajaxSuccess) {
             this.$bus.$emit(this.ajaxSuccess, data);
           } else if (this.toggle) this.doToggle();
-          this.disabled = false;
+          this.isDisabled = false;
         })
         .catch((error) => {
           this.log(error, 1);
-          this.disabled = false;
+          this.isDisabled = false;
         });
     },
 
