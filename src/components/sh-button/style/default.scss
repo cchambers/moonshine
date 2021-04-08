@@ -2,17 +2,47 @@ sh-button {
   display: inline-flex;
   font-size: 1rem;
 
+  .actual-text span,
+  .active-text,
+  .active-icon {
+    font-weight: 600;
+    text-transform: none;bu
+
+    span {
+      font-size: 1em;
+    }
+  }
+
   &[disabled] {
     opacity: 0.5;
     pointer-events: none;
   }
 
-  & ~ sh-button {
+  & + sh-button {
       margin-top: 0.8rem;
     @include md {
       margin-top: 0;
       margin-left: 0.8rem;
     }
+  }
+
+  &[size="sm"] {
+    .actual-text span {
+      font-size: 1.6em;
+    }
+
+    button {
+      padding-left: 16px;
+      padding-right: 16px;
+      min-height: 3.2em;
+    }
+  }
+
+  &[full] {
+    display: flex !important;
+    width: 100% !important;
+    margin-top: $micro;
+    margin-left: 0;
   }
 
   &[scale] {
@@ -36,21 +66,29 @@ sh-button {
   button {
     position: relative;
     border: 0;
-    display: inline-flex;
+    display: flex;
     width: 100%;
     font: inherit !important;
     align-items: center;
     justify-content: center;
     flex-direction: row;
-    padding: 0 1.6em;
-    min-height: 4.5em;
-    min-width: 4.5em;
-    color: $lowlight-primary ;
-    transition: all 250ms $decel !important;
+    padding: 0 3.2em;
+    min-height: 4.8em;
+    border-radius: 5px;
+    color: $lowlight-primary;
     font-size: 1em;
     cursor: pointer;
     overflow: hidden;
     background-color: transparent;
+    &:hover {
+      .button-icon {
+        transform: translateX(4px) translateY(2px) translateZ(0);
+        transition: transform 200ms $accel;
+        &.before {
+          transform: translateX(0) translateY(2px) translateZ(0);
+        }
+      }
+    }
     > * {
       pointer-events: none;
     }
@@ -104,6 +142,7 @@ sh-button {
     }
 
     .material-icons {
+      font-size: 1.6rem;
       &:first-of-type {
         margin-right: 0.5em;
       }
@@ -193,6 +232,17 @@ sh-button {
           text-decoration: underline;
         }
       }
+    }
+  }
+
+  .button-icon {
+    margin-left: $micro;
+    margin-right: -5px;
+    transform: translateX(0) translateY(2px) translateZ(0);
+    transition: transform 200ms $decel;
+    &.before {
+      margin-left: 0;
+      margin-right: $micro;
     }
   }
 }

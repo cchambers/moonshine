@@ -57,21 +57,12 @@
           </td>
         </tr>
         <tr>
-          <td>outline</td>
-          <td>Boolean</td>
+          <td>size</td>
+          <td>String</td>
           <td>
             <ul>
-              <li>Outlined button.</li>
-            </ul>
-          </td>
-        </tr>
-        <tr>
-          <td>scale</td>
-          <td>Number</td>
-          <td>
-            <ul>
-              <li>Change the scale of the button.</li>
-              <li>Options are: 120, 110, 90, 80, 70, 60, 50</li>
+              <li>Change the size of the button.</li>
+              <li>Option: "sm"</li>
             </ul>
           </td>
         </tr>
@@ -198,116 +189,102 @@
 
   <section id="examples">
     <h2>Examples</h2>
-
-    <h3 class="margin-b-little">Default</h3>
-    <lib-toolbar>
-      <sh-button toggle>Toggle Button</sh-button>
-      <sh-button>
+    <!-- <lib-toolbar>
+      <sh-button variant="primary" toggle>Toggle Button</sh-button>
+      <sh-button variant="primary">
         <i class="material-icons" slot="before-text">close</i>With Icon<i class="material-icons" slot="after-text">check</i>
       </sh-button>
-      <sh-button>With Active Icon</sh-button>
-    </lib-toolbar>
+      <sh-button variant="primary">With Active Icon</sh-button>
+    </lib-toolbar> -->
 
-    
-    <h3 class="margin-b-little" id="variants">Variants</h3>
+    <h3 class="margin-b-micro" id="variants">Variants</h3>
     <lib-toolbar>
-      <sh-button>Default</sh-button>
       <sh-button variant="primary">Primary</sh-button>
       <sh-button variant="secondary">Secondary</sh-button>
+      <sh-button variant="tertiary">Tertiary</sh-button>
     </lib-toolbar>
 
-    <h3 class="margin-b-little" id="round">Round</h3>
+    <h3 class="margin-b-micro" id="with-icon">With Icon</h3>
     <lib-toolbar>
-      <sh-button round>Default</sh-button>
-      <sh-button round variant="primary">Primary</sh-button>
-      <sh-button round variant="secondary">Secondary</sh-button>
+      <sh-button variant="primary" icon="arrow-right">Primary</sh-button>
+      <sh-button variant="secondary" icon="arrow-right">Secondary</sh-button>
+      <div class="pad-t"></div>
+      <sh-button variant="tertiary" round size="sm" before-icon="print">Print</sh-button>
     </lib-toolbar>
 
-    <h3 class="margin-b-little">Round Values</h3>
+    <h3 class="margin-b-micro" id="size">Size</h3>
+    <lib-toolbar>
+      <sh-button variant="primary" size="sm">Primary Small</sh-button>
+      <sh-button variant="primary">Primary Default</sh-button>
+      <div class="pad-t"></div>
+      <sh-button variant="secondary" size="sm">Secondary Small</sh-button>
+      <sh-button variant="secondary">Secondary Default</sh-button>
+      <div class="pad-t"></div>
+      <sh-button variant="tertiary" size="sm">Tertiary Small</sh-button>
+      <sh-button variant="tertiary">Tertiary Default</sh-button>
+      <div class="pad-t"></div>
+      <sh-button variant="primary" full>Primary Default Full</sh-button>
+      <sh-button variant="secondary" full>Secondary Default Full</sh-button>
+      <sh-button variant="tertiary" full>Tertiary Default Full</sh-button>
+    </lib-toolbar>
+
+    <!-- <h3 class="margin-b-micro">Round Values</h3>
     <lib-toolbar>
       <sh-button round="left" variant="primary">Left</sh-button>
       <sh-button round="right" variant="primary">Right</sh-button>
       <sh-button round="top" variant="primary">Top</sh-button>
       <sh-button round="bottom" variant="primary">Bottom</sh-button>
-    </lib-toolbar>
-        
-    <h3 class="margin-b-little" id="variants">Outline</h3>
-    <lib-toolbar>
-      <sh-button outline>Default</sh-button>
-      <sh-button outline variant="primary">Primary</sh-button>
-      <sh-button outline variant="secondary">Secondary</sh-button>
-    </lib-toolbar>
+    </lib-toolbar> -->
 
-    <h3 class="margin-b-little" id="variants">Outline + Round</h3>
-    <lib-toolbar>
-      <sh-button outline round>Default</sh-button>
-      <sh-button outline round variant="primary">Primary</sh-button>
-      <sh-button outline round variant="secondary">Secondary</sh-button>
-      <sh-button outline round round variant="primary">Primary Round</sh-button>
-    </lib-toolbar>
-
-    <h3 class="margin-b-little" id="buttongroup">Button Groups w/ <code>belk-flex</code></h3>
+    <h3 class="margin-b-micro" id="buttongroup">Button Groups w/ <code>belk-flex</code></h3>
     <lib-toolbar>
       <belk-flex variant="buttons">
-        <sh-button reject-trigger>Cancel</sh-button>
-        <sh-button variant="primary" type="submit">Primary</sh-button>
-        <sh-button variant="secondary">Secondary</sh-button>
+        <sh-button variant="tertiary">Cancel</sh-button>
+        <sh-button variant="primary" type="submit">Submit</sh-button>
+        <sh-button variant="secondary">Reset</sh-button>
       </belk-flex>
     </lib-toolbar>
 
-    <h3 class="margin-b-little" id="scaling">Scaling</h3>
+
+
+    <h3 class="margin-b-micro" id="round">Round</h3>
     <lib-toolbar>
-      <div class="text-center">
-        <div class="pad-t-little">
-          <sh-button scale="120">scale = 120</sh-button>
-          <sh-button scale="120" variant="primary">Primary</sh-button>
-          <sh-button scale="120" outline variant="primary">Primary Outline</sh-button>
-          <sh-button scale="120" round variant="primary">Primary Round</sh-button>
-        </div>
-        <div class="pad-t-little">
-          <sh-button scale="110">scale = 110</sh-button>
-          <sh-button scale="110" variant="primary">Primary</sh-button>
-          <sh-button scale="110" outline variant="primary">Primary Outline</sh-button>
-          <sh-button scale="110" round variant="primary">Primary Round</sh-button>
-        </div>
-        <div class="pad-t-little">
-          <sh-button>DEFAULT</sh-button>
-          <sh-button variant="primary">Primary</sh-button>
-          <sh-button outline variant="primary">Primary Outline</sh-button>
-          <sh-button round variant="primary">Primary Round</sh-button>
-        </div>
-        <div class="pad-t-little">
-          <sh-button scale="90">scale = 90</sh-button>
-          <sh-button scale="90" variant="primary">Primary</sh-button>
-          <sh-button scale="90" outline variant="primary">Primary Outline</sh-button>
-          <sh-button scale="90" round variant="primary">Primary Round</sh-button>
-        </div>
-        <div class="pad-t-little">
-          <sh-button scale="80">scale = 80</sh-button>
-          <sh-button scale="80" variant="primary">Primary</sh-button>
-          <sh-button scale="80" outline variant="primary">Primary Outline</sh-button>
-          <sh-button scale="80" round variant="primary">Primary Round</sh-button>
-        </div>
-        <div class="pad-t-little">
-          <sh-button scale="70">scale = 70</sh-button>
-          <sh-button scale="70" variant="primary">Primary</sh-button>
-          <sh-button scale="70" outline variant="primary">Primary Outline</sh-button>
-          <sh-button scale="70" round variant="primary">Primary Round</sh-button>
-        </div>
-        <div class="pad-t-little">
-          <sh-button scale="60">scale = 60</sh-button>
-          <sh-button scale="60" variant="primary">Primary</sh-button>
-          <sh-button scale="60" outline variant="primary">Primary Outline</sh-button>
-          <sh-button scale="60" round variant="primary">Primary Round</sh-button>
-        </div>
-        <div class="pad-t-little">
-          <sh-button scale="50">scale = 50</sh-button>
-          <sh-button scale="50" variant="primary">Primary</sh-button>
-          <sh-button scale="50" outline variant="primary">Primary Outline</sh-button>
-          <sh-button scale="50" round variant="primary">Primary Round</sh-button>
-        </div>
-      </div>
+      <sh-button round variant="primary">Primary</sh-button>
+      <sh-button round variant="secondary">Secondary</sh-button>
+      <sh-button round variant="tertiary">Tertiary</sh-button>
+      <div class="pad-t"></div>
+      <sh-button size="sm" round variant="primary">Primary</sh-button>
+      <sh-button size="sm" round variant="secondary">Secondary</sh-button>
+      <sh-button size="sm" round variant="tertiary">Tertiary</sh-button>
     </lib-toolbar>
+
+    <!-- <h3 class="margin-b-micro" id="scaling">Scaling</h3>
+    <lib-toolbar>
+      <div class="pad-t-little">
+        <sh-button scale="120" variant="primary">Primary</sh-button>
+      </div>
+      <div class="pad-t-little">
+        <sh-button scale="110" variant="primary">Primary</sh-button>
+      </div>
+      <div class="pad-t-little">
+        <sh-button variant="primary">Primary</sh-button>
+      </div>
+      <div class="pad-t-little">
+        <sh-button scale="90" variant="primary">Primary</sh-button>
+      </div>
+      <div class="pad-t-little">
+        <sh-button scale="80" variant="primary">Primary</sh-button>
+      </div>
+      <div class="pad-t-little">
+        <sh-button scale="70" variant="primary">Primary</sh-button>
+      </div>
+      <div class="pad-t-little">
+        <sh-button scale="60" variant="primary">Primary</sh-button>
+      </div>
+      <div class="pad-t-little">
+        <sh-button scale="50" variant="primary">Primary</sh-button>
+      </div>
+    </lib-toolbar> -->
     
   </section>
 
@@ -316,6 +293,10 @@
     <dl>
       <dt>1.0.0</dt>
       <dd>Component was created.</dd>
+      <dt>2.0.0</dt>
+      <dd>Style was changed.</dd>
+      <dd>Scaling was removed.</dd>
+      <dd>Icon handling and animation added.</dd>
     </dl>
   </section>
 </div>
