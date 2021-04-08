@@ -5,6 +5,7 @@
     @mouseleave="ariaHidden = true">
     <div class="tip" :id="tipId" role="tooltip" :aria-hidden="ariaHidden">
       <slot name="tip">{{ tip }}</slot>
+      <div v-html="tipData"></div>
     </div>
     <span :aria-describedby="tipId">
       <slot></slot>

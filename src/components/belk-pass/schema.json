@@ -1,7 +1,7 @@
 {
   "name": "Belk Pass",
   "category": "features",
-  "production": true,
+  "production": false,
   "element": "belk-pass",
   "description": "Password input component.",
   "tags": ["form elements", "password"],

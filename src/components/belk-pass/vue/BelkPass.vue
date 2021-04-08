@@ -1,26 +1,19 @@
 <template>
   <div class="belk-pass">
-    <div v-if="hint">
-      <sh-tooltip id="pw-tip" ref="tip">
-        <div>
-          <p>Passwords are fun.</p>
-          <ul>
-            <li>more cahrs pls</li>
-          </ul>
-        </div>
-      </sh-tooltip>
+    <div class="pass-tip" v-if="hasHint">
+      <sh-tooltip id="pw-tip" ref="tip"></sh-tooltip>
     </div>
     <div class="pass-input">
-      <input :type="inputType">
+      <input v-on:input="handleInput" ref="input" :type="inputType">
     </div>
-    <div v-hammer:tap="toggleVisibility" class="pass-toggle">
+    <button v-hammer:tap="toggleVisibility" class="pass-toggle">
       <i v-if="showChars" class="material-icons">
         visibility
       </i>
       <i v-else class="material-icons">
         visibility_off
       </i>
-    </div>
+    </button>
   </div>
 </template>
 
@@ -34,16 +27,30 @@ export default {
   name: 'BelkPass',
 
   props: {
-    hint: false,
+    hint: Boolean,
   },
 
   data() {
     return {
       showChars: false,
-      showHint: false,
+      hasHint: false,
       zxc: false,
       inputType: 'password',
+      tipHtml: false,
+      strength: {
+        0: 'Worst',
+        1: 'Bad',
+        2: 'Weak',
+        3: 'Good',
+        4: 'Strong',
+      },
     };
+  },
+
+  watch: {
+    tipHtml(val) {
+      this.$bus.$emit('pw-tip-update', { tip: val });
+    },
   },
 
   mounted() {
@@ -52,6 +59,7 @@ export default {
       setTimeout(() => {
         this.zxc = window.zxcvbn;
       });
+      this.hintSetup();
     }
   },
 
@@ -60,14 +68,36 @@ export default {
       this.log('present');
     },
 
+    handleInput() {
+      this.value = this.$refs.input.value;
+      if (this.hint) {
+        if (this.value !== '') {
+          const result = this.zxc(this.value);
+          this.doHint();
+          this.tipHtml = `Strength: ${this.strength[result.score]} <br> <meter max="4" id="password-strength-meter" value="${result.score}"></meter>`;
+        } else {
+          this.tipHtml = '';
+          this.hideHint();
+        }
+      }
+    },
+
     toggleVisibility() {
       this.showChars = !this.showChars;
       this.inputType = (this.showChars) ? 'text' : 'password';
       this.$refs.input.focus();
     },
 
-    doHint() {
+    hintSetup() {
+      this.hasHint = true;
+    },
 
+    doHint() {
+      this.$bus.$emit('pw-tip-show');
+    },
+
+    hideHint() {
+      this.$bus.$emit('pw-tip-hide');
     },
   },
 

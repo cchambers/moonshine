@@ -9,10 +9,9 @@ sh-tooltip {
 
     &.active {
       .tip {
-        opacity: 1;
+        opacity: 0.9;
+        transform: translateY(0) translateZ(0) translateX(-50%) rotateY(0deg) scale(1);
       }
-      opacity: 0.9;
-      transform: translateY(0) translateZ(0) translateX(-50%) rotateY(0deg) scale(1);
     }
 
     &::after {
