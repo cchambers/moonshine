@@ -66,8 +66,7 @@
   if (!Array.prototype.forEach) {
     Array.prototype.forEach = function (callback /* , thisArg */ ) {
       let T;
-      let
-        k;
+      let k;
 
       if (this === null) {
         throw new TypeError('this is null or not defined');
