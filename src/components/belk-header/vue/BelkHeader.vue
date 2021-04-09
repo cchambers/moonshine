@@ -232,7 +232,9 @@ export default {
     },
 
     updateHeightProp() {
-      setTimeout(() => { document.documentElement.style.setProperty('--header-height', `${this.actual.clientHeight}px`); });
+      setTimeout(() => {
+        if (this.actual) document.documentElement.style.setProperty('--header-height', `${this.actual.clientHeight}px`);
+      }, 10);
     },
 
     scrollState(num) {
