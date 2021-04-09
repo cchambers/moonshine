@@ -1,32 +1,12 @@
 sh-button[variant="primary"] {
   button {
     color: $highlight-primary;
-    background-color: $lowlight-primary;
+    background-color: $accent-primary;
     border: 2px solid transparent;
-    .actual-text span,
-    .active-text,
-    .active-icon {
-      font-weight: 600;
-      text-transform: none;
-      font-size: 1.8em;
-      span {
-        font-size: 1em;
-      }
-    }
 
     &:hover,
     &.active {
-      background-color: $highlight-primary;
-      color: $lowlight-primary;
-      border: 2px solid $lowlight-primary;
-    }
-  }
-
-  &[outline] button {
-    color: $lowlight-primary;
-    &:hover {
-      border: 2px solid $lowlight-primary;
-      background: $lowlight-primary;
+      background-color: $accent-secondary;
     }
   }
 }
