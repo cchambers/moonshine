@@ -3,9 +3,7 @@
     v-bind:class="{ 'touch': mobile }"
     :active="active">
     <div class="popper-target" ref="target">
-      <div class="reference">
-        <slot name="reference"></slot>
-      </div>
+      <slot name="reference"></slot>
     </div>
     <transition
     :name="transition"

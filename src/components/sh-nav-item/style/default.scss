@@ -14,16 +14,6 @@ sh-nav-item {
   .sh-nav-item {
     display: inline-block;
     color: $lowlight-primary;
-
-    .reference a {
-      border-radius: 5px;
-    }
-    
-    &:hover {
-      .reference a {
-        background: $highlight-secondary;
-      }
-    }
   }
   
   .arrow-icon {
@@ -38,16 +28,15 @@ sh-nav-item {
     border-bottom: none;
     display: inline-flex;
     cursor: pointer;
+    position: relative;
 
     button {
       display: none;
     }
 
-    .reference {
-      position: relative;
-    }
-
-    a {
+    a,
+    > div,
+    > span {
       position: relative;
       display: flex;
       align-items: center;
@@ -55,6 +44,10 @@ sh-nav-item {
       transition: all 150ms $ease;
       color: $lowlight-primary;
       cursor: pointer;
+      border-radius: 5px;
+      &:hover {
+        background: $highlight-secondary;
+      }
     }
 
     .belk-icon {
