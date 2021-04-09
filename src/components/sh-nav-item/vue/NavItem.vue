@@ -3,9 +3,7 @@
     v-bind:class="{ 'touch': mobile }"
     :active="active">
     <div class="popper-target" :class="{ active: showPopper }" ref="target">
-      <div class="reference">
-        <slot name="reference"></slot>
-      </div>
+      <slot name="reference"></slot>
     </div>
     <transition
     :name="transition"
@@ -195,7 +193,7 @@ export default {
   mounted() {
     this.referenceElm = this.$refs.target;
     this.popper = this.$refs.popper;
-    this.link = this.referenceElm.querySelector('a');
+    this.link = this.referenceElm.querySelector('a, .nav-link');
     if (this.foregroundSelector) this.foreground = document.querySelector(this.foregroundSelector);
 
     if (this.link) {

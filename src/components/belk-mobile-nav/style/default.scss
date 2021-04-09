@@ -73,6 +73,7 @@ belk-mobile-nav {
         }
       }
       a {
+        display: block;
         padding-left: $micro;
         color: $lowlight-primary;
         line-height: 3.4rem;
@@ -136,7 +137,7 @@ belk-mobile-nav {
       list-style: none;
       li {
         display: flex;
-        border-top: 1px solid $highlight-tertiary;
+        // border-top: 1px solid $highlight-tertiary;
         a {
           display: flex;
           width: 100%;
