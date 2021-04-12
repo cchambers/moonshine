@@ -98,7 +98,7 @@ export default {
     handleUserData(data) {
       if (data.cartQty) this.itemCount = parseInt(data.cartQty, 10);
       if (data.subTotal) this.subTotal = parseInt(data.subTotal, 10);
-      if (data.cart) this.$set(this, 'items', data.cart);
+      if (data.cart) this.$set(this, 'items', data.cart.items);
     },
 
     emitUpdate() {
