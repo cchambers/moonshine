@@ -1,6 +1,6 @@
 <template>
   <div class="belk-bag" :variant="variant" v-bind:class="{ active: itemCount > 0 }">
-    <sh-popper offset-x="-41" placement="bottom" reference-id="belk-bag">
+    <sh-popper :disabled="isDisabled" offset-x="-41" placement="bottom" reference-id="belk-bag">
       <div slot="reference">
         <div class="bag-icon">
           <belk-icon width="33" height="40" name="bag">shopping bag</belk-icon>
@@ -80,12 +80,14 @@ export default {
       items: [],
       itemCount: 0,
       subTotal: 0,
+      isDisabled: false,
     };
   },
 
   created() {
     if (this.count) this.itemCount = this.count;
     if (this.total) this.subTotal = this.subTotal;
+    if (window.location.href.indexOf('shopping-bag')) this.isDisabled = true;
   },
 
   methods: {

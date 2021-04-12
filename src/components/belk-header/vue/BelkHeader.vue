@@ -107,6 +107,8 @@ export default {
       let url;
       let brdurl;
       if (window.Urls) {
+
+      
         url = window.Urls.headerData;
         brdurl = window.Urls.getBRDDetailsForHeader;
       } else {
