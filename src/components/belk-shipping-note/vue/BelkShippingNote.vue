@@ -1,15 +1,14 @@
 <template>
   <div class="belk-shipping-note"
-    :variant="variant">
-    {{ activemsg }}
-  </div>
+    :variant="variant" v-html="activemsg"></div>
 </template>
 
 <script>
 import ComponentPrototype from '../../component-prototype';
+import MoneyFormatter from '../../money-formatter';
 
 export default {
-  mixins: [ComponentPrototype],
+  mixins: [ComponentPrototype, MoneyFormatter],
 
   name: 'BelkShippingNote',
 
@@ -33,7 +32,14 @@ export default {
 
   watch: {
     freeShipping(val) {
-      if (this.subTotal >= val) this.activemsg = this.msg;
+      if (this.subTotal >= val) {
+        this.activemsg = this.msg;
+      } else {
+        const spend = val - this.subTotal;
+        spend = this.format(spend);
+        this.activemsg = `Spend <span class="bold">${spend}</span> more to earn FREE Shipping`;
+        
+      }
     },
   },
 
