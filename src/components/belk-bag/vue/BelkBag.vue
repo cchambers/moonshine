@@ -32,10 +32,10 @@
               </sh-button>
             </div>
           </div>
-          <div class="no-items">
+          <div class="no-items pad-y-little">
             <div>
               <h4>Your bag is empty &amp; could use some love.</h4>
-              <p class="pad-little text-center">
+              <p class="pad-y-little text-center">
                 Sign in to see items you may have added to your bag.
               </p>
             </div>

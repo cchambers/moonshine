@@ -32,14 +32,16 @@
         ref="clear"
         v-if="valueLength>0"
         v-hammer:tap="clearSearch">
-        <belk-icon name="close" width="24">Clear Input</belk-icon>
+        <belk-icon name="close"
+          width="24" height="24">Clear Input</belk-icon>
       </button>
       <button class="flex" aria-role="button"
         aria-label="perform search"
         ref="search"
         v-hammer:tap="doSearch"
         :disabled="isEmpty">
-        <belk-icon name="search" width="30" height="30">Perform Search Action</belk-icon>
+        <belk-icon name="search"
+          width="24" height="24">Perform Search Action</belk-icon>
       </button>
     </div>
     <div ref="loading" class="search-loading">
@@ -603,7 +605,6 @@ export default {
               self.$set(self.allProducts[which], 'products', array);
               const event = `products-loaded.${which}`;
               self.$emit(event, array);
-              console.log(event, array);
             }
           }
         };
