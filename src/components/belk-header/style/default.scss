@@ -30,14 +30,8 @@ belk-header {
     }
   }
 
-  sh-nav-item a:hover {
+  sh-nav-item a:not(.belk-link):hover {
     background: $highlight-secondary;
-  }
-
-  [filled="true"] {
-    display: inline-block;
-    margin-left: 0.25em;
-    margin-right: 0.25em;
   }
 
   .registered {
@@ -129,17 +123,20 @@ belk-header {
       padding: 12px 13px;
     }
 
+    a.iconbar-action {
+      cursor: pointer;
+    }
+
     .iconbar-action {
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
       .popper-target > a,
       .popper-target > div {
         display: flex;
         padding: $micro;
         box-sizing: border-box;
       }
-      border-radius: 5px;
-      display: flex;
-      align-items: center;
-      cursor: pointer;
 
       &.coupon-action {
         display: none;
@@ -180,7 +177,7 @@ belk-header {
       belk-storefinder {
         height: $primary-nav-height;
       }
-      a, .nav-link {
+      a:not(.belk-link), .nav-link {
         display: flex;
         align-items: center;
         padding: 0 $micro;
@@ -225,6 +222,7 @@ belk-header {
 
   //initial meganav styles
   .tertiary {
+    display: none;
     border-bottom: 1px $lowlight-primary;
     background: $highlight-primary;
     -webkit-overflow-scrolling: touch;
@@ -339,15 +337,15 @@ belk-header {
   }
 
   & ~ #wrapper {
-    padding-top: 10.8rem;
-    padding-top: var(--header-height);
+    padding-top: 11rem;
+    // padding-top: var(--header-height);
   }
 
   // Media Queries
   @include md {
     & ~ #wrapper {
       padding-top: 14rem;
-      padding-top: var(--header-height);
+      // padding-top: var(--header-height);
     }
 
     .contain {
@@ -500,8 +498,8 @@ belk-header {
 
     //scroll states for site wrapper
     & ~ #wrapper {
-      padding-top: 19rem;
-      padding-top: var(--header-height);
+      padding-top: 20rem;
+      // padding-top: var(--header-height);
     }
   }
 
@@ -548,5 +546,16 @@ belk-header {
     .l3 .view-all {
       display: none;
     }
+  }
+}
+
+[filled="true"] {
+  &.space {
+    display: inline-block;
+    margin-left: 0.25em;
+    margin-right: 0.25em;
+  }
+  ~ .hide-filled {
+    display: none;
   }
 }

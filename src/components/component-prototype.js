@@ -126,7 +126,7 @@ const ComponentPrototype = {
   mounted() {
     const self = this;
     if (typeof self.events === 'function') setTimeout(self.events);
-    self.$bus.$emit('component-ready', self);
+    // self.$bus.$emit('component-ready', self);
   },
 };
 
