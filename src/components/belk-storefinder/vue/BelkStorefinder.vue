@@ -1,16 +1,17 @@
 <template>
   <div class="belk-storefinder">
+
     <sh-nav-item
       v-if="hasStoreAddress"
       has-arrow
       boundaries-selector="#primary-nav"
       foreground-selector="header .pre-and-primary">
-      <div slot="reference" class="sf-link">
-        <belk-icon name="map-pin" width="9" class="margin-r-atomic"></belk-icon>
+      <div slot="reference" class="nav-link">
+        <belk-icon name="map-pin" width="10" height="15" class="margin-r-atomic"></belk-icon>
         <span>{{ storeData.storeName }}</span>
       </div>
       <div slot="content">
-        <ul>
+        <ul class="lh-20">
           <li class="margin-b-little">
             Open Today {{ storeData.storeHours }}
           </li>
@@ -25,7 +26,7 @@
             <div class="bold">{{ storeData.phoneNumber }}</div>
           </li>
           <li>
-            <a :href="storefinderLink">
+            <a class="belk-link accent-primary" :href="storefinderLink">
               Find Other Stores
             </a>
           </li>

@@ -84,10 +84,11 @@ belk-search {
       width: 100%;
     }
 
-    a {
+    a,
+    .product-link {
       display: flex;
       width: 100%;
-      padding: 1rem;
+      padding: $micro;
       transition: background 250ms $ease;
       color: $lowlight-primary;
       text-decoration: none;

@@ -5,6 +5,16 @@ belk-bag {
   font-size: 1.4rem;
   color: $lowlight-primary;
 
+  .price {
+    display: flex;
+    flex-direction: column;
+    flex-direction: column-reverse;
+  }
+
+  .has-items {
+    display: none;
+  }
+
   .bag-count {
     display: flex;
     height: 100%;
@@ -13,7 +23,6 @@ belk-bag {
   }
 
   .bag-content {
-    overflow-y: auto;
     max-height: calc(100vh - 250px);
     max-height: calc(100vh - var(--header-height));
   }
@@ -24,6 +33,10 @@ belk-bag {
     flex-direction: row;
     align-content: flex-start;
     align-items: center;
+
+    .popper-content {
+      padding: 0;
+    }
 
     .popper-target > div {
       white-space: pre;
@@ -52,13 +65,17 @@ belk-bag {
         margin: 0;
         color: $lowlight-primary;
       }
-
       .bag-background {
         fill: $lowlight-primary;
       }
-
       .bag-count {
         color: $highlight-primary;
+      }
+      .has-items {
+        display: block;
+      }
+      .no-items {
+        display: none;
       }
     }
   }
@@ -88,6 +105,45 @@ belk-bag {
       position: absolute;
       bottom: 0;
     }
+  }
+
+  .bag-list {
+    max-width: 34rem;
+    padding: $micro;
+    * {
+      white-space: normal;
+    }
+    .belk-product {
+      line-height: 2rem;
+      > a {
+        display: flex;
+      }
+      .image {
+        width: 7.5rem;
+        height: 10rem;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center center;
+        flex-shrink: 0;
+      }
+      .data {
+        display: block;
+        width: 50%;
+        flex-grow: 1;
+      }
+      .quick-view {
+        display: none;
+      }
+    }
+  }
+
+  .scrolling-area {
+    overflow-y: auto;
+    padding: $micro;
+    padding-bottom: 0;
+    max-height: calc(100vh - 250px - 90px);
+    max-height: calc(100vh - var(--header-height) - 90px);
+    overscroll-behavior: contain;
   }
 }
 
