@@ -131,7 +131,6 @@ export default {
 
       if (this.price) this.originalPrice = parseInt(this.price, 10);
       if (this.sale_price) this.salePrice = parseInt(this.sale_price, 10);
-      console.log('before', this.originalPrice, this.salePrice);
       if (this.price_range.length > 1) {
         if (this.price_range[0] !== this.price_range[1]) {
           this.originalPrice = `${this.format(this.price_range[0])} - ${this.format(this.price_range[1])}`;
@@ -148,7 +147,6 @@ export default {
           this.salePrice = this.sale_price;
         }
       }
-      console.log('after', this.originalPrice, this.salePrice);
     },
   },
 };
