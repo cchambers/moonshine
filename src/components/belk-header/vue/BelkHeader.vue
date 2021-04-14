@@ -37,6 +37,8 @@ export default {
         store: false,
         cartQty: false,
         subTotal: false,
+        cart: false,
+        auth: false,
       },
       baseData: false,
       brdData: false,
@@ -69,15 +71,22 @@ export default {
     const tert = document.querySelector('nav.lazy');
     if (tert) tert.classList.remove('lazy');
     this.updateHeightProp();
+    const resizeDebounced = this.debounce('adapt-db', this.resizeHandler, 50);
+    window.addEventListener('resize', resizeDebounced, true);
   },
 
   methods: {
     setupEvents() {
       const self = this;
+      self.$bus.$on('header-update', self.updateHeightProp);
       self.$bus.$on('smooth-scroll', self.smoothScrollHandler);
       self.$bus.$on('get-user-data', self.clearForEmit);
       self.$bus.$on('bag-update', self.bagUpdateHandler);
       this.$bus.$on('scroll-event', self.scrollHandler);
+    },
+
+    resizeHandler() {
+      this.updateHeightProp();
     },
 
     smoothScrollHandler(event) {
@@ -107,8 +116,6 @@ export default {
       let url;
       let brdurl;
       if (window.Urls) {
-
-      
         url = window.Urls.headerData;
         brdurl = window.Urls.getBRDDetailsForHeader;
       } else {
@@ -175,8 +182,9 @@ export default {
       this.$set(this.headerData, 'name', data.userDetails.firstName);
       this.$set(this.headerData, 'auth', data.userDetails.authenticated);
       this.$set(this.headerData, 'qty', data.cartQty);
-      this.$set(this.headerData, 'total', data.subTotal);
+      this.$set(this.headerData, 'subTotal', data.subTotal);
       this.$set(this.headerData, 'store', data.storeDetails);
+      this.$set(this.headerData, 'cart', data.cart);
       if (this.headerData.auth) this.actual.classList.add('is-user');
       this.baseData = true;
     },
@@ -244,8 +252,17 @@ export default {
     },
 
     updateContainers(data) {
-      const keys = Object.keys(data);
-      const values = Object.values(data);
+      let obj = {};
+      if (data.store) {
+        obj = {
+          ...data,
+          ...data.store,
+        };
+      } else {
+        obj = data;
+      }
+      const keys = Object.keys(obj);
+      const values = Object.values(obj);
       for (let i = 0; i < keys.length; i += 1) {
         let val = values[i];
         if (val) {
@@ -253,7 +270,10 @@ export default {
             const els = document.querySelectorAll(`[data-fill="${keys[i]}"]`);
             els.forEach((el) => {
               const target = el;
-              if (typeof val === 'string' && val === val.toUpperCase()) val = val.toTitleCase();
+              if (typeof val === 'string'
+                && (val.toUpperCase() === val || val.toLowerCase() === val)) {
+                val = val.toTitleCase();
+              }
               target.innerText = val;
               target.setAttribute('filled', true);
             });

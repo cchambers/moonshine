@@ -35,10 +35,8 @@ export default {
       if (this.subTotal >= val) {
         this.activemsg = this.msg;
       } else {
-        const spend = val - this.subTotal;
-        spend = this.format(spend);
+        const spend = this.format(val - this.subTotal);
         this.activemsg = `Spend <span class="bold">${spend}</span> more to earn FREE Shipping`;
-        
       }
     },
   },

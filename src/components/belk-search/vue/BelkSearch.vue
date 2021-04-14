@@ -26,13 +26,12 @@
         v-on:keydown.up="highlightHandler"
         :placeholder="placeholder"
         @focus="focusHandler"
-        @blur="forceBlur"
       />
       <button class="clear-search flex" aria-role="button"
         aria-label="clear search field"
         ref="clear"
         v-if="valueLength>0"
-        v-hammer:tap="forceBlur">
+        v-hammer:tap="clearSearch">
         <belk-icon name="close" width="24">Clear Input</belk-icon>
       </button>
       <button class="flex" aria-role="button"
@@ -88,7 +87,7 @@
       <div ref="actual"
         v-bind:class="{ active: state === 2 || state === 3 }"
         class="search-suggestions"
-        @touchstart="blurInputMobile()" >
+        @touchstart="blurInputMobile" >
         <div class="keywords">
           <ul>
             <li v-for="(item, index) in suggestionsLimited"
@@ -108,7 +107,7 @@
           <component
             ref="suggestedProducts"
             v-bind:is="belkProductList"
-            v-bind:product-array="productsLimited"
+            v-bind:products="productsLimited"
             variant="secondary"
             :item-limit="3"
           ></component>
@@ -487,7 +486,11 @@ export default {
       this.searchValue = '';
       this.products = [];
       this.clearResponse();
-      if (focus) setTimeout(() => { this.inputEl.focus(); });
+      if (focus) {
+        setTimeout(() => {
+          this.inputEl.focus();
+        });
+      }
     },
 
     clearResponse() {
@@ -553,7 +556,7 @@ export default {
         this.recentSearches(val);
         const url = this.buildSearchLink(val);
         window.location.href = url;
-        this.forceBlur();
+        this.forceBlur('doSearch');
       } else {
         this.inputEl.focus();
       }
@@ -600,6 +603,7 @@ export default {
               self.$set(self.allProducts[which], 'products', array);
               const event = `products-loaded.${which}`;
               self.$emit(event, array);
+              console.log(event, array);
             }
           }
         };

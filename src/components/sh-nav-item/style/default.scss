@@ -34,7 +34,7 @@ sh-nav-item {
       display: none;
     }
 
-    a,
+    a:not(.belk-link),
     > div,
     > span {
       position: relative;
