@@ -107,6 +107,9 @@ export default {
       type: String,
       default: '',
     },
+    offset: {
+      type: String,
+    },
     trigger: {
       type: String,
       default: 'click',
@@ -138,7 +141,7 @@ export default {
           {
             name: 'offset',
             options: {
-              offset: [10, 0],
+              offset: [this.offset || 10, 0],
             },
           },
           {
@@ -199,7 +202,7 @@ export default {
     if (this.link) {
       this.link.setAttribute('aria-haspopup', true);
       this.link.setAttribute('aria-expanded', false);
-      if (this.hasArrow) this.link.innerHTML += '<belk-icon class="arrow-icon" name="arrow-down" width="6" class="margin-l-atomic"></belk-icon>';
+      if (this.hasArrow) this.link.innerHTML += '<belk-icon class="arrow-icon" name="arrow-down" width="6" height="6" class="margin-l-atomic"></belk-icon>';
     }
 
     if (this.trigger === 'click') {
