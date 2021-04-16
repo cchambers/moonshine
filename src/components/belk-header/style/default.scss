@@ -120,10 +120,7 @@ belk-header {
     }
 
     a.iconbar-action {
-      padding: 12px 13px;
-    }
-
-    a.iconbar-action {
+      padding: 1.3rem;
       cursor: pointer;
     }
 
@@ -133,8 +130,9 @@ belk-header {
       align-items: center;
       .popper-target > a,
       .popper-target > div {
+        height: 6rem;
         display: flex;
-        padding: $micro;
+        padding: 1.3rem;
         box-sizing: border-box;
       }
 
@@ -514,26 +512,30 @@ belk-header {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
+    align-items:  flex-start;
     margin: 0 auto;
     max-width: 96rem;
-
+    padding: $little;
     max-height: calc(100vh - 250px);
     max-height: calc(100vh - var(--header-height));
+
     @include xl {
       max-width: 128rem;
     }
 
     > li {
-      margin-left: $little;
-      margin-right: $little;
-      margin-top: $little;
-      width: 25%;
+      width: 20%;
+      flex-grow: 1;
+      flex-shrink: 0;
     }
 
-    .view-all a {
-      border-top: 1px solid $highlight-tertiary;
-      border-bottom: 1px solid $highlight-tertiary;
-      font-weight: bold;
+    .view-all {
+      margin-bottom: $little;
+      a {
+        border-top: 1px solid $highlight-tertiary;
+        border-bottom: 1px solid $highlight-tertiary;
+        font-weight: bold;
+      }
     }
 
     a {

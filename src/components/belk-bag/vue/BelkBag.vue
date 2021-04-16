@@ -2,7 +2,8 @@
   <div class="belk-bag"
     :variant="variant"
     :count="itemCount"
-    v-bind:class="{ active: itemCount > 0 }">
+    v-bind:class="{ active: itemCount > 0 }"
+    v-hammer:tap="goToCart">
     <template v-if="hasData">
       <sh-popper :disabled="isDisabled" offset-x="-42" placement="bottom" reference-id="belk-bag">
         <div slot="reference">
@@ -87,6 +88,10 @@ export default {
   methods: {
     events() {
       this.$bus.$on('user-data', this.handleUserData);
+    },
+
+    goToCart() {
+      window.location.href = '/shopping-bag';
     },
 
     handleUserData(data) {
