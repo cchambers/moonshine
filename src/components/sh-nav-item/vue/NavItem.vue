@@ -108,7 +108,7 @@ export default {
       default: '',
     },
     offset: {
-      type: String,
+      type: Number,
     },
     trigger: {
       type: String,
@@ -214,6 +214,8 @@ export default {
       }
     }
 
+    if (this.variant === 'mega') this.viewAllFix();
+
     this.initPopper();
     this.show = true;
   },
@@ -240,6 +242,14 @@ export default {
 
       this.$bus.$on('modal-opening', self.close);
       this.$bus.$on('close-modals', self.close);
+    },
+
+    viewAllFix() {
+      const target = this.$refs.popper.querySelector('.view-all');
+      if (target) {
+        const list = target.nextSibling.querySelector('ul');
+        if (list) list.prepend(target);
+      }
     },
 
     initPopper() {
