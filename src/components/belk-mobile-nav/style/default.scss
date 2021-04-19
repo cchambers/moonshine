@@ -142,12 +142,12 @@ belk-mobile-nav {
       list-style: none;
       li {
         display: flex;
-        // border-top: 1px solid $highlight-tertiary;
         a {
           display: flex;
           width: 100%;
           padding-left: $big;
           text-decoration: none;
+          border-top: 1px solid $highlight-tertiary;
         }
       }
     }

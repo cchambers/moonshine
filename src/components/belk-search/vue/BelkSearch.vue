@@ -553,7 +553,8 @@ export default {
     },
 
     doSearch(e) {
-      const val = e.target.value || this.value;
+      let val = e.target.value || this.value;
+      val = val.trim();
       if (val.length > 0) {
         this.recentSearches(val);
         const url = this.buildSearchLink(val);
