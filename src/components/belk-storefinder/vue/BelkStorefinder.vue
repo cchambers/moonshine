@@ -75,8 +75,10 @@ export default {
     },
     handleUserData(data) {
       if (data.store) {
-        this.storeData = data.store;
-        this.hasStoreAddress = true;
+        if (data.store.storeName !== '') {
+          this.storeData = data.store;
+          this.hasStoreAddress = true;
+        }
       }
     },
   },
