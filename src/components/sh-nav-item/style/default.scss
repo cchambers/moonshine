@@ -15,7 +15,7 @@ sh-nav-item {
     display: inline-block;
     color: $lowlight-primary;
   }
-  
+
   .arrow-icon {
     display: none;
     margin-left: 0.4rem;
@@ -29,6 +29,12 @@ sh-nav-item {
     display: inline-flex;
     cursor: pointer;
     position: relative;
+
+    &.active {
+      .arrow-icon {
+        transform: rotate(180deg);
+      }
+    }
 
     button {
       display: none;
@@ -53,10 +59,6 @@ sh-nav-item {
     .belk-icon {
       display: flex;
     }
-  }
-
-  .fold-in {
-    background: red;
   }
 
   .popper-arrow {

@@ -185,7 +185,7 @@ export default {
       this.$set(this.headerData, 'subTotal', data.subTotal);
       this.$set(this.headerData, 'store', data.storeDetails);
       this.$set(this.headerData, 'cart', data.cart);
-      if (this.headerData.auth) this.actual.classList.add('is-user');
+      if (data.userDetails.firstName) this.actual.classList.add('is-user');
       this.baseData = true;
     },
 

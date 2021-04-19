@@ -228,9 +228,6 @@ sh-button {
         text-decoration: none;
         text-decoration-color: $lowlight-primary;
         background-color: transparent !important;
-        .actual-text > span {
-          text-decoration: underline;
-        }
       }
     }
   }

@@ -92,6 +92,9 @@ belk-header {
       height: 20px;
       top: calc(50% - 10px);
     }
+    & ~ sh-nav-item {
+      display: none;
+    }
   }
 
   .sh-nav-item {
@@ -258,8 +261,9 @@ belk-header {
       padding: 0;
 
       .popper-close {
-        position: fixed;
+        position: absolute;
         right: $rem;
+        top: 0;
 
         button {
           background-color: transparent;
@@ -400,6 +404,9 @@ belk-header {
   @include lg {
     .nav-divider {
       display: inline-flex;
+      & ~ sh-nav-item {
+        display: block;
+      }
     }
 
     sh-button.nav-trigger {
@@ -496,8 +503,8 @@ belk-header {
 
     //scroll states for site wrapper
     & ~ #wrapper {
-      padding-top: 20rem;
-      // padding-top: var(--header-height);
+      padding-top: 18rem;
+      padding-top: var(--header-height);
     }
   }
 
@@ -541,7 +548,7 @@ belk-header {
     a {
       display: block;
       padding: 0 $micro;
-      line-height: 3.6rem;
+      line-height: 2.6rem;
     }
 
 
