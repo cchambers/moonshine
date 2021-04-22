@@ -32,6 +32,7 @@ export default {
 
   watch: {
     freeShipping(val) {
+      console.log('test', this.subTotal, val);
       if (this.subTotal >= val) {
         this.activemsg = this.msg;
       } else {

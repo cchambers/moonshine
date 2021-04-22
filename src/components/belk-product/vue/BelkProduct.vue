@@ -2,11 +2,11 @@
   <div class="belk-product"
     :variant="variant"
     v-bind:class=" { 'is-on-sale': onSale || isOnSale } ">
-    <div class="product-link" v-hammer:tap="handleTap" :data-pid="pid">
+    <a class="product-link" :href="fixedUrl" :data-pid="pid">
       <div class="image"
         :style="{ backgroundImage: 'url('+thumb_image+')' }"></div>
       <div class="data">
-        <div class="name">
+        <div @click="test" class="name">
           <div class="brand">{{ brand }}</div>
           <div class="title">{{ title }}</div>
         </div>
@@ -28,7 +28,7 @@
           <sh-button v-hammer:tap="quickView">Quick View</sh-button>
         </div>
       </div>
-    </div>
+    </a>
   </div>
 </template>
 
@@ -42,14 +42,22 @@ export default {
   name: 'BelkProduct',
 
   props: {
-    title: String,
-    url: String,
+    title: {
+      type: String,
+    },
+    url: {
+      type: String,
+    },
     price: {
       type: Number,
     },
-    pid: String,
+    pid: {
+      type: String,
+    },
     reviews: Array,
-    brand: String,
+    brand: {
+      type: String,
+    },
     qty: Number,
     sale_price_range: {
       type: Array,
@@ -60,9 +68,15 @@ export default {
       type: Array,
       default: [],
     },
-    thumb_image: String,
-    size: String,
-    color: String,
+    thumb_image: {
+      type: String,
+    },
+    size: {
+      type: String,
+    },
+    color: {
+      type: String,
+    },
     salePrice: Number,
     originalPrice: Number,
   },
@@ -95,12 +109,15 @@ export default {
     },
   },
 
-  mounted() {
-    if (this.variant !== 'bag') {
-      this.processProps();
-    } else {
-      this.fixUrl();
+  created() {
+    if (this.variant === 'bag') {
+      if (this.url) this.fixedUrl = this.url;
+      console.log('test', this.url);
     }
+  },
+
+  mounted() {
+    if (this.variant !== 'bag') this.processProps();
 
     setTimeout(() => {
       this.isOnSale = (this.originalPrice > this.salePrice);
@@ -112,14 +129,7 @@ export default {
       this.$bus.$on('search-suggestions-loaded', this.processProps);
     },
 
-    handleTap() {
-      this.log('pls');
-      if (this.fixedUrl) window.location.href = this.fixedUrl;
-      console.log(this.fixedUrl);
-    },
-
     quickView(e) {
-      // make URL,
       this.$emit('open-modal', { id: 'modal-quickview', url: this.url });
       return e;
     },
@@ -131,9 +141,9 @@ export default {
         || (whref.indexOf('sandbox') >= 0);
       if (dev && this.url) {
         const newUrl = this.url.replace('https://www.belk.com', window.location.origin);
-        this.fixedUrl = newUrl;
+        this.$set(this, 'fixedUrl', newUrl);
       } else {
-        this.fixedUrl = this.url;
+        this.$set(this, 'fixedUrl', this.url);
       }
     },
 
