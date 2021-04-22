@@ -1085,3 +1085,8 @@ ol.lower-alpha {
 [interaction='mouse'] *:focus {
   outline: none;
 }
+
+
+[data-cgid*="clearance"] {
+  color: $brand-crimson !important;
+}

@@ -299,6 +299,10 @@ belk-header {
     .l2 > li {
       font-weight: bold;
     }
+
+    [data-cgid*="-shop-all"] {
+      display: none !important;
+    }
   }
 
   .logo-link {

@@ -6,7 +6,18 @@ sh-button[variant=tertiary] {
       inset 0px 1px 0 $lowlight-tertiary,
       inset 0px -1px 0 $lowlight-tertiary;
     transition: none;
-
+    padding: 0 3.2em;
+    min-height: 4.8em;
+    border-radius: 5px;
+    .actual-text span,
+    .active-text,
+    .active-icon {
+      font-weight: 600;
+      text-transform: none;
+      span {
+        font-size: 1em;
+      }
+    }
     &:hover,
     &.active {
       background: $highlight-secondary;

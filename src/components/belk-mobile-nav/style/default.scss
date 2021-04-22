@@ -170,9 +170,6 @@ belk-mobile-nav {
         color: $lowlight-primary;
         display:  block;
         text-decoration: none;
-        &[data-cgid="clearance"] {
-          color: $brand-crimson;
-        }
       }
       i {
         font-size: 2.2rem;
