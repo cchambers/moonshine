@@ -39,7 +39,6 @@ export default {
     },
 
     handleUpdate(data) {
-      console.log('who', this, data);
       this.$set(this, 'products', data);
     },
   },

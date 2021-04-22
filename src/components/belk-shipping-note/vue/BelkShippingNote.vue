@@ -32,7 +32,7 @@ export default {
 
   watch: {
     freeShipping(val) {
-      console.log('test', this.subTotal, val);
+      // console.log('FREESHIPPING UPDATED', val);
       if (this.subTotal >= val) {
         this.activemsg = this.msg;
       } else {
@@ -48,7 +48,7 @@ export default {
         this.subTotal = data.subTotal;
       });
       this.$bus.$on('free-shipping', (val) => {
-        this.freeShipping = val;
+        if (this.freeShipping) this.$set(this, 'freeShipping', val);
       });
     },
   },

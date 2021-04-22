@@ -285,7 +285,6 @@ export default {
       } else {
         this.productsLimited = [];
       }
-      console.log('products', val);
       this.productsEl.products = this.productsLimited;
     },
 
