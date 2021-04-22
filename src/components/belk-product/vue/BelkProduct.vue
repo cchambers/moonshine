@@ -6,7 +6,7 @@
       <div class="image"
         :style="{ backgroundImage: 'url('+thumb_image+')' }"></div>
       <div class="data">
-        <div @click="test" class="name">
+        <div class="name">
           <div class="brand">{{ brand }}</div>
           <div class="title">{{ title }}</div>
         </div>
@@ -112,7 +112,6 @@ export default {
   created() {
     if (this.variant === 'bag') {
       if (this.url) this.fixedUrl = this.url;
-      console.log('test', this.url);
     }
   },
 
@@ -122,6 +121,12 @@ export default {
     setTimeout(() => {
       this.isOnSale = (this.originalPrice > this.salePrice);
     });
+  },
+
+  watch: {
+    url(val) {
+      this.fixedUrl = val;
+    },
   },
 
   methods: {
