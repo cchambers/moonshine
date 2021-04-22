@@ -34,10 +34,10 @@
       </div>
     </sh-nav-item>
     <a v-else
-      class="sf-link"
+      class="nav-link"
       :href="storefinderLink">
       <belk-icon name="map-pin" width="9" class="margin-r-atomic"></belk-icon>
-      Find a Store
+      Find A Store
     </a>
 
   </div>

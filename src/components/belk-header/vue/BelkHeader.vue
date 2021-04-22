@@ -183,7 +183,7 @@ export default {
       this.$set(this.headerData, 'auth', data.userDetails.authenticated);
       this.$set(this.headerData, 'qty', data.cartQty);
       this.$set(this.headerData, 'subTotal', data.subTotal);
-      this.$set(this.headerData, 'store', data.storeDetails);
+      if (data.storeDetails.storeName) this.$set(this.headerData, 'store', data.storeDetails);
       this.$set(this.headerData, 'cart', data.cart);
       if (data.userDetails.firstName) this.actual.classList.add('is-user');
       this.baseData = true;
@@ -238,7 +238,9 @@ export default {
       this.scrollState(state);
       this.lastScrollTop = st <= 0 ? 0 : st;
 
-      this.updateHeightProp();
+      setTimeout(() => {
+        this.updateHeightProp();
+      }, 150);
     },
 
     updateHeightProp() {
@@ -270,7 +272,7 @@ export default {
             const els = document.querySelectorAll(`[data-fill="${keys[i]}"]`);
             els.forEach((el) => {
               const target = el;
-              if (typeof val === 'string'
+              if (typeof val === 'string' && val.length
                 && (val.toUpperCase() === val || val.toLowerCase() === val)) {
                 val = val.toTitleCase();
               }

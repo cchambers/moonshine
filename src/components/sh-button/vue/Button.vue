@@ -100,6 +100,12 @@ export default {
 
     this.buttonEl.addEventListener('click', this.tapHandler);
     this.$bus.$on(`${this.uniqueId}-button-toggle`, this.doToggle);
+
+    const innerButton = this.$refs.button.querySelector('button');
+    if (innerButton) {
+      const actualText = innerButton.querySelector('.actual-text');
+      this.$refs.button.innerHTML = actualText.outerHTML;
+    }
   },
 
   methods: {
@@ -194,6 +200,10 @@ export default {
       }
       if (this.group && this.isActive) return;
       this.isActive = !this.isActive;
+    },
+
+    wrapperProblems() {
+
     },
   },
 

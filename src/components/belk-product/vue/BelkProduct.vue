@@ -3,7 +3,8 @@
     :variant="variant"
     v-bind:class=" { 'is-on-sale': onSale || isOnSale } ">
     <div class="product-link" v-hammer:tap="handleTap" :data-pid="pid">
-      <div class="image" :style="{ backgroundImage: 'url('+thumb_image+')' }"></div>
+      <div class="image"
+        :style="{ backgroundImage: 'url('+thumb_image+')' }"></div>
       <div class="data">
         <div class="name">
           <div class="brand">{{ brand }}</div>
@@ -95,7 +96,11 @@ export default {
   },
 
   mounted() {
-    if (this.variant !== 'bag') this.processProps();
+    if (this.variant !== 'bag') {
+      this.processProps();
+    } else {
+      this.fixUrl();
+    }
 
     setTimeout(() => {
       this.isOnSale = (this.originalPrice > this.salePrice);
@@ -108,7 +113,9 @@ export default {
     },
 
     handleTap() {
+      this.log('pls');
       if (this.fixedUrl) window.location.href = this.fixedUrl;
+      console.log(this.fixedUrl);
     },
 
     quickView(e) {
@@ -117,7 +124,7 @@ export default {
       return e;
     },
 
-    processProps() {
+    fixUrl() {
       const whref = window.location.href;
       const dev = (whref.indexOf('belk.demand') >= 0)
         || (whref.indexOf('belkdev') >= 0)
@@ -128,7 +135,10 @@ export default {
       } else {
         this.fixedUrl = this.url;
       }
+    },
 
+    processProps() {
+      this.fixUrl();
       if (this.price) this.originalPrice = parseInt(this.price, 10);
       if (this.sale_price) this.salePrice = parseInt(this.sale_price, 10);
       if (this.price_range.length > 1) {

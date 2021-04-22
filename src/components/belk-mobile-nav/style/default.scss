@@ -112,6 +112,8 @@ belk-mobile-nav {
       position: sticky;
       z-index: 1;
       top: 0;
+      left: 0;
+      right: 0;
       background-color: $highlight-secondary;
     }
 
@@ -192,6 +194,10 @@ belk-mobile-nav {
       .body {
         line-height: 4.6rem;
         border-top: 1px solid $highlight-tertiary;
+      }
+
+      .sh-accordion .body {
+        border-top: none;
       }
     }
   }

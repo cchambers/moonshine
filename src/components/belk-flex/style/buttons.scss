@@ -3,9 +3,20 @@ belk-flex[variant="buttons"] {
     flex-direction: column-reverse;
     justify-content: flex-start;
 
+    sh-button {
+      margin-top: $little;
+      width: 100%;
+    }
+
+
     @include md {
       flex-direction: row;
       justify-content: flex-end;
+
+      sh-button {
+        margin-top: auto;
+        width: auto;
+      }
 
       [reject-trigger] {
         order: 0;
