@@ -49,7 +49,7 @@ const app = {
     const scrollDebounced = app.debounce((event) => {
       app.interactionHandler('mouse');
       window.sh.emit('scroll-event', event);
-    }, 100, 'scroll-debounce');
+    }, 50, 'scroll-debounce');
     window.addEventListener('scroll', scrollDebounced, true);
 
     const touchDebounced = app.debounce(() => {

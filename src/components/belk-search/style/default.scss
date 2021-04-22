@@ -27,6 +27,10 @@ belk-search {
     border-radius: 1rem;
     transition: box-shadow 250ms $ease;
 
+    &[invalid]{
+      border-color: $state-error;
+    }
+
     &.active {
       @include box-shadow(1);
 
@@ -151,6 +155,11 @@ belk-search {
     .search-recent {
       sh-button .sh-button {
         text-transform: none;
+        &:hover {
+          span {
+            border-color: transparent !important;
+          }
+        }
         span {
           background: transparent;
           border: none;
@@ -216,14 +225,17 @@ belk-search {
       }
 
       .products {
-        ul {
-          @include md {
-            border-left: 1px solid $highlight-tertiary;
-          }
-        }
-        a.view-more{
-          @include md {
-            border-left: 1px solid $highlight-tertiary;
+        position: relative;
+        @include md {
+          &:before {
+            display: block;
+            content: '';
+            position: absolute;
+            left:  0;
+            top: $little;
+            width: 1px;
+            background: $highlight-tertiary;
+            height: calc(100% - 3.2rem);
           }
         }
 

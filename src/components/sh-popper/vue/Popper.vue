@@ -118,6 +118,9 @@ export default {
     },
     offsetX: 0,
     offsetY: 0,
+    uniqueId: {
+      type: String,
+    },
     placement: {
       type: String,
       default: 'bottom',
@@ -185,9 +188,7 @@ export default {
     },
 
     disabled(value) {
-      if (value) {
-        this.showPopper = false;
-      }
+      if (value) this.showPopper = false;
     },
   },
 
@@ -245,6 +246,8 @@ export default {
         default:
           break;
       }
+
+      if (this.uniqueId) this.$bus.$emit(`${this.uniqueId}-ready`, this);
     },
 
     doToggle(event) {

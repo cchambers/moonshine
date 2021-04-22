@@ -3,6 +3,7 @@
     class="belk-search"
     :count="count"
     :state="state"
+    :invalid="isInvalid"
     v-bind:class="{ active: isActive, focused: isFocused }">
 
     <!-- Input -->
@@ -183,6 +184,9 @@ export default {
       count: 0,
       preloaded: false,
       fullyloaded: false,
+      specialChars: new RegExp('^[^a-zA-Z0-9]+$'),
+      justNumbers: new RegExp('^[0-9]*$'),
+      isInvalid: false,
       belkProductList: BelkProductList,
     };
   },
@@ -268,6 +272,7 @@ export default {
       if (this.inputEl.value !== val) this.inputEl.value = val;
       this.valueLength = val.length;
       this.isEmpty = (val.length === 0);
+      this.isInvalid = this.specialChars.test(val);
     },
 
     recents(arr) {
@@ -340,12 +345,12 @@ export default {
     this.productsEl = this.$refs.suggestedProducts;
     this.headerEl = document.querySelector('belk-header');
     this.configureAria();
-    this.recentSearches();
 
     if (window.location.params) {
       const query = window.location.params.q;
-      if (query) this.fillSearch(query);
+      if (query) this.fillSearch(query, true);
     }
+    this.recentSearches(this.value);
   },
 
   methods: {
@@ -387,6 +392,7 @@ export default {
 
     keydownHandler(e) {
       const key = e.charCode || e.keyCode;
+      if (key === 32 && !this.valueLength) e.preventDefault(); // space bar when no value
       const nav = this.navKeys.indexOf(key) >= 0; // up/down arrows
       const ignore = this.ignoreKeys.indexOf(key) >= 0; // left/right arrows, enter
       if (ignore || nav) {
@@ -484,7 +490,7 @@ export default {
 
     clearSearch(focus = true) {
       this.inputEl.value = '';
-      this.value = '';
+      this.$set(this, 'value', '');
       this.searchValue = '';
       this.products = [];
       this.clearResponse();
@@ -527,6 +533,7 @@ export default {
     recentSearches(val) {
       let rec = this.getItem('recentSearches') || [];
 
+      if (!window.location.href.indexOf('/search/')) return;
       if (val) {
         const exists = rec.indexOf(val);
         if (exists > -1) rec.splice(exists, 1);
@@ -544,6 +551,7 @@ export default {
           id: `recommended-${x}`,
         });
       }
+
       this.recents = arr;
     },
 
@@ -555,8 +563,7 @@ export default {
     doSearch(e) {
       let val = e.target.value || this.value;
       val = val.trim();
-      if (val.length > 0) {
-        this.recentSearches(val);
+      if (val.length > 0 && !this.isInvalid) {
         const url = this.buildSearchLink(val);
         window.location.href = url;
         this.forceBlur('doSearch');
@@ -579,12 +586,13 @@ export default {
     },
 
     buildSearchLink(q) {
+      const query = encodeURIComponent(q);
       const whref = window.location.href;
       const dev = (whref.indexOf('belk.demand') >= 0)
         || (whref.indexOf('belkdev') >= 0)
         || (whref.indexOf('localhost') >= 0);
-      if (dev) return `${window.location.origin}/on/demandware.store/Sites-Belk-Site/default/Search-Show?q=${q}&lang=default`;
-      return `${window.location.origin}/search/?q=${q}&lang=default`;
+      if (dev) return `${window.location.origin}/on/demandware.store/Sites-Belk-Site/default/Search-Show?q=${query}&lang=default`;
+      return `${window.location.origin}/search/?q=${query}&lang=default`;
     },
 
     getAllProducts(arr) {

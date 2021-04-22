@@ -63,6 +63,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    navItem: {
+      type: Boolean,
+      default: true,
+    },
     hasArrow: {
       type: Boolean,
       default: false,
@@ -166,7 +170,11 @@ export default {
         if (this.link) this.link.setAttribute('aria-expanded', true);
       } else {
         this.$bus.$emit('popper-closing', this);
-        this.$bus.$emit('hide-curtain', this);
+        if (this.closeCurtain) {
+          this.$bus.$emit('hide-curtain', this);
+        } else {
+          this.closeCurtain = false;
+        }
         if (this.link) this.link.setAttribute('aria-expanded', false);
       }
     },
@@ -236,7 +244,15 @@ export default {
       });
 
       this.$bus.$on('popper-opening', (el) => {
-        if (el === this) return;
+        if (el === this) {
+          this.closeCurtain = true;
+          return;
+        }
+        if (el.navItem) {
+          this.closeCurtain = false;
+        } else {
+          this.closeCurtain = true;
+        }
         self.close();
       });
 

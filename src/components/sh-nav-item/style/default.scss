@@ -24,6 +24,38 @@ sh-nav-item {
     }
   }
 
+  &[cat="Clearance"] {
+    .popper-target {
+      a:not(.belk-link),
+      > div,
+      > span {
+        color: $brand-crimson;
+      }
+    }
+    .subcat-list {
+      width: 25%;
+      flex-grow: 0;
+    }
+
+    .subcat-list li {
+      display: block;
+    }
+
+    .subcat-list * {
+      display: flex;
+      align-items: center;
+      flex-grow: 0;
+      flex-shrink: 0;
+      height: 2.6rem;
+      font-weight: bold;
+      line-height: 2.6rem;
+    }
+
+    .subcat-list *:not(a) {
+      width: 100%;
+    }
+  }
+
   .popper-target {
     border-bottom: none;
     display: inline-flex;
