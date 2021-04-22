@@ -63,6 +63,14 @@ export default {
     this.ariaID = `aria-${this.uniqueId}`;
     this.ariaHeaderID = `aria-header-${this.uniqueId}`;
     this.ariaDescID = `aria-desc-${this.uniqueId}`;
+
+    if (window.location.pathname !== '/') {
+      const split = window.location.pathname.split('/');
+      const folder = split[split.length - 2];
+      setTimeout(() => {
+        this.auto(folder);
+      });
+    }
   },
 
   methods: {
@@ -85,6 +93,21 @@ export default {
         document.documentElement.classList.remove('scroll-block');
         this.active = false;
         this.$bus.$emit('modal-closed', this.uniqueId);
+      }
+    },
+
+    auto(str) {
+      const target = document.querySelector(`[data-cgid="${str}" i], .belk-mobile-nav a[href*='/${str}/' i]`);
+      if (target) {
+        const item = target.closest('sh-accordion');
+        if (item.uniqueId) {
+          const slug = `open-${item.uniqueId.slugify()}`;
+          setTimeout(() => {
+            this.$bus.$emit(slug);
+          }, 1000);
+        } else {
+          this.log('no unique id for item');
+        }
       }
     },
   },

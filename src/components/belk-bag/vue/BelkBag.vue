@@ -2,11 +2,10 @@
   <div class="belk-bag"
     :variant="variant"
     :count="itemCount"
-    v-bind:class="{ active: itemCount > 0 }"
-    v-hammer:tap="goToCart">
+    v-bind:class="{ active: itemCount > 0 }">
     <template v-if="hasData">
-      <sh-popper :disabled="isDisabled" offset-x="-42" placement="bottom" reference-id="belk-bag">
-        <div slot="reference">
+      <sh-popper :disabled="isDisabled" offset-x="-42" placement="bottom" unique-id="belk-bag">
+        <div id="goToCart" slot="reference">
           <div class="bag-icon">
             <belk-icon width="33" height="40" name="bag">shopping bag</belk-icon>
             <div class="bag-count">{{ itemCount }}</div>
@@ -36,8 +35,11 @@
           <div class="no-items pad-y-little">
             <div>
               <h4>Your bag is empty &amp; could use some love.</h4>
-              <p class="pad-top-little text-center">
+              <p class="unregistered pad-t-little text-center">
                 Sign in to see items you may have added to your bag.
+              </p>
+              <p class="registered pad-t-little text-center">
+                That means it's time to shop!
               </p>
             </div>
           </div>
@@ -88,6 +90,18 @@ export default {
   methods: {
     events() {
       this.$bus.$on('user-data', this.handleUserData);
+      this.$bus.$on('belk-bag-ready', (data) => {
+        const target = data;
+        target.referenceElm.addEventListener('click', this.goToCart);
+
+        if (this.isMobile()) {
+          target.$set(target, 'disabled', true);
+        }
+      });
+    },
+
+    isMobile() {
+      return window.matchMedia('(max-width: 768px)').matches;
     },
 
     goToCart() {
