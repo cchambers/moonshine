@@ -18,7 +18,7 @@
               <div class="text-center pad-little px-16">
                 <span class="bold">Bag Subtotal</span> <span>{{ totalPrice }}</span>
               </div>
-              <belk-shipping-note class="flex center"></belk-shipping-note>
+              <div v-if="shippingMessage" class="pad-x-little pad-b-little">{{ shippingMessage }}</div>
               <div class="hr margin-y-micro"></div>
               <ul class="bag-list belk-product-list" variant="tertiary">
                 <li v-for="product in items" v-bind:key="product.index">
@@ -76,6 +76,7 @@ export default {
       items: [],
       itemCount: 0,
       subTotal: 0,
+      shippingMessage: false,
       totalPrice: 'Bag',
       isDisabled: false,
       hasData: false,
@@ -111,6 +112,7 @@ export default {
     handleUserData(data) {
       if (data.qty) this.$set(this, 'itemCount', parseInt(data.qty, 10));
       if (data.subTotal) this.$set(this, 'subTotal', data.subTotal);
+      if (data.shippingMessage) this.$set(this, 'shippingMessage', data.shippingMessage);
       if (data.cart) {
         this.$set(this, 'items', data.cart.items);
         setTimeout(() => {

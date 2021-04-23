@@ -6,6 +6,7 @@
     :print-trigger="printTrigger"
     :value="value"
     :name="name"
+    :id="uniqueId"
     :form="form"
     :formaction="formaction"
     :formmethod="formmethod"
@@ -23,7 +24,7 @@
       v-if="activeIcon"><belk-icon width="20" height="20"
       :name="activeIcon"></belk-icon></div> -->
     <div class="actual-text"><slot></slot></div>
-    <div class="active-text" v-if="isActive">{{activeText}}</div>
+    <div class="active-text" v-if="isActive"><span>{{activeText}}</span></div>
     <slot name="after-text"></slot>
     <div v-if="icon" class="button-icon after">
       <belk-icon :name="icon" height="13" width="13"></belk-icon>

@@ -25,7 +25,7 @@ export default {
 
   data() {
     return {
-      activemsg: this.altmsg || this.msg,
+      activemsg: '',
       subTotal: 0,
     };
   },
@@ -47,7 +47,7 @@ export default {
         this.subTotal = data.subTotal;
       });
       this.$bus.$on('free-shipping', (val) => {
-        this.freeShipping = val;
+        if (this.freeShipping) this.$set(this, 'freeShipping', val);
       });
     },
   },

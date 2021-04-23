@@ -532,12 +532,14 @@ export default {
 
     recentSearches(val) {
       let rec = this.getItem('recentSearches') || [];
-
-      if (!window.location.href.indexOf('/search/')) return;
-      if (val) {
-        const exists = rec.indexOf(val);
+      const search = val.toLowerCase();
+      if (!window.location.href.indexOf('/search/')
+        && !window.location.href.indexOf('/coupons-online-and-in-store/')
+        && !window.location.href.indexOf('/stores/')) return;
+      if (search) {
+        const exists = rec.indexOf(search);
         if (exists > -1) rec.splice(exists, 1);
-        rec.unshift(val);
+        rec.unshift(search);
         if (rec.length > 10) rec = rec.slice(0, 10);
         this.setItem('recentSearches', rec);
       }

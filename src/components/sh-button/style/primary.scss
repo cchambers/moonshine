@@ -3,7 +3,18 @@ sh-button[variant="primary"] {
     color: $highlight-primary;
     background-color: $accent-primary;
     border: 2px solid transparent;
-
+    padding: 0 3.2em;
+    min-height: 4.8em;
+    border-radius: 5px;
+    .actual-text span,
+    .active-text,
+    .active-icon {
+      font-weight: 600;
+      text-transform: none;
+      span {
+        font-size: 1em;
+      }
+    }
     &:hover,
     &.active {
       background-color: $accent-secondary;
