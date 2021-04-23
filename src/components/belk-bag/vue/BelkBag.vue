@@ -18,7 +18,8 @@
               <div class="text-center pad-little px-16">
                 <span class="bold">Bag Subtotal</span> <span>{{ totalPrice }}</span>
               </div>
-              <div v-if="shippingMessage" class="pad-x-little pad-b-little">{{ shippingMessage }}</div>
+              <div v-if="shippingMessage"
+                class="pad-x-little pad-b-little">{{ shippingMessage }}</div>
               <div class="hr margin-y-micro"></div>
               <ul class="bag-list belk-product-list" variant="tertiary">
                 <li v-for="product in items" v-bind:key="product.index">

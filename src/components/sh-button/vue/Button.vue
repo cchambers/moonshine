@@ -202,10 +202,6 @@ export default {
       if (this.group && this.isActive) return;
       this.isActive = !this.isActive;
     },
-
-    wrapperProblems() {
-
-    },
   },
 
 };

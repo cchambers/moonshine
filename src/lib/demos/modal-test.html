@@ -1,8 +1,14 @@
 <sh-svglib></sh-svglib>
 <div class="documentation contain">
-  <sh-modal variant="primary" unique-id="test">
-    <p>"Primary" variant.
-      <sh-button>ow</sh-button>
-    </p>
-  </sh-modal>
-</div>
+<sh-modal variant="primary" unique-id="test">
+  <div>
+    Some text. Buttons in footer
+    <sh-button variant="primary" affirm-trigger>Yes</sh-button>
+  </div>
+  <div slot="footer">
+    <div variant="buttons">
+      <sh-button variant="primary" affirm-trigger>Yes</sh-button>
+      <sh-button variant="tertiary" close-trigger>No</sh-button>
+    </div>
+  </div>
+</sh-modal>

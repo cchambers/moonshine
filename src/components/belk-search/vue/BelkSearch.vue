@@ -25,6 +25,7 @@
         v-on:keydown.tab="forceBlur"
         v-on:keydown.down="highlightHandler"
         v-on:keydown.up="highlightHandler"
+        @paste="pasteHandler"
         :placeholder="placeholder"
         @focus="focusHandler"
       />
@@ -665,6 +666,27 @@ export default {
           self.$set(self, 'products', self.allProducts[which].products);
         }
       }
+    },
+
+    pasteHandler(e) {
+      e.preventDefault();
+      let paste = (e.clipboardData || window.clipboardData).getData('text');
+      const { value } = this.inputEl;
+      // eslint-disable-next-line
+      const cleaned = paste.replace(/([A-Za-zÀ-ÖØ-öø-ÿ0-9\s\-\.\+\'\&\/])+/g, '');
+      const arr = cleaned.split('');
+      for (let x = 0, l = arr.length; x < l; x += 1) {
+        paste = paste.replace(arr[x], '');
+      }
+      const start = this.inputEl.selectionStart;
+      const fin = this.inputEl.selectionEnd;
+      const len = fin - start;
+      const split = value.split('');
+      split.splice(start, len, paste);
+      const newVal = split.join('');
+      this.inputEl.value = newVal;
+      const where = start + paste.length;
+      this.inputEl.setSelectionRange(where, where);
     },
   },
 };
