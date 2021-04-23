@@ -185,8 +185,8 @@ export default {
       count: 0,
       preloaded: false,
       fullyloaded: false,
-      specialChars: new RegExp('^[^a-zA-Z0-9]+$'),
-      justNumbers: new RegExp('^[0-9]*$'),
+      // eslint-disable-next-line
+      specialChars: new RegExp('[^a-z0-9 ]', 'i'),
       isInvalid: false,
       belkProductList: BelkProductList,
     };
