@@ -98,18 +98,15 @@ export default {
     },
 
     sendUserData(ce) {
-      if (self.hasAllData) {
-        console.log('TEST');
-        ce.handleData(self.headerData);
+      if (this.hasAllData) {
+        ce.handleData(this.headerData);
       }
     },
 
     clearForEmit() {
       const self = this;
-      // console.log('CLEARING');
       if (self.hasAllData) {
         clearTimeout(self.emitTimer);
-        // console.log('EMITTING');
         self.$bus.$emit('user-data', self.headerData);
       } else {
         self.emitTimer = setTimeout(self.clearForEmit, 50);
