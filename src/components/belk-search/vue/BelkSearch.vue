@@ -185,7 +185,6 @@ export default {
       count: 0,
       preloaded: false,
       fullyloaded: false,
-      // eslint-disable-next-line
       specialChars: new RegExp('[^a-z0-9 ]', 'i'),
       isInvalid: false,
       belkProductList: BelkProductList,
