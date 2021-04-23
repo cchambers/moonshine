@@ -99,7 +99,7 @@ export default {
 
   mounted() {
     setTimeout(() => {
-      this.$bus.$emit('get-user-data');
+      this.$bus.$emit('get-user-data', this);
     }, 200);
   },
 

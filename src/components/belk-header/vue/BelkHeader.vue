@@ -80,7 +80,7 @@ export default {
       const self = this;
       self.$bus.$on('header-update', self.updateHeightProp);
       self.$bus.$on('smooth-scroll', self.smoothScrollHandler);
-      self.$bus.$on('get-user-data', self.clearForEmit);
+      self.$bus.$on('get-user-data', self.sendUserData);
       self.$bus.$on('bag-update', self.bagUpdateHandler);
       this.$bus.$on('scroll-event', self.scrollHandler);
     },
@@ -97,10 +97,19 @@ export default {
       }, delay);
     },
 
+    sendUserData(ce) {
+      if (self.hasAllData) {
+        console.log('TEST');
+        ce.handleData(self.headerData);
+      }
+    },
+
     clearForEmit() {
       const self = this;
+      // console.log('CLEARING');
       if (self.hasAllData) {
         clearTimeout(self.emitTimer);
+        // console.log('EMITTING');
         self.$bus.$emit('user-data', self.headerData);
       } else {
         self.emitTimer = setTimeout(self.clearForEmit, 50);

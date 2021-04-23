@@ -25,14 +25,14 @@ export default {
 
   data() {
     return {
-      activemsg: this.altmsg || this.msg,
+      activemsg: '',
       subTotal: 0,
     };
   },
 
   watch: {
     freeShipping(val) {
-      // console.log('FREESHIPPING UPDATED', val);
+      console.log('FREESHIPPING UPDATED', val);
       if (this.subTotal >= val) {
         this.activemsg = this.msg;
       } else {
