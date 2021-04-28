@@ -10,11 +10,11 @@
           <div class="brand">{{ brand }}</div>
           <div class="title">{{ title }}</div>
         </div>
-        <div v-if="qty">Qty: {{ qty }}</div>
         <div v-if="qty">
-          <span>{{ size }}</span><span>,&nbsp;</span><span>{{ color }}</span>
+          <span>{{ size }}</span><span v-if="color">,&nbsp;</span><span>{{ color }}</span>
         </div>
-        <div class="price">
+        <div v-if="qty">Qty: {{ qty }}</div>
+        <div class="price" :discount="discountType">
           <span v-if="onSale || isOnSale" class="sale"
           v-bind:class="{ 'is-range': saleRange.length > 0 }">{{ saleValue }} </span>
           <span class="original"
@@ -75,8 +75,15 @@ export default {
     color: {
       type: String,
     },
-    salePrice: Number,
-    originalPrice: Number,
+    salePrice: {
+      type: Number,
+      default: 0,
+    },
+    originalPrice: {
+      type: Number,
+      default: 0,
+    },
+    discountType: String,
   },
 
   data() {
@@ -91,15 +98,18 @@ export default {
 
   computed: {
     originalValue() {
-      if (!this.originalPrice) this.originalPrice = this.price;
-      return (Number.isNaN(this.originalPrice))
-        ? this.originalPrice : this.format(this.originalPrice);
+      if (!this.originalPrice && !this.salePrice) {
+        if (this.price) this.originalPrice = this.price;
+      }
+      const val = this.format(this.originalPrice);
+      return val;
     },
 
     saleValue() {
-      if (!this.salePrice) this.salePrice = this.sale_price;
-      return (Number.isNaN(this.salePrice))
-        ? this.salePrice : this.format(this.salePrice);
+      if (!this.salePrice) {
+        if (this.sale_price) this.salePrice = this.sale_price;
+      }
+      return this.format(this.salePrice);
     },
 
     onSale() {
@@ -110,6 +120,7 @@ export default {
   created() {
     if (this.variant === 'bag') {
       if (this.url) this.fixedUrl = this.url;
+      if (this.originalPrice === 0) this.fixedUrl = '#';
     }
   },
 

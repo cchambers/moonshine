@@ -5,21 +5,22 @@
     v-bind:class="{ active: itemCount > 0 }">
     <template v-if="hasData">
       <sh-popper :disabled="isDisabled" offset-x="-42" placement="bottom" unique-id="belk-bag">
-        <div id="goToCart" slot="reference">
+        <a id="goToCart" href="/shopping-bag" slot="reference">
           <div class="bag-icon">
             <belk-icon width="33" height="40" name="bag">shopping bag</belk-icon>
             <div class="bag-count">{{ itemCount }}</div>
           </div>
           <div class="bag-total">{{ totalPrice }}</div>
-        </div>
+        </a>
         <div class="bag-content" slot="content">
           <div class="has-items">
             <div class="scrolling-area">
               <div class="text-center pad-little px-16">
                 <span class="bold">Bag Subtotal</span> <span>{{ totalPrice }}</span>
               </div>
-              <div v-if="shippingMessage"
-                class="pad-x-little pad-b-little">{{ shippingMessage }}</div>
+              <div v-if="shippingNote"
+                v-html="shippingNote"
+                class="pad-x-little pad-b-little"></div>
               <div class="hr margin-y-micro"></div>
               <ul class="bag-list belk-product-list" variant="tertiary">
                 <li v-for="product in items" v-bind:key="product.index">
@@ -33,7 +34,7 @@
               </sh-button>
             </div>
           </div>
-          <div class="no-items pad-y-little">
+          <div class="no-items pad-little">
             <div>
               <h4>Your bag is empty &amp; could use some love.</h4>
               <p class="unregistered pad-t-little text-center">
@@ -77,7 +78,7 @@ export default {
       items: [],
       itemCount: 0,
       subTotal: 0,
-      shippingMessage: false,
+      shippingNote: '',
       totalPrice: 'Bag',
       isDisabled: false,
       hasData: false,
@@ -103,7 +104,7 @@ export default {
     },
 
     isMobile() {
-      return window.matchMedia('(max-width: 768px)').matches;
+      return window.matchMedia('(max-width: 960px)').matches;
     },
 
     goToCart() {
@@ -113,14 +114,21 @@ export default {
     handleUserData(data) {
       if (data.qty) this.$set(this, 'itemCount', parseInt(data.qty, 10));
       if (data.subTotal) this.$set(this, 'subTotal', data.subTotal);
-      if (data.shippingMessage) this.$set(this, 'shippingMessage', data.shippingMessage);
       if (data.cart) {
         this.$set(this, 'items', data.cart.items);
+        if (data.cart.shippingMessage) this.$set(this, 'shippingNote', data.cart.shippingMessage);
         setTimeout(() => {
           this.$bus.$emit('bag-list-update', data.cart.items);
         }, 100);
       }
-      this.hasData = true;
+      if (this.hasData) {
+        this.hasData = false;
+        setTimeout(() => {
+          this.hasData = true;
+        }, 5);
+      } else {
+        this.hasData = true;
+      }
     },
 
     emitUpdate() {

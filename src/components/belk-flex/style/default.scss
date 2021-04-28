@@ -2,9 +2,11 @@
 
 belk-flex {
   display: block;
+  clear: both;
   .belk-flex {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    width: 100%;
   }
 }

@@ -115,9 +115,10 @@
             variant="secondary"
             :item-limit="3"
           ></component>
-          <a class="view-more" :href="buildSearchLink(suggestTerm)">
-            View more results for "{{ suggestTerm }}"
-          </a>
+          <div class="pad-micro" style="margin-top: auto;">
+            <a class="view-more belk-link"
+              :href="buildSearchLink(suggestTerm)">More Results for "{{ suggestTerm }}"</a>
+          </div>
         </div>
       </div>
     </div>
@@ -185,9 +186,10 @@ export default {
       count: 0,
       preloaded: false,
       fullyloaded: false,
-      specialChars: new RegExp('[^a-z0-9 ]', 'i'),
+      specialChars: new RegExp('[^a-z0-9 \']', 'i'),
       isInvalid: false,
       belkProductList: BelkProductList,
+      isDev: false,
     };
   },
 
@@ -201,7 +203,11 @@ export default {
       let state = 0;
       if (this.recents.length && this.count === 0 && this.isFocused) state = 1;
       if (this.count > 0 && this.isFocused) state = 2;
-      if (this.count === 0 && this.noResults && this.searchValue !== '' && this.isFocused) state = 1; // was 3
+      if (this.count === 0
+        && this.noResults
+        && this.searchValue !== ''
+        && this.isFocused
+        && this.recents.length) state = 1; // was 3
       this.activeDescendantHandler();
       this.stateHandler(state);
       // eslint-disable-next-line
@@ -337,6 +343,7 @@ export default {
 
   created() {
     this.setUUID();
+    this.checkDev();
   },
 
   mounted() {
@@ -349,6 +356,10 @@ export default {
     if (window.location.params) {
       const query = window.location.params.q;
       if (query) this.fillSearch(query, true);
+      const redirect = window.location.params.q_redirect;
+      if (redirect) {
+        this.fillSearch(redirect);
+      }
     }
     this.recentSearches(this.value);
   },
@@ -365,6 +376,10 @@ export default {
       self.$bus.$on('popper-opening', self.forceBlur);
       self.$bus.$on('close-search', self.forceBlur);
       self.$bus.$on('search-term', self.searchTermHandler);
+    },
+
+    checkDev() {
+      if (window.location.origin.indexOf('belk.com') < 0) this.isDev = true;
     },
 
     searchTermHandler(data) {
@@ -534,8 +549,7 @@ export default {
       let rec = this.getItem('recentSearches') || [];
       const search = val.toLowerCase();
       if (!window.location.href.indexOf('/search/')
-        && !window.location.href.indexOf('/coupons-online-and-in-store/')
-        && !window.location.href.indexOf('/stores/')) return;
+        && (window.location.href.indexOf('coupons') || window.location.href.indexOf('store'))) return;
       if (search) {
         const exists = rec.indexOf(search);
         if (exists > -1) rec.splice(exists, 1);
@@ -554,7 +568,7 @@ export default {
         });
       }
 
-      this.recents = arr;
+      this.$set(this, 'recents', arr);
     },
 
     clearRecentSearches() {
@@ -590,8 +604,7 @@ export default {
     buildSearchLink(q) {
       const query = encodeURIComponent(q);
       const whref = window.location.href;
-      const dev = (whref.indexOf('belk.demand') >= 0)
-        || (whref.indexOf('belkdev') >= 0)
+      const dev = (whref.indexOf('-') >= 0)
         || (whref.indexOf('localhost') >= 0);
       if (dev) return `${window.location.origin}/on/demandware.store/Sites-Belk-Site/default/Search-Show?q=${query}&lang=default`;
       return `${window.location.origin}/search/?q=${query}&lang=default`;
@@ -612,7 +625,14 @@ export default {
           if (xhr.readyState === DONE) {
             if (xhr.status === OK) {
               const res = JSON.parse(xhr.responseText);
-              const array = res.response.products;
+              let array = res.response.products;
+              if (self.isDev) {
+                array = array.map((item) => {
+                  const x = { ...item };
+                  x.url = x.url.replace('https://www.belk.com', `${window.location.origin}/s/Belk`);
+                  return x;
+                });
+              }
               self.$set(self.allProducts[which], 'products', array);
               const event = `products-loaded.${which}`;
               self.$emit(event, array);
