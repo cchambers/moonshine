@@ -1,4 +1,9 @@
 sh-button[variant="primary"] {
+  &[disabled] {
+    button {
+      background-color: $lowlight-quinary;
+    }
+  }
   button {
     color: $highlight-primary;
     background-color: $accent-primary;
@@ -11,9 +16,6 @@ sh-button[variant="primary"] {
     .active-icon {
       font-weight: 600;
       text-transform: none;
-      span {
-        font-size: 1em;
-      }
     }
     &:hover,
     &.active {

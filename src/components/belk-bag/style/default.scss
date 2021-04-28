@@ -11,6 +11,10 @@ belk-bag {
     flex-direction: column-reverse;
   }
 
+  .no-items {
+    font-size: 1.6rem;
+  }
+
   .has-items {
     display: none;
   }

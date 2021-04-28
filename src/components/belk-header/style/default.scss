@@ -145,7 +145,7 @@ belk-header {
         color: inherit;
       }
 
-      &:hover {
+      &:not([href="#"]):hover {
         background: $highlight-secondary;
       }
     }
@@ -300,7 +300,8 @@ belk-header {
       font-weight: bold;
     }
 
-    [data-cgid*="-shop-all"] {
+    [data-cgid*="-shop-all"],
+    [data-cgid*="shop-all-"] {
       display: none !important;
     }
   }
@@ -578,5 +579,12 @@ belk-header {
   }
   ~ .hide-filled {
     display: none;
+  }
+}
+
+.IE11 {
+  .horizontal,
+  .menu-horizontal {
+    height: 80vh !important;
   }
 }

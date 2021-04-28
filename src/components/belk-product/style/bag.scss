@@ -15,5 +15,10 @@
         content: "Sale";
       }
     }
+    &[discount="Clearance"] {
+      .sale:after {
+        content: "Clearance" !important;
+      }
+    }
   }
 }

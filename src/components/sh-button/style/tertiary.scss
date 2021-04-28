@@ -1,4 +1,13 @@
 sh-button[variant=tertiary] {
+  &[disabled] {
+    button {
+      color: $lowlight-quinary;
+      box-shadow: inset 1px 0px 0 $lowlight-quinary,
+        inset -1px 0px 0 $lowlight-quinary,
+        inset 0px 1px 0 $lowlight-quinary,
+        inset 0px -1px 0 $lowlight-quinary;
+    }
+  }
   button {
     color: $brand-blue;
     box-shadow: inset 1px 0px 0 $lowlight-tertiary,
@@ -14,9 +23,6 @@ sh-button[variant=tertiary] {
     .active-icon {
       font-weight: 600;
       text-transform: none;
-      span {
-        font-size: 1em;
-      }
     }
     &:hover,
     &.active {

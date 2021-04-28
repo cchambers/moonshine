@@ -162,7 +162,7 @@ sh-popper {
           color: currentColor;
           padding: 0.6rem;
 
-          &:hover {
+          &:not([href="#"]):hover {
             background-color: $highlight-secondary;
           }
         }

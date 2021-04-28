@@ -3,18 +3,14 @@ sh-button {
   font-size: 1rem;
 
   .actual-text span,
-  .active-text,
+  .active-text span,
   .active-icon {
     text-transform: none;
-
-    span {
-      font-size: 1em;
-    }
   }
 
   &[disabled] {
-    opacity: 0.5;
     pointer-events: none;
+    cursor: not-allowed;
   }
 
   & + sh-button {
