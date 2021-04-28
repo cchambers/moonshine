@@ -48,6 +48,29 @@ html, body {
   box-sizing: border-box;
 }
 
+.off {
+  display: none !important;
+}
+
+.on,
+.block {
+  display: block;
+}
+
+.on-inline,
+.inline {
+  display: inline-block;
+}
+
+.alpha-off {
+  opacity: 0;
+}
+
+.alpha-on {
+  opacity: 1;
+}
+
+
 // /* Scaling CSS Configuration */
 
 // @media (min-width: 0px) {
@@ -463,15 +486,22 @@ html, body {
 
 @media (min-width: 768px) {
   .high-on {
-    display: initial;
+    display: initial !important;
   }
 
   .high-off {
     display: none !important;
   }
+}
 
-  .show-md { display: inline-flex; }
-  .hide-md { display: none; }
+@media (min-width: 960px) {
+  .desktop-on {
+    display: initial !important;
+  }
+
+  .desktop-off {
+    display: none !important;
+  }
 }
 
 .border-solid {
@@ -560,28 +590,6 @@ ol.lower-alpha {
 
 .fill-width {
   width: 100%;
-}
-
-.off {
-  display: none !important;
-}
-
-.on,
-.block {
-  display: block;
-}
-
-.on-inline,
-.inline {
-  display: inline-block;
-}
-
-.alpha-off {
-  opacity: 0;
-}
-
-.alpha-on {
-  opacity: 1;
 }
 
 .stage-right {

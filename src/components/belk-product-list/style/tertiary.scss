@@ -22,9 +22,6 @@
     color: $lowlight-primary;
     display: flex;
     margin-bottom: $micro;
-    &:hover {
-      background: none;
-    }
   }
 
   .data {
@@ -43,9 +40,6 @@
   .name {
     font-weight: bold;
     cursor: pointer;
-    &:hover {
-      text-decoration: underline;
-    }
   }
 
   .image {

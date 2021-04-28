@@ -197,11 +197,25 @@
       <sh-button variant="primary">With Active Icon</sh-button>
     </lib-toolbar> -->
 
-    <h3 class="margin-b-micro" id="variants">Variants</h3>
+    <h3 class="margin-b-micro" id="variants">Variants & [disabled]</h3>
     <lib-toolbar>
       <sh-button variant="primary">Primary</sh-button>
       <sh-button variant="secondary">Secondary</sh-button>
       <sh-button variant="tertiary">Tertiary</sh-button>
+      <div class="pad-b-little"></div>
+      <sh-button disabled variant="primary">Primary</sh-button>
+      <sh-button disabled variant="secondary">Secondary</sh-button>
+      <sh-button disabled variant="tertiary">Tertiary</sh-button>
+    </lib-toolbar>
+
+    <h3 class="margin-b-micro" id="toggle">Toggle</h3>
+    <lib-toolbar>
+        <sh-button
+        variant="primary"
+        toggle="once"
+        class="coupon-add-button"
+        active-text="Added"
+        active-icon="check">Add Coupon</sh-button>
     </lib-toolbar>
 
     <h3 class="margin-b-micro" id="with-icon">With Icon</h3>

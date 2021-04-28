@@ -52,14 +52,17 @@ export default {
   },
 
   watch: {
-    headerData(val) {
-      const self = this;
-      clearTimeout(self.dataDebounce);
-      self.dataDebounce = setTimeout(() => {
-        self.setItem('belkUserData', val, true);
-        self.updateContainers(val);
-        self.clearForEmit();
-      }, 20);
+    headerData: {
+      deep: true,
+      handler(val) {
+        const self = this;
+        clearTimeout(self.dataDebounce);
+        self.dataDebounce = setTimeout(() => {
+          self.setItem('belkUserData', val, true);
+          self.updateContainers(val);
+          self.clearForEmit();
+        }, 20);
+      },
     },
   },
 
@@ -83,6 +86,8 @@ export default {
       self.$bus.$on('get-user-data', self.sendUserData);
       self.$bus.$on('bag-update', self.bagUpdateHandler);
       this.$bus.$on('scroll-event', self.scrollHandler);
+      this.$bus.$on('do-data', self.blah);
+      this.$bus.$on('fetch-user-data', self.getData);
     },
 
     resizeHandler() {
@@ -181,6 +186,10 @@ export default {
       setTimeout(() => {
         if (window.Urls) self.getData();
       }, 500);
+    },
+
+    blah(data) {
+      this.handleHeader(data.data);
     },
 
     handleHeader(data) {

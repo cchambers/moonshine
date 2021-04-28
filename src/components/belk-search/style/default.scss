@@ -226,6 +226,8 @@ belk-search {
 
       .products {
         position: relative;
+        display: flex;
+        flex-direction: column;
         @include md {
           &:before {
             display: block;
@@ -241,6 +243,8 @@ belk-search {
 
         li {
           margin-bottom: 0;
+          margin-left: $little;
+          margin-right: $little;
         }
       }
     }
@@ -251,15 +255,16 @@ belk-search {
 
     .heading {
       font-weight: bold;
+      font-size: 1.6rem;
       display: flex;
       padding: 1rem;
       align-items: center;
     }
 
     a.view-more {
-      text-decoration: underline;
+      display: inline;
       color: $accent-primary;
-
+      padding: 0;
       &:hover {
         text-decoration: none;
       }
