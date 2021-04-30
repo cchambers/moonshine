@@ -12,12 +12,12 @@
     .sale {
       color: #c00;
       &:after {
-        content: "Sale";
+        content: attr('discount');
       }
     }
-    &[discount="Clearance"] {
-      .sale:after {
-        content: "Clearance" !important;
+    &[discount="Doorbuster"] {
+      .sale {
+        color: $lowlight-primary;
       }
     }
   }
