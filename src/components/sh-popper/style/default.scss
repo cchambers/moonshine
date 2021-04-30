@@ -50,10 +50,6 @@ sh-popper {
     }
   }
 
-  .fold-in {
-    background: red;
-  }
-
   .popper-arrow {
     width: 0;
     height: 0;
@@ -166,7 +162,7 @@ sh-popper {
           color: currentColor;
           padding: 0.6rem;
 
-          &:hover {
+          &:not([href="#"]):hover {
             background-color: $highlight-secondary;
           }
         }

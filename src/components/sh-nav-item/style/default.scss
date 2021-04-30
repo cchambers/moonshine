@@ -14,18 +14,8 @@ sh-nav-item {
   .sh-nav-item {
     display: inline-block;
     color: $lowlight-primary;
-
-    .reference a {
-      border-radius: 5px;
-    }
-    
-    &:hover {
-      .reference a {
-        background: $highlight-secondary;
-      }
-    }
   }
-  
+
   .arrow-icon {
     display: none;
     margin-left: 0.4rem;
@@ -34,20 +24,57 @@ sh-nav-item {
     }
   }
 
+  &[cat="Clearance"] {
+    .popper-target {
+      a:not(.belk-link),
+      > div,
+      > span {
+        color: $brand-crimson;
+      }
+    }
+    .subcat-list {
+      width: 25%;
+      flex-grow: 0;
+    }
+
+    .subcat-list li {
+      display: block;
+    }
+
+    .subcat-list * {
+      display: flex;
+      align-items: center;
+      flex-grow: 0;
+      flex-shrink: 0;
+      height: 2.6rem;
+      font-weight: bold;
+      line-height: 2.6rem;
+    }
+
+    .subcat-list *:not(a) {
+      width: 100%;
+    }
+  }
+
   .popper-target {
     border-bottom: none;
     display: inline-flex;
     cursor: pointer;
+    position: relative;
+
+    &.active {
+      .arrow-icon {
+        transform: rotate(180deg);
+      }
+    }
 
     button {
       display: none;
     }
 
-    .reference {
-      position: relative;
-    }
-
-    a {
+    a:not(.belk-link),
+    > div,
+    > span {
       position: relative;
       display: flex;
       align-items: center;
@@ -55,15 +82,15 @@ sh-nav-item {
       transition: all 150ms $ease;
       color: $lowlight-primary;
       cursor: pointer;
+      border-radius: 5px;
+      &:hover {
+        background: $highlight-secondary;
+      }
     }
 
     .belk-icon {
       display: flex;
     }
-  }
-
-  .fold-in {
-    background: red;
   }
 
   .popper-arrow {

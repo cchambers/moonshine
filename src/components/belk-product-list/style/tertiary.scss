@@ -1,6 +1,6 @@
 /* primary variant */
 
-.belk-product-list[variant="secondary"] {
+.belk-product-list[variant="tertiary"] {
   ul {
     justify-content: space-between;
     flex-direction: column;
@@ -9,19 +9,19 @@
   li {
     font-size: 1.4rem;
     overflow: hidden;
-    margin-bottom: 1rem;
+    margin-bottom: $micro;
     border-bottom: 1px solid $highlight-tertiary;
 
     &:last-child {
       border-bottom: none;
+      margin-bottom: 0;
     }
   }
 
   .product-link {
     color: $lowlight-primary;
     display: flex;
-    width: 100%;
-    cursor: pointer;
+    margin-bottom: $micro;
   }
 
   .data {
@@ -37,6 +37,11 @@
     }
   }
 
+  .name {
+    font-weight: bold;
+    cursor: pointer;
+  }
+
   .image {
     width: 3.9rem;
     height: 5.5rem;
@@ -46,7 +51,8 @@
     background-position: center center;
     background-repeat: no-repeat;
     margin-right: 1rem;
-    @include xl {
+    cursor: pointer;
+    @include lg {
       width: 6rem;
       height: 8rem;
     }

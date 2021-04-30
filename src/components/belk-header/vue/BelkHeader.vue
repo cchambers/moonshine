@@ -37,6 +37,8 @@ export default {
         store: false,
         cartQty: false,
         subTotal: false,
+        cart: false,
+        auth: false,
       },
       baseData: false,
       brdData: false,
@@ -50,14 +52,17 @@ export default {
   },
 
   watch: {
-    headerData(val) {
-      const self = this;
-      clearTimeout(self.dataDebounce);
-      self.dataDebounce = setTimeout(() => {
-        self.setItem('belkUserData', val, true);
-        self.updateContainers(val);
-        self.clearForEmit();
-      }, 20);
+    headerData: {
+      deep: true,
+      handler(val) {
+        const self = this;
+        clearTimeout(self.dataDebounce);
+        self.dataDebounce = setTimeout(() => {
+          self.setItem('belkUserData', val, true);
+          self.updateContainers(val);
+          self.clearForEmit();
+        }, 20);
+      },
     },
   },
 
@@ -69,15 +74,24 @@ export default {
     const tert = document.querySelector('nav.lazy');
     if (tert) tert.classList.remove('lazy');
     this.updateHeightProp();
+    const resizeDebounced = this.debounce('adapt-db', this.resizeHandler, 50);
+    window.addEventListener('resize', resizeDebounced, true);
   },
 
   methods: {
     setupEvents() {
       const self = this;
+      self.$bus.$on('header-update', self.updateHeightProp);
       self.$bus.$on('smooth-scroll', self.smoothScrollHandler);
-      self.$bus.$on('get-user-data', self.clearForEmit);
+      self.$bus.$on('get-user-data', self.sendUserData);
       self.$bus.$on('bag-update', self.bagUpdateHandler);
       this.$bus.$on('scroll-event', self.scrollHandler);
+      this.$bus.$on('do-data', self.blah);
+      this.$bus.$on('fetch-user-data', self.getData);
+    },
+
+    resizeHandler() {
+      this.updateHeightProp();
     },
 
     smoothScrollHandler(event) {
@@ -86,6 +100,12 @@ export default {
       setTimeout(() => {
         document.documentElement.classList.add('no-smooth-scroll');
       }, delay);
+    },
+
+    sendUserData(ce) {
+      if (this.hasAllData) {
+        ce.handleData(this.headerData);
+      }
     },
 
     clearForEmit() {
@@ -107,7 +127,7 @@ export default {
       let url;
       let brdurl;
       if (window.Urls) {
-        url = window.Urls.headerInfo;
+        url = window.Urls.headerData;
         brdurl = window.Urls.getBRDDetailsForHeader;
       } else {
         let { origin } = window.location;
@@ -130,7 +150,6 @@ export default {
             } catch (e) {
               // Oh well...
             }
-
             self.handleHeader(res);
           }
         }
@@ -169,14 +188,19 @@ export default {
       }, 500);
     },
 
+    blah(data) {
+      this.handleHeader(data.data);
+    },
+
     handleHeader(data) {
       this.updateWindow(data);
       this.$set(this.headerData, 'name', data.userDetails.firstName);
       this.$set(this.headerData, 'auth', data.userDetails.authenticated);
       this.$set(this.headerData, 'qty', data.cartQty);
-      this.$set(this.headerData, 'total', data.subTotal);
-      this.$set(this.headerData, 'store', data.storeName);
-      if (this.headerData.auth) this.$el.classList.add('is-user');
+      this.$set(this.headerData, 'subTotal', data.subTotal);
+      if (data.storeDetails.storeName) this.$set(this.headerData, 'store', data.storeDetails);
+      this.$set(this.headerData, 'cart', data.cart);
+      if (data.userDetails.firstName) this.actual.classList.add('is-user');
       this.baseData = true;
     },
 
@@ -229,11 +253,15 @@ export default {
       this.scrollState(state);
       this.lastScrollTop = st <= 0 ? 0 : st;
 
-      this.updateHeightProp();
+      setTimeout(() => {
+        this.updateHeightProp();
+      }, 150);
     },
 
     updateHeightProp() {
-      setTimeout(() => { document.documentElement.style.setProperty('--header-height', this.actual.clientHeight); });
+      setTimeout(() => {
+        if (this.actual) document.documentElement.style.setProperty('--header-height', `${this.actual.clientHeight}px`);
+      }, 10);
     },
 
     scrollState(num) {
@@ -241,16 +269,33 @@ export default {
     },
 
     updateContainers(data) {
-      const keys = Object.keys(data);
-      const values = Object.values(data);
+      let obj = {};
+      if (data.store) {
+        obj = {
+          ...data,
+          ...data.store,
+        };
+      } else {
+        obj = data;
+      }
+      const keys = Object.keys(obj);
+      const values = Object.values(obj);
       for (let i = 0; i < keys.length; i += 1) {
-        const val = values[i];
-        const els = document.querySelectorAll(`[fill="${keys[i]}"]`);
-        els.forEach((el) => {
-          const target = el;
-          target.innerText = val;
-          target.setAttribute('filled', true);
-        });
+        let val = values[i];
+        if (val) {
+          setTimeout(() => {
+            const els = document.querySelectorAll(`[data-fill="${keys[i]}"]`);
+            els.forEach((el) => {
+              const target = el;
+              if (typeof val === 'string' && val.length
+                && (val.toUpperCase() === val || val.toLowerCase() === val)) {
+                val = val.toTitleCase();
+              }
+              target.innerText = val;
+              target.setAttribute('filled', true);
+            });
+          }, 50);
+        }
       }
     },
   },

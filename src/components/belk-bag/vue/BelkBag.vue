@@ -1,77 +1,75 @@
 <template>
-  <div class="belk-bag" :variant="variant" v-bind:class="{ active: itemCount > 0 }">
-    <sh-popper offset-x="-41" placement="bottom" reference-id="belk-bag">
-      <div slot="reference">
-        <div class="bag-icon">
-          <belk-icon width="33" height="40" name="bag">shopping bag</belk-icon>
-          <div class="bag-count">{{ itemCount }}</div>
-        </div>
-        <div class="bag-total">{{ totalPrice }}</div>
-      </div>
-      <div class="bag-content" slot="content">
-        <div v-if="itemCount > 0">
-          <div>
-            <span class="bold">Bag Subtotal</span>
-            <span>{{ subTotal }}</span>
+  <div class="belk-bag"
+    :variant="variant"
+    :count="itemCount"
+    v-bind:class="{ active: itemCount > 0 }">
+    <template v-if="hasData">
+      <sh-popper :disabled="isDisabled" offset-x="-42" placement="bottom" unique-id="belk-bag">
+        <a id="goToCart" href="/shopping-bag" slot="reference">
+          <div class="bag-icon">
+            <belk-icon width="33" height="40" name="bag">shopping bag</belk-icon>
+            <div class="bag-count">{{ itemCount }}</div>
           </div>
-          <component
-            ref="freeShippingMessage"
-            class="text-center"
-            v-bind:is="belkShippingNote">
-          </component>
-          <component
-            ref="itemList"
-            v-bind:is="belkProductList"
-            v-bind:product-array="items"
-            variant="secondary">
-          </component>
-          <sh-button class="primary" link="/shopping-bag">View Bag &amp; Checkout</sh-button>
-        </div>
-        <div v-if="itemCount === 0">
-          <div>
-            <h4>Your bag is empty &amp; could use some love.</h4>
-            <p class="pad-little text-center">
-              Sign in to see items you may have added to your bag.
-            </p>
+          <div class="bag-total">{{ totalPrice }}</div>
+        </a>
+        <div class="bag-content" slot="content">
+          <div class="has-items">
+            <div class="scrolling-area">
+              <div class="text-center pad-little px-16">
+                <span class="bold">Bag Subtotal</span> <span>{{ totalPrice }}</span>
+              </div>
+              <div v-if="shippingNote"
+                v-html="shippingNote"
+                class="pad-x-little pad-b-little"></div>
+              <div class="hr margin-y-micro"></div>
+              <ul class="bag-list belk-product-list" variant="tertiary">
+                <li v-for="product in items" v-bind:key="product.index">
+                  <component :is="belkProduct" variant="bag" v-bind="product"></component>
+                </li>
+              </ul>
+            </div>
+            <div class="pad-x-micro pad-b-micro">
+              <sh-button variant="primary" full link="/shopping-bag">
+                View Bag &amp; Checkout
+              </sh-button>
+            </div>
+          </div>
+          <div class="no-items pad-little">
+            <div>
+              <h4>Your bag is empty &amp; could use some love.</h4>
+              <p class="unregistered pad-t-little text-center">
+                Sign in to see items you may have added to your bag.
+              </p>
+              <p class="registered pad-t-little text-center">
+                That means it's time to shop!
+              </p>
+            </div>
           </div>
         </div>
-      </div>
-    </sh-popper>
+      </sh-popper>
+    </template>
   </div>
 </template>
 
 <script>
-import BelkProductList from '../../belk-product-list/vue/BelkProductList.vue';
-import BelkShippingNote from '../../belk-shipping-note/vue/BelkShippingNote.vue';
 import ComponentPrototype from '../../component-prototype';
+import BelkProduct from '../../belk-product/vue/BelkProduct.vue';
 import MoneyFormatter from '../../money-formatter';
 
 export default {
   mixins: [ComponentPrototype, MoneyFormatter],
 
   name: 'BelkBag',
-  props: {
-    count: Number,
-    total: {
-      type: Number,
-      default: 0,
-    },
-    belkProductList: BelkProductList,
-    belkShippingNote: BelkShippingNote,
-  },
 
-  components: {
-    BelkProductList,
-    BelkShippingNote,
-  },
-
-  computed: {
-    totalPrice() {
-      const total = parseInt(this.total, 10);
+  watch: {
+    subTotal(val) {
+      let total = val;
       if (total === 0) {
-        return 'Bag';
+        total = 'Bag';
+      } else {
+        total = this.format(total);
       }
-      return this.format(total);
+      this.totalPrice = total;
     },
   },
 
@@ -80,22 +78,57 @@ export default {
       items: [],
       itemCount: 0,
       subTotal: 0,
+      shippingNote: '',
+      totalPrice: 'Bag',
+      isDisabled: false,
+      hasData: false,
+      belkProduct: BelkProduct,
     };
   },
 
   created() {
-    if (this.count) this.itemCount = this.count;
-    if (this.total) this.subTotal = this.subTotal;
+    if (window.location.href.indexOf('shopping-bag') > 0) this.isDisabled = true;
   },
 
   methods: {
     events() {
       this.$bus.$on('user-data', this.handleUserData);
+      this.$bus.$on('belk-bag-ready', (data) => {
+        const target = data;
+        target.referenceElm.addEventListener('click', this.goToCart);
+
+        if (this.isMobile()) {
+          target.$set(target, 'disabled', true);
+        }
+      });
+    },
+
+    isMobile() {
+      return window.matchMedia('(max-width: 960px)').matches;
+    },
+
+    goToCart() {
+      window.location.href = '/shopping-bag';
     },
 
     handleUserData(data) {
-      if (data.cartQty) this.itemCount = parseInt(data.cartQty, 10);
-      if (data.subTotal) this.subTotal = parseInt(data.subTotal, 10);
+      if (data.qty) this.$set(this, 'itemCount', parseInt(data.qty, 10));
+      if (data.subTotal) this.$set(this, 'subTotal', data.subTotal);
+      if (data.cart) {
+        this.$set(this, 'items', data.cart.items);
+        if (data.cart.shippingMessage) this.$set(this, 'shippingNote', data.cart.shippingMessage);
+        setTimeout(() => {
+          this.$bus.$emit('bag-list-update', data.cart.items);
+        }, 100);
+      }
+      if (this.hasData) {
+        this.hasData = false;
+        setTimeout(() => {
+          this.hasData = true;
+        }, 5);
+      } else {
+        this.hasData = true;
+      }
     },
 
     emitUpdate() {

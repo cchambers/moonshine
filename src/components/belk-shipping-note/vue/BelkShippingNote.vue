@@ -1,15 +1,14 @@
 <template>
   <div class="belk-shipping-note"
-    :variant="variant">
-    {{ activemsg }}
-  </div>
+    :variant="variant" v-html="activemsg"></div>
 </template>
 
 <script>
 import ComponentPrototype from '../../component-prototype';
+import MoneyFormatter from '../../money-formatter';
 
 export default {
-  mixins: [ComponentPrototype],
+  mixins: [ComponentPrototype, MoneyFormatter],
 
   name: 'BelkShippingNote',
 
@@ -26,14 +25,19 @@ export default {
 
   data() {
     return {
-      activemsg: this.altmsg || this.msg,
+      activemsg: '',
       subTotal: 0,
     };
   },
 
   watch: {
     freeShipping(val) {
-      if (this.subTotal >= val) this.activemsg = this.msg;
+      if (this.subTotal >= val) {
+        this.activemsg = this.msg;
+      } else {
+        const spend = this.format(val - this.subTotal);
+        this.activemsg = `Spend <span class="bold">${spend}</span> more to earn FREE Shipping`;
+      }
     },
   },
 
@@ -43,7 +47,7 @@ export default {
         this.subTotal = data.subTotal;
       });
       this.$bus.$on('free-shipping', (val) => {
-        this.freeShipping = val;
+        if (this.freeShipping) this.$set(this, 'freeShipping', val);
       });
     },
   },

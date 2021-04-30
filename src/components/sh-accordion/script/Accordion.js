@@ -12,6 +12,7 @@ export default {
     closedIcon: String,
     openIcon: String,
     variant: String,
+    subcat: Boolean,
   },
 
   data() {
@@ -112,10 +113,21 @@ export default {
         });
       }
 
+      if (this.uniqueId) {
+        const slug = `open-${this.uniqueId.slugify()}`;
+        this.$bus.$on(slug, () => {
+          this.open();
+          if (this.subcat) {
+            const cat = this.$el.closest('ul').closest('sh-accordion');
+            if (cat) this.$bus.$emit(`open-${cat.uniqueId.slugify()}`);
+          }
+        });
+      }
+
       this.$bus.$on('accordion-trigger', (data) => {
         if (data.which === this.uniqueId) this.toggleActive();
-        if (data.origin) data.origin.setAttribute('aria-expanded', this.ariaExpanded);
         if (data.origin) {
+          data.origin.setAttribute('aria-expanded', this.ariaExpanded);
           if (data.origin.hasAttribute('focus-me')) {
             setTimeout(() => {
               data.origin.scrollIntoView();

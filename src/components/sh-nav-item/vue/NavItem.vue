@@ -3,9 +3,7 @@
     v-bind:class="{ 'touch': mobile }"
     :active="active">
     <div class="popper-target" :class="{ active: showPopper }" ref="target">
-      <div class="reference">
-        <slot name="reference"></slot>
-      </div>
+      <slot name="reference"></slot>
     </div>
     <transition
     :name="transition"
@@ -65,6 +63,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    navItem: {
+      type: Boolean,
+      default: true,
+    },
     hasArrow: {
       type: Boolean,
       default: false,
@@ -109,6 +111,9 @@ export default {
       type: String,
       default: '',
     },
+    offset: {
+      type: Number,
+    },
     trigger: {
       type: String,
       default: 'click',
@@ -140,7 +145,7 @@ export default {
           {
             name: 'offset',
             options: {
-              offset: [10, 0],
+              offset: [this.offset || 10, 0],
             },
           },
           {
@@ -165,7 +170,11 @@ export default {
         if (this.link) this.link.setAttribute('aria-expanded', true);
       } else {
         this.$bus.$emit('popper-closing', this);
-        this.$bus.$emit('hide-curtain', this);
+        if (this.closeCurtain) {
+          this.$bus.$emit('hide-curtain', this);
+        } else {
+          this.closeCurtain = false;
+        }
         if (this.link) this.link.setAttribute('aria-expanded', false);
       }
     },
@@ -195,13 +204,13 @@ export default {
   mounted() {
     this.referenceElm = this.$refs.target;
     this.popper = this.$refs.popper;
-    this.link = this.referenceElm.querySelector('a');
+    this.link = this.referenceElm.querySelector('a, .nav-link');
     if (this.foregroundSelector) this.foreground = document.querySelector(this.foregroundSelector);
 
     if (this.link) {
       this.link.setAttribute('aria-haspopup', true);
       this.link.setAttribute('aria-expanded', false);
-      if (this.hasArrow) this.link.innerHTML += '<belk-icon class="arrow-icon" name="arrow-down" width="6" class="margin-l-atomic"></belk-icon>';
+      if (this.hasArrow) this.link.innerHTML += '<belk-icon class="arrow-icon" name="arrow-down" width="6" height="6" class="margin-l-atomic"></belk-icon>';
     }
 
     if (this.trigger === 'click') {
@@ -212,6 +221,8 @@ export default {
         });
       }
     }
+
+    if (this.variant === 'mega') this.viewAllFix();
 
     this.initPopper();
     this.show = true;
@@ -233,12 +244,28 @@ export default {
       });
 
       this.$bus.$on('popper-opening', (el) => {
-        if (el === this) return;
+        if (el === this) {
+          this.closeCurtain = true;
+          return;
+        }
+        if (el.navItem) {
+          this.closeCurtain = false;
+        } else {
+          this.closeCurtain = true;
+        }
         self.close();
       });
 
       this.$bus.$on('modal-opening', self.close);
       this.$bus.$on('close-modals', self.close);
+    },
+
+    viewAllFix() {
+      const target = this.$refs.popper.querySelector('.view-all');
+      if (target) {
+        const list = target.nextSibling.querySelector('ul');
+        if (list) list.prepend(target);
+      }
     },
 
     initPopper() {

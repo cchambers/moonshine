@@ -37,6 +37,7 @@ export default {
         brd: null,
         brc: '',
       },
+      freeShipAt: Number,
     };
   },
 
@@ -61,7 +62,7 @@ export default {
           } else {
             string = 'Elites get <span class="uppercase">Free</span> Shipping every day';
           }
-          this.$bus.$emit('free-shipping', true);
+          this.setData(0);
           break;
 
         case 'premier':
@@ -70,7 +71,7 @@ export default {
           } else {
             string = `<span class="uppercase">Free</span> Shipping @ $${this.freeShippingPremier}`;
           }
-          this.$bus.$emit('free-shipping', freeShippingPremier);
+          this.setData(this.freeShippingPremier);
           break;
 
         case 'standard':
@@ -79,7 +80,7 @@ export default {
           } else {
             string = `<span class="uppercase">Free</span> Shipping @ $${this.freeShippingStandard}`;
           }
-          this.$bus.$emit('free-shipping', freeShippingStandard);
+          this.setData(this.freeShippingStandard);
           break;
 
         default:
@@ -88,7 +89,7 @@ export default {
           } else {
             string = `<span class="uppercase">Free</span> Shipping @ $${this.freeShipping}`;
           }
-          this.$bus.$emit('free-shipping', freeShipping);
+          this.setData(this.freeShipping);
           break;
       }
 
@@ -97,21 +98,30 @@ export default {
   },
 
   mounted() {
-    const self = this;
-    self.setupEvents();
     setTimeout(() => {
-      self.$bus.$emit('get-user-data');
+      this.$bus.$emit('get-user-data', this);
     }, 200);
   },
 
   methods: {
-    setupEvents() {
+    events() {
+      this.$bus.$on('belk-bag-ready', this.emitData);
       this.$bus.$on('user-data', this.handleData);
     },
 
     handleData(data) {
       if (data.brd) this.$set(this.data, 'brd', data.brd);
       if (data.brc) this.$set(this.data, 'brc', data.brc);
+    },
+
+    setData(num) {
+      this.freeShipAt = num;
+    },
+
+    emitData() {
+      setTimeout(() => {
+        this.$bus.$emit('free-shipping', this.freeShipAt);
+      });
     },
   },
 };

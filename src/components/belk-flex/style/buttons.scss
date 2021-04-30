@@ -3,19 +3,19 @@ belk-flex[variant="buttons"] {
     flex-direction: column-reverse;
     justify-content: flex-start;
 
-    .sh-button {
-      min-height: 45px;
-      span {
-        font-size: 18px;
-      }
+    sh-button {
+      margin-top: $little;
+      width: 100%;
     }
+
 
     @include md {
       flex-direction: row;
       justify-content: flex-end;
 
-      .sh-button {
-        padding: 0 $big;
+      sh-button {
+        margin-top: auto;
+        width: auto;
       }
 
       [reject-trigger] {

@@ -11,8 +11,9 @@ belk-products[variant="primary"] {
       overflow: hidden;
       width: 10rem;
 
-      a {
+      .product-link {
         color: $lowlight-primary;
+        cursor: pointer;
       }
     }
 

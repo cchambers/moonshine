@@ -6,6 +6,7 @@ sh-button[variant="belk-link"] {
       font-size: 1em;
       color: $accent-primary;
       border-bottom: 1px solid $accent-primary;
+      transition: all 200ms ease;
     }
     &:active {
       background: transparent !important;

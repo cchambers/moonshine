@@ -27,6 +27,10 @@ belk-search {
     border-radius: 1rem;
     transition: box-shadow 250ms $ease;
 
+    &[invalid]{
+      border-color: $state-error;
+    }
+
     &.active {
       @include box-shadow(1);
 
@@ -61,7 +65,7 @@ belk-search {
     }
 
     button.clear-search {
-      color: $lowlight-secondary;
+      color: $lowlight-tertiary;
     }
 
     input {
@@ -72,6 +76,13 @@ belk-search {
       display: flex;
       justify-content: center;
       cursor: pointer;
+      &.flex {
+        width: 3.6rem;
+        padding: 0;
+        &:hover {
+          background: $highlight-secondary;
+        }
+      }
       &[disabled] {
         pointer-events: none;
       }
@@ -84,10 +95,11 @@ belk-search {
       width: 100%;
     }
 
-    a {
+    a,
+    .product-link {
       display: flex;
       width: 100%;
-      padding: 1rem;
+      padding: $micro;
       transition: background 250ms $ease;
       color: $lowlight-primary;
       text-decoration: none;
@@ -143,6 +155,11 @@ belk-search {
     .search-recent {
       sh-button .sh-button {
         text-transform: none;
+        &:hover {
+          span {
+            border-color: transparent !important;
+          }
+        }
         span {
           background: transparent;
           border: none;
@@ -208,19 +225,26 @@ belk-search {
       }
 
       .products {
-        ul {
-          @include md {
-            border-left: 1px solid $highlight-tertiary;
-          }
-        }
-        a.view-more{
-          @include md {
-            border-left: 1px solid $highlight-tertiary;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        @include md {
+          &:before {
+            display: block;
+            content: '';
+            position: absolute;
+            left:  0;
+            top: $little;
+            width: 1px;
+            background: $highlight-tertiary;
+            height: calc(100% - 3.2rem);
           }
         }
 
         li {
           margin-bottom: 0;
+          margin-left: $little;
+          margin-right: $little;
         }
       }
     }
@@ -231,15 +255,16 @@ belk-search {
 
     .heading {
       font-weight: bold;
+      font-size: 1.6rem;
       display: flex;
       padding: 1rem;
       align-items: center;
     }
 
     a.view-more {
-      text-decoration: underline;
+      display: inline;
       color: $accent-primary;
-
+      padding: 0;
       &:hover {
         text-decoration: none;
       }

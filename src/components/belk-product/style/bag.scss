@@ -1,0 +1,24 @@
+/* default styling */
+.belk-product[variant="bag"] {
+  &.is-on-sale {
+    .original {
+      text-decoration: line-through;
+      font-weight: normal;
+      color: $lowlight-quinary;
+    }
+  }
+
+  .price {
+    .sale {
+      color: #c00;
+      &:after {
+        content: "Sale";
+      }
+    }
+    &[discount="Clearance"] {
+      .sale:after {
+        content: "Clearance" !important;
+      }
+    }
+  }
+}

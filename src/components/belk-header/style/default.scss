@@ -1,6 +1,17 @@
 $primary-nav-height: 4.8rem;
 $secondary-nav-height: 6.2rem;
 
+belk-header {
+  display: none;
+  &[vce-ready] {
+    ~ .belk-header {
+      display: block !important;
+    }
+  }
+  ~ .belk-header {
+    display: none;
+  }
+}
 .belk-header {
   position: fixed;
   width: 100%;
@@ -19,7 +30,7 @@ $secondary-nav-height: 6.2rem;
     }
   }
 
-  sh-nav-item a:hover {
+  sh-nav-item a:not(.belk-link):hover {
     background: $highlight-secondary;
   }
 
@@ -59,6 +70,7 @@ $secondary-nav-height: 6.2rem;
     display: flex;
     align-items: center;
     width: 100%;
+    height: 100%;
     margin: 0 auto;
     flex-grow: 0;
     flex-shrink: 0;
@@ -80,6 +92,9 @@ $secondary-nav-height: 6.2rem;
       width: 1px;
       height: 20px;
       top: calc(50% - 10px);
+    }
+    & ~ sh-nav-item {
+      display: none;
     }
   }
 
@@ -109,26 +124,28 @@ $secondary-nav-height: 6.2rem;
     }
 
     a.iconbar-action {
-      padding: 12px 13px;
+      padding: 1.3rem;
+      cursor: pointer;
     }
 
     .iconbar-action {
-      .reference > a,
-      .reference > div {
-        padding: 12px 13px;
-        box-sizing: border-box;
-      }
       border-radius: 5px;
       display: flex;
       align-items: center;
-      cursor: pointer;
+      .popper-target > a,
+      .popper-target > div {
+        height: 6rem;
+        display: flex;
+        padding: 1.3rem;
+        box-sizing: border-box;
+      }
 
       &.coupon-action {
         display: none;
         color: inherit;
       }
 
-      &:hover {
+      &:not([href="#"]):hover {
         background: $highlight-secondary;
       }
     }
@@ -149,8 +166,6 @@ $secondary-nav-height: 6.2rem;
 
   .primary {
     height: $primary-nav-height;
-    align-items: center;
-    display: flex;
     background: $highlight-primary;
     position: relative;
 
@@ -162,7 +177,8 @@ $secondary-nav-height: 6.2rem;
       belk-storefinder {
         height: $primary-nav-height;
       }
-      a {
+      a:not(.belk-link),
+      .nav-link {
         display: flex;
         align-items: center;
         padding: 0 $micro;
@@ -173,15 +189,15 @@ $secondary-nav-height: 6.2rem;
 
     .primary-promo {
       font-weight: bold;
-      flex: 1;
-      display: inline-flex;
+      flex-grow: 1;
+      flex-shrink: 1;
+      flex-basis: 50%;
+      display: flex;
       justify-content: center;
     }
   }
 
   .secondary {
-    display: flex;
-    align-items: center;
     background: $highlight-primary;
 
     .contain {
@@ -207,26 +223,22 @@ $secondary-nav-height: 6.2rem;
 
   //initial meganav styles
   .tertiary {
+    display: none;
     border-bottom: 1px $lowlight-primary;
     background: $highlight-primary;
     -webkit-overflow-scrolling: touch;
-    top: 0px;
+    top: 0;
 
-    sh-nav-item {
-      display: none;
-
-      .reference {
-        height: 5rem;
-        line-height: 1.2;
-        display: inline-flex;
-        align-items: center;
-        padding: 0 8px;
-        justify-content: center;
-        text-align: center;
-      }
-    }
     .popper-target {
       line-height: 4.5rem;
+      height: 5rem;
+      line-height: 1.2;
+      display: inline-flex;
+      align-items: center;
+      padding: 0 $micro;
+      > div {
+        background-color: transparent !important;
+      }
       &.active {
         &:after {
           display: block;
@@ -249,8 +261,9 @@ $secondary-nav-height: 6.2rem;
       padding: 0;
 
       .popper-close {
-        position: fixed;
+        position: absolute;
         right: $rem;
+        top: 0;
 
         button {
           background-color: transparent;
@@ -266,20 +279,30 @@ $secondary-nav-height: 6.2rem;
           // break-inside: avoid;
           margin-bottom: 2rem;
         }
-        .cat-ad-banner {
-          margin-top: 2rem;
-        }
         .l2 {
           font-weight: bold;
+          margin-bottom: $little;
+          padding-right: $little;
+          > li > a {
+            margin-bottom: $micro;
+          }
         }
         ul.l3 .view-all {
           display: none;
+        }
+        .menu__subcat {
+          min-height: 60vh;
         }
       }
     }
 
     .l2 > li {
       font-weight: bold;
+    }
+
+    [data-cgid*="-shop-all"],
+    [data-cgid*="shop-all-"] {
+      display: none !important;
     }
   }
 
@@ -299,7 +322,8 @@ $secondary-nav-height: 6.2rem;
   belk-search {
     width: 100%;
     max-width: 58rem;
-    flex: 1;
+    flex-grow: 1;
+    flex-shrink: 1;
     margin: 0 auto;
     z-index: 7;
 
@@ -329,13 +353,15 @@ $secondary-nav-height: 6.2rem;
   }
 
   & ~ #wrapper {
-    padding-top: 10.8rem;
+    padding-top: 11rem;
+    // padding-top: var(--header-height);
   }
 
   // Media Queries
   @include md {
     & ~ #wrapper {
       padding-top: 14rem;
+      // padding-top: var(--header-height);
     }
 
     .contain {
@@ -343,15 +369,14 @@ $secondary-nav-height: 6.2rem;
     }
 
     .primary {
-      display: flex;
       .primary-promo {
-        justify-content: left;
+        justify-content: flex-start;
       }
 
       .primary-utility {
         display: flex;
 
-        sh-nav-item .reference {
+        sh-nav-item .popper-target {
           height: $primary-nav-height;
         }
 
@@ -392,6 +417,9 @@ $secondary-nav-height: 6.2rem;
   @include lg {
     .nav-divider {
       display: inline-flex;
+      & ~ sh-nav-item {
+        display: block;
+      }
     }
 
     sh-button.nav-trigger {
@@ -404,16 +432,11 @@ $secondary-nav-height: 6.2rem;
       justify-content: flex-end;
     }
 
-    .primary {
+    .primary-utility {
       display: flex;
-
-      .primary-utility {
-        display: flex;
-
-        .store-locator {
-          padding-right: 1.6rem;
-          border-right: 1px solid #979797;
-        }
+      .store-locator {
+        padding-right: 1.6rem;
+        border-right: 1px solid #979797;
       }
     }
 
@@ -429,6 +452,7 @@ $secondary-nav-height: 6.2rem;
 
 
     .secondary {
+      height: 6rem;
       .contain {
         justify-content: flex-start;
       }
@@ -449,6 +473,7 @@ $secondary-nav-height: 6.2rem;
       }
       ul li a {
         display: flex;
+        align-items: center;
         padding: 12px;
       }
       i[class^="icon-"] {
@@ -461,12 +486,10 @@ $secondary-nav-height: 6.2rem;
     }
 
     .tertiary {
-      display: flex;
+      display: block;
       max-height: 60px;
       max-width: none;
-      transition: max-height 100ms $accel;
-      width: 100%;
-      
+      transition: max-height 100ms linear;
       .contain {
         .menu-utility-user.mega,
         .close-menu,
@@ -476,13 +499,18 @@ $secondary-nav-height: 6.2rem;
 
         sh-nav-item {
           display: inline-flex;
+
+          .popper-content {
+            max-height: calc(100vh - 250px);
+            max-height: calc(100vh - var(--header-height));
+          }
         }
       }
     }
 
     //scroll states for site wrapper
     & ~ #wrapper {
-      padding-top: 19rem;
+      padding-top: 18rem;
     }
   }
 
@@ -493,40 +521,70 @@ $secondary-nav-height: 6.2rem;
     }
   }
 
-  .layout-horizontal {
+  .horizontal,
+  .menu-horizontal {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
+    align-items:  flex-start;
+    align-content: flex-start;
     margin: 0 auto;
     max-width: 96rem;
+    padding: $little;
     max-height: calc(100vh - 250px);
     max-height: calc(100vh - var(--header-height));
+
     @include xl {
       max-width: 128rem;
     }
 
     > li {
-      margin-left: $little;
-      margin-right: $little;
-      margin-top: $little;
       width: 25%;
+      flex-grow: 1;
+      flex-shrink: 0.25;
     }
 
-    .view-all a {
-      border-top: 1px solid $highlight-tertiary;
-      border-bottom: 1px solid $highlight-tertiary;
-      font-weight: bold;
+    .view-all {
+      margin-bottom: $little;
+      a {
+        border-top: 1px solid $highlight-tertiary;
+        border-bottom: 1px solid $highlight-tertiary;
+        font-weight: bold;
+      }
     }
 
     a {
       display: block;
       padding: 0 $micro;
-      line-height: 3.6rem;
+      line-height: 2.6rem;
     }
 
 
     .l3 .view-all {
       display: none;
     }
+  }
+
+  .menu-horizontal {
+    flex-direction: row;
+    font-weight: bold;
+  }
+}
+
+[filled="true"] {
+  &.space {
+    display: inline-block;
+    margin-left: 0.25em;
+    margin-right: 0.25em;
+  }
+  ~ .hide-filled {
+    display: none;
+  }
+}
+
+.IE11 {
+  .horizontal,
+  .menu-horizontal {
+    height: 80vh !important;
   }
 }

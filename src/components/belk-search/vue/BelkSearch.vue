@@ -3,6 +3,7 @@
     class="belk-search"
     :count="count"
     :state="state"
+    :invalid="isInvalid"
     v-bind:class="{ active: isActive, focused: isFocused }">
 
     <!-- Input -->
@@ -24,23 +25,25 @@
         v-on:keydown.tab="forceBlur"
         v-on:keydown.down="highlightHandler"
         v-on:keydown.up="highlightHandler"
+        @paste="pasteHandler"
         :placeholder="placeholder"
         @focus="focusHandler"
-        @blur="forceBlur"
       />
       <button class="clear-search flex" aria-role="button"
         aria-label="clear search field"
         ref="clear"
         v-if="valueLength>0"
-        v-hammer:tap="forceBlur">
-        <belk-icon name="close" width="24">Clear Input</belk-icon>
+        v-hammer:tap="clearSearch">
+        <belk-icon name="close"
+          width="24" height="24">Clear Input</belk-icon>
       </button>
       <button class="flex" aria-role="button"
         aria-label="perform search"
         ref="search"
         v-hammer:tap="doSearch"
         :disabled="isEmpty">
-        <belk-icon name="search" width="30" height="30">Perform Search Action</belk-icon>
+        <belk-icon name="search"
+          width="24" height="24">Perform Search Action</belk-icon>
       </button>
     </div>
     <div ref="loading" class="search-loading">
@@ -88,7 +91,7 @@
       <div ref="actual"
         v-bind:class="{ active: state === 2 || state === 3 }"
         class="search-suggestions"
-        @touchstart="blurInputMobile()" >
+        @touchstart="blurInputMobile" >
         <div class="keywords">
           <ul>
             <li v-for="(item, index) in suggestionsLimited"
@@ -108,13 +111,14 @@
           <component
             ref="suggestedProducts"
             v-bind:is="belkProductList"
-            v-bind:product-array="productsLimited"
+            v-bind:products="productsLimited"
             variant="secondary"
             :item-limit="3"
           ></component>
-          <a class="view-more" :href="buildSearchLink(suggestTerm)">
-            View more results for "{{ suggestTerm }}"
-          </a>
+          <div class="pad-micro" style="margin-top: auto;">
+            <a class="view-more belk-link"
+              :href="buildSearchLink(suggestTerm)">More Results for "{{ suggestTerm }}"</a>
+          </div>
         </div>
       </div>
     </div>
@@ -182,7 +186,10 @@ export default {
       count: 0,
       preloaded: false,
       fullyloaded: false,
+      specialChars: new RegExp('[^a-z0-9 \']', 'i'),
+      isInvalid: false,
       belkProductList: BelkProductList,
+      isDev: false,
     };
   },
 
@@ -196,7 +203,11 @@ export default {
       let state = 0;
       if (this.recents.length && this.count === 0 && this.isFocused) state = 1;
       if (this.count > 0 && this.isFocused) state = 2;
-      if (this.count === 0 && this.noResults && this.searchValue !== '' && this.isFocused) state = 1; // was 3
+      if (this.count === 0
+        && this.noResults
+        && this.searchValue !== ''
+        && this.isFocused
+        && this.recents.length) state = 1; // was 3
       this.activeDescendantHandler();
       this.stateHandler(state);
       // eslint-disable-next-line
@@ -267,6 +278,7 @@ export default {
       if (this.inputEl.value !== val) this.inputEl.value = val;
       this.valueLength = val.length;
       this.isEmpty = (val.length === 0);
+      this.isInvalid = this.specialChars.test(val);
     },
 
     recents(arr) {
@@ -331,6 +343,7 @@ export default {
 
   created() {
     this.setUUID();
+    this.checkDev();
   },
 
   mounted() {
@@ -339,12 +352,16 @@ export default {
     this.productsEl = this.$refs.suggestedProducts;
     this.headerEl = document.querySelector('belk-header');
     this.configureAria();
-    this.recentSearches();
 
     if (window.location.params) {
       const query = window.location.params.q;
-      if (query) this.fillSearch(query);
+      if (query) this.fillSearch(query, true);
+      const redirect = window.location.params.q_redirect;
+      if (redirect) {
+        this.fillSearch(redirect);
+      }
     }
+    this.recentSearches(this.value);
   },
 
   methods: {
@@ -359,6 +376,10 @@ export default {
       self.$bus.$on('popper-opening', self.forceBlur);
       self.$bus.$on('close-search', self.forceBlur);
       self.$bus.$on('search-term', self.searchTermHandler);
+    },
+
+    checkDev() {
+      if (window.location.origin.indexOf('belk.com') < 0) this.isDev = true;
     },
 
     searchTermHandler(data) {
@@ -386,6 +407,7 @@ export default {
 
     keydownHandler(e) {
       const key = e.charCode || e.keyCode;
+      if (key === 32 && !this.valueLength) e.preventDefault(); // space bar when no value
       const nav = this.navKeys.indexOf(key) >= 0; // up/down arrows
       const ignore = this.ignoreKeys.indexOf(key) >= 0; // left/right arrows, enter
       if (ignore || nav) {
@@ -483,11 +505,15 @@ export default {
 
     clearSearch(focus = true) {
       this.inputEl.value = '';
-      this.value = '';
+      this.$set(this, 'value', '');
       this.searchValue = '';
       this.products = [];
       this.clearResponse();
-      if (focus) setTimeout(() => { this.inputEl.focus(); });
+      if (focus) {
+        setTimeout(() => {
+          this.inputEl.focus();
+        });
+      }
     },
 
     clearResponse() {
@@ -521,11 +547,13 @@ export default {
 
     recentSearches(val) {
       let rec = this.getItem('recentSearches') || [];
-
-      if (val) {
-        const exists = rec.indexOf(val);
+      const search = val.toLowerCase();
+      if (!window.location.href.indexOf('/search/')
+        && (window.location.href.indexOf('coupons') || window.location.href.indexOf('store'))) return;
+      if (search) {
+        const exists = rec.indexOf(search);
         if (exists > -1) rec.splice(exists, 1);
-        rec.unshift(val);
+        rec.unshift(search);
         if (rec.length > 10) rec = rec.slice(0, 10);
         this.setItem('recentSearches', rec);
       }
@@ -539,7 +567,8 @@ export default {
           id: `recommended-${x}`,
         });
       }
-      this.recents = arr;
+
+      this.$set(this, 'recents', arr);
     },
 
     clearRecentSearches() {
@@ -548,12 +577,12 @@ export default {
     },
 
     doSearch(e) {
-      const val = e.target.value || this.value;
-      if (val.length > 0) {
-        this.recentSearches(val);
+      let val = e.target.value || this.value;
+      val = val.trim();
+      if (val.length > 0 && !this.isInvalid) {
         const url = this.buildSearchLink(val);
         window.location.href = url;
-        this.forceBlur();
+        this.forceBlur('doSearch');
       } else {
         this.inputEl.focus();
       }
@@ -573,12 +602,12 @@ export default {
     },
 
     buildSearchLink(q) {
+      const query = encodeURIComponent(q);
       const whref = window.location.href;
-      const dev = (whref.indexOf('belk.demand') >= 0)
-        || (whref.indexOf('belkdev') >= 0)
+      const dev = (whref.indexOf('-') >= 0)
         || (whref.indexOf('localhost') >= 0);
-      if (dev) return `${window.location.origin}/on/demandware.store/Sites-Belk-Site/default/Search-Show?q=${q}&lang=default`;
-      return `${window.location.origin}/search/?q=${q}&lang=default`;
+      if (dev) return `${window.location.origin}/on/demandware.store/Sites-Belk-Site/default/Search-Show?q=${query}&lang=default`;
+      return `${window.location.origin}/search/?q=${query}&lang=default`;
     },
 
     getAllProducts(arr) {
@@ -596,7 +625,14 @@ export default {
           if (xhr.readyState === DONE) {
             if (xhr.status === OK) {
               const res = JSON.parse(xhr.responseText);
-              const array = res.response.products;
+              let array = res.response.products;
+              if (self.isDev) {
+                array = array.map((item) => {
+                  const x = { ...item };
+                  x.url = x.url.replace('https://www.belk.com', `${window.location.origin}/s/Belk`);
+                  return x;
+                });
+              }
               self.$set(self.allProducts[which], 'products', array);
               const event = `products-loaded.${which}`;
               self.$emit(event, array);
@@ -649,6 +685,27 @@ export default {
           self.$set(self, 'products', self.allProducts[which].products);
         }
       }
+    },
+
+    pasteHandler(e) {
+      e.preventDefault();
+      let paste = (e.clipboardData || window.clipboardData).getData('text');
+      const { value } = this.inputEl;
+      // eslint-disable-next-line
+      const cleaned = paste.replace(/([A-Za-zÀ-ÖØ-öø-ÿ0-9\s\-\.\+\'\&\/])+/g, '');
+      const arr = cleaned.split('');
+      for (let x = 0, l = arr.length; x < l; x += 1) {
+        paste = paste.replace(arr[x], '');
+      }
+      const start = this.inputEl.selectionStart;
+      const fin = this.inputEl.selectionEnd;
+      const len = fin - start;
+      const split = value.split('');
+      split.splice(start, len, paste);
+      const newVal = split.join('');
+      this.inputEl.value = newVal;
+      const where = start + paste.length;
+      this.inputEl.setSelectionRange(where, where);
     },
   },
 };

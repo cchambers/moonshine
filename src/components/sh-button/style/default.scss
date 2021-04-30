@@ -3,23 +3,18 @@ sh-button {
   font-size: 1rem;
 
   .actual-text span,
-  .active-text,
+  .active-text span,
   .active-icon {
-    font-weight: 600;
-    text-transform: none;bu
-
-    span {
-      font-size: 1em;
-    }
+    text-transform: none;
   }
 
   &[disabled] {
-    opacity: 0.5;
     pointer-events: none;
+    cursor: not-allowed;
   }
 
   & + sh-button {
-      margin-top: 0.8rem;
+    margin-top: 0.8rem;
     @include md {
       margin-top: 0;
       margin-left: 0.8rem;
@@ -32,9 +27,9 @@ sh-button {
     }
 
     button {
-      padding-left: 16px;
-      padding-right: 16px;
-      min-height: 3.2em;
+      padding-left: 16px !important;
+      padding-right: 16px !important;
+      height: 3.2em !important;
     }
   }
 
@@ -72,9 +67,6 @@ sh-button {
     align-items: center;
     justify-content: center;
     flex-direction: row;
-    padding: 0 3.2em;
-    min-height: 4.8em;
-    border-radius: 5px;
     color: $lowlight-primary;
     font-size: 1em;
     cursor: pointer;
@@ -114,7 +106,7 @@ sh-button {
       position: relative;
       pointer-events: none;
       z-index: 0;
-      white-space: pre;
+      white-space: nowrap;
     }
 
     span {
@@ -228,9 +220,6 @@ sh-button {
         text-decoration: none;
         text-decoration-color: $lowlight-primary;
         background-color: transparent !important;
-        .actual-text > span {
-          text-decoration: underline;
-        }
       }
     }
   }
