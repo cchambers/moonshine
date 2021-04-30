@@ -27,6 +27,9 @@
                   <component :is="belkProduct" variant="bag" v-bind="product"></component>
                 </li>
               </ul>
+              <div v-if="tipNote"
+                v-html="tipNote"
+                class="pad-y-little text-center px-14"></div>
             </div>
             <div class="pad-x-micro pad-b-micro">
               <sh-button variant="primary" full link="/shopping-bag">
@@ -79,6 +82,7 @@ export default {
       itemCount: 0,
       subTotal: 0,
       shippingNote: '',
+      tipNote: '',
       totalPrice: 'Bag',
       isDisabled: false,
       hasData: false,
@@ -116,6 +120,7 @@ export default {
       if (data.cart) {
         this.$set(this, 'items', data.cart.items);
         if (data.cart.shippingMessage) this.$set(this, 'shippingNote', data.cart.shippingMessage);
+        if (data.cart.tipLineMsg) this.$set(this, 'tipNote', data.cart.tipLineMsg);
         setTimeout(() => {
           this.$bus.$emit('bag-list-update', data.cart.items);
         }, 100);
