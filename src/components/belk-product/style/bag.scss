@@ -8,6 +8,10 @@
     }
   }
 
+  [href="#"] {
+    cursor: default !important;
+  }
+
   .price {
     .sale {
       color: #c00;

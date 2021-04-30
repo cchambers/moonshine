@@ -30,6 +30,9 @@ belk-search {
 
     &[invalid]{
       border-color: $state-error;
+      input {
+        color: $state-error;
+      }
     }
 
     &.active {
@@ -222,7 +225,7 @@ belk-search {
       }
 
       > div {
-        width: 100%;
+        max-width: 100%;
         flex-shrink: 2;
       }
 
