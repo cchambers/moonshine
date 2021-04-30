@@ -393,7 +393,7 @@ export default {
     stateHandler(val) {
       if (this.headerEl) {
         if (val > 0 || this.isFocused) {
-          this.$bus.$emit('close-poppers');
+          // this.$bus.$emit('close-poppers');
           this.headerEl.classList.add('search-active');
         } else {
           this.headerEl.classList.remove('search-active');
