@@ -12,7 +12,10 @@ export default {
     closedIcon: String,
     openIcon: String,
     variant: String,
-    subcat: Boolean,
+    subcat: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   data() {
