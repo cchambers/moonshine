@@ -552,7 +552,8 @@ export default {
     },
 
     buildBloomreachURL(val) {
-      const url = `https://brm-suggest-0.brsrvr.com/api/v1/suggest/?account_id=6082&auth_key=&domain_key=belk&request_type=suggest&q=${val}`;
+      const term = encodeURIComponent(val);
+      const url = `https://brm-suggest-0.brsrvr.com/api/v1/suggest/?account_id=6082&auth_key=&domain_key=belk&request_type=suggest&q=${term}`;
       return url;
     },
 
