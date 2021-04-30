@@ -67,6 +67,7 @@ export default {
     if (window.location.pathname !== '/') {
       const split = window.location.pathname.split('/');
       const folder = split[split.length - 2];
+      console.log('folder', folder);
       setTimeout(() => {
         this.auto(folder);
       });
@@ -100,7 +101,7 @@ export default {
       const target = document.querySelector(`[data-cgid="${str}" i], .belk-mobile-nav a[href*='/${str}/' i]`);
       if (target) {
         const item = target.closest('sh-accordion');
-        if (item.uniqueId) {
+        if (item) {
           const slug = `open-${item.uniqueId.slugify()}`;
           setTimeout(() => {
             this.$bus.$emit(slug);

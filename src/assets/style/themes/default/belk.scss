@@ -40,9 +40,7 @@
 }
 
 .hr {
-  height: 1px;
-  min-height: 1px;
-  background: $highlight-tertiary;
+  border-top: 1px solid $highlight-tertiary;
 }
 
 // Proxima Nova Black
