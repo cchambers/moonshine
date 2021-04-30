@@ -14,8 +14,9 @@
           <span>{{ size }}</span><span v-if="color">,&nbsp;</span><span>{{ color }}</span>
         </div>
         <div v-if="qty">Qty: {{ qty }}</div>
-        <div class="price" :discount="discountType">
+        <div class="price">
           <span v-if="onSale || isOnSale" class="sale"
+          :discount="discountType"
           v-bind:class="{ 'is-range': saleRange.length > 0 }">{{ saleValue }} </span>
           <span class="original"
           v-bind:class="{ 'is-range': priceRange.length > 0 }">{{ originalValue }}</span>
