@@ -13,7 +13,7 @@
         :fill="fill"
         ref="popper"
         v-show="!disabled && showPopper">
-        <div class="popper-content">
+        <div ref="focus" class="popper-content">
           <div v-if="isClosable" class="popper-close">
             <button close-trigger>
               <belk-icon name="close" width="28">Close Modal</belk-icon>
@@ -256,6 +256,8 @@ export default {
         self.close();
       });
 
+      this.$bus.$on('close-poppers', self.close);
+
       this.$bus.$on('modal-opening', self.close);
       this.$bus.$on('close-modals', self.close);
     },
@@ -313,7 +315,7 @@ export default {
     },
 
     close() {
-      this.showPopper = false;
+      if (this.active) this.showPopper = false;
     },
 
     doDestroy() {
