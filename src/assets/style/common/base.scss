@@ -486,7 +486,10 @@ html, body {
 
 @media (min-width: 768px) {
   .high-on {
-    display: initial !important;
+    display: block !important;
+    &.flex {
+      display: flex !important;
+    }
   }
 
   .high-off {
@@ -496,7 +499,10 @@ html, body {
 
 @media (min-width: 960px) {
   .desktop-on {
-    display: initial !important;
+    display: block !important;
+    &.flex {
+      display: flex !important;
+    }
   }
 
   .desktop-off {
