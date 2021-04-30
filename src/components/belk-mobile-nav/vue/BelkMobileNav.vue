@@ -67,7 +67,6 @@ export default {
     if (window.location.pathname !== '/') {
       const split = window.location.pathname.split('/');
       const folder = split[split.length - 2];
-      console.log('folder', folder);
       setTimeout(() => {
         this.auto(folder);
       });
