@@ -106,6 +106,8 @@
           </ul>
         </div>
 
+        <div class="hr margin-micro"></div>
+
         <div class="products">
           <div class="heading">Popular in "{{ suggestTerm }}"</div>
           <component
@@ -186,7 +188,8 @@ export default {
       count: 0,
       preloaded: false,
       fullyloaded: false,
-      specialChars: new RegExp('[^a-z0-9 \']', 'i'),
+      // eslint-disable-next-line
+      specialChars: new RegExp('^[^a-z0-9]+$|[<>]', 'i'), // to fix "ends with": ^[^a-z0-9]|[<>]
       isInvalid: false,
       belkProductList: BelkProductList,
       isDev: false,
@@ -534,6 +537,13 @@ export default {
         if (xhr.readyState === DONE) {
           if (xhr.status === OK) {
             const res = JSON.parse(xhr.responseText);
+            if (self.isDev) {
+              res.response.products = res.response.products.map((item) => {
+                const x = { ...item };
+                x.url = x.url.replace('https://www.belk.com', `${window.location.origin}/s/Belk`);
+                return x;
+              });
+            }
             self.searchValue = value.trim();
             self.response = res;
           }
