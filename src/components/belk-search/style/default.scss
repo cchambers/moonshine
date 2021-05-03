@@ -6,7 +6,6 @@ belk-search {
   width: 100%;
   align-items: center;
   margin: 0 auto;
-  z-index: 6;
 
   @include md {
     height: 4rem;
@@ -225,8 +224,9 @@ belk-search {
       }
 
       > div {
-        max-width: 100%;
-        flex-shrink: 2;
+        max-width: 50%;
+        flex-shrink: 0;
+        flex-grow: 1;
       }
 
       .keywords {

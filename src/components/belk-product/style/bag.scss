@@ -3,8 +3,12 @@
   &.is-on-sale {
     .original {
       text-decoration: line-through;
-      font-weight: normal;
+      font-weight: normal !important;
       color: $lowlight-quinary;
+      &:after {
+        content: '' !important;
+        font-weight: normal !important;
+      }
     }
   }
 
@@ -15,11 +19,13 @@
   .price {
     .sale {
       color: #c00;
+    }
+    span {
       &:after {
         content: attr(discount);
       }
-      &[discount="Doorbuster"] {
-        color: $lowlight-primary;
+      &[discount] {
+        font-weight: bold;
       }
     }
   }

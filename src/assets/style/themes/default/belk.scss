@@ -43,6 +43,19 @@
   border-top: 1px solid $highlight-tertiary;
 }
 
+.b-t {
+  border-top: 1px solid $highlight-tertiary;
+}
+
+.b-b {
+  border-bottom: 1px solid $highlight-tertiary;
+}
+
+.b-y {
+  border-top: 1px solid $highlight-tertiary;
+  border-bottom: 1px solid $highlight-tertiary;
+}
+
 // Proxima Nova Black
 // font-family: proxima-nova,
 // sans-serif;
