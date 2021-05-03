@@ -1,0 +1,13 @@
+{
+  "name": "Phone Number",
+  "category": "components",
+  "production": true,
+  "element": "phone-number",
+  "description": "Turn any 7/8 digit number into a formatted phone number with a link for mobile.",
+  "tags": ["utilities", "phone number", "formatting"],
+  "requirements": {
+    "Output": ["Should be a link on mobile."],
+    "a11y": [],
+    "states": []
+  }
+}

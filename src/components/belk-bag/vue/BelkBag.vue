@@ -29,7 +29,7 @@
               </ul>
               <div v-if="tipNote"
                 v-html="tipNote"
-                class="pad-y-little text-center px-14"></div>
+                class="pad-little px-14 b-y"></div>
             </div>
             <div class="pad-x-micro pad-b-micro">
               <sh-button variant="primary" full link="/shopping-bag">

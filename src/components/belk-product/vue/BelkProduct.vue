@@ -19,7 +19,8 @@
           :discount="discountType"
           v-bind:class="{ 'is-range': saleRange.length > 0 }">{{ saleValue }} </span>
           <span class="original"
-          v-bind:class="{ 'is-range': priceRange.length > 0 }">{{ originalValue }}</span>
+          :discount="discountType"
+          v-bind:class="{ 'is-range': priceRange.length > 0 }">{{ originalValue }} </span>
           <span v-if="coupon" class="coupon">after coupon</span>
         </div>
         <div class="rating"><sh-rating :level="reviews"></sh-rating></div>

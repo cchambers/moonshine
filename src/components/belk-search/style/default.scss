@@ -225,8 +225,9 @@ belk-search {
       }
 
       > div {
-        max-width: 100%;
-        flex-shrink: 2;
+        max-width: 50%;
+        flex-shrink: 0;
+        flex-grow: 1;
       }
 
       .keywords {
