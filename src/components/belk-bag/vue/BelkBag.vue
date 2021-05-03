@@ -15,18 +15,21 @@
         <div class="bag-content" slot="content">
           <div class="has-items">
             <div class="scrolling-area">
-              <div class="text-center pad-little px-16">
+              <div class="text-center pad-y-little px-16">
                 <span class="bold">Bag Subtotal</span> <span>{{ totalPrice }}</span>
               </div>
               <div v-if="shippingNote"
                 v-html="shippingNote"
-                class="pad-x-little pad-b-little"></div>
+                class="pad-x-little pad-b-little text-center px-14"></div>
               <div class="hr margin-y-micro"></div>
               <ul class="bag-list belk-product-list" variant="tertiary">
                 <li v-for="product in items" v-bind:key="product.index">
                   <component :is="belkProduct" variant="bag" v-bind="product"></component>
                 </li>
               </ul>
+              <div v-if="tipNote"
+                v-html="tipNote"
+                class="pad-little px-14 b-y"></div>
             </div>
             <div class="pad-x-micro pad-b-micro">
               <sh-button variant="primary" full link="/shopping-bag">
@@ -79,6 +82,7 @@ export default {
       itemCount: 0,
       subTotal: 0,
       shippingNote: '',
+      tipNote: '',
       totalPrice: 'Bag',
       isDisabled: false,
       hasData: false,
@@ -95,8 +99,7 @@ export default {
       this.$bus.$on('user-data', this.handleUserData);
       this.$bus.$on('belk-bag-ready', (data) => {
         const target = data;
-        target.referenceElm.addEventListener('click', this.goToCart);
-
+        // target.referenceElm.addEventListener('click', this.goToCart);
         if (this.isMobile()) {
           target.$set(target, 'disabled', true);
         }
@@ -117,6 +120,7 @@ export default {
       if (data.cart) {
         this.$set(this, 'items', data.cart.items);
         if (data.cart.shippingMessage) this.$set(this, 'shippingNote', data.cart.shippingMessage);
+        if (data.cart.tipLineMsg) this.$set(this, 'tipNote', data.cart.tipLineMsg);
         setTimeout(() => {
           this.$bus.$emit('bag-list-update', data.cart.items);
         }, 100);

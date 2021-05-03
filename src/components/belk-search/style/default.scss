@@ -29,6 +29,9 @@ belk-search {
 
     &[invalid]{
       border-color: $state-error;
+      input {
+        color: $state-error;
+      }
     }
 
     &.active {
@@ -52,7 +55,7 @@ belk-search {
       display: flex;
       background: none;
       border: none;
-      outline: 0;
+      outline: 0 !important;
       height: 2.8rem;
       min-width: 2.8rem;
       transition: background 250ms $ease;
@@ -209,13 +212,21 @@ belk-search {
         display: flex;
       }
 
-      @include md {
+      .hr {
+        display: block;
+      }
+
+      @include lg {
         flex-direction: row;
+        .hr {
+          display: none;
+        }
       }
 
       > div {
-        width: 100%;
-        flex-shrink: 2;
+        max-width: 50%;
+        flex-shrink: 0;
+        flex-grow: 1;
       }
 
       .keywords {

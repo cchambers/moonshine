@@ -1,17 +1,24 @@
 belk-search[variant="modal"] {
   margin: $micro;
-  width: calc(100% - 6rem);
-  flex-grow: 0;
+  margin-right: 0;
+  width: 50%;
+  flex-grow: 1;
   flex-shrink: 0;
   .belk-search {
     z-index: auto;
+
+    &[state="0"] {
+      .search-results {
+        background: transparent;
+      }
+    }
     &.focused {
       .search-results {
         bottom: 0;
         left: 0;
         right: 0;
-        top: 51px;
-        height: calc(100vh - 51px);
+        top: 48px;
+        height: calc(100vh - 48px);
         box-sizing: border-box;
 
         .search-recent,

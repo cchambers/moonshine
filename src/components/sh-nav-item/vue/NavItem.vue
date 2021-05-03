@@ -13,7 +13,7 @@
         :fill="fill"
         ref="popper"
         v-show="!disabled && showPopper">
-        <div class="popper-content">
+        <div ref="focus" class="popper-content">
           <div v-if="isClosable" class="popper-close">
             <button close-trigger>
               <belk-icon name="close" width="28">Close Modal</belk-icon>
@@ -244,6 +244,7 @@ export default {
       });
 
       this.$bus.$on('popper-opening', (el) => {
+        // const bag = (el.uniqueId === 'belk-bag');
         if (el === this) {
           this.closeCurtain = true;
           return;
@@ -253,11 +254,19 @@ export default {
         } else {
           this.closeCurtain = true;
         }
-        self.close();
+        self.close('popper-opening-navitem');
       });
 
-      this.$bus.$on('modal-opening', self.close);
-      this.$bus.$on('close-modals', self.close);
+      this.$bus.$on('close-poppers', () => {
+        self.close('close-poppers');
+      });
+
+      this.$bus.$on('modal-opening', () => {
+        self.close('modal-opening');
+      });
+      this.$bus.$on('close-modals', () => {
+        self.close('close-modals');
+      });
     },
 
     viewAllFix() {
@@ -411,7 +420,6 @@ export default {
       if (!this.mobile) {
         clearTimeout(this.timer);
         this.timer = setTimeout(() => {
-          this.$bus.$emit('popper-opening', this);
           this.$set(this, 'showPopper', true);
         }, this.delayOnMouseOver);
       }

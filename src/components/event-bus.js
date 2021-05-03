@@ -46,12 +46,6 @@ let delegations = {
         window.print();
       }
     }, {
-      target: '[nav-trigger]',
-      handler() {
-        EventBus.$emit('popper-opening');
-        EventBus.$emit('show-curtain');
-      }
-    }, {
       target: '[emit]',
       handler(e) {
         e.preventDefault();
