@@ -26,9 +26,10 @@ export default {
   computed: {
     phoneNumber() {
       this.raw = (this.in).replace(/\D/g, '');
-      const match = this.raw.match(/^(\d{3})(\d{3})(\d{4})$/);
+      const match = this.rawmatch(/^(1|)?(\d{3})(\d{3})(\d{4})$/);
       if (match) {
-        return `(${match[1]}) ${match[2]}-${match[3]}`;
+        const intlCode = (match[1] ? '+1 ' : '');
+        return [intlCode, '(', match[2], ') ', match[3], '-', match[4]].join('');
       }
       return null;
     },
