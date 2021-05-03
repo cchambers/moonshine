@@ -2,7 +2,7 @@
   <div class="belk-storefinder">
 
     <sh-nav-item
-      v-if="hasStoreAddress"
+      v-if="hasData"
       has-arrow
       boundaries-selector="#primary-nav"
       foreground-selector="header .pre-and-primary">
@@ -33,8 +33,7 @@
         </ul>
       </div>
     </sh-nav-item>
-    <a v-else
-      class="nav-link"
+    <a v-else class="nav-link"
       :href="storefinderLink">
       <belk-icon name="map-pin" width="9" class="margin-r-atomic"></belk-icon>
       Find A Store
@@ -64,7 +63,7 @@ export default {
 
   data() {
     return {
-      hasStoreAddress: false,
+      hasData: false,
       storeData: {},
     };
   },
@@ -77,9 +76,21 @@ export default {
       if (data.store) {
         if (data.store.storeName !== '') {
           this.storeData = data.store;
-          this.hasStoreAddress = true;
+          this.toggleData();
         }
       }
+    },
+
+    toggleData() {
+      // trigger re-render in v-if container
+      let timer = 0;
+      if (this.hasData) {
+        this.$set(this, 'hasData', false);
+        timer = 50;
+      }
+      setTimeout(() => {
+        this.$set(this, 'hasData', true);
+      }, timer);
     },
   },
 

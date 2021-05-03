@@ -1,7 +1,7 @@
 {
   "name": "Belk Shipping Note",
-  "category": "components",
-  "production": true,
+  "category": "features",
+  "production": false,
   "element": "belk-shipping-note",
   "description": "Shows free shipping message when triggered.",
   "tags": ["free shipping utility"],
