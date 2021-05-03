@@ -3,7 +3,7 @@
   &.is-on-sale {
     .original {
       text-decoration: line-through;
-      font-weight: normal;
+      font-weight: normal !important;
       color: $lowlight-quinary;
       &:after {
         content: '' !important;
