@@ -20,9 +20,9 @@
       <belk-icon :name="beforeIcon" height="18" width="18"></belk-icon>
     </div>
     <slot name="before-text"></slot>
-    <!-- <div class="active-icon"
+    <div class="active-icon margin-r-micro"
       v-if="activeIcon"><belk-icon width="20" height="20"
-      :name="activeIcon"></belk-icon></div> -->
+      :name="activeIcon"></belk-icon></div>
     <div class="actual-text"><slot></slot></div>
     <div class="active-text" v-if="isActive"><span>{{activeText}}</span></div>
     <slot name="after-text"></slot>
