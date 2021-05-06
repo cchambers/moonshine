@@ -5,8 +5,6 @@
     :state="state"
     :invalid="isInvalid"
     v-bind:class="{ active: isActive, focused: isFocused }">
-
-    <!-- Input -->
     <div class="search-input">
       <input
         ref="input"
@@ -106,7 +104,7 @@
           </ul>
         </div>
 
-        <div class="hr margin-micro"></div>
+        <div class="hr"></div>
 
         <div class="products">
           <div class="heading">Popular in "{{ suggestTerm }}"</div>
@@ -493,17 +491,10 @@ export default {
       this.highlightIndex = which;
     },
 
-    forceBlur(e) {
+    forceBlur() {
       if (this.isFocused) {
-        let clear = false;
-        if (typeof e === 'object') {
-          const key = e.charCode || e.keyCode;
-          if (key === 27 || e.target === this.$refs.clear) clear = true;
-        }
         if (document.activeElement === this.inputEl) this.inputEl.blur();
         this.isFocused = false;
-
-        if (clear) this.clearSearch(clear);
       }
     },
 

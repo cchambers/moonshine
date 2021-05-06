@@ -1,9 +1,9 @@
 belk-search[variant="modal"] {
-  margin: $micro;
-  margin-right: 0;
+  margin: $micro 0 $micro $little;
   width: 50%;
   flex-grow: 1;
   flex-shrink: 0;
+
   .belk-search {
     z-index: auto;
 
@@ -14,13 +14,9 @@ belk-search[variant="modal"] {
     }
     &.focused {
       .search-results {
-        bottom: 0;
         left: 0;
         right: 0;
         top: 48px;
-        height: calc(100vh - 48px);
-        box-sizing: border-box;
-
         .search-recent,
         .search-suggestions {
           height: 100%;
@@ -51,10 +47,19 @@ belk-search[variant="modal"] {
   // }
 }
 
-.sh-modal.active {
-  belk-search[variant="modal"] {
-    .search-results {
-      position: fixed !important;
+.sh-modal[id="search-modal"] {
+  &.active {
+    belk-search[variant="modal"] {
+      .search-results {
+        position: fixed !important;
+      }
+    }
+  }
+
+  .content {
+    pointer-events: none;
+    * {
+      pointer-events: all;
     }
   }
 }

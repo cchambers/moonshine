@@ -102,7 +102,7 @@ belk-search {
     .product-link {
       display: flex;
       width: 100%;
-      padding: $micro;
+      padding: $micro $little;
       transition: background 250ms $ease;
       color: $lowlight-primary;
       text-decoration: none;
@@ -156,25 +156,29 @@ belk-search {
     }
 
     .search-recent {
-      sh-button .sh-button {
-        text-transform: none;
-        &:hover {
-          span {
-            border-color: transparent !important;
+      sh-button {
+        margin-right: $little;
+        .sh-button {
+          text-transform: none;
+          padding-right: 0;
+          &:hover {
+            span {
+              border-color: transparent !important;
+            }
           }
-        }
-        span {
-          background: transparent;
-          border: none;
-          border-bottom: 1px solid currentColor;
-          color: $accent-secondary;
-          display: inline-block;
-          font-size: 1.4rem;
-          font-weight: 400;
-          line-height: 1;
-          padding: 0 0 .1rem;
-          transition: none;
-          text-decoration: none;
+          span {
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid currentColor;
+            color: $accent-secondary;
+            display: inline-block;
+            font-size: 1.4rem;
+            font-weight: 400;
+            line-height: 1;
+            padding: 0 0 .1rem;
+            transition: none;
+            text-decoration: none;
+          }
         }
       }
     }
@@ -224,9 +228,12 @@ belk-search {
       }
 
       > div {
-        max-width: 50%;
+        @include lg {
+          width: 50%;
+        }
+        width: 100%;
         flex-shrink: 0;
-        flex-grow: 1;
+        flex-grow: 0;
       }
 
       .keywords {
@@ -264,11 +271,15 @@ belk-search {
       background: $highlight-secondary;
     }
 
+    .hr {
+      margin: $micro $little;
+    }
+
     .heading {
       font-weight: bold;
       font-size: 1.6rem;
       display: flex;
-      padding: 1rem;
+      padding: $micro $little;
       align-items: center;
     }
 

@@ -47,17 +47,34 @@ belk-header {
     transition: max-height 100ms linear;
   }
 
+  .pre-and-primary {
+    transition: max-height 100ms linear;
+  }
+
   &[scroll-state="1"] {
-    .pre-header-slot {
+    
+    .pre-header-slot,
+    .pre-and-primary {
       max-height: 0 !important;
       overflow: hidden !important;
+    }
+    @include lg {
+      .pre-and-primary {
+        max-height: 100px !important;
+      }
     }
   }
 
   &[scroll-state="2"] {
-    .pre-header-slot {
+    .pre-header-slot,
+    .pre-and-primary {
       max-height: 0 !important;
       overflow: hidden !important;
+    }
+    @include lg {
+      .pre-and-primary {
+        max-height: 100px !important;
+      }
     }
     .tertiary {
       max-height: 0 !important;
@@ -354,14 +371,14 @@ belk-header {
 
   & ~ #wrapper {
     padding-top: 11rem;
-    // padding-top: var(--header-height);
+    padding-top: var(--header-height);
   }
 
   // Media Queries
   @include md {
     & ~ #wrapper {
       padding-top: 14rem;
-      // padding-top: var(--header-height);
+      padding-top: var(--header-height);
     }
 
     .contain {
@@ -510,7 +527,8 @@ belk-header {
 
     //scroll states for site wrapper
     & ~ #wrapper {
-      padding-top: 18rem;
+      padding-top: 20rem;
+      padding-top: var(--header-height);
     }
   }
 
