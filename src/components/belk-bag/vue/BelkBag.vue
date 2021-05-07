@@ -7,7 +7,7 @@
       <sh-popper :disabled="isDisabled" offset-x="-42" placement="bottom" unique-id="belk-bag">
         <a id="goToCart" href="/shopping-bag" slot="reference">
           <div class="bag-icon">
-            <belk-icon width="33" height="40" name="bag">shopping bag</belk-icon>
+            <belk-icon width="22" height="25" name="bag">shopping bag</belk-icon>
             <div class="bag-count">{{ itemCount }}</div>
           </div>
           <div class="bag-total">{{ totalPrice }}</div>
@@ -85,7 +85,7 @@ export default {
       tipNote: '',
       totalPrice: 'Bag',
       isDisabled: false,
-      hasData: false,
+      hasData: true,
       belkProduct: BelkProduct,
     };
   },

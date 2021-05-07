@@ -59,9 +59,8 @@ export default {
     outline: Boolean,
     clickEvent: String,
     active: Boolean,
-    link: Boolean,
+    link: String,
     size: String,
-    ariaRole: String,
     ariaControls: String,
     value: String,
     name: String,
@@ -85,6 +84,7 @@ export default {
       buttonEl: this.$refs.button,
       isRole: false,
       once: false,
+      ariaRole: '',
       isDisabled: false,
     };
   },

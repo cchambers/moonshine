@@ -1,6 +1,5 @@
 <template>
   <div class="belk-storefinder">
-
     <sh-nav-item
       v-if="hasData"
       has-arrow
@@ -21,9 +20,9 @@
             <div>
               <span>{{ storeData.city }}</span>,
               <span>{{ storeData.stateCode }}</span>,
-              <span>{{ storeData.postalCode }}</span>
+              <span>{{ zip }}</span>
             </div>
-            <div class="bold">{{ storeData.phoneNumber }}</div>
+            <phone-number class="bold" :in="storeData.phoneNumber"></phone-number>
           </li>
           <li>
             <a class="belk-link accent-primary" :href="storefinderLink">
@@ -61,10 +60,20 @@ export default {
     },
   },
 
+  watch: {
+    storeData(val) {
+      if (val.postalCode) {
+        const zip = val.postalCode.split('-')[0];
+        this.$set(this, 'zip', zip);
+      }
+    },
+  },
+
   data() {
     return {
       hasData: false,
       storeData: {},
+      zip: null,
     };
   },
 
@@ -72,6 +81,7 @@ export default {
     events() {
       this.$bus.$on('user-data', this.handleUserData);
     },
+
     handleUserData(data) {
       if (data.store) {
         if (data.store.storeName !== '') {
@@ -86,14 +96,13 @@ export default {
       let timer = 0;
       if (this.hasData) {
         this.$set(this, 'hasData', false);
-        timer = 50;
+        timer = 1;
       }
       setTimeout(() => {
         this.$set(this, 'hasData', true);
       }, timer);
     },
   },
-
 };
 </script>
 <style lang="scss" src="../style/default.scss"></style>

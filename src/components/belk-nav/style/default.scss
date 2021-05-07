@@ -4,34 +4,6 @@ belk-nav {
   display: inline-flex;
 
   .belk-nav {
-    /** DELETE THIS EXAMPLE SECTION **/
-    cursor: pointer;
     display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    text-align: center;
-    height: 15rem;
-    width: 15rem;
-    background-size: cover;
-    border: 1px solid transparent;
-    transition: all 200ms linear;
-
-    &:hover {
-      border: 1px solid $accent-primary;
-    }
-
-    &.snap-state {
-      color: transparent;
-      background-size: contain;
-      border: 1px solid $accent-primary;
-    }
-
-    // mobile first, right... make desktop mods here.
-    @include lg {      
-      background: $accent-primary;
-      color: $highlight-primary;
-    }
-    /** END EXAMPLE SECTION **/
-
   }
 }

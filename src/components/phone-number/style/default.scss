@@ -2,4 +2,7 @@
 
 phone-number {
   display: inline-flex;
+  a {
+    font-weight: normal !important;
+  }
 }

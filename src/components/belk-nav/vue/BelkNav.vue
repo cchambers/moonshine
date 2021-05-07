@@ -1,8 +1,5 @@
 <template>
-  <div class="belk-nav"
-    :variant="variant"
-    v-bind:class="{ 'snap-state': snapping }"
-    v-hammer:tap="snap">
+  <div class="belk-nav">
     <slot name="test">{{ msg }}</slot>
   </div>
 </template>
@@ -18,44 +15,9 @@ export default {
   props: {
     msg: {
       type: String,
-      default: 'new component',
+      default: 'new',
     },
   },
-
-  data() {
-    return {
-      snapping: false,
-    };
-  },
-
-  methods: {
-
-    /* REMOVE THESE METHODS */
-    snap() {
-      if (!this.snapping) {
-        this.snapping = true;
-        this.snapTimeout = setTimeout(this.recover, 1500);
-        this.$emit('snapping');
-      }
-    },
-
-    recover() {
-      this.halve();
-      this.snapping = false;
-      this.$emit('snapped');
-    },
-
-    halve() {
-      const str = this.$el.innerText;
-      if (!str.length) return;
-      const middle = Math.ceil(str.length / 2);
-      const half = str.slice(0, middle);
-      this.$el.innerText = half.trim();
-    },
-    /* END REMOVE */
-
-  },
-
 };
 </script>
 <style lang="scss" src="../style/default.scss"></style>
