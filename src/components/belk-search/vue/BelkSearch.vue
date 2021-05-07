@@ -43,7 +43,7 @@
         v-hammer:tap="doSearch"
         :disabled="isEmpty">
         <belk-icon name="search"
-          width="24" height="24">Perform Search Action</belk-icon>
+          width="18" height="18">Perform Search Action</belk-icon>
       </button>
     </div>
     <div ref="loading" class="search-loading">
@@ -347,6 +347,7 @@ export default {
   created() {
     this.setUUID();
     this.checkDev();
+    this.placeholderHandler();
   },
 
   mounted() {
@@ -379,6 +380,17 @@ export default {
       self.$bus.$on('popper-opening', self.forceBlur);
       self.$bus.$on('close-search', self.forceBlur);
       self.$bus.$on('search-term', self.searchTermHandler);
+      self.$bus.$on('resize-event', self.placeholderHandler);
+    },
+
+    placeholderHandler() {
+      let ph = 'Search';
+      if (this.isTablet()) {
+        ph = 'What can we help you find?';
+      } else {
+        ph = 'Search';
+      }
+      this.$set(this, 'placeholder', ph);
     },
 
     checkDev() {
@@ -659,10 +671,6 @@ export default {
         self.allProducts[x] = { products: false };
         doReq(x);
       }
-    },
-
-    isMobile() {
-      return window.matchMedia('(max-width: 768px)').matches;
     },
 
     suggestionHoverHandler(val) {

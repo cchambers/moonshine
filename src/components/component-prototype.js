@@ -37,6 +37,14 @@ const ComponentPrototype = {
       return str;
     },
 
+    isMobile() {
+      return window.matchMedia('(max-width: 768px)').matches;
+    },
+
+    isTablet() {
+      return window.matchMedia('(max-width: 960px)').matches;
+    },
+
     debounce(name = 'default', func, wait = 100, immediate) {
       if (!this.timers) this.timers = {};
       return (...args) => {

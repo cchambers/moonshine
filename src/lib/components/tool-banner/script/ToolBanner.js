@@ -201,9 +201,6 @@ export default {
 
     codeFocusHandler(data) {
       this.codeFocus = data.value;
-      setTimeout(() => {
-        this.$bus.$emit('resize-occurred');
-      }, 100);
     },
 
     // renderDebounce(code) {
