@@ -1096,7 +1096,10 @@ export default {
     activate(which) {
       this.catsOff();
       const el = this.$el.querySelector(`[category="${which}"]`);
-      if (el) el.classList.add('active');
+      if (el) {
+        el.classList.add('active');
+        el.scrollTop = 0;
+      }
       const main = this.$el.querySelector(`[main="${which}"]`);
       if (main) main.classList.add('active');
     },

@@ -34,6 +34,7 @@ belk-nav {
       opacity: 0;
       pointer-events: none;
       background: $highlight-primary;
+      overflow-y: auto;
       &.active {
         opacity: 1;
         pointer-events: all;
@@ -77,12 +78,5 @@ belk-nav {
         background: $accent-primary;
       }
     }
-    sh-masonry,
-    .sh-masonry {
-      height: 100%;
-      width: 100%;
-      overflow-y: auto;
-    }
-
   }
 }
