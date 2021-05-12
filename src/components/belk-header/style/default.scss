@@ -5,18 +5,26 @@ belk-header {
   display: none;
   &[vce-ready] {
     ~ .belk-header {
-      display: block !important;
+      display: flex !important;
     }
   }
   ~ .belk-header {
     display: none;
   }
+
+  &.nav-active {
+    ~ .belk-header {
+      height: 100vh;
+    }
+  }
 }
+
 .belk-header {
   position: fixed;
+  flex-direction: column;
+  max-height: 100vh;
   width: 100%;
   top: 0;
-  background: $highlight-primary;
   color: $lowlight-primary;
   z-index: 6;
   border-bottom: 1px solid currentColor;
@@ -29,6 +37,13 @@ belk-header {
       display: block;
     }
   }
+  a {
+    color: $lowlight-primary;
+    &#goToCart {
+      padding-top: 4px;
+    }
+  }
+
 
   sh-nav-item a:not(.belk-link):hover {
     background: $highlight-secondary;
@@ -45,6 +60,7 @@ belk-header {
   .pre-header-slot {
     max-height: 100px;
     transition: max-height 100ms linear;
+    width: 100%;
   }
 
   .pre-and-primary {
@@ -92,7 +108,7 @@ belk-header {
     flex-grow: 0;
     flex-shrink: 0;
     flex-basis: auto;
-    padding: 0 1.6rem;
+    padding: 0 $little;
   }
   
   .nav-divider {
@@ -146,6 +162,7 @@ belk-header {
     a.iconbar-action {
       padding: 0 $micro;
       height: 6rem;
+      min-width: 6rem;
       cursor: pointer;
     }
 
@@ -158,6 +175,7 @@ belk-header {
       position: relative;
       .popper-target > a,
       .popper-target > div {
+        min-width: 6rem;
         height: 6rem;
         display: flex;
         flex-direction: column;
@@ -182,16 +200,33 @@ belk-header {
   }
 
   .primary {
-    height: $primary-nav-height;
     background: $highlight-primary;
     position: relative;
-    .primary-promo {
-      font-weight: bold;
-      flex-grow: 1;
-      flex-shrink: 1;
-      flex-basis: 50%;
+    #primary-nav {
       display: flex;
-      justify-content: center;
+      @include lg {
+        margin-left: calc((100% - 96rem) / 2);
+      }
+      @include xl {
+        margin-left: calc((100% - 128rem) / 2);
+      }
+    }
+  }
+
+  .primary-promo {
+    font-weight: bold;
+    width: auto;
+    white-space: pre;
+    display: flex;
+    justify-content: center;
+    padding-right: $little;
+    padding-left: $little;
+    width: 50%;
+    flex-grow: 1;
+    flex-shrink: 1;
+    @include lg {
+      width: auto;
+      padding-left: 0;
     }
   }
 
@@ -221,11 +256,29 @@ belk-header {
 
   .tertiary {
     display: none;
+    background: $highlight-primary;
+    height: 3.6rem;
     @include lg {
       display: block;
     }
     belk-storefinder {
+      display: flex;
+      align-items: center;
       margin-right: auto;
+      &:before {
+        content: '';
+        display: block;
+        height: 22px;
+        border-left: 1px solid $highlight-tertiary;
+        margin-left: $little;
+        margin-right: $micro;
+      }
+    }
+    a {
+      border-radius: 5px;
+      &:hover {
+        background: $highlight-secondary;
+      }
     }
   }
 
@@ -250,6 +303,17 @@ belk-header {
       line-height: 3.6rem;
       font-size: 1.4rem;
     }
+  }
+
+  .pre-header-slot sh-banner .banner-background {
+    border-bottom-left-radius: 2.6rem;
+    padding-right: var(--promo-width);
+    padding-left: $rem;
+  }
+
+  .nav-trigger .actual-text span {
+    font-size: 1.4rem;
+    font-weight: bold;
   }
 
   // //initial meganav styles
@@ -363,7 +427,13 @@ belk-header {
     }
   }
 
-  sh-button.nav-trigger {
+  .nav-trigger {
+    button {
+      line-height: 2.6rem !important;
+    }
+  }
+
+  sh-button.mobile-nav-trigger {
     max-width: 100vw;
     overflow: hidden;
     transition: max-width 250ms $ease;
@@ -400,6 +470,7 @@ belk-header {
     .primary {
       .primary-promo {
         justify-content: flex-start;
+        padding-left: $little;
       }
     }
 
@@ -426,7 +497,7 @@ belk-header {
       }
     }
 
-    sh-button.nav-trigger {
+    sh-button.mobile-nav-trigger {
       display: none;
     }
 

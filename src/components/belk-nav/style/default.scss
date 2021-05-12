@@ -1,9 +1,88 @@
 /* default styling */
+html.nav-open,
+html.nav-open body {
+  overflow: hidden;
+}
 
 belk-nav {
-  display: inline-flex;
-
+  display: none;
+  height: 50%;
+  flex-grow: 1;
+  flex-shrink: 0;
+  @include lg {
+    display: block;
+  }
   .belk-nav {
-    display: flex;
+    max-height: 0;
+    overflow: hidden;
+    background: rgba(25, 25, 25, 0.5);
+    &.active {
+      max-height: 100%;
+      pointer-events: all;
+    }
+    .contain {
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+    }
+    [category] {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      opacity: 0;
+      pointer-events: none;
+      background: $highlight-primary;
+      &.active {
+        opacity: 1;
+        pointer-events: all;
+      }
+    }
+    .nav-actual {
+      position: relative;
+      width: 50%;
+      height: 100%;
+      flex-grow: 1;
+    }
+    .grid-item {
+      max-width: 200px;
+      padding-right: $little;
+      padding-bottom: $little;
+    }
+    sh-masonry {
+      height: 100%;
+      width: 100%;
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+    }
+    .nav-categories {
+      width: 30rem;
+      flex-grow: 0;
+      height: 100%;
+      background: $highlight-primary;
+      overflow-y: auto;
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      [main] {
+        line-height: $rem;
+      }
+      [main].active {
+        background: $accent-primary;
+      }
+    }
+    sh-masonry,
+    .sh-masonry {
+      height: 100%;
+      width: 100%;
+      overflow-y: auto;
+    }
+
   }
 }

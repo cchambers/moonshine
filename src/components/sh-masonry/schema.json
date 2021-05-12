@@ -1,10 +1,10 @@
 {
-  "name": "Belk Nav",
+  "name": "Masonry",
   "category": "base",
   "production": true,
-  "element": "belk-nav",
-  "description": "Hamburger nav for 2021.",
-  "tags": ["hamburger", "nav"],
+  "element": "sh-masonry",
+  "description": "Generate a tile layout.",
+  "tags": ["utilities", "tiles", "layout"],
   "requirements": {
     "Element One": [],
     "Element Two": [],

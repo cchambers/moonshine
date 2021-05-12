@@ -44,16 +44,16 @@
   </div>
   <div slot="secondary">
     <ul>
-<li><a href="#bcc-account-modal" title="Belk Rewards">Belk <span data-fill="user-tier"></span> Rewards</a></li>
-<li class="coupons"><a href="/coupons-online-and-in-store/" title="Coupons">Coupons</a></li>
-<li><a href="/gift-cards/shop/gift-cards/" title="Gift Cards">Gift Cards</a></li>
-<li class=""><a href="https://www.belk.com/wish-list/" title="Wish List">Wish List</a></li>
-<li><a href="/registry-guide/my-registry/" title="Registry">Registry</a></li>
+      <li><a href="#bcc-account-modal" title="Belk Rewards">Belk <span data-fill="user-tier"></span> Rewards</a></li>
+      <li class="coupons"><a href="/coupons-online-and-in-store/" title="Coupons">Coupons</a></li>
+      <li><a href="/gift-cards/shop/gift-cards/" title="Gift Cards">Gift Cards</a></li>
+      <li class=""><a href="https://www.belk.com/wish-list/" title="Wish List">Wish List</a></li>
+      <li><a href="/registry-guide/my-registry/" title="Registry">Registry</a></li>
       <li class="heading">
         Help &amp; Settings
       </li>
       <li>
-        <a href="https://www.belk.com/account/" title="Go to: My Account"> My Account - 
+        <a href="https://www.belk.com/account/" title="Go to: My Account"> My Account -
           <span class="show-filled"></span>
           <span class="hide-filled">Sign In</span>
         </a>
@@ -76,42 +76,39 @@
 <header class="belk-header">
   <div class="primary-secondary-tertiary relative">
     <div class="primary-and-secondary relative">
-      <div class="pre-and-primary relative">
-        <div class="pre-header-slot">
-          <sh-banner id="pre-header-banner" variant="primary" class="o-hide back-seasonal-green pad-y-atomic low-off">
-            <sh-carousel id="pre-header-carousel" variant="primary" autoplay="6000" hide-controls>
-              <ul slot="slides">
-                <li>
-                  <a href="/coupons-online-and-in-store/">
-                    <div class="font-primary text-center color-lowlight-primary pad-y-quarter fontsize-carousel">
-                      <p>Cardholder Exclusive! <span class="wt-700"> Extra 7% </span> on top of today's coupon, clearance, doorbusters and beauty! – Ends 11/25 <span class="margin-l-little cta">GET COUPON</span></p>
-                    </div>
-                  </a>
-                </li>
-                <li>
-                  <a href="/search/?prefn1=eventCodeID&amp;prefv1=20B1DB43%7C20B2DB43%7C20B3DB43%7C20B4DB43">
-                    <div class="font-primary text-center color-lowlight-primary pad-y-quarter fontsize-carousel">
-                      <p>1000+ <span class="wt-700"> Black Friday Doorbusters </span> ends 11/28 <span class="margin-l-little cta">SHOP NOW</span></p>
-                    </div>
-                  </a>
-                </li>
-                <li>
-                  <a href="/customer-service/free-store-pickup/">
-                    <div class="font-primary text-center color-lowlight-primary pad-y-quarter fontsize-carousel">
-                      <p>Get it Today! <span class="wt-700">Extra 10% off </span> with in-store or Contactless Curbside Pickup <span class="margin-l-little cta">LEARN MORE</span></p>
-                    </div>
-                  </a>
-                </li>
-              </ul>
-            </sh-carousel>
-          </sh-banner>
-        </div>
-
-        <div class="primary">
-          <div id="primary-nav" class="contain">
-            <div class="primary-promo">
-              <belk-promo free-shipping="49"></belk-promo>
-            </div>
+      <div class="primary">
+        <div id="primary-nav" class="flex">
+          <div class="primary-promo">
+            <belk-promo free-shipping="49"></belk-promo>
+          </div>
+          <div class="pre-header-slot low-off high-off desktop-on">
+            <sh-banner id="pre-header-banner" variant="primary" class="o-hide low-off" backgrounds="brand-purple, brand-pink, brand-blue, brand-green, seasonal-orange">
+              <sh-carousel id="pre-header-carousel" variant="primary" autoplay="6000" hide-controls>
+                <ul slot="slides">
+                  <li>
+                    <a href="/coupons-online-and-in-store/">
+                      <div class="font-primary text-center color-highlight-primary pad-y-quarter fontsize-carousel">
+                        <p>Cardholder Exclusive! <span class="wt-700"> Extra 7% </span> on top of today's coupon, clearance, doorbusters and beauty! – Ends 11/25 <span class="margin-l-little cta">GET COUPON</span></p>
+                      </div>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/search/?prefn1=eventCodeID&amp;prefv1=20B1DB43%7C20B2DB43%7C20B3DB43%7C20B4DB43">
+                      <div class="font-primary text-center color-highlight-primary pad-y-quarter fontsize-carousel">
+                        <p>1000+ <span class="wt-700"> Black Friday Doorbusters </span> ends 11/28 <span class="margin-l-little cta">SHOP NOW</span></p>
+                      </div>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/customer-service/free-store-pickup/">
+                      <div class="font-primary text-center color-highlight-primary pad-y-quarter fontsize-carousel">
+                        <p>Get it Today! <span class="wt-700">Extra 10% off </span> with in-store or Contactless Curbside Pickup <span class="margin-l-little cta">LEARN MORE</span></p>
+                      </div>
+                    </a>
+                  </li>
+                </ul>
+              </sh-carousel>
+            </sh-banner>
           </div>
         </div>
       </div>
@@ -119,7 +116,7 @@
       <div class="secondary">
         <div class="contain">
 
-          <sh-button class="nav-trigger" click-event="show-mobile-nav">
+          <sh-button class="mobile-nav-trigger" click-event="show-mobile-nav">
             <belk-icon width="30" name="menu"></belk-icon>
           </sh-button>
 
@@ -128,25 +125,16 @@
           </a>
 
           <!-- Search -->
-          <belk-search variant="desktop"></belk-search>
-          <sh-modal unique-id="search-modal" variant="secondary" fullscreen hide-header hide-buttons focus-target="belk-search input">
-            <div class="flex sticky cross-middle">
-              <belk-search id="mobile-search" variant="modal"></belk-search>
-              <div click-event="close-search" class="lowlight-primary pad-x-micro" close-trigger>
-                Cancel
-              </div>
-            </div>
-          </sh-modal>
-
+          <belk-search variant="desktop" class="high-off desktop-on"></belk-search>
           <div class="iconbar">
             <a href="coupons" class="iconbar-action coupon-action">
-              <belk-icon width="23" height="26" name="coupon"></belk-icon>
+              <belk-icon width="23" height="24" name="coupon"></belk-icon>
               <div class="iconbar-context">Coupons</div>
             </a>
 
             <sh-nav-item class="iconbar-action account-action" has-arrow foreground-selector="header .primary-and-secondary">
               <a slot="reference" id="signin-link" href="#" class="highlight-quinary">
-                <belk-icon width="18" height="22" name="person"></belk-icon>
+                <belk-icon width="18" height="24" name="person"></belk-icon>
                 <div class="iconbar-context">My Account</div>
               </a>
               <div id="signin-menu" class="iconbar-context">
@@ -164,74 +152,83 @@
     </div>
     <nav class="tertiary">
       <div class="contain">
-        <belk-nav></belk-nav>
+        <sh-button class="nav-trigger" click-event="show-nav">
+        <belk-icon width="20" class="pad-r-micro" name="menu"></belk-icon>Shop by Department</sh-button>
         <belk-storefinder></belk-storefinder>
         <div class="header-utility">
-            <a href="#wish">Wish List</a>
+          <a href="#wish">Wish List</a>
 
-            <sh-nav-item boundaries-selector="#primary-nav" has-arrow foreground-selector="header .tertiary">
-              <div slot="reference" id="rewards-link">
-                <a href="#">
-                  Belk <span fill="user-tier">&nbsp;</span> Rewards
-                </a>
-              </div>
-              <div slot="content" id="rewards-menu">
-                <ul>
-                  <li>
-                    <a href="#">Pay My Bill</a>
-                  </li>
-                  <li>
-                    <a href="#">Manage My Account</a>
-                  </li>
-                  <li>
-                    <a href="#">My Rewards Benefits</a>
-                  </li>
-                </ul>
-              </div>
-            </sh-nav-item>
+          <sh-nav-item boundaries-selector="#primary-nav" has-arrow foreground-selector="header .primary-secondary-tertiary">
+            <div slot="reference" id="rewards-link">
+              <a href="#">
+                Belk <span fill="user-tier">&nbsp;</span> Rewards
+              </a>
+            </div>
+            <div slot="content" id="rewards-menu">
+              <ul>
+                <li>
+                  <a href="#">Pay My Bill</a>
+                </li>
+                <li>
+                  <a href="#">Manage My Account</a>
+                </li>
+                <li>
+                  <a href="#">My Rewards Benefits</a>
+                </li>
+              </ul>
+            </div>
+          </sh-nav-item>
 
-            <sh-nav-item boundaries-selector="#primary-nav" has-arrow foreground-selector="header .tertiary">
-              <div slot="reference" id="giftcards-link">
-                <a href="#">
-                  Gift Cards
-                </a>
-              </div>
-              <div slot="content" id="giftcards-menu">
-                <ul>
-                  <li>
-                    <a href="#">Send a Gift Card by Mail</a>
-                  </li>
-                  <li>
-                    <a href="#">Send an eGift Card</a>
-                  </li>
-                  <li>
-                    <a href="#">Check My Gift Card Balance</a>
-                  </li>
-                </ul>
-              </div>
-            </sh-nav-item>
+          <sh-nav-item boundaries-selector="#primary-nav" has-arrow foreground-selector="header .primary-secondary-tertiary">
+            <div slot="reference" id="giftcards-link">
+              <a href="#">
+                Gift Cards
+              </a>
+            </div>
+            <div slot="content" id="giftcards-menu">
+              <ul>
+                <li>
+                  <a href="#">Send a Gift Card by Mail</a>
+                </li>
+                <li>
+                  <a href="#">Send an eGift Card</a>
+                </li>
+                <li>
+                  <a href="#">Check My Gift Card Balance</a>
+                </li>
+              </ul>
+            </div>
+          </sh-nav-item>
 
-          </div>
+        </div>
       </div>
     </nav>
+    <div class="quaternary pad-x-little desktop-off">
+      <belk-search variant="mobile"></belk-search>
+    </div>
   </div>
+  <belk-nav></belk-nav>
 
-  <div class="post-header-slot">
-    <sh-banner id="post-header-banner" variant="primary" class="o-hide back-seasonal-green pad-y-atomic high-off">
+
+  <sh-curtain id="curtain"></sh-curtain>
+</header>
+
+<div class="post-header-slot desktop-off" style="max-height: 100px">
+    <sh-banner id="post-header-banner" variant="primary" class="o-hide back-seasonal-green">
       <sh-carousel id="post-header-carousel" variant="primary" autoplay="6000" hide-controls>
         <ul slot="slides">
           <li><a href="/coupons-online-and-in-store/">
-              <div class="font-primary text-center color-lowlight-primary pad-y-quarter fontsize-carousel">
+              <div class="font-primary text-center color-highlight-primary pad-y-quarter fontsize-carousel">
                 <p>Cardholder Exclusive! <span class="wt-700"> Extra 7% </span> on top of today's coupon, clearance, doorbusters and beauty! – Ends 11/25 <span class="margin-l-little cta">GET COUPON</span></p>
               </div>
             </a></li>
           <li><a href="/search/?prefn1=eventCodeID&amp;prefv1=20B1DB43%7C20B2DB43%7C20B3DB43%7C20B4DB43">
-              <div class="font-primary text-center color-lowlight-primary pad-y-quarter fontsize-carousel">
+              <div class="font-primary text-center color-highlight-primary pad-y-quarter fontsize-carousel">
                 <p>1000+ <span class="wt-700"> Black Friday Doorbusters </span> ends 11/28 <span class="margin-l-little cta">SHOP NOW</span></p>
               </div>
             </a></li>
           <li><a href="/customer-service/free-store-pickup/">
-              <div class="font-primary text-center color-lowlight-primary pad-y-quarter fontsize-carousel">
+              <div class="font-primary text-center color-highlight-primary pad-y-quarter fontsize-carousel">
                 <p>Get it Today! <span class="wt-700">Extra 10% off </span> with in-store or Contactless Curbside Pickup <span class="margin-l-little cta">LEARN MORE</span></p>
               </div>
             </a></li>
@@ -239,9 +236,6 @@
       </sh-carousel>
     </sh-banner>
   </div>
-
-  <sh-curtain id="curtain"></sh-curtain>
-</header>
 
 <div style="padding-top: 400vh;background: linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);"></div>
 </div>

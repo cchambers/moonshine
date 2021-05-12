@@ -126,7 +126,7 @@
 </template>
 
 <style lang="scss" src="../style/default.scss"></style>
-<style lang="scss" src="../style/variant-modal.scss"></style>
+<style lang="scss" src="../style/variant-mobile.scss"></style>
 <style lang="scss" src="../style/variant-desktop.scss"></style>
 
 <script>
@@ -403,7 +403,7 @@ export default {
     stateHandler(val) {
       if (this.headerEl) {
         if (val > 0 || this.isFocused) {
-          // this.$bus.$emit('close-poppers');
+          this.$bus.$emit('search-opening');
           this.headerEl.classList.add('search-active');
         } else {
           this.headerEl.classList.remove('search-active');

@@ -1,12 +1,9 @@
-belk-search[variant="modal"] {
-  margin: $micro 0 $micro $little;
-  width: 50%;
+belk-search[variant="mobile"] {
   flex-grow: 1;
   flex-shrink: 0;
 
   .belk-search {
     z-index: auto;
-
     &[state="0"] {
       .search-results {
         background: transparent;
@@ -45,21 +42,4 @@ belk-search[variant="modal"] {
   //   font-weight: 400;
   //   text-decoration: none;
   // }
-}
-
-.sh-modal[id="search-modal"] {
-  &.active {
-    belk-search[variant="modal"] {
-      .search-results {
-        position: fixed !important;
-      }
-    }
-  }
-
-  .content {
-    pointer-events: none;
-    * {
-      pointer-events: all;
-    }
-  }
 }
