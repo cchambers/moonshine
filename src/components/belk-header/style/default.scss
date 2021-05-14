@@ -38,6 +38,7 @@ belk-header {
     }
   }
   a {
+    display: block;
     color: $lowlight-primary;
     &#goToCart {
       padding-top: 4px;
@@ -216,7 +217,7 @@ belk-header {
   .primary-promo {
     font-weight: bold;
     width: auto;
-    white-space: pre;
+    white-space: nowrap;
     display: flex;
     justify-content: center;
     padding-right: $little;
@@ -235,6 +236,7 @@ belk-header {
 
     .contain {
       justify-content: space-between;
+      height: 6rem;
     }
 
     sh-button.close-search {
@@ -274,12 +276,16 @@ belk-header {
         margin-right: $micro;
       }
     }
-    a {
+    a:not(.belk-link) {
       border-radius: 5px;
       &:hover {
         background: $highlight-secondary;
       }
     }
+  }
+
+  .quaternary {
+    background: $highlight-primary;
   }
 
   .header-utility {
@@ -430,6 +436,7 @@ belk-header {
   .nav-trigger {
     button {
       line-height: 2.6rem !important;
+      padding: 0 !important;
     }
   }
 
@@ -569,6 +576,13 @@ belk-header {
     }
   }
 
+
+  .explore {
+    display: block !important;
+    font-size: $little !important;
+    padding: $rem !important;
+  }
+
   .horizontal,
   .menu-horizontal {
     display: flex;
@@ -635,4 +649,8 @@ belk-header {
   .menu-horizontal {
     height: 80vh !important;
   }
+}
+
+[main="Clearance"] {
+  color: $brand-crimson;
 }

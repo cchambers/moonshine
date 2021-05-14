@@ -14,16 +14,40 @@ belk-nav {
   }
   .belk-nav {
     max-height: 0;
+    height: 100%;
     overflow: hidden;
     background: rgba(25, 25, 25, 0.5);
+    display: flex;
+    position: relative;
     &.active {
       max-height: 100%;
       pointer-events: all;
     }
+    &:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      box-shadow: inset 0 2px 5px rgba(25,25,25,0.25);
+      pointer-events: none;
+    }
+    // .spacer {
+    //   width: calc((100vw - (96rem - 3.2rem)) / 2);
+    //   height: 100%;
+    //   @include xl {
+    //     width: calc((100vw - (128rem - 3.2rem)) / 2);
+    //   }
+    // }
     .contain {
       display: flex;
       justify-content: flex-start;
       align-items: flex-start;
+      pointer-events: none;
+      > * {
+        pointer-events:  all;
+      }
     }
     [category] {
       position: absolute;
@@ -42,14 +66,26 @@ belk-nav {
     }
     .nav-actual {
       position: relative;
-      width: 50%;
+      width: 100%;
       height: 100%;
-      flex-grow: 1;
+      flex-grow: 0;
+      max-width: 65rem;
+      a {
+        padding: 0 $micro;
+        line-height: 2.6rem;
+        &:hover {
+          background: $highlight-secondary;
+        }
+      }
     }
     .grid-item {
       max-width: 200px;
+      width: 200px;
       padding-right: $little;
       padding-bottom: $little;
+    }
+    .topcat > li > a {
+      font-weight: bold;
     }
     sh-masonry {
       height: 100%;
@@ -59,23 +95,36 @@ belk-nav {
         padding: 0;
         margin: 0;
       }
+      .masonry-grid {
+        padding-left: 2.5rem;
+        line-height: 2.8rem;
+        font-size: 1.4rem;
+        .view-all { display: none; }
+      }
     }
     .nav-categories {
       width: 30rem;
       flex-grow: 0;
+      flex-shrink: 0;
       height: 100%;
       background: $highlight-primary;
       overflow-y: auto;
+      font-size: 1.8rem;
+      border-right: 1px solid $lowlight-tertiary;
       ul {
         list-style: none;
         padding: 0;
         margin: 0;
       }
       [main] {
-        line-height: $rem;
+        line-height: $big;
+        padding-left: 2.9rem; // because we don't have a designer anymore, duh
+        border-bottom: 1px solid $highlight-tertiary;
+        cursor: pointer;
       }
       [main].active {
-        background: $accent-primary;
+        font-weight: bold;
+        background: $highlight-secondary;
       }
     }
   }
