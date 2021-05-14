@@ -67,7 +67,7 @@ export default {
   },
 
   mounted() {
-    this.actual = document.querySelector('header.belk-header');
+    this.actual = document.querySelector('header.belk-header .primary-secondary-tertiary');
     this.bagEl = document.querySelector('belk-bag');
     this.setupEvents();
     this.getData();

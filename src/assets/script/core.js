@@ -52,6 +52,12 @@ const app = {
     }, 50, 'scroll-debounce');
     window.addEventListener('scroll', scrollDebounced, true);
 
+    const resizeDebounced = app.debounce((event) => {
+      app.interactionHandler('mouse');
+      window.sh.emit('resize-event', event);
+    }, 50, 'resize-debounce');
+    window.addEventListener('resize', resizeDebounced, true);
+
     const touchDebounced = app.debounce(() => {
       app.interactionHandler('touch');
     }, 100);

@@ -5,18 +5,26 @@ belk-header {
   display: none;
   &[vce-ready] {
     ~ .belk-header {
-      display: block !important;
+      display: flex !important;
     }
   }
   ~ .belk-header {
     display: none;
   }
+
+  &.nav-active {
+    ~ .belk-header {
+      height: 100vh;
+    }
+  }
 }
+
 .belk-header {
   position: fixed;
+  flex-direction: column;
+  max-height: 100vh;
   width: 100%;
   top: 0;
-  background: $highlight-primary;
   color: $lowlight-primary;
   z-index: 6;
   border-bottom: 1px solid currentColor;
@@ -29,6 +37,14 @@ belk-header {
       display: block;
     }
   }
+  a {
+    display: block;
+    color: $lowlight-primary;
+    &#goToCart {
+      padding-top: 4px;
+    }
+  }
+
 
   sh-nav-item a:not(.belk-link):hover {
     background: $highlight-secondary;
@@ -45,42 +61,43 @@ belk-header {
   .pre-header-slot {
     max-height: 100px;
     transition: max-height 100ms linear;
+    width: 100%;
   }
 
   .pre-and-primary {
     transition: max-height 100ms linear;
   }
 
-  &[scroll-state="1"] {
+  // &[scroll-state="1"] {
     
-    .pre-header-slot,
-    .pre-and-primary {
-      max-height: 0 !important;
-      overflow: hidden !important;
-    }
-    @include lg {
-      .pre-and-primary {
-        max-height: 100px !important;
-      }
-    }
-  }
+  //   .pre-header-slot,
+  //   .pre-and-primary {
+  //     max-height: 0 !important;
+  //     overflow: hidden !important;
+  //   }
+  //   @include lg {
+  //     .pre-and-primary {
+  //       max-height: 100px !important;
+  //     }
+  //   }
+  // }
 
-  &[scroll-state="2"] {
-    .pre-header-slot,
-    .pre-and-primary {
-      max-height: 0 !important;
-      overflow: hidden !important;
-    }
-    @include lg {
-      .pre-and-primary {
-        max-height: 100px !important;
-      }
-    }
-    .tertiary {
-      max-height: 0 !important;
-      overflow: hidden !important;
-    }
-  }
+  // &[scroll-state="2"] {
+  //   .pre-header-slot,
+  //   .pre-and-primary {
+  //     max-height: 0 !important;
+  //     overflow: hidden !important;
+  //   }
+  //   @include lg {
+  //     .pre-and-primary {
+  //       max-height: 100px !important;
+  //     }
+  //   }
+  //   .tertiary {
+  //     max-height: 0 !important;
+  //     overflow: hidden !important;
+  //   }
+  // }
 
   .contain {
     box-sizing: border-box;
@@ -92,7 +109,7 @@ belk-header {
     flex-grow: 0;
     flex-shrink: 0;
     flex-basis: auto;
-    padding: 0 1.6rem;
+    padding: 0 $little;
   }
   
   .nav-divider {
@@ -132,34 +149,40 @@ belk-header {
     display: flex;
     align-items: center;
     order: 3;
-    font-size: 1.4rem;
-    margin-left: 1rem;
+    font-size: 1.2rem;
     min-width: auto;
+    margin-left: $big;
+    justify-self: flex-end;
 
     belk-icon[name="arrow-down"] {
-      align-self: flex-end;
+      position: absolute;
+      top: 43%;
+      right: 30%;
     }
 
     a.iconbar-action {
-      padding: 1.3rem;
+      padding: 0 $micro;
+      height: 6rem;
+      min-width: 6rem;
       cursor: pointer;
     }
 
     .iconbar-action {
       border-radius: 5px;
       display: flex;
+      flex-direction: column;
       align-items: center;
+      justify-content: center;
+      position: relative;
       .popper-target > a,
       .popper-target > div {
+        min-width: 6rem;
         height: 6rem;
         display: flex;
-        padding: 1.3rem;
+        flex-direction: column;
+        justify-content: center;
+        padding: 0 $micro;
         box-sizing: border-box;
-      }
-
-      &.coupon-action {
-        display: none;
-        color: inherit;
       }
 
       &:not([href="#"]):hover {
@@ -169,48 +192,42 @@ belk-header {
 
     .iconbar-context {
       display: none;
-      margin-left: 0.4rem;
+      white-space: nowrap;
+      @include lg {
+        display: flex;
+      }
     }
 
-    .bag-total {
-      display: none;
-    }
-
-    .greet {
-      font-size: 1.2rem;
-    }
   }
 
   .primary {
-    height: $primary-nav-height;
     background: $highlight-primary;
     position: relative;
-
-    .primary-utility {
-      display: none;
-      padding-left: 1rem;
-      height: $primary-nav-height;
-
-      belk-storefinder {
-        height: $primary-nav-height;
+    #primary-nav {
+      display: flex;
+      @include lg {
+        margin-left: calc((100% - 96rem) / 2);
       }
-      a:not(.belk-link),
-      .nav-link {
-        display: flex;
-        align-items: center;
-        padding: 0 $micro;
-        line-height: 3.6rem;
-        font-size: 1.4rem;
+      @include xl {
+        margin-left: calc((100% - 128rem) / 2);
       }
     }
+  }
 
-    .primary-promo {
-      font-weight: bold;
-      flex-grow: 1;
-      flex-shrink: 1;
-      flex-basis: 50%;
-      display: flex;
-      justify-content: center;
+  .primary-promo {
+    font-weight: bold;
+    width: auto;
+    white-space: nowrap;
+    display: flex;
+    justify-content: center;
+    padding-right: $little;
+    padding-left: $little;
+    width: 50%;
+    flex-grow: 1;
+    flex-shrink: 1;
+    @include lg {
+      width: auto;
+      padding-left: 0;
     }
   }
 
@@ -219,6 +236,7 @@ belk-header {
 
     .contain {
       justify-content: space-between;
+      height: 6rem;
     }
 
     sh-button.close-search {
@@ -238,90 +256,155 @@ belk-header {
     }
   }
 
-  //initial meganav styles
   .tertiary {
     display: none;
-    border-bottom: 1px $lowlight-primary;
     background: $highlight-primary;
-    -webkit-overflow-scrolling: touch;
-    top: 0;
-
-    .popper-target {
-      line-height: 4.5rem;
-      height: 5rem;
-      line-height: 1.2;
-      display: inline-flex;
+    height: 3.6rem;
+    @include lg {
+      display: block;
+    }
+    belk-storefinder {
+      display: flex;
       align-items: center;
-      padding: 0 $micro;
-      > div {
-        background-color: transparent !important;
-      }
-      &.active {
-        &:after {
-          display: block;
-          content: '';
-          position: absolute;
-          background: $lowlight-primary;
-          height: 0.3rem;
-          bottom: 0;
-          left: 0;
-          right: 0;
-        }
+      margin-right: auto;
+      &:before {
+        content: '';
+        display: block;
+        height: 22px;
+        border-left: 1px solid $highlight-tertiary;
+        margin-left: $little;
+        margin-right: $micro;
       }
     }
-    .popper-content {
-      width: 100vw;
-      overflow-y: auto;
-      box-sizing: border-box;
-      // max-height: calc(100vh - 250px);
-      height: 100%;
-      padding: 0;
-
-      .popper-close {
-        position: absolute;
-        right: $rem;
-        top: 0;
-
-        button {
-          background-color: transparent;
-          border: none;
-          color: $lowlight-primary;
-          cursor: pointer;
-        }
+    a:not(.belk-link) {
+      border-radius: 5px;
+      &:hover {
+        background: $highlight-secondary;
       }
-
-      .contain {
-        flex-direction: column;
-        > li {
-          // break-inside: avoid;
-          margin-bottom: 2rem;
-        }
-        .l2 {
-          font-weight: bold;
-          margin-bottom: $little;
-          padding-right: $little;
-          > li > a {
-            margin-bottom: $micro;
-          }
-        }
-        ul.l3 .view-all {
-          display: none;
-        }
-        .menu__subcat {
-          min-height: 60vh;
-        }
-      }
-    }
-
-    .l2 > li {
-      font-weight: bold;
-    }
-
-    [data-cgid*="-shop-all"],
-    [data-cgid*="shop-all-"] {
-      display: none !important;
     }
   }
+
+  .quaternary {
+    background: $highlight-primary;
+  }
+
+  .header-utility {
+    display: flex;
+    font-size: 1.4rem;
+    a:not(.belk-link),
+    .nav-link {
+      display: flex;
+      align-items: center;
+      padding: 0 $micro;
+      line-height: 3.6rem;
+      font-size: 1.4rem;
+    }
+  }
+
+  .belk-storefinder {
+    .nav-link {
+      display: flex;
+      align-items: center;
+      padding: 0 $micro;
+      line-height: 3.6rem;
+      font-size: 1.4rem;
+    }
+  }
+
+  .pre-header-slot sh-banner .banner-background {
+    border-bottom-left-radius: 2.6rem;
+    padding-right: var(--promo-width);
+    padding-left: $rem;
+  }
+
+  .nav-trigger .actual-text span {
+    font-size: 1.4rem;
+    font-weight: bold;
+  }
+
+  // //initial meganav styles
+  // .tertiary {
+  //   border-bottom: 1px $lowlight-primary;
+  //   background: $highlight-primary;
+  //   -webkit-overflow-scrolling: touch;
+  //   top: 0;
+
+  //   .popper-target {
+  //     line-height: 4.5rem;
+  //     height: 5rem;
+  //     line-height: 1.2;
+  //     display: inline-flex;
+  //     align-items: center;
+  //     padding: 0 $micro;
+  //     > div {
+  //       background-color: transparent !important;
+  //     }
+  //     &.active {
+  //       &:after {
+  //         display: block;
+  //         content: '';
+  //         position: absolute;
+  //         background: $lowlight-primary;
+  //         height: 0.3rem;
+  //         bottom: 0;
+  //         left: 0;
+  //         right: 0;
+  //       }
+  //     }
+  //   }
+  //   .popper-content {
+  //     width: 100vw;
+  //     overflow-y: auto;
+  //     box-sizing: border-box;
+  //     // max-height: calc(100vh - 250px);
+  //     height: 100%;
+  //     padding: 0;
+
+  //     .popper-close {
+  //       position: absolute;
+  //       right: $rem;
+  //       top: 0;
+
+  //       button {
+  //         background-color: transparent;
+  //         border: none;
+  //         color: $lowlight-primary;
+  //         cursor: pointer;
+  //       }
+  //     }
+
+  //     .contain {
+  //       flex-direction: column;
+  //       > li {
+  //         // break-inside: avoid;
+  //         margin-bottom: 2rem;
+  //       }
+  //       .l2 {
+  //         font-weight: bold;
+  //         margin-bottom: $little;
+  //         padding-right: $little;
+  //         > li > a {
+  //           margin-bottom: $micro;
+  //         }
+  //       }
+  //       ul.l3 .view-all {
+  //         display: none;
+  //       }
+  //       .menu__subcat {
+  //         min-height: 60vh;
+  //       }
+  //     }
+  //   }
+
+  //   .l2 > li {
+  //     font-weight: bold;
+  //   }
+
+  //   [data-cgid*="-shop-all"],
+  //   [data-cgid*="shop-all-"] {
+  //     display: none !important;
+  //   }
+  // }
 
   .logo-link {
     display: inline-flex;
@@ -333,12 +416,11 @@ belk-header {
     order: 0;
     flex-shrink: 0;
     margin-left: 0;
-    margin-right: 1.8rem;
+    margin-right: $big;
   }
 
   belk-search {
     width: 100%;
-    max-width: 58rem;
     flex-grow: 1;
     flex-shrink: 1;
     margin: 0 auto;
@@ -351,7 +433,14 @@ belk-header {
     }
   }
 
-  sh-button.nav-trigger {
+  .nav-trigger {
+    button {
+      line-height: 2.6rem !important;
+      padding: 0 !important;
+    }
+  }
+
+  sh-button.mobile-nav-trigger {
     max-width: 100vw;
     overflow: hidden;
     transition: max-width 250ms $ease;
@@ -388,31 +477,7 @@ belk-header {
     .primary {
       .primary-promo {
         justify-content: flex-start;
-      }
-
-      .primary-utility {
-        display: flex;
-
-        sh-nav-item .popper-target {
-          height: $primary-nav-height;
-        }
-
-        .store-locator {
-          padding-right: 0;
-          border-right: none;
-          display: flex;
-          align-items: center;
-
-          & + sh-nav-item {
-            margin-left: 0.8rem;
-          }
-        }
-      }
-    }
-
-    .iconbar .iconbar-action {
-      &.coupon-action {
-        display: flex;
+        padding-left: $little;
       }
     }
 
@@ -439,34 +504,9 @@ belk-header {
       }
     }
 
-    sh-button.nav-trigger {
+    sh-button.mobile-nav-trigger {
       display: none;
     }
-
-    .iconbar {
-      margin-left: 0;
-      min-width: 39rem;
-      justify-content: flex-end;
-    }
-
-    .primary-utility {
-      display: flex;
-      .store-locator {
-        padding-right: 1.6rem;
-        border-right: 1px solid #979797;
-      }
-    }
-
-    .iconbar {
-      .iconbar-context,
-      .bag-total {
-        display: flex;
-      }
-      .iconbar-context {
-        flex-direction: column;
-      }
-    }
-
 
     .secondary {
       height: 6rem;
@@ -476,9 +516,6 @@ belk-header {
     }
 
     sh-nav-item.account-action {
-      .arrow-icon {
-        margin-bottom: 0.6rem;
-      }
       .popper-content {
         width: 24rem;
         padding: $little;
@@ -537,6 +574,13 @@ belk-header {
     @include xl {
       max-width: 128rem;
     }
+  }
+
+
+  .explore {
+    display: block !important;
+    font-size: $little !important;
+    padding: $rem !important;
   }
 
   .horizontal,
@@ -605,4 +649,8 @@ belk-header {
   .menu-horizontal {
     height: 80vh !important;
   }
+}
+
+[main="Clearance"] {
+  color: $brand-crimson;
 }

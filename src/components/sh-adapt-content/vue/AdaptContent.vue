@@ -63,9 +63,7 @@ export default {
     },
 
     events() {
-      const resizeDebounced = this.debounce('adapt-db', this.checkState, 100);
-      window.addEventListener('resize', resizeDebounced, true);
-      this.$bus.$on('resize-occurred', resizeDebounced, true);
+      this.$bus.$on('resize-event', this.checkState);
     },
   },
 

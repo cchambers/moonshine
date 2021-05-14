@@ -145,7 +145,7 @@ export default {
           {
             name: 'offset',
             options: {
-              offset: [this.offset || 10, 0],
+              offset: [this.offset || 15, 0],
             },
           },
           {

@@ -100,6 +100,7 @@ export default {
   mounted() {
     setTimeout(() => {
       this.$bus.$emit('get-user-data', this);
+      this.setPromoWidth();
     }, 200);
   },
 
@@ -109,9 +110,15 @@ export default {
       this.$bus.$on('user-data', this.handleData);
     },
 
+    setPromoWidth() {
+      const math = (this.$el.clientWidth + 32) / 10;
+      document.documentElement.style.setProperty('--promo-width', `${math}rem`);
+    },
+
     handleData(data) {
       if (data.brd) this.$set(this.data, 'brd', data.brd);
       if (data.brc) this.$set(this.data, 'brc', data.brc);
+      this.setPromoWidth();
     },
 
     setData(num) {
