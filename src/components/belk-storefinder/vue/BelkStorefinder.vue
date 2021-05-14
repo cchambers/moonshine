@@ -4,7 +4,7 @@
       v-if="hasData"
       has-arrow
       boundaries-selector="#primary-nav"
-      foreground-selector="header .pre-and-primary">
+      :foreground-selector="this.foreground">
       <div slot="reference" class="nav-link">
         <belk-icon name="map-pin" width="10" height="15" class="margin-r-atomic"></belk-icon>
         <span>{{ storeData.storeName }}</span>
@@ -56,7 +56,7 @@ export default {
     },
     foreground: {
       type: String,
-      default: '',
+      default: '.primary-secondary-tertiary',
     },
   },
 

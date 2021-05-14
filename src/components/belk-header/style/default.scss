@@ -17,6 +17,17 @@ belk-header {
       height: 100vh;
     }
   }
+  &.search-active {
+    ~ .belk-header {
+      
+      height: 100vh;
+      background: rgba(25,25,25,0.5);
+      @include lg {
+        height: auto;
+        background: none;
+      }
+    }
+  }
 }
 
 .belk-header {
@@ -28,7 +39,9 @@ belk-header {
   color: $lowlight-primary;
   z-index: 6;
   border-bottom: 1px solid currentColor;
-
+  * {
+    box-sizing: border-box;
+  }
   &.is-user {
     .unregistered {
       display: none;
@@ -37,7 +50,7 @@ belk-header {
       display: block;
     }
   }
-  a {
+  a:not(.belk-link) {
     display: block;
     color: $lowlight-primary;
     &#goToCart {
@@ -413,6 +426,7 @@ belk-header {
   }
 
   belk-logo {
+    display: block;
     order: 0;
     flex-shrink: 0;
     margin-left: 0;

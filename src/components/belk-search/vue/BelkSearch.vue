@@ -405,8 +405,10 @@ export default {
         if (val > 0 || this.isFocused) {
           this.$bus.$emit('search-opening');
           this.headerEl.classList.add('search-active');
+          document.documentElement.classList.add('scroll-block');
         } else {
           this.headerEl.classList.remove('search-active');
+          document.documentElement.classList.remove('scroll-block');
         }
       }
     },

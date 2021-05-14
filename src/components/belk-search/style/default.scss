@@ -200,6 +200,8 @@ belk-search {
     .search-suggestions {
       display: none;
       flex-direction: column;
+      max-height: 50vh;
+      overflow-y: auto;
 
       &.active {
         display: flex;
@@ -208,14 +210,6 @@ belk-search {
       .hr {
         display: block;
       }
-
-      @include lg {
-        flex-direction: row;
-        .hr {
-          display: none;
-        }
-      }
-
       > div {
         @include lg {
           width: 50%;
@@ -254,6 +248,16 @@ belk-search {
           margin-right: $little;
         }
       }
+
+
+      @include lg {
+        flex-direction: row;
+        max-height: auto;
+        overflow: hidden;
+        .hr {
+          display: none;
+        }
+      }
     }
 
     .highlight {
@@ -281,63 +285,4 @@ belk-search {
       }
     }
   }
-
-  //only desktop
-  &:not(#mobile-search){
-
-    button.clear-search {
-      visibility: hidden;
-    }
-    button[aria-label="perform search"] {
-      margin-left: auto;
-    }
-    .belk-search .search-input input {
-      position: absolute;
-      padding-right: 43px;
-      width: 100%;
-      z-index: 1;
-    }
-    @include md {
-      .belk-search .search-input input {
-        width: 90%;
-        position: relative;
-        z-index: unset;
-        padding-right: 1rem;
-      }
-      button.clear-search {
-        visibility: visible;
-      }
-    }
-
-    //very small breakpoint search UI
-    @media (max-width: breakpoint("xs")) {
-      width: 32px;
-      margin: 0;
-      margin-left: auto;
-
-      .belk-search {
-        border: 0;
-
-        .search-input {
-          input {
-            position: absolute;
-            opacity: 0;
-            padding: 0;
-            width: 100%;
-          }
-          button {
-            padding: 0;
-            height: 100%;
-            margin-left: auto;
-
-            belk-icon svg {
-              transform: scale(1.2);
-              margin-top: 2px;
-            }
-          }
-        }
-      }
-    }
-  }
-
 }
