@@ -18,19 +18,21 @@
         <belk-icon name="close" height="22" width="22"
           class="lowlight-quaternary">Close Menu</belk-icon>
       </button>
-      <nav class="primary"
-        :id="ariaDescID"
-        ref="primaryNav">
-        <slot name="primary"></slot>
-      </nav>
-      <nav class="secondary"
-        ref="secondaryNav">
-        <ul>
-          <slot name="secondary"></slot>
-        </ul>
-      </nav>
-      <div class="tab-lock" v-if="active" v-on:focus="focusButton()" tabindex="0"></div>
-      <div hidden ref="in"><slot></slot></div>
+      <div class="scroll-y">
+        <nav class="primary"
+          :id="ariaDescID"
+          ref="primaryNav">
+          <slot name="primary"></slot>
+        </nav>
+        <nav class="secondary"
+          ref="secondaryNav">
+          <ul>
+            <slot name="secondary"></slot>
+          </ul>
+        </nav>
+        <div class="tab-lock" v-if="active" v-on:focus="focusButton()" tabindex="0"></div>
+        <div hidden ref="in"><slot></slot></div>
+      </div>
     </div>
   </div>
 </template>

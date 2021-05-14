@@ -41,13 +41,17 @@ belk-mobile-nav {
       transition: all 300ms $ease, opacity 350ms linear;
     }
 
+    .scroll-y {
+      @include scroll-y;
+    }
+
     .container {
       display: flex;
       flex-direction: column;
       transform: translateX(-100%) translateZ(0);
       transition: all 300ms $ease, opacity 350ms linear;
       overflow-x: hidden;
-      overflow-y: auto;
+      overflow-y: hidden;
       @include no-scroll-bar();
       background: $highlight-primary;
       height: 100vh;

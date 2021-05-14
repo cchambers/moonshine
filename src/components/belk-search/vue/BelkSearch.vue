@@ -5,8 +5,6 @@
     :state="state"
     :invalid="isInvalid"
     v-bind:class="{ active: isActive, focused: isFocused }">
-
-    <!-- Input -->
     <div class="search-input">
       <input
         ref="input"
@@ -43,7 +41,7 @@
         v-hammer:tap="doSearch"
         :disabled="isEmpty">
         <belk-icon name="search"
-          width="24" height="24">Perform Search Action</belk-icon>
+          width="18" height="18">Perform Search Action</belk-icon>
       </button>
     </div>
     <div ref="loading" class="search-loading">
@@ -106,7 +104,7 @@
           </ul>
         </div>
 
-        <div class="hr margin-micro"></div>
+        <div class="hr"></div>
 
         <div class="products">
           <div class="heading">Popular in "{{ suggestTerm }}"</div>
@@ -117,7 +115,7 @@
             variant="secondary"
             :item-limit="3"
           ></component>
-          <div class="pad-micro" style="margin-top: auto;">
+          <div class="pad-micro pad-x-little" style="margin-top: auto;">
             <a class="view-more belk-link"
               :href="buildSearchLink(suggestTerm)">More Results for "{{ suggestTerm }}"</a>
           </div>
@@ -128,7 +126,7 @@
 </template>
 
 <style lang="scss" src="../style/default.scss"></style>
-<style lang="scss" src="../style/variant-modal.scss"></style>
+<style lang="scss" src="../style/variant-mobile.scss"></style>
 <style lang="scss" src="../style/variant-desktop.scss"></style>
 
 <script>
@@ -347,6 +345,7 @@ export default {
   created() {
     this.setUUID();
     this.checkDev();
+    this.placeholderHandler();
   },
 
   mounted() {
@@ -379,6 +378,17 @@ export default {
       self.$bus.$on('popper-opening', self.forceBlur);
       self.$bus.$on('close-search', self.forceBlur);
       self.$bus.$on('search-term', self.searchTermHandler);
+      self.$bus.$on('resize-event', self.placeholderHandler);
+    },
+
+    placeholderHandler() {
+      let ph = 'Search';
+      if (this.isTablet()) {
+        ph = 'What can we help you find?';
+      } else {
+        ph = 'Search';
+      }
+      this.$set(this, 'placeholder', ph);
     },
 
     checkDev() {
@@ -393,7 +403,7 @@ export default {
     stateHandler(val) {
       if (this.headerEl) {
         if (val > 0 || this.isFocused) {
-          // this.$bus.$emit('close-poppers');
+          this.$bus.$emit('search-opening');
           this.headerEl.classList.add('search-active');
         } else {
           this.headerEl.classList.remove('search-active');
@@ -493,17 +503,10 @@ export default {
       this.highlightIndex = which;
     },
 
-    forceBlur(e) {
+    forceBlur() {
       if (this.isFocused) {
-        let clear = false;
-        if (typeof e === 'object') {
-          const key = e.charCode || e.keyCode;
-          if (key === 27 || e.target === this.$refs.clear) clear = true;
-        }
         if (document.activeElement === this.inputEl) this.inputEl.blur();
         this.isFocused = false;
-
-        if (clear) this.clearSearch(clear);
       }
     },
 
@@ -659,10 +662,6 @@ export default {
         self.allProducts[x] = { products: false };
         doReq(x);
       }
-    },
-
-    isMobile() {
-      return window.matchMedia('(max-width: 768px)').matches;
     },
 
     suggestionHoverHandler(val) {
