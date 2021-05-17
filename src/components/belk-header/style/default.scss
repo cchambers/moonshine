@@ -230,14 +230,14 @@ belk-header {
     white-space: nowrap;
     display: flex;
     justify-content: center;
-    padding-right: $little;
-    padding-left: $little;
+    padding: $atomic $little;
     width: 50%;
     flex-grow: 1;
     flex-shrink: 1;
+
     @include lg {
       width: auto;
-      padding-left: 0;
+      justify-content: flex-start;
     }
   }
 
@@ -246,7 +246,10 @@ belk-header {
 
     .contain {
       justify-content: space-between;
-      height: 6rem;
+      height: 4.5rem;
+      @include lg {
+        height: 6rem;
+      }
     }
 
     sh-button.close-search {
@@ -410,11 +413,12 @@ belk-header {
   //     font-weight: bold;
   //   }
 
-  //   [data-cgid*="-shop-all"],
-  //   [data-cgid*="shop-all-"] {
-  //     display: none !important;
-  //   }
   // }
+
+  [data-cgid*="-shop-all"],
+  [data-cgid*="shop-all-"] {
+    display: none !important;
+  }
 
   .logo-link {
     display: inline-flex;
@@ -483,13 +487,6 @@ belk-header {
 
     .contain {
       justify-content: space-between;
-    }
-
-    .primary {
-      .primary-promo {
-        justify-content: flex-start;
-        padding-left: $little;
-      }
     }
 
     .secondary {
