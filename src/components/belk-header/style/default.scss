@@ -50,9 +50,18 @@ belk-header {
       display: block;
     }
   }
-  a:not(.belk-link) {
-    display: block;
-    color: $lowlight-primary;
+
+  .iconbar,
+  .tertiary {
+    a:not(.belk-link) {
+      display: flex;
+      color: $lowlight-primary;
+      border-radius: 5px;
+      &:hover {
+        text-decoration: none;
+        background: $highlight-secondary;
+      }
+    }
   }
 
 
@@ -287,12 +296,6 @@ belk-header {
         border-left: 1px solid $highlight-tertiary;
         margin-left: $little;
         margin-right: $micro;
-      }
-    }
-    a:not(.belk-link) {
-      border-radius: 5px;
-      &:hover {
-        background: $highlight-secondary;
       }
     }
   }
@@ -541,7 +544,7 @@ belk-header {
       i[class^="icon-"] {
         display: block;
         padding-right: $little;
-        width: 23px;
+        width: $rem;
         text-align: center;
         font-size: 21px;
       }

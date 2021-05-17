@@ -26,7 +26,6 @@ export default {
     this.cats.forEach((el) => {
       el.addEventListener('mouseover', () => {
         const cat = el.getAttribute('main');
-        console.log(cat);
         this.activate(cat);
       });
     });

@@ -40,6 +40,9 @@ belk-nav {
     //     width: calc((100vw - (128rem - 3.2rem)) / 2);
     //   }
     // }
+    a {
+      display: block;
+    }
     .contain {
       display: flex;
       justify-content: flex-start;
