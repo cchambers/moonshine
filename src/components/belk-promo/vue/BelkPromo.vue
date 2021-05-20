@@ -113,6 +113,7 @@ export default {
     setPromoWidth() {
       const math = (this.$el.clientWidth + 32) / 10;
       document.documentElement.style.setProperty('--promo-width', `${math}rem`);
+      window.dispatchEvent(new Event('resize'));
     },
 
     handleData(data) {

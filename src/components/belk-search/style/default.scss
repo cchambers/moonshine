@@ -202,6 +202,9 @@ belk-search {
       flex-direction: column;
       max-height: 50vh;
       overflow-y: auto;
+      @include lg {
+        max-height: 100%;
+      }
 
       &.active {
         display: flex;

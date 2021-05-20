@@ -170,13 +170,15 @@ belk-header {
     order: 3;
     font-size: 1.2rem;
     min-width: auto;
-    margin-left: $big;
     justify-self: flex-end;
+    @include lg {
+      margin-left: $big;
+    }
 
     belk-icon[name="arrow-down"] {
       position: absolute;
       top: 43%;
-      right: 30%;
+      right: 26%;
     }
 
     a.iconbar-action {

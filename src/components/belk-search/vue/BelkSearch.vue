@@ -384,9 +384,9 @@ export default {
     placeholderHandler() {
       let ph = 'Search';
       if (this.isTablet()) {
-        ph = 'What can we help you find?';
-      } else {
         ph = 'Search';
+      } else {
+        ph = 'What can we help you find?';
       }
       this.$set(this, 'placeholder', ph);
     },
