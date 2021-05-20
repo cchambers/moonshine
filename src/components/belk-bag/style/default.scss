@@ -90,6 +90,7 @@ belk-bag {
   .bag-total {
     display: none;
     align-items: center;
+    padding-top: 2px;
     @include lg {
       display: flex;
     }

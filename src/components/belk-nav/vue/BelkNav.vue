@@ -1,9 +1,12 @@
 <template>
   <div class="belk-nav" :class="{ active: active }" @click="checkClose">
     <!-- <div class="spacer back-highlight-primary"></div> -->
-    <div class="contain">
+    <div class="contain"
+      v-on:keydown="keydownHandler">
       <div class="nav-categories">
+        <!-- <div class="tab-lock" v-if="active" v-on:focus="focusLast()" tabindex="0"></div> -->
         <slot name="cats"></slot>
+        <div class="tab-lock" v-if="active" v-on:focus="focusFirst()" tabindex="0"></div>
       </div>
       <div class="nav-actual">
         <slot name="navs"></slot>
@@ -28,13 +31,24 @@ export default {
         const cat = el.getAttribute('main');
         this.activate(cat);
       });
+      el.addEventListener('focus', () => {
+        const cat = el.getAttribute('main');
+        this.activate(cat);
+      });
+      // eslint-disable-next-line
+      el.tabIndex = 0;
     });
+
+    setTimeout(() => {
+      this.trigger = document.querySelector('[click-event="show-nav"] button');
+    }, 20);
   },
 
   data() {
     return {
       active: false,
       headerEl: false,
+      trigger: false,
       cats: [],
     };
   },
@@ -44,6 +58,7 @@ export default {
       if (val) {
         this.headerEl.classList.add('nav-active');
         document.documentElement.classList.add('nav-open');
+        this.focusFirst();
       } else {
         this.headerEl.classList.remove('nav-active');
         document.documentElement.classList.remove('nav-open');
@@ -87,6 +102,28 @@ export default {
 
     checkClose(e) {
       if (e.target === this.$el) this.hide();
+    },
+
+    focusFirst() {
+      this.cats[0].focus();
+    },
+
+    focusLast() {
+      if (this.cats.length === 0) {
+        this.focusButton();
+      } else {
+        this.cats[this.cats.length - 1].focus();
+      }
+    },
+
+    keydownHandler(e) {
+      const key = e.charCode || e.keyCode;
+      if (key === 27) {
+        this.hide();
+        if (this.trigger) this.trigger.focus();
+      }
+      if (key === 39) document.querySelector('[category].active a').focus();
+      if (key === 37) document.querySelector('[main].active').focus();
     },
   },
 };

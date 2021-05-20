@@ -24,6 +24,7 @@ export default {
   data() {
     return {
       actual: {},
+      header: {},
       bagEl: {},
       navEl: {},
       searchEl: {},
@@ -68,6 +69,7 @@ export default {
 
   mounted() {
     this.actual = document.querySelector('header.belk-header .primary-secondary-tertiary');
+    this.header = document.querySelector('header.belk-header');
     this.bagEl = document.querySelector('belk-bag');
     this.setupEvents();
     this.getData();
@@ -200,7 +202,7 @@ export default {
       this.$set(this.headerData, 'subTotal', data.subTotal);
       if (data.storeDetails.storeName) this.$set(this.headerData, 'store', data.storeDetails);
       this.$set(this.headerData, 'cart', data.cart);
-      if (data.userDetails.firstName) this.actual.classList.add('is-user');
+      if (data.userDetails.firstName) this.header.classList.add('is-user');
       this.baseData = true;
     },
 

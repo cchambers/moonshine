@@ -19,7 +19,8 @@ belk-nav {
     background: rgba(25, 25, 25, 0.5);
     display: flex;
     position: relative;
-    &.active {
+    &.active,
+    &:focus {
       max-height: 100%;
       pointer-events: all;
     }
@@ -125,7 +126,8 @@ belk-nav {
         border-bottom: 1px solid $highlight-tertiary;
         cursor: pointer;
       }
-      [main].active {
+      [main].active,
+      [main]:focus {
         font-weight: bold;
         background: $highlight-secondary;
       }
