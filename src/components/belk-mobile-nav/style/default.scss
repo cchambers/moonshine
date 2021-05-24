@@ -187,14 +187,15 @@ belk-mobile-nav {
       .accordion-collapse {
         transition: none;
       }
-      .body .header {
-        font-weight: normal;
-        padding-left: $rem;
-        font-size: 1.4rem;
-      }
       .body {
         line-height: 4.6rem;
         border-top: 1px solid $highlight-tertiary;
+        button.header,
+        .link-header {
+          font-weight: normal;
+          padding-left: $rem;
+          font-size: 1.4rem;
+        }
       }
 
       .sh-accordion .body {
