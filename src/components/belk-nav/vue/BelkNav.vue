@@ -29,7 +29,7 @@ export default {
     this.cats.forEach((el) => {
       el.addEventListener('mouseover', () => {
         const cat = el.getAttribute('main');
-        this.activate(cat);
+        this.activate(cat, true);
       });
       el.addEventListener('focus', () => {
         const cat = el.getAttribute('main');
@@ -82,12 +82,16 @@ export default {
       if (this.active) this.active = false;
     },
 
-    activate(which) {
+    activate(which, focusContent = false) {
       this.catsOff();
       const el = this.$el.querySelector(`[category="${which}"]`);
       if (el) {
         el.classList.add('active');
         el.scrollTop = 0;
+        if (focusContent) {
+          const explore = el.querySelector('.explore');
+          if (explore) explore.focus();
+        }
       }
       const main = this.$el.querySelector(`[main="${which}"]`);
       if (main) main.classList.add('active');
@@ -109,11 +113,7 @@ export default {
     },
 
     focusLast() {
-      if (this.cats.length === 0) {
-        this.focusButton();
-      } else {
-        this.cats[this.cats.length - 1].focus();
-      }
+      this.cats[this.cats.length - 1].focus();
     },
 
     keydownHandler(e) {
@@ -124,6 +124,14 @@ export default {
       }
       if (key === 39) document.querySelector('[category].active a').focus();
       if (key === 37) document.querySelector('[main].active').focus();
+      if (key === 38) { // up
+        const prev = document.querySelector('[main].active').previousElementSibling;
+        if (prev) prev.focus();
+      }
+      if (key === 40) { // down
+        const next = document.querySelector('[main].active').nextElementSibling;
+        if (next) next.focus();
+      }
     },
   },
 };

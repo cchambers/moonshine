@@ -69,9 +69,11 @@ export default {
     if (window.location.pathname !== '/') {
       const split = window.location.pathname.split('/');
       const folder = split[split.length - 2];
-      setTimeout(() => {
-        this.auto(folder);
-      });
+      if (folder !== 'search') {
+        setTimeout(() => {
+          this.auto(folder);
+        });
+      }
     }
   },
 
