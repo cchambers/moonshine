@@ -19,12 +19,15 @@ belk-search[variant="mobile"] {
           height: 100%;
           overflow: scroll;
           -webkit-overflow-scrolling: touch;
-          padding-bottom: 50px;
         }
       }
     }
     button.clear-search {
       visibility: visible;
+    }
+    button,
+    input {
+      height: 3.4rem;
     }
   }
 

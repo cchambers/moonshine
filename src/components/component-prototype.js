@@ -38,11 +38,11 @@ const ComponentPrototype = {
     },
 
     isMobile() {
-      return window.matchMedia('(max-width: 768px)').matches;
+      return window.matchMedia('(max-width: 767px)').matches;
     },
 
     isTablet() {
-      return window.matchMedia('(max-width: 960px)').matches;
+      return window.matchMedia('(max-width: 959px)').matches;
     },
 
     debounce(name = 'default', func, wait = 100, immediate) {
