@@ -58,7 +58,6 @@ export default {
       if (val) {
         this.headerEl.classList.add('nav-active');
         document.documentElement.classList.add('nav-open');
-        this.focusFirst();
       } else {
         this.headerEl.classList.remove('nav-active');
         document.documentElement.classList.remove('nav-open');
