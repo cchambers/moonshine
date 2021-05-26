@@ -47,7 +47,9 @@ belk-header {
       display: none;
     }
     .registered {
-      display: block;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
     }
   }
 
