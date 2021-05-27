@@ -716,7 +716,7 @@ export default {
       const split = value.split('');
       split.splice(start, len, paste);
       const newVal = split.join('');
-      this.inputEl.value = newVal;
+      this.value = newVal;
       const where = start + paste.length;
       this.inputEl.setSelectionRange(where, where);
     },
