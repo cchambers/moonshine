@@ -357,7 +357,7 @@ export default {
 
     if (window.location.params) {
       const query = window.location.params.q;
-      if (query) this.fillSearch(query, true);
+      if (query) this.fillSearch(query);
       const redirect = window.location.params.q_redirect;
       if (redirect) {
         this.fillSearch(redirect);
