@@ -17,7 +17,7 @@
         <div class="price">
           <span v-if="onSale || isOnSale" class="sale"
           :discount="discountType"
-          v-bind:class="{ 'is-range': saleRange.length > 0 }">{{ saleValue }} </span>
+          v-bind:class="{ 'is-range': saleRange }">{{ saleValue }} </span>
           <span class="original"
           :discount="discountType"
           v-bind:class="{ 'is-range': priceRange.length > 0 }">{{ originalValue }} </span>
@@ -77,20 +77,13 @@ export default {
     color: {
       type: String,
     },
-    salePrice: {
-      type: Number,
-      default: 0,
-    },
-    originalPrice: {
-      type: Number,
-      default: 0,
-    },
     discountType: String,
   },
 
   data() {
     return {
-      saleRange: [],
+      saleRange: null,
+      salePrice: null,
       priceRange: [],
       coupon: false,
       fixedUrl: String,
@@ -100,10 +93,7 @@ export default {
 
   computed: {
     originalValue() {
-      if (!this.originalPrice && !this.salePrice) {
-        if (this.price) this.originalPrice = this.price;
-      }
-      const val = this.format(this.originalPrice);
+      const val = this.format(this.price);
       return val;
     },
 
@@ -111,18 +101,19 @@ export default {
       if (!this.salePrice) {
         if (this.sale_price) this.salePrice = this.sale_price;
       }
-      return this.format(this.salePrice);
+      const price = this.saleRange || this.format(this.salePrice);
+      return price;
     },
 
     onSale() {
-      return (this.originalPrice > this.salePrice);
+      return (this.price > this.salePrice);
     },
   },
 
   created() {
     if (this.variant === 'bag') {
       if (this.url) this.fixedUrl = this.url;
-      if (this.originalPrice === 0) this.fixedUrl = '#';
+      if (this.price === 0) this.fixedUrl = '#';
     }
   },
 
@@ -130,7 +121,7 @@ export default {
     if (this.variant !== 'bag') this.processProps();
 
     setTimeout(() => {
-      this.isOnSale = (this.originalPrice > this.salePrice);
+      this.isOnSale = (this.price > this.sale_price);
     });
   },
 
@@ -165,20 +156,18 @@ export default {
 
     processProps() {
       this.fixUrl();
-      if (this.price) this.originalPrice = parseInt(this.price, 10);
-      if (this.sale_price) this.salePrice = parseInt(this.sale_price, 10);
+      if (this.sale_price) {
+        this.salePrice = parseInt(this.sale_price, 10);
+      }
       if (this.price_range.length > 1) {
         if (this.price_range[0] !== this.price_range[1]) {
-          this.originalPrice = `${this.format(this.price_range[0])} - ${this.format(this.price_range[1])}`;
+          this.price = `${this.format(this.price_range[0])} - ${this.format(this.price_range[1])}`;
           this.priceRange = true;
-        } else {
-          this.originalPrice = this.price;
         }
       }
       if (this.sale_price_range.length > 1) {
         if (this.sale_price_range[0] !== this.sale_price_range[1]) {
-          this.salePrice = `${this.format(this.sale_price_range[0])} - ${this.format(this.sale_price_range[1])}`;
-          this.saleRange = true;
+          this.saleRange = `${this.format(this.sale_price_range[0])} - ${this.format(this.sale_price_range[1])}`;
         } else {
           this.salePrice = this.sale_price;
         }
