@@ -663,13 +663,6 @@ belk-header {
   }
 }
 
-.IE11 {
-  .horizontal,
-  .menu-horizontal {
-    height: 80vh !important;
-  }
-}
-
 [main="Clearance"] {
   color: $brand-crimson;
 }
@@ -677,12 +670,21 @@ belk-header {
 
 
 .IE11 {
+  .horizontal,
+  .menu-horizontal {
+    height: 80vh !important;
+  }
+
   .nav-trigger {
     max-height: 3.6rem;
   }
 
   .actual-text {
     height: 100%;
+  }
+
+  belk-search .actual-text {
+    height: auto;
   }
 
   belk-storefinder,
