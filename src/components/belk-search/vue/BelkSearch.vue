@@ -679,7 +679,7 @@ export default {
     setupReceive(which) {
       const self = this;
       self.$once(`products-loaded.${which}`, (arr) => {
-        self.products = arr;
+        self.$set(self, 'products', arr);
         self.showSuggestedProducts(which);
       });
     },
