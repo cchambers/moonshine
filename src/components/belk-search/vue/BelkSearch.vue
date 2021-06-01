@@ -340,10 +340,6 @@ export default {
       if (arr.length) this.$set(this, 'previousSuggestions', arr);
       this.highlightIndex = highlight || 0;
     },
-
-    suggestionsLimited(val) {
-      console.log('sl', val);
-    },
   },
 
   created() {
@@ -684,7 +680,6 @@ export default {
       const self = this;
       self.$once(`products-loaded.${which}`, (arr) => {
         self.$set(self, 'products', arr);
-        console.log('te', arr, which);
         self.showSuggestedProducts(which);
       });
     },
