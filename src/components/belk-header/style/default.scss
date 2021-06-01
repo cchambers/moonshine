@@ -444,7 +444,10 @@ belk-header {
 
   belk-search {
     width: 50%;
-    flex-grow: 1;
+    &[varaint="mobile"] {
+      width: 100%;
+    }
+    flex-grow: 2;
     flex-shrink: 1;
     margin: 0 auto;
     z-index: 6;
