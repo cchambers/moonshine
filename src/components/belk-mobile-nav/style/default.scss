@@ -7,7 +7,6 @@ belk-mobile-nav {
     top: 0;
     left: 0;
     right: 0;
-    bottom: 0;
     pointer-events: none;
     transition-delay: 10ms;
     transform-origin: top center;
@@ -45,6 +44,7 @@ belk-mobile-nav {
       @include scroll-y;
       height: calc(100vh - 5rem);
       overscroll-behavior: contain;
+      margin-top: 5rem;
     }
 
     .container {
@@ -115,7 +115,7 @@ belk-mobile-nav {
       border: 0;
       cursor: pointer;
       width: 100%;
-      position: sticky;
+      position: absolute;
       z-index: 1;
       top: 0;
       left: 0;
