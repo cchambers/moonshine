@@ -43,6 +43,8 @@ belk-mobile-nav {
 
     .scroll-y {
       @include scroll-y;
+      height: calc(100vh - 5rem);
+      overscroll-behavior: contain;
     }
 
     .container {
