@@ -45,6 +45,7 @@ belk-mobile-nav {
       @include scroll-y;
       height: calc(100vh - 5rem);
       overscroll-behavior: contain;
+      margin-top: 5rem;
     }
 
     .container {
@@ -115,7 +116,7 @@ belk-mobile-nav {
       border: 0;
       cursor: pointer;
       width: 100%;
-      position: sticky;
+      position: absolute;
       z-index: 1;
       top: 0;
       left: 0;
