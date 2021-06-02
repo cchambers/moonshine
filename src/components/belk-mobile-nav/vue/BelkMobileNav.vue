@@ -80,7 +80,7 @@ export default {
   methods: {
     events() {
       this.$bus.$on('show-mobile-nav', this.open);
-      this.$bus.$on('close-modals', this.close);
+      // this.$bus.$on('close-modals', this.close);
     },
     open() {
       if (!this.active) {
