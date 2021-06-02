@@ -61,6 +61,7 @@ export default {
     active: Boolean,
     link: String,
     size: String,
+    target: String,
     ariaControls: String,
     value: String,
     name: String,
