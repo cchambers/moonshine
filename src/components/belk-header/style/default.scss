@@ -186,8 +186,8 @@ belk-header {
 
     a.iconbar-action {
       padding: 0 $micro;
-      height: 4rem;
-      min-width: 4rem;
+      height: 6rem;
+      min-width: 6rem;
       cursor: pointer;
     }
 
@@ -200,8 +200,8 @@ belk-header {
       position: relative;
       .popper-target > a,
       .popper-target > div {
-        min-width: 4rem;
-        height: 4rem;
+        min-width: 6rem;
+        height: 6rem;
         display: flex;
         flex-direction: column;
         justify-content: center;
