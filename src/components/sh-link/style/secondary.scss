@@ -23,5 +23,8 @@ sh-link[variant="secondary"] {
 sh-link[clearance] {
   a.sh-link {
     color: $brand-red;
+    &:hover {
+      color: $brand-red;
+    }
   }
 }
