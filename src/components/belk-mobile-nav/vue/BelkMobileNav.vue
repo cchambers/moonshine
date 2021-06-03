@@ -69,7 +69,6 @@ export default {
     if (window.location.pathname !== '/') {
       const split = window.location.pathname.split('/');
       const folder = split[split.length - 2];
-      console.log(split, folder);
       if (folder !== 'search') {
         setTimeout(() => {
           this.auto(folder);
@@ -103,9 +102,9 @@ export default {
       }
     },
     auto(str) {
-      const sel = `[data-cgid="${str}" i], .belk-mobile-nav a[href*='/${str}/' i]`;
+      const sel = `[data-cgid="${str}" i], .belk-mobile-nav a[href$='/${str}/' i]`;
       const target = document.querySelector(sel);
-      console.log('t', sel, target);
+      // console.log('s', sel, str, target);
       if (target) {
         const item = target.closest('sh-accordion');
         if (item) {
