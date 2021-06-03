@@ -186,9 +186,13 @@ belk-header {
 
     a.iconbar-action {
       padding: 0 $micro;
-      height: 6rem;
-      min-width: 6rem;
+      height: 4.5rem;
+      min-width: 4.5rem;
       cursor: pointer;
+      @include lg {
+        height: 6rem;
+        min-width: 6rem;
+      }
     }
 
     .iconbar-action {
@@ -200,13 +204,17 @@ belk-header {
       position: relative;
       .popper-target > a,
       .popper-target > div {
-        min-width: 6rem;
-        height: 6rem;
+        min-width: 4.5rem;
+        height: 4.5rem;
         display: flex;
         flex-direction: column;
         justify-content: center;
         padding: 0 $micro;
         box-sizing: border-box;
+        @include lg {
+          height: 6rem;
+          min-width: 6rem;
+        }
       }
 
       &:not([href="#"]):hover {

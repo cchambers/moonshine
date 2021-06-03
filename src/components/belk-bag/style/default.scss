@@ -49,7 +49,6 @@ belk-bag {
     belk-icon {
       margin: 0;
       color: transparent;
-      margin-top: -5px;
     }
 
     .bag-background {
@@ -79,7 +78,7 @@ belk-bag {
   .bag-count {
     position: absolute;
     top: 50%;
-    margin-top: 2px;
+    margin-top: 3px;
     left: 50%;
     font-size: 1.2rem;
     transform: translateX(-50%) translateY(-50%);
@@ -89,7 +88,6 @@ belk-bag {
   .bag-total {
     display: none;
     align-items: center;
-    padding-top: 2px;
     @include lg {
       display: flex;
     }
@@ -98,7 +96,6 @@ belk-bag {
   .bag-icon {
     position: relative;
     display: inline-flex;
-    margin-top: -1px;
     .belk-icon {
       display: flex;
     }
