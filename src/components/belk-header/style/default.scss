@@ -76,7 +76,9 @@ belk-header {
   }
 
   .unregistered {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
   }
 
   .pre-header-slot {
