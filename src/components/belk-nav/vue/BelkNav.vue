@@ -68,6 +68,7 @@ export default {
   methods: {
     events() {
       this.$bus.$on('show-nav', this.toggle);
+      window.libs.notify.api.request(['show-nav'], this.toggle, false);
       this.$bus.$on('popper-opening', this.hide);
       this.$bus.$on('search-opening', this.hide);
     },
@@ -79,6 +80,7 @@ export default {
 
     hide() {
       if (this.active) this.active = false;
+      this.reflow();
     },
 
     activate(which, focusContent = false) {
@@ -104,7 +106,7 @@ export default {
     },
 
     checkClose(e) {
-      if (e.target === this.$el) this.hide();
+      if (e.target === this.$el) this.trigger.click();
     },
 
     focusFirst() {

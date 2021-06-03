@@ -86,7 +86,7 @@ export default {
       self.$bus.$on('header-update', self.updateHeightProp);
       self.$bus.$on('smooth-scroll', self.smoothScrollHandler);
       self.$bus.$on('get-user-data', self.sendUserData);
-      self.$bus.$on('update-fills', self.updateContainers);
+      self.$bus.$on('update-fills', self.postUpdate);
       self.$bus.$on('bag-update', self.bagUpdateHandler);
       this.$bus.$on('scroll-event', self.scrollHandler);
       this.$bus.$on('do-data', self.blah);
@@ -272,6 +272,10 @@ export default {
         this.actual.setAttribute('scroll-state', num);
         this.updateHeightProp();
       }
+    },
+
+    postUpdate() {
+      this.updateContainers(this.headerData);
     },
 
     updateContainers(data) {
