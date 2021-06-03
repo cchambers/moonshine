@@ -75,6 +75,8 @@ export default {
         });
       }
     }
+
+    this.$bus.$emit('update-fills');
   },
 
   methods: {
@@ -99,7 +101,6 @@ export default {
         this.$bus.$emit('modal-closed', this.uniqueId);
       }
     },
-
     auto(str) {
       const target = document.querySelector(`[data-cgid="${str}" i], .belk-mobile-nav a[href*='/${str}/' i]`);
       if (target) {
@@ -115,7 +116,6 @@ export default {
       }
     },
   },
-
 };
 </script>
 <style lang="scss" src="../style/default.scss"></style>
