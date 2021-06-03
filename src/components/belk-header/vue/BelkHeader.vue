@@ -86,6 +86,7 @@ export default {
       self.$bus.$on('header-update', self.updateHeightProp);
       self.$bus.$on('smooth-scroll', self.smoothScrollHandler);
       self.$bus.$on('get-user-data', self.sendUserData);
+      self.$bus.$on('update-fills', self.updateContainers);
       self.$bus.$on('bag-update', self.bagUpdateHandler);
       this.$bus.$on('scroll-event', self.scrollHandler);
       this.$bus.$on('do-data', self.blah);
