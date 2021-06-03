@@ -66,6 +66,18 @@ belk-header {
     }
   }
 
+  .pre-header-slot {
+    display: none;
+    @include xl {
+      display: flex;
+    }
+  }
+  .post-header-slot {
+    @include xl {
+      display: none;
+    }
+  }
+
 
   sh-nav-item a:not(.belk-link):hover {
     background: $highlight-secondary;
@@ -80,7 +92,6 @@ belk-header {
   }
 
   .pre-header-slot {
-    max-height: 100px;
     transition: max-height 100ms linear;
     width: 100%;
     flex-shrink: 2;
