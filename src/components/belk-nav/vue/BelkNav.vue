@@ -79,6 +79,7 @@ export default {
 
     hide() {
       if (this.active) this.active = false;
+      this.reflow();
     },
 
     activate(which, focusContent = false) {
@@ -104,7 +105,7 @@ export default {
     },
 
     checkClose(e) {
-      if (e.target === this.$el) this.hide();
+      if (e.target === this.$el) this.trigger.click();
     },
 
     focusFirst() {

@@ -37,6 +37,10 @@ const ComponentPrototype = {
       return str;
     },
 
+    reflow() {
+      window.dispatchEvent(new Event('resize'));
+    },
+
     isMobile() {
       return window.matchMedia('(max-width: 767px)').matches;
     },
