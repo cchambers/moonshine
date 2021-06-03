@@ -11,6 +11,9 @@ sh-carousel[variant="secondary"] {
       }
       li {
         margin: 1rem 0.5rem;
+        &:last-child {
+          padding-right: 1rem;
+        }
         // &.active {
         //   outline: 1px solid cyan;
         // }

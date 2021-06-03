@@ -69,7 +69,7 @@ belk-header {
   .pre-header-slot {
     display: none;
     @include xl {
-      display: flex;
+      display: block;
     }
   }
   .header-banner-bottom {
