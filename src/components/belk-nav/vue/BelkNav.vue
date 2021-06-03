@@ -68,6 +68,7 @@ export default {
   methods: {
     events() {
       this.$bus.$on('show-nav', this.toggle);
+      window.libs.notify.api.request(['show-nav'], this.toggle, false);
       this.$bus.$on('popper-opening', this.hide);
       this.$bus.$on('search-opening', this.hide);
     },

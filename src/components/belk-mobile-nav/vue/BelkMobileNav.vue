@@ -83,7 +83,7 @@ export default {
   methods: {
     events() {
       this.$bus.$on('show-mobile-nav', this.open);
-      // this.$bus.$on('close-modals', this.close);
+      window.libs.notify.api.request(['show-mobile-nav'], this.open, false);
     },
     open() {
       if (!this.active) {
