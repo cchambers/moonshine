@@ -48,7 +48,7 @@ belk-nav {
       justify-content: flex-start;
       align-items: flex-start;
       pointer-events: none;
-      > * {
+      .nav-categories {
         pointer-events:  all;
       }
     }
