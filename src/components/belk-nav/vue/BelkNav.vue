@@ -83,7 +83,7 @@ export default {
       this.active = !this.active;
     },
 
-    hide(which) {
+    hide() {
       if (this.active) this.active = false;
       this.reflow();
     },
