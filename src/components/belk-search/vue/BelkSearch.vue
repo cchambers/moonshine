@@ -201,6 +201,7 @@ export default {
     },
 
     state() {
+      console.log('STATE COMPUTED');
       let state = 0;
       if (this.recents.length && this.count === 0 && this.isFocused) state = 1;
       if (this.count > 0 && this.isFocused) state = 2;
