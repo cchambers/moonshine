@@ -203,7 +203,7 @@ export default {
       this.$set(this.headerData, 'subTotal', data.subTotal);
       if (data.storeDetails.storeName) this.$set(this.headerData, 'store', data.storeDetails);
       this.$set(this.headerData, 'cart', data.cart);
-      if (data.userDetails.firstName) this.header.classList.add('is-user');
+      if (data.userDetails.firstName) document.documentElement.classList.add('is-user');
       this.baseData = true;
     },
 
