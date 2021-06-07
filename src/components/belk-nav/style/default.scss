@@ -114,6 +114,7 @@ belk-nav {
       overflow-y: auto;
       font-size: 1.8rem;
       border-right: 1px solid $lowlight-tertiary;
+      padding-bottom: $big;
       ul {
         list-style: none;
         padding: 0;
@@ -124,6 +125,9 @@ belk-nav {
         padding-left: 2.9rem; // because we don't have a designer anymore, duh
         border-bottom: 1px solid $highlight-tertiary;
         cursor: pointer;
+        &:last-child {
+          border-bottom: none;
+        }
       }
       [main].active,
       [main]:focus {
