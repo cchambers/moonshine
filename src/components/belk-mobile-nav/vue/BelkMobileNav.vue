@@ -102,9 +102,8 @@ export default {
       }
     },
     auto(str) {
-      const sel = `[data-cgid="${str}" i], .belk-mobile-nav a[href$='/${str}/' i]`;
+      const sel = `[data-cgid="${str}"], .belk-mobile-nav a[href$="/${str}/"]`;
       const target = document.querySelector(sel);
-      // console.log('s', sel, str, target);
       if (target) {
         const item = target.closest('sh-accordion');
         if (item) {

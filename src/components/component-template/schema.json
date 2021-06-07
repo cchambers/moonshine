@@ -5,6 +5,7 @@
   "element": "component-template",
   "description": "Demonstration component.",
   "tags": ["utilities", "demo"],
+  "tracking": [],
   "requirements": {
     "Element One": [],
     "Element Two": [],

@@ -69,8 +69,13 @@ export default {
     events() {
       this.$bus.$on('show-nav', this.toggle);
       window.libs.notify.api.request(['show-nav'], this.toggle, false);
-      this.$bus.$on('popper-opening', this.hide);
-      this.$bus.$on('search-opening', this.hide);
+      this.$bus.$on('popper-opening', () => {
+        this.hide('popper');
+      });
+      document.addEventListener('click', (e) => {
+        const contains = this.elementContains(this.$el, e.target);
+        if ((!contains && e.target !== this.trigger) && this.active) this.hide('off click');
+      });
     },
 
     toggle() {
@@ -120,7 +125,7 @@ export default {
     keydownHandler(e) {
       const key = e.charCode || e.keyCode;
       if (key === 27) {
-        this.hide();
+        this.hide('kd');
         if (this.trigger) this.trigger.focus();
       }
       if (key === 39) document.querySelector('[category].active a').focus();
