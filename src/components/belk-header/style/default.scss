@@ -39,16 +39,6 @@ belk-header {
   * {
     box-sizing: border-box;
   }
-  &.is-user {
-    .unregistered {
-      display: none;
-    }
-    .registered {
-      display: flex;
-      flex-direction: column;
-      width: 100%;
-    }
-  }
 
   .iconbar,
   .tertiary {
@@ -72,16 +62,6 @@ belk-header {
 
   sh-nav-item a:not(.belk-link):hover {
     background: $highlight-secondary;
-  }
-
-  .registered {
-    display: none;
-  }
-
-  .unregistered {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
   }
 
   .pre-header-slot {
@@ -234,6 +214,10 @@ belk-header {
       }
     }
 
+    #signin-menu > div {
+      flex-direction: column;
+      width: 100%;
+    }
   }
 
   .primary {
@@ -710,5 +694,22 @@ belk-header {
 .header-banner-bottom {
   @include xl {
     display: none;
+  }
+}
+
+.registered {
+  display: none !important;
+}
+
+.unregistered {
+  display: flex !important;
+}
+
+html.is-user {
+  .unregistered {
+    display: none !important;
+  }
+  .registered {
+    display: flex !important;
   }
 }
