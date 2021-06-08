@@ -12,6 +12,9 @@ belk-bag {
 
   .no-items {
     font-size: 1.6rem;
+    p {
+      justify-content: center;
+    }
   }
 
   .has-items {
