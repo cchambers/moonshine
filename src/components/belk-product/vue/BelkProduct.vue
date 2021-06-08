@@ -173,7 +173,8 @@ export default {
         }
       }
       if (this.sale_price_range.length > 1) {
-        if (this.sale_price_range[0] !== this.sale_price_range[1]) {
+        if (this.sale_price_range[0] !== this.sale_price_range[1]
+          && this.sale_price_range !== this.price_range) {
           this.saleRange = `${this.format(this.sale_price_range[0])} - ${this.format(this.sale_price_range[1])}`;
         } else {
           this.salePrice = this.sale_price;
