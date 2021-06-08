@@ -20,7 +20,7 @@
           v-bind:class="{ 'is-range': saleRange }">{{ saleValue }} </span>
           <span class="original"
           :discount="discountType"
-          v-bind:class="{ 'is-range': priceRange.length > 0 }">{{ originalValue }} </span>
+          v-bind:class="{ 'is-range': priceRange }">{{ originalValue }} </span>
           <span v-if="coupon" class="coupon">after coupon</span>
         </div>
         <div class="rating"><sh-rating :level="reviews"></sh-rating></div>
@@ -82,9 +82,10 @@ export default {
 
   data() {
     return {
+      priceActual: null,
       saleRange: null,
       salePrice: null,
-      priceRange: [],
+      priceRange: null,
       coupon: false,
       fixedUrl: String,
       isOnSale: false,
@@ -93,16 +94,16 @@ export default {
 
   computed: {
     originalValue() {
-      const val = this.format(this.price);
+      const val = this.priceRange || this.format(this.price);
       return val;
     },
 
     saleValue() {
-      if (!this.salePrice) {
+      if (!this.salePrice && this.variant === 'bag') {
         if (this.sale_price) this.salePrice = this.sale_price;
       }
-      const price = this.saleRange || this.format(this.salePrice);
-      return price;
+      const val = this.saleRange || this.format(this.salePrice);
+      return val;
     },
 
     onSale() {
@@ -118,7 +119,7 @@ export default {
   },
 
   mounted() {
-    if (this.variant !== 'bag') this.processProps();
+    this.processProps();
 
     setTimeout(() => {
       this.isOnSale = (this.price > this.sale_price);
@@ -159,10 +160,10 @@ export default {
       if (this.sale_price) {
         this.salePrice = parseInt(this.sale_price, 10);
       }
+
       if (this.price_range.length > 1) {
         if (this.price_range[0] !== this.price_range[1]) {
-          this.price = `${this.format(this.price_range[0])} - ${this.format(this.price_range[1])}`;
-          this.priceRange = true;
+          this.priceRange = `${this.format(this.price_range[0])} - ${this.format(this.price_range[1])}`;
         }
       }
       if (this.sale_price_range.length > 1) {

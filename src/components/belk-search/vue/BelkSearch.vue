@@ -292,7 +292,7 @@ export default {
       } else {
         this.productsLimited = [];
       }
-      this.productsEl.products = this.productsLimited;
+      this.$set(this.productsEl, 'products', this.productsLimited);
     },
 
     suggestions(val, old) {
