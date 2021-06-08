@@ -31,7 +31,9 @@ export default {
 
   watch: {
     products() {
-      this.$bus.$emit('search-suggestions-loaded');
+      setTimeout(() => {
+        this.$bus.$emit('search-suggestions-loaded');
+      });
     },
   },
 

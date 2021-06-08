@@ -126,6 +126,12 @@ export default {
     });
   },
 
+  updated() {
+    setTimeout(() => {
+      this.isOnSale = (this.price > this.sale_price);
+    });
+  },
+
   watch: {
     url(val) {
       this.fixedUrl = val;
