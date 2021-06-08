@@ -99,7 +99,7 @@ export default {
     },
 
     saleValue() {
-      if (!this.salePrice && this.variant === 'bag') {
+      if (!this.salePrice && this.variant === 'bag') { // fixes weird bag/search data thing
         if (this.sale_price) this.salePrice = this.sale_price;
       }
       const val = this.saleRange || this.format(this.salePrice);
