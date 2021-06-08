@@ -29,6 +29,12 @@ export default {
     };
   },
 
+  watch: {
+    products() {
+      this.$bus.$emit('search-suggestions-loaded');
+    },
+  },
+
   methods: {
     events() {
       this.$bus.$on(`${this.uniqueId}-update`, this.handleUpdate);
@@ -44,7 +50,7 @@ export default {
   },
 
   created() {
-    if (this.productsArray) this.products = this.productsArray;
+    if (this.productsArray) this.$set(this, 'products', this.productsArray);
   },
 
   components: {
