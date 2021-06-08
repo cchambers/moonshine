@@ -332,6 +332,12 @@ belk-header {
   .pre-header-slot sh-banner .banner-background {
     border-bottom-left-radius: 2.6rem;
     padding-right: var(--promo-width);
+    @include lg {
+      padding-right: calc((100vw - 96rem) / 2 + var(--promo-width));
+    }
+    @include xl {
+      padding-right: calc((100vw - 128rem) / 2 + var(--promo-width));
+    }
     padding-left: $rem;
   }
 
