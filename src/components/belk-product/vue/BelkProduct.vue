@@ -140,7 +140,20 @@ export default {
 
   methods: {
     events() {
+      this.$bus.$on('clear-suggestions', this.clearSuggestions);
       this.$bus.$on('search-suggestions-loaded', this.processProps);
+    },
+
+    clearSuggestions() {
+      Object.assign(this.$data, {
+        priceActual: null,
+        saleRange: null,
+        salePrice: null,
+        priceRange: null,
+        coupon: false,
+        fixedUrl: String,
+        isOnSale: false,
+      });
     },
 
     quickView(e) {
