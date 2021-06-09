@@ -114,6 +114,7 @@
             v-bind:products="productsLimited"
             variant="secondary"
             :item-limit="3"
+            v-if="showSuggestions"
           ></component>
           <div class="pad-micro pad-x-little" style="margin-top: auto;">
             <a class="view-more belk-link"
@@ -178,6 +179,7 @@ export default {
       suggestionsLimited: [],
       previousSuggestions: [],
       suggestionsLimit: 10,
+      showSuggestions: true,
       recents: [],
       recentCount: 0,
       valueLenth: 0,
@@ -288,9 +290,9 @@ export default {
 
     products(val) {
       if (val && val.length) {
-        this.productsLimited = val.slice(0, this.productsLimit);
+        this.$set(this, 'productsLimited', val.slice(0, this.productsLimit));
       } else {
-        this.productsLimited = [];
+        this.$set(this, 'productsLimited', []);
       }
       this.$set(this.productsEl, 'products', this.productsLimited);
     },
