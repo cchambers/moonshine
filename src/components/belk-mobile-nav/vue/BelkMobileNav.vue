@@ -65,15 +65,12 @@ export default {
     this.ariaID = `aria-${this.uniqueId}`;
     this.ariaHeaderID = `aria-header-${this.uniqueId}`;
     this.ariaDescID = `aria-desc-${this.uniqueId}`;
+    const catID = window.sessionStorage.getItem('clicked-cat-cgid');
 
-    if (window.location.pathname !== '/') {
-      const split = window.location.pathname.split('/');
-      const folder = split[split.length - 2];
-      if (folder !== 'search') {
-        setTimeout(() => {
-          this.auto(folder);
-        });
-      }
+    if (catID !== null) {
+      setTimeout(() => {
+        this.auto(catID);
+      });
     }
 
     this.$bus.$emit('update-fills');
@@ -108,6 +105,7 @@ export default {
         const item = target.closest('sh-accordion');
         if (item) {
           const slug = `open-${item.uniqueId.slugify()}`;
+          window.sessionStorage.removeItem('clicked-cat-cgid');
           setTimeout(() => {
             this.$bus.$emit(slug);
           }, 1000);
