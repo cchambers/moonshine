@@ -544,7 +544,7 @@ export default {
         if (xhr.readyState === DONE) {
           if (xhr.status === OK) {
             const res = JSON.parse(xhr.responseText);
-            if (self.isDev) {
+            if (self.isDev && res.response.products.length) {
               res.response.products = res.response.products.map((item) => {
                 const x = { ...item };
                 x.url = x.url.replace('https://www.belk.com', `${window.location.origin}/s/Belk`);
@@ -645,7 +645,7 @@ export default {
             if (xhr.status === OK) {
               const res = JSON.parse(xhr.responseText);
               let array = res.response.products;
-              if (self.isDev) {
+              if (self.isDev && array.length) {
                 array = array.map((item) => {
                   const x = { ...item };
                   x.url = x.url.replace('https://www.belk.com', `${window.location.origin}/s/Belk`);
