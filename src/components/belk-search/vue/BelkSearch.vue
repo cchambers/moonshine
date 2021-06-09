@@ -721,6 +721,7 @@ export default {
       this.value = newVal;
       const where = start + paste.length;
       this.inputEl.setSelectionRange(where, where);
+      setTimeout(this.doRequest, 10);
     },
   },
 };
