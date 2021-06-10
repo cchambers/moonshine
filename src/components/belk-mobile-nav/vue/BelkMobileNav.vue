@@ -65,7 +65,7 @@ export default {
     this.ariaID = `aria-${this.uniqueId}`;
     this.ariaHeaderID = `aria-header-${this.uniqueId}`;
     this.ariaDescID = `aria-desc-${this.uniqueId}`;
-    const catID = self.getItem('clicked-cat-cgid', true);
+    const catID = this.getItem('clicked-cat-cgid', true);
 
     if (catID !== null) {
       setTimeout(() => {
@@ -105,7 +105,7 @@ export default {
         const item = target.closest('sh-accordion');
         if (item) {
           const slug = `open-${item.uniqueId.slugify()}`;
-          self.removeItem('clicked-cat-cgid', true);
+          this.removeItem('clicked-cat-cgid', true);
           setTimeout(() => {
             this.$bus.$emit(slug);
           }, 1000);
