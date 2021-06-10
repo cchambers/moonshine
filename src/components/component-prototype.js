@@ -101,6 +101,14 @@ const ComponentPrototype = {
       return true;
     },
 
+    removeItem(which, session) {
+      if (session) {
+        sessionStorage.removeItem(which);
+      } else {
+        localStorage.removeItem(which);
+      }
+    },
+
     elementContains(elm, otherElm) {
       if (typeof elm.contains === 'function') {
         return elm.contains(otherElm);
