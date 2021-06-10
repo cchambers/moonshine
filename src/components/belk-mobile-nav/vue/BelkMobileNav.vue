@@ -86,6 +86,12 @@ export default {
         document.documentElement.classList.add('scroll-block');
         this.active = true;
         this.$bus.$emit('modal-opened', this.uniqueId);
+        document.addEventListener('click', (e) => {
+          if (e.target.classList.contains('mobile-nav-link')) {
+            const cgid = e.target.getAttribute('data-cgid');
+            if (cgid) this.setItem('clicked-cat-cgid', cgid, true);
+          }
+        });
         setTimeout(() => {
           this.$refs.toggle.focus();
         }, 200);
