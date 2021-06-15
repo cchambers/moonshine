@@ -105,7 +105,7 @@ export default {
       }
     },
     auto(str) {
-      const sel = `[data-cgid="${str}"], .belk-mobile-nav a[href$="/${str}/"]`;
+      const sel = `a[data-cgid="${str}"]`;
       const target = document.querySelector(sel);
       if (target) {
         const item = target.closest('sh-accordion');
