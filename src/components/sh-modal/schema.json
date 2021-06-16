@@ -11,5 +11,8 @@
     "mobile": [
       "dots change to play control"
     ]
-  }
+  },
+  "todo": [
+    "Ajaxed close-triggers do not function"
+  ]
 }
