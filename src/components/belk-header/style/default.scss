@@ -68,6 +68,7 @@ belk-header {
     transition: max-height 100ms linear;
     width: 100%;
     flex-shrink: 2;
+    flex-grow: 2;
   }
 
   .pre-and-primary {
@@ -236,17 +237,14 @@ belk-header {
 
   .primary-promo {
     font-weight: bold;
-    width: auto;
     white-space: nowrap;
     display: flex;
     justify-content: center;
     padding: $atomic $little;
-    width: 50%;
-    flex-grow: 1;
+    flex-grow: 5;
     flex-shrink: 1;
 
     @include xl {
-      width: auto;
       justify-content: flex-start;
     }
   }
@@ -680,6 +678,10 @@ belk-header {
 
   .nav-trigger {
     max-height: 3.6rem;
+  }
+
+  .pre-header-slot {
+    max-height: 80px;
   }
 
   .actual-text {
