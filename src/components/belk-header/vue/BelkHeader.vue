@@ -135,7 +135,7 @@ export default {
       } else {
         let { origin } = window.location;
         if (origin.indexOf('localhost') >= 0) origin = '//dev29-web-belk.demandware.net';
-        url = `${origin}/on/demandware.store/Sites-Belk-Site/default/Home-HeaderInfo?format=ajax`;
+        url = `${origin}/on/demandware.store/Sites-Belk-Site/default/Header-Data?format=ajax`;
         brdurl = `${origin}/on/demandware.store/Sites-Belk-Site/default/BRD-GetBRDDetailsForHeader?format=ajax`;
         self.recheckUrls();
       }
