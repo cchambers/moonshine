@@ -1,7 +1,7 @@
 <template>
   <div class="belk-product"
     :variant="variant"
-    v-bind:class=" { 'is-on-sale': onSale || isOnSale } ">
+    v-bind:class=" { 'is-on-sale': isOnSale } ">
     <a class="product-link" :href="fixedUrl" :data-pid="pid">
       <div class="image"
         :style="{ backgroundImage: 'url('+thumb_image+')' }"></div>
@@ -15,7 +15,7 @@
         </div>
         <div v-if="qty">Qty: {{ qty }}</div>
         <div class="price">
-          <span v-if="onSale || isOnSale" class="sale"
+          <span v-if="isOnSale" class="sale"
           :discount="discountType"
           v-bind:class="{ 'is-range': saleRange }">{{ saleValue }} </span>
           <span class="original"
@@ -105,10 +105,9 @@ export default {
       const val = this.saleRange || this.format(this.salePrice);
       return val;
     },
-
-    onSale() {
-      return (this.price > this.salePrice);
-    },
+    // onSale() {
+    //   return (this.price > this.salePrice);
+    // },
   },
 
   created() {
