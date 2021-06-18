@@ -3,35 +3,83 @@
 belk-facet-nav {
   display: inline-flex;
 
+  sh-accordion {
+    border-top: 1px solid $lowlight-tertiary;
+  }
+  
+  h3 {
+    width: 100%;
+    text-align: left;
+    font-size: 14px;
+    color: $lowlight-primary;
+    line-height: 24px;
+  }
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
   .belk-facet-nav {
-    /** DELETE THIS EXAMPLE SECTION **/
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    text-align: center;
-    height: 15rem;
-    width: 15rem;
-    background-size: cover;
-    border: 1px solid transparent;
-    transition: all 200ms linear;
-
-    &:hover {
-      border: 1px solid $accent-primary;
+    > div {
+      margin-bottom: $little;
     }
+  }
 
-    &.snap-state {
-      color: transparent;
-      background-size: contain;
-      border: 1px solid $accent-primary;
+  .facet-colors {
+    ul {
+      display: flex;
+      flex-wrap: wrap;
+      li {
+        width: 25%;
+        button {
+          display: block;
+          width: 45px;
+          outline: none;
+          border: 0;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          background: transparent;
+          &.active {
+            .swatch::after {
+              display: flex;
+            }
+          }
+          &:hover {
+            cursor: pointer;
+            .swatch {
+              box-shadow: 0 0 2px 0 black;
+            }
+          }
+          .swatch {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 39px;
+            width: 39px;
+            border-radius: 50%;
+            border: 3px solid $highlight-primary;
+            &:after {
+              display: none;
+              align-items: center;
+              justify-content: center;
+              content: "\2713";
+              height: 15px;
+              width: 15px;
+              color: $lowlight-primary;
+              background: $highlight-primary;
+              border-radius: 50%;
+            }
+          }
+          .name {
+            margin-top: 4px;
+            font-size: 12px;
+            line-height: 14px;
+          }
+        }
+      }
     }
-
-    // mobile first, right... make desktop mods here.
-    @include lg {      
-      background: $accent-primary;
-      color: $highlight-primary;
-    }
-    /** END EXAMPLE SECTION **/
-
   }
 }
