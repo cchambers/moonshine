@@ -680,7 +680,8 @@ belk-header {
     max-height: 3.6rem;
   }
 
-  .pre-header-slot {
+  .pre-header-slot,
+  .pre-header-slot .html-slot-container {
     max-height: 80px;
   }
 
