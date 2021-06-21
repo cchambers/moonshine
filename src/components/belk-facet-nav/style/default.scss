@@ -180,4 +180,10 @@ belk-facet-nav {
       }
     }
   }
+
+  .height-scroll,
+  [class*="facet-"] > ul {
+    max-height: 282px;
+    overflow-y: auto;
+  }
 }

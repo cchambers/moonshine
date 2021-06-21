@@ -41,6 +41,30 @@
           <li>
             <a href="#" data-qty="20">link</a>
           </li>
+          <li>
+            <a href="#" data-qty="20">link</a>
+          </li>
+          <li>
+            <a href="#" data-qty="20">link</a>
+          </li>
+          <li>
+            <a href="#" data-qty="20">link</a>
+          </li>
+          <li>
+            <a href="#" data-qty="20">link</a>
+          </li>
+          <li>
+            <a href="#" data-qty="20">link</a>
+          </li>
+          <li>
+            <a href="#" data-qty="20">link</a>
+          </li>
+          <li>
+            <a href="#" data-qty="20">link</a>
+          </li>
+          <li>
+            <a href="#" data-qty="20">link</a>
+          </li>
         </ul>
       </div>
     </div>
@@ -49,7 +73,7 @@
         <h3 @click="toggleAccord">
           Colors
         </h3>
-        <ul class="acc-body">
+        <ul class="acc-body height-scroll">
           <li>
             <label for="facet-colors-red">
               <input type="checkbox" hidden id="facet-colors-red">
@@ -102,7 +126,7 @@
               placeholder="Find Size">
               <belk-icon height="12" width="12" name="search"></belk-icon>
           </div>
-          <div class="filter-list">
+          <div class="filter-list height-scroll">
             <label
               v-for="item in filteredSizes"
               v-bind:key="item.index"
