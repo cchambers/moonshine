@@ -42,16 +42,46 @@ belk-facet-nav {
     }
   }
 
-  li a {
-    display: block;
-    color: $lowlight-primary;
-    font-size: 14px;
-    line-height: 32px;
-    &[data-qty]::after {
+  li {
+    [data-qty]::after {
       content: " (" attr(data-qty) ")";
       color: $lowlight-tertiary;
     }
+    a, > label {
+      display: block;
+      color: $lowlight-primary;
+      font-size: 14px;
+      line-height: 32px;
+    }
   }
+
+  .checkbox-list {
+    label {
+      display: flex;
+      align-items: center;
+      &:before {
+        display: inline-flex;
+        height: 20px;
+        width: 20px;
+        font-size: 18px;
+        align-content: center;
+        justify-content: center;
+        align-items: center;
+        content: 'check';
+        color: transparent;
+        font-family: 'Material Icons Round' !important;
+        border: 1px solid $lowlight-secondary;
+        margin-right: $micro;
+      }
+    }
+    input:checked ~ label {
+      font-weight: bold;
+      &:before {
+        color: $lowlight-primary;
+      }
+    }
+  }
+
 
   // .belk-facet-nav {
   // }
