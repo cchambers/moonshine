@@ -108,8 +108,26 @@
   <section id="examples">
     <h2>Examples</h2>
     <h3>Default</h3>
-    <div style="width: 260px">
-      <belk-facet-nav></belk-facet-nav>
+    <lib-toolbar></lib-toolbar>
+    <div class="row">
+      <div class="col-1-4">
+        <belk-facet-nav></belk-facet-nav>
+      </div>
+      <div class="col-3-4 pad-l">
+        <script>
+          document.addEventListener('facet-filters', function (e) {
+            var filters = e.detail;
+            if (filters) {
+              filters = Pretty(JSON.stringify(filters));
+              document.getElementById('facet-output').innerHTML = filters;
+            }
+          });
+          document.addEventListener('click', function(e) {
+            sh.emit('get-filters');
+          });
+        </script>
+        <textarea id="facet-output" style="width: 100%" rows="10"></textarea>
+      </div>
     </div>
   </section>
 
