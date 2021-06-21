@@ -1,37 +1,190 @@
 /* default styling */
 
 belk-facet-nav {
-  display: inline-flex;
+  display: block;
+  .facet-acc {
+    border-top: 1px solid $highlight-tertiary;
+    &.active {
+      h3 {
+        &:after {
+          transform: rotate(180deg);
+        }
+      }
+      .acc-body {
+        margin-bottom: $micro;
+      }
+    }
+    &:not(.active) {
+      .acc-body {
+        display: none;
+      }
+    }
+    > h3 {
+      width: 100%;
+      text-align: left;
+      font-size: 14px;
+      color: $lowlight-primary;
+      line-height: 35px;
+      cursor: pointer;
+      &:after {
+        content: 'expand_more';
+        font-family: 'Material Icons Round' !important;
+        float: right;
+        font-size: 18px;
+        font-weight: normal;
+        color: $lowlight-quinary;
+      }
+    }
+    > ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+  }
 
-  .belk-facet-nav {
-    /** DELETE THIS EXAMPLE SECTION **/
+  li a {
+    display: block;
+    color: $lowlight-primary;
+    font-size: 14px;
+    line-height: 32px;
+    &[data-qty]::after {
+      content: " (" attr(data-qty) ")";
+      color: $lowlight-tertiary;
+    }
+  }
+
+  // .belk-facet-nav {
+  // }
+
+  button,
+  label {
     cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    text-align: center;
-    height: 15rem;
-    width: 15rem;
-    background-size: cover;
-    border: 1px solid transparent;
-    transition: all 200ms linear;
+  }
 
-    &:hover {
-      border: 1px solid $accent-primary;
+  .facet-colors {
+    ul {
+      display: flex;
+      flex-wrap: wrap;
+      li {
+        width: calc(100% / 5);
+        button,
+        label {
+          display: block;
+          width: 45px;
+          outline: none;
+          border: 0;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          align-content: center;
+          background: transparent;
+          &:hover {
+            cursor: pointer;
+            .swatch {
+              box-shadow: 0 0 2px 0 black;
+            }
+          }
+          input:checked ~ .swatch::after {
+            display: flex;
+          }
+          .swatch {
+            display: flex;
+            margin-top: 1px;
+            align-items: center;
+            justify-content: center;
+            height: 39px;
+            width: 39px;
+            border-radius: 50%;
+            border: 3px solid $highlight-primary;
+            &:after {
+              display: none;
+              align-items: center;
+              justify-content: center;
+              font-family: 'Material Icons Round' !important;
+              content: 'check';
+              font-size: 12px;
+              font-weight: bold;
+              height: 15px;
+              width: 15px;
+              color: $lowlight-primary;
+              background: $highlight-primary;
+              border-radius: 50%;
+            }
+          }
+          .name {
+            margin-top: 4px;
+            font-size: 12px;
+            line-height: 14px;
+            text-transform: capitalize;
+          }
+        }
+      }
     }
+  }
 
-    &.snap-state {
-      color: transparent;
-      background-size: contain;
-      border: 1px solid $accent-primary;
+  .facet-sizes {
+    .filter {
+      border: 1px solid $lowlight-tertiary;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      input {
+        border: none;
+        background: transparent;
+        width: 100%;
+        flex-shrink: 1;
+        height: 35px;
+        padding-left: $micro;
+      }
+      belk-icon {
+        margin: 0 $micro;
+        color: $lowlight-primary;
+      }
     }
-
-    // mobile first, right... make desktop mods here.
-    @include lg {      
-      background: $accent-primary;
-      color: $highlight-primary;
+    .filter-list {
+      display: flex;
+      flex-wrap: wrap;
+      margin-top: 11px;
+      margin-left: -$atomic;
+      margin-right: -$atomic;
+      label {
+        width: calc(100% / 4);
+        flex-shrink: 1;
+        flex-grow: 2;
+        padding: $atomic;
+        &:hover {
+          div {
+            border-color: $accent-primary;
+            background: $highlight-secondary;
+            color: $accent-primary;
+          }
+        }
+        > div {
+          border: 1px solid $highlight-tertiary;
+          background: transparent;
+          height: 39px;
+          display: flex;
+          font-size: 14px;
+          line-height: 14px;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          padding: 0 $atomic;
+        }
+      }
+      input:checked ~ div {
+        border-width: 2px;
+        color: $accent-primary;
+        border-color: $accent-primary;
+        background: $highlight-secondary;
+      }
     }
-    /** END EXAMPLE SECTION **/
+  }
 
+  .height-scroll,
+  [class*="facet-"] > ul {
+    max-height: 282px;
+    overflow-y: auto;
   }
 }

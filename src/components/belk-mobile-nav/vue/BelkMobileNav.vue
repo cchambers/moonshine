@@ -79,7 +79,7 @@ export default {
   methods: {
     events() {
       this.$bus.$on('show-mobile-nav', this.open);
-      window.libs.notify.api.request(['show-mobile-nav'], this.open, false);
+      // window.libs.notify.api.request(['show-mobile-nav'], this.open, false);
     },
     open() {
       if (!this.active) {
