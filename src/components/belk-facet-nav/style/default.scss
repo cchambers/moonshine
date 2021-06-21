@@ -48,6 +48,7 @@ belk-facet-nav {
       margin-left: $atomic;
       content: "(" attr(data-qty) ")";
       color: $lowlight-tertiary;
+      font-weight: normal !important;
     }
     a, > label {
       display: block;
@@ -98,7 +99,7 @@ belk-facet-nav {
       display: flex;
       flex-wrap: wrap;
       li {
-        width: calc(100% / 5);
+        width: calc(45px + $micro);
         button,
         label {
           display: block;
@@ -122,6 +123,7 @@ belk-facet-nav {
           }
           .swatch {
             display: flex;
+            position: relative;
             margin-top: 1px;
             align-items: center;
             justify-content: center;
@@ -129,6 +131,14 @@ belk-facet-nav {
             width: 39px;
             border-radius: 50%;
             border: 3px solid $highlight-primary;
+            &:before {
+              content: '';
+              display: block;
+              position: absolute;
+              inset: 0;
+              border: 1px solid $highlight-tertiary;
+              border-radius: 50%;
+            }
             &:after {
               display: none;
               align-items: center;
@@ -161,6 +171,7 @@ belk-facet-nav {
       display: flex;
       align-items: center;
       justify-content: space-between;
+      color: $lowlight-primary;
       input {
         border: none;
         background: transparent;
