@@ -75,7 +75,7 @@
         </h3>
         <ul class="acc-body checkbox-list">
           <li>
-            <input hidden hidden id="facet-brands-brand-one" type="checkbox" value="brand one">
+            <input hidden id="facet-brands-brand-one" type="checkbox" value="brand one">
             <label for="facet-brands-brand-one" data-qty="20">
               Brand One
             </label>
