@@ -30,40 +30,40 @@
         </h3>
         <ul class="acc-body">
           <li>
-            <a href="#" data-qty="20">link</a>
+            <a href="#" data-qty="20">more than 9 links</a>
           </li>
           <li>
-            <a href="#" data-qty="20">link</a>
+            <a href="#" data-qty="20">more than 9 links</a>
           </li>
           <li>
-            <a href="#" data-qty="20">link</a>
+            <a href="#" data-qty="20">more than 9 links</a>
           </li>
           <li>
-            <a href="#" data-qty="20">link</a>
+            <a href="#" data-qty="20">more than 9 links</a>
           </li>
           <li>
-            <a href="#" data-qty="20">link</a>
+            <a href="#" data-qty="20">more than 9 links</a>
           </li>
           <li>
-            <a href="#" data-qty="20">link</a>
+            <a href="#" data-qty="20">more than 9 links</a>
           </li>
           <li>
-            <a href="#" data-qty="20">link</a>
+            <a href="#" data-qty="20">more than 9 links</a>
           </li>
           <li>
-            <a href="#" data-qty="20">link</a>
+            <a href="#" data-qty="20">more than 9 links</a>
           </li>
           <li>
-            <a href="#" data-qty="20">link</a>
+            <a href="#" data-qty="20">more than 9 links</a>
           </li>
           <li>
-            <a href="#" data-qty="20">link</a>
+            <a href="#" data-qty="20">more than 9 links</a>
           </li>
           <li>
-            <a href="#" data-qty="20">link</a>
+            <a href="#" data-qty="20">more than 9 links</a>
           </li>
           <li>
-            <a href="#" data-qty="20">link</a>
+            <a href="#" data-qty="20">more than 9 links</a>
           </li>
         </ul>
       </div>
