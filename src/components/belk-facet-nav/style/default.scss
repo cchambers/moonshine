@@ -44,7 +44,9 @@ belk-facet-nav {
 
   li {
     [data-qty]::after {
-      content: " (" attr(data-qty) ")";
+      display: inline-block;
+      margin-left: $atomic;
+      content: "(" attr(data-qty) ")";
       color: $lowlight-tertiary;
     }
     a, > label {
@@ -216,5 +218,6 @@ belk-facet-nav {
   [class*="facet-"] > ul {
     max-height: 282px;
     overflow-y: auto;
+    @include no-scroll-bar;
   }
 }
