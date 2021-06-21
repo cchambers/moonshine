@@ -26,7 +26,7 @@
     <div ref="colors" class="facet-colors">
       <div class="facet-acc">
         <h3 @click="toggleAccord">
-          Colors
+          Color
         </h3>
         <ul class="acc-body height-scroll">
           <li>
@@ -71,78 +71,78 @@
     <div ref="brands" class="facet-brands">
       <div class="facet-acc">
         <h3 @click="toggleAccord">
-          Brand
+          Brands
         </h3>
         <ul class="acc-body checkbox-list">
-          <li data-qty="20">
+          <li>
             <input hidden hidden id="facet-brands-brand-one" type="checkbox" value="brand one">
-            <label for="facet-brands-brand-one">
+            <label for="facet-brands-brand-one" data-qty="20">
               Brand One
             </label>
           </li>
-          <li data-qty="20">
+          <li>
             <input hidden id="facet-brands-brand-two" type="checkbox" value="brand two">
-            <label for="facet-brands-brand-two">
+            <label for="facet-brands-brand-two" data-qty="20">
               Brand Two
             </label>
           </li>
-          <li data-qty="20">
+          <li>
             <input hidden id="facet-brands-brand-three" type="checkbox" value="brand three">
-            <label for="facet-brands-brand-three">
+            <label for="facet-brands-brand-three" data-qty="20">
               Brand Three
             </label>
           </li>
-          <li data-qty="20">
+          <li>
             <input hidden id="facet-brands-brand-four" type="checkbox" value="brand four">
-            <label for="facet-brands-brand-four">
+            <label for="facet-brands-brand-four" data-qty="20">
               Brand Four
             </label>
           </li>
-          <li data-qty="20">
+          <li>
             <input hidden id="facet-brands-brand-five" type="checkbox" value="brand five">
-            <label for="facet-brands-brand-five">
+            <label for="facet-brands-brand-five" data-qty="20">
               Brand Five
             </label>
           </li>
-          <li data-qty="20">
+          <li>
             <input hidden id="facet-brands-brand-six" type="checkbox" value="brand six">
-            <label for="facet-brands-brand-six">
+            <label for="facet-brands-brand-six" data-qty="20">
               Brand Six
             </label>
           </li>
-          <li data-qty="20">
+          <li>
             <input hidden id="facet-brands-brand-seven" type="checkbox" value="brand seven">
-            <label for="facet-brands-brand-seven">
+            <label for="facet-brands-brand-seven" data-qty="20">
               Brand Seven
             </label>
           </li>
-          <li data-qty="20">
+          <li>
             <input hidden id="facet-brands-brand-eight" type="checkbox" value="brand eight">
-            <label for="facet-brands-brand-eight">
+            <label for="facet-brands-brand-eight" data-qty="20">
               Brand Eight
             </label>
           </li>
-          <li data-qty="20">
+          <li>
             <input hidden id="facet-brands-brand-nine" type="checkbox" value="brand nine">
-            <label for="facet-brands-brand-nine">
+            <label for="facet-brands-brand-nine" data-qty="20">
               Brand Nine
             </label>
           </li>
-          <li data-qty="20">
+          <li>
             <input hidden id="facet-brands-brand-ten" type="checkbox" value="brand ten">
-            <label for="facet-brands-brand-ten">
+            <label for="facet-brands-brand-ten" data-qty="20">
               Brand Ten
             </label>
           </li>
-          <li data-qty="20">
+          <li>
             <input hidden id="facet-brands-brand-eleven" type="checkbox" value="brand eleven">
-            <label for="facet-brands-brand-eleven">
+            <label for="facet-brands-brand-eleven" data-qty="20">
               Brand Eleven
             </label>
           </li>
-          <li data-qty="20">
+          <li>
             <input hidden id="facet-brands-brand-twelve" type="checkbox" value="brand twelve">
-            <label for="facet-brands-brand-twelve">
+            <label for="facet-brands-brand-twelve" data-qty="20">
               Brand Twelve
             </label>
           </li>

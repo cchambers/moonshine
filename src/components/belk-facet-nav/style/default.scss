@@ -44,6 +44,8 @@ belk-facet-nav {
 
   li {
     [data-qty]::after {
+      display: inline-block;
+      margin-left: $atomic;
       content: " (" attr(data-qty) ")";
       color: $lowlight-tertiary;
     }
