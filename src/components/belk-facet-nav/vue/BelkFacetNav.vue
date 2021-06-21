@@ -194,6 +194,10 @@ export default {
 
   methods: {
     /* eslint-disable */
+    events() {
+      this.$bus.$on('get-filters', this.sendFilters);
+    },
+
     toggleAccord(e) {
       e.target.closest('.facet-acc').classList.toggle('active');
     },
@@ -209,6 +213,33 @@ export default {
           // || (item.description.toLowerCase().indexOf(value) >= 0)
           ));
       }
+    },
+
+    sendFilters() {
+      this.log('Building filters...');
+      const selectedFilters = {};
+      const sizes = this.$refs.sizes.querySelectorAll(':checked');
+      const colors = this.$refs.colors.querySelectorAll(':checked');
+      const genders = this.$refs.genders.querySelectorAll(':checked');
+      const sales = this.$refs.sales.querySelectorAll(':checked');
+      const brands = this.$refs.brands.querySelectorAll(':checked');
+
+      if (sizes) selectedFilters.sizes = this.extractVals(sizes);
+      if (colors) selectedFilters.colors = this.extractVals(colors);
+      if (genders) selectedFilters.genders = this.extractVals(genders);
+      if (sales) selectedFilters.sales = this.extractVals(sales);
+      if (brands) selectedFilters.brands = this.extractVals(brands);
+
+      console.log(selectedFilters);
+      this.$bus.$emit('facet-filters', selectedFilters);
+    },
+
+    extractVals(els) {
+      const vals = [];
+        for (let x = 0, l = els.length; x < l; x += 1) {
+          vals.push(els[x].value);
+        }
+      return vals;
     },
   },
 
