@@ -267,7 +267,6 @@ export default {
       if (promos.length) selectedFilters.promos = this.extractVals(promos);
       if (brands.length) selectedFilters.brands = this.extractVals(brands);
 
-      console.log(selectedFilters);
       this.$bus.$emit('facet-filters', selectedFilters);
     },
 
