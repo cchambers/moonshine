@@ -172,6 +172,15 @@ export default {
           value: 'XL',
         },
         {
+          value: 'XXL',
+        },
+        {
+          value: 'One Size',
+        },
+        {
+          value: 'Panel Van',
+        },
+        {
           value: 'Weird Size Tho',
         },
       ],
