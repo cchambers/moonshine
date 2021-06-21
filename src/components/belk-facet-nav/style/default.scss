@@ -218,5 +218,6 @@ belk-facet-nav {
   [class*="facet-"] > ul {
     max-height: 282px;
     overflow-y: auto;
+    @include no-scroll-bar;
   }
 }
