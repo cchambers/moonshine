@@ -1,19 +1,13 @@
 belk-search {
   display: flex;
   position: relative;
-  max-width: 60rem;
-  height: 3.2rem;
   width: 100%;
-  align-items: center;
   margin: 0 auto;
-
-  @include md {
-    height: 4rem;
-  }
+  height: 6rem;
 
   .belk-search {
     position: absolute;
-    top: 0;
+    top: $micro;
     left: 0;
     right: 0;
     display: flex;
@@ -24,7 +18,7 @@ belk-search {
     order: 1;
     overflow: hidden;
     border: 2px solid $lowlight-primary;
-    border-radius: 1rem;
+    border-radius: 2.6rem;
     transition: box-shadow 250ms $ease;
 
     &[invalid]{
@@ -56,15 +50,10 @@ belk-search {
       background: none;
       border: none;
       outline: 0 !important;
-      height: 2.8rem;
-      min-width: 2.8rem;
+      height: 4.4rem;
+      min-width: 4.4rem;
       transition: background 250ms $ease;
       color: $lowlight-primary;
-
-      @include md {
-        height: 3.6rem;
-        min-width: 3.6rem;
-      }
     }
 
     button.clear-search {
@@ -72,7 +61,7 @@ belk-search {
     }
 
     input {
-      padding: 0 1rem;
+      padding: 0 1.6rem;
     }
 
     button {
@@ -102,7 +91,7 @@ belk-search {
     .product-link {
       display: flex;
       width: 100%;
-      padding: $micro;
+      padding: $micro $little;
       transition: background 250ms $ease;
       color: $lowlight-primary;
       text-decoration: none;
@@ -156,25 +145,29 @@ belk-search {
     }
 
     .search-recent {
-      sh-button .sh-button {
-        text-transform: none;
-        &:hover {
-          span {
-            border-color: transparent !important;
+      sh-button {
+        margin-right: $little;
+        .sh-button {
+          text-transform: none;
+          padding-right: 0;
+          &:hover {
+            span {
+              border-color: transparent !important;
+            }
           }
-        }
-        span {
-          background: transparent;
-          border: none;
-          border-bottom: 1px solid currentColor;
-          color: $accent-secondary;
-          display: inline-block;
-          font-size: 1.4rem;
-          font-weight: 400;
-          line-height: 1;
-          padding: 0 0 .1rem;
-          transition: none;
-          text-decoration: none;
+          span {
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid currentColor;
+            color: $accent-secondary;
+            display: inline-block;
+            font-size: 1.4rem;
+            font-weight: 400;
+            line-height: 1;
+            padding: 0 0 .1rem;
+            transition: none;
+            text-decoration: none;
+          }
         }
       }
     }
@@ -207,6 +200,11 @@ belk-search {
     .search-suggestions {
       display: none;
       flex-direction: column;
+      max-height: 50vh;
+      overflow-y: auto;
+      @include lg {
+        max-height: 100%;
+      }
 
       &.active {
         display: flex;
@@ -215,18 +213,12 @@ belk-search {
       .hr {
         display: block;
       }
-
-      @include lg {
-        flex-direction: row;
-        .hr {
-          display: none;
-        }
-      }
-
       > div {
-        max-width: 50%;
+        @include lg {
+          width: 50%;
+        }
         flex-shrink: 0;
-        flex-grow: 1;
+        flex-grow: 0;
       }
 
       .keywords {
@@ -258,17 +250,31 @@ belk-search {
           margin-right: $little;
         }
       }
+
+
+      @include lg {
+        flex-direction: row;
+        max-height: auto;
+        overflow: hidden;
+        .hr {
+          display: none;
+        }
+      }
     }
 
     .highlight {
       background: $highlight-secondary;
     }
 
+    .hr {
+      margin: $micro $little;
+    }
+
     .heading {
       font-weight: bold;
       font-size: 1.6rem;
       display: flex;
-      padding: 1rem;
+      padding: $micro $little;
       align-items: center;
     }
 
@@ -281,63 +287,4 @@ belk-search {
       }
     }
   }
-
-  //only desktop
-  &:not(#mobile-search){
-
-    button.clear-search {
-      visibility: hidden;
-    }
-    button[aria-label="perform search"] {
-      margin-left: auto;
-    }
-    .belk-search .search-input input {
-      position: absolute;
-      padding-right: 43px;
-      width: 100%;
-      z-index: 1;
-    }
-    @include md {
-      .belk-search .search-input input {
-        width: 90%;
-        position: relative;
-        z-index: unset;
-        padding-right: 1rem;
-      }
-      button.clear-search {
-        visibility: visible;
-      }
-    }
-
-    //very small breakpoint search UI
-    @media (max-width: breakpoint("xs")) {
-      width: 32px;
-      margin: 0;
-      margin-left: auto;
-
-      .belk-search {
-        border: 0;
-
-        .search-input {
-          input {
-            position: absolute;
-            opacity: 0;
-            padding: 0;
-            width: 100%;
-          }
-          button {
-            padding: 0;
-            height: 100%;
-            margin-left: auto;
-
-            belk-icon svg {
-              transform: scale(1.2);
-              margin-top: 2px;
-            }
-          }
-        }
-      }
-    }
-  }
-
 }

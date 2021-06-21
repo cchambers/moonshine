@@ -8,6 +8,10 @@ sh-button {
     text-transform: none;
   }
 
+  .active-icon {
+    display: none;
+  }
+
   &[disabled] {
     pointer-events: none;
     cursor: not-allowed;
@@ -97,6 +101,10 @@ sh-button {
         display: none;
       }
       .active-text {
+        display: flex;
+      }
+
+      .active-icon {
         display: flex;
       }
     }

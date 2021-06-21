@@ -5,8 +5,6 @@
     :state="state"
     :invalid="isInvalid"
     v-bind:class="{ active: isActive, focused: isFocused }">
-
-    <!-- Input -->
     <div class="search-input">
       <input
         ref="input"
@@ -43,7 +41,7 @@
         v-hammer:tap="doSearch"
         :disabled="isEmpty">
         <belk-icon name="search"
-          width="24" height="24">Perform Search Action</belk-icon>
+          width="18" height="18">Perform Search Action</belk-icon>
       </button>
     </div>
     <div ref="loading" class="search-loading">
@@ -106,7 +104,7 @@
           </ul>
         </div>
 
-        <div class="hr margin-micro"></div>
+        <div class="hr"></div>
 
         <div class="products">
           <div class="heading">Popular in "{{ suggestTerm }}"</div>
@@ -116,8 +114,9 @@
             v-bind:products="productsLimited"
             variant="secondary"
             :item-limit="3"
+            v-if="showSuggestions"
           ></component>
-          <div class="pad-micro" style="margin-top: auto;">
+          <div class="pad-micro pad-x-little" style="margin-top: auto;">
             <a class="view-more belk-link"
               :href="buildSearchLink(suggestTerm)">More Results for "{{ suggestTerm }}"</a>
           </div>
@@ -128,7 +127,7 @@
 </template>
 
 <style lang="scss" src="../style/default.scss"></style>
-<style lang="scss" src="../style/variant-modal.scss"></style>
+<style lang="scss" src="../style/variant-mobile.scss"></style>
 <style lang="scss" src="../style/variant-desktop.scss"></style>
 
 <script>
@@ -180,6 +179,7 @@ export default {
       suggestionsLimited: [],
       previousSuggestions: [],
       suggestionsLimit: 10,
+      showSuggestions: true,
       recents: [],
       recentCount: 0,
       valueLenth: 0,
@@ -290,11 +290,11 @@ export default {
 
     products(val) {
       if (val && val.length) {
-        this.productsLimited = val.slice(0, this.productsLimit);
+        this.$set(this, 'productsLimited', val.slice(0, this.productsLimit));
       } else {
-        this.productsLimited = [];
+        this.$set(this, 'productsLimited', []);
       }
-      this.productsEl.products = this.productsLimited;
+      this.$set(this.productsEl, 'products', this.productsLimited);
     },
 
     suggestions(val, old) {
@@ -347,6 +347,7 @@ export default {
   created() {
     this.setUUID();
     this.checkDev();
+    this.placeholderHandler();
   },
 
   mounted() {
@@ -358,7 +359,7 @@ export default {
 
     if (window.location.params) {
       const query = window.location.params.q;
-      if (query) this.fillSearch(query, true);
+      if (query) this.fillSearch(query);
       const redirect = window.location.params.q_redirect;
       if (redirect) {
         this.fillSearch(redirect);
@@ -379,6 +380,17 @@ export default {
       self.$bus.$on('popper-opening', self.forceBlur);
       self.$bus.$on('close-search', self.forceBlur);
       self.$bus.$on('search-term', self.searchTermHandler);
+      self.$bus.$on('resize-event', self.placeholderHandler);
+    },
+
+    placeholderHandler() {
+      let ph = 'Search';
+      if (this.isTablet()) {
+        ph = 'Search';
+      } else {
+        ph = 'What can we help you find?';
+      }
+      this.$set(this, 'placeholder', ph);
     },
 
     checkDev() {
@@ -393,10 +405,12 @@ export default {
     stateHandler(val) {
       if (this.headerEl) {
         if (val > 0 || this.isFocused) {
-          // this.$bus.$emit('close-poppers');
+          this.$bus.$emit('search-opening');
           this.headerEl.classList.add('search-active');
+          document.documentElement.classList.add('scroll-block');
         } else {
           this.headerEl.classList.remove('search-active');
+          document.documentElement.classList.remove('scroll-block');
         }
       }
     },
@@ -493,17 +507,10 @@ export default {
       this.highlightIndex = which;
     },
 
-    forceBlur(e) {
+    forceBlur() {
       if (this.isFocused) {
-        let clear = false;
-        if (typeof e === 'object') {
-          const key = e.charCode || e.keyCode;
-          if (key === 27 || e.target === this.$refs.clear) clear = true;
-        }
         if (document.activeElement === this.inputEl) this.inputEl.blur();
         this.isFocused = false;
-
-        if (clear) this.clearSearch(clear);
       }
     },
 
@@ -537,7 +544,7 @@ export default {
         if (xhr.readyState === DONE) {
           if (xhr.status === OK) {
             const res = JSON.parse(xhr.responseText);
-            if (self.isDev) {
+            if (self.isDev && res.response.products.length) {
               res.response.products = res.response.products.map((item) => {
                 const x = { ...item };
                 x.url = x.url.replace('https://www.belk.com', `${window.location.origin}/s/Belk`);
@@ -638,7 +645,7 @@ export default {
             if (xhr.status === OK) {
               const res = JSON.parse(xhr.responseText);
               let array = res.response.products;
-              if (self.isDev) {
+              if (self.isDev && array.length) {
                 array = array.map((item) => {
                   const x = { ...item };
                   x.url = x.url.replace('https://www.belk.com', `${window.location.origin}/s/Belk`);
@@ -661,10 +668,6 @@ export default {
       }
     },
 
-    isMobile() {
-      return window.matchMedia('(max-width: 768px)').matches;
-    },
-
     suggestionHoverHandler(val) {
       this.showSuggestedProducts(val);
     },
@@ -678,7 +681,7 @@ export default {
     setupReceive(which) {
       const self = this;
       self.$once(`products-loaded.${which}`, (arr) => {
-        self.products = arr;
+        self.$set(self, 'products', arr);
         self.showSuggestedProducts(which);
       });
     },
@@ -715,9 +718,10 @@ export default {
       const split = value.split('');
       split.splice(start, len, paste);
       const newVal = split.join('');
-      this.inputEl.value = newVal;
+      this.value = newVal;
       const where = start + paste.length;
       this.inputEl.setSelectionRange(where, where);
+      setTimeout(this.doRequest, 10);
     },
   },
 };

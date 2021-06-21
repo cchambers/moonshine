@@ -21,6 +21,7 @@
   .product-link {
     color: $lowlight-primary;
     display: flex;
+    flex-direction: row;
     margin-bottom: $micro;
   }
 

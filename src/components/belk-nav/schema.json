@@ -1,10 +1,10 @@
 {
   "name": "Belk Nav",
-  "category": "base",
-  "production": false,
+  "category": "components",
+  "production": true,
   "element": "belk-nav",
-  "description": "Demonstration component.",
-  "tags": ["utilities", "demo"],
+  "description": "Hamburger nav for 2021.",
+  "tags": ["hamburger", "nav"],
   "requirements": {
     "Element One": [],
     "Element Two": [],

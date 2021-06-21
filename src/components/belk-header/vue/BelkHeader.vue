@@ -24,6 +24,7 @@ export default {
   data() {
     return {
       actual: {},
+      header: {},
       bagEl: {},
       navEl: {},
       searchEl: {},
@@ -67,15 +68,16 @@ export default {
   },
 
   mounted() {
-    this.actual = document.querySelector('header.belk-header');
+    this.actual = document.querySelector('header.belk-header .primary-secondary-tertiary');
+    this.header = document.querySelector('header.belk-header');
     this.bagEl = document.querySelector('belk-bag');
     this.setupEvents();
     this.getData();
     const tert = document.querySelector('nav.lazy');
     if (tert) tert.classList.remove('lazy');
-    this.updateHeightProp();
     const resizeDebounced = this.debounce('adapt-db', this.resizeHandler, 50);
     window.addEventListener('resize', resizeDebounced, true);
+    setTimeout(this.updateHeightProp, 400);
   },
 
   methods: {
@@ -84,6 +86,7 @@ export default {
       self.$bus.$on('header-update', self.updateHeightProp);
       self.$bus.$on('smooth-scroll', self.smoothScrollHandler);
       self.$bus.$on('get-user-data', self.sendUserData);
+      self.$bus.$on('update-fills', self.postUpdate);
       self.$bus.$on('bag-update', self.bagUpdateHandler);
       this.$bus.$on('scroll-event', self.scrollHandler);
       this.$bus.$on('do-data', self.blah);
@@ -132,7 +135,7 @@ export default {
       } else {
         let { origin } = window.location;
         if (origin.indexOf('localhost') >= 0) origin = '//dev29-web-belk.demandware.net';
-        url = `${origin}/on/demandware.store/Sites-Belk-Site/default/Home-HeaderInfo?format=ajax`;
+        url = `${origin}/on/demandware.store/Sites-Belk-Site/default/Header-Data?format=ajax`;
         brdurl = `${origin}/on/demandware.store/Sites-Belk-Site/default/BRD-GetBRDDetailsForHeader?format=ajax`;
         self.recheckUrls();
       }
@@ -200,7 +203,7 @@ export default {
       this.$set(this.headerData, 'subTotal', data.subTotal);
       if (data.storeDetails.storeName) this.$set(this.headerData, 'store', data.storeDetails);
       this.$set(this.headerData, 'cart', data.cart);
-      if (data.userDetails.firstName) this.actual.classList.add('is-user');
+      if (data.userDetails.firstName) document.documentElement.classList.add('is-user');
       this.baseData = true;
     },
 
@@ -253,9 +256,9 @@ export default {
       this.scrollState(state);
       this.lastScrollTop = st <= 0 ? 0 : st;
 
-      setTimeout(() => {
-        this.updateHeightProp();
-      }, 150);
+      // setTimeout(() => {
+      //   this.updateHeightProp();
+      // }, 150);
     },
 
     updateHeightProp() {
@@ -265,7 +268,14 @@ export default {
     },
 
     scrollState(num) {
-      if (this.actual) this.actual.setAttribute('scroll-state', num);
+      if (this.actual) {
+        this.actual.setAttribute('scroll-state', num);
+        this.updateHeightProp();
+      }
+    },
+
+    postUpdate() {
+      this.updateContainers(this.headerData);
     },
 
     updateContainers(data) {

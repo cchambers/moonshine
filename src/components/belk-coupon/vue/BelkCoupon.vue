@@ -63,7 +63,7 @@
           active-icon="check"
           :unique-id="addCouponId"
           :ajax-success="code + '-data'">Add Coupon</sh-button>
-        <sh-button v-if="link" variant="primary" outline @click="doLink">{{ linkText }}</sh-button>
+        <sh-button v-if="link" variant="secondary" @click="doLink">{{ linkText }}</sh-button>
       </div>
       <div
         v-if="!code && !link && upc"

@@ -1,12 +1,9 @@
-belk-search[variant="modal"] {
-  margin: $micro;
-  margin-right: 0;
-  width: 50%;
+belk-search[variant="mobile"] {
   flex-grow: 1;
   flex-shrink: 0;
+
   .belk-search {
     z-index: auto;
-
     &[state="0"] {
       .search-results {
         background: transparent;
@@ -14,28 +11,23 @@ belk-search[variant="modal"] {
     }
     &.focused {
       .search-results {
-        bottom: 0;
         left: 0;
         right: 0;
         top: 48px;
-        height: calc(100vh - 48px);
-        box-sizing: border-box;
-
         .search-recent,
         .search-suggestions {
           height: 100%;
           overflow: scroll;
           -webkit-overflow-scrolling: touch;
-          padding-bottom: 50px;
-        }
-
-        .search-suggestions {
-          padding-bottom: 100px;
         }
       }
     }
     button.clear-search {
       visibility: visible;
+    }
+    button,
+    input {
+      height: 3.4rem;
     }
   }
 
@@ -49,12 +41,4 @@ belk-search[variant="modal"] {
   //   font-weight: 400;
   //   text-decoration: none;
   // }
-}
-
-.sh-modal.active {
-  belk-search[variant="modal"] {
-    .search-results {
-      position: fixed !important;
-    }
-  }
 }

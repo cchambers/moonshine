@@ -1,6 +1,7 @@
 /* default styling */
 
 belk-promo {
+  display: block;
   .belk-promo {
     display: flex;
     justify-content: center;
@@ -14,7 +15,7 @@ belk-promo {
       display: none;
     }
 
-    @include md {
+    @include xl {
       justify-content: flex-start;
       flex-direction: row;
 

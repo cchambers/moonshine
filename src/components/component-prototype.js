@@ -37,6 +37,18 @@ const ComponentPrototype = {
       return str;
     },
 
+    reflow() {
+      window.dispatchEvent(new Event('resize'));
+    },
+
+    isMobile() {
+      return window.matchMedia('(max-width: 767px)').matches;
+    },
+
+    isTablet() {
+      return window.matchMedia('(max-width: 959px)').matches;
+    },
+
     debounce(name = 'default', func, wait = 100, immediate) {
       if (!this.timers) this.timers = {};
       return (...args) => {
@@ -87,6 +99,14 @@ const ComponentPrototype = {
         localStorage.setItem(which, test);
       }
       return true;
+    },
+
+    removeItem(which, session) {
+      if (session) {
+        sessionStorage.removeItem(which);
+      } else {
+        localStorage.removeItem(which);
+      }
     },
 
     elementContains(elm, otherElm) {
