@@ -346,7 +346,7 @@ export default {
 
   created() {
     this.setUUID();
-    this.checkDev();
+    this.isDev = this.checkDev();
     this.placeholderHandler();
   },
 
@@ -391,10 +391,6 @@ export default {
         ph = 'What can we help you find?';
       }
       this.$set(this, 'placeholder', ph);
-    },
-
-    checkDev() {
-      if (window.location.origin.indexOf('belk.com') < 0) this.isDev = true;
     },
 
     searchTermHandler(data) {
