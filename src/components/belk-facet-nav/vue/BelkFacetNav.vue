@@ -23,51 +23,6 @@
       </div>
     </div>
     <div ref="shops" class="facet-shops"></div>
-    <div ref="brands" class="facet-brands">
-      <div class="facet-acc">
-        <h3 @click="toggleAccord">
-          Brand
-        </h3>
-        <ul class="acc-body">
-          <li>
-            <a href="#" data-qty="20">more than 9 links</a>
-          </li>
-          <li>
-            <a href="#" data-qty="20">more than 9 links</a>
-          </li>
-          <li>
-            <a href="#" data-qty="20">more than 9 links</a>
-          </li>
-          <li>
-            <a href="#" data-qty="20">more than 9 links</a>
-          </li>
-          <li>
-            <a href="#" data-qty="20">more than 9 links</a>
-          </li>
-          <li>
-            <a href="#" data-qty="20">more than 9 links</a>
-          </li>
-          <li>
-            <a href="#" data-qty="20">more than 9 links</a>
-          </li>
-          <li>
-            <a href="#" data-qty="20">more than 9 links</a>
-          </li>
-          <li>
-            <a href="#" data-qty="20">more than 9 links</a>
-          </li>
-          <li>
-            <a href="#" data-qty="20">more than 9 links</a>
-          </li>
-          <li>
-            <a href="#" data-qty="20">more than 9 links</a>
-          </li>
-          <li>
-            <a href="#" data-qty="20">more than 9 links</a>
-          </li>
-        </ul>
-      </div>
-    </div>
     <div ref="colors" class="facet-colors">
       <div class="facet-acc">
         <h3 @click="toggleAccord">
@@ -76,37 +31,119 @@
         <ul class="acc-body height-scroll">
           <li>
             <label for="facet-colors-red">
-              <input type="checkbox" hidden id="facet-colors-red">
+              <input type="checkbox" hidden id="facet-colors-red" value="red">
               <div class="swatch" style="background: red"></div>
               <div class="name">red</div>
             </label>
           </li>
           <li>
             <label for="facet-colors-green">
-              <input type="checkbox" hidden id="facet-colors-green">
+              <input type="checkbox" hidden id="facet-colors-green" value="green">
               <div class="swatch" style="background: green"></div>
               <div class="name">green</div>
             </label>
           </li>
           <li>
             <label for="facet-colors-blue">
-              <input type="checkbox" hidden id="facet-colors-blue">
+              <input type="checkbox" hidden id="facet-colors-blue" value="blue">
               <div class="swatch" style="background: blue"></div>
               <div class="name">blue</div>
             </label>
           </li>
           <li>
             <label for="facet-colors-pink">
-              <input type="checkbox" hidden id="facet-colors-pink">
+              <input type="checkbox" hidden id="facet-colors-pink" value="pink">
               <div class="swatch" style="background: pink"></div>
               <div class="name">pink</div>
             </label>
           </li>
           <li>
             <label for="facet-colors-yellow">
-              <input type="checkbox" hidden id="facet-colors-yellow">
+              <input type="checkbox" hidden id="facet-colors-yellow" value="yellow">
               <div class="swatch" style="background: yellow"></div>
               <div class="name">yellow</div>
+            </label>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div ref="brands" class="facet-brands">
+      <div class="facet-acc">
+        <h3 @click="toggleAccord">
+          Brand
+        </h3>
+        <ul class="acc-body checkbox-list">
+          <li data-qty="20">
+            <input hidden hidden id="facet-brands-brand-one" type="checkbox" value="brand one">
+            <label for="facet-brands-brand-one">
+              Brand One
+            </label>
+          </li>
+          <li data-qty="20">
+            <input hidden id="facet-brands-brand-two" type="checkbox" value="brand two">
+            <label for="facet-brands-brand-two">
+              Brand Two
+            </label>
+          </li>
+          <li data-qty="20">
+            <input hidden id="facet-brands-brand-three" type="checkbox" value="brand three">
+            <label for="facet-brands-brand-three">
+              Brand Three
+            </label>
+          </li>
+          <li data-qty="20">
+            <input hidden id="facet-brands-brand-four" type="checkbox" value="brand four">
+            <label for="facet-brands-brand-four">
+              Brand Four
+            </label>
+          </li>
+          <li data-qty="20">
+            <input hidden id="facet-brands-brand-five" type="checkbox" value="brand five">
+            <label for="facet-brands-brand-five">
+              Brand Five
+            </label>
+          </li>
+          <li data-qty="20">
+            <input hidden id="facet-brands-brand-six" type="checkbox" value="brand six">
+            <label for="facet-brands-brand-six">
+              Brand Six
+            </label>
+          </li>
+          <li data-qty="20">
+            <input hidden id="facet-brands-brand-seven" type="checkbox" value="brand seven">
+            <label for="facet-brands-brand-seven">
+              Brand Seven
+            </label>
+          </li>
+          <li data-qty="20">
+            <input hidden id="facet-brands-brand-eight" type="checkbox" value="brand eight">
+            <label for="facet-brands-brand-eight">
+              Brand Eight
+            </label>
+          </li>
+          <li data-qty="20">
+            <input hidden id="facet-brands-brand-nine" type="checkbox" value="brand nine">
+            <label for="facet-brands-brand-nine">
+              Brand Nine
+            </label>
+          </li>
+          <li data-qty="20">
+            <input hidden id="facet-brands-brand-ten" type="checkbox" value="brand ten">
+            <label for="facet-brands-brand-ten">
+              Brand Ten
+            </label>
+          </li>
+          <li data-qty="20">
+            <input hidden id="facet-brands-brand-eleven" type="checkbox" value="brand eleven">
+            <label for="facet-brands-brand-eleven">
+              Brand Eleven
+            </label>
+          </li>
+          <li data-qty="20">
+            <input hidden id="facet-brands-brand-twelve" type="checkbox" value="brand twelve">
+            <label for="facet-brands-brand-twelve">
+              Brand Twelve
             </label>
           </li>
         </ul>
@@ -138,6 +175,7 @@
         </div>
       </div>
     </div>
+    <div ref="genders" class="facet-genders"></div>
     <div ref="prices" class="facet-prices"></div>
     <div ref="coupons" class="facet-coupons"></div>
     <div ref="promos" class="facet-promos"></div>
@@ -194,6 +232,10 @@ export default {
 
   methods: {
     /* eslint-disable */
+    events() {
+      this.$bus.$on('get-filters', this.sendFilters);
+    },
+
     toggleAccord(e) {
       e.target.closest('.facet-acc').classList.toggle('active');
     },
@@ -209,6 +251,32 @@ export default {
           // || (item.description.toLowerCase().indexOf(value) >= 0)
           ));
       }
+    },
+
+    sendFilters() {
+      const selectedFilters = {};
+      const sizes = this.$refs.sizes.querySelectorAll(':checked');
+      const colors = this.$refs.colors.querySelectorAll(':checked');
+      const genders = this.$refs.genders.querySelectorAll(':checked');
+      const promos = this.$refs.promos.querySelectorAll(':checked');
+      const brands = this.$refs.brands.querySelectorAll(':checked');
+
+      if (sizes.length) selectedFilters.sizes = this.extractVals(sizes);
+      if (colors.length) selectedFilters.colors = this.extractVals(colors);
+      if (genders.length) selectedFilters.genders = this.extractVals(genders);
+      if (promos.length) selectedFilters.promos = this.extractVals(promos);
+      if (brands.length) selectedFilters.brands = this.extractVals(brands);
+
+      console.log(selectedFilters);
+      this.$bus.$emit('facet-filters', selectedFilters);
+    },
+
+    extractVals(els) {
+      const vals = [];
+        for (let x = 0, l = els.length; x < l; x += 1) {
+          vals.push(els[x].value);
+        }
+      return vals;
     },
   },
 

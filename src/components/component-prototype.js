@@ -91,6 +91,11 @@ const ComponentPrototype = {
       return JSON.parse(val);
     },
 
+
+    checkDev() {
+      if (window.location.origin.indexOf('belk.com') < 0) return true;
+    },
+
     setItem(which, val, session) {
       if (session) {
         sessionStorage.setItem(which, JSON.stringify(val));

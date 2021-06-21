@@ -10,6 +10,8 @@ export default {
 // TODO: This batches the initial events before page load. 
 let batch = [];
 let preload = true;
+const isDev = (window.location.origin.indexOf('belk.com') < 0);
+
 setTimeout(function () {
   preload = false;
   // console.log(batch); <-- could potentially re-emit these if needed.
@@ -29,7 +31,7 @@ EventBus.$emit = (...args) => {
   });
   const emitter = document.querySelector('belk-bus') || document;
   emitter.dispatchEvent(nativeEvent);
-  // window.libs.notify.api.fire(event, nativeEvent);
+  if (!isDev) window.libs.notify.api.fire(event, nativeEvent);
 };
 
 let delegations = {
