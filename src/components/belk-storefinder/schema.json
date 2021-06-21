@@ -1,6 +1,6 @@
 {
   "name": "Belk Storefinder",
-  "category": "base",
+  "category": "components",
   "production": true,
   "element": "belk-storefinder",
   "description": "Store locator.",
