@@ -46,7 +46,7 @@ belk-facet-nav {
     [data-qty]::after {
       display: inline-block;
       margin-left: $atomic;
-      content: " (" attr(data-qty) ")";
+      content: "(" attr(data-qty) ")";
       color: $lowlight-tertiary;
     }
     a, > label {
