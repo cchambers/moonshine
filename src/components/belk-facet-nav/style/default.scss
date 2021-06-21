@@ -56,7 +56,8 @@ belk-facet-nav {
   // .belk-facet-nav {
   // }
 
-  button {
+  button,
+  label {
     cursor: pointer;
   }
 
@@ -66,7 +67,8 @@ belk-facet-nav {
       flex-wrap: wrap;
       li {
         width: calc(100% / 5);
-        button {
+        button,
+        label {
           display: block;
           width: 45px;
           outline: none;
@@ -77,16 +79,14 @@ belk-facet-nav {
           align-items: center;
           align-content: center;
           background: transparent;
-          &.active {
-            .swatch::after {
-              display: flex;
-            }
-          }
           &:hover {
             cursor: pointer;
             .swatch {
               box-shadow: 0 0 2px 0 black;
             }
+          }
+          input:checked ~ .swatch::after {
+            display: flex;
           }
           .swatch {
             display: flex;
@@ -101,7 +101,10 @@ belk-facet-nav {
               display: none;
               align-items: center;
               justify-content: center;
-              content: "\2713";
+              font-family: 'Material Icons Round' !important;
+              content: 'check';
+              font-size: 12px;
+              font-weight: bold;
               height: 15px;
               width: 15px;
               color: $lowlight-primary;
@@ -144,19 +147,36 @@ belk-facet-nav {
       flex-wrap: wrap;
       margin: 0 -$atomic;
       margin-top: 11px;
-      button {
-        border: 1px solid $highlight-tertiary;
-        background: transparent;
-        margin: $atomic;
+      label {
         width: calc(100% / 4);
-        min-width: max-content;
         flex-shrink: 1;
         flex-grow: 4;
-        height: 39px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 0 $micro;
+        &:hover {
+          div {
+            border-color: $accent-primary;
+            background: $highlight-secondary;
+            color: $accent-primary;
+          }
+        }
+        > div {
+          border: 1px solid $highlight-tertiary;
+          background: transparent;
+          margin: $atomic;
+          min-width: max-content;
+          height: 39px;
+          display: flex;
+          font-size: 14px;
+          line-height: 14px;
+          align-items: center;
+          justify-content: center;
+          padding: 0 $micro;
+        }
+      }
+      input:checked ~ div {
+        border-width: 2px;
+        color: $accent-primary;
+        border-color: $accent-primary;
+        background: $highlight-secondary;
       }
     }
   }

@@ -51,34 +51,39 @@
         </h3>
         <ul class="acc-body">
           <li>
-            <button>
+            <label for="facet-colors-red">
+              <input type="checkbox" hidden id="facet-colors-red">
               <div class="swatch" style="background: red"></div>
               <div class="name">red</div>
-            </button>
+            </label>
           </li>
           <li>
-            <button class="active">
+            <label for="facet-colors-green">
+              <input type="checkbox" hidden id="facet-colors-green">
               <div class="swatch" style="background: green"></div>
               <div class="name">green</div>
-            </button>
+            </label>
           </li>
           <li>
-            <button>
+            <label for="facet-colors-blue">
+              <input type="checkbox" hidden id="facet-colors-blue">
               <div class="swatch" style="background: blue"></div>
               <div class="name">blue</div>
-            </button>
+            </label>
           </li>
           <li>
-            <button>
+            <label for="facet-colors-pink">
+              <input type="checkbox" hidden id="facet-colors-pink">
               <div class="swatch" style="background: pink"></div>
               <div class="name">pink</div>
-            </button>
+            </label>
           </li>
           <li>
-            <button>
+            <label for="facet-colors-yellow">
+              <input type="checkbox" hidden id="facet-colors-yellow">
               <div class="swatch" style="background: yellow"></div>
               <div class="name">yellow</div>
-            </button>
+            </label>
           </li>
         </ul>
       </div>
@@ -94,13 +99,17 @@
               @keyup="doSearch"
               type="text"
               ref="search"
-              placeholder="Search">
+              placeholder="Find Size">
               <belk-icon height="12" width="12" name="search"></belk-icon>
           </div>
           <div class="filter-list">
-            <button v-for="item in filteredSizes" v-bind:key="item.index" value="item.value">
-              {{ item.value }}
-            </button>
+            <label
+              v-for="item in filteredSizes"
+              v-bind:key="item.index"
+              :for="'facet-sizes-' + item.value">
+              <input type="checkbox" :id="'facet-sizes-' + item.value" :value="item.value" hidden>
+              <div>{{ item.value }}</div>
+            </label>
           </div>
         </div>
       </div>
