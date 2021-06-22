@@ -3,7 +3,7 @@
     :variant="variant">
     <div class="filter-header">
       <div class="ha">Filters</div>
-      <button v-if="selectedFilters"
+      <button v-if="Object.keys(selectedFilters).length"
         class="filter-clear"
         @click="clearFilters()">Clear All</button>
       <belk-icon @click="close" name="close" height="22" width="22"></belk-icon>
