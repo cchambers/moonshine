@@ -2,8 +2,12 @@
 
 belk-facet-nav {
   display: block;
-
-
+  color: $lowlight-primary;
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
   @include md {
     [class*="mobile"] {
       display: none;
@@ -28,7 +32,7 @@ belk-facet-nav {
           display: none;
         }
       }
-      > h3 {
+      h3 {
         width: 100%;
         text-align: left;
         font-size: 14px;
@@ -43,11 +47,6 @@ belk-facet-nav {
           font-weight: normal;
           color: $lowlight-quinary;
         }
-      }
-      > ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
       }
     }
     
@@ -242,6 +241,3 @@ belk-facet-nav {
     }
   }
 }
-
-
-lib-nav {display: none !important}

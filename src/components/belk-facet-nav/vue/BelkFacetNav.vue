@@ -1,9 +1,12 @@
 <template>
   <div class="belk-facet-nav"
     :variant="variant">
-    <div class="mobile-back-header" @click="close">
-      <div>Filters</div>
-      <belk-icon name="close" height="22" width="22"></belk-icon>
+    <div class="filter-header">
+      <div class="ha">Filters</div>
+      <button v-if="selectedFilters.colors"
+        class="facet-clear"
+        @click="clearFilters()">Clear All</button>
+      <belk-icon @click="close" name="close" height="22" width="22"></belk-icon>
     </div>
     <div class="mobile-base">
       <ul>
@@ -71,7 +74,7 @@
             Color
           </h3>
           <div v-if="selectedFilters.colors"
-            class="facet-clear" @click="clearFilters('colors')">Clear</div>
+            class="facet-clear-mobile" @click="clearFilters('colors')">Clear</div>
         </div>
         <ul class="acc-body height-scroll">
           <li>
@@ -233,6 +236,11 @@
     <div ref="prices" class="facet-prices"></div>
     <div ref="coupons" class="facet-coupons"></div>
     <div ref="promos" class="facet-promos"></div>
+    <div class="mobile-see-results">
+      <sh-button @click="close" variant="primary" click-event="get-filters">
+        See Results
+      </sh-button>
+    </div>
   </div>
 </template>
 
@@ -358,7 +366,8 @@ export default {
     },
 
     clearFilters(which) {
-      const filtered = this.$refs[which].querySelectorAll(':checked');
+      const filtered = (which) ? this.$refs[which].querySelectorAll(':checked')
+      : this.$el.querySelectorAll(':checked');
       for (let x = 0, l = filtered.length; x < l; x += 1) {
         filtered[x].checked = false;
       }
@@ -366,9 +375,9 @@ export default {
 
     extractVals(els) {
       const vals = [];
-        for (let x = 0, l = els.length; x < l; x += 1) {
-          vals.push(els[x].value);
-        }
+      for (let x = 0, l = els.length; x < l; x += 1) {
+        vals.push(els[x].value);
+      }
       return vals;
     },
   },
