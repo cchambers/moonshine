@@ -384,6 +384,7 @@ export default {
       this.$bus.$on('get-filters', this.sendFilters);
       this.$bus.$on('facet-filters', this.updateElements);
       this.$bus.$on('show-filters', this.toggleActive);
+      this.$bus.$on('clear-filters', this.clearFilters);
     },
 
     updateElements(data) {
