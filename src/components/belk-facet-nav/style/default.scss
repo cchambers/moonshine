@@ -9,7 +9,8 @@ belk-facet-nav {
     margin: 0;
   }
   @include md {
-    [class*="mobile"] {
+    [class*="mobile"],
+    .facet-back {
       display: none;
     }
 

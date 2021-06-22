@@ -50,6 +50,9 @@
       height: 100%;
       width: 45px;
       color: $lowlight-tertiary;
+      border: none;
+      outline: none;
+      background: transparent;
       &:before {
         display: flex;
         content: 'chevron_left';

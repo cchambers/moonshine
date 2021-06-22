@@ -69,7 +69,7 @@
     <div ref="links" class="facet-links">
       <div class="facet-acc">
         <div class="acc-head">
-          <div v-if="isMobile" class="facet-back" @click="goBack"></div>
+          <button class="facet-back" @click="goBack"></button>
           <h3 @click="toggleAccord">
             Links
           </h3>
@@ -90,11 +90,23 @@
         </ul>
       </div>
     </div>
-    <div ref="shops" class="facet-shops"></div>
+    <div ref="shops" class="facet-shops">
+      <div class="facet-acc">
+        <div class="acc-head">
+          <button class="facet-back" @click="goBack"></button>
+          <h3 @click="toggleAccord">
+            Shops
+          </h3>
+        </div>
+        <div class="acc-body">
+          [shops options]
+        </div>
+      </div>
+    </div>
     <div ref="colors" class="facet-colors">
       <div class="facet-acc">
         <div class="acc-head">
-          <div v-if="isMobile" class="facet-back" @click="goBack"></div>
+          <button class="facet-back" @click="goBack"></button>
           <h3 @click="toggleAccord">
             Color
           </h3>
@@ -143,12 +155,12 @@
     <div ref="brands" class="facet-brands">
       <div class="facet-acc">
         <div class="acc-head">
-          <div v-if="isMobile" class="facet-back" @click="goBack"></div>
+          <button class="facet-back" @click="goBack"></button>
           <h3 @click="toggleAccord">
             Brands
           </h3>
           <div v-if="selectedFilters.brands"
-            class="filter-clear" @click="clearFilters('brands')">Clear</div>
+            class="filter-clear-mobile" @click="clearFilters('brands')">Clear</div>
         </div>
         <ul class="acc-body checkbox-list">
           <li>
@@ -229,12 +241,12 @@
     <div ref="sizes" class="facet-sizes">
       <div class="facet-acc">
         <div class="acc-head">
-          <div v-if="isMobile" class="facet-back" @click="goBack"></div>
+          <button class="facet-back" @click="goBack"></button>
           <h3 @click="toggleAccord">
             Sizes
           </h3>
           <div v-if="selectedFilters.sizes"
-            class="filter-clear" @click="clearFilters('sizes')">Clear</div>
+            class="filter-clear-mobile" @click="clearFilters('sizes')">Clear</div>
         </div>
         <div class="acc-body">
           <div class="filter">
@@ -260,7 +272,7 @@
     <div ref="genders" class="facet-genders">
       <div class="facet-acc">
         <div class="acc-head">
-          <div v-if="isMobile" class="facet-back" @click="goBack"></div>
+          <button class="facet-back" @click="goBack"></button>
           <h3 @click="toggleAccord">
             Genders
           </h3>
@@ -270,9 +282,45 @@
         </div>
       </div>
     </div>
-    <div ref="prices" class="facet-prices"></div>
-    <div ref="coupons" class="facet-coupons"></div>
-    <div ref="promos" class="facet-promos"></div>
+    <div ref="prices" class="facet-prices">
+      <div class="facet-acc">
+        <div class="acc-head">
+          <button class="facet-back" @click="goBack"></button>
+          <h3 @click="toggleAccord">
+            Prices
+          </h3>
+        </div>
+        <div class="acc-body">
+          [prices options]
+        </div>
+      </div>
+    </div>
+    <div ref="coupons" class="facet-coupons">
+      <div class="facet-acc">
+        <div class="acc-head">
+          <button class="facet-back" @click="goBack"></button>
+          <h3 @click="toggleAccord">
+            Prices
+          </h3>
+        </div>
+        <div class="acc-body">
+          [prices options]
+        </div>
+      </div>
+    </div>
+    <div ref="promos" class="facet-promos">
+      <div class="facet-acc">
+        <div class="acc-head">
+          <button class="facet-back" @click="goBack"></button>
+          <h3 @click="toggleAccord">
+            Sales &amp; Coupons
+          </h3>
+        </div>
+        <div class="acc-body">
+          [promos options]
+        </div>
+      </div>
+    </div>
     <div class="mobile-see-results">
       <sh-button @click="toggleActive" variant="primary" click-event="get-filters">
         See Results
