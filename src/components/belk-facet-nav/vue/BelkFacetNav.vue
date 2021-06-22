@@ -1,8 +1,8 @@
 <template>
   <nav class="belk-facet-nav"
     :variant="variant">
-    <div class="mobile close-button">
-      <belk-icon @click="close" name="close" height="22" width="22"></belk-icon>
+    <div class="mobile close-button" @click="toggleActive">
+      <belk-icon name="close" height="22" width="22"></belk-icon>
     </div>
     <div class="filter-header">
       <div class="ha">Filters</div>
@@ -274,7 +274,7 @@
     <div ref="coupons" class="facet-coupons"></div>
     <div ref="promos" class="facet-promos"></div>
     <div class="mobile-see-results">
-      <sh-button @click="close" variant="primary" click-event="get-filters">
+      <sh-button @click="toggleActive" variant="primary" click-event="get-filters">
         See Results
       </sh-button>
     </div>
@@ -335,6 +335,7 @@ export default {
     events() {
       this.$bus.$on('get-filters', this.sendFilters);
       this.$bus.$on('facet-filters', this.updateElements);
+      this.$bus.$on('show-filters', this.toggleActive);
     },
 
     updateElements(data) {
@@ -391,8 +392,9 @@ export default {
       if (el) el.classList.remove('active');
     },
 
-    close() {
-      this.$el.classList.remove('active');
+    toggleActive() {
+      this.$el.classList.toggle('active');
+      document.documentElement.classList.toggle('filters-active');
     },
 
     isFiltered(which) {

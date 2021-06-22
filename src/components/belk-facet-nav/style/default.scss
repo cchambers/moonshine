@@ -12,6 +12,15 @@ belk-facet-nav {
     [class*="mobile"] {
       display: none;
     }
+
+    .filter-clear {
+      outline: none;
+      border: none;
+      background: transparent;
+      line-height: 14px;
+      font-size: 12px;
+    }
+
     .belk-facet-nav {
       position: static;
     }
@@ -119,20 +128,9 @@ belk-facet-nav {
       font-weight: bold;
       line-height: 18px;
     }
-    .filter-clear {
-      border: none;
-      outline: none;
-      background: transparent;
-      font-size: 12px;
-      line-height: 14px;
-    }
     belk-icon {
       display: none;
     }
-  }
-
-  .filter-clear {
-    display: none;
   }
 
   .filter-stack {
@@ -290,4 +288,9 @@ belk-facet-nav {
       }
     }
   }
+}
+
+.filters-active lib-nav,
+.filters-active lib-control-panel {
+  display: none !important;
 }
