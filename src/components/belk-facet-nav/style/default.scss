@@ -289,3 +289,8 @@ belk-facet-nav {
     }
   }
 }
+
+.filters-active lib-nav,
+.filters-active lib-control-panel {
+  display: none !important;
+}

@@ -73,15 +73,18 @@
       border-left: 1px solid $highlight-tertiary;
     }
     .belk-facet-nav {
+      display: none;
       position: fixed;
       z-index: 11;
       inset: 0;
       overflow: hidden;
       background: $highlight-primary;
-      display: flex;
       flex-direction: column;
       max-height: 100vh;
       @include no-scroll-bar;
+      &.active {
+        display: flex;
+      }
       > [class^="facet-"] {
         position: absolute;
         max-height: calc(100vh - 64px);
