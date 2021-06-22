@@ -300,11 +300,11 @@
         <div class="acc-head">
           <button class="facet-back" @click="goBack"></button>
           <h3 @click="toggleAccord">
-            Prices
+            Coupons
           </h3>
         </div>
         <div class="acc-body">
-          [prices options]
+          [coupons options]
         </div>
       </div>
     </div>
@@ -443,6 +443,7 @@ export default {
     toggleActive() {
       this.$el.classList.toggle('active');
       document.documentElement.classList.toggle('filters-active');
+      this.goBack();
     },
 
     isFiltered(which) {
