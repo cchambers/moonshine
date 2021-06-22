@@ -110,6 +110,51 @@ belk-facet-nav {
     cursor: pointer;
   }
 
+  .filter-header {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 8px;
+    .ha {
+      font-size: 16px;
+      font-weight: bold;
+      line-height: 18px;
+    }
+    .filter-clear {
+      border: none;
+      outline: none;
+      background: transparent;
+      font-size: 12px;
+      line-height: 14px;
+    }
+    belk-icon {
+      display: none;
+    }
+  }
+
+  .filter-stack {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -$atomic;
+    button  {
+      outline: none;
+      border: 1px solid $lowlight-tertiary;
+      border-radius: $atomic;
+      margin: $atomic;
+      padding: 6px 10px 3px 12px;
+      color: $lowlight-primary;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: $highlight-primary;
+      &:after {
+        display: block;
+        content: 'clear';
+        font-family: 'Material Icons Round' !important;
+        margin-left: 11px;
+        color: $lowlight-tertiary;
+      }
+    }
+  }
   .facet-colors {
     ul {
       display: flex;
@@ -198,7 +243,7 @@ belk-facet-nav {
       }
       belk-icon {
         margin: 0 $micro;
-        color: $lowlight-primary;
+        color: $lowlight-tertiary;
       }
     }
     .filter-list {

@@ -38,18 +38,19 @@
     .facet-back {
       height: 100%;
       width: 45px;
+      color: $lowlight-tertiary;
       &:before {
         display: flex;
         content: 'chevron_left';
         font-family: 'Material Icons Round' !important;
-        font-size: 19px;
+        font-size: 24px;
         height: 100%;
         align-items: center;
         justify-content: center;
       }
     }
-    .facet-clear-mobile,
-    .facet-clear {
+    .filter-clear-mobile,
+    .filter-clear {
       color: $accent-primary;
       font-size: 14px;
       line-height: 18px;
@@ -91,6 +92,7 @@
       justify-content: flex-start;
       .close-button {
         margin-left: auto;
+        color: $lowlight-primary;
       }
     }
 
@@ -104,6 +106,10 @@
       belk-icon {
         margin-left: auto;
       }
+    }
+
+    .filter-stack {
+      display: none;
     }
 
     .count {

@@ -1,12 +1,23 @@
 <template>
-  <div class="belk-facet-nav"
+  <nav class="belk-facet-nav"
     :variant="variant">
     <div class="filter-header">
       <div class="ha">Filters</div>
-      <button v-if="selectedFilters.colors"
-        class="facet-clear"
+      <button v-if="selectedFilters"
+        class="filter-clear"
         @click="clearFilters()">Clear All</button>
       <belk-icon @click="close" name="close" height="22" width="22"></belk-icon>
+    </div>
+    <div class="filter-stack">
+      <template v-for="(thing, facet) in selectedFilters">
+        <template v-for="filter in thing">
+        <button
+        v-bind:key="filter.index"
+        @click="removeFilter(facet, filter)"
+        :data-facet="facet"
+        :value="filter">{{ filter }}</button>
+        </template>
+      </template>
     </div>
     <div class="mobile-base">
       <ul>
@@ -74,7 +85,7 @@
             Color
           </h3>
           <div v-if="selectedFilters.colors"
-            class="facet-clear-mobile" @click="clearFilters('colors')">Clear</div>
+            class="filter-clear-mobile" @click="clearFilters('colors')">Clear</div>
         </div>
         <ul class="acc-body height-scroll">
           <li>
@@ -123,7 +134,7 @@
             Brands
           </h3>
           <div v-if="selectedFilters.brands"
-            class="facet-clear" @click="clearFilters('brands')">Clear</div>
+            class="filter-clear" @click="clearFilters('brands')">Clear</div>
         </div>
         <ul class="acc-body checkbox-list">
           <li>
@@ -209,7 +220,7 @@
             Sizes
           </h3>
           <div v-if="selectedFilters.sizes"
-            class="facet-clear" @click="clearFilters('sizes')">Clear</div>
+            class="filter-clear" @click="clearFilters('sizes')">Clear</div>
         </div>
         <div class="acc-body">
           <div class="filter">
@@ -241,7 +252,7 @@
         See Results
       </sh-button>
     </div>
-  </div>
+  </nav>
 </template>
 
 <script>
@@ -371,6 +382,11 @@ export default {
       for (let x = 0, l = filtered.length; x < l; x += 1) {
         filtered[x].checked = false;
       }
+    },
+
+    removeFilter(facet, filter) {
+      const el = this.$refs[facet].querySelector(`[value="${filter}"]`);
+      if (el) el.checked = false;
     },
 
     extractVals(els) {
