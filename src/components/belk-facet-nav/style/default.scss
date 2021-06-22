@@ -2,59 +2,76 @@
 
 belk-facet-nav {
   display: block;
-  .facet-acc {
-    border-top: 1px solid $highlight-tertiary;
-    &.active {
-      h3 {
-        &:after {
-          transform: rotate(180deg);
+
+
+  @include md {
+    [class*="mobile"] {
+      display: none;
+    }
+    .belk-facet-nav {
+      position: static;
+    }
+    .facet-acc {
+      border-top: 1px solid $highlight-tertiary;
+      &.active {
+        h3 {
+          &:after {
+            transform: rotate(180deg);
+          }
+        }
+        .acc-body {
+          margin-bottom: $micro;
         }
       }
-      .acc-body {
-        margin-bottom: $micro;
+      &:not(.active) {
+        .acc-body {
+          display: none;
+        }
+      }
+      > h3 {
+        width: 100%;
+        text-align: left;
+        font-size: 14px;
+        color: $lowlight-primary;
+        line-height: 35px;
+        cursor: pointer;
+        &:after {
+          content: 'expand_more';
+          font-family: 'Material Icons Round' !important;
+          float: right;
+          font-size: 18px;
+          font-weight: normal;
+          color: $lowlight-quinary;
+        }
+      }
+      > ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
       }
     }
-    &:not(.active) {
-      .acc-body {
-        display: none;
-      }
-    }
-    > h3 {
-      width: 100%;
-      text-align: left;
-      font-size: 14px;
-      color: $lowlight-primary;
-      line-height: 35px;
-      cursor: pointer;
-      &:after {
-        content: 'expand_more';
-        font-family: 'Material Icons Round' !important;
-        float: right;
-        font-size: 18px;
-        font-weight: normal;
-        color: $lowlight-quinary;
-      }
-    }
-    > ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-  }
+    
 
-  li {
-    [data-qty]::after {
-      display: inline-block;
-      margin-left: $atomic;
-      content: "(" attr(data-qty) ")";
-      color: $lowlight-tertiary;
-      font-weight: normal !important;
+    li {
+      [data-qty]::after {
+        display: inline-block;
+        margin-left: $atomic;
+        content: "(" attr(data-qty) ")";
+        color: $lowlight-tertiary;
+        font-weight: normal !important;
+      }
+      a, > label {
+        display: block;
+        color: $lowlight-primary;
+        font-size: 14px;
+        line-height: 32px;
+      }
     }
-    a, > label {
-      display: block;
-      color: $lowlight-primary;
-      font-size: 14px;
-      line-height: 32px;
+    .height-scroll,
+    [class*="facet-"] > ul {
+      max-height: 282px;
+      overflow-y: auto;
+      @include no-scroll-bar;
     }
   }
 
@@ -224,11 +241,7 @@ belk-facet-nav {
       }
     }
   }
-
-  .height-scroll,
-  [class*="facet-"] > ul {
-    max-height: 282px;
-    overflow-y: auto;
-    @include no-scroll-bar;
-  }
 }
+
+
+lib-nav {display: none !important}
