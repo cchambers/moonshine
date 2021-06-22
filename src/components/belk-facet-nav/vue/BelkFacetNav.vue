@@ -1,12 +1,14 @@
 <template>
   <nav class="belk-facet-nav"
     :variant="variant">
+    <div class="mobile close-button">
+      <belk-icon @click="close" name="close" height="22" width="22"></belk-icon>
+    </div>
     <div class="filter-header">
       <div class="ha">Filters</div>
       <button v-if="Object.keys(selectedFilters).length"
         class="filter-clear"
         @click="clearFilters()">Clear All</button>
-      <belk-icon @click="close" name="close" height="22" width="22"></belk-icon>
     </div>
     <div class="filter-stack">
       <template v-for="(thing, facet) in selectedFilters">
@@ -51,6 +53,18 @@
             v-if="selectedFilters.coupons">({{ selectedFilters.coupons.length }})</div>
         </li>
       </ul>
+    </div>
+    <div ref="pickup" class="facet-pickup">
+      <div class="facet-acc">
+        <div class="acc-head">
+          <h3 @click="toggleAccord">
+            Pickup
+          </h3>
+        </div>
+        <div class="acc-body">
+          [pickup options]
+        </div>
+      </div>
     </div>
     <div ref="links" class="facet-links">
       <div class="facet-acc">
@@ -243,7 +257,19 @@
         </div>
       </div>
     </div>
-    <div ref="genders" class="facet-genders"></div>
+    <div ref="genders" class="facet-genders">
+      <div class="facet-acc">
+        <div class="acc-head">
+          <div v-if="isMobile" class="facet-back" @click="goBack"></div>
+          <h3 @click="toggleAccord">
+            Genders
+          </h3>
+        </div>
+        <div class="acc-body">
+          [gender options]
+        </div>
+      </div>
+    </div>
     <div ref="prices" class="facet-prices"></div>
     <div ref="coupons" class="facet-coupons"></div>
     <div ref="promos" class="facet-promos"></div>
