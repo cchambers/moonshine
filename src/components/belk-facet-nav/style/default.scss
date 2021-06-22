@@ -131,10 +131,15 @@ belk-facet-nav {
     }
   }
 
+  .filter-clear {
+    display: none;
+  }
+
   .filter-stack {
     display: flex;
     flex-wrap: wrap;
     margin: 0 -$atomic;
+    margin-bottom: 11px;
     button  {
       outline: none;
       border: 1px solid $lowlight-tertiary;
