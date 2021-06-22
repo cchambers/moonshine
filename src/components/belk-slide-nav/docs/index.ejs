@@ -3,18 +3,18 @@
 <title><%= htmlWebpackPlugin.options.title %></title>
 
 <div class="documentation contain">
-  <h1>Belk Facet Nav</h1>
+  <h1>Belk Slide Nav</h1>
   <section id="usage">
     <h2>Usage</h2>
     <pre>
       <code class="language-html">
-          &lt;belk-facet-nav&gt;&lt;/belk-facet-nav&gt;
+          &lt;belk-slide-nav&gt;new component&lt;/belk-slide-nav&gt;
       </code>
     </pre>
 
   </section>
 
-  <!-- section id="reference" class="baseline30">
+  <section id="reference" class="baseline30">
     <h2>Reference</h2>
     <h3 id="attributes">Attributes</h3>
 
@@ -56,7 +56,7 @@
 
     <h3 id="methods">Public Methods</h3>
 
-    <table class="methods">
+        <!-- <table class="methods">
       <thead>
         <tr>
           <th>Function</th>
@@ -78,7 +78,7 @@
             Perform snap animation and halve text.
           </td>
         </tr>
-      </tbody>
+      </tbody> -->
     </table>
 
     <h3 id="events">Events</h3>
@@ -103,39 +103,33 @@
         </tr>
       </tbody>
     </table>
-  </section-->
+  </section>
 
   <section id="examples">
     <h2>Examples</h2>
     <h3>Default</h3>
-    <lib-toolbar hidden></lib-toolbar>
-    <div class="row">
-      <div class="col-1-4">
-        <belk-facet-nav></belk-facet-nav>
-      </div>
-      <div class="col-3-4 pad-l">
-        <script>
-          document.addEventListener('facet-filters', function (e) {
-            var filters = e.detail;
-            if (filters) {
-              filters = Pretty(JSON.stringify(filters));
-              document.getElementById('facet-output').innerHTML = filters;
-            }
-          });
-          document.addEventListener('click', function(e) {
-            sh.emit('get-filters');
-          });
-        </script>
-        <textarea id="facet-output" style="width: 100%" rows="10"></textarea>
-      </div>
-    </div>
+    <lib-toolbar>
+      <belk-slide-nav>
+        TEXT THAT IS EVEN AND STILL EXISTS
+      </belk-slide-nav>
+    </lib-toolbar>
   </section>
 
   <section id="changelog">
     <h2>Changelog</h2>
     <dl>
       <dt>0.1.0</dt>
-      <dd>Belk Facet Nav is under development.</dd>
+      <dd>Belk Slide Nav is under development.</dd>
+      <dt>1.0.0</dt>
+      <dd>Belk Slide Nav is ready for use.</dd>
+      <dt>1.0.1</dt>
+      <dd><strong>PATCH</strong> version when you make backwards-compatible bug fixes.</dd>
+      <dt>1.1.0</dt>
+      <dd><strong>MINOR</strong> version when you add functionality in a backwards-compatible manner.</dd>
+      <dt>2.0.0</dt>
+      <dd><strong>MAJOR</strong> version when you make incompatible API changes.</dd>
+      <dd>Example of another change from the same update.</dd>
+      <dd>And another.</dd>
     </dl>
   </section>
 

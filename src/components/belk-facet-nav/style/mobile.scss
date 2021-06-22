@@ -1,0 +1,98 @@
+/* primary variant */
+
+@media screen and (max-width: 767px) {
+  belk-facet-nav {
+
+    .mobile-base {
+      background: $highlight-primary;
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      li {
+        display: flex;
+        justify-content: space-between;
+        line-height: 56px;
+        padding: 0 24px;
+        border-bottom: 1px solid $highlight-tertiary;
+        &:after {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          content: 'navigate_next';
+          font-family: 'Material Icons Round' !important;
+        }
+      }
+    }
+    .acc-body {
+      padding: $rem;
+    }
+    .facet-back {
+      height: 100%;
+      width: 45px;
+      &:before {
+        display: flex;
+        content: 'chevron_left';
+        font-family: 'Material Icons Round' !important;
+        font-size: 19px;
+        height: 100%;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+    .facet-clear {
+      color: $accent-primary;
+      font-size: 14px;
+      line-height: 18px;
+      padding-left: $micro;
+      margin-left: $rem;
+      border-left: 1px solid $highlight-tertiary;
+    }
+    .belk-facet-nav {
+      position: fixed;
+      z-index: 11;
+      inset: 0;
+      overflow: hidden;
+      overflow-y: auto;
+      background: $highlight-tertiary;
+      @include no-scroll-bar;
+      > [class^="facet-"] {
+        position: absolute;
+        inset: 0;
+        background: $highlight-primary;
+        transform: translateX(-100%);
+        @include no-scroll-bar;
+        &.active {
+          transform: translateX(0);
+        }
+      }
+    }
+
+    .mobile-back-header,
+    .facet-acc .acc-head {
+      height: 63px;
+      background: $highlight-secondary;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      .close-button {
+        margin-left: auto;
+      }
+    }
+
+    .mobile-back-header {
+      padding: 0 24px;
+      font-weight: bold;
+      font-size: 18px;
+      justify-content: space-between;
+    }
+
+    .count {
+      margin-right: auto;
+      font-weight: bold;
+      margin-left: 0.5em;
+    }
+
+  }
+}
