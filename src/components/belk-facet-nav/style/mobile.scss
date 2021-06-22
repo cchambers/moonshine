@@ -1,0 +1,142 @@
+/* primary variant */
+
+@media screen and (max-width: 767px) {
+  belk-facet-nav {
+    .close-button {
+      position: fixed;
+      display: flex;
+      align-items: center;
+      height: 63px;
+      width: 45px;
+      top: 0;
+      right: 0;
+      color: $lowlight-primary;
+      z-index: 2;
+    }
+    .mobile-see-results {
+      margin-top: auto;
+      padding: $micro;
+      text-align: center;
+    }
+    .mobile-base {
+      background: $highlight-primary;
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      li {
+        display: flex;
+        justify-content: space-between;
+        line-height: 56px;
+        padding: 0 24px;
+        border-bottom: 1px solid $highlight-tertiary;
+        &:after {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 24px;
+          width: 28px;
+          color: $lowlight-tertiary;
+          content: 'navigate_next';
+          font-family: 'Material Icons Round' !important;
+        }
+      }
+    }
+    .acc-body {
+      padding: $rem;
+    }
+    .facet-back {
+      height: 100%;
+      width: 45px;
+      color: $lowlight-tertiary;
+      &:before {
+        display: flex;
+        content: 'chevron_left';
+        font-family: 'Material Icons Round' !important;
+        font-size: 24px;
+        height: 100%;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+    .filter-clear-mobile,
+    .filter-clear {
+      color: $accent-primary;
+      font-size: 14px;
+      line-height: 18px;
+      padding-left: $micro;
+      margin-left: $rem;
+      outline: none;
+      background: transparent;
+      border: none;
+      border-left: 1px solid $highlight-tertiary;
+    }
+    .belk-facet-nav {
+      position: fixed;
+      z-index: 11;
+      inset: 0;
+      overflow: hidden;
+      background: $highlight-primary;
+      display: flex;
+      flex-direction: column;
+      max-height: 100vh;
+      @include no-scroll-bar;
+      > [class^="facet-"] {
+        position: absolute;
+        max-height: calc(100vh - 64px);
+        inset: 0;
+        background: $highlight-primary;
+        transform: translateX(-100%);
+        @include no-scroll-bar;
+        &.active {
+          transform: translateX(0);
+        }
+      }
+    }
+    .filter-header,
+    .facet-acc .acc-head {
+      height: 63px;
+      background: $highlight-secondary;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+    }
+
+    .filter-header {
+      padding: 0 24px;
+      justify-content: flex-start;
+      .ha {
+        font-weight: bold;
+        font-size: 18px;
+      }
+      belk-icon {
+        margin-left: auto;
+      }
+    }
+
+    .filter-stack {
+      display: none;
+    }
+
+    .count {
+      margin-right: auto;
+      font-weight: bold;
+      margin-left: 0.5em;
+    }
+
+    .facet-colors {
+      ul {
+        justify-content: space-between;
+        li label {
+          width: 60px;
+        }
+      }
+      .swatch {
+        height: 50px !important;
+        width: 50px !important;
+      }
+    }
+
+  }
+}

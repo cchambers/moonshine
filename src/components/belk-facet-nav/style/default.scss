@@ -2,59 +2,75 @@
 
 belk-facet-nav {
   display: block;
-  .facet-acc {
-    border-top: 1px solid $highlight-tertiary;
-    &.active {
-      h3 {
-        &:after {
-          transform: rotate(180deg);
+  color: $lowlight-primary;
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  @include md {
+    [class*="mobile"] {
+      display: none;
+    }
+    .belk-facet-nav {
+      position: static;
+    }
+    .facet-acc {
+      border-top: 1px solid $highlight-tertiary;
+      &.active {
+        h3 {
+          &:after {
+            transform: rotate(180deg);
+          }
+        }
+        .acc-body {
+          margin-bottom: $micro;
         }
       }
-      .acc-body {
-        margin-bottom: $micro;
+      &:not(.active) {
+        .acc-body {
+          display: none;
+        }
+      }
+      h3 {
+        width: 100%;
+        text-align: left;
+        font-size: 14px;
+        color: $lowlight-primary;
+        line-height: 35px;
+        cursor: pointer;
+        &:after {
+          content: 'expand_more';
+          font-family: 'Material Icons Round' !important;
+          float: right;
+          font-size: 18px;
+          font-weight: normal;
+          color: $lowlight-quinary;
+        }
       }
     }
-    &:not(.active) {
-      .acc-body {
-        display: none;
-      }
-    }
-    > h3 {
-      width: 100%;
-      text-align: left;
-      font-size: 14px;
-      color: $lowlight-primary;
-      line-height: 35px;
-      cursor: pointer;
-      &:after {
-        content: 'expand_more';
-        font-family: 'Material Icons Round' !important;
-        float: right;
-        font-size: 18px;
-        font-weight: normal;
-        color: $lowlight-quinary;
-      }
-    }
-    > ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-  }
+    
 
-  li {
-    [data-qty]::after {
-      display: inline-block;
-      margin-left: $atomic;
-      content: "(" attr(data-qty) ")";
-      color: $lowlight-tertiary;
-      font-weight: normal !important;
+    li {
+      [data-qty]::after {
+        display: inline-block;
+        margin-left: $atomic;
+        content: "(" attr(data-qty) ")";
+        color: $lowlight-tertiary;
+        font-weight: normal !important;
+      }
+      a, > label {
+        display: block;
+        color: $lowlight-primary;
+        font-size: 14px;
+        line-height: 32px;
+      }
     }
-    a, > label {
-      display: block;
-      color: $lowlight-primary;
-      font-size: 14px;
-      line-height: 32px;
+    .height-scroll,
+    [class*="facet-"] > ul {
+      max-height: 282px;
+      overflow-y: auto;
+      @include no-scroll-bar;
     }
   }
 
@@ -94,6 +110,56 @@ belk-facet-nav {
     cursor: pointer;
   }
 
+  .filter-header {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 8px;
+    .ha {
+      font-size: 16px;
+      font-weight: bold;
+      line-height: 18px;
+    }
+    .filter-clear {
+      border: none;
+      outline: none;
+      background: transparent;
+      font-size: 12px;
+      line-height: 14px;
+    }
+    belk-icon {
+      display: none;
+    }
+  }
+
+  .filter-clear {
+    display: none;
+  }
+
+  .filter-stack {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -$atomic;
+    margin-bottom: 11px;
+    button  {
+      outline: none;
+      border: 1px solid $lowlight-tertiary;
+      border-radius: $atomic;
+      margin: $atomic;
+      padding: 6px 10px 3px 12px;
+      color: $lowlight-primary;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: $highlight-primary;
+      &:after {
+        display: block;
+        content: 'clear';
+        font-family: 'Material Icons Round' !important;
+        margin-left: 11px;
+        color: $lowlight-tertiary;
+      }
+    }
+  }
   .facet-colors {
     ul {
       display: flex;
@@ -182,7 +248,7 @@ belk-facet-nav {
       }
       belk-icon {
         margin: 0 $micro;
-        color: $lowlight-primary;
+        color: $lowlight-tertiary;
       }
     }
     .filter-list {
@@ -223,12 +289,5 @@ belk-facet-nav {
         background: $highlight-secondary;
       }
     }
-  }
-
-  .height-scroll,
-  [class*="facet-"] > ul {
-    max-height: 282px;
-    overflow-y: auto;
-    @include no-scroll-bar;
   }
 }

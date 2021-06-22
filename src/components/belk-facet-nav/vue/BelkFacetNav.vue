@@ -1,23 +1,91 @@
 <template>
-  <div class="belk-facet-nav"
+  <nav class="belk-facet-nav"
     :variant="variant">
+    <div class="mobile close-button">
+      <belk-icon @click="close" name="close" height="22" width="22"></belk-icon>
+    </div>
+    <div class="filter-header">
+      <div class="ha">Filters</div>
+      <button v-if="Object.keys(selectedFilters).length"
+        class="filter-clear"
+        @click="clearFilters()">Clear All</button>
+    </div>
+    <div class="filter-stack">
+      <template v-for="(thing, facet) in selectedFilters">
+        <template v-for="filter in thing">
+        <button
+        v-bind:key="filter.index"
+        @click="removeFilter(facet, filter)"
+        :data-facet="facet"
+        :value="filter">{{ filter }}</button>
+        </template>
+      </template>
+    </div>
+    <div class="mobile-base">
+      <ul>
+        <li @click="showNav('links')">
+          Links
+        </li>
+        <li @click="showNav('shops')">
+          Shops
+        </li>
+        <li @click="showNav('colors')">
+          Colors <div class="count"
+            v-if="selectedFilters.colors">({{ selectedFilters.colors.length }})</div>
+        </li>
+        <li @click="showNav('brands')">
+          Brands <div class="count"
+            v-if="selectedFilters.brands">({{ selectedFilters.brands.length }})</div>
+        </li>
+        <li @click="showNav('sizes')">
+          Sizes <div class="count"
+            v-if="selectedFilters.sizes">({{ selectedFilters.sizes.length }})</div>
+        </li>
+        <li @click="showNav('genders')">
+          Genders <div class="count"
+            v-if="selectedFilters.genders">({{ selectedFilters.genders.length }})</div>
+        </li>
+        <li @click="showNav('prices')">
+          Prices
+        </li>
+        <li @click="showNav('coupons')">
+          Coupons <div class="count"
+            v-if="selectedFilters.coupons">({{ selectedFilters.coupons.length }})</div>
+        </li>
+      </ul>
+    </div>
+    <div ref="pickup" class="facet-pickup">
+      <div class="facet-acc">
+        <div class="acc-head">
+          <h3 @click="toggleAccord">
+            Pickup
+          </h3>
+        </div>
+        <div class="acc-body">
+          [pickup options]
+        </div>
+      </div>
+    </div>
     <div ref="links" class="facet-links">
       <div class="facet-acc">
-        <h3 @click="toggleAccord">
-          Title
-        </h3>
+        <div class="acc-head">
+          <div v-if="isMobile" class="facet-back" @click="goBack"></div>
+          <h3 @click="toggleAccord">
+            Links
+          </h3>
+        </div>
         <ul class="acc-body">
           <li>
-            <a href="#" data-qty="20">link</a>
+            <a href="#">link</a>
           </li>
           <li>
-            <a href="#" data-qty="20">link</a>
+            <a href="#">link</a>
           </li>
           <li>
-            <a href="#" data-qty="20">link</a>
+            <a href="#">link</a>
           </li>
           <li>
-            <a href="#" data-qty="20">link</a>
+            <a href="#">link</a>
           </li>
         </ul>
       </div>
@@ -25,9 +93,14 @@
     <div ref="shops" class="facet-shops"></div>
     <div ref="colors" class="facet-colors">
       <div class="facet-acc">
-        <h3 @click="toggleAccord">
-          Color
-        </h3>
+        <div class="acc-head">
+          <div v-if="isMobile" class="facet-back" @click="goBack"></div>
+          <h3 @click="toggleAccord">
+            Color
+          </h3>
+          <div v-if="selectedFilters.colors"
+            class="filter-clear-mobile" @click="clearFilters('colors')">Clear</div>
+        </div>
         <ul class="acc-body height-scroll">
           <li>
             <label for="facet-colors-red">
@@ -67,12 +140,16 @@
         </ul>
       </div>
     </div>
-
     <div ref="brands" class="facet-brands">
       <div class="facet-acc">
-        <h3 @click="toggleAccord">
-          Brands
-        </h3>
+        <div class="acc-head">
+          <div v-if="isMobile" class="facet-back" @click="goBack"></div>
+          <h3 @click="toggleAccord">
+            Brands
+          </h3>
+          <div v-if="selectedFilters.brands"
+            class="filter-clear" @click="clearFilters('brands')">Clear</div>
+        </div>
         <ul class="acc-body checkbox-list">
           <li>
             <input hidden id="facet-brands-brand-one" type="checkbox" value="brand one">
@@ -151,9 +228,14 @@
     </div>
     <div ref="sizes" class="facet-sizes">
       <div class="facet-acc">
-        <h3 @click="toggleAccord">
-          Sizes
-        </h3>
+        <div class="acc-head">
+          <div v-if="isMobile" class="facet-back" @click="goBack"></div>
+          <h3 @click="toggleAccord">
+            Sizes
+          </h3>
+          <div v-if="selectedFilters.sizes"
+            class="filter-clear" @click="clearFilters('sizes')">Clear</div>
+        </div>
         <div class="acc-body">
           <div class="filter">
             <input v-model="searchSize"
@@ -175,11 +257,28 @@
         </div>
       </div>
     </div>
-    <div ref="genders" class="facet-genders"></div>
+    <div ref="genders" class="facet-genders">
+      <div class="facet-acc">
+        <div class="acc-head">
+          <div v-if="isMobile" class="facet-back" @click="goBack"></div>
+          <h3 @click="toggleAccord">
+            Genders
+          </h3>
+        </div>
+        <div class="acc-body">
+          [gender options]
+        </div>
+      </div>
+    </div>
     <div ref="prices" class="facet-prices"></div>
     <div ref="coupons" class="facet-coupons"></div>
     <div ref="promos" class="facet-promos"></div>
-  </div>
+    <div class="mobile-see-results">
+      <sh-button @click="close" variant="primary" click-event="get-filters">
+        See Results
+      </sh-button>
+    </div>
+  </nav>
 </template>
 
 <script>
@@ -223,6 +322,7 @@ export default {
         },
       ],
       filteredSizes: [],
+      selectedFilters: {},
     };
   },
 
@@ -234,10 +334,24 @@ export default {
     /* eslint-disable */
     events() {
       this.$bus.$on('get-filters', this.sendFilters);
+      this.$bus.$on('facet-filters', this.updateElements);
+    },
+
+    updateElements(data) {
+      console.log(data);
+    },
+
+    showNav(which) {
+      this.$refs[which].classList.add('active');
+    },
+
+    mobileBack() {
+      const el = this.$el.querySelectorAll('[class*="facet-"].active');
+      if (el) el.classList.remove('active');
     },
 
     toggleAccord(e) {
-      e.target.closest('.facet-acc').classList.toggle('active');
+      if (!this.isMobile()) e.target.closest('.facet-acc').classList.toggle('active');
     },
 
     doSearch(e) {
@@ -267,14 +381,45 @@ export default {
       if (promos.length) selectedFilters.promos = this.extractVals(promos);
       if (brands.length) selectedFilters.brands = this.extractVals(brands);
 
+      this.selectedFilters = selectedFilters;
+
       this.$bus.$emit('facet-filters', selectedFilters);
+    },
+
+    goBack() {
+      const el = this.$el.querySelector('[class^="facet-"].active');
+      if (el) el.classList.remove('active');
+    },
+
+    close() {
+      this.$el.classList.remove('active');
+    },
+
+    isFiltered(which) {
+      if (this.$refs[which]) {
+        const filtered = this.$refs[which].querySelectorAll(':checked');
+        return (filtered.length > 0);
+      }
+    },
+
+    clearFilters(which) {
+      const filtered = (which) ? this.$refs[which].querySelectorAll(':checked')
+      : this.$el.querySelectorAll(':checked');
+      for (let x = 0, l = filtered.length; x < l; x += 1) {
+        filtered[x].checked = false;
+      }
+    },
+
+    removeFilter(facet, filter) {
+      const el = this.$refs[facet].querySelector(`[value="${filter}"]`);
+      if (el) el.checked = false;
     },
 
     extractVals(els) {
       const vals = [];
-        for (let x = 0, l = els.length; x < l; x += 1) {
-          vals.push(els[x].value);
-        }
+      for (let x = 0, l = els.length; x < l; x += 1) {
+        vals.push(els[x].value);
+      }
       return vals;
     },
   },
@@ -282,4 +427,4 @@ export default {
 };
 </script>
 <style lang="scss" src="../style/default.scss"></style>
-<style lang="scss" src="../style/primary.scss"></style>
+<style lang="scss" src="../style/mobile.scss"></style>
