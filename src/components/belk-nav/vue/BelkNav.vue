@@ -68,7 +68,7 @@ export default {
   methods: {
     events() {
       this.$bus.$on('show-nav', this.toggle);
-      if (!this.checkDev()) window.libs.notify.api.request(['show-nav'], this.toggle, false);
+      if (!this.checkLocal()) window.libs.notify.api.request(['show-nav'], this.toggle, false);
       this.$bus.$on('popper-opening', () => {
         this.hide('popper');
       });

@@ -91,6 +91,9 @@ const ComponentPrototype = {
       return JSON.parse(val);
     },
 
+    checkLocal() {
+      if (window.location.origin.indexOf('localhost') > 0) return true;
+    },
 
     checkDev() {
       if (window.location.origin.indexOf('belk.com') < 0) return true;

@@ -1,7 +1,7 @@
 <template>
   <div class="belk-product"
     :variant="variant"
-    v-bind:class=" { 'is-on-sale': isOnSale } ">
+    v-bind:class=" { 'is-on-sale': onSale } ">
     <a class="product-link" :href="fixedUrl" :data-pid="pid">
       <div class="image"
         :style="{ backgroundImage: 'url('+thumb_image+')' }"></div>
@@ -15,7 +15,7 @@
         </div>
         <div v-if="qty">Qty: {{ qty }}</div>
         <div class="price">
-          <span v-if="isOnSale" class="sale"
+          <span v-if="onSale" class="sale"
           :discount="discountType"
           v-bind:class="{ 'is-range': saleRange }">{{ saleValue }} </span>
           <span class="original"
@@ -105,9 +105,9 @@ export default {
       const val = this.saleRange || this.format(this.salePrice);
       return val;
     },
-    // onSale() {
-    //   return (this.price > this.salePrice);
-    // },
+    onSale() {
+      return ((this.price > this.salePrice) || this.isOnSale);
+    },
   },
 
   created() {
@@ -119,16 +119,11 @@ export default {
 
   mounted() {
     this.processProps();
-
-    setTimeout(() => {
-      this.isOnSale = (this.price > this.sale_price);
-    });
+    setTimeout(this.checkOnSale);
   },
 
   updated() {
-    setTimeout(() => {
-      this.isOnSale = (this.price > this.sale_price);
-    });
+    setTimeout(this.checkOnSale);
   },
 
   watch: {
@@ -141,6 +136,10 @@ export default {
     events() {
       this.$bus.$on('clear-suggestions', this.clearSuggestions);
       this.$bus.$on('search-suggestions-loaded', this.processProps);
+    },
+
+    checkOnSale() {
+      this.isOnSale = ((this.price > this.sale_price) || (this.price > this.salePrice));
     },
 
     clearSuggestions() {
