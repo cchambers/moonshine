@@ -31,7 +31,7 @@ EventBus.$emit = (...args) => {
   });
   const emitter = document.querySelector('belk-bus') || document;
   emitter.dispatchEvent(nativeEvent);
-  if (!isDev) window.libs.notify.api.fire(event, nativeEvent);
+  if ((window.location.origin.indexOf('localhost') < 0)) window.libs.notify.api.fire(event, nativeEvent);
 };
 
 let delegations = {

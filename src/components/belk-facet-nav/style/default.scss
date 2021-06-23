@@ -84,7 +84,8 @@ belk-facet-nav {
     }
   }
 
-  .checkbox-list {
+  .checkbox-list,
+  .radio-list {
     label {
       display: flex;
       align-items: center;
@@ -107,6 +108,31 @@ belk-facet-nav {
       font-weight: bold;
       &:before {
         color: $lowlight-primary;
+      }
+    }
+  }
+
+  .radio-list {
+    label {
+      position: relative;
+      &:before {
+        border-radius: 50%;
+        content: '';
+      }
+      &:after {
+        display: none;
+        content: '';
+        height: 14px;
+        width: 14px;
+        background: $lowlight-primary;
+        border-radius: 50%;
+        position: absolute;
+        left: 3px;
+      }
+    }
+    input:checked ~ label {
+      &:after {
+        display: block;
       }
     }
   }
@@ -164,7 +190,7 @@ belk-facet-nav {
       display: flex;
       flex-wrap: wrap;
       li {
-        width: calc(45px + $micro);
+        width: 57px;
         button,
         label {
           display: block;

@@ -290,9 +290,20 @@
             Prices
           </h3>
         </div>
-        <div class="acc-body">
-          [prices options]
-        </div>
+        <ul class="acc-body radio-list">
+          <li>
+            <input id="price-1" hidden type="radio" name="facet-prices" value="price one">
+            <label for="price-1">
+              <div>price one</div>
+            </label>
+          </li>
+          <li>
+            <input id="price-2" hidden type="radio" name="facet-prices" value="price-two">
+            <label for="price-2">
+              <div>price two</div>
+            </label>
+          </li>
+        </ul>
       </div>
     </div>
     <div ref="coupons" class="facet-coupons">
@@ -384,6 +395,7 @@ export default {
       this.$bus.$on('get-filters', this.sendFilters);
       this.$bus.$on('facet-filters', this.updateElements);
       this.$bus.$on('show-filters', this.toggleActive);
+      this.$bus.$on('clear-filters', this.clearFilters);
     },
 
     updateElements(data) {
@@ -423,12 +435,14 @@ export default {
       const genders = this.$refs.genders.querySelectorAll(':checked');
       const promos = this.$refs.promos.querySelectorAll(':checked');
       const brands = this.$refs.brands.querySelectorAll(':checked');
+      const prices = this.$refs.prices.querySelectorAll(':checked');
 
       if (sizes.length) selectedFilters.sizes = this.extractVals(sizes);
       if (colors.length) selectedFilters.colors = this.extractVals(colors);
       if (genders.length) selectedFilters.genders = this.extractVals(genders);
       if (promos.length) selectedFilters.promos = this.extractVals(promos);
       if (brands.length) selectedFilters.brands = this.extractVals(brands);
+      if (prices.length) selectedFilters.prices = this.extractVals(prices);
 
       this.selectedFilters = selectedFilters;
 
