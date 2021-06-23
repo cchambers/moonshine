@@ -682,7 +682,11 @@ belk-header {
 
   .pre-header-slot,
   .pre-header-slot .html-slot-container {
-    max-height: 80px;
+    display: none !important;
+  }
+
+  .header-banner-bottom {
+    display: block !important;
   }
 
   .actual-text {
