@@ -641,7 +641,7 @@ export default {
             if (xhr.status === OK) {
               const res = JSON.parse(xhr.responseText);
               let array = res.response.products;
-              if (self.isDev && array.length) {
+              if (self.isDev && array) {
                 array = array.map((item) => {
                   const x = { ...item };
                   x.url = x.url.replace('https://www.belk.com', `${window.location.origin}/s/Belk`);

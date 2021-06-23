@@ -1,6 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import * as ace from 'brace';
 import 'brace/mode/html';
+import 'brace/mode/json';
 import 'brace/theme/monokai';
 import Pretty from 'pretty';
 import ComponentPrototype from '../../../../components/component-prototype';
