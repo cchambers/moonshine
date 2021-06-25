@@ -106,7 +106,12 @@ export default {
       return val;
     },
     onSale() {
-      return ((this.price > this.salePrice) || this.isOnSale);
+      let onSale = false;
+      if (this.salePrice) {
+        if (this.price > this.salePrice) onSale = true;
+      }
+      if (this.isOnSale) onSale = true;
+      return onSale;
     },
   },
 
