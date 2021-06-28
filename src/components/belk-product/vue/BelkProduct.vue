@@ -147,9 +147,7 @@ export default {
       this.$bus.$on('search-suggestions-loaded', this.processProps);
     },
 
-    checkOnSale(where) {
-      console.log('cos', where, this.title, this.price, this.sale_price, this.salePrice,
-        (this.price > this.sale_price) || (this.price > this.salePrice));
+    checkOnSale() {
       this.isOnSale = ((this.price > this.sale_price) || (this.price > this.salePrice));
     },
 
