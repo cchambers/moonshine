@@ -38,7 +38,7 @@
       </ul>
     </div>
 
-    <div ref="pickup" class="facet-pickup">
+    <!-- <div ref="pickup" class="facet-pickup">
       <div class="facet-acc">
         <div class="acc-head">
           <h3 @click="toggleAccord"
@@ -48,9 +48,177 @@
           <slot name="pickup"></slot>
         </div>
       </div>
+    </div> -->
+    <div class="facets-actual">
+      <div v-for="facet in facets" :key="facet.id" :set="type = facet.type">
+        <template v-if="type == 'active-filters'">
+          <div class="filter-header">
+            <div class="ha">Filters</div>
+            <button
+              v-if="Object.keys(selectedFilters).length"
+              class="filter-clear"
+                @click="clearFilters()"
+              >Clear All</button>
+          </div>
+          <div class="filter-stack">
+            <template v-for="(thing, facet) in selectedFilters">
+              <template v-for="filter in thing">
+                <button
+                  v-bind:key="filter.index"
+                  @click="removeFilter(facet, filter)"
+                  :data-facet="facet"
+                  :value="filter"
+                >{{ filter }}</button>
+              </template>
+            </template>
+          </div>
+        </template>
+        <template v-if="type == 'category'">
+          <div class="facet-links">
+            <div class="facet-acc">
+              <div class="acc-head">
+                <button class="facet-back" @click="goBack"></button>
+                <h3 @click="toggleAccord"
+                  @keyup.enter="toggleAccord" tabindex="0">{{ facet.name }}</h3>
+              </div>
+              <ul class="acc-body">
+                <li v-for="thing in facet.children" :key="thing.id">
+                  <a :href="thing.href" :data-cgid="thing.cgid">{{ thing.name }}</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </template>
+        <template v-if="type == 'heading'">
+          <div class="facet-heading">
+            {{ facet.name }}
+          </div>
+        </template>
+        <template v-if="type == 'filter'">
+          <template v-if="facet.form ==  'swatch'">
+            <div :name="facet.name" class="facet-filter filter-swatch">
+              <div class="facet-acc">
+                <div class="acc-head">
+                  <button class="facet-back" @click="goBack"></button>
+                  <h3 @click="toggleAccord"
+                    @keyup.enter="toggleAccord" tabindex="0">{{ facet.name }}</h3>
+                  <div
+                    v-if="selectedFilters.colors"
+                    class="filter-clear-mobile"
+                    @click="clearFilters('colors')"
+                  >Clear</div>
+                </div>
+                <ul class="acc-body height-scroll">
+                  <li v-for="color in colors" :key="color.id">
+                    <input
+                      type="checkbox"
+                      x-hidden
+                      :id="'facet-swatch-' + color.name"
+                      :value="color.name" />
+                    <label :for="'facet-swatch-' + color.name">
+                      <div class="swatch" :style="'background: ' + color.rgb"></div>
+                      <div class="name">{{ color.name }}</div>
+                    </label>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </template>
+          <template v-if="facet.form ==  'checkbox'">
+            <div :name="facet.name" class="facet-filter filter-checkbox">
+              <div class="facet-acc">
+                <div class="acc-head">
+                  <button class="facet-back" @click="goBack"></button>
+                  <h3 @click="toggleAccord"
+                    @keyup.enter="toggleAccord" tabindex="0">{{ facet.name }}</h3>
+                  <div
+                    v-if="selectedFilters.colors"
+                    class="filter-clear-mobile"
+                    @click="clearFilters('colors')"
+                  >Clear</div>
+                </div>
+                <ul class="acc-body checkbox-list" :set="facetName = facet.name.slugify()">
+                  <li v-for="thing in facet.options"
+                    :key="thing.id"
+                    :set="slug = thing.name.slugify()">
+                    <input x-hidden :id="'facet-' + facetName + '-' + slug"
+                      type="checkbox" :value="thing.name" />
+                    <label :for="'facet-' + facetName + '-' + slug"
+                      :data-qty="thing.count">{{ thing.name }}</label>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </template>
+          <template v-if="facet.form ==  'range'">
+            <div class="facet-filter filter-range">
+              <div class="facet-acc">
+                <div class="acc-head">
+                  <button class="facet-back" @click="goBack"></button>
+                  <h3 @click="toggleAccord"
+                    @keyup.enter="toggleAccord" tabindex="0">{{ facet.name }}</h3>
+                </div>
+                <ul class="acc-body radio-list">
+                  <li v-for="thing in facet.options"
+                    :key="thing.id" :set="slug = thing.name.slugify()">
+                    <input :id="'price-' + slug" x-hidden
+                      type="radio"
+                      name="facet-prices"
+                      :value="thing.name" />
+                    <label :for="'price-' + slug">
+                      <div :data-qty="thing.count">{{ thing.name }}</div>
+                    </label>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </template>
+          <template v-if="facet.form ==  'grid'">
+            <div ref="sizes" class="facet-filter filter-grid">
+              <div class="facet-acc">
+                <div class="acc-head">
+                  <button class="facet-back" @click="goBack"></button>
+                  <h3 @click="toggleAccord"
+                    @keyup.enter="toggleAccord" tabindex="0">Sizes</h3>
+                  <div
+                    v-if="selectedFilters.sizes"
+                    class="filter-clear-mobile"
+                    @click="clearFilters('sizes')"
+                  >Clear</div>
+                </div>
+                <div class="acc-body">
+                  <div class="filter">
+                    <input
+                      v-model="searchSize"
+                      @keyup="doSearch"
+                      type="text"
+                      ref="search"
+                      placeholder="Find Size"
+                    />
+                    <belk-icon height="12" width="12" name="search"></belk-icon>
+                  </div>
+                  <div class="filter-list height-scroll">
+                    <label
+                      v-for="thing in filteredSizes"
+                      v-bind:key="thing.index"
+                      :set="slug = thing.name.slugify()"
+                      :for="'facet-sizes-' + slug">
+                      <input type="checkbox"
+                        x-hidden
+                        :id="'facet-sizes-' + slug"
+                        :value="thing.name"/>
+                      <div>{{ thing.name }}</div>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </template>
+        </template>
+      </div>
     </div>
 
-    <div ref="links" class="facet-links">
+    <!-- <div ref="links" class="facet-links">
       <div class="facet-acc" v-for="cat in links" :key="cat.id">
         <div class="acc-head">
           <button class="facet-back" @click="goBack"></button>
@@ -64,8 +232,7 @@
         </ul>
       </div>
     </div>
-
-    <!-- <div ref="shops" class="facet-shops">
+    <div ref="shops" class="facet-shops">
       <div class="facet-acc">
         <div class="acc-head">
           <button class="facet-back" @click="goBack"></button>
@@ -75,27 +242,15 @@
         <div class="acc-body">[shops options]</div>
       </div>
     </div> -->
-  <div class="filter-header">
-      <div class="ha">Filter By</div>
-      <button
-        v-if="Object.keys(selectedFilters).length"
-        class="filter-clear"
+  <!-- <div class="filter-header">
+    <div class="ha">Filters</div>
+    <button
+      v-if="Object.keys(selectedFilters).length"
+      class="filter-clear"
         @click="clearFilters()"
       >Clear All</button>
-    </div>
-    <div class="filter-stack">
-      <template v-for="(thing, facet) in selectedFilters">
-        <template v-for="filter in thing">
-          <button
-            v-bind:key="filter.index"
-            @click="removeFilter(facet, filter)"
-            :data-facet="facet"
-            :value="filter"
-          >{{ filter }}</button>
-        </template>
-      </template>
-    </div>
-    <div ref="colors" class="facet-colors">
+  </div>
+    <div ref="colors" class="facet-swatch">
       <div class="facet-acc">
         <div class="acc-head">
           <button class="facet-back" @click="goBack"></button>
@@ -112,9 +267,9 @@
             <input
               type="checkbox"
               x-hidden
-              :id="'facet-colors-' + color.name"
+              :id="'facet-swatch-' + color.name"
               :value="color.name" />
-            <label :for="'facet-colors-' + color.name">
+            <label :for="'facet-swatch-' + color.name">
               <div class="swatch" :style="'background: ' + color.rgb"></div>
               <div class="name">{{ color.name }}</div>
             </label>
@@ -221,17 +376,6 @@
       </div>
     </div>
 
-    <div ref="coupons" class="facet-coupons">
-      <div class="facet-acc">
-        <div class="acc-head">
-          <button class="facet-back" @click="goBack"></button>
-          <h3 @click="toggleAccord"
-            @keyup.enter="toggleAccord" tabindex="0">Coupons</h3>
-        </div>
-        <div class="acc-body">[coupons options]</div>
-      </div>
-    </div>
-
     <div ref="promos" class="facet-promos">
       <div class="facet-acc">
         <div class="acc-head">
@@ -242,12 +386,14 @@
         <div class="acc-body">[promos options]</div>
       </div>
     </div>
+
     <div class="mobile-see-results">
       <sh-button
         @click="toggleActive"
         variant="primary"
         click-event="get-filters">See Results</sh-button>
     </div>
+    -->
   </nav>
 </template>
 
@@ -261,6 +407,7 @@ export default {
 
   data() {
     return {
+      facets: [],
       links: [],
       colors: [],
       brands: [],
@@ -306,6 +453,7 @@ export default {
       const links = [];
       let colors, brands, sizes, genders, prices;
       if (obj.nav) {
+        this.facets = obj.nav;
         obj.nav.forEach(thing => {
           switch (thing.type) {
             case 'filter':
@@ -362,19 +510,14 @@ export default {
 
     updateFilters() {
       const selectedFilters = {};
-      const sizes = this.$refs.sizes.querySelectorAll(':checked');
-      const colors = this.$refs.colors.querySelectorAll(':checked');
-      const genders = this.$refs.genders.querySelectorAll(':checked');
-      const promos = this.$refs.promos.querySelectorAll(':checked');
-      const brands = this.$refs.brands.querySelectorAll(':checked');
-      const prices = this.$refs.prices.querySelectorAll(':checked');
-
-      if (sizes.length) selectedFilters.sizes = this.extractVals(sizes);
-      if (colors.length) selectedFilters.colors = this.extractVals(colors);
-      if (genders.length) selectedFilters.genders = this.extractVals(genders);
-      if (promos.length) selectedFilters.promos = this.extractVals(promos);
-      if (brands.length) selectedFilters.brands = this.extractVals(brands);
-      if (prices.length) selectedFilters.prices = this.extractVals(prices);
+      const facets = this.$el.querySelectorAll('.facets-actual .facet-filter');
+      for (let x = 0, l = facets.length; x < l; x += 1) {
+        let name = facets[x].getAttribute('name');
+        if (name) {
+          const values = this.extractVals(facets[x]);
+          if (values.length) selectedFilters[name] = values;
+        }
+      }
       this.$set(this, 'selectedFilters', selectedFilters);
     },
 
@@ -403,7 +546,7 @@ export default {
 
     clearFilters(which) {
       const filtered = which
-        ? this.$refs[which].querySelectorAll(':checked')
+        ? this.$el.querySelectorAll(`[name="${which}"] :checked`)
         : this.$el.querySelectorAll(':checked');
       for (let x = 0, l = filtered.length; x < l; x += 1) {
         filtered[x].checked = false;
@@ -412,12 +555,13 @@ export default {
     },
 
     removeFilter(facet, filter) {
-      const el = this.$refs[facet].querySelector(`[value="${filter}"]`);
+      const el = this.$el.querySelector(`[name="${facet}"] [value="${filter}"]`);
       if (el) el.checked = false;
       this.$emit('update-filters');
     },
 
-    extractVals(els) {
+    extractVals(facet) {
+      const els = facet.querySelectorAll(':checked');
       const vals = [];
       for (let x = 0, l = els.length; x < l; x += 1) {
         vals.push(els[x].value);

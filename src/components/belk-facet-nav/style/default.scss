@@ -186,7 +186,7 @@ belk-facet-nav {
       }
     }
   }
-  .facet-colors {
+  .filter-swatch {
     ul {
       display: flex;
       flex-wrap: wrap;
@@ -257,7 +257,7 @@ belk-facet-nav {
     }
   }
 
-  .facet-sizes {
+  .filter-grid {
     .filter {
       border: 1px solid $lowlight-tertiary;
       display: flex;
