@@ -89,6 +89,8 @@ belk-facet-nav {
     label {
       display: flex;
       align-items: center;
+      text-overflow: ellipsis;
+      white-space: nowrap;
       &:before {
         display: inline-flex;
         height: 20px;
@@ -136,7 +138,6 @@ belk-facet-nav {
       }
     }
   }
-
 
   // .belk-facet-nav {
   // }
@@ -190,7 +191,10 @@ belk-facet-nav {
       display: flex;
       flex-wrap: wrap;
       li {
-        width: 57px;
+        width: 45px;
+        input:checked ~ label .swatch::after {
+          display: flex;
+        }
         button,
         label {
           display: block;
@@ -208,9 +212,6 @@ belk-facet-nav {
             .swatch {
               box-shadow: 0 0 2px 0 black;
             }
-          }
-          input:checked ~ .swatch::after {
-            display: flex;
           }
           .swatch {
             display: flex;
@@ -283,9 +284,9 @@ belk-facet-nav {
       margin-left: -$atomic;
       margin-right: -$atomic;
       label {
-        width: calc(100% / 4);
+        min-width: calc(100% / 4);
         flex-shrink: 1;
-        flex-grow: 2;
+        flex-grow: 4;
         padding: $atomic;
         &:hover {
           div {
@@ -313,6 +314,19 @@ belk-facet-nav {
         border-color: $accent-primary;
         background: $highlight-secondary;
       }
+    }
+  }
+}
+
+[x-hidden] {
+  overflow: hidden;
+  height: 0;
+  width: 0;
+  float: left;
+  &:focus {
+    outline: none !important;
+    + label {
+      background: $highlight-secondary;
     }
   }
 }
