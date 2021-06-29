@@ -96,7 +96,8 @@
         </template>
         <template v-if="type == 'filter'">
           <template v-if="facet.form ==  'swatch'">
-            <div :name="facet.name" class="facet-filter filter-swatch">
+            <div :set="facetName = facet.name.slugify()"
+              :facet-name="facetName" class="facet-filter filter-swatch">
               <div class="facet-acc">
                 <div class="acc-head">
                   <button class="facet-back" @click="goBack"></button>
@@ -125,7 +126,8 @@
             </div>
           </template>
           <template v-if="facet.form ==  'checkbox'">
-            <div :name="facet.name" class="facet-filter filter-checkbox">
+            <div :set="facetName = facet.name.slugify()"
+              :facet-name="facetName" class="facet-filter filter-checkbox">
               <div class="facet-acc">
                 <div class="acc-head">
                   <button class="facet-back" @click="goBack"></button>
@@ -137,7 +139,7 @@
                     @click="clearFilters('colors')"
                   >Clear</div>
                 </div>
-                <ul class="acc-body checkbox-list" :set="facetName = facet.name.slugify()">
+                <ul class="acc-body checkbox-list">
                   <li v-for="thing in facet.options"
                     :key="thing.id"
                     :set="slug = thing.name.slugify()">
@@ -151,7 +153,8 @@
             </div>
           </template>
           <template v-if="facet.form ==  'range'">
-            <div class="facet-filter filter-range">
+            <div :set="facetName = facet.name.slugify()"
+              :facet-name="facetName" class="facet-filter filter-range">
               <div class="facet-acc">
                 <div class="acc-head">
                   <button class="facet-back" @click="goBack"></button>
@@ -174,7 +177,8 @@
             </div>
           </template>
           <template v-if="facet.form ==  'grid'">
-            <div ref="sizes" class="facet-filter filter-grid">
+            <div :set="facetName = facet.name.slugify()"
+              :facet-name="facetName" class="facet-filter filter-grid">
               <div class="facet-acc">
                 <div class="acc-head">
                   <button class="facet-back" @click="goBack"></button>
@@ -510,9 +514,9 @@ export default {
 
     updateFilters() {
       const selectedFilters = {};
-      const facets = this.$el.querySelectorAll('.facets-actual .facet-filter');
+      const facets = this.$el.querySelectorAll('[facet-name]');
       for (let x = 0, l = facets.length; x < l; x += 1) {
-        let name = facets[x].getAttribute('name');
+        let name = facets[x].getAttribute('facet-name');
         if (name) {
           const values = this.extractVals(facets[x]);
           if (values.length) selectedFilters[name] = values;
@@ -546,7 +550,7 @@ export default {
 
     clearFilters(which) {
       const filtered = which
-        ? this.$el.querySelectorAll(`[name="${which}"] :checked`)
+        ? this.$el.querySelectorAll(`[facet-name="${which}"] :checked`)
         : this.$el.querySelectorAll(':checked');
       for (let x = 0, l = filtered.length; x < l; x += 1) {
         filtered[x].checked = false;
@@ -555,7 +559,7 @@ export default {
     },
 
     removeFilter(facet, filter) {
-      const el = this.$el.querySelector(`[name="${facet}"] [value="${filter}"]`);
+      const el = this.$el.querySelector(`[facet-name="${facet}"] [value="${filter}"]`);
       if (el) el.checked = false;
       this.$emit('update-filters');
     },
