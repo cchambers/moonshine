@@ -8,7 +8,12 @@
         <li v-for="facet in facets"
           :key="facet.id"
           @click="showNav"
-          :facet-target="facet.name.slugify()">{{ facet.name }}</li>
+          :facet-target="facet.name.slugify()">{{ facet.name }}
+          <div class="count"
+            v-if="selectedFilters[facet.name.slugify()]">
+            ({{ selectedFilters[facet.name.slugify()].length }})
+          </div>
+        </li>
       </ul>
     </div>
     <div class="filter-header">
