@@ -3,18 +3,35 @@
     <div class="mobile close-button" @click="toggleActive">
       <belk-icon name="close" height="22" width="22"></belk-icon>
     </div>
-    <div class="mobile-base height-scroll">
+    <div class="mobile-base">
       <ul>
         <li v-for="facet in facets"
           :key="facet.id"
           @click="showNav"
-          :facet-target="facet.name.slugify()">
-          {{ facet.name }}
-        </li>
+          :facet-target="facet.name.slugify()">{{ facet.name }}</li>
       </ul>
     </div>
-
-    <div ref="pickup" class="facet-pickup">
+    <div class="filter-header">
+      <div class="ha">Filters</div>
+      <button
+        v-if="Object.keys(selectedFilters).length"
+        class="filter-clear"
+          @click="clearFilters()"
+        >Clear All</button>
+    </div>
+    <div class="filter-stack">
+      <template v-for="(thing, facet) in selectedFilters">
+        <template v-for="filter in thing">
+          <button
+            v-bind:key="filter.index"
+            @click="removeFilter(facet, filter)"
+            :data-facet="facet"
+            :value="filter"
+          >{{ filter }}</button>
+        </template>
+      </template>
+    </div>
+    <div ref="pickup" class="facet-pickup" facet-name="pickup">
       <div class="facet-acc">
         <div class="acc-head">
           <h3 @click="toggleAccord"
@@ -27,30 +44,10 @@
     </div>
     <div class="facets-actual">
       <div v-for="facet in facets" :key="facet.id" :set="type = facet.type">
-        <template v-if="type == 'active-filters'">
-          <div class="filter-header">
-            <div class="ha">Filters</div>
-            <button
-              v-if="Object.keys(selectedFilters).length"
-              class="filter-clear"
-                @click="clearFilters()"
-              >Clear All</button>
-          </div>
-          <div class="filter-stack">
-            <template v-for="(thing, facet) in selectedFilters">
-              <template v-for="filter in thing">
-                <button
-                  v-bind:key="filter.index"
-                  @click="removeFilter(facet, filter)"
-                  :data-facet="facet"
-                  :value="filter"
-                >{{ filter }}</button>
-              </template>
-            </template>
-          </div>
-        </template>
+        <template v-if="type == 'active-filters'"></template>
         <template v-if="type == 'category'">
-          <div class="facet-links">
+          <div :set="facetName = facet.name.slugify()"
+              :facet-name="facetName" class="facet-links">
             <div class="facet-acc">
               <div class="acc-head">
                 <button class="facet-back" @click="goBack"></button>
@@ -80,13 +77,13 @@
                   <h3 @click="toggleAccord"
                     @keyup.enter="toggleAccord" tabindex="0">{{ facet.name }}</h3>
                   <div
-                    v-if="selectedFilters.colors"
+                    v-if="selectedFilters[facetName]"
                     class="filter-clear-mobile"
-                    @click="clearFilters('colors')"
+                    @click="clearFilters"
                   >Clear</div>
                 </div>
                 <ul class="acc-body height-scroll">
-                  <li v-for="color in colors" :key="color.id">
+                  <li v-for="color in facet.options" :key="color.id">
                     <input
                       type="checkbox"
                       x-hidden
@@ -110,9 +107,9 @@
                   <h3 @click="toggleAccord"
                     @keyup.enter="toggleAccord" tabindex="0">{{ facet.name }}</h3>
                   <div
-                    v-if="selectedFilters.colors"
+                    v-if="selectedFilters[facetName]"
                     class="filter-clear-mobile"
-                    @click="clearFilters('colors')"
+                    @click="clearFilters"
                   >Clear</div>
                 </div>
                 <ul class="acc-body checkbox-list">
@@ -161,9 +158,9 @@
                   <h3 @click="toggleAccord"
                     @keyup.enter="toggleAccord" tabindex="0">Sizes</h3>
                   <div
-                    v-if="selectedFilters.sizes"
+                    v-if="selectedFilters[facetName]"
                     class="filter-clear-mobile"
-                    @click="clearFilters('sizes')"
+                    @click="clearFilters"
                   >Clear</div>
                 </div>
                 <div class="acc-body">
@@ -247,9 +244,9 @@ export default {
       this.$bus.$on('get-filters', this.sendFilters);
       this.$bus.$on('show-filters', this.toggleActive);
       this.$bus.$on('clear-filters', this.clearFilters);
-      this.$bus.$on('facet-nav-data', e => {
-        console.log(e);
-      });
+      // this.$bus.$on('facet-nav-data', e => {
+      //   console.log(e);
+      // });
     },
 
     processData(obj) {
@@ -258,22 +255,26 @@ export default {
       if (obj.nav) {
         this.filterData = obj.nav.shift();
         this.facets = obj.nav;
+        for (let x = 0, l = this.facets.length; x < l; x += 1) {
+          if (this.facets[x].name  === 'Size') {
+            this.searchableSizes = this.facets[x].options;
+            this.filteredSizes = this.searchableSizes;
+          }
+        }
       }
     },
 
     showNav(e) {
       const target = e.target;
       const which = target.getAttribute('facet-target');
-      console.log(which);
       if (which) {
         const el = this.$el.querySelector('[facet-name="'+which+'"]');
-        console.log(el);
         if (el) el.classList.add('active');
       }
     },
 
     mobileBack() {
-      const el = this.$el.querySelectorAll('[class*="facet-"].active');
+      const el = this.$el.querySelectorAll('[facet-name"].active');
       if (el) el.classList.remove('active');
     },
 
@@ -315,7 +316,7 @@ export default {
     },
 
     goBack() {
-      const el = this.$el.querySelector('[class^="facet-"].active');
+      const el = this.$el.querySelector('[facet-name].active');
       if (el) el.classList.remove('active');
     },
 
@@ -332,8 +333,12 @@ export default {
       }
     },
 
-    clearFilters(which) {
-      const filtered = which
+    clearFilters(e) {
+      const target = e.target;
+      const el = target.closest('[facet-name]');
+      const which = '';
+      if (el) which = el.getAttribute('facet-name');
+      const filtered = (el)
         ? this.$el.querySelectorAll(`[facet-name="${which}"] :checked`)
         : this.$el.querySelectorAll(':checked');
       for (let x = 0, l = filtered.length; x < l; x += 1) {

@@ -78,12 +78,10 @@ belk-facet-nav {
       }
     }
     .height-scroll,
-    [class*="facet-"] > ul {
+    [facet-name] > ul {
       overflow-y: auto;
       @include no-scroll-bar;
-      @include lg {
-        max-height: 282px;
-      }
+      max-height: 282px;
     }
   }
 
@@ -193,6 +191,11 @@ belk-facet-nav {
     ul {
       display: flex;
       flex-wrap: wrap;
+      justify-content: space-between;
+      &::after {
+        content: "";
+        flex: auto;
+      }
       li {
         width: 45px;
         input:checked ~ label .swatch::after {
