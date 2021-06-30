@@ -49,6 +49,7 @@ belk-facet-nav {
         color: $lowlight-primary;
         line-height: 35px;
         cursor: pointer;
+        font-weight: bold;
         &:after {
           content: 'expand_more';
           font-family: 'Material Icons Round' !important;
@@ -78,9 +79,11 @@ belk-facet-nav {
     }
     .height-scroll,
     [class*="facet-"] > ul {
-      max-height: 282px;
       overflow-y: auto;
       @include no-scroll-bar;
+      @include lg {
+        max-height: 282px;
+      }
     }
   }
 
