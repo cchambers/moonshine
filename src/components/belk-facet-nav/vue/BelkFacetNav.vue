@@ -201,6 +201,11 @@
         </template>
       </div>
     </div>
+    <div class="mobile-footer">
+      <sh-button variant="primary" full @click="toggleActive" click-event="see-filter-results">
+        See Results
+      </sh-button>
+    </div>
   </nav>
 </template>
 

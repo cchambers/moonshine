@@ -49,6 +49,19 @@ $itemHeight: 48px;
         }
       }
     }
+    .mobile-footer {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 80px;
+      padding: 0 24px;
+      background: $highlight-primary;
+      background: linear-gradient(0deg, $highlight-primary 70%, rgba(255,255,255,0) 100%);
+    }
     .acc-body {
       padding: 16px 24px;
       max-height: calc(100vh - 63px);
