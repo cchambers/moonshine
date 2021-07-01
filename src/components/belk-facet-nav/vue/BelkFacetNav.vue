@@ -341,7 +341,7 @@ export default {
     clearFilters(e) {
       const target = e.target;
       const el = target.closest('[facet-name]');
-      const which = '';
+      let which = '';
       if (el) which = el.getAttribute('facet-name');
       const filtered = (el)
         ? this.$el.querySelectorAll(`[facet-name="${which}"] :checked`)

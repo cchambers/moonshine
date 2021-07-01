@@ -324,6 +324,7 @@ belk-facet-nav {
   }
 }
 
+
 [x-hidden] {
   overflow: hidden;
   height: 0;
@@ -331,8 +332,15 @@ belk-facet-nav {
   float: left;
   &:focus {
     outline: none !important;
-    + label {
-      background: $highlight-secondary;
+  }
+}
+
+[interaction="keyboard"] {
+  [x-hidden] {
+    &:focus {
+      + label {
+        background: $highlight-secondary;
+      }
     }
   }
 }
