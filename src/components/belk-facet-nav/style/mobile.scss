@@ -2,6 +2,10 @@
 $itemHeight: 48px;
 @media screen and (max-width: 767px) {
   belk-facet-nav {
+    h3 {
+      font-weight: bold;
+      font-size: 18px;
+    }
     [set="heading"] {
       display: none;
     }
@@ -22,6 +26,7 @@ $itemHeight: 48px;
       text-align: center;
     }
     .mobile-base {
+      font-size: 1.6rem;
       background: $highlight-primary;
       ul {
         list-style: none;
@@ -30,6 +35,7 @@ $itemHeight: 48px;
         max-height: calc(100vh - 63px);
         overflow-y: auto;
         margin-top: 63px !important;
+        padding-bottom: 63px;
       }
       li {
         display: flex;
@@ -66,6 +72,10 @@ $itemHeight: 48px;
       padding: 16px 24px;
       max-height: calc(100vh - 63px);
       overflow-y: auto;
+      font-size: 1.6rem;
+      a {
+        text-decoration: none;
+      }
     }
     .facet-back {
       height: 100%;

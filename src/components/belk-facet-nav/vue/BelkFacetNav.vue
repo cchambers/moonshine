@@ -63,7 +63,8 @@
               </div>
               <ul class="acc-body">
                 <li v-for="thing in facet.children" :key="thing.id">
-                  <a :href="thing.href" :data-cgid="thing.cgid">{{ thing.name }}</a>
+                  <a :href="thing.href" :data-cgid="thing.cgid"
+                    :data-qty="thing.count">{{ thing.name }}</a>
                 </li>
               </ul>
             </div>
@@ -144,13 +145,27 @@
                 <ul class="acc-body radio-list">
                   <li v-for="thing in facet.options"
                     :key="thing.id" :set="slug = thing.name.slugify()">
-                    <input :id="'price-' + slug" x-hidden
+                    <input :id="'range-' + slug" x-hidden
                       type="radio"
-                      name="facet-prices"
+                      name="facet-price"
                       :value="thing.name" />
-                    <label :for="'price-' + slug">
+                    <label :for="'range-' + slug">
                       <div :data-qty="thing.count">{{ thing.name }}</div>
                     </label>
+                  </li>
+                  <li>
+                    <input id="range-custom" x-hidden
+                      type="radio"
+                      name="facet-price"
+                      value="custom" />
+                    <label for="range-custom">
+                      <div>Custom Range</div>
+                    </label>
+                    <div>
+                      <input type="text" name="range-from" />
+                      to
+                      <input type="text" name="range-to" />
+                    </div>
                   </li>
                 </ul>
               </div>
@@ -338,10 +353,10 @@ export default {
       this.$el.classList.toggle('active');
       const cl = document.documentElement.classList;
       if (this.navActive)  {
-        cl.add('filters-active');
+        cl.add('scroll-block');
         this.$refs.basescroll.scrollTop = 0;
       }  else {
-        cl.remove('filters-active');
+        cl.remove('scroll-block');
         this.goBack();
       }
     },

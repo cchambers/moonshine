@@ -3,6 +3,13 @@
 belk-facet-nav {
   display: block;
   color: $lowlight-primary;
+  [data-qty]::after {
+    display: inline-block;
+    margin-left: $atomic;
+    content: "(" attr(data-qty) ")";
+    color: $lowlight-tertiary;
+    font-weight: normal !important;
+  }
   ul,
   input[type] {
     list-style: none;
@@ -64,13 +71,6 @@ belk-facet-nav {
     
 
     li {
-      [data-qty]::after {
-        display: inline-block;
-        margin-left: $atomic;
-        content: "(" attr(data-qty) ")";
-        color: $lowlight-tertiary;
-        font-weight: normal !important;
-      }
       a, > label {
         display: block;
         color: $lowlight-primary;
@@ -82,6 +82,7 @@ belk-facet-nav {
     ul.acc-body {
       overflow-y: auto;
       max-height: 282px;
+      padding-bottom: 60px;
       @include no-scroll-bar;
     }
   }
@@ -346,7 +347,7 @@ belk-facet-nav {
   }
 }
 
-.filters-active lib-nav,
-.filters-active lib-control-panel {
+.scroll-block lib-nav,
+.scroll-block lib-control-panel {
   display: none !important;
 }
