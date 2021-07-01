@@ -1,5 +1,5 @@
 /* primary variant */
-
+$itemHeight: 48px;
 @media screen and (max-width: 767px) {
   belk-facet-nav {
     [set="heading"] {
@@ -50,7 +50,7 @@
       }
     }
     .acc-body {
-      padding: 0 24px;
+      padding: 16px 24px;
       max-height: calc(100vh - 63px);
       overflow-y: auto;
     }
@@ -163,14 +163,14 @@
     .checkbox-list,
     .radio-list {
       label {
-        height: 48px;
+        height: $itemHeight;
       }
     }
     .facet-links {
       a {
         display: flex;
         align-items: center;
-        height: 48px;
+        height: $itemHeight;
         color: $lowlight-primary;
       }
     }
