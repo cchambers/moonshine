@@ -1,10 +1,12 @@
 <template>
-  <nav class="belk-facet-nav" :variant="variant" @change="updateFilters">
+  <nav class="belk-facet-nav"
+    :class="{ active: navActive }"
+    :variant="variant" @change="updateFilters">
     <div class="mobile close-button" @click="toggleActive">
       <belk-icon name="close" height="22" width="22"></belk-icon>
     </div>
     <div class="mobile-base">
-      <ul>
+      <ul ref="basescroll">
         <li v-for="facet in facets"
           :key="facet.id"
           @click="showNav"
@@ -223,6 +225,7 @@ export default {
       searchableSizes: [],
       filteredSizes: [],
       selectedFilters: {},
+      navActive: false,
     };
   },
 
@@ -326,9 +329,16 @@ export default {
     },
 
     toggleActive() {
+      this.navActive = !this.navActive;
       this.$el.classList.toggle('active');
-      document.documentElement.classList.toggle('filters-active');
-      this.goBack();
+      const cl = document.documentElement.classList;
+      if (this.navActive)  {
+        cl.add('filters-active');
+        this.$refs.basescroll.scrollTop = 0;
+      }  else {
+        cl.remove('filters-active');
+        this.goBack();
+      }
     },
 
     isFiltered(which) {

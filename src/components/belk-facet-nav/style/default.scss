@@ -78,10 +78,10 @@ belk-facet-nav {
       }
     }
     .height-scroll,
-    [facet-name] > ul {
+    ul.acc-body {
       overflow-y: auto;
-      @include no-scroll-bar;
       max-height: 282px;
+      @include no-scroll-bar;
     }
   }
 
