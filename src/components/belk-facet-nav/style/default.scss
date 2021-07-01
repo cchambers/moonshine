@@ -49,6 +49,7 @@ belk-facet-nav {
         color: $lowlight-primary;
         line-height: 35px;
         cursor: pointer;
+        font-weight: bold;
         &:after {
           content: 'expand_more';
           font-family: 'Material Icons Round' !important;
@@ -77,10 +78,10 @@ belk-facet-nav {
       }
     }
     .height-scroll,
-    [class*="facet-"] > ul {
-      max-height: 282px;
+    [facet-name] > ul {
       overflow-y: auto;
       @include no-scroll-bar;
+      max-height: 282px;
     }
   }
 
@@ -89,6 +90,8 @@ belk-facet-nav {
     label {
       display: flex;
       align-items: center;
+      text-overflow: ellipsis;
+      white-space: nowrap;
       &:before {
         display: inline-flex;
         height: 20px;
@@ -137,7 +140,6 @@ belk-facet-nav {
     }
   }
 
-
   // .belk-facet-nav {
   // }
 
@@ -185,12 +187,20 @@ belk-facet-nav {
       }
     }
   }
-  .facet-colors {
+  .filter-swatch {
     ul {
       display: flex;
       flex-wrap: wrap;
+      justify-content: space-between;
+      &::after {
+        content: "";
+        flex: auto;
+      }
       li {
-        width: 57px;
+        width: 45px;
+        input:checked ~ label .swatch::after {
+          display: flex;
+        }
         button,
         label {
           display: block;
@@ -208,9 +218,6 @@ belk-facet-nav {
             .swatch {
               box-shadow: 0 0 2px 0 black;
             }
-          }
-          input:checked ~ .swatch::after {
-            display: flex;
           }
           .swatch {
             display: flex;
@@ -256,7 +263,7 @@ belk-facet-nav {
     }
   }
 
-  .facet-sizes {
+  .filter-grid {
     .filter {
       border: 1px solid $lowlight-tertiary;
       display: flex;
@@ -283,9 +290,9 @@ belk-facet-nav {
       margin-left: -$atomic;
       margin-right: -$atomic;
       label {
-        width: calc(100% / 4);
+        min-width: calc(100% / 4);
         flex-shrink: 1;
-        flex-grow: 2;
+        flex-grow: 4;
         padding: $atomic;
         &:hover {
           div {
@@ -311,6 +318,27 @@ belk-facet-nav {
         border-width: 2px;
         color: $accent-primary;
         border-color: $accent-primary;
+        background: $highlight-secondary;
+      }
+    }
+  }
+}
+
+
+[x-hidden] {
+  overflow: hidden;
+  height: 0;
+  width: 0;
+  float: left;
+  &:focus {
+    outline: none !important;
+  }
+}
+
+[interaction="keyboard"] {
+  [x-hidden] {
+    &:focus {
+      + label {
         background: $highlight-secondary;
       }
     }
