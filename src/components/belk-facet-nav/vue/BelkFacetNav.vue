@@ -339,11 +339,13 @@ export default {
     },
 
     clearFilters(e) {
-      const target = e.target;
-      const el = target.closest('[facet-name]');
       let which = '';
-      if (el) which = el.getAttribute('facet-name');
-      const filtered = (el)
+      if (e)  {
+        const target = e.target;
+        const el = target.closest('[facet-name]');
+        if (el) which = el.getAttribute('facet-name');
+      }
+      const filtered = (which)
         ? this.$el.querySelectorAll(`[facet-name="${which}"] :checked`)
         : this.$el.querySelectorAll(':checked');
       for (let x = 0, l = filtered.length; x < l; x += 1) {
