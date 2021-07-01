@@ -50,7 +50,7 @@
       }
     }
     .acc-body {
-      padding: $rem;
+      padding: 0 24px;
       max-height: calc(100vh - 63px);
       overflow-y: auto;
     }
@@ -169,6 +169,7 @@
     .facet-links {
       a {
         display: flex;
+        align-items: center;
         height: 48px;
         color: $lowlight-primary;
       }
