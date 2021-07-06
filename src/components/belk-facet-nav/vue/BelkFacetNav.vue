@@ -57,7 +57,7 @@
     <div class="facets-actual">
       <div v-for="facet in facets" :key="facet.id" :set="type = facet.type">
         <template v-if="type == 'active-filters'"></template>
-        <template v-if="type == 'category'">
+        <template v-if="type == 'categoryx'">
           <div :set="facetName = facet.name.slugify()" :facet-name="facetName" class="facet-links">
             <div :class="{ 'active': facet.expanded }" class="facet-acc">
               <div class="acc-head">
@@ -141,20 +141,17 @@
                 </div>
                 <div class="acc-body">
                   <div class="filter" v-if="facet.search">
-                    <input
-                      @keyup="doSearch"
-                      type="text"
-                      :placeholder="'Find ' + facet.name"
-                    />
+                    <input @keyup="doSearch" type="text" :placeholder="'Find ' + facet.name" />
                     <belk-icon height="12" width="12" name="search"></belk-icon>
                   </div>
                   <div :class="{ 'filter-list': facet.search }" class="height-scroll">
                     <ul class="checkbox-list">
                       <template v-if="facet.search">
                         <li
-                          v-for="thing in searchableData[facet.name.slugify()]"
+                          v-for="thing in filteredData[facet.name.slugify()]"
                           :key="thing.id"
-                          :set="slug = thing.name.slugify()">
+                          :set="slug = thing.name.slugify()"
+                        >
                           <input
                             x-hidden
                             :id="'facet-' + facetName + '-' + slug"
@@ -172,7 +169,8 @@
                         <li
                           v-for="thing in facet.options"
                           :key="thing.id"
-                          :set="slug = thing.name.slugify()">
+                          :set="slug = thing.name.slugify()"
+                        >
                           <input
                             x-hidden
                             :id="'facet-' + facetName + '-' + slug"
@@ -313,6 +311,7 @@
 </template>
 
 <script>
+import _ from 'lodash';
 import ComponentPrototype from '../../component-prototype';
 
 export default {
@@ -351,7 +350,6 @@ export default {
 
   created() {
     this.filteredSizes = this.searchableSizes;
-    this.filteredData = this.searchableData;
   },
 
   mounted() {
@@ -381,7 +379,7 @@ export default {
           const facet = this.facets[x];
           if (facet.search) {
             const slug = facet.name.slugify();
-            this.searchableData[slug]  = facet.options;
+            this.searchableData[slug] = facet.options;
           }
           if (facet.name === 'Size') {
             this.searchableSizes = facet.options;
@@ -389,6 +387,7 @@ export default {
           }
         }
       }
+      this.filteredData = _.cloneDeep(this.searchableData);
     },
 
     showNav(e) {
@@ -415,13 +414,14 @@ export default {
       let value = el.value;
       const facet = e.target.closest('[facet-name]').getAttribute('facet-name');
       if (value === '') {
-        this.filteredData[facet] = this.searchableData[facet];
+        this.$set(this.filteredData, facet, _.cloneDeep(this.searchableData[facet]));
       } else {
         value = value.toLowerCase();
-        const filtered = this.searchableData[facet].filter(
-          item => item.name.toLowerCase().indexOf(value) >= 0
+        const filterTest = _.cloneDeep(this.searchableData[facet]);
+        const filtered = filterTest.filter(
+          item => item.name.toLowerCase().indexOf(value) >= 0,
         );
-        this.filteredData[facet] = filtered;
+        this.$set(this.filteredData, facet, filtered);
         this.$forceUpdate();
       }
     },
@@ -433,20 +433,7 @@ export default {
       } else {
         value = value.toLowerCase();
         this.filteredSizes = this.searchableSizes.filter(
-          item => item.name.toLowerCase().indexOf(value) >= 0
-        );
-      }
-    },
-
-    doBrandSearch(e) {
-      let value = this.searchBrand;
-      if (value === '') {
-        this.filteredBrands = this.searchableBrands;
-      } else {
-        value = value.toLowerCase();
-        this.filteredBrands = this.searchableBrands.filter(
           item => item.name.toLowerCase().indexOf(value) >= 0,
-          // || (item.description.toLowerCase().indexOf(value) >= 0)
         );
       }
     },
