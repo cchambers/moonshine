@@ -57,7 +57,7 @@
     <div class="facets-actual">
       <div v-for="facet in facets" :key="facet.id" :set="type = facet.type">
         <template v-if="type == 'active-filters'"></template>
-        <template v-if="type == 'categoryx'">
+        <template v-if="type == 'category'">
           <div :set="facetName = facet.name.slugify()" :facet-name="facetName" class="facet-links">
             <div :class="{ 'active': facet.expanded }" class="facet-acc">
               <div class="acc-head">
@@ -267,8 +267,7 @@
                 <div class="acc-body">
                   <div class="filter">
                     <input
-                      v-model="searchSize"
-                      @keyup="doSizeSearch"
+                      @keyup="doSearch"
                       type="text"
                       ref="search"
                       placeholder="Find Size"
@@ -277,7 +276,7 @@
                   </div>
                   <div class="filter-list height-scroll">
                     <label
-                      v-for="thing in filteredSizes"
+                      v-for="thing in filteredData[facet.name.slugify()]"
                       v-bind:key="thing.index"
                       :set="slug = thing.name.slugify()"
                       :for="'facet-sizes-' + slug"
@@ -331,25 +330,10 @@ export default {
       searchableData: {},
       filteredData: {},
       searchSize: '',
-      searchableSizes: [],
-      filteredSizes: [],
-      searchBrand: '',
-      searchableBrands: [],
-      filteredBrands: [],
       selectedFilters: {},
       selectedFilterHrefs: [],
       navActive: false,
     };
-  },
-
-  watch: {
-    searchableSizes(val) {
-      this.filteredSizes = val;
-    },
-  },
-
-  created() {
-    this.filteredSizes = this.searchableSizes;
   },
 
   mounted() {
@@ -380,10 +364,6 @@ export default {
           if (facet.search) {
             const slug = facet.name.slugify();
             this.searchableData[slug] = facet.options;
-          }
-          if (facet.name === 'Size') {
-            this.searchableSizes = facet.options;
-            this.filteredSizes = this.searchableSizes;
           }
         }
       }
@@ -423,18 +403,6 @@ export default {
         );
         this.$set(this.filteredData, facet, filtered);
         this.$forceUpdate();
-      }
-    },
-
-    doSizeSearch(e) {
-      let value = this.searchSize;
-      if (value === '') {
-        this.filteredSizes = this.searchableSizes;
-      } else {
-        value = value.toLowerCase();
-        this.filteredSizes = this.searchableSizes.filter(
-          item => item.name.toLowerCase().indexOf(value) >= 0,
-        );
       }
     },
 
