@@ -1,7 +1,17 @@
 /* primary variant */
-
+$itemHeight: 48px;
 @media screen and (max-width: 767px) {
   belk-facet-nav {
+    h3 {
+      font-weight: bold;
+      font-size: 18px;
+    }
+    [set="heading"] {
+      display: none;
+    }
+    .height-scroll {
+      padding-bottom: 60px;
+    }
     .close-button {
       position: fixed;
       display: flex;
@@ -19,11 +29,16 @@
       text-align: center;
     }
     .mobile-base {
+      font-size: 1.6rem;
       background: $highlight-primary;
       ul {
         list-style: none;
         padding: 0;
         margin: 0;
+        max-height: calc(100vh - 63px);
+        overflow-y: auto;
+        margin-top: 63px !important;
+        padding-bottom: 63px;
       }
       li {
         display: flex;
@@ -43,8 +58,27 @@
         }
       }
     }
+    .mobile-footer {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 80px;
+      padding: 0 24px;
+      background: $highlight-primary;
+      background: linear-gradient(0deg, $highlight-primary 70%, rgba(255,255,255,0) 100%);
+    }
     .acc-body {
-      padding: $rem;
+      padding: 16px 24px;
+      max-height: calc(100vh - 63px);
+      overflow-y: auto;
+      font-size: 1.6rem;
+      a {
+        text-decoration: none;
+      }
     }
     .facet-back {
       height: 100%;
@@ -88,9 +122,8 @@
       &.active {
         display: flex;
       }
-      > [class^="facet-"] {
+      [facet-name] {
         position: absolute;
-        max-height: calc(100vh - 64px);
         inset: 0;
         background: $highlight-primary;
         transform: translateX(-100%);
@@ -101,17 +134,22 @@
       }
     }
     .filter-header,
-    .facet-acc .acc-head {
+    .facet-acc .acc-head {  
       height: 63px;
       background: $highlight-secondary;
       display: flex;
       align-items: center;
       justify-content: flex-start;
+      transform: translateX(0) !important;
     }
 
     .filter-header {
       padding: 0 24px;
       justify-content: flex-start;
+      position: fixed;
+      top: 0;
+      right: 0;
+      left: 0;
       .ha {
         font-weight: bold;
         font-size: 18px;
@@ -131,16 +169,35 @@
       margin-left: 0.5em;
     }
 
-    .facet-colors {
+    .filter-swatch {
       ul {
         justify-content: space-between;
-        li label {
-          width: 60px;
+        li {
+          width: 20%;
+          margin-bottom: $little;
+          label {
+            width: 60px;
+          }
         }
       }
       .swatch {
         height: 50px !important;
         width: 50px !important;
+      }
+    }
+
+    .checkbox-list,
+    .radio-list {
+      label {
+        height: $itemHeight;
+      }
+    }
+    .facet-links {
+      a {
+        display: flex;
+        align-items: center;
+        height: $itemHeight;
+        color: $lowlight-primary;
       }
     }
 
