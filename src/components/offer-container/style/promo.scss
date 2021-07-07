@@ -3,7 +3,7 @@
   flex-wrap: nowrap;
   margin-left: -1rem;
   belk-coupon {
-    width: 260px;
+    width: 296px;
     &:last-child {
       margin-right: 1rem;
     }
@@ -16,6 +16,17 @@
     .coupon-spacer,
     .coupon-extra {
       display: none;
+    }
+    .coupon-type {
+      text-align: left;
+      margin-left: 1rem;
+      border-bottom: none;
+    }
+    .coupon-description {
+      order: 1;
+    }
+    .coupon-buttons {
+      order: 2;
     }
   }
 
