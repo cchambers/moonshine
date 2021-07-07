@@ -16,6 +16,9 @@ belk-facet-nav {
     padding: 0;
     margin: 0;
   }
+  a {
+    text-decoration: none !important;
+  }
   @include md {
     [class*="mobile"],
     .facet-back {

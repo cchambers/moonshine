@@ -346,7 +346,7 @@ export default {
     /* eslint-disable */
     events() {
       this.$on('update-filters', this.updateFilters);
-      this.$bus.$on('get-filters', this.sendFilters);
+      this.$bus.$on('get-filters', () => { this.sendFilters(true) });
       this.$bus.$on('show-filters', this.toggleActive);
       this.$bus.$on('clear-filters', this.clearFilters);
       // this.$bus.$on('facet-nav-data', e => {
@@ -421,10 +421,11 @@ export default {
       }
       this.$set(this, 'selectedFilters', selectedFilters);
       this.$set(this, 'selectedFilterHrefs', selectedFilterHrefs);
+      this.sendFilters();
     },
 
-    sendFilters() {
-      this.updateFilters();
+    sendFilters(update) {
+      if (update) this.updateFilters();
       this.$bus.$emit('facet-filters', this.selectedFilters);
       this.$bus.$emit('facet-links', this.selectedFilterHrefs);
     },
