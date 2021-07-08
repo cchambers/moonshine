@@ -303,7 +303,7 @@
         variant="primary"
         full
         @click="toggleActive"
-        click-event="see-filter-results"
+        click-event="get-filters"
       >See Results</sh-button>
     </div>
   </nav>
@@ -421,7 +421,7 @@ export default {
       }
       this.$set(this, 'selectedFilters', selectedFilters);
       this.$set(this, 'selectedFilterHrefs', selectedFilterHrefs);
-      this.sendFilters();
+      if (!this.isMobile()) this.sendFilters();
     },
 
     sendFilters(update) {
