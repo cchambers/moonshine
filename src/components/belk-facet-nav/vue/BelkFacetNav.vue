@@ -416,7 +416,7 @@ export default {
           const values = this.extractVals(facets[x]);
           if (values.length) selectedFilters[name] = values;
           const links = this.extractLinks(facets[x]);
-          if (links.length) selectedFilterHrefs.push(links);
+          if (links.length) selectedFilterHrefs.push(...links);
         }
       }
       this.$set(this, 'selectedFilters', selectedFilters);
