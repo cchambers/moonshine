@@ -108,6 +108,7 @@
                       x-hidden
                       :id="'facet-swatch-' + color.name"
                       :value="color.name"
+                      :selected="color.selected"
                       :href="color.href"
                     />
                     <label :for="'facet-swatch-' + color.name">
@@ -157,6 +158,7 @@
                             :id="'facet-' + facetName + '-' + slug"
                             type="checkbox"
                             :value="thing.name"
+                            :selected="thing.selected"
                             :href="thing.href"
                           />
                           <label
@@ -176,6 +178,7 @@
                             :id="'facet-' + facetName + '-' + slug"
                             type="checkbox"
                             :value="thing.name"
+                            :selected="thing.selected"
                             :href="thing.href"
                           />
                           <label
