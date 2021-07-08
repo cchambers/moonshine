@@ -490,11 +490,10 @@ export default {
 
     extractLinks(facet) {
       const els = facet.querySelectorAll(':checked');
-      let vals = [];
+      const vals = [];
       for (let x = 0, l = els.length; x < l; x += 1) {
         vals.push(els[x].getAttribute('href'));
       }
-      console.log('extracted', vals);
       return vals;
     },
 
