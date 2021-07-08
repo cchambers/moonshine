@@ -416,7 +416,7 @@ export default {
           const values = this.extractVals(facets[x]);
           if (values.length) selectedFilters[name] = values;
           const links = this.extractLinks(facets[x]);
-          if (links.length) selectedFilterHrefs.push(links);
+          if (links.length) selectedFilterHrefs.push(...links);
         }
       }
       this.$set(this, 'selectedFilters', selectedFilters);
@@ -490,10 +490,11 @@ export default {
 
     extractLinks(facet) {
       const els = facet.querySelectorAll(':checked');
-      const vals = [];
+      let vals = [];
       for (let x = 0, l = els.length; x < l; x += 1) {
         vals.push(els[x].getAttribute('href'));
       }
+      console.log('extracted', vals);
       return vals;
     },
 
