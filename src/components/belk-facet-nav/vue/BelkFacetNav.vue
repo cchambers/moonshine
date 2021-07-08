@@ -488,11 +488,11 @@ export default {
       return vals;
     },
 
-    extractLinks() {
-      const els = this.$el.querySelectorAll(':checked');
+    extractLinks(facet) {
+      const els = facet.querySelectorAll(':checked');
       const vals = [];
       for (let x = 0, l = els.length; x < l; x += 1) {
-        vals.push(els[x].href);
+        vals.push(els[x].getAttribute('href'));
       }
       return vals;
     },
