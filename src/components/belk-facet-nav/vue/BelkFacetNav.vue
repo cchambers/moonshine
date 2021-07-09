@@ -238,9 +238,9 @@
                       <div>Custom Range</div>
                     </label>
                     <div class="custom-range">
-                      <input type="text" name="range-from" />
+                      <input type="text" id="range-from" name="range-from" />
                       to
-                      <input type="text" name="range-to" />
+                      <input type="text" id="range-to" name="range-to" />
                     </div>
                   </li>
                 </ul>
