@@ -360,8 +360,9 @@ export default {
     processData(obj) {
       const links = [];
       if (obj.nav) {
-        this.filterData = obj.nav.shift();
-        this.facets = obj.nav;
+        let fn = obj.nav.slice();
+        if (fn[0].type === 'active-filters') this.filterData = fn.shift();
+        this.facets = fn;
         for (let x = 0, l = this.facets.length; x < l; x += 1) {
           const facet = this.facets[x];
           if (facet.search) {
