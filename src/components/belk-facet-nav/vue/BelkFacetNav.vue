@@ -441,13 +441,8 @@ export default {
       if (update) this.updateFilters();
       this.$bus.$emit('facet-filters', this.selectedFilters);
       if (!this.isMobile()) this.$bus.$emit('facet-links', this.selectedFilterHrefs);
-      if (this.isMobile()) this.$bus.$emit('facet-params', this.selectedFilterParams);
+      else this.$bus.$emit('facet-params', this.selectedFilterParams);
     },
-
-    // sendParams(update) {
-    //   if (update) this.updateFilters();
-    //   this.$bus.$emit('facet-params', this.selectedFilterParams);
-    // },
 
     goBack() {
       const el = this.$el.querySelector('[facet-name].active');
