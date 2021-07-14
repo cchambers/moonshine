@@ -339,7 +339,8 @@ export default {
       filteredData: {},
       searchSize: '',
       selectedFilters: {},
-      selectedFilterHrefs: [],
+      // selectedFilterHrefs: [],
+      selectedFilterHref: '',
       selectedFilterParams: [],
       navActive: false,
     };
@@ -416,24 +417,29 @@ export default {
       }
     },
 
-    updateFilters() {
+    updateFilters(e) {
       const selectedFilters = {};
-      const selectedFilterHrefs = [];
+      // const selectedFilterHrefs = [];
       const selectedFilterParams = [];
+      let selectedFilterHref = '';
       const facets = this.$el.querySelectorAll('[facet-name]');
       for (let x = 0, l = facets.length; x < l; x += 1) {
         let name = facets[x].getAttribute('facet-name');
         if (name) {
           const values = this.extractVals(facets[x]);
           if (values.length) selectedFilters[name] = values;
-          const links = this.extractLinks(facets[x]);
-          if (links.length) selectedFilterHrefs.push(...links);
+          // const links = this.extractLinks(facets[x]);
+          // if (links.length) selectedFilterHrefs.push(...links);
           const params = this.extractParams(facets[x]);
           if (params.length) selectedFilterParams.push(...params);
         }
+        if (e && e.target) {
+          selectedFilterHref = e.target.getAttribute('href');
+        }
       }
       this.$set(this, 'selectedFilters', selectedFilters);
-      this.$set(this, 'selectedFilterHrefs', selectedFilterHrefs);
+      // this.$set(this, 'selectedFilterHrefs', selectedFilterHrefs);
+      this.$set(this, 'selectedFilterHref', selectedFilterHref);
       this.$set(this, 'selectedFilterParams', selectedFilterParams);
       if (!this.isMobile()) this.sendFilters();
     },
@@ -441,7 +447,7 @@ export default {
     sendFilters(update) {
       if (update) this.updateFilters();
       this.$bus.$emit('facet-filters', this.selectedFilters);
-      if (!this.isMobile()) this.$bus.$emit('facet-links', this.selectedFilterHrefs);
+      if (!this.isMobile()) this.$bus.$emit('facet-link', this.selectedFilterHref);
       else this.$bus.$emit('facet-params', this.selectedFilterParams);
     },
 
@@ -503,14 +509,14 @@ export default {
       return vals;
     },
 
-    extractLinks(facet) {
-      const els = facet.querySelectorAll(':checked');
-      const vals = [];
-      for (let x = 0, l = els.length; x < l; x += 1) {
-        vals.push(els[x].getAttribute('href'));
-      }
-      return vals;
-    },
+    // extractLinks(facet) {
+    //   const els = facet.querySelectorAll(':checked');
+    //   const vals = [];
+    //   for (let x = 0, l = els.length; x < l; x += 1) {
+    //     vals.push(els[x].getAttribute('href'));
+    //   }
+    //   return vals;
+    // },
 
     extractParams(facet) {
       const els = facet.querySelectorAll(':checked');
