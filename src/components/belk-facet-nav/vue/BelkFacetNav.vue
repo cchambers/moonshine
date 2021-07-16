@@ -431,7 +431,7 @@ export default {
       const facets = this.$el.querySelectorAll('[facet-name]');
       for (let x = 0, l = facets.length; x < l; x += 1) {
         let name = facets[x].getAttribute('facet-name');
-        if (name && name !== 'pickup') {
+        if (name) {
           const values = this.extractVals(facets[x]);
           if (values.length) selectedFilters[name] = values;
           // const links = this.extractLinks(facets[x]);
