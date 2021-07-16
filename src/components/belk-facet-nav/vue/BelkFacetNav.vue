@@ -277,7 +277,7 @@
                   >Clear</div>
                 </div>
                 <div class="acc-body">
-                  <div class="filter">
+                  <div class="filter" v-if="facet.search">
                     <input
                       @keyup="doSearch"
                       type="text"
@@ -287,23 +287,45 @@
                     <belk-icon height="12" width="12" name="search"></belk-icon>
                   </div>
                   <div class="filter-list height-scroll">
-                    <label
-                      v-for="thing in filteredData[facet.name.slugify()]"
-                      v-bind:key="thing.index"
-                      :set="slug = thing.name.slugify()"
-                      :for="'facet-sizes-' + slug"
-                    >
-                      <input
-                        type="checkbox"
-                        class="facet-input"
-                        x-hidden
-                        :id="'facet-sizes-' + slug"
-                        :value="thing.name"
-                        :href="thing.href"
-                        :params="thing.params"
-                      />
-                      <div>{{ thing.name }}</div>
-                    </label>
+                    <template v-if="facet.search">
+                      <label
+                        v-for="thing in filteredData[facet.name.slugify()]"
+                        v-bind:key="thing.index"
+                        :set="slug = thing.name.slugify()"
+                        :for="'facet-sizes-' + slug"
+                      >
+                        <input
+                          type="checkbox"
+                          class="facet-input"
+                          x-hidden
+                          :id="'facet-sizes-' + slug"
+                          :value="thing.name"
+                          :checked="thing.selected"
+                          :href="thing.href"
+                          :params="thing.params"
+                        />
+                        <div>{{ thing.name }}</div>
+                      </label>
+                    </template>
+                    <template v-else>
+                      <label
+                        v-for="thing in facet.options"
+                        v-bind:key="thing.index"
+                        :set="slug = thing.name.slugify()"
+                        :for="'facet-sizes-' + slug"
+                      >
+                        <input
+                          type="checkbox"
+                          class="facet-input"
+                          x-hidden
+                          :id="'facet-sizes-' + slug"
+                          :value="thing.name"
+                          :checked="thing.selected"
+                          :href="thing.href"
+                          :params="thing.params"
+                        />
+                        <div>{{ thing.name }}</div>
+                    </template>
                   </div>
                 </div>
               </div>
