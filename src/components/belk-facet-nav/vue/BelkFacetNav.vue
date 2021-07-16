@@ -105,6 +105,7 @@
                   <li v-for="color in facet.options" :key="color.id">
                     <input
                       type="checkbox"
+                      class="facet-input"
                       x-hidden
                       :id="'facet-swatch-' + color.name"
                       :value="color.name"
@@ -157,6 +158,7 @@
                             x-hidden
                             :id="'facet-' + facetName + '-' + slug"
                             type="checkbox"
+                            class="facet-input"
                             :value="thing.name"
                             :checked="thing.selected"
                             :href="thing.href"
@@ -178,6 +180,7 @@
                             x-hidden
                             :id="'facet-' + facetName + '-' + slug"
                             type="checkbox"
+                            class="facet-input"
                             :value="thing.name"
                             :checked="thing.selected"
                             :href="thing.href"
@@ -220,6 +223,7 @@
                       :id="'range-' + slug"
                       x-hidden
                       type="radio"
+                      class="facet-input"
                       name="facet-price"
                       :value="thing.name"
                       :checked="thing.selected"
@@ -233,6 +237,7 @@
                   <li>
                     <input
                       id="range-custom"
+                      class="facet-input"
                       x-hidden
                       type="radio"
                       name="facet-price"
@@ -290,6 +295,7 @@
                     >
                       <input
                         type="checkbox"
+                        class="facet-input"
                         x-hidden
                         :id="'facet-sizes-' + slug"
                         :value="thing.name"
@@ -471,7 +477,7 @@ export default {
 
     isFiltered(which) {
       if (this.$refs[which]) {
-        const filtered = this.$refs[which].querySelectorAll(':checked');
+        const filtered = this.$refs[which].querySelectorAll('facet-input:checked');
         return filtered.length > 0;
       }
     },
@@ -484,8 +490,8 @@ export default {
         if (el) which = el.getAttribute('facet-name');
       }
       const filtered = which
-        ? this.$el.querySelectorAll(`[facet-name="${which}"] :checked`)
-        : this.$el.querySelectorAll(':checked');
+        ? this.$el.querySelectorAll(`[facet-name="${which}"] facet-input:checked`)
+        : this.$el.querySelectorAll('facet-input:checked');
       for (let x = 0, l = filtered.length; x < l; x += 1) {
         filtered[x].checked = false;
       }
@@ -501,7 +507,7 @@ export default {
     },
 
     extractVals(facet) {
-      const els = facet.querySelectorAll(':checked');
+      const els = facet.querySelectorAll('facet-input:checked');
       const vals = [];
       for (let x = 0, l = els.length; x < l; x += 1) {
         vals.push(els[x].value);
@@ -519,7 +525,7 @@ export default {
     // },
 
     extractParams(facet) {
-      const els = facet.querySelectorAll(':checked');
+      const els = facet.querySelectorAll('facet-input:checked');
       const vals = [];
       for (let x = 0, l = els.length; x < l; x += 1) {
         vals.push(els[x].getAttribute('params'));
