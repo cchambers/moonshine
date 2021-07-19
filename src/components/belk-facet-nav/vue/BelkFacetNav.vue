@@ -187,7 +187,6 @@
                           />
                           <label
                             :for="'facet-' + facetName + '-' + slug"
-                            :data-qty="thing.count"
                           ><div :data-qty="thing.count">{{ thing.name }}</div></label>
                         </li>
                       </template>
