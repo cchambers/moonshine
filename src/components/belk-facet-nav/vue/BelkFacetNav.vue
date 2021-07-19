@@ -166,8 +166,7 @@
                           />
                           <label
                             :for="'facet-' + facetName + '-' + slug"
-                            :data-qty="thing.count"
-                          >{{ thing.name }}</label>
+                          ><div :data-qty="thing.count">{{ thing.name }}</div></label>
                         </li>
                       </template>
                       <template v-else>
@@ -189,7 +188,7 @@
                           <label
                             :for="'facet-' + facetName + '-' + slug"
                             :data-qty="thing.count"
-                          >{{ thing.name }}</label>
+                          ><div :data-qty="thing.count">{{ thing.name }}</div></label>
                         </li>
                       </template>
                     </ul>

@@ -4,7 +4,6 @@ belk-facet-nav {
   display: block;
   color: $lowlight-primary;
   [data-qty]::after {
-    display: inline-block;
     margin-left: $atomic;
     content: "(" attr(data-qty) ")";
     color: $lowlight-tertiary;
@@ -94,13 +93,22 @@ belk-facet-nav {
   .checkbox-list,
   .radio-list {
     label {
-      display: block;
+      display: flex;
       align-items: center;
-      white-space: nowrap;
+      > div {
+        display: inline-block;
+        padding: $micro 0;
+        padding-left: 3.2rem;
+        margin-left: -3.2rem;
+        max-width: 100%;
+        line-height: 22px;
+      }
       &:before {
         display: inline-flex;
         height: 20px;
         width: 20px;
+        padding: $micro 0;
+        margin: $micro 0;
         flex-grow: 0;
         flex-shrink: 0;
         font-size: 18px;
@@ -112,6 +120,7 @@ belk-facet-nav {
         font-family: 'Material Icons Round' !important;
         border: 1px solid $lowlight-secondary;
         margin-right: $micro;
+        align-self: flex-start;
       }
     }
     input:checked ~ label {
