@@ -325,6 +325,7 @@
                           :params="thing.params"
                         />
                         <div>{{ thing.name }}</div>
+                      </label>
                     </template>
                   </div>
                 </div>
@@ -499,7 +500,7 @@ export default {
 
     isFiltered(which) {
       if (this.$refs[which]) {
-        const filtered = this.$refs[which].querySelectorAll('facet-input:checked');
+        const filtered = this.$refs[which].querySelectorAll('.facet-input:checked');
         return filtered.length > 0;
       }
     },
@@ -512,8 +513,8 @@ export default {
         if (el) which = el.getAttribute('facet-name');
       }
       const filtered = which
-        ? this.$el.querySelectorAll(`[facet-name="${which}"] facet-input:checked`)
-        : this.$el.querySelectorAll('facet-input:checked');
+        ? this.$el.querySelectorAll(`[facet-name="${which}"] .facet-input:checked`)
+        : this.$el.querySelectorAll('.facet-input:checked');
       for (let x = 0, l = filtered.length; x < l; x += 1) {
         filtered[x].checked = false;
       }
@@ -529,7 +530,7 @@ export default {
     },
 
     extractVals(facet) {
-      const els = facet.querySelectorAll('facet-input:checked');
+      const els = facet.querySelectorAll('.facet-input:checked');
       const vals = [];
       for (let x = 0, l = els.length; x < l; x += 1) {
         vals.push(els[x].value);
@@ -547,7 +548,7 @@ export default {
     // },
 
     extractParams(facet) {
-      const els = facet.querySelectorAll('facet-input:checked');
+      const els = facet.querySelectorAll('.facet-input:checked');
       const vals = [];
       for (let x = 0, l = els.length; x < l; x += 1) {
         vals.push(els[x].getAttribute('params'));
