@@ -64,6 +64,7 @@ belk-facet-nav {
         &:after {
           content: 'expand_more';
           font-family: 'Material Icons Round' !important;
+          font-feature-settings: 'liga';
           float: right;
           font-size: 18px;
           font-weight: normal;
@@ -72,7 +73,10 @@ belk-facet-nav {
       }
     }
     
+    // to be removed whenever belk gets their base elements unstyled
+    label {
 
+    }
     li {
       a, > label {
         display: block;
@@ -84,7 +88,9 @@ belk-facet-nav {
     .height-scroll,
     ul.acc-body {
       overflow-y: auto;
+      overflow-x: hidden;
       max-height: 282px;
+      width: 100%;
       @include no-scroll-bar;
     }
   }
@@ -275,6 +281,7 @@ belk-facet-nav {
     align-items: center;
     justify-content: space-between;
     color: $lowlight-primary;
+    width: 100%;
     input {
       border: none;
       background: transparent;
