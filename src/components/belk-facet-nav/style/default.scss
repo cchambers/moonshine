@@ -309,6 +309,11 @@ belk-facet-nav {
       margin-top: 11px;
       margin-left: -$atomic;
       margin-right: -$atomic;
+      &::after {
+        content: "";
+        flex: auto;
+        flex-grow: 15;
+      }
       label {
         min-width: calc(100% / 3);
         flex-shrink: 0;
