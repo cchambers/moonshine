@@ -3,6 +3,11 @@
 belk-facet-nav {
   display: block;
   color: $lowlight-primary;
+  label {
+    font: unset;
+    margin-bottom: 0;
+    font-weight: normal;
+  }
   [data-qty]::after {
     margin-left: $atomic;
     content: "(" attr(data-qty) ")";
