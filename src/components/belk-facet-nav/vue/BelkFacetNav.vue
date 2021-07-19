@@ -467,7 +467,6 @@ export default {
         }
       }
       this.$set(this, 'selectedFilters', selectedFilters);
-      console.log(this.selectedFilters);
       // this.$set(this, 'selectedFilterHrefs', selectedFilterHrefs);
       this.$set(this, 'selectedFilterHref', selectedFilterHref);
       this.$set(this, 'selectedFilterParams', selectedFilterParams);
