@@ -45,7 +45,7 @@
       </template>
     </div>
     <div ref="pickup" class="facet-pickup" facet-name="pickup">
-      <div class="facet-acc">
+      <div class="facet-acc active">
         <div class="acc-head">
           <h3 @click="toggleAccord" @keyup.enter="toggleAccord" tabindex="0">Pickup</h3>
         </div>
