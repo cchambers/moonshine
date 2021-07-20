@@ -3,6 +3,9 @@
 belk-facet-nav {
   display: block;
   color: $lowlight-primary;
+  ul, ul li {
+    list-style: none;
+  }
   label {
     font: unset;
     margin-bottom: 0;
