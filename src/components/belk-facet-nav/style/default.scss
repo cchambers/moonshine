@@ -5,6 +5,9 @@ belk-facet-nav {
   color: $lowlight-primary;
   ul, ul li {
     list-style: none;
+    &::marker {
+      display: none;
+    }
   }
   label {
     font: unset;
@@ -360,9 +363,10 @@ belk-facet-nav {
 
 [x-hidden] {
   overflow: hidden;
-  height: 0;
-  width: 0;
+  height: 0 !important;
+  width: 0 !important;
   float: left;
+  appearance: none;
   &:focus {
     outline: none !important;
   }
