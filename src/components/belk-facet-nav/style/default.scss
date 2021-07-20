@@ -9,6 +9,9 @@ belk-facet-nav {
       display: none;
     }
   }
+  *:focus {
+    outline: 0 !important;
+  }
   label {
     font: unset;
     margin-bottom: 0;
@@ -101,6 +104,9 @@ belk-facet-nav {
     }
   }
 
+  [set="category"] .acc-body li {
+    border-top: 1px solid $highlight-tertiary;
+  }
   .checkbox-list,
   .radio-list {
     label {
@@ -119,7 +125,7 @@ belk-facet-nav {
         height: 20px;
         width: 20px;
         // padding: $micro 0;
-        margin: $micro 0;
+        margin: $atomic 0;
         flex-grow: 0;
         flex-shrink: 0;
         font-size: 18px;
@@ -347,7 +353,7 @@ belk-facet-nav {
           align-items: center;
           justify-content: center;
           text-align: center;
-          padding: 0 $atomic;
+          // padding: 0 $atomic;
         }
       }
       input:checked ~ div {

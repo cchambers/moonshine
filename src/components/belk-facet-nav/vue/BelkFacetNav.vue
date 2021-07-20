@@ -245,9 +245,9 @@
                       <div>Custom Range</div>
                     </label>
                     <div class="custom-range">
-                      <input type="text" id="range-from" name="range-from" />
+                      <input type="text" id="range-from" name="range-from" placeholder="$Min" />
                       to
-                      <input type="text" id="range-to" name="range-to" />
+                      <input type="text" id="range-to" name="range-to" placeholder="$Max" />
                     </div>
                   </li>
                 </ul>
@@ -376,6 +376,7 @@ export default {
   mounted() {
     setTimeout(() => {
       if (window.facetNav) this.processData(window.facetNav);
+      this.updateFilters();
     });
   },
 
