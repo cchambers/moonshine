@@ -160,7 +160,8 @@ belk-facet-nav {
         background: $lowlight-primary;
         border-radius: 50%;
         position: absolute;
-        left: 4px;
+        left: 3px;
+        top: 7px;
       }
     }
     input:checked ~ label {
@@ -332,7 +333,6 @@ belk-facet-nav {
         min-width: calc(100% / 3);
         flex-shrink: 0;
         flex-grow: 3;
-        flex-basis: calc(100% / 3);
         padding: $atomic;
         &:hover {
           div {
@@ -366,11 +366,10 @@ belk-facet-nav {
 
 
 [x-hidden] {
-  overflow: hidden;
-  height: 0 !important;
-  width: 0 !important;
-  float: left;
   appearance: none;
+  position: fixed;
+  opacity: 0;
+  pointer-events: none;
   &:focus {
     outline: none !important;
   }
@@ -397,6 +396,11 @@ belk-facet-nav {
   input {
     display: inline-block;
     width: 30%;
+    padding: 0 $micro !important;
     margin: 0 0.25em !important;
   }
+}
+
+.IE11 .filter-grid .filter-list label {
+  flex-basis: calc(100% / 3);
 }
