@@ -373,11 +373,17 @@ export default {
     };
   },
 
+  watch: {
+    selectedFilters(val) {
+      console.log('test', val);
+    },
+  },
+
   mounted() {
     setTimeout(() => {
       if (window.facetNav) this.processData(window.facetNav);
-      this.updateFilters();
     });
+    setTimeout(this.updateFilters, 1000);
   },
 
   methods: {
