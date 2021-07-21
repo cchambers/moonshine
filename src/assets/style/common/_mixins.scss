@@ -1,3 +1,8 @@
+@mixin materialIcons() {
+  font-family: 'Material Icons Round' !important;
+  font-feature-settings: 'liga';
+}
+
 @mixin fill() {
   position: absolute;
   top: 0;
