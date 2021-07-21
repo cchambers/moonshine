@@ -54,7 +54,7 @@ $itemHeight: 48px;
           width: 28px;
           color: $lowlight-tertiary;
           content: 'navigate_next';
-          font-family: 'Material Icons Round' !important;
+          @include materialIcons;
         }
       }
     }
@@ -90,7 +90,7 @@ $itemHeight: 48px;
       &:before {
         display: flex;
         content: 'chevron_left';
-        font-family: 'Material Icons Round' !important;
+        @include materialIcons;
         font-size: 24px;
         height: 100%;
         align-items: center;

@@ -68,7 +68,6 @@
               <ul class="acc-body">
                 <li v-for="thing in facet.children" :key="thing.id">
                   <a
-                    :href="thing.href"
                     :data-cgid="thing.cgid"
                     :data-qty="thing.count"
                   >{{ thing.name }}</a>
@@ -105,7 +104,6 @@
                   <li v-for="color in facet.options" :key="color.id">
                     <input
                       type="checkbox"
-                      class="facet-input"
                       x-hidden
                       :id="'facet-swatch-' + color.name"
                       :value="color.name"
@@ -158,10 +156,8 @@
                             x-hidden
                             :id="'facet-' + facetName + '-' + slug"
                             type="checkbox"
-                            class="facet-input"
                             :value="thing.name"
                             :checked="thing.selected"
-                            :href="thing.href"
                             :params="thing.params"
                           />
                           <label
@@ -179,10 +175,8 @@
                             x-hidden
                             :id="'facet-' + facetName + '-' + slug"
                             type="checkbox"
-                            class="facet-input"
                             :value="thing.name"
                             :checked="thing.selected"
-                            :href="thing.href"
                             :params="thing.params"
                           />
                           <label
@@ -221,11 +215,9 @@
                       :id="'range-' + slug"
                       x-hidden
                       type="radio"
-                      class="facet-input"
                       name="facet-price"
                       :value="thing.name"
                       :checked="thing.selected"
-                      :href="thing.href"
                       :params="thing.params"
                     />
                     <label :for="'range-' + slug">
@@ -235,7 +227,6 @@
                   <li>
                     <input
                       id="range-custom"
-                      class="facet-input"
                       x-hidden
                       type="radio"
                       name="facet-price"
@@ -245,9 +236,13 @@
                       <div>Custom Range</div>
                     </label>
                     <div class="custom-range">
-                      <input type="text" id="range-from" name="range-from" placeholder="$Min" />
-                      to
-                      <input type="text" id="range-to" name="range-to" placeholder="$Max" />
+                      <input type="text" id="range-from" name="range-from" placeholder="$ Min" />
+                      <div class="margin-x-atomic flex">to</div>
+                      <input type="text" id="range-to" name="range-to" placeholder="$ Max" />
+                      <sh-button
+                        variant="secondary"
+                        size="sm"
+                        @click="sendFilters">Go</sh-button>
                     </div>
                   </li>
                 </ul>
@@ -284,47 +279,45 @@
                     />
                     <belk-icon height="12" width="12" name="search"></belk-icon>
                   </div>
-                  <div class="filter-list height-scroll">
-                    <template v-if="facet.search">
-                      <label
-                        v-for="thing in filteredData[facet.name.slugify()]"
-                        v-bind:key="thing.index"
-                        :set="slug = thing.name.slugify()"
-                        :for="'facet-sizes-' + slug"
-                      >
-                        <input
-                          type="checkbox"
-                          class="facet-input"
-                          x-hidden
-                          :id="'facet-sizes-' + slug"
-                          :value="thing.name"
-                          :checked="thing.selected"
-                          :href="thing.href"
-                          :params="thing.params"
-                        />
-                        <div>{{ thing.name }}</div>
-                      </label>
-                    </template>
-                    <template v-else>
-                      <label
-                        v-for="thing in facet.options"
-                        v-bind:key="thing.index"
-                        :set="slug = thing.name.slugify()"
-                        :for="'facet-sizes-' + slug"
-                      >
-                        <input
-                          type="checkbox"
-                          class="facet-input"
-                          x-hidden
-                          :id="'facet-sizes-' + slug"
-                          :value="thing.name"
-                          :checked="thing.selected"
-                          :href="thing.href"
-                          :params="thing.params"
-                        />
-                        <div>{{ thing.name }}</div>
-                      </label>
-                    </template>
+                  <div class="height-scroll">
+                    <div class="filter-list">
+                      <template v-if="facet.search">
+                        <label
+                          v-for="thing in filteredData[facet.name.slugify()]"
+                          v-bind:key="thing.index"
+                          :set="slug = thing.name.slugify()"
+                          :for="'facet-sizes-' + slug"
+                        >
+                          <input
+                            type="checkbox"
+                            x-hidden
+                            :id="'facet-sizes-' + slug"
+                            :value="thing.name"
+                            :checked="thing.selected"
+                            :params="thing.params"
+                          />
+                          <div>{{ thing.name }}</div>
+                        </label>
+                      </template>
+                      <template v-else>
+                        <label
+                          v-for="thing in facet.options"
+                          v-bind:key="thing.index"
+                          :set="slug = thing.name.slugify()"
+                          :for="'facet-sizes-' + slug"
+                        >
+                          <input
+                            type="checkbox"
+                            x-hidden
+                            :id="'facet-sizes-' + slug"
+                            :value="thing.name"
+                            :checked="thing.selected"
+                            :params="thing.params"
+                          />
+                          <div>{{ thing.name }}</div>
+                        </label>
+                      </template>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -505,7 +498,7 @@ export default {
 
     isFiltered(which) {
       if (this.$refs[which]) {
-        const filtered = this.$refs[which].querySelectorAll('.facet-input:checked');
+        const filtered = this.$refs[which].querySelectorAll('[x-hidden]:checked');
         return filtered.length > 0;
       }
     },
@@ -518,8 +511,8 @@ export default {
         if (el) which = el.getAttribute('facet-name');
       }
       const filtered = which
-        ? this.$el.querySelectorAll(`[facet-name="${which}"] .facet-input:checked`)
-        : this.$el.querySelectorAll('.facet-input:checked');
+        ? this.$el.querySelectorAll(`[facet-name="${which}"] [x-hidden]:checked`)
+        : this.$el.querySelectorAll('[x-hidden]:checked');
       for (let x = 0, l = filtered.length; x < l; x += 1) {
         filtered[x].checked = false;
       }
@@ -535,7 +528,7 @@ export default {
     },
 
     extractVals(facet) {
-      const els = facet.querySelectorAll('.facet-input:checked');
+      const els = facet.querySelectorAll('[x-hidden]:checked');
       const vals = [];
       for (let x = 0, l = els.length; x < l; x += 1) {
         vals.push(els[x].value);
@@ -553,7 +546,7 @@ export default {
     // },
 
     extractParams(facet) {
-      const els = facet.querySelectorAll('.facet-input:checked');
+      const els = facet.querySelectorAll('[x-hidden]:checked');
       const vals = [];
       for (let x = 0, l = els.length; x < l; x += 1) {
         vals.push(els[x].getAttribute('params'));
