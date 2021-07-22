@@ -288,12 +288,12 @@
                           v-for="thing in filteredData[facet.name.slugify()]"
                           v-bind:key="thing.index"
                           :set="slug = thing.name.slugify()"
-                          :for="'facet-sizes-' + slug"
+                          :for="'facet-grid-' + slug"
                         >
                           <input
                             type="checkbox"
                             x-hidden
-                            :id="'facet-sizes-' + slug"
+                            :id="'facet-grid-' + slug"
                             :value="thing.name"
                             :checked="thing.selected"
                             :params="thing.params"
