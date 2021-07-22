@@ -39,11 +39,13 @@ belk-facet-nav {
     }
 
     .filter-clear {
-      outline: none;
-      border: none;
-      background: transparent;
-      line-height: 14px;
-      font-size: 12px;
+      outline: none !important;
+      border: none !important;
+      background: transparent !important;
+      line-height: 14px !important;
+      font-size: 12px !important;
+      color: $lowlight-primary !important;
+      font-weight: normal !important;
     }
 
     .belk-facet-nav {
@@ -298,7 +300,7 @@ belk-facet-nav {
 
   .nodata {
     width: 100%;
-    text-align: center;
+    padding: 0 5px;
   }
 
   .filter {
