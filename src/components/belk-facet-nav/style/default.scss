@@ -296,6 +296,11 @@ belk-facet-nav {
     }
   }
 
+  .nodata {
+    width: 100%;
+    text-align: center;
+  }
+
   .filter {
     border: 1px solid $lowlight-tertiary;
     display: flex;

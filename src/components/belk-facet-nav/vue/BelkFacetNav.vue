@@ -70,6 +70,7 @@
                   <a
                     :data-cgid="thing.cgid"
                     :data-qty="thing.count"
+                    :class="{ bold: thing.selected }"
                   >{{ thing.name }}</a>
                 </li>
               </ul>
@@ -147,6 +148,9 @@
                   <div :class="{ 'filter-list': facet.search }" class="height-scroll">
                     <ul class="checkbox-list">
                       <template v-if="facet.search">
+                        <div v-if="!filteredData[facet.name.slugify()].length" class="nodata">
+                          No results found
+                        </div>
                         <li
                           v-for="thing in filteredData[facet.name.slugify()]"
                           :key="thing.id"
@@ -236,13 +240,14 @@
                       <div>Custom Range</div>
                     </label>
                     <div class="custom-range">
-                      <input type="text" id="range-from" name="range-from" placeholder="$ Min" />
-                      <div class="margin-x-atomic flex">to</div>
-                      <input type="text" id="range-to" name="range-to" placeholder="$ Max" />
+                      <input type="number" id="range-from" name="range-from" placeholder="$ Min" />
+                      <div class="flex margin-x-atomic">to</div>
+                      <input type="number" id="range-to" name="range-to" placeholder="$ Max" />
                       <sh-button
+                        v-if="!isMobile()"
                         variant="secondary"
                         size="sm"
-                        @click="sendFilters">Go</sh-button>
+                        @click="updateFilters">Go</sh-button>
                     </div>
                   </li>
                 </ul>
@@ -282,16 +287,19 @@
                   <div class="height-scroll">
                     <div class="filter-list">
                       <template v-if="facet.search">
+                        <div v-if="!filteredData[facet.name.slugify()].length" class="nodata">
+                          No results found
+                        </div>
                         <label
                           v-for="thing in filteredData[facet.name.slugify()]"
                           v-bind:key="thing.index"
                           :set="slug = thing.name.slugify()"
-                          :for="'facet-sizes-' + slug"
+                          :for="'facet-grid-' + slug"
                         >
                           <input
                             type="checkbox"
                             x-hidden
-                            :id="'facet-sizes-' + slug"
+                            :id="'facet-grid-' + slug"
                             :value="thing.name"
                             :checked="thing.selected"
                             :params="thing.params"
@@ -359,18 +367,17 @@ export default {
       filteredData: {},
       searchSize: '',
       selectedFilters: {},
-      // selectedFilterHrefs: [],
       selectedFilterHref: '',
       selectedFilterParams: [],
       navActive: false,
     };
   },
 
-  watch: {
-    selectedFilters(val) {
-      console.log('test', val);
-    },
-  },
+  // watch: {
+  //   selectedFilters(val) {
+  //     console.log('test', val);
+  //   },
+  // },
 
   mounted() {
     setTimeout(() => {
@@ -446,7 +453,6 @@ export default {
 
     updateFilters(e) {
       const selectedFilters = {};
-      // const selectedFilterHrefs = [];
       const selectedFilterParams = [];
       let selectedFilterHref = '';
       const facets = this.$el.querySelectorAll('[facet-name]');
@@ -455,8 +461,6 @@ export default {
         if (name) {
           const values = this.extractVals(facets[x]);
           if (values.length) selectedFilters[name] = values;
-          // const links = this.extractLinks(facets[x]);
-          // if (links.length) selectedFilterHrefs.push(...links);
           const params = this.extractParams(facets[x]);
           if (params.length) selectedFilterParams.push(...params);
         }
@@ -465,7 +469,6 @@ export default {
         }
       }
       this.$set(this, 'selectedFilters', selectedFilters);
-      // this.$set(this, 'selectedFilterHrefs', selectedFilterHrefs);
       this.$set(this, 'selectedFilterHref', selectedFilterHref);
       this.$set(this, 'selectedFilterParams', selectedFilterParams);
       if (!this.isMobile()) this.sendFilters();
