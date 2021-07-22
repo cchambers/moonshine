@@ -148,6 +148,9 @@
                   <div :class="{ 'filter-list': facet.search }" class="height-scroll">
                     <ul class="checkbox-list">
                       <template v-if="facet.search">
+                        <div v-if="!filteredData[facet.name.slugify()].length" class="nodata">
+                          No results found
+                        </div>
                         <li
                           v-for="thing in filteredData[facet.name.slugify()]"
                           :key="thing.id"
@@ -284,6 +287,9 @@
                   <div class="height-scroll">
                     <div class="filter-list">
                       <template v-if="facet.search">
+                        <div v-if="!filteredData[facet.name.slugify()].length" class="nodata">
+                          No results found
+                        </div>
                         <label
                           v-for="thing in filteredData[facet.name.slugify()]"
                           v-bind:key="thing.index"
