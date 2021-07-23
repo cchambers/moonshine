@@ -416,7 +416,7 @@ export default {
       if (window.facetNav) this.processData(window.facetNav);
     });
     setTimeout(this.updateFilters, 1000);
-    // this.customChecked = (window.location.href.indexOf('pmin') > 0);
+    this.customChecked = (window.location.href.indexOf('pmin') > 0);
   },
 
   methods: {

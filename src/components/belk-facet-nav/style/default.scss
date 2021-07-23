@@ -411,6 +411,13 @@ belk-facet-nav {
   display: none !important;
 }
 
+label[for="range-custom"] {
+  &:before,
+  &:after {
+    opacity: 0 !important;
+  }
+}
+
 .custom-range {
   display: flex;
   padding-left: 24px;
@@ -422,6 +429,7 @@ belk-facet-nav {
     margin: 0 0.25em !important;
   }
 }
+
 
 .IE11 {
   .custom-range input {
