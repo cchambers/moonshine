@@ -243,7 +243,7 @@
                       value="custom"
                     />
                     <label for="range-custom">
-                      <div>Custom Range</div>
+                      <div>Custom Price Range</div>
                     </label>
                     <div class="custom-range">
                       <input type="number" id="range-from" name="range-from" placeholder="$Min" />
