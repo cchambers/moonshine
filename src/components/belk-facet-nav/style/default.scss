@@ -133,7 +133,7 @@ belk-facet-nav {
         height: 20px;
         width: 20px;
         // padding: $micro 0;
-        margin: $atomic 0;
+        margin-top: 6px;
         flex-grow: 0;
         flex-shrink: 0;
         font-size: 18px;
@@ -172,7 +172,7 @@ belk-facet-nav {
         border-radius: 50%;
         position: absolute;
         left: 3px;
-        top: 14px;
+        top: 9px;
       }
     }
     input:checked ~ label {
