@@ -29,7 +29,7 @@
       <button
         v-if="Object.keys(selectedFilters).length"
         class="filter-clear"
-        @click="clearFilters()"
+        @click="clearAllFilters"
       >Clear All</button>
     </div>
     <div class="filter-stack">
@@ -384,6 +384,7 @@ export default {
       genders: [],
       prices: [],
       sizes: [],
+      clearHref: '',
       searchableData: {},
       filteredData: {},
       searchSize: '',
@@ -432,6 +433,9 @@ export default {
             this.searchableData[slug] = facet.options;
           }
         }
+      }
+      if (obj.config && obj.config.clearHref !== '') {
+        this.clearHref = obj.config.clearHref;
       }
       this.filteredData = _.cloneDeep(this.searchableData);
     },
@@ -541,6 +545,10 @@ export default {
         filtered[x].checked = false;
       }
       this.$emit('update-filters');
+    },
+
+    clearAllFilters() {
+      this.$bus.$emit('facet-link', this.clearHref);
     },
 
     removeFilter(facet, filter) {
