@@ -68,6 +68,7 @@
               <ul class="acc-body">
                 <li v-for="thing in facet.children" :key="thing.id">
                   <a
+                    :href="thing.href"
                     :data-cgid="thing.cgid"
                     :data-qty="thing.count"
                     :class="{ bold: thing.selected }"
@@ -162,6 +163,7 @@
                             type="checkbox"
                             :value="thing.name"
                             :checked="thing.selected"
+                            :href="thing.href"
                             :params="thing.params"
                           />
                           <label
@@ -181,6 +183,7 @@
                             type="checkbox"
                             :value="thing.name"
                             :checked="thing.selected"
+                            :href="thing.href"
                             :params="thing.params"
                           />
                           <label
@@ -222,6 +225,7 @@
                       name="facet-price"
                       :value="thing.name"
                       :checked="thing.selected"
+                      :href="thing.href"
                       :params="thing.params"
                     />
                     <label :for="'range-' + slug">
@@ -244,7 +248,6 @@
                       <div class="flex margin-x-atomic">to</div>
                       <input type="number" id="range-to" name="range-to" placeholder="$ Max" />
                       <sh-button
-                        v-if="!isMobile()"
                         variant="secondary"
                         size="sm"
                         @click="updateFilters">Go</sh-button>
@@ -302,6 +305,7 @@
                             :id="'facet-grid-' + slug"
                             :value="thing.name"
                             :checked="thing.selected"
+                            :href="thing.href"
                             :params="thing.params"
                           />
                           <div>{{ thing.name }}</div>
@@ -320,6 +324,7 @@
                             :id="'facet-sizes-' + slug"
                             :value="thing.name"
                             :checked="thing.selected"
+                          :href="thing.href"
                             :params="thing.params"
                           />
                           <div>{{ thing.name }}</div>

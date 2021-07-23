@@ -9,6 +9,9 @@ $itemHeight: 48px;
     [set="heading"] {
       display: none;
     }
+    .custom-range {
+      sh-button { display: none }
+    }
     .height-scroll {
       padding-bottom: 60px;
     }
