@@ -64,13 +64,15 @@
                 <button class="facet-back" @click="goBack"></button>
                 <h3 @click="toggleAccord"
                   @keyup.enter="toggleAccord" tabindex="0">
-                  <a :href="facet.href">{{ facet.name }}</a>
+                  <a :title="'Go to category: ' + facet.name"
+                  :href="facet.href">{{ facet.name }}</a>
                 </h3>
               </div>
               <ul class="acc-body">
                 <li v-for="thing in facet.children" :key="thing.id">
                   <a
                     :href="thing.href"
+                    :title="'Go to category: ' + thing.name"
                     :data-cgid="thing.cgid"
                     :data-qty="thing.count"
                     :class="{ bold: thing.selected }"
@@ -213,6 +215,11 @@
                     @keyup.enter="toggleAccord"
                     tabindex="0"
                   >{{ facet.name }}</h3>
+                  <div
+                    v-if="selectedFilters[facetName]"
+                    class="filter-clear-mobile"
+                    @click="clearFilters"
+                  >Clear</div>
                 </div>
                 <ul class="acc-body radio-list">
                   <li
