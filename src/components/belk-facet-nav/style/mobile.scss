@@ -193,7 +193,11 @@ $itemHeight: 48px;
     .radio-list {
       label {
         height: $itemHeight;
+        &:before {
+          margin-top: 14px;
+        }
       }
+
     }
     .facet-links {
       a {
