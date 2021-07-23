@@ -68,6 +68,7 @@
               <ul class="acc-body">
                 <li v-for="thing in facet.children" :key="thing.id">
                   <a
+                    :href="thing.href"
                     :data-cgid="thing.cgid"
                     :data-qty="thing.count"
                     :class="{ bold: thing.selected }"
