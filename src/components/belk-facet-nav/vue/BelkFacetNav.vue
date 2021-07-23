@@ -63,7 +63,9 @@
               <div class="acc-head">
                 <button class="facet-back" @click="goBack"></button>
                 <h3 @click="toggleAccord"
-                  @keyup.enter="toggleAccord" tabindex="0">{{ facet.name }}</h3>
+                  @keyup.enter="toggleAccord" tabindex="0">
+                  <a :href="facet.href">{{ facet.name }}</a>
+                </h3>
               </div>
               <ul class="acc-body">
                 <li v-for="thing in facet.children" :key="thing.id">
