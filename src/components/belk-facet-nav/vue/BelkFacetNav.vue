@@ -602,7 +602,9 @@ export default {
     },
 
     sanitizePrice(event){
-      return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57;
+      const block = [45, 43, 187, 189];
+      const toReturn = (block.indexOf(event.keyCode) < 0);
+      if (!toReturn) event.preventDefault();
     }
   },
 };
