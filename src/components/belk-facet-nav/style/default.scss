@@ -89,7 +89,7 @@ belk-facet-nav {
     
     li {
       a, > label {
-        display: block;
+        display: block !important;
         color: $lowlight-primary;
         font-size: 14px;
         line-height: 32px;
