@@ -500,6 +500,8 @@ export default {
         fail = true;
         from.style.border = '1px solid red';
         from.focus();
+      } else {
+        from.style.border = '';
       }
       if (to.value.trim() === '') {
         to.style.border = '1px solid red';
@@ -507,11 +509,12 @@ export default {
           to.focus();
           fail = true;
         }
+      } else {
+        to.style.border = '';
       }
       if (fail) {
         e.preventDefault();
       }
-      console.log(fail);
     },
 
     updateFilters(e) {
