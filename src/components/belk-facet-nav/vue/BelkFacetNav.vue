@@ -147,8 +147,19 @@
                 </div>
                 <div class="acc-body">
                   <div class="filter" v-if="facet.search">
-                    <input @keyup="doSearch" type="text" :placeholder="'Find ' + facet.name" />
-                    <belk-icon height="12" width="12" name="search"></belk-icon>
+                    <input @keyup="doSearch" type="text" :placeholder="'Find ' + facet.name"
+                    :class="'search-' + facet.name.slugify()" />
+                    <template v-if="hasValue('search-'+facet.name.slugify())">
+                      <button class="clear-search flex"
+                        aria-role="button"
+                        aria-label="clear search field"
+                        @click="clearNearest">
+                      <belk-icon height="12" width="12" name="close">Clear Input</belk-icon>
+                      </button>
+                    </template>
+                    <template v-else>
+                      <belk-icon height="12" width="12" name="search">Search Filters</belk-icon>
+                    </template>
                   </div>
                   <div :class="{ 'filter-list': facet.search }" class="height-scroll">
                     <ul class="checkbox-list">
@@ -640,7 +651,25 @@ export default {
       const block = [45, 43, 187, 189];
       const toReturn = (block.indexOf(event.keyCode) < 0);
       if (!toReturn) event.preventDefault();
-    }
+    },
+
+    hasValue(slug) {
+      const el = this.$el.querySelector(`.${slug}`);
+      if (!el) return;  
+      if (el.value.length) return true;
+      return false;
+    },
+
+    clearNearest(e) {
+      const inp = e.target.previousElementSibling;
+      if (inp) {
+        inp.value = '';
+        inp.focus();
+        const event = new CustomEvent('keyup');
+        inp.dispatchEvent(event);
+      }
+      this.$forceUpdate();
+    },
   },
 };
 </script>
