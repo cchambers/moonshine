@@ -236,6 +236,7 @@
                       :checked="thing.selected"
                       :href="thing.href"
                       :params="thing.params"
+                      @focus="customChecked = false"
                     />
                     <label :for="'range-' + slug">
                       <div :data-qty="thing.count">{{ thing.name }}</div>
@@ -248,6 +249,7 @@
                       type="radio"
                       name="facet-price"
                       value="custom"
+                      :checked="customChecked"
                     />
                     <label for="range-custom">
                       <div>Custom Price Range</div>
@@ -256,24 +258,29 @@
                       <input type="number"
                         @keypress="sanitizePrice"
                         @paste="false"
+                        @focus="customChecked = true"
                         min="0"
                         step="1"
                         id="range-from"
                         name="range-from"
-                        placeholder="$Min" />
+                        placeholder="$Min"
+                        ref="rangefrom" />
                       <div class="flex margin-x-atomic">to</div>
                       <input type="number"
                         @keypress="sanitizePrice"
                         @paste="false"
+                        @focus="customChecked = true"
                         min="0"
                         step="1"
                         id="range-to"
                         name="range-to"
-                        placeholder="$Max" />
+                        placeholder="$Max"
+                        ref="rangeto" />
                       <sh-button
                         variant="secondary"
                         size="sm"
-                        @click="updateFilters">Go</sh-button>
+                        @click="doCustomRange"
+                        ref="pricebutton">Go</sh-button>
                     </div>
                   </li>
                 </ul>
@@ -399,6 +406,7 @@ export default {
       selectedFilterHref: '',
       selectedFilterParams: [],
       navActive: false,
+      customChecked: false,
     };
   },
 
@@ -413,6 +421,7 @@ export default {
       if (window.facetNav) this.processData(window.facetNav);
     });
     setTimeout(this.updateFilters, 1000);
+    this.customChecked = (window.location.href.indexOf('pmin') > 0);
   },
 
   methods: {
@@ -480,6 +489,31 @@ export default {
         );
         this.$set(this.filteredData, facet, filtered);
         this.$forceUpdate();
+      }
+    },
+
+    doCustomRange(e){
+      const from = this.$el.querySelector('#range-from');
+      const to = this.$el.querySelector('#range-to');
+      let fail = false;
+      if (from.value.trim() === '') {
+        fail = true;
+        from.style.border = '1px solid red';
+        from.focus();
+      } else {
+        from.style.border = '';
+      }
+      if (to.value.trim() === '') {
+        to.style.border = '1px solid red';
+        if (!fail) {
+          to.focus();
+          fail = true;
+        }
+      } else {
+        to.style.border = '';
+      }
+      if (fail) {
+        e.preventDefault();
       }
     },
 
@@ -570,7 +604,8 @@ export default {
       const els = facet.querySelectorAll('[x-hidden]:checked');
       const vals = [];
       for (let x = 0, l = els.length; x < l; x += 1) {
-        vals.push(els[x].value);
+        const value = els[x].value;
+        if (value !== 'custom') vals.push(value);
       }
       return vals;
     },
