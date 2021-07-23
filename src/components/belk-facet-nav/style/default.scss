@@ -98,7 +98,6 @@ belk-facet-nav {
       overflow-x: hidden;
       max-height: 282px;
       width: 100%;
-      padding-bottom: $micro;
       // @include no-scroll-bar;
     }
   }
@@ -405,6 +404,7 @@ belk-facet-nav {
 .custom-range {
   display: flex;
   padding-left: 24px;
+  height: 3.2rem;
   input {
     display: inline-block;
     width: 30%;

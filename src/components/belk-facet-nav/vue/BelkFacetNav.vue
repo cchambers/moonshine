@@ -163,6 +163,7 @@
                             type="checkbox"
                             :value="thing.name"
                             :checked="thing.selected"
+                            :href="thing.href"
                             :params="thing.params"
                           />
                           <label
@@ -182,6 +183,7 @@
                             type="checkbox"
                             :value="thing.name"
                             :checked="thing.selected"
+                            :href="thing.href"
                             :params="thing.params"
                           />
                           <label
@@ -223,6 +225,7 @@
                       name="facet-price"
                       :value="thing.name"
                       :checked="thing.selected"
+                      :href="thing.href"
                       :params="thing.params"
                     />
                     <label :for="'range-' + slug">
@@ -245,7 +248,6 @@
                       <div class="flex margin-x-atomic">to</div>
                       <input type="number" id="range-to" name="range-to" placeholder="$ Max" />
                       <sh-button
-                        v-if="!isMobile()"
                         variant="secondary"
                         size="sm"
                         @click="updateFilters">Go</sh-button>
@@ -303,6 +305,7 @@
                             :id="'facet-grid-' + slug"
                             :value="thing.name"
                             :checked="thing.selected"
+                            :href="thing.href"
                             :params="thing.params"
                           />
                           <div>{{ thing.name }}</div>
@@ -321,6 +324,7 @@
                             :id="'facet-sizes-' + slug"
                             :value="thing.name"
                             :checked="thing.selected"
+                          :href="thing.href"
                             :params="thing.params"
                           />
                           <div>{{ thing.name }}</div>
