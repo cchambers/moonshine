@@ -244,9 +244,9 @@
                       <div>Custom Range</div>
                     </label>
                     <div class="custom-range">
-                      <input type="number" id="range-from" name="range-from" placeholder="$ Min" />
+                      <input type="number" id="range-from" name="range-from" placeholder="$Min" />
                       <div class="flex margin-x-atomic">to</div>
-                      <input type="number" id="range-to" name="range-to" placeholder="$ Max" />
+                      <input type="number" id="range-to" name="range-to" placeholder="$Max" />
                       <sh-button
                         variant="secondary"
                         size="sm"
