@@ -209,6 +209,11 @@ belk-facet-nav {
     margin: 0 -$atomic;
     margin-bottom: 11px;
     button  {
+      font-weight: normal;
+      font-size: 14px;
+      position: static;
+      text-align: left;
+      vertical-align: none;
       outline: none;
       border: 1px solid $lowlight-tertiary;
       border-radius: $atomic;
