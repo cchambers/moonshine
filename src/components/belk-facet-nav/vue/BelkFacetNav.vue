@@ -248,6 +248,7 @@
                       type="radio"
                       name="facet-price"
                       value="custom"
+                      :checked="customChecked"
                     />
                     <label for="range-custom">
                       <div>Custom Price Range</div>
@@ -273,7 +274,8 @@
                       <sh-button
                         variant="secondary"
                         size="sm"
-                        @click="updateFilters">Go</sh-button>
+                        @click="updateFilters"
+                        ref="pricebutton">Go</sh-button>
                     </div>
                   </li>
                 </ul>
@@ -399,6 +401,7 @@ export default {
       selectedFilterHref: '',
       selectedFilterParams: [],
       navActive: false,
+      customChecked: false,
     };
   },
 
@@ -413,6 +416,7 @@ export default {
       if (window.facetNav) this.processData(window.facetNav);
     });
     setTimeout(this.updateFilters, 1000);
+    this.customChecked = (window.location.href.indexOf('pmin') > 0);
   },
 
   methods: {

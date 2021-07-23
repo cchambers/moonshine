@@ -50,6 +50,14 @@ belk-facet-nav {
 
     .belk-facet-nav {
       position: static;
+      li {
+        a, > label {
+          display: flex;
+          color: $lowlight-primary;
+          font-size: 14px;
+          line-height: 32px;
+        }
+      }
     }
     .facets-actual {
       border-bottom: 1px solid $highlight-tertiary;
@@ -84,15 +92,6 @@ belk-facet-nav {
           font-weight: normal;
           color: $lowlight-tertiary;
         }
-      }
-    }
-    
-    li {
-      a, > label {
-        display: block !important;
-        color: $lowlight-primary;
-        font-size: 14px;
-        line-height: 32px;
       }
     }
     .height-scroll {
@@ -172,8 +171,8 @@ belk-facet-nav {
         background: $lowlight-primary;
         border-radius: 50%;
         position: absolute;
-        left: 4px;
-        top: 8px;
+        left: 3px;
+        top: 14px;
       }
     }
     input:checked ~ label {
