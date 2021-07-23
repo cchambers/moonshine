@@ -58,6 +58,11 @@ belk-facet-nav {
           line-height: 32px;
         }
       }
+      .clear-search {
+        border: 0;
+        outline: 0;
+        background: transparent;
+      }
     }
     .facets-actual {
       border-bottom: 1px solid $highlight-tertiary;
@@ -314,7 +319,8 @@ belk-facet-nav {
 
   .nodata {
     width: 100%;
-    padding: 5px;
+    padding-top: 8px;
+    font-size: 14px;
   }
 
   .filter {
