@@ -51,6 +51,9 @@ belk-facet-nav {
     .belk-facet-nav {
       position: static;
     }
+    .facets-actual {
+      border-bottom: 1px solid $highlight-tertiary;
+    }
     .facet-acc {
       border-top: 1px solid $highlight-tertiary;
       &.active {
