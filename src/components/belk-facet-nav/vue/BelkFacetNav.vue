@@ -493,9 +493,25 @@ export default {
     },
 
     doCustomRange(e){
-      const from = this.$refs.rangefrom.value;
-      const to = this.$refs.rangeto.value;
-      console.log(from, to);
+      const from = this.$el.querySelector('#range-from');
+      const to = this.$el.querySelector('#range-to');
+      let fail = false;
+      if (from.value.trim() === '') {
+        fail = true;
+        from.style.border = '1px solid red';
+        from.focus();
+      }
+      if (to.value.trim() === '') {
+        to.style.border = '1px solid red';
+        if (!fail) {
+          to.focus();
+          fail = true;
+        }
+      }
+      if (fail) {
+        e.preventDefault();
+      }
+      console.log(fail);
     },
 
     updateFilters(e) {
