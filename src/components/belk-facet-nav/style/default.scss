@@ -103,8 +103,13 @@ belk-facet-nav {
     }
   }
 
-  [set="category"] .acc-body li {
-    border-top: 1px solid $highlight-tertiary;
+  [set="category"] {
+    a {
+      display: block;
+    }
+    .acc-body li {
+      border-top: 1px solid $highlight-tertiary;
+    }
   }
   .checkbox-list,
   .radio-list {
