@@ -236,6 +236,7 @@
                       :checked="thing.selected"
                       :href="thing.href"
                       :params="thing.params"
+                      @focus="customChecked = false"
                     />
                     <label :for="'range-' + slug">
                       <div :data-qty="thing.count">{{ thing.name }}</div>
@@ -257,24 +258,28 @@
                       <input type="number"
                         @keypress="sanitizePrice"
                         @paste="false"
+                        @focus="customChecked = true"
                         min="0"
                         step="1"
                         id="range-from"
                         name="range-from"
-                        placeholder="$Min" />
+                        placeholder="$Min"
+                        ref="rangefrom" />
                       <div class="flex margin-x-atomic">to</div>
                       <input type="number"
                         @keypress="sanitizePrice"
                         @paste="false"
+                        @focus="customChecked = true"
                         min="0"
                         step="1"
                         id="range-to"
                         name="range-to"
-                        placeholder="$Max" />
+                        placeholder="$Max"
+                        ref="rangeto" />
                       <sh-button
                         variant="secondary"
                         size="sm"
-                        @click="updateFilters"
+                        @click="doCustomRange"
                         ref="pricebutton">Go</sh-button>
                     </div>
                   </li>
@@ -487,6 +492,12 @@ export default {
       }
     },
 
+    doCustomRange(e){
+      const from = this.$refs.rangefrom.value;
+      const to = this.$refs.rangeto.value;
+      console.log(from, to);
+    },
+
     updateFilters(e) {
       const selectedFilters = {};
       const selectedFilterParams = [];
@@ -574,7 +585,8 @@ export default {
       const els = facet.querySelectorAll('[x-hidden]:checked');
       const vals = [];
       for (let x = 0, l = els.length; x < l; x += 1) {
-        vals.push(els[x].value);
+        const value = els[x].value;
+        if (value !== 'custom') vals.push(value);
       }
       return vals;
     },
