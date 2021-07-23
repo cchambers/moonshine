@@ -243,12 +243,26 @@
                       value="custom"
                     />
                     <label for="range-custom">
-                      <div>Custom Range</div>
+                      <div>Custom Price Range</div>
                     </label>
                     <div class="custom-range">
-                      <input type="number" id="range-from" name="range-from" placeholder="$Min" />
+                      <input type="number"
+                        @keypress="sanitizePrice"
+                        @paste="false"
+                        min="0"
+                        step="1"
+                        id="range-from"
+                        name="range-from"
+                        placeholder="$Min" />
                       <div class="flex margin-x-atomic">to</div>
-                      <input type="number" id="range-to" name="range-to" placeholder="$Max" />
+                      <input type="number"
+                        @keypress="sanitizePrice"
+                        @paste="false"
+                        min="0"
+                        step="1"
+                        id="range-to"
+                        name="range-to"
+                        placeholder="$Max" />
                       <sh-button
                         variant="secondary"
                         size="sm"
@@ -571,6 +585,10 @@ export default {
         return 'background: ' + color.rgb;
       }
     },
+
+    sanitizePrice(event){
+      return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57;
+    }
   },
 };
 </script>
