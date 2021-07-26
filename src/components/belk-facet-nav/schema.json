@@ -1,10 +1,10 @@
 {
   "name": "Belk Facet Nav",
-  "category": "base",
-  "production": false,
+  "category": "features",
+  "production": true,
   "element": "belk-facet-nav",
-  "description": "Demonstration component.",
-  "tags": ["utilities", "demo"],
+  "description": "Used on search and category pages to refine product results.",
+  "tags": ["facet", "filter", "refinement", "nav"],
   "tracking": [],
   "requirements": {
     "Element One": [],

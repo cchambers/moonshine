@@ -29,4 +29,12 @@
       }
     }
   }
+
+  [discount="Doorbuster"],
+  [discount="Super Buy"] {
+    color: $lowlight-primary !important;
+    &.sale ~ .original {
+      display: none !important;
+    }
+  }
 }
