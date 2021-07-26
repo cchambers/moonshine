@@ -525,6 +525,8 @@ export default {
       }
       if (fail) {
         e.preventDefault();
+      } else {
+        this.$bus.$emit('facet-custom', { from: from, to: to });
       }
     },
 
