@@ -325,8 +325,19 @@
                       type="text"
                       ref="search"
                       placeholder="Find Size"
+                      :class="'facet-' + facet.name.slugify()" />
                     />
-                    <belk-icon height="12" width="12" name="search"></belk-icon>
+                    <template v-if="hasValue('facet-'+facet.name.slugify())">
+                      <button class="clear-search flex"
+                        aria-role="button"
+                        aria-label="clear search field"
+                        @click="clearNearest">
+                      <belk-icon height="12" width="12" name="close">Clear Input</belk-icon>
+                      </button>
+                    </template>
+                    <template v-else>
+                      <belk-icon height="12" width="12" name="search">Search Filters</belk-icon>
+                    </template>
                   </div>
                   <div class="height-scroll">
                     <div class="filter-list">

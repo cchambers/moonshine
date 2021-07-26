@@ -318,6 +318,12 @@ belk-facet-nav {
     }
   }
 
+  .filter-grid {
+    .nodata {
+      padding-left: 6px;
+    }
+  }
+
   .nodata {
     width: 100%;
     padding-top: 8px;
@@ -439,6 +445,11 @@ label[for="range-custom"] {
 
 
 .IE11 {
+  .belk-facet-nav {
+    *::-ms-clear {
+      display: none;
+    }
+  }
   .custom-range input {
     flex-basis: 25px;
     flex-grow: 2;
