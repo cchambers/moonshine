@@ -115,6 +115,7 @@
                       :value="color.name"
                       :checked="color.selected"
                       :href="color.href"
+                      :params="color.params"
                     />
                     <label :for="'facet-swatch-' + color.name">
                       <div class="swatch" :style="getBackground(color)"></div>
@@ -376,7 +377,7 @@
                             :id="'facet-sizes-' + slug"
                             :value="thing.name"
                             :checked="thing.selected"
-                          :href="thing.href"
+                            :href="thing.href"
                             :params="thing.params"
                           />
                           <div>{{ thing.name }}</div>
