@@ -327,7 +327,6 @@
                       ref="search"
                       placeholder="Find Size"
                       :class="'facet-' + facet.name.slugify()" />
-                    />
                     <template v-if="hasValue('facet-'+facet.name.slugify())">
                       <button class="clear-search flex"
                         aria-role="button"
