@@ -607,8 +607,13 @@ export default {
       const el = this.$el.querySelector(
         `[facet-name="${facet}"] [value="${filter}"]`,
       );
-      if (el) el.checked = false;
-      this.$emit('update-filters');
+      let selectedFilterHref = '';
+      if (el) {
+        el.checked = false;
+        selectedFilterHref = el.getAttribute('href');
+        this.$set(this, 'selectedFilterHref', selectedFilterHref);
+      }
+      this.$bus.$emit('facet-link', this.selectedFilterHref);
     },
 
     extractVals(facet) {
