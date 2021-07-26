@@ -525,7 +525,8 @@ export default {
       } else {
         from.style.border = '';
       }
-      if (to.value.trim() === '') {
+      if (to.value.trim() === ''
+        || from.value.trim() === to.value.trim()) {
         to.style.border = '1px solid red';
         if (!fail) {
           to.focus();
@@ -537,7 +538,7 @@ export default {
       if (fail) {
         e.preventDefault();
       } else {
-        this.$bus.$emit('facet-custom', { from: from, to: to });
+        this.$bus.$emit('facet-custom', { from: from.value, to: to.value });
       }
     },
 
