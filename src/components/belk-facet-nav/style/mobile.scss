@@ -193,6 +193,10 @@ $itemHeight: 48px;
     .radio-list {
       label {
         height: $itemHeight;
+        &:after {
+          top: 18px;
+          left: 4px;
+        }
         &:before {
           margin-top: 14px;
         }
