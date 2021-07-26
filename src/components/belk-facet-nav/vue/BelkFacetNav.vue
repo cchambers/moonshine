@@ -518,6 +518,7 @@ export default {
     doCustomRange(e){
       const from = this.$el.querySelector('#range-from');
       const to = this.$el.querySelector('#range-to');
+      const baseUrl = this.$el.querySelector('[name=facet-price]').getAttribute('href');
       let fail = false;
       if (from.value.trim() === '') {
         fail = true;
@@ -539,7 +540,7 @@ export default {
       if (fail) {
         e.preventDefault();
       } else {
-        this.$bus.$emit('facet-custom', { from: from.value, to: to.value });
+        this.$bus.$emit('facet-custom', { from: from.value, to: to.value, baseUrl: baseUrl });
       }
     },
 
