@@ -680,7 +680,6 @@ export default {
 
     sanitizePrice(event){
       const key = event.keyCode;
-      console.log(key);
       const good = (key >= 48 && key <= 57)
         || (key === 190 || key === 46);
       if (!good) event.preventDefault();
