@@ -448,6 +448,11 @@ label[for="range-custom"] {
 
 
 .IE11 {
+  .filter {
+    belk-icon {
+      display: block;
+    }
+  }
   .belk-facet-nav {
     *::-ms-clear {
       display: none;
