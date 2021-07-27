@@ -448,6 +448,9 @@ label[for="range-custom"] {
 
 
 .IE11 {
+  .radio-list label:before  {
+    border: none !important;    
+  }
   .filter {
     belk-icon {
       display: block;
