@@ -35,6 +35,15 @@
     <div class="filter-stack">
       <template v-for="(thing, facet) in selectedFilters">
         <template v-for="filter in thing">
+          <a
+            v-bind:key="filter.index"
+            :data-facet="facet"
+            :value="filter"
+          >{{ filter }}</a>
+        </template>
+      </template>
+      <!-- <template v-for="(thing, facet) in selectedFilters">
+        <template v-for="filter in thing">
           <button
             v-bind:key="filter.index"
             @click="removeFilter(facet, filter)"
@@ -42,7 +51,7 @@
             :value="filter"
           >{{ filter }}</button>
         </template>
-      </template>
+      </template> -->
     </div>
     <div ref="pickup" class="facet-pickup" facet-name="pickup">
       <div class="facet-acc active">
@@ -233,69 +242,71 @@
                     @click="clearFilters"
                   >Clear</div>
                 </div>
-                <ul class="acc-body radio-list">
-                  <li
-                    v-for="thing in facet.options"
-                    :key="thing.id"
-                    :set="slug = thing.name.slugify()"
-                  >
-                    <input
-                      :id="'range-' + slug"
-                      x-hidden
-                      type="radio"
-                      name="facet-price"
-                      :value="thing.name"
-                      :checked="thing.selected"
-                      :href="thing.href"
-                      :params="thing.params"
-                      @focus="customChecked = false"
-                    />
-                    <label :for="'range-' + slug">
-                      <div :data-qty="thing.count">{{ thing.name }}</div>
-                    </label>
-                  </li>
-                  <li>
-                    <input
-                      id="range-custom"
-                      x-hidden
-                      type="radio"
-                      name="facet-price"
-                      value="custom"
-                      :checked="customChecked"
-                    />
-                    <label for="range-custom">
-                      <div>Custom Price Range</div>
-                    </label>
-                    <div class="custom-range">
-                      <input type="number"
-                        @keypress="sanitizePrice"
-                        @paste="false"
-                        @focus="customChecked = true"
-                        min="0"
-                        step="1"
-                        id="range-from"
-                        name="range-from"
-                        placeholder="$Min"
-                        ref="rangefrom" />
-                      <div class="flex margin-x-atomic">to</div>
-                      <input type="number"
-                        @keypress="sanitizePrice"
-                        @paste="false"
-                        @focus="customChecked = true"
-                        min="0"
-                        step="1"
-                        id="range-to"
-                        name="range-to"
-                        placeholder="$Max"
-                        ref="rangeto" />
-                      <sh-button
-                        variant="secondary"
-                        size="sm"
-                        @click="doCustomRange"
-                        ref="pricebutton">Go</sh-button>
-                    </div>
-                  </li>
-                </ul>
+                <div class="acc-body">
+                  <ul class="radio-list height-scroll">
+                    <li
+                      v-for="thing in facet.options"
+                      :key="thing.id"
+                      :set="slug = thing.name.slugify()"
+                    >
+                      <input
+                        :id="'range-' + slug"
+                        x-hidden
+                        type="radio"
+                        name="facet-price"
+                        :value="thing.name"
+                        :checked="thing.selected"
+                        :href="thing.href"
+                        :params="thing.params"
+                        @focus="customChecked = false"
+                      />
+                      <label :for="'range-' + slug">
+                        <div :data-qty="thing.count">{{ thing.name }}</div>
+                      </label>
+                    </li>
+                    <li>
+                      <input
+                        id="range-custom"
+                        x-hidden
+                        type="radio"
+                        name="facet-price"
+                        value="custom"
+                        :checked="customChecked"
+                      />
+                      <label for="range-custom">
+                        <div>Custom Price Range</div>
+                      </label>
+                      <div class="custom-range">
+                        <input type="number"
+                          @keypress="sanitizePrice"
+                          @paste="false"
+                          @focus="customChecked = true"
+                          min="0"
+                          step="1"
+                          id="range-from"
+                          name="range-from"
+                          placeholder="$Min"
+                          ref="rangefrom" />
+                        <div class="flex margin-x-atomic">to</div>
+                        <input type="number"
+                          @keypress="sanitizePrice"
+                          @paste="false"
+                          @focus="customChecked = true"
+                          min="0"
+                          step="1"
+                          id="range-to"
+                          name="range-to"
+                          placeholder="$Max"
+                          ref="rangeto" />
+                        <sh-button
+                          variant="secondary"
+                          size="sm"
+                          @click="doCustomRange"
+                          ref="pricebutton">Go</sh-button>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
           </template>
@@ -668,9 +679,11 @@ export default {
     },
 
     sanitizePrice(event){
-      const block = [45, 43, 187, 189];
-      const toReturn = (block.indexOf(event.keyCode) < 0);
-      if (!toReturn) event.preventDefault();
+      const key = event.keyCode;
+      const good = (key >= 48 && key <= 57)
+        || (key >= 96 && key <= 105)
+        || (key === 190 || key === 110|| key === 46);
+      if (!good) event.preventDefault();
     },
 
     hasValue(slug) {
