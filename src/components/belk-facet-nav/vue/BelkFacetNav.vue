@@ -538,7 +538,7 @@ export default {
         from.style.border = '';
       }
       if (to.value.trim() === ''
-        || from.value.trim() === to.value.trim()) {
+        || to.value.trim() <= from.value.trim()) {
         to.style.border = '1px solid red';
         if (!fail) {
           to.focus();
