@@ -11,7 +11,7 @@
     <div class="mobile-base">
       <ul ref="basescroll">
         <li
-          v-for="facet in facets"
+          v-for="facet in mobileOnly"
           :key="facet.id"
           @click="showNav"
           :facet-target="facet.name.slugify()"
@@ -32,16 +32,16 @@
         @click="clearAllFilters"
       >Clear All</button>
     </div>
-    <div class="filter-stack">
-      <template v-for="(thing, facet) in selectedFilters">
-        <template v-for="filter in thing">
-          <button
-            v-bind:key="filter.index"
-            @click="removeFilter(facet, filter)"
-            :data-facet="facet"
-            :value="filter"
-          >{{ filter }}</button>
-        </template>
+    <div v-for="facet in facets" :key="facet.id" :set="type = facet.type">
+      <template v-if="type == 'active-filters'">
+        <div class="filter-stack">
+          <template v-for="(option) in facet.options">
+            <a
+              v-bind:key="option.index"
+              :href="option.href"
+            >{{ option.name }}</a>
+          </template>
+        </div>
       </template>
     </div>
     <div ref="pickup" class="facet-pickup" facet-name="pickup">
@@ -56,8 +56,7 @@
     </div>
     <div class="facets-actual">
       <div v-for="facet in facets" :key="facet.id" :set="type = facet.type">
-        <template v-if="type == 'active-filters'"></template>
-        <template v-if="type == 'category'">
+        <template v-if="type === 'category'">
           <div :set="facetName = facet.name.slugify()" :facet-name="facetName" class="facet-links">
             <div :class="{ 'active': facet.expanded }" class="facet-acc">
               <div class="acc-head">
@@ -82,11 +81,11 @@
             </div>
           </div>
         </template>
-        <template v-if="type == 'heading'">
+        <template v-if="type === 'heading'">
           <div class="facet-heading">{{ facet.name }}</div>
         </template>
-        <template v-if="type == 'filter'">
-          <template v-if="facet.form ==  'swatch'">
+        <template v-if="type === 'filter'">
+          <template v-if="facet.form === 'swatch'">
             <div
               :set="facetName = facet.name.slugify()"
               :facet-name="facetName"
@@ -126,7 +125,7 @@
               </div>
             </div>
           </template>
-          <template v-if="facet.form ==  'checkbox'">
+          <template v-if="facet.form === 'checkbox'">
             <div
               :set="facetName = facet.name.slugify()"
               :facet-name="facetName"
@@ -213,7 +212,7 @@
               </div>
             </div>
           </template>
-          <template v-if="facet.form ==  'range'">
+          <template v-if="facet.form === 'range'">
             <div
               :set="facetName = facet.name.slugify()"
               :facet-name="facetName"
@@ -233,73 +232,75 @@
                     @click="clearFilters"
                   >Clear</div>
                 </div>
-                <ul class="acc-body radio-list">
-                  <li
-                    v-for="thing in facet.options"
-                    :key="thing.id"
-                    :set="slug = thing.name.slugify()"
-                  >
-                    <input
-                      :id="'range-' + slug"
-                      x-hidden
-                      type="radio"
-                      name="facet-price"
-                      :value="thing.name"
-                      :checked="thing.selected"
-                      :href="thing.href"
-                      :params="thing.params"
-                      @focus="customChecked = false"
-                    />
-                    <label :for="'range-' + slug">
-                      <div :data-qty="thing.count">{{ thing.name }}</div>
-                    </label>
-                  </li>
-                  <li>
-                    <input
-                      id="range-custom"
-                      x-hidden
-                      type="radio"
-                      name="facet-price"
-                      value="custom"
-                      :checked="customChecked"
-                    />
-                    <label for="range-custom">
-                      <div>Custom Price Range</div>
-                    </label>
-                    <div class="custom-range">
-                      <input type="number"
-                        @keypress="sanitizePrice"
-                        @paste="false"
-                        @focus="customChecked = true"
-                        min="0"
-                        step="1"
-                        id="range-from"
-                        name="range-from"
-                        placeholder="$Min"
-                        ref="rangefrom" />
-                      <div class="flex margin-x-atomic">to</div>
-                      <input type="number"
-                        @keypress="sanitizePrice"
-                        @paste="false"
-                        @focus="customChecked = true"
-                        min="0"
-                        step="1"
-                        id="range-to"
-                        name="range-to"
-                        placeholder="$Max"
-                        ref="rangeto" />
-                      <sh-button
-                        variant="secondary"
-                        size="sm"
-                        @click="doCustomRange"
-                        ref="pricebutton">Go</sh-button>
-                    </div>
-                  </li>
-                </ul>
+                <div class="acc-body">
+                  <ul class="radio-list height-scroll">
+                    <li
+                      v-for="thing in facet.options"
+                      :key="thing.id"
+                      :set="slug = thing.name.slugify()"
+                    >
+                      <input
+                        :id="'range-' + slug"
+                        x-hidden
+                        type="radio"
+                        name="facet-price"
+                        :value="thing.name"
+                        :checked="thing.selected"
+                        :href="thing.href"
+                        :params="thing.params"
+                        @focus="customChecked = false"
+                      />
+                      <label :for="'range-' + slug">
+                        <div :data-qty="thing.count">{{ thing.name }}</div>
+                      </label>
+                    </li>
+                    <li>
+                      <input
+                        id="range-custom"
+                        x-hidden
+                        type="radio"
+                        name="facet-price"
+                        value="custom"
+                        :checked="customChecked"
+                      />
+                      <label for="range-custom">
+                        <div>Custom Price Range</div>
+                      </label>
+                      <div class="custom-range">
+                        <input type="number"
+                          @keypress="sanitizePrice"
+                          @paste="false"
+                          @focus="customChecked = true"
+                          min="0"
+                          step="1"
+                          id="range-from"
+                          name="range-from"
+                          placeholder="$Min"
+                          ref="rangefrom" />
+                        <div class="flex margin-x-atomic">to</div>
+                        <input type="number"
+                          @keypress="sanitizePrice"
+                          @paste="false"
+                          @focus="customChecked = true"
+                          min="0"
+                          step="1"
+                          id="range-to"
+                          name="range-to"
+                          placeholder="$Max"
+                          ref="rangeto" />
+                        <sh-button
+                          variant="secondary"
+                          size="sm"
+                          @click="doCustomRange"
+                          ref="pricebutton">Go</sh-button>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
           </template>
-          <template v-if="facet.form ==  'grid'">
+          <template v-if="facet.form === 'grid'">
             <div
               :set="facetName = facet.name.slugify()"
               :facet-name="facetName"
@@ -432,6 +433,12 @@ export default {
     };
   },
 
+  computed: {
+    mobileOnly() {
+      return this.facets.filter((item) => !!item.cgid);
+    },
+  },
+
   // watch: {
   //   selectedFilters(val) {
   //     console.log('test', val);
@@ -461,9 +468,7 @@ export default {
     processData(obj) {
       const links = [];
       if (obj.nav) {
-        let fn = obj.nav.slice();
-        if (fn[0].type === 'active-filters') this.filterData = fn.shift();
-        this.facets = fn;
+        this.facets = obj.nav.slice();
         for (let x = 0, l = this.facets.length; x < l; x += 1) {
           const facet = this.facets[x];
           if (facet.search) {
@@ -668,9 +673,11 @@ export default {
     },
 
     sanitizePrice(event){
-      const block = [45, 43, 187, 189];
-      const toReturn = (block.indexOf(event.keyCode) < 0);
-      if (!toReturn) event.preventDefault();
+      const key = event.keyCode;
+      const good = (key >= 48 && key <= 57)
+        || (key >= 96 && key <= 105)
+        || (key === 190 || key === 110|| key === 46);
+      if (!good) event.preventDefault();
     },
 
     hasValue(slug) {

@@ -66,7 +66,6 @@ belk-facet-nav {
     }
     .facets-actual {
       border-bottom: 1px solid $highlight-tertiary;
-      padding-bottom: 8px;
     }
     .facet-acc {
       border-top: 1px solid $highlight-tertiary;
@@ -121,6 +120,7 @@ belk-facet-nav {
       border-top: 1px solid $highlight-tertiary;
     }
   }
+
   .checkbox-list,
   .radio-list {
     label {
@@ -215,7 +215,8 @@ belk-facet-nav {
     flex-wrap: wrap;
     margin: 0 -$atomic;
     margin-bottom: 11px;
-    button  {
+    button,
+    a {
       font-weight: normal;
       font-size: 14px;
       position: static;
@@ -425,6 +426,8 @@ belk-facet-nav {
 }
 
 label[for="range-custom"] {
+  opacity: 0;
+  height: 10px;
   &:before,
   &:after {
     opacity: 0 !important;
