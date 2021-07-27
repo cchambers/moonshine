@@ -106,7 +106,8 @@
                   >Clear</div>
                 </div>
                 <ul class="acc-body height-scroll">
-                  <li v-for="color in facet.options" :key="color.id">
+                  <li v-for="color in facet.options" :key="color.id"
+                    :title="'Refine by: ' + color.name">
                     <input
                       type="checkbox"
                       x-hidden
@@ -171,6 +172,7 @@
                           v-for="thing in filteredData[facet.name.slugify()]"
                           :key="thing.id"
                           :set="slug = thing.name.slugify()"
+                          :title="'Refine by: ' + thing.name"
                         >
                           <input
                             x-hidden
@@ -191,6 +193,7 @@
                           v-for="thing in facet.options"
                           :key="thing.id"
                           :set="slug = thing.name.slugify()"
+                          :title="'Refine by: ' + thing.name"
                         >
                           <input
                             x-hidden
@@ -238,6 +241,7 @@
                       v-for="thing in facet.options"
                       :key="thing.id"
                       :set="slug = thing.name.slugify()"
+                      :title="'Refine by: ' + thing.name"
                     >
                       <input
                         :id="'range-' + slug"
@@ -351,6 +355,7 @@
                           v-bind:key="thing.index"
                           :set="slug = thing.name.slugify()"
                           :for="'facet-grid-' + slug"
+                          :title="'Refine by: ' + thing.name"
                         >
                           <input
                             type="checkbox"
@@ -370,6 +375,7 @@
                           v-bind:key="thing.index"
                           :set="slug = thing.name.slugify()"
                           :for="'facet-sizes-' + slug"
+                          :title="'Refine by: ' + thing.name"
                         >
                           <input
                             type="checkbox"
