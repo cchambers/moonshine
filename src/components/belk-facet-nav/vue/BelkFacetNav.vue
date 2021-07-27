@@ -441,7 +441,7 @@ export default {
 
   computed: {
     mobileOnly() {
-      return this.facets.filter((item) => !!item.cgid);
+      return this.facets.filter((item) => item.name);
     },
   },
 
