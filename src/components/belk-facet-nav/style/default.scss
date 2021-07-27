@@ -228,7 +228,7 @@ belk-facet-nav {
       margin: $atomic;
       padding: 6px 10px 5px 12px;
       color: $lowlight-primary;
-      display: flex;
+      display: flex !important;
       align-items: center;
       justify-content: space-between;
       background: $highlight-primary;
