@@ -38,10 +38,10 @@ $itemHeight: 48px;
         list-style: none;
         padding: 0;
         margin: 0;
-        max-height: calc(100vh - 63px);
+        max-height: calc(100vh - 120px);
         overflow-y: auto;
         margin-top: 63px !important;
-        padding-bottom: 63px;
+        padding-bottom: 120px;
       }
       li {
         display: flex;
