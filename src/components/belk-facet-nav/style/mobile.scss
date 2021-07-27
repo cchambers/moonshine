@@ -122,8 +122,12 @@ $itemHeight: 48px;
       flex-direction: column;
       max-height: 100vh;
       @include no-scroll-bar;
+      top: 0;
+      left: 0;
       &.active {
         display: flex;
+        width: 100%;
+        height: 100%;
       }
       [facet-name] {
         position: absolute;
@@ -131,6 +135,9 @@ $itemHeight: 48px;
         background: $highlight-primary;
         transform: translateX(-100%);
         @include no-scroll-bar;
+        top: 0;
+        height: 100%;
+        width: 100%;
         &.active {
           transform: translateX(0);
         }
