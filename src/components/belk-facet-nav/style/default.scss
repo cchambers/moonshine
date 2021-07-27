@@ -215,7 +215,8 @@ belk-facet-nav {
     flex-wrap: wrap;
     margin: 0 -$atomic;
     margin-bottom: 11px;
-    button  {
+    button,
+    a {
       font-weight: normal;
       font-size: 14px;
       position: static;

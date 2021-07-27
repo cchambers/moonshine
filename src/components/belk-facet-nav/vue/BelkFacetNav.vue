@@ -11,7 +11,7 @@
     <div class="mobile-base">
       <ul ref="basescroll">
         <li
-          v-for="facet in facets"
+          v-for="facet in mobileOnly"
           :key="facet.id"
           @click="showNav"
           :facet-target="facet.name.slugify()"
@@ -32,26 +32,17 @@
         @click="clearAllFilters"
       >Clear All</button>
     </div>
-    <div class="filter-stack">
-      <template v-for="(thing, facet) in selectedFilters">
-        <template v-for="filter in thing">
-          <a
-            v-bind:key="filter.index"
-            :data-facet="facet"
-            :value="filter"
-          >{{ filter }}</a>
-        </template>
+    <div v-for="facet in facets" :key="facet.id" :set="type = facet.type">
+      <template v-if="type == 'active-filters'">
+        <div class="filter-stack">
+          <template v-for="(option) in facet.options">
+            <a
+              v-bind:key="option.index"
+              :href="option.href"
+            >{{ option.name }}</a>
+          </template>
+        </div>
       </template>
-      <!-- <template v-for="(thing, facet) in selectedFilters">
-        <template v-for="filter in thing">
-          <button
-            v-bind:key="filter.index"
-            @click="removeFilter(facet, filter)"
-            :data-facet="facet"
-            :value="filter"
-          >{{ filter }}</button>
-        </template>
-      </template> -->
     </div>
     <div ref="pickup" class="facet-pickup" facet-name="pickup">
       <div class="facet-acc active">
@@ -65,8 +56,7 @@
     </div>
     <div class="facets-actual">
       <div v-for="facet in facets" :key="facet.id" :set="type = facet.type">
-        <template v-if="type == 'active-filters'"></template>
-        <template v-if="type == 'category'">
+        <template v-if="type === 'category'">
           <div :set="facetName = facet.name.slugify()" :facet-name="facetName" class="facet-links">
             <div :class="{ 'active': facet.expanded }" class="facet-acc">
               <div class="acc-head">
@@ -91,11 +81,11 @@
             </div>
           </div>
         </template>
-        <template v-if="type == 'heading'">
+        <template v-if="type === 'heading'">
           <div class="facet-heading">{{ facet.name }}</div>
         </template>
-        <template v-if="type == 'filter'">
-          <template v-if="facet.form ==  'swatch'">
+        <template v-if="type === 'filter'">
+          <template v-if="facet.form === 'swatch'">
             <div
               :set="facetName = facet.name.slugify()"
               :facet-name="facetName"
@@ -135,7 +125,7 @@
               </div>
             </div>
           </template>
-          <template v-if="facet.form ==  'checkbox'">
+          <template v-if="facet.form === 'checkbox'">
             <div
               :set="facetName = facet.name.slugify()"
               :facet-name="facetName"
@@ -222,7 +212,7 @@
               </div>
             </div>
           </template>
-          <template v-if="facet.form ==  'range'">
+          <template v-if="facet.form === 'range'">
             <div
               :set="facetName = facet.name.slugify()"
               :facet-name="facetName"
@@ -310,7 +300,7 @@
               </div>
             </div>
           </template>
-          <template v-if="facet.form ==  'grid'">
+          <template v-if="facet.form === 'grid'">
             <div
               :set="facetName = facet.name.slugify()"
               :facet-name="facetName"
@@ -443,6 +433,12 @@ export default {
     };
   },
 
+  computed: {
+    mobileOnly() {
+      return this.facets.filter((item) => !!item.cgid);
+    },
+  },
+
   // watch: {
   //   selectedFilters(val) {
   //     console.log('test', val);
@@ -472,9 +468,7 @@ export default {
     processData(obj) {
       const links = [];
       if (obj.nav) {
-        let fn = obj.nav.slice();
-        if (fn[0].type === 'active-filters') this.filterData = fn.shift();
-        this.facets = fn;
+        this.facets = obj.nav.slice();
         for (let x = 0, l = this.facets.length; x < l; x += 1) {
           const facet = this.facets[x];
           if (facet.search) {
