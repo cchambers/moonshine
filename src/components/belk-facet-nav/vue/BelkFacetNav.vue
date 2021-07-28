@@ -619,7 +619,6 @@ export default {
       if (!this.isMobile()) {
         this.$bus.$emit('facet-link', this.selectedFilterHref);
       } else {
-        console.log(this.selectedFilterParams);
         this.$bus.$emit('facet-params', this.selectedFilterParams);
       }
     },
