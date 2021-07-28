@@ -271,6 +271,7 @@
                         type="radio"
                         name="facet-price"
                         value="custom"
+                        :params="customParams"
                         :checked="customChecked"
                       />
                       <label for="range-custom">
@@ -286,6 +287,7 @@
                           id="range-from"
                           name="range-from"
                           placeholder="$Min"
+                          v-model="fromVal"
                           ref="rangefrom" />
                         <div class="flex margin-x-atomic">to</div>
                         <input type="number"
@@ -297,6 +299,7 @@
                           id="range-to"
                           name="range-to"
                           placeholder="$Max"
+                          v-model="toVal"
                           ref="rangeto" />
                         <sh-button
                           variant="secondary"
@@ -442,6 +445,9 @@ export default {
       selectedFilterParams: [],
       navActive: false,
       customChecked: false,
+      toVal: '',
+      fromVal: '',
+      customParams: '',
     };
   },
 
@@ -452,6 +458,12 @@ export default {
   },
 
   watch: {
+    toVal() {
+      this.updateCustomParam();
+    },
+    fromVal() {
+      this.updateCustomParam();
+    },
     customChecked(val) {
       if (val && this.isMobile) {
         const el = this.$el.querySelector('.custom-range');
@@ -604,8 +616,12 @@ export default {
     sendFilters(update) {
       if (update) this.updateFilters();
       this.$bus.$emit('facet-filters', this.selectedFilters);
-      if (!this.isMobile()) this.$bus.$emit('facet-link', this.selectedFilterHref);
-      else this.$bus.$emit('facet-params', this.selectedFilterParams);
+      if (!this.isMobile()) {
+        this.$bus.$emit('facet-link', this.selectedFilterHref);
+      } else {
+        console.log(this.selectedFilterParams);
+        this.$bus.$emit('facet-params', this.selectedFilterParams);
+      }
     },
 
     goBack() {
@@ -707,7 +723,11 @@ export default {
       const sanity = new RegExp(/^(\d*)(\.+)?[0-9]?[0-9]?$/);
       const value = event.target.value + String.fromCharCode(key);
       const good = value.match(sanity);
-      if (!good) event.preventDefault();
+      if (!good) {
+        event.preventDefault();
+      } else {
+        this.$forceUpdate();
+      }
     },
 
     hasValue(slug) {
@@ -727,6 +747,16 @@ export default {
       }
       this.$forceUpdate();
     },
+
+    updateCustomParam() {
+        let val = 'none';
+      const from = this.$el.querySelector('#range-from');
+      const to = this.$el.querySelector('#range-to');
+      if (from) {
+        val = `?pmin=${from.value}&pmax=${to.value}`;
+      }
+      this.customParams = val;
+    }
   },
 };
 </script>
