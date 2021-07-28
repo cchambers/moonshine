@@ -560,9 +560,13 @@ export default {
       }
 
       if (fromEmpty) { // if FROM value empty
-        fail = true;
-        from.style.border = '1px solid red';
-        from.focus();
+        if (!toEmpty) {
+          from.value = 0;
+        } else {
+          fail = true;
+          from.style.border = '1px solid red';
+          from.focus();
+        }
       } else {
         from.style.border = '';
       }
@@ -703,7 +707,6 @@ export default {
       const sanity = new RegExp(/^(\d*)(\.+)?[0-9]?[0-9]?$/);
       const value = event.target.value + String.fromCharCode(key);
       const good = value.match(sanity);
-      console.log(good);
       if (!good) event.preventDefault();
     },
 
