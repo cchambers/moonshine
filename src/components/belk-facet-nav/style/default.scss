@@ -424,7 +424,7 @@ belk-facet-nav {
 
 label[for="range-custom"] {
   opacity: 0;
-  height: 10px;
+  height: 10px !important;
   &:before,
   &:after {
     opacity: 0 !important;

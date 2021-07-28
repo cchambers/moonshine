@@ -6,14 +6,19 @@ $itemHeight: 48px;
       font-weight: bold;
       font-size: 18px;
     }
+    .height-scroll {
+      overflow-y: auto;
+      overflow-x: hidden;
+      max-height: 100vh;
+      padding-bottom: 75vh !important;
+      width: 100%;
+      // @include no-scroll-bar;
+    }
     [set="heading"] {
       display: none;
     }
     .custom-range {
       sh-button { display: none }
-    }
-    .height-scroll {
-      padding-bottom: 60px;
     }
     .close-button {
       position: fixed;
@@ -76,7 +81,6 @@ $itemHeight: 48px;
     }
     .acc-body {
       padding: 16px 24px;
-      max-height: calc(100vh - 63px);
       overflow-y: auto;
       font-size: 1.6rem;
       a {
