@@ -445,7 +445,7 @@ label[for="range-custom"] {
 
 
 .IE11 {
-  .filter-swatch label:before  {
+  .filter-swatch label .swatch:before  {
     border: none !important;    
   }
   .filter {
