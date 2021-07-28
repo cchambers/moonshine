@@ -67,17 +67,19 @@
                   :href="facet.href">{{ facet.name }}</a>
                 </h3>
               </div>
-              <ul class="acc-body">
-                <li v-for="thing in facet.children" :key="thing.id">
-                  <a
-                    :href="thing.href"
-                    :title="'Go to category: ' + thing.name"
-                    :data-cgid="thing.cgid"
-                    :data-qty="thing.count"
-                    :class="{ bold: thing.selected }"
-                  >{{ thing.name }}</a>
-                </li>
-              </ul>
+              <div class="acc-body height-scroll">
+                <ul>
+                  <li v-for="thing in facet.children" :key="thing.id">
+                    <a
+                      :href="thing.href"
+                      :title="'Go to category: ' + thing.name"
+                      :data-cgid="thing.cgid"
+                      :data-qty="thing.count"
+                      :class="{ bold: thing.selected }"
+                    >{{ thing.name }}</a>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </template>
@@ -105,24 +107,28 @@
                     @click="clearFilters"
                   >Clear</div>
                 </div>
-                <ul class="acc-body height-scroll">
-                  <li v-for="color in facet.options" :key="color.id"
-                    :title="'Refine by: ' + color.name">
-                    <input
-                      type="checkbox"
-                      x-hidden
-                      :id="'facet-swatch-' + color.name"
-                      :value="color.name"
-                      :checked="color.selected"
-                      :href="color.href"
-                      :params="color.params"
-                    />
-                    <label :for="'facet-swatch-' + color.name">
-                      <div class="swatch" :style="getBackground(color)"></div>
-                      <div class="name">{{ color.name }}</div>
-                    </label>
-                  </li>
-                </ul>
+                <div class="acc-body">
+                  <div class="height-scrol">
+                    <ul>
+                      <li v-for="color in facet.options" :key="color.id"
+                        :title="'Refine by: ' + color.name">
+                        <input
+                          type="checkbox"
+                          x-hidden
+                          :id="'facet-swatch-' + color.name"
+                          :value="color.name"
+                          :checked="color.selected"
+                          :href="color.href"
+                          :params="color.params"
+                        />
+                        <label :for="'facet-swatch-' + color.name">
+                          <div class="swatch" :style="getBackground(color)"></div>
+                          <div class="name">{{ color.name }}</div>
+                        </label>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
               </div>
             </div>
           </template>
@@ -252,7 +258,7 @@
                         :checked="thing.selected"
                         :href="thing.href"
                         :params="thing.params"
-                        @focus="customChecked = false"
+                        @focus="customChecked = false;"
                       />
                       <label :for="'range-' + slug">
                         <div :data-qty="thing.count">{{ thing.name }}</div>
@@ -445,11 +451,19 @@ export default {
     },
   },
 
-  // watch: {
-  //   selectedFilters(val) {
-  //     console.log('test', val);
-  //   },
-  // },
+  watch: {
+    customChecked(val) {
+      if (true && this.isMobile) {
+        const el = this.$el.querySelector('.custom-range');
+        if (el) {
+          window.scrollBy({
+            top: el.getBoundingClientRect().top,
+            behavior: 'smooth'
+          });
+        }
+      }
+    },
+  },
 
   mounted() {
     setTimeout(() => {
@@ -527,26 +541,35 @@ export default {
 
     doCustomRange(e){
       const from = this.$el.querySelector('#range-from');
+      const fromVal = from.value.trim();
+      const fromEmpty = (fromVal === '');
       const to = this.$el.querySelector('#range-to');
+      const toVal = to.value.trim();
+      const toEmpty = (toVal === '');
       const baseUrl = this.$el.querySelector('[name=facet-price]').getAttribute('href');
       let fail = false;
-      if (from.value.trim() === '') {
+
+      if (toEmpty || toVal <= fromVal) { // if TO value <= FROM value
+          to.style.border = '1px solid red';
+        if (!fail) { // if fail hasn't been set yet
+          to.focus();
+          fail = true;
+        }
+      } else {
+        if (!fromEmpty && toEmpty) {
+          to.value = 0;
+        }
+        to.style.border = '';
+      }
+
+      if (fromEmpty) { // if FROM value empty
         fail = true;
         from.style.border = '1px solid red';
         from.focus();
       } else {
         from.style.border = '';
       }
-      if (to.value.trim() === ''
-        || to.value.trim() <= from.value.trim()) {
-        to.style.border = '1px solid red';
-        if (!fail) {
-          to.focus();
-          fail = true;
-        }
-      } else {
-        to.style.border = '';
-      }
+
       if (fail) {
         e.preventDefault();
       } else {
@@ -679,6 +702,7 @@ export default {
     },
 
     sanitizePrice(event){
+      // const sanity = new RegExp(/^[1-9]\d*(\.\d+)?$/);
       const key = event.keyCode;
       const good = (key >= 48 && key <= 57)
         || (key === 190 || key === 46);
