@@ -453,13 +453,10 @@ export default {
 
   watch: {
     customChecked(val) {
-      if (true && this.isMobile) {
+      if (val && this.isMobile) {
         const el = this.$el.querySelector('.custom-range');
         if (el) {
-          window.scrollBy({
-            top: el.getBoundingClientRect().top,
-            behavior: 'smooth'
-          });
+          el.closest('.height-scroll').scrollTop = 400;
         }
       }
     },
