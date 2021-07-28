@@ -699,10 +699,11 @@ export default {
     },
 
     sanitizePrice(event){
-      // const sanity = new RegExp(/^[1-9]\d*(\.\d+)?$/);
       const key = event.keyCode;
-      const good = (key >= 48 && key <= 57)
-        || (key === 190 || key === 46);
+      const sanity = new RegExp(/^(\d*)(\.+)?[0-9]?[0-9]?$/);
+      const value = event.target.value + String.fromCharCode(key);
+      const good = value.match(sanity);
+      console.log(good);
       if (!good) event.preventDefault();
     },
 
