@@ -724,8 +724,6 @@ export default {
       const good = value.match(sanity);
       if (!good) {
         event.preventDefault();
-      } else {
-        this.$forceUpdate();
       }
     },
 
@@ -748,7 +746,7 @@ export default {
     },
 
     updateCustomParam() {
-        let val = 'none';
+      let val = 'none';
       const from = this.$el.querySelector('#range-from');
       const to = this.$el.querySelector('#range-to');
       if (from) {
