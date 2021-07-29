@@ -551,10 +551,10 @@ export default {
 
     doCustomRange(e){
       const from = this.$el.querySelector('#range-from');
-      const fromVal = from.value.trim();
+      const fromVal = parseInt(from.value.trim());
       const fromEmpty = (fromVal === '');
       const to = this.$el.querySelector('#range-to');
-      const toVal = to.value.trim();
+      const toVal = parseInt(to.value.trim());
       const toEmpty = (toVal === '');
       const baseUrl = this.$el.querySelector('[name=facet-price]').getAttribute('href');
       let fail = false;
