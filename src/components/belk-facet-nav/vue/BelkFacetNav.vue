@@ -527,8 +527,9 @@ export default {
     },
 
     toggleAccord(e) {
-      if (!this.isMobile())
+      if (!this.isMobile()) {
         e.target.closest('.facet-acc').classList.toggle('active');
+      }
     },
 
     doSearch(e) {
