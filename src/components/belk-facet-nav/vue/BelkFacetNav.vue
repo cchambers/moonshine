@@ -278,28 +278,26 @@
                         <div>Custom Price Range</div>
                       </label>
                       <div class="custom-range">
-                        <input type="number"
-                          @keypress="sanitizePrice"
+                        <input type="tel"
+                          @beforeinput="sanitizePrice"
                           @paste="false"
                           @focus="customChecked = true"
                           min="0"
-                          step="1"
                           id="range-from"
                           name="range-from"
                           placeholder="$Min"
-                          v-model="fromVal"
+                          v-model.trim="fromVal"
                           ref="rangefrom" />
                         <div class="flex margin-x-atomic">to</div>
-                        <input type="number"
-                          @keypress="sanitizePrice"
+                        <input type="tel"
+                          @beforeinput="sanitizePrice"
                           @paste="false"
                           @focus="customChecked = true"
                           min="0"
-                          step="1"
                           id="range-to"
                           name="range-to"
                           placeholder="$Max"
-                          v-model="toVal"
+                          v-model.trim="toVal"
                           ref="rangeto" />
                         <sh-button
                           variant="secondary"
@@ -719,13 +717,11 @@ export default {
     },
 
     sanitizePrice(event){
-      const key = event.keyCode;
+      const char = event.data;
       const sanity = new RegExp(/^(\d*)(\.+)?[0-9]?[0-9]?$/);
-      const value = event.target.value + String.fromCharCode(key);
+      const value = event.target.value + char;
       const good = value.match(sanity);
-      if (!good) {
-        event.preventDefault();
-      }
+      if (!good) event.preventDefault();
     },
 
     hasValue(slug) {
