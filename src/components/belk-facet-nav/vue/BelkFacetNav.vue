@@ -719,7 +719,7 @@ export default {
     sanitizePrice(event){
       const char = event.data;
       const sanity = new RegExp(/^(\d*)(\.+)?[0-9]?[0-9]?$/);
-      const value = event.target.value + char;
+      const value = (char) ? event.target.value + char : event.target.value;
       const good = value.match(sanity);
       if (!good) event.preventDefault();
     },
