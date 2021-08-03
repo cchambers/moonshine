@@ -563,9 +563,9 @@ export default {
     },
 
     validateCustomRange() {
+      let fail = false;
       const from = this.$el.querySelector('#range-from');
       const to = this.$el.querySelector('#range-to');
-      let fail = false;
       const fromEmpty = (this.fromVal === '');
       const toEmpty = (this.toVal === '');
 
@@ -591,7 +591,8 @@ export default {
       } else {
         from.style.border = '';
       }
-      return (fail) ? true : [this.toVal, this.fromVal];
+      console.log('fail', fail);
+      return (fail) ? false : [this.toVal, this.fromVal];
     },
 
     doCustomRange(e){
@@ -732,10 +733,11 @@ export default {
       for (let x = 0, l = els.length; x < l; x += 1) {
         const el = els[x];
         const attr = el.getAttribute('params');
-        if (el.value !== 'custom' || el.value !== '') vals.push(attr);
+        console.log(el.value);
+        if (el.value !== 'custom') {
+          if (attr !== '') vals.push(attr);
+        }
       }
-
-      console.log(1, vals);
 
       const customRangeEl = this.$el.querySelector('#range-custom');
       if (customRangeEl.checked) { // if  in custom range...
