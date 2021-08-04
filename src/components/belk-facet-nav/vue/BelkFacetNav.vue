@@ -19,7 +19,8 @@
           {{ facet.name }}
           <div
             class="count"
-            v-if="selectedFilters[facet.name.slugify()]"
+            v-if="selectedFilters[facet.name.slugify()]
+              && selectedFilters[facet.name.slugify()].length > 0"
           >({{ selectedFilters[facet.name.slugify()].length }})</div>
         </li>
       </ul>
@@ -279,25 +280,25 @@
                       </label>
                       <div class="custom-range">
                         <input type="tel"
-                          @beforeinput="sanitizePrice"
+                          @beforeinput="sanitizeCustomRange"
                           @paste="false"
                           @focus="customChecked = true"
                           min="0"
                           id="range-from"
                           name="range-from"
                           placeholder="$Min"
-                          v-model.trim="fromVal"
+                          v-model.trim.number="fromVal"
                           ref="rangefrom" />
                         <div class="flex margin-x-atomic">to</div>
                         <input type="tel"
-                          @beforeinput="sanitizePrice"
+                          @beforeinput="sanitizeCustomRange"
                           @paste="false"
                           @focus="customChecked = true"
                           min="0"
                           id="range-to"
                           name="range-to"
                           placeholder="$Max"
-                          v-model.trim="toVal"
+                          v-model.trim.number="toVal"
                           ref="rangeto" />
                         <sh-button
                           variant="secondary"
@@ -409,8 +410,7 @@
       <sh-button
         variant="primary"
         full
-        @click="toggleActive"
-        click-event="get-filters"
+        @click="sendFilters(true)"
       >See Results</sh-button>
     </div>
   </nav>
@@ -446,6 +446,8 @@ export default {
       toVal: '',
       fromVal: '',
       customParams: '',
+      failOnce: false,
+      loaded: false,
     };
   },
 
@@ -465,9 +467,7 @@ export default {
     customChecked(val) {
       if (val && this.isMobile) {
         const el = this.$el.querySelector('.custom-range');
-        if (el) {
-          el.closest('.height-scroll').scrollTop = 400;
-        }
+        if (el) el.closest('.height-scroll').scrollTop = 400;
       }
     },
   },
@@ -476,14 +476,17 @@ export default {
     setTimeout(() => {
       if (window.facetNav) this.processData(window.facetNav);
     });
-    setTimeout(this.updateFilters, 1000);
+    this.loaded = true;
+    // setTimeout(() => {
+    //   this.updateFilters('mounted');
+    // }, 1000);
     // this.customChecked = (window.location.href.indexOf('pmin') > 0);
   },
 
   methods: {
     /* eslint-disable */
     events() {
-      this.$on('update-filters', this.updateFilters);
+      this.$on('update-filters', () => { this.updateFilters('event update-filters')});
       this.$bus.$on('get-filters', () => { this.sendFilters(true) });
       this.$bus.$on('show-filters', this.toggleActive);
       this.$bus.$on('clear-filters', this.clearFilters);
@@ -547,26 +550,33 @@ export default {
       }
     },
 
-    doCustomRange(e){
-      const from = this.$el.querySelector('#range-from');
-      const fromVal = parseInt(from.value.trim());
-      const fromEmpty = (fromVal === '');
-      const to = this.$el.querySelector('#range-to');
-      const toVal = parseInt(to.value.trim());
-      const toEmpty = (toVal === '');
-      const baseUrl = this.$el.querySelector('[name=facet-price]').getAttribute('href');
-      let fail = false;
+    handleGoButton() {
 
-      if (toEmpty || toVal <= fromVal) { // if TO value <= FROM value
+    },
+
+    sanitizeCustomRange() {
+      const char = event.data;
+      const sanity = new RegExp(/^(\d*)(\.)?[0-9]?[0-9]?$/);
+      const value = (char) ? event.target.value + char : event.target.value;
+      const good = value.match(sanity);
+      if (!good) event.preventDefault();
+    },
+
+    validateCustomRange() {
+      let fail = false;
+      const from = this.$el.querySelector('#range-from');
+      const to = this.$el.querySelector('#range-to');
+      const fromEmpty = (this.fromVal === '');
+      const toEmpty = (this.toVal === '');
+
+      if (toEmpty || this.toVal <= this.fromVal) { // if TO value <= FROM value
           to.style.border = '1px solid red';
         if (!fail) { // if fail hasn't been set yet
           to.focus();
           fail = true;
         }
       } else {
-        if (!fromEmpty && toEmpty) {
-          to.value = 0;
-        }
+        if (!fromEmpty && toEmpty) to.value = 0; // if from value, but no to value, default to "0"
         to.style.border = '';
       }
 
@@ -581,15 +591,20 @@ export default {
       } else {
         from.style.border = '';
       }
+      return (fail) ? false : [this.toVal, this.fromVal];
+    },
 
-      if (fail) {
+    doCustomRange(e){
+      if (this.validateCustomRange()) {
         e.preventDefault();
       } else {
-        this.$bus.$emit('facet-custom', { from: from.value, to: to.value, baseUrl: baseUrl });
+        const baseUrl = this.$el.querySelector('[name=facet-price]').getAttribute('href');
+        this.$bus.$emit('facet-custom', { from: this.fromVal, to: this.toVal, baseUrl: baseUrl });
       }
     },
 
     updateFilters(e) {
+      if (!this.loaded) return;
       const selectedFilters = {};
       const selectedFilterParams = [];
       let selectedFilterHref = '';
@@ -599,12 +614,16 @@ export default {
         if (name) {
           const values = this.extractVals(facets[x]);
           if (values.length) selectedFilters[name] = values;
-          const params = this.extractParams(facets[x]);
-          if (params.length) selectedFilterParams.push(...params);
         }
-        if (e && e.target) {
-          selectedFilterHref = e.target.getAttribute('href');
-        }
+      }
+      const params = this.extractParams();
+      if (params.length) {
+        selectedFilterParams.push(...params);
+      } else {
+        this.failOnce = true;
+      }
+      if (e && e.target) {
+        selectedFilterHref = e.target.getAttribute('href');
       }
       this.$set(this, 'selectedFilters', selectedFilters);
       this.$set(this, 'selectedFilterHref', selectedFilterHref);
@@ -613,12 +632,18 @@ export default {
     },
 
     sendFilters(update) {
-      if (update) this.updateFilters();
+      if (update) this.updateFilters('sendFilters');
       this.$bus.$emit('facet-filters', this.selectedFilters);
-      if (!this.isMobile()) {
-        this.$bus.$emit('facet-link', this.selectedFilterHref);
+      if (this.failOnce) {
+        this.failOnce = false;
+        this.log('fail once');
       } else {
-        this.$bus.$emit('facet-params', this.selectedFilterParams);
+        if (!this.isMobile()) {
+          this.$bus.$emit('facet-link', this.selectedFilterHref);
+        } else {
+          // if custom range and it?
+          this.$bus.$emit('facet-params', this.selectedFilterParams);
+        }
       }
     },
 
@@ -699,12 +724,25 @@ export default {
     //   return vals;
     // },
 
-    extractParams(facet) {
-      const els = facet.querySelectorAll('[x-hidden]:checked');
+    extractParams() {
+      const els = this.$el.querySelectorAll('[x-hidden]:checked');
       const vals = [];
       for (let x = 0, l = els.length; x < l; x += 1) {
-        vals.push(els[x].getAttribute('params'));
+        const el = els[x];
+        const attr = el.getAttribute('params');
+        this.log(el.value);
+        if (el.value !== 'custom') {
+          if (attr !== '') vals.push(attr);
+        }
       }
+
+      const customRangeEl = this.$el.querySelector('#range-custom');
+      if (customRangeEl.checked) { // if  in custom range...
+        if (this.validateCustomRange()) {
+          vals.push(this.customParams);
+        }
+      }
+
       return vals;
     },
 
@@ -714,14 +752,6 @@ export default {
       } else {
         return 'background: ' + color.rgb;
       }
-    },
-
-    sanitizePrice(event){
-      const char = event.data;
-      const sanity = new RegExp(/^(\d*)(\.+)?[0-9]?[0-9]?$/);
-      const value = (char) ? event.target.value + char : event.target.value;
-      const good = value.match(sanity);
-      if (!good) event.preventDefault();
     },
 
     hasValue(slug) {
@@ -743,12 +773,9 @@ export default {
     },
 
     updateCustomParam() {
-      let val = 'none';
-      const from = this.$el.querySelector('#range-from');
-      const to = this.$el.querySelector('#range-to');
-      if (from) {
-        val = `?pmin=${from.value}&pmax=${to.value}`;
-      }
+      const val = (this.fromVal && this.toVal)
+        ? `?pmin=${this.fromVal}&pmax=${this.toVal}`
+        : '';
       this.customParams = val;
     }
   },
