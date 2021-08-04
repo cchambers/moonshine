@@ -603,8 +603,6 @@ export default {
     updateFilters(e) {
       if (!this.loaded) return;
       const selectedFilters = {};
-      const selectedFilterParams = [];
-      let selectedFilterHref = '';
       const facets = this.$el.querySelectorAll('[facet-name]');
       for (let x = 0, l = facets.length; x < l; x += 1) {
         let name = facets[x].getAttribute('facet-name');
@@ -613,28 +611,35 @@ export default {
           if (values.length) selectedFilters[name] = values;
         }
       }
+      if (e && e.target) {
+        const selectedFilterHref = e.target.getAttribute('href');
+        this.$set(this, 'selectedFilterHref', selectedFilterHref);
+      }
+      this.$set(this, 'selectedFilters', selectedFilters);
+      if (!this.isMobile()) {
+        this.sendFilters();
+      } else {
+        this.handleMcMode();
+      }
+    },
+
+    handleMcMode() {
+      const selectedFilterParams = [];
       const params = this.extractParams();
       if (params.length) {
         selectedFilterParams.push(...params);
-      } else {
-        this.failOnce = true;
       }
-      if (e && e.target) {
-        selectedFilterHref = e.target.getAttribute('href');
-      }
-      this.$set(this, 'selectedFilters', selectedFilters);
-      this.$set(this, 'selectedFilterHref', selectedFilterHref);
+      // console.log('params', params);
       this.$set(this, 'selectedFilterParams', selectedFilterParams);
-      if (!this.isMobile()) this.sendFilters();
     },
 
     sendFilters(update) {
       if (update) this.updateFilters('sendFilters');
-      this.$bus.$emit('facet-filters', this.selectedFilters);
       if (this.failOnce) {
         this.failOnce = false;
         this.log('fail once');
       } else {
+        this.$bus.$emit('facet-filters', this.selectedFilters);
         if (!this.isMobile()) {
           this.$bus.$emit('facet-link', this.selectedFilterHref);
         } else {
@@ -736,6 +741,8 @@ export default {
       if (customRangeEl.checked) { // if  in custom range...
         if (this.validateCustomRange()) {
           vals.push(this.customParams);
+        } else {
+          this.failOnce = true;
         }
       }
 
