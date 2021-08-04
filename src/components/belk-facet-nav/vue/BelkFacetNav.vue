@@ -303,7 +303,7 @@
                         <sh-button
                           variant="secondary"
                           size="sm"
-                          @click="doCustomRange"
+                          @click="handleGoButton"
                           ref="pricebutton">Go</sh-button>
                       </div>
                     </li>
@@ -550,8 +550,14 @@ export default {
       }
     },
 
-    handleGoButton() {
-
+    handleGoButton(e) {
+      const isValid = this.validateCustomRange();
+      if (!isValid) {
+        e.preventDefault();
+      } else {
+        const baseUrl = this.$el.querySelector('[name=facet-price]').getAttribute('href');
+        this.$bus.$emit('facet-custom', { from: this.fromVal, to: this.toVal, baseUrl: baseUrl });
+      }
     },
 
     sanitizeCustomRange() {
@@ -591,16 +597,7 @@ export default {
       } else {
         from.style.border = '';
       }
-      return (fail) ? false : [this.toVal, this.fromVal];
-    },
-
-    doCustomRange(e){
-      if (this.validateCustomRange()) {
-        e.preventDefault();
-      } else {
-        const baseUrl = this.$el.querySelector('[name=facet-price]').getAttribute('href');
-        this.$bus.$emit('facet-custom', { from: this.fromVal, to: this.toVal, baseUrl: baseUrl });
-      }
+      return (!fail) ? [this.toVal, this.fromVal] : false;
     },
 
     updateFilters(e) {
@@ -730,7 +727,6 @@ export default {
       for (let x = 0, l = els.length; x < l; x += 1) {
         const el = els[x];
         const attr = el.getAttribute('params');
-        this.log(el.value);
         if (el.value !== 'custom') {
           if (attr !== '') vals.push(attr);
         }
