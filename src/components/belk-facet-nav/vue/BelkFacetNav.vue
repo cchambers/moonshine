@@ -591,7 +591,6 @@ export default {
       } else {
         from.style.border = '';
       }
-      console.log('fail', fail);
       return (fail) ? false : [this.toVal, this.fromVal];
     },
 
@@ -618,7 +617,6 @@ export default {
         }
       }
       const params = this.extractParams();
-      console.log('TEST', params);
       if (params.length) {
         selectedFilterParams.push(...params);
       } else {
