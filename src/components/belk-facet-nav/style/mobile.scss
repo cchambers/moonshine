@@ -104,6 +104,12 @@ $itemHeight: 48px;
         justify-content: center;
       }
     }
+
+    .filter button {
+      background: transparent !important;
+      border: none !important;
+      color: $lowlight-tertiary !important;
+    }
     .filter-clear-mobile,
     .filter-clear {
       color: $accent-primary;
