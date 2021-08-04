@@ -477,9 +477,9 @@ export default {
       if (window.facetNav) this.processData(window.facetNav);
     });
     this.loaded = true;
-    setTimeout(() => {
-      this.updateFilters('mounted');
-    }, 1000);
+    // setTimeout(() => {
+    //   this.updateFilters('mounted');
+    // }, 1000);
     // this.customChecked = (window.location.href.indexOf('pmin') > 0);
   },
 
@@ -636,7 +636,7 @@ export default {
       this.$bus.$emit('facet-filters', this.selectedFilters);
       if (this.failOnce) {
         this.failOnce = false;
-        console.log('fail once');
+        this.log('fail once');
       } else {
         if (!this.isMobile()) {
           this.$bus.$emit('facet-link', this.selectedFilterHref);
@@ -727,11 +727,10 @@ export default {
     extractParams() {
       const els = this.$el.querySelectorAll('[x-hidden]:checked');
       const vals = [];
-      console.log(els);
       for (let x = 0, l = els.length; x < l; x += 1) {
         const el = els[x];
         const attr = el.getAttribute('params');
-        console.log(el.value);
+        this.log(el.value);
         if (el.value !== 'custom') {
           if (attr !== '') vals.push(attr);
         }
@@ -744,7 +743,6 @@ export default {
         }
       }
 
-      console.log(2, vals);
       return vals;
     },
 
