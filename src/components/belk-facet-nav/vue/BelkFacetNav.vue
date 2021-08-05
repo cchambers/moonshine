@@ -637,7 +637,10 @@ export default {
       if (update) this.updateFilters('sendFilters');
       if (this.failOnce) {
         this.failOnce = false;
-        this.log('fail on validation');
+        this.log('fail once');
+        setTimeout(() => {
+          this.sendFilters(true);
+        }, 200);
       } else {
         this.$bus.$emit('facet-filters', this.selectedFilters);
         if (!this.isMobile()) {
