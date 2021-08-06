@@ -582,13 +582,12 @@ export default {
           fail = true;
         }
       } else {
-        if (!fromEmpty && toEmpty) to.value = 0; // if from value, but no to value, default to "0"
         to.style.border = '';
       }
 
       if (fromEmpty) { // if FROM value empty
         if (!toEmpty) {
-          from.value = 0;
+          this.fromVal = 0;
         } else {
           fail = true;
           from.style.border = '1px solid red';
