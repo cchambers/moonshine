@@ -574,7 +574,6 @@ export default {
       const to = this.$el.querySelector('#range-to');
       const fromEmpty = (this.fromVal === '');
       const toEmpty = (this.toVal === '');
-      console.log('VALIDATE', fromEmpty);
 
       if (toEmpty || this.toVal <= this.fromVal) { // if TO value <= FROM value
           to.style.border = '1px solid red';
