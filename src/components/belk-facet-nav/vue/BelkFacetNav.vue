@@ -574,6 +574,7 @@ export default {
       const to = this.$el.querySelector('#range-to');
       const fromEmpty = (this.fromVal === '');
       const toEmpty = (this.toVal === '');
+      console.log('VALIDATE', fromEmpty);
 
       if (toEmpty || this.toVal <= this.fromVal) { // if TO value <= FROM value
           to.style.border = '1px solid red';
@@ -582,13 +583,12 @@ export default {
           fail = true;
         }
       } else {
-        if (!fromEmpty && toEmpty) to.value = 0; // if from value, but no to value, default to "0"
         to.style.border = '';
       }
 
       if (fromEmpty) { // if FROM value empty
         if (!toEmpty) {
-          from.value = 0;
+          this.fromVal = 0;
         } else {
           fail = true;
           from.style.border = '1px solid red';
