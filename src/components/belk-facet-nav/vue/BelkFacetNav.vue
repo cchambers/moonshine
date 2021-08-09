@@ -628,7 +628,6 @@ export default {
       if (params.length) {
         selectedFilterParams.push(...params);
       }
-      // console.log('params', params);
       this.$set(this, 'selectedFilterParams', selectedFilterParams);
     },
 
@@ -778,7 +777,7 @@ export default {
     },
 
     updateCustomParam() {
-      const val = (this.fromVal && this.toVal)
+      const val = (this.fromVal >= 0 && this.toVal >= 0)
         ? `?pmin=${this.fromVal}&pmax=${this.toVal}`
         : '';
       this.customParams = val;

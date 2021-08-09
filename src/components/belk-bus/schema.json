@@ -1,6 +1,6 @@
 {
   "name": "Event Bus",
-  "category": "base",
+  "category": "utilities",
   "production": false,
   "element": "belk-bus",
   "description": "Demonstration component.",
