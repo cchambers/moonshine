@@ -588,10 +588,6 @@ export default {
       if (fromEmpty) { // if FROM value empty
         if (!toEmpty) {
           this.fromVal = 0;
-          setTimeout(() => {
-            this.sendFilters(true);
-          }, 200);
-          return false;
         } else {
           fail = true;
           from.style.border = '1px solid red';
