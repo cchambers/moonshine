@@ -588,6 +588,10 @@ export default {
       if (fromEmpty) { // if FROM value empty
         if (!toEmpty) {
           this.fromVal = 0;
+          setTimeout(() => {
+            this.sendFilters(true);
+          }, 200);
+          return false;
         } else {
           fail = true;
           from.style.border = '1px solid red';
@@ -633,20 +637,12 @@ export default {
 
     sendFilters(update) {
       if (update) this.updateFilters('sendFilters');
-      if (this.failOnce) {
-        this.failOnce = false;
-        this.log('fail once');
-        setTimeout(() => {
-          this.sendFilters(true);
-        }, 200);
+      this.$bus.$emit('facet-filters', this.selectedFilters);
+      if (!this.isMobile()) {
+        this.$bus.$emit('facet-link', this.selectedFilterHref);
       } else {
-        this.$bus.$emit('facet-filters', this.selectedFilters);
-        if (!this.isMobile()) {
-          this.$bus.$emit('facet-link', this.selectedFilterHref);
-        } else {
-          // if custom range and it?
-          this.$bus.$emit('facet-params', this.selectedFilterParams);
-        }
+        // if custom range and it?
+        this.$bus.$emit('facet-params', this.selectedFilterParams);
       }
     },
 
