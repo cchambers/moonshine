@@ -636,9 +636,9 @@ export default {
       this.$bus.$emit('facet-filters', this.selectedFilters);
       if (!this.isMobile()) {
         this.$bus.$emit('facet-link', this.selectedFilterHref);
-        this.toggleActive();
       } else {
         // if custom range and it?
+        this.toggleActive();
         this.$bus.$emit('facet-params', this.selectedFilterParams);
       }
     },
