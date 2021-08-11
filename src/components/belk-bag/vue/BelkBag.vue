@@ -15,7 +15,7 @@
         <div class="bag-content" slot="content">
           <div class="has-items">
             <div class="scrolling-area">
-              <div class="text-center pad-y-little">
+              <div class="text-center margin-y-little">
                 <div class="bold px-16">Bag Subtotal</div>
                 <div class="px-20 lh-24">{{ totalPrice }}</div>
               </div>
@@ -32,7 +32,7 @@
               </ul>
               <div v-if="tipNote"
                 v-html="tipNote"
-                class="pad-little px-14 b-y"></div>
+                class="margin-little px-14 b-y"></div>
             </div>
             <div class="pad-x-micro pad-b-micro">
               <sh-button variant="primary" full link="/shopping-bag">
