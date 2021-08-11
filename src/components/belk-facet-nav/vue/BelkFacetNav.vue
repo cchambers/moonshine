@@ -636,6 +636,7 @@ export default {
       this.$bus.$emit('facet-filters', this.selectedFilters);
       if (!this.isMobile()) {
         this.$bus.$emit('facet-link', this.selectedFilterHref);
+        this.toggleActive();
       } else {
         // if custom range and it?
         this.$bus.$emit('facet-params', this.selectedFilterParams);
@@ -649,7 +650,7 @@ export default {
 
     toggleActive() {
       this.navActive = !this.navActive;
-      this.$el.classList.toggle('active');
+      // this.$el.classList.toggle('active');
       const cl = document.documentElement.classList;
       if (this.navActive) {
         cl.add('scroll-block');
