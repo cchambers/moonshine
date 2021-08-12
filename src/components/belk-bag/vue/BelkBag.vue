@@ -20,7 +20,9 @@
                 <div class="px-20 lh-24">{{ totalPrice }}</div>
               </div>
               <div v-if="shippingNote">
-                <div class="free-shipping-meter" :message="shippingNote"></div>
+                <div class="margin-x-micro">
+                  <div class="free-shipping-meter" :message="shippingNote"></div>
+                </div>
                 <div v-html="shippingNote"
                 class="pad-little text-center px-14"></div>
               </div>
