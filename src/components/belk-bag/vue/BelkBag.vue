@@ -16,11 +16,13 @@
           <div class="has-items">
             <div class="scrolling-area">
               <div class="text-center margin-y-little">
-                <div class="bold px-16">Bag Subtotal</div>
+                <div class="bold px-16 pad-b-micro">Bag Subtotal</div>
                 <div class="px-20 lh-24">{{ totalPrice }}</div>
               </div>
               <div v-if="shippingNote">
-                <div class="free-shipping-meter" :message="shippingNote"></div>
+                <div class="margin-x-micro">
+                  <div class="free-shipping-meter" :message="shippingNote"></div>
+                </div>
                 <div v-html="shippingNote"
                 class="pad-little text-center px-14"></div>
               </div>
