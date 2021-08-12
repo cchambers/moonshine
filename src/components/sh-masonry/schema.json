@@ -1,6 +1,6 @@
 {
   "name": "Masonry",
-  "category": "base",
+  "category": "utilities",
   "production": true,
   "element": "sh-masonry",
   "description": "Generate a tile layout.",

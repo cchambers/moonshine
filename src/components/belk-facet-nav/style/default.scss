@@ -3,8 +3,21 @@
 belk-facet-nav {
   display: block;
   color: $lowlight-primary;
+  ul, ul li {
+    list-style: none;
+    &::marker {
+      display: none;
+    }
+  }
+  *:focus {
+    outline: 0 !important;
+  }
+  label {
+    font: unset;
+    margin-bottom: 0;
+    font-weight: normal;
+  }
   [data-qty]::after {
-    display: inline-block;
     margin-left: $atomic;
     content: "(" attr(data-qty) ")";
     color: $lowlight-tertiary;
@@ -16,6 +29,9 @@ belk-facet-nav {
     padding: 0;
     margin: 0;
   }
+  a {
+    text-decoration: none !important;
+  }
   @include md {
     [class*="mobile"],
     .facet-back {
@@ -23,15 +39,33 @@ belk-facet-nav {
     }
 
     .filter-clear {
-      outline: none;
-      border: none;
-      background: transparent;
-      line-height: 14px;
-      font-size: 12px;
+      outline: none !important;
+      border: none !important;
+      background: transparent !important;
+      line-height: 14px !important;
+      font-size: 12px !important;
+      color: $lowlight-primary !important;
+      font-weight: normal !important;
     }
 
     .belk-facet-nav {
       position: static;
+      li {
+        a, > label {
+          display: flex;
+          color: $lowlight-primary;
+          font-size: 14px;
+          line-height: 32px;
+        }
+      }
+      .clear-search {
+        border: 0;
+        outline: 0;
+        background: transparent;
+      }
+    }
+    .facets-actual {
+      border-bottom: 1px solid $highlight-tertiary;
     }
     .facet-acc {
       border-top: 1px solid $highlight-tertiary;
@@ -40,9 +74,6 @@ belk-facet-nav {
           &:after {
             transform: rotate(180deg);
           }
-        }
-        .acc-body {
-          margin-bottom: $micro;
         }
       }
       &:not(.active) {
@@ -60,7 +91,7 @@ belk-facet-nav {
         font-weight: bold;
         &:after {
           content: 'expand_more';
-          font-family: 'Material Icons Round' !important;
+          @include materialIcons;
           float: right;
           font-size: 18px;
           font-weight: normal;
@@ -68,21 +99,25 @@ belk-facet-nav {
         }
       }
     }
-    
-
-    li {
-      a, > label {
-        display: block;
-        color: $lowlight-primary;
-        font-size: 14px;
-        line-height: 32px;
-      }
+    .height-scroll {
+      padding-bottom: 8px;
     }
     .height-scroll,
     ul.acc-body {
       overflow-y: auto;
+      overflow-x: hidden;
       max-height: 282px;
-      @include no-scroll-bar;
+      width: 100%;
+      // @include no-scroll-bar;
+    }
+  }
+
+  [set="category"] {
+    a {
+      display: inline-flex !important;
+    }
+    .acc-body li {
+      border-top: 1px solid $highlight-tertiary;
     }
   }
 
@@ -91,21 +126,32 @@ belk-facet-nav {
     label {
       display: flex;
       align-items: center;
-      text-overflow: ellipsis;
-      white-space: nowrap;
+      > div {
+        display: inline-block;
+        padding: 0.5rem 0;
+        padding-left: 3.2rem;
+        margin-left: -3.2rem;
+        max-width: 100%;
+        line-height: 22px;
+      }
       &:before {
         display: inline-flex;
         height: 20px;
         width: 20px;
+        // padding: $micro 0;
+        margin-top: 6px;
+        flex-grow: 0;
+        flex-shrink: 0;
         font-size: 18px;
         align-content: center;
         justify-content: center;
         align-items: center;
         content: 'check';
         color: transparent;
-        font-family: 'Material Icons Round' !important;
+        @include materialIcons;
         border: 1px solid $lowlight-secondary;
         margin-right: $micro;
+        align-self: flex-start;
       }
     }
     input:checked ~ label {
@@ -131,7 +177,8 @@ belk-facet-nav {
         background: $lowlight-primary;
         border-radius: 50%;
         position: absolute;
-        left: 3px;
+        left: 4px;
+        top: 10px;
       }
     }
     input:checked ~ label {
@@ -140,9 +187,6 @@ belk-facet-nav {
       }
     }
   }
-
-  // .belk-facet-nav {
-  // }
 
   button,
   label {
@@ -168,21 +212,27 @@ belk-facet-nav {
     flex-wrap: wrap;
     margin: 0 -$atomic;
     margin-bottom: 11px;
-    button  {
+    button,
+    a {
+      font-weight: normal;
+      font-size: 14px;
+      position: static;
+      text-align: left;
+      vertical-align: none;
       outline: none;
       border: 1px solid $lowlight-tertiary;
       border-radius: $atomic;
       margin: $atomic;
       padding: 6px 10px 5px 12px;
       color: $lowlight-primary;
-      display: flex;
+      display: flex !important;
       align-items: center;
       justify-content: space-between;
       background: $highlight-primary;
       &:after {
         display: block;
         content: 'clear';
-        font-family: 'Material Icons Round' !important;
+        @include materialIcons;
         margin-left: 11px;
         color: $lowlight-tertiary;
       }
@@ -244,7 +294,7 @@ belk-facet-nav {
               display: none;
               align-items: center;
               justify-content: center;
-              font-family: 'Material Icons Round' !important;
+              @include materialIcons;
               content: 'check';
               font-size: 12px;
               font-weight: bold;
@@ -266,12 +316,25 @@ belk-facet-nav {
     }
   }
 
+  .filter-grid {
+    .nodata {
+      padding-left: 6px;
+    }
+  }
+
+  .nodata {
+    width: 100%;
+    padding-top: 8px;
+    font-size: 14px;
+  }
+
   .filter {
     border: 1px solid $lowlight-tertiary;
     display: flex;
     align-items: center;
     justify-content: space-between;
     color: $lowlight-primary;
+    width: 100%;
     input {
       border: none;
       background: transparent;
@@ -293,6 +356,11 @@ belk-facet-nav {
       margin-top: 11px;
       margin-left: -$atomic;
       margin-right: -$atomic;
+      &::after {
+        content: "";
+        flex: auto;
+        flex-grow: 15;
+      }
       label {
         min-width: calc(100% / 3);
         flex-shrink: 0;
@@ -315,7 +383,7 @@ belk-facet-nav {
           align-items: center;
           justify-content: center;
           text-align: center;
-          padding: 0 $atomic;
+          // padding: 0 $atomic;
         }
       }
       input:checked ~ div {
@@ -330,10 +398,10 @@ belk-facet-nav {
 
 
 [x-hidden] {
-  overflow: hidden;
-  height: 0;
-  width: 0;
-  float: left;
+  appearance: none;
+  position: fixed;
+  opacity: 0;
+  pointer-events: none;
   &:focus {
     outline: none !important;
   }
@@ -354,12 +422,48 @@ belk-facet-nav {
   display: none !important;
 }
 
+label[for="range-custom"] {
+  opacity: 0;
+  height: 10px !important;
+  &:before,
+  &:after {
+    opacity: 0 !important;
+  }
+}
+
 .custom-range {
   display: flex;
   padding-left: 24px;
+  height: 3.2rem;
   input {
     display: inline-block;
     width: 30%;
+    padding: 0 $atomic !important;
     margin: 0 0.25em !important;
+  }
+}
+
+
+.IE11 {
+  .filter-swatch label .swatch:before  {
+    border: none !important;    
+  }
+  .filter {
+    belk-icon {
+      display: block;
+    }
+  }
+  .belk-facet-nav {
+    *::-ms-clear {
+      display: none;
+    }
+  }
+  .custom-range input {
+    flex-basis: 25px;
+    flex-grow: 2;
+    flex-shrink: 0;
+  }
+  .filter-grid .filter-list label {
+    flex-basis: 25%;
   }
 }

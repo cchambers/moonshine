@@ -38,7 +38,7 @@ const ComponentPrototype = {
     },
 
     reflow() {
-      window.dispatchEvent(new Event('resize'));
+      window.dispatchEvent(new CustomEvent('resize'));
     },
 
     isMobile() {

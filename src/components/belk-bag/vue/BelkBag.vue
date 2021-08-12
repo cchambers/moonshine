@@ -15,12 +15,17 @@
         <div class="bag-content" slot="content">
           <div class="has-items">
             <div class="scrolling-area">
-              <div class="text-center pad-y-little px-16">
-                <span class="bold">Bag Subtotal</span> <span>{{ totalPrice }}</span>
+              <div class="text-center margin-y-little">
+                <div class="bold px-16 pad-b-micro">Bag Subtotal</div>
+                <div class="px-20 lh-24">{{ totalPrice }}</div>
               </div>
-              <div v-if="shippingNote"
-                v-html="shippingNote"
-                class="pad-x-little pad-b-little text-center px-14"></div>
+              <div v-if="shippingNote">
+                <div class="margin-x-micro">
+                  <div class="free-shipping-meter" :message="shippingNote"></div>
+                </div>
+                <div v-html="shippingNote"
+                class="pad-little text-center px-14"></div>
+              </div>
               <div class="hr margin-y-micro"></div>
               <ul class="bag-list belk-product-list" variant="tertiary">
                 <li v-for="product in items" v-bind:key="product.index">
@@ -29,7 +34,7 @@
               </ul>
               <div v-if="tipNote"
                 v-html="tipNote"
-                class="pad-little px-14 b-y"></div>
+                class="margin-little px-14 b-y"></div>
             </div>
             <div class="pad-x-micro pad-b-micro">
               <sh-button variant="primary" full link="/shopping-bag">

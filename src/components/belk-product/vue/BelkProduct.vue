@@ -15,7 +15,7 @@
         </div>
         <div v-if="qty">Qty: {{ qty }}</div>
         <div class="price">
-          <span v-if="onSale  || discountType" class="sale"
+          <span v-if="onSale || discountType" class="sale"
           :discount="discountType"
           v-bind:class="{ 'is-range': saleRange }">{{ saleValue }} </span>
           <span class="original"
@@ -105,6 +105,7 @@ export default {
       const val = this.saleRange || this.format(this.salePrice);
       return val;
     },
+
     onSale() {
       let onSale = false;
       if (this.salePrice) {
