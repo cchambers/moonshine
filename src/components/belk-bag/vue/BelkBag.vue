@@ -16,7 +16,7 @@
           <div class="has-items">
             <div class="scrolling-area">
               <div class="text-center margin-y-little">
-                <div class="bold px-16">Bag Subtotal</div>
+                <div class="bold px-16 pad-b-micro">Bag Subtotal</div>
                 <div class="px-20 lh-24">{{ totalPrice }}</div>
               </div>
               <div v-if="shippingNote">
