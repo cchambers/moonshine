@@ -477,9 +477,9 @@ export default {
       if (window.facetNav) this.processData(window.facetNav);
     });
     this.loaded = true;
-    // setTimeout(() => {
-    //   this.updateFilters('mounted');
-    // }, 1000);
+    setTimeout(() => {
+      this.updateFilters('mounted');
+    }, 1000);
     // this.customChecked = (window.location.href.indexOf('pmin') > 0);
   },
 
