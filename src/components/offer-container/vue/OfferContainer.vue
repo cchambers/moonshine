@@ -17,6 +17,7 @@
       :extra="item.extra"
       :to-spend="item.toSpend"
       :header-color="item.headerColor"
+      :badge-color="item.badgeColor"
       :image="item.image"
       :link="item.link"
       :printable="item.printable"
