@@ -569,34 +569,32 @@ export default {
     },
 
     validateCustomRange() {
-      let fail = false;
+      let pass = true;
       const from = this.$el.querySelector('#range-from');
       const to = this.$el.querySelector('#range-to');
       const fromEmpty = (this.fromVal === '');
       const toEmpty = (this.toVal === '');
 
       if (toEmpty || this.toVal <= this.fromVal) { // if TO value <= FROM value
-          to.style.border = '1px solid red';
-        if (!fail) { // if fail hasn't been set yet
-          to.focus();
-          fail = true;
-        }
+        to.style.border = '1px solid red';
+        to.focus();
+        pass = false;
       } else {
         to.style.border = '';
       }
 
-      if (fromEmpty) { // if FROM value empty
+      if (fromEmpty && pass) { // if FROM value empty
         if (!toEmpty) {
           this.fromVal = 0;
         } else {
-          fail = true;
+          pass = false;
           from.style.border = '1px solid red';
           from.focus();
         }
       } else {
         from.style.border = '';
       }
-      return (!fail) ? [this.toVal, this.fromVal] : false;
+      return pass;
     },
 
     updateFilters(e) {
@@ -638,8 +636,11 @@ export default {
         this.$bus.$emit('facet-link', this.selectedFilterHref);
       } else {
         // if custom range and it?
-        this.toggleActive();
-        this.$bus.$emit('facet-params', this.selectedFilterParams);
+        if (!this.failOnce) {
+          this.failOnce = false;
+          this.toggleActive();
+          this.$bus.$emit('facet-params', this.selectedFilterParams);
+        }
       }
     },
 
@@ -733,7 +734,9 @@ export default {
 
       const customRangeEl = this.$el.querySelector('#range-custom');
       if (customRangeEl.checked) { // if  in custom range...
-        if (this.validateCustomRange()) {
+        const rangeValid = this.validateCustomRange();
+        if (rangeValid) {
+          this.failOnce = false;
           vals.push(this.customParams);
         } else {
           this.failOnce = true;
