@@ -6,14 +6,6 @@
     &:last-child {
       margin-right: 1rem;
     }
-    .promo-top-container {
-      display: flex;
-      justify-content: space-between;
-    }
-    .coupon-details-x.top {
-      display: flex;
-      margin-right: 1rem;
-    }
     .coupon-discount,
     .coupon-ends,
     .coupon-event-name,
@@ -32,7 +24,10 @@
     .coupon-description {
       order: 1;
       .coupon-details-x {
-        display: none;
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 0.5rem;
       }
     }
     .coupon-buttons {

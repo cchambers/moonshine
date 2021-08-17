@@ -48,8 +48,8 @@ $buttonWidth: $rem;
         transform: translateX(0) translateY(0) translateZ(0) scale(1) rotate(0) !important;
       }
       .drawer-toggle {
-        border: none;
-        box-shadow: none;
+        border-top: 1px solid $lowlight-primary;
+        box-shadow: 0 -5px 5px -5px $lowlight-primary;
         background: $highlight-quaternary;
         .dt-button-text {
           display: none;
@@ -71,6 +71,7 @@ $buttonWidth: $rem;
       }
       .content {
         transform: translateY(0) translateZ(0);
+        border: none;
       }
     }
 
@@ -106,11 +107,10 @@ $buttonWidth: $rem;
       left: 0;
       right: 0;
       transform: translateX(0) translateY(-100%) translateZ(0);
-      border: 1px solid transparent;
-      border-bottom: none;
+      border-top: 1px solid $lowlight-primary;
       background: $highlight-quaternary;
       color: $lowlight-primary;
-      box-shadow: 0 4px 20px $lowlight-primary;
+      box-shadow: 0 -5px 5px -5px $lowlight-primary;
       cursor: pointer;
       padding: 0.5rem $little;
       display: flex;
@@ -232,6 +232,7 @@ $buttonWidth: $rem;
     width: 296px;
     border-radius: 0.5rem;
     scroll-snap-align: center;
+    position: relative;
 
     .coupon-description {
       order: 2;
