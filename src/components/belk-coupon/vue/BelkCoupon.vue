@@ -4,14 +4,16 @@
     :id="id"
     :class="{ printable: print, 'to-spend': toSpend, 'has-code': hasCode }"
     :variant="variant">
+    <div class="promo-top-container">
     <div v-if="badge" class="coupon-type">{{ badge }}</div>
-    <span class="coupon-details-x px-12" :hidden="!hasDetails && !print">
+    <span class="coupon-details-x top px-12" :hidden="!hasDetails && !print">
       <template v-if="!print">
         <sh-button variant="belk-link" v-if="details"
           @click="openDetailsModal">Details</sh-button>
       </template>
       <div class="coupon-details-actual" v-else v-html="detailsHTML"></div>
     </span>
+    </div>
     <div @click="addOrLink" class="coupon-image" v-if="hasImage">
       <img :src="image" />
     </div>

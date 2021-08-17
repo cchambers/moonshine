@@ -3,8 +3,15 @@
   flex-wrap: nowrap;
   margin-left: -1rem;
   belk-coupon {
-    width: 296px;
     &:last-child {
+      margin-right: 1rem;
+    }
+    .promo-top-container {
+      display: flex;
+      justify-content: space-between;
+    }
+    .coupon-details-x.top {
+      display: flex;
       margin-right: 1rem;
     }
     .coupon-discount,
@@ -24,6 +31,9 @@
     }
     .coupon-description {
       order: 1;
+      .coupon-details-x {
+        display: none;
+      }
     }
     .coupon-buttons {
       order: 2;
