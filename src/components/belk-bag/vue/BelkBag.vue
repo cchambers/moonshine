@@ -24,7 +24,7 @@
                   <div class="free-shipping-meter" :message="shippingNote"></div>
                 </div>
                 <div v-html="shippingNote"
-                class="pad-b-little pad-t-atomic pad-x-little text-center px-14"></div>
+                class="pad-b-little pad-t-micro pad-x-little text-center px-14"></div>
               </div>
               <div class="hr margin-y-micro"></div>
               <ul class="bag-list belk-product-list" variant="tertiary">
