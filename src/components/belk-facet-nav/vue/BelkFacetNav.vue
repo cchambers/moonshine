@@ -242,8 +242,8 @@
                     @click="clearFilters"
                   >Clear</div>
                 </div>
-                <div class="acc-body">
-                  <ul class="radio-list height-scroll">
+                <div class="acc-body height-scroll">
+                  <ul class="radio-list">
                     <li
                       v-for="thing in facet.options"
                       :key="thing.id"

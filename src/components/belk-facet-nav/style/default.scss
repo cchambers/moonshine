@@ -465,5 +465,6 @@ label[for="range-custom"] {
   }
   .filter-grid .filter-list label {
     flex-basis: 25%;
+    -ms-flex: 0 1 auto;
   }
 }
