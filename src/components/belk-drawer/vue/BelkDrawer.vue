@@ -42,7 +42,7 @@
         </button> -->
         <offer-container variant="promos" unique-id="promo-offers"></offer-container>
         <div class="show-all-coupons">
-          <a href="/coupons-online-and-in-store">See all offers</a>
+          <a class="primarylink" href="/coupons-online-and-in-store">See all offers</a>
         </div>
         <!-- <button aria-controls="promo-offers"
           v-if="scrolling" class="arrow next"
