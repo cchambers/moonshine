@@ -233,6 +233,8 @@ $buttonWidth: $rem;
     border-radius: 0.5rem;
     scroll-snap-align: center;
     position: relative;
+    flex-shrink: 0;
+    flex-basis: auto;
 
     .coupon-description {
       order: 2;
@@ -240,7 +242,7 @@ $buttonWidth: $rem;
     }
 
     .coupon-wrapper {
-      padding: $little;
+      padding: $micro;
       padding-bottom: 0;
       justify-content: flex-start;
     }
