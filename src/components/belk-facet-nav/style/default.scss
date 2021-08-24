@@ -443,28 +443,3 @@ label[for="range-custom"] {
   }
 }
 
-
-.IE11 {
-  .filter-swatch label .swatch:before  {
-    border: none !important;    
-  }
-  .filter {
-    belk-icon {
-      display: block;
-    }
-  }
-  .belk-facet-nav {
-    *::-ms-clear {
-      display: none;
-    }
-  }
-  .custom-range input {
-    flex-basis: 25px;
-    flex-grow: 2;
-    flex-shrink: 0;
-  }
-  .filter-grid .filter-list label {
-    flex-basis: 25%;
-    -ms-flex: 0 1 auto;
-  }
-}
