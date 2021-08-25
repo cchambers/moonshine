@@ -146,7 +146,7 @@ export default {
     },
 
     items(val) {
-      const width = val.length * 280;
+      const width = val.length * 325;
       const wider = (width > window.innerWidth);
       if (wider) {
         this.scrolling = true;
