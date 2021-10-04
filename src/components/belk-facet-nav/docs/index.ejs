@@ -122,7 +122,11 @@
             },
             "nav": [{
               "type": "active-filters",
-              "clearHref": "https://development-web-belk.demandware.net/s/Belk/search/?q=shirt"
+              "clearHref": "https://development-web-belk.demandware.net/s/Belk/search/?q=shirt",
+              "options": [{
+                "name": "Black",
+                "href": "https://development-web-belk.demandware.net/s/Belk/search/?q=shirt&lang=default"
+              }]
             }, {
               "type": "category",
               "name": "Women",
@@ -5709,6 +5713,7 @@
           // });
 
         </script>
+        <belk-facet-toggle variant="primary"></belk-facet-toggle>
         <textarea id="facet-output" style="width: 100%" rows="10"></textarea>
       </div>
     </div>
