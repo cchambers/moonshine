@@ -1,0 +1,15 @@
+{
+  "name": "Belk Facet Toggle",
+  "category": "base",
+  "production": true,
+  "element": "belk-facet-toggle",
+  "description": "Creates a list of links for removing filters.",
+  "tags": ["facet", "filter"],
+  "tracking": [],
+  "requirements": {
+    "Element One": [],
+    "Element Two": [],
+    "a11y": [],
+    "states": []
+  }
+}
