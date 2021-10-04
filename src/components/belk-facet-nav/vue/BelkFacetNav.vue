@@ -35,14 +35,15 @@
     </div>
     <div v-for="facet in facets" :key="facet.id" :set="type = facet.type">
       <template v-if="type == 'active-filters'">
-        <div class="filter-stack">
+        <belk-facet-toggle></belk-facet-toggle>
+        <!-- <div class="filter-stack">
           <template v-for="(option) in facet.options">
             <a
               v-bind:key="option.index"
               :href="option.href"
             >{{ option.name }}</a>
           </template>
-        </div>
+        </div> -->
       </template>
     </div>
     <div ref="pickup" class="facet-pickup" facet-name="pickup">
@@ -480,7 +481,6 @@ export default {
     setTimeout(() => {
       this.updateFilters('mounted');
     }, 1000);
-    // this.customChecked = (window.location.href.indexOf('pmin') > 0);
   },
 
   methods: {
@@ -496,7 +496,6 @@ export default {
     },
 
     processData(obj) {
-      const links = [];
       if (obj.nav) {
         this.facets = obj.nav.slice();
         for (let x = 0, l = this.facets.length; x < l; x += 1) {
@@ -504,6 +503,13 @@ export default {
           if (facet.search) {
             const slug = facet.name.slugify();
             this.searchableData[slug] = facet.options;
+          }
+          if (facet.type === 'active-filters') {
+            if (facet.options.length > 0) {
+              setTimeout(() => {
+                this.$bus.$emit('active-filters', facet.options)
+              }, 200);
+            }
           }
         }
       }
@@ -602,7 +608,8 @@ export default {
       const selectedFilters = {};
       const facets = this.$el.querySelectorAll('[facet-name]');
       for (let x = 0, l = facets.length; x < l; x += 1) {
-        let name = facets[x].getAttribute('facet-name');
+        let facet = facets[x];
+        let name = facet.getAttribute('facet-name');
         if (name) {
           const values = this.extractVals(facets[x]);
           if (values.length) selectedFilters[name] = values;

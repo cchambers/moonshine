@@ -1,0 +1,31 @@
+/* default styling */
+
+belk-facet-toggle {
+  display: block;
+  margin-left: -$atomic;
+  button,
+  a {
+    font-weight: normal;
+    font-size: 14px;
+    position: static;
+    text-align: left;
+    vertical-align: none;
+    outline: none;
+    border: 1px solid $lowlight-tertiary;
+    border-radius: $atomic;
+    margin: $atomic;
+    padding: 6px 10px 5px 12px;
+    color: $lowlight-primary;
+    display: flex !important;
+    align-items: center;
+    justify-content: space-between;
+    background: $highlight-primary;
+    &:after {
+      display: block;
+      content: 'clear';
+      @include materialIcons;
+      margin-left: 11px;
+      color: $lowlight-tertiary;
+    }
+  }
+}
