@@ -1,6 +1,12 @@
 belk-facet-toggle[variant="primary"] {
   position: sticky;
-  top: 60px;
+  top: 200px;
+  display: block;
+  width: 100%;
+  z-index: 1;
+  @include lg {
+    display: none;
+  }
   .belk-facet-toggle {
     display: flex;
     align-content: flex-start;
