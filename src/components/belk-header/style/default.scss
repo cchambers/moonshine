@@ -327,16 +327,16 @@ belk-header {
     }
   }
 
-  .pre-header-slot sh-banner .banner-background {
-    border-bottom-left-radius: 2.6rem;
-    @include lg {
-      padding-right: calc((100vw - 96rem) / 2);
-    }
-    @include xl {
-      padding-right: calc((100vw - 128rem) / 2);
-    }
-    padding-left: $rem;
-  }
+  // .pre-header-slot sh-banner .banner-background {
+  //   border-bottom-left-radius: 2.6rem;
+  //   @include lg {
+  //     padding-right: calc((100vw - 96rem) / 2);
+  //   }
+  //   @include xl {
+  //     padding-right: calc((100vw - 128rem) / 2);
+  //   }
+  //   padding-left: $rem;
+  // }
 
   .nav-trigger .actual-text span {
     font-size: 1.4rem;
