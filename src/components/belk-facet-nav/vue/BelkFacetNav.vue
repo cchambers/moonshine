@@ -505,7 +505,7 @@ export default {
             this.searchableData[slug] = facet.options;
           }
           if (facet.type === 'active-filters') {
-            if (facet.options.length > 0) {
+            if (facet.options) {
               setTimeout(() => {
                 this.$bus.$emit('active-filters', facet.options)
               }, 200);
