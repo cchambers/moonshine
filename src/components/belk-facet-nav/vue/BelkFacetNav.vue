@@ -739,8 +739,8 @@ export default {
         }
       }
 
-      const customRangeEl = this.$el.querySelector('#range-custom');
-      if (customRangeEl.checked) { // if  in custom range...
+      const customRangeEl = this.$el.querySelector('#range-custom:checked');
+      if (customRangeEl) { // if  in custom range...
         const rangeValid = this.validateCustomRange();
         if (rangeValid) {
           this.failOnce = false;
