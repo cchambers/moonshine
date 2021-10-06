@@ -4,7 +4,7 @@ belk-facet-toggle[variant="primary"] {
   display: block;
   width: 100%;
   z-index: 1;
-  @include lg {
+  @include md {
     display: none;
   }
   .belk-facet-toggle {
