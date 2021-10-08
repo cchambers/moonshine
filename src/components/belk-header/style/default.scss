@@ -53,13 +53,6 @@ belk-header {
     }
   }
 
-  .pre-header-slot {
-    display: none;
-    @include xl {
-      display: block;
-    }
-  }
-
   sh-nav-item a:not(.belk-link):hover {
     background: $highlight-secondary;
   }
