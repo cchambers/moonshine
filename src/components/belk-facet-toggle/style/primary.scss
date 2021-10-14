@@ -12,5 +12,8 @@ belk-facet-toggle[variant="primary"] {
     align-content: flex-start;
     overflow-x: auto;
     white-space: nowrap;
+    a {
+      flex: none;
+    }
   }
 }
