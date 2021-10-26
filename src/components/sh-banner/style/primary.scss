@@ -32,7 +32,7 @@ sh-banner[variant="primary"] {
       color: currentColor;
       font-size: 1.4rem;
       transition: all 100ms $ease;
-      white-space: pre;
+      white-space: nowrap;
     }
 
     a:hover .cta,
