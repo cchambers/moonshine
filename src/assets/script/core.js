@@ -11,8 +11,10 @@ const app = {
     } else {
       window.location.params = {};
     }
-    const interaction = window.localStorage.getItem('last-interaction');
-    if (app.interaction !== interaction) this.interactionHandler(interaction);
+    if (window.localStorage) {
+      const interaction = window.localStorage.getItem('last-interaction');
+      if (app.interaction !== interaction) this.interactionHandler(interaction);
+    }
   },
 
   setup() {
@@ -71,8 +73,10 @@ const app = {
   interactionHandler(type) {
     if (app.interaction !== type) {
       app.interaction = type;
-      window.localStorage.setItem('last-interaction', type);
-      document.documentElement.setAttribute('interaction', type);
+      if (window.localStorage) {
+        window.localStorage.setItem('last-interaction', type);
+        document.documentElement.setAttribute('interaction', type);
+      }
     }
   },
 

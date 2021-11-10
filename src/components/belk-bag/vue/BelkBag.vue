@@ -112,7 +112,7 @@ export default {
     },
 
     isMobile() {
-      return window.matchMedia('(max-width: 960px)').matches;
+      return window.matchMedia('(max-width: 960px)').matches || document.querySelector('html').classList.contains('iOS');
     },
 
     goToCart() {
