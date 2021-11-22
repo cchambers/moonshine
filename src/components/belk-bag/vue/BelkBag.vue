@@ -68,7 +68,10 @@ export default {
   name: 'BelkBag',
 
   props: {
-    disableBag: Boolean,
+    disableBag: {
+      type: Boolean,
+      default: false
+    },
   },
 
   watch: {
