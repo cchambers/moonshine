@@ -1,8 +1,10 @@
 <template>
-  <div class="belk-bag"
+  <div
+    class="belk-bag"
     :variant="variant"
     :count="itemCount"
-    v-bind:class="{ active: itemCount > 0 }">
+    v-bind:class="{ active: itemCount > 0 }"
+  >
     <template v-if="hasData">
       <sh-popper :disabled="isDisabled" offset-x="-42" placement="bottom" unique-id="belk-bag">
         <a id="goToCart" href="/shopping-bag" slot="reference">
@@ -23,8 +25,10 @@
                 <div class="margin-x-micro">
                   <div class="free-shipping-meter" :message="shippingNote"></div>
                 </div>
-                <div v-html="shippingNote"
-                class="pad-b-little pad-t-micro pad-x-little text-center px-14"></div>
+                <div
+                  v-html="shippingNote"
+                  class="pad-b-little pad-t-micro pad-x-little text-center px-14"
+                ></div>
               </div>
               <div class="hr margin-y-micro"></div>
               <ul class="bag-list belk-product-list" variant="tertiary">
@@ -32,25 +36,19 @@
                   <component :is="belkProduct" variant="bag" v-bind="product"></component>
                 </li>
               </ul>
-              <div v-if="tipNote"
-                v-html="tipNote"
-                class="margin-little px-14 b-y"></div>
+              <div v-if="tipNote" v-html="tipNote" class="margin-little px-14 b-y"></div>
             </div>
             <div class="pad-x-micro pad-b-micro">
-              <sh-button variant="primary" full link="/shopping-bag">
-                View Bag &amp; Checkout
-              </sh-button>
+              <sh-button variant="primary" full link="/shopping-bag">View Bag &amp; Checkout</sh-button>
             </div>
           </div>
           <div class="no-items pad-little">
             <div>
               <h4>Your bag is empty &amp; could use some love.</h4>
-              <p class="unregistered pad-t-little text-center">
-                Sign in to see items you may have added to your bag.
-              </p>
-              <p class="registered pad-t-little text-center">
-                That means it's time to shop!
-              </p>
+              <p
+                class="unregistered pad-t-little text-center"
+              >Sign in to see items you may have added to your bag.</p>
+              <p class="registered pad-t-little text-center">That means it's time to shop!</p>
             </div>
           </div>
         </div>
@@ -68,6 +66,10 @@ export default {
   mixins: [ComponentPrototype, MoneyFormatter],
 
   name: 'BelkBag',
+
+  props: {
+    disableBag: Boolean,
+  },
 
   watch: {
     subTotal(val) {
@@ -96,13 +98,15 @@ export default {
   },
 
   created() {
-    if (window.location.href.indexOf('shopping-bag') > 0) this.isDisabled = true;
+    if (window.location.href.indexOf('shopping-bag') > 0 || this.disableBag) {
+      this.isDisabled = true;
+    }
   },
 
   methods: {
     events() {
       this.$bus.$on('user-data', this.handleUserData);
-      this.$bus.$on('belk-bag-ready', (data) => {
+      this.$bus.$on('belk-bag-ready', data => {
         const target = data;
         // target.referenceElm.addEventListener('click', this.goToCart);
         if (this.isMobile()) {
@@ -112,7 +116,10 @@ export default {
     },
 
     isMobile() {
-      return window.matchMedia('(max-width: 960px)').matches || document.querySelector('html').classList.contains('iOS');
+      return (
+        window.matchMedia('(max-width: 960px)').matches ||
+        document.querySelector('html').classList.contains('iOS')
+      );
     },
 
     goToCart() {
@@ -124,8 +131,10 @@ export default {
       if (data.subTotal) this.$set(this, 'subTotal', data.subTotal);
       if (data.cart) {
         this.$set(this, 'items', data.cart.items);
-        if (data.cart.shippingMessage) this.$set(this, 'shippingNote', data.cart.shippingMessage);
-        if (data.cart.tipLineMsg) this.$set(this, 'tipNote', data.cart.tipLineMsg);
+        if (data.cart.shippingMessage)
+          this.$set(this, 'shippingNote', data.cart.shippingMessage);
+        if (data.cart.tipLineMsg)
+          this.$set(this, 'tipNote', data.cart.tipLineMsg);
         setTimeout(() => {
           this.$bus.$emit('bag-list-update', data.cart.items);
         }, 100);
