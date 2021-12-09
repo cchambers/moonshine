@@ -11,7 +11,7 @@ Update Utilities docs:
   - demonstrate global modal availability/names
 
 Components:
-  - redesign changelog and requirements area, update
+  - redesign changelog and requir ements area, update
   - check documentation for all components:
     + write if never initializedsss
     + ensure all events are present and described
