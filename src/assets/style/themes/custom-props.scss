@@ -1,4 +1,6 @@
 :root {
+  --header-height: 18rem;
+  --promo-width: 10rem;
   --brand-black: rgb(0, 0, 0);
   --brand-darkblue: rgb(20,55,125);
   --brand-blue:  rgb(0,118,190);
@@ -23,7 +25,7 @@
 
   --lowlight-primary: rgb(2, 2, 2);
   --lowlight-secondary: rgb(45, 45, 45);
-  --lowlight-tertiary: var(--brand-darkblue);
+  --lowlight-tertiary: rgb(118, 118, 118);
   --lowlight-quaternary: rgb(100, 100, 100);
   --lowlight-quinary: rgb(76, 76, 76);
 

@@ -1,0 +1,40 @@
+/* default styling */
+.belk-product[variant="bag"] {
+  &.is-on-sale {
+    .original {
+      text-decoration: line-through;
+      font-weight: normal !important;
+      color: $lowlight-quinary;
+      &:after {
+        content: '' !important;
+        font-weight: normal !important;
+      }
+    }
+  }
+
+  [href="#"] {
+    cursor: default !important;
+  }
+
+  .price {
+    .sale {
+      color: #c00;
+    }
+    span {
+      &:after {
+        content: attr(discount);
+      }
+      &[discount] {
+        font-weight: bold;
+      }
+    }
+  }
+
+  [discount="Doorbuster"],
+  [discount="Super Buy"] {
+    color: $lowlight-primary !important;
+    &.sale ~ .original {
+      display: none !important;
+    }
+  }
+}

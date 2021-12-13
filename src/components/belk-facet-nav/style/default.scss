@@ -1,0 +1,461 @@
+/* default styling */
+
+belk-facet-nav {
+  display: block;
+  color: $lowlight-primary;
+  ul, ul li {
+    list-style: none;
+    &::marker {
+      display: none;
+    }
+  }
+  *:focus {
+    outline: 0 !important;
+  }
+  label {
+    font: unset;
+    margin-bottom: 0;
+    font-weight: normal;
+  }
+  [data-qty]::after {
+    margin-left: $atomic;
+    content: "(" attr(data-qty) ")";
+    color: $lowlight-tertiary;
+    font-weight: normal !important;
+  }
+  ul,
+  input[type] {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  a {
+    text-decoration: none !important;
+  }
+  @include md {
+    [class*="mobile"],
+    .facet-back {
+      display: none;
+    }
+
+    .filter-clear {
+      outline: none !important;
+      border: none !important;
+      background: transparent !important;
+      line-height: 14px !important;
+      font-size: 12px !important;
+      color: $lowlight-primary !important;
+      font-weight: normal !important;
+    }
+
+    .belk-facet-nav {
+      position: static;
+      li {
+        a, > label {
+          display: flex;
+          color: $lowlight-primary;
+          font-size: 14px;
+          line-height: 32px;
+        }
+      }
+      .clear-search {
+        border: 0;
+        outline: 0;
+        background: transparent;
+      }
+    }
+    .facets-actual {
+      border-bottom: 1px solid $highlight-tertiary;
+      padding-top: 8px;
+    }
+    .facet-acc {
+      border-top: 1px solid $highlight-tertiary;
+      &.active {
+        h3 {
+          &:after {
+            transform: rotate(180deg);
+          }
+        }
+      }
+      &:not(.active) {
+        .acc-body {
+          display: none;
+        }
+      }
+      h3 {
+        width: 100%;
+        text-align: left;
+        font-size: 14px;
+        color: $lowlight-primary;
+        line-height: 35px;
+        cursor: pointer;
+        font-weight: bold;
+        &:after {
+          content: 'expand_more';
+          @include materialIcons;
+          float: right;
+          font-size: 18px;
+          font-weight: normal;
+          color: $lowlight-tertiary;
+        }
+      }
+    }
+    .height-scroll {
+      padding-bottom: 8px;
+    }
+    .height-scroll,
+    ul.acc-body {
+      overflow-y: auto;
+      overflow-x: hidden;
+      max-height: 282px;
+      width: 100%;
+      // @include no-scroll-bar;
+    }
+  }
+
+  [set="category"] {
+    a {
+      display: inline-flex !important;
+    }
+    .acc-body li {
+      border-top: 1px solid $highlight-tertiary;
+    }
+  }
+  .checkbox-list,
+  .radio-list {
+    label {
+      display: flex;
+      align-items: center;
+      > div {
+        display: inline-block;
+        padding: 0.5rem 0;
+        padding-left: 3.2rem;
+        margin-left: -3.2rem;
+        max-width: 100%;
+        line-height: 22px;
+      }
+      &:before {
+        display: inline-flex;
+        height: 20px;
+        width: 20px;
+        // padding: $micro 0;
+        margin-top: 6px;
+        flex-grow: 0;
+        flex-shrink: 0;
+        font-size: 18px;
+        align-content: center;
+        justify-content: center;
+        align-items: center;
+        content: 'check';
+        color: transparent;
+        @include materialIcons;
+        border: 1px solid $lowlight-secondary;
+        margin-right: $micro;
+        align-self: flex-start;
+      }
+    }
+    input:checked ~ label {
+      font-weight: bold;
+      &:before {
+        color: $lowlight-primary;
+      }
+    }
+  }
+
+  .radio-list {
+    label {
+      position: relative;
+      &:before {
+        border-radius: 50%;
+        content: '';
+      }
+      &:after {
+        display: none;
+        content: '';
+        height: 14px;
+        width: 14px;
+        background: $lowlight-primary;
+        border-radius: 50%;
+        position: absolute;
+        left: 3px;
+        top: 9px;
+      }
+    }
+    input:checked ~ label {
+      &:after {
+        display: block;
+      }
+    }
+  }
+
+  // .belk-facet-nav {
+  // }
+
+  button,
+  label {
+    cursor: pointer;
+  }
+
+  .filter-header {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 8px;
+    .ha {
+      font-size: 16px;
+      font-weight: bold;
+      line-height: 18px;
+    }
+    belk-icon {
+      display: none;
+    }
+  }
+
+  .filter-stack {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -$atomic;
+    margin-bottom: 11px;
+    button  {
+      font-weight: normal;
+      font-size: 14px;
+      position: static;
+      text-align: left;
+      vertical-align: none;
+      outline: none;
+      border: 1px solid $lowlight-tertiary;
+      border-radius: $atomic;
+      margin: $atomic;
+      padding: 6px 10px 5px 12px;
+      color: $lowlight-primary;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: $highlight-primary;
+      &:after {
+        display: block;
+        content: 'clear';
+        @include materialIcons;
+        margin-left: 11px;
+        color: $lowlight-tertiary;
+      }
+    }
+  }
+  .filter-swatch {
+    ul {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      &::after {
+        content: "";
+        flex: auto;
+      }
+      li {
+        width: 45px;
+        input:checked ~ label .swatch::after {
+          display: flex;
+        }
+        button,
+        label {
+          display: block;
+          width: 45px;
+          outline: none;
+          border: 0;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          align-content: center;
+          background: transparent;
+          &:hover {
+            cursor: pointer;
+            .swatch {
+              box-shadow: 0 0 2px 0 black;
+            }
+          }
+          .swatch {
+            display: flex;
+            position: relative;
+            margin-top: 1px;
+            align-items: center;
+            justify-content: center;
+            height: 39px;
+            width: 39px;
+            border-radius: 50%;
+            border: 3px solid $highlight-primary;
+            background-size: cover;
+            background-position: center center;
+            &:before {
+              content: '';
+              display: block;
+              position: absolute;
+              inset: 0;
+              border: 1px solid $highlight-tertiary;
+              border-radius: 50%;
+            }
+            &:after {
+              display: none;
+              align-items: center;
+              justify-content: center;
+              @include materialIcons;
+              content: 'check';
+              font-size: 12px;
+              font-weight: bold;
+              height: 15px;
+              width: 15px;
+              color: $lowlight-primary;
+              background: $highlight-primary;
+              border-radius: 50%;
+            }
+          }
+          .name {
+            margin-top: 4px;
+            font-size: 12px;
+            line-height: 14px;
+            text-transform: capitalize;
+          }
+        }
+      }
+    }
+  }
+
+  .filter-grid {
+    .nodata {
+      padding-left: 6px;
+    }
+  }
+
+  .nodata {
+    width: 100%;
+    padding-top: 8px;
+    font-size: 14px;
+  }
+
+  .filter {
+    border: 1px solid $lowlight-tertiary;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: $lowlight-primary;
+    width: 100%;
+    input {
+      border: none;
+      background: transparent;
+      width: 100%;
+      flex-shrink: 1;
+      height: 35px;
+      padding-left: $micro;
+    }
+    belk-icon {
+      margin: 0 $micro;
+      color: $lowlight-tertiary;
+    }
+  }
+
+  .filter-grid {
+    .filter-list {
+      display: flex;
+      flex-wrap: wrap;
+      margin-top: 11px;
+      margin-left: -$atomic;
+      margin-right: -$atomic;
+      &::after {
+        content: "";
+        flex: auto;
+        flex-grow: 15;
+      }
+      label {
+        min-width: calc(100% / 3);
+        flex-shrink: 0;
+        flex-grow: 3;
+        padding: $atomic;
+        &:hover {
+          div {
+            border-color: $accent-primary;
+            background: $highlight-secondary;
+            color: $accent-primary;
+          }
+        }
+        > div {
+          border: 1px solid $highlight-tertiary;
+          background: transparent;
+          height: 39px;
+          display: flex;
+          font-size: 14px;
+          line-height: 14px;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          // padding: 0 $atomic;
+        }
+      }
+      input:checked ~ div {
+        border-width: 2px;
+        color: $accent-primary;
+        border-color: $accent-primary;
+        background: $highlight-secondary;
+      }
+    }
+  }
+}
+
+
+[x-hidden] {
+  appearance: none;
+  position: fixed;
+  opacity: 0;
+  pointer-events: none;
+  &:focus {
+    outline: none !important;
+  }
+}
+
+[interaction="keyboard"] {
+  [x-hidden] {
+    &:focus {
+      + label {
+        background: $highlight-secondary;
+      }
+    }
+  }
+}
+
+.scroll-block lib-nav,
+.scroll-block lib-control-panel {
+  display: none !important;
+}
+
+label[for="range-custom"] {
+  &:before,
+  &:after {
+    opacity: 0 !important;
+  }
+}
+
+.custom-range {
+  display: flex;
+  padding-left: 24px;
+  height: 3.2rem;
+  input {
+    display: inline-block;
+    width: 30%;
+    padding: 0 $atomic !important;
+    margin: 0 0.25em !important;
+  }
+}
+
+
+.IE11 {
+  .belk-facet-nav {
+    *::-ms-clear {
+      display: none;
+    }
+  }
+  .custom-range input {
+    flex-basis: 25px;
+    flex-grow: 2;
+    flex-shrink: 0;
+  }
+  .filter-grid .filter-list label {
+    flex-basis: 25%;
+  }
+}

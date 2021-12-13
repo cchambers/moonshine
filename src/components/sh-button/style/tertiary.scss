@@ -1,19 +1,36 @@
 sh-button[variant=tertiary] {
+  &[disabled] {
+    button {
+      color: $lowlight-quinary;
+      box-shadow: inset 1px 0px 0 $lowlight-quinary,
+        inset -1px 0px 0 $lowlight-quinary,
+        inset 0px 1px 0 $lowlight-quinary,
+        inset 0px -1px 0 $lowlight-quinary;
+    }
+  }
   button {
     color: $brand-blue;
-    box-shadow: inset 1px 0px 0 $highlight-tertiary,
-      inset -1px 0px 0 $highlight-tertiary,
-      inset 0px 1px 0 $highlight-tertiary,
-      inset 0px -1px 0 $highlight-tertiary;
+    box-shadow: inset 1px 0px 0 $lowlight-tertiary,
+      inset -1px 0px 0 $lowlight-tertiary,
+      inset 0px 1px 0 $lowlight-tertiary,
+      inset 0px -1px 0 $lowlight-tertiary;
     transition: none;
-
+    padding: 0 3.2em;
+    height: 4.8em;
+    border-radius: 5px;
+    .actual-text span,
+    .active-text,
+    .active-icon {
+      font-weight: 600;
+      text-transform: none;
+    }
     &:hover,
     &.active {
       background: $highlight-secondary;
-      box-shadow: inset 2px 0px 0 $highlight-tertiary,
-        inset -2px 0px 0 $highlight-tertiary,
-        inset 0px 2px 0 $highlight-tertiary,
-        inset 0px -2px 0 $highlight-tertiary;
+      box-shadow: inset 2px 0px 0 $lowlight-tertiary,
+        inset -2px 0px 0 $lowlight-tertiary,
+        inset 0px 2px 0 $lowlight-tertiary,
+        inset 0px -2px 0 $lowlight-tertiary;
     }
   }
 }

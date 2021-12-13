@@ -38,7 +38,7 @@
             </ul>
           </td>
         </tr>
-        <tr>
+        <!-- <tr>
           <td>toggle</td>
           <td>Boolean</td>
           <td>
@@ -46,7 +46,7 @@
               <li>Make button have a toggle state.</li>
             </ul>
           </td>
-        </tr>
+        </tr> -->
         <tr>
           <td>round</td>
           <td>Boolean</td>
@@ -57,13 +57,59 @@
           </td>
         </tr>
         <tr>
-          <td>Size</td>
+          <td>size</td>
           <td>String</td>
           <td>
             <ul>
               <li>Change the size of the button.</li>
-              <li>Options are: "sm"</li>
+              <li>Option: "sm"</li>
             </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>click-event</td>
+          <td>String</td>
+          <td>
+            Configure a button to emit a specific event on click. 
+          </td>
+        </tr>
+        <tr>
+          <td>type</td>
+          <td>String</td>
+          <td>
+            <ul>
+              <li>The default behavior of the button.</li>
+              <li>Possible values are: submit, reset, button</li>
+              <li>Defaults to: button</li>
+            </ul> 
+          </td>
+        </tr>
+        <tr>
+          <td>form</td>
+          <td>String</td>
+          <td>
+            The <code>form</code> element to associate the button with (its form owner). The value of this attribute must be the id of a <code>form</code> in the same document. (If this attribute is not set, the <code>button</code> is associated with its ancestor <code>form</code> element, if any.)
+          </td>
+        </tr>
+        <tr>
+          <td>formaction</td>
+          <td>String</td>
+          <td>
+            The URL that processes the information submitted by the button. Overrides the action attribute of the button's form owner. Does nothing if there is no form owner.
+          </td>
+        </tr>
+        <tr>
+          <td>formmethod</td>
+          <td>String</td>
+          <td>
+            If the button is a submit button (it's inside/associated with a <code>form</code> and doesn't have type="button"), this attribute specifies the HTTP method used to submit the form. Possible values: post, get.
+          </td>
+        </tr>
+        <tr>
+          <td>formtarget</td>
+          <td>String</td>
+          <td>
+            If the button is a submit button, this attribute is a author-defined name or standardized, underscore-prefixed keyword indicating where to display the response from submitting the form. This is the name of, or keyword for, a browsing context (a tab, window, or <code>iframe</code>).
           </td>
         </tr>
       </tbody>
@@ -143,58 +189,70 @@
 
   <section id="examples">
     <h2>Examples</h2>
-
-    <h3 class="margin-b-little">Default</h3>
-    <lib-toolbar>
+    <!-- <lib-toolbar>
       <sh-button variant="primary" toggle>Toggle Button</sh-button>
       <sh-button variant="primary">
         <i class="material-icons" slot="before-text">close</i>With Icon<i class="material-icons" slot="after-text">check</i>
       </sh-button>
       <sh-button variant="primary">With Active Icon</sh-button>
-    </lib-toolbar>
+    </lib-toolbar> -->
 
-    
-    <h3 class="margin-b-little" id="variants">Variants</h3>
+    <h3 class="margin-b-micro" id="variants">Variants & [disabled]</h3>
     <lib-toolbar>
       <sh-button variant="primary">Primary</sh-button>
       <sh-button variant="secondary">Secondary</sh-button>
       <sh-button variant="tertiary">Tertiary</sh-button>
+      <div class="pad-b-little"></div>
+      <sh-button disabled variant="primary">Primary</sh-button>
+      <sh-button disabled variant="secondary">Secondary</sh-button>
+      <sh-button disabled variant="tertiary">Tertiary</sh-button>
     </lib-toolbar>
 
-    <h3 class="margin-b-little" id="size">Size</h3>
+    <h3 class="margin-b-micro" id="toggle">Toggle</h3>
+    <lib-toolbar>
+        <sh-button
+        variant="primary"
+        toggle="once"
+        class="coupon-add-button"
+        active-text="Added"
+        active-icon="check">Add Coupon</sh-button>
+    </lib-toolbar>
+
+    <h3 class="margin-b-micro" id="with-icon">With Icon</h3>
+    <lib-toolbar>
+      <sh-button variant="primary" icon="arrow-right">Primary</sh-button>
+      <sh-button variant="secondary" icon="arrow-right">Secondary</sh-button>
+      <div class="pad-t"></div>
+      <sh-button variant="tertiary" size="sm" before-icon="print">Print</sh-button>
+      <div class="pad-t"></div>
+      <sh-button variant="primary" before-icon="padlock">Secure Checkout</sh-button>
+    </lib-toolbar>
+
+    <h3 class="margin-b-micro" id="size">Size</h3>
     <lib-toolbar>
       <sh-button variant="primary" size="sm">Primary Small</sh-button>
-      <sh-button variant="primary" size="md">Primary Default</sh-button>
-      <sh-button variant="primary" full size="sm">Primary Small Full</sh-button>
-      <sh-button variant="primary" full>Primary Default Full</sh-button>
-      <hr/>
+      <sh-button variant="primary">Primary Default</sh-button>
+      <div class="pad-t"></div>
       <sh-button variant="secondary" size="sm">Secondary Small</sh-button>
-      <sh-button variant="secondary" size="md">Secondary Default</sh-button>
-      <sh-button variant="secondary" full size="sm">Secondary Small Full</sh-button>
-      <sh-button variant="secondary" full>Secondary Default Full</sh-button>
-      <hr/>
+      <sh-button variant="secondary">Secondary Default</sh-button>
+      <div class="pad-t"></div>
       <sh-button variant="tertiary" size="sm">Tertiary Small</sh-button>
-      <sh-button variant="tertiary" size="md">Tertiary Default</sh-button>
-      <sh-button variant="tertiary" full size="sm">Tertiary Small Full</sh-button>
+      <sh-button variant="tertiary">Tertiary Default</sh-button>
+      <div class="pad-t"></div>
+      <sh-button variant="primary" full>Primary Default Full</sh-button>
+      <sh-button variant="secondary" full>Secondary Default Full</sh-button>
       <sh-button variant="tertiary" full>Tertiary Default Full</sh-button>
     </lib-toolbar>
 
-    <h3 class="margin-b-little" id="round">Round</h3>
-    <lib-toolbar>
-      <sh-button round variant="primary">Primary</sh-button>
-      <sh-button round variant="secondary">Secondary</sh-button>
-      <sh-button round variant="tertiary">Tertiary</sh-button>
-    </lib-toolbar>
-
-    <h3 class="margin-b-little">Round Values</h3>
+    <!-- <h3 class="margin-b-micro">Round Values</h3>
     <lib-toolbar>
       <sh-button round="left" variant="primary">Left</sh-button>
       <sh-button round="right" variant="primary">Right</sh-button>
       <sh-button round="top" variant="primary">Top</sh-button>
       <sh-button round="bottom" variant="primary">Bottom</sh-button>
-    </lib-toolbar>
+    </lib-toolbar> -->
 
-    <h3 class="margin-b-little" id="buttongroup">Button Groups w/ <code>belk-flex</code></h3>
+    <h3 class="margin-b-micro" id="buttongroup">Button Groups w/ <code>belk-flex</code></h3>
     <lib-toolbar>
       <belk-flex variant="buttons">
         <sh-button variant="tertiary">Cancel</sh-button>
@@ -203,43 +261,46 @@
       </belk-flex>
     </lib-toolbar>
 
-    <h3 class="margin-b-little" id="scaling">Scaling</h3>
+
+
+    <!-- <h3 class="margin-b-micro" id="round">Round</h3>
     <lib-toolbar>
-      <div class="text-center">
-        <div class="pad-t-little">
-          <sh-button scale="120">scale = 120</sh-button>
-          <sh-button scale="120" variant="primary">Primary</sh-button>
-        </div>
-        <div class="pad-t-little">
-          <sh-button scale="110">scale = 110</sh-button>
-          <sh-button scale="110" variant="primary">Primary</sh-button>
-        </div>
-        <div class="pad-t-little">
-          <sh-button>DEFAULT</sh-button>
-          <sh-button variant="primary">Primary</sh-button>
-        </div>
-        <div class="pad-t-little">
-          <sh-button scale="90">scale = 90</sh-button>
-          <sh-button scale="90" variant="primary">Primary</sh-button>
-        </div>
-        <div class="pad-t-little">
-          <sh-button scale="80">scale = 80</sh-button>
-          <sh-button scale="80" variant="primary">Primary</sh-button>
-        </div>
-        <div class="pad-t-little">
-          <sh-button scale="70">scale = 70</sh-button>
-          <sh-button scale="70" variant="primary">Primary</sh-button>
-        </div>
-        <div class="pad-t-little">
-          <sh-button scale="60">scale = 60</sh-button>
-          <sh-button scale="60" variant="primary">Primary</sh-button>
-        </div>
-        <div class="pad-t-little">
-          <sh-button scale="50">scale = 50</sh-button>
-          <sh-button scale="50" variant="primary">Primary</sh-button>
-        </div>
+      <sh-button round variant="primary">Primary</sh-button>
+      <sh-button round variant="secondary">Secondary</sh-button>
+      <sh-button round variant="tertiary">Tertiary</sh-button>
+      <div class="pad-t"></div>
+      <sh-button size="sm" round variant="primary">Primary</sh-button>
+      <sh-button size="sm" round variant="secondary">Secondary</sh-button>
+      <sh-button size="sm" round variant="tertiary">Tertiary</sh-button>
+    </lib-toolbar> -->
+
+    <!-- <h3 class="margin-b-micro" id="scaling">Scaling</h3>
+    <lib-toolbar>
+      <div class="pad-t-little">
+        <sh-button scale="120" variant="primary">Primary</sh-button>
       </div>
-    </lib-toolbar>
+      <div class="pad-t-little">
+        <sh-button scale="110" variant="primary">Primary</sh-button>
+      </div>
+      <div class="pad-t-little">
+        <sh-button variant="primary">Primary</sh-button>
+      </div>
+      <div class="pad-t-little">
+        <sh-button scale="90" variant="primary">Primary</sh-button>
+      </div>
+      <div class="pad-t-little">
+        <sh-button scale="80" variant="primary">Primary</sh-button>
+      </div>
+      <div class="pad-t-little">
+        <sh-button scale="70" variant="primary">Primary</sh-button>
+      </div>
+      <div class="pad-t-little">
+        <sh-button scale="60" variant="primary">Primary</sh-button>
+      </div>
+      <div class="pad-t-little">
+        <sh-button scale="50" variant="primary">Primary</sh-button>
+      </div>
+    </lib-toolbar> -->
     
   </section>
 
@@ -248,6 +309,10 @@
     <dl>
       <dt>1.0.0</dt>
       <dd>Component was created.</dd>
+      <dt>2.0.0</dt>
+      <dd>Style was changed.</dd>
+      <dd>Scaling was removed.</dd>
+      <dd>Icon handling and animation added.</dd>
     </dl>
   </section>
 </div>

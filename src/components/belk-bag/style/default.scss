@@ -2,18 +2,28 @@
 
 belk-bag {
   display: inline-flex;
-  font-size: 1.4rem;
   color: $lowlight-primary;
 
-  .bag-count {
+  .price {
     display: flex;
-    height: 100%;
-    align-items: center;
-    padding-top: 5px;
+    flex-direction: column;
+    flex-direction: column-reverse;
+  }
+
+  .no-items {
+    font-size: 1.6rem;
+    p {
+      justify-content: center;
+    }
+  }
+
+  .has-items {
+    display: none;
   }
 
   .bag-content {
-    overflow-y: auto;
+    max-height: calc(100vh - 250px);
+    max-height: calc(100vh - var(--header-height));
   }
 
   .belk-bag {
@@ -23,7 +33,11 @@ belk-bag {
     align-content: flex-start;
     align-items: center;
 
-    .reference > div {
+    .popper-content {
+      padding: 0;
+    }
+
+    .popper-target > div {
       white-space: pre;
       display: flex;
     }
@@ -38,7 +52,6 @@ belk-bag {
     belk-icon {
       margin: 0;
       color: transparent;
-      margin-top: -5px;
     }
 
     .bag-background {
@@ -50,13 +63,17 @@ belk-bag {
         margin: 0;
         color: $lowlight-primary;
       }
-
       .bag-background {
         fill: $lowlight-primary;
       }
-
       .bag-count {
         color: $highlight-primary;
+      }
+      .has-items {
+        display: block;
+      }
+      .no-items {
+        display: none;
       }
     }
   }
@@ -64,15 +81,19 @@ belk-bag {
   .bag-count {
     position: absolute;
     top: 50%;
+    margin-top: 3px;
     left: 50%;
+    font-size: 1.2rem;
     transform: translateX(-50%) translateY(-50%);
+    align-items: center;
   }
 
   .bag-total {
-    padding-top: 0.5rem;
-    margin-left: 0.4rem;
-    display: flex;
+    display: none;
     align-items: center;
+    @include lg {
+      display: flex;
+    }
   }
 
   .bag-icon {
@@ -86,6 +107,48 @@ belk-bag {
       position: absolute;
       bottom: 0;
     }
+  }
+
+  .bag-list {
+    width: 32rem;
+    padding: $micro;
+    * {
+      white-space: normal;
+    }
+    .belk-product {
+      line-height: 2rem;
+      > a {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+      .image {
+        width: 7.5rem;
+        height: 10rem;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center center;
+        flex-shrink: 0;
+      }
+      .data {
+        display: block;
+        width: 50%;
+        flex-grow: 1;
+      }
+      .quick-view {
+        display: none;
+      }
+    }
+  }
+
+  .scrolling-area {
+    overflow-y: auto;
+    padding: $micro;
+    padding-bottom: 0;
+    max-height: calc(100vh - 250px - 90px);
+    max-height: calc(100vh - var(--header-height) - 90px);
+    overscroll-behavior: contain;
   }
 }
 

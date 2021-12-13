@@ -1,5 +1,5 @@
 {
-  "name": "Belk Bus",
+  "name": "Event Bus",
   "category": "base",
   "production": false,
   "element": "belk-bus",

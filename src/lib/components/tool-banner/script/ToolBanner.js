@@ -1,6 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import * as ace from 'brace';
 import 'brace/mode/html';
+import 'brace/mode/json';
 import 'brace/theme/monokai';
 import Pretty from 'pretty';
 import ComponentPrototype from '../../../../components/component-prototype';
@@ -201,9 +202,6 @@ export default {
 
     codeFocusHandler(data) {
       this.codeFocus = data.value;
-      setTimeout(() => {
-        this.$bus.$emit('resize-occurred');
-      }, 100);
     },
 
     // renderDebounce(code) {

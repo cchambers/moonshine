@@ -14,18 +14,8 @@ sh-nav-item {
   .sh-nav-item {
     display: inline-block;
     color: $lowlight-primary;
-
-    .reference a {
-      border-radius: 5px;
-    }
-    
-    &:hover {
-      .reference a {
-        background: $highlight-secondary;
-      }
-    }
   }
-  
+
   .arrow-icon {
     display: none;
     margin-left: 0.4rem;
@@ -34,20 +24,57 @@ sh-nav-item {
     }
   }
 
+  &[cat="Clearance"] {
+    .popper-target {
+      a:not(.belk-link),
+      > div,
+      > span {
+        color: $brand-crimson;
+      }
+    }
+    .subcat-list {
+      width: 25%;
+      flex-grow: 0;
+    }
+
+    .subcat-list li {
+      display: block;
+    }
+
+    .subcat-list * {
+      display: flex;
+      align-items: center;
+      flex-grow: 0;
+      flex-shrink: 0;
+      height: 2.6rem;
+      font-weight: bold;
+      line-height: 2.6rem;
+    }
+
+    .subcat-list *:not(a) {
+      width: 100%;
+    }
+  }
+
   .popper-target {
     border-bottom: none;
     display: inline-flex;
     cursor: pointer;
+    position: relative;
+
+    &.active {
+      .arrow-icon {
+        transform: rotate(180deg);
+      }
+    }
 
     button {
       display: none;
     }
 
-    .reference {
-      position: relative;
-    }
-
-    a {
+    a:not(.belk-link),
+    > div,
+    > span {
       position: relative;
       display: flex;
       align-items: center;
@@ -55,15 +82,15 @@ sh-nav-item {
       transition: all 150ms $ease;
       color: $lowlight-primary;
       cursor: pointer;
+      border-radius: 5px;
+      &:hover {
+        background: $highlight-secondary;
+      }
     }
 
     .belk-icon {
       display: flex;
     }
-  }
-
-  .fold-in {
-    background: red;
   }
 
   .popper-arrow {
@@ -163,7 +190,7 @@ sh-nav-item {
   .popper-content {
     background: $highlight-primary;
     color: $lowlight-primary;
-    padding: 1rem;
+    padding: $micro;
     border: 1px solid $lowlight-primary;
 
     ul {
@@ -173,16 +200,6 @@ sh-nav-item {
       li {
         list-style: none;
         white-space: nowrap;
-
-        a {
-          display: block;
-          color: currentColor;
-          padding: 0.6rem;
-
-          &:hover {
-            background-color: $highlight-secondary;
-          }
-        }
       }
     }
   }
@@ -199,16 +216,5 @@ sh-nav-item {
 
   belk-icon.arrow-down {
     align-self: flex-end;
-  }
-
-  .layout-horizontal {
-    column-count: 4;
-    @include lg {
-      column-count: 5;
-    }
-    @include xl {
-      column-count: 6;
-    }
-    column-gap: $rem;
   }
 }

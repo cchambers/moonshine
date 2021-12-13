@@ -3,9 +3,7 @@
     v-bind:class="{ 'touch': mobile }"
     :active="active">
     <div class="popper-target" :class="{ active: showPopper }" ref="target">
-      <div class="reference">
-        <slot name="reference"></slot>
-      </div>
+      <slot name="reference"></slot>
     </div>
     <transition
     :name="transition"
@@ -15,7 +13,7 @@
         :fill="fill"
         ref="popper"
         v-show="!disabled && showPopper">
-        <div class="popper-content">
+        <div ref="focus" class="popper-content">
           <div v-if="isClosable" class="popper-close">
             <button close-trigger>
               <belk-icon name="close" width="28">Close Modal</belk-icon>
@@ -65,6 +63,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    navItem: {
+      type: Boolean,
+      default: true,
+    },
     hasArrow: {
       type: Boolean,
       default: false,
@@ -109,6 +111,9 @@ export default {
       type: String,
       default: '',
     },
+    offset: {
+      type: Number,
+    },
     trigger: {
       type: String,
       default: 'click',
@@ -140,7 +145,7 @@ export default {
           {
             name: 'offset',
             options: {
-              offset: [10, 0],
+              offset: [this.offset || 15, 0],
             },
           },
           {
@@ -165,7 +170,11 @@ export default {
         if (this.link) this.link.setAttribute('aria-expanded', true);
       } else {
         this.$bus.$emit('popper-closing', this);
-        this.$bus.$emit('hide-curtain', this);
+        if (this.closeCurtain) {
+          this.$bus.$emit('hide-curtain', this);
+        } else {
+          this.closeCurtain = false;
+        }
         if (this.link) this.link.setAttribute('aria-expanded', false);
       }
     },
@@ -195,13 +204,13 @@ export default {
   mounted() {
     this.referenceElm = this.$refs.target;
     this.popper = this.$refs.popper;
-    this.link = this.referenceElm.querySelector('a');
+    this.link = this.referenceElm.querySelector('a, .nav-link');
     if (this.foregroundSelector) this.foreground = document.querySelector(this.foregroundSelector);
 
     if (this.link) {
       this.link.setAttribute('aria-haspopup', true);
       this.link.setAttribute('aria-expanded', false);
-      if (this.hasArrow) this.link.innerHTML += '<belk-icon class="arrow-icon" name="arrow-down" width="6" class="margin-l-atomic"></belk-icon>';
+      if (this.hasArrow) this.link.innerHTML += '<belk-icon class="arrow-icon" name="arrow-down" width="6" height="6" class="margin-l-atomic"></belk-icon>';
     }
 
     if (this.trigger === 'click') {
@@ -212,6 +221,8 @@ export default {
         });
       }
     }
+
+    if (this.variant === 'mega') this.viewAllFix();
 
     this.initPopper();
     this.show = true;
@@ -233,12 +244,37 @@ export default {
       });
 
       this.$bus.$on('popper-opening', (el) => {
-        if (el === this) return;
-        self.close();
+        // const bag = (el.uniqueId === 'belk-bag');
+        if (el === this) {
+          this.closeCurtain = true;
+          return;
+        }
+        if (el.navItem) {
+          this.closeCurtain = false;
+        } else {
+          this.closeCurtain = true;
+        }
+        self.close('popper-opening-navitem');
       });
 
-      this.$bus.$on('modal-opening', self.close);
-      this.$bus.$on('close-modals', self.close);
+      this.$bus.$on('close-poppers', () => {
+        self.close('close-poppers');
+      });
+
+      this.$bus.$on('modal-opening', () => {
+        self.close('modal-opening');
+      });
+      this.$bus.$on('close-modals', () => {
+        self.close('close-modals');
+      });
+    },
+
+    viewAllFix() {
+      const target = this.$refs.popper.querySelector('.view-all');
+      if (target) {
+        const list = target.nextSibling.querySelector('ul');
+        if (list) list.prepend(target);
+      }
     },
 
     initPopper() {
@@ -384,7 +420,6 @@ export default {
       if (!this.mobile) {
         clearTimeout(this.timer);
         this.timer = setTimeout(() => {
-          this.$bus.$emit('popper-opening', this);
           this.$set(this, 'showPopper', true);
         }, this.delayOnMouseOver);
       }

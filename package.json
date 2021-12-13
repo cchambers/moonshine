@@ -22,6 +22,8 @@
     "@popperjs/core": "^2.0.6",
     "core-js": "^3.3.2",
     "jsbarcode": "^3.11.0",
+    "lodash": "^4.17.21",
+    "masonry-layout": "^4.2.2",
     "mdn-polyfills": "^5.20.0",
     "vue": "^2.6.10",
     "vue-custom-element": "^3.2.7",

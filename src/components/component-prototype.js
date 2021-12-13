@@ -22,6 +22,33 @@ const ComponentPrototype = {
   },
 
   methods: {
+    slug(text) {
+      let str = text;
+      str = str.replace(/^\s+|\s+$/g, '');
+      str = str.toLowerCase();
+      const from = "àáãäâèéëêìíïîòóöôùúüûñç·/_,:;";
+      const to   = "aaaaaeeeeiiiioooouuuunc------";
+      for (let i = 0, l = from.length ; i < l; i += 1) {
+          str = str.replace(new RegExp(from.charAt(i), 'g'), to.charAt(i));
+      }
+      str = str.replace(/[^a-z0-9 -]/g, '')
+        .replace(/\s+/g, '-')
+        .replace(/-+/g, '-');
+      return str;
+    },
+
+    reflow() {
+      window.dispatchEvent(new CustomEvent('resize'));
+    },
+
+    isMobile() {
+      return window.matchMedia('(max-width: 767px)').matches;
+    },
+
+    isTablet() {
+      return window.matchMedia('(max-width: 959px)').matches;
+    },
+
     debounce(name = 'default', func, wait = 100, immediate) {
       if (!this.timers) this.timers = {};
       return (...args) => {
@@ -64,6 +91,14 @@ const ComponentPrototype = {
       return JSON.parse(val);
     },
 
+    checkLocal() {
+      if (window.location.origin.indexOf('localhost') > 0) return true;
+    },
+
+    checkDev() {
+      if (window.location.origin.indexOf('belk.com') < 0) return true;
+    },
+
     setItem(which, val, session) {
       if (session) {
         sessionStorage.setItem(which, JSON.stringify(val));
@@ -74,12 +109,24 @@ const ComponentPrototype = {
       return true;
     },
 
+    removeItem(which, session) {
+      if (session) {
+        sessionStorage.removeItem(which);
+      } else {
+        localStorage.removeItem(which);
+      }
+    },
+
     elementContains(elm, otherElm) {
       if (typeof elm.contains === 'function') {
         return elm.contains(otherElm);
       }
 
       return false;
+    },
+
+    getNested(obj, ...args) {
+      return args.reduce((obj, level) => obj && obj[level], obj)
     },
 
     log(...args) {
@@ -112,10 +159,17 @@ const ComponentPrototype = {
     };
   },
 
+  created() {
+    const globalVariantControl = this.getNested(window.utag_data, 'variantControl', this.$options.name);
+    const directVariantControl = this.getNested(window.utag_data, 'variantControl', this.uniqueId);
+    if (globalVariantControl && !directVariantControl) this.variant = globalVariantControl;
+    if (directVariantControl) this.variant = directVariantControl;
+  },
+
   mounted() {
     const self = this;
     if (typeof self.events === 'function') setTimeout(self.events);
-    self.$bus.$emit('component-ready', self);
+    // self.$bus.$emit('component-ready', self);
   },
 };
 

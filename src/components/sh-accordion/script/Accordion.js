@@ -12,6 +12,10 @@ export default {
     closedIcon: String,
     openIcon: String,
     variant: String,
+    subcat: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   data() {
@@ -30,7 +34,7 @@ export default {
 
   mounted() {
     if (window.location.hash) this.hashHandler(window.location.hash.substr(1));
-    const headerLink = this.$refs.button.querySelector('a');
+    const headerLink = this.$el.querySelector('button a');
     if (headerLink) {
       headerLink.addEventListener('click', (e) => {
         e.stopPropagation();
@@ -98,9 +102,9 @@ export default {
       this.$bus.$emit('accordion-opening', payload);
       this.ariaExpanded = true;
       this.$bus.$emit('accordion-opened', payload);
-      // setTimeout(() => {
-      //   this.$el.scrollIntoView();
-      // }, 100);
+      setTimeout(() => {
+        this.$el.scrollIntoView();
+      }, 100);
     },
 
     events() {
@@ -112,10 +116,21 @@ export default {
         });
       }
 
+      if (this.uniqueId) {
+        const slug = `open-${this.uniqueId.slugify()}`;
+        this.$bus.$on(slug, () => {
+          this.open();
+          if (this.subcat) {
+            const cat = this.$el.closest('ul').closest('sh-accordion');
+            if (cat) this.$bus.$emit(`open-${cat.uniqueId.slugify()}`);
+          }
+        });
+      }
+
       this.$bus.$on('accordion-trigger', (data) => {
         if (data.which === this.uniqueId) this.toggleActive();
-        if (data.origin) data.origin.setAttribute('aria-expanded', this.ariaExpanded);
         if (data.origin) {
+          data.origin.setAttribute('aria-expanded', this.ariaExpanded);
           if (data.origin.hasAttribute('focus-me')) {
             setTimeout(() => {
               data.origin.scrollIntoView();

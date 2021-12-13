@@ -4,18 +4,31 @@
     v-on:keyup.enter="tapHandler"
     :close-trigger="closeTrigger"
     :print-trigger="printTrigger"
-    :value="defaultValue"
+    :value="value"
+    :name="name"
+    :id="uniqueId"
+    :form="form"
+    :formaction="formaction"
+    :formmethod="formmethod"
+    :formtarget="formtarget"
+    :disabled="isDisabled"
     v-bind:role="ariaRole"
     v-bind:aria-selected="isActive"
     v-bind:aria-controls="ariaControls"
     class="sh-button">
+    <div v-if="beforeIcon" class="button-icon before">
+      <belk-icon :name="beforeIcon" height="18" width="18"></belk-icon>
+    </div>
     <slot name="before-text"></slot>
     <div class="active-icon"
       v-if="activeIcon"><belk-icon width="20" height="20"
       :name="activeIcon"></belk-icon></div>
     <div class="actual-text"><slot></slot></div>
-    <div class="active-text" v-if="isActive">{{activeText}}</div>
+    <div class="active-text" v-if="isActive"><span>{{activeText}}</span></div>
     <slot name="after-text"></slot>
+    <div v-if="icon" class="button-icon after">
+      <belk-icon :name="icon" height="13" width="13"></belk-icon>
+    </div>
   </button>
 </template>
 
@@ -36,6 +49,8 @@ export default {
     },
     activeText: String,
     activeIcon: String,
+    beforeIcon: String,
+    icon: String,
     group: String,
     closeTrigger: Boolean,
     printTrigger: Boolean,
@@ -43,15 +58,23 @@ export default {
     round: String,
     outline: Boolean,
     clickEvent: String,
-    defaultValue: String,
     active: Boolean,
-    link: Boolean,
-    ariaRole: String,
+    link: String,
+    size: String,
+    target: String,
     ariaControls: String,
+    value: String,
+    name: String,
     type: {
       type: String,
       default: 'button',
     },
+    form: String,
+    formaction: String,
+    formmethod: String,
+    formtarget: String,
+    disabled: Boolean,
+    autofocus: Boolean,
     uniqueId: String,
   },
 
@@ -62,12 +85,14 @@ export default {
       buttonEl: this.$refs.button,
       isRole: false,
       once: false,
-      disabled: false,
+      ariaRole: '',
+      isDisabled: false,
     };
   },
 
   created() {
     if (this.link) this.ariaRole = 'link';
+    if (this.disabled) this.isDisabled = true;
   },
 
   mounted() {
@@ -77,6 +102,12 @@ export default {
 
     this.buttonEl.addEventListener('click', this.tapHandler);
     this.$bus.$on(`${this.uniqueId}-button-toggle`, this.doToggle);
+
+    const innerButton = this.$refs.button.querySelector('button');
+    if (innerButton) {
+      const actualText = innerButton.querySelector('.actual-text');
+      this.$refs.button.innerHTML = actualText.outerHTML;
+    }
   },
 
   methods: {
@@ -99,10 +130,10 @@ export default {
     },
 
     tapHandler(e) {
-      if (this.disabled) return;
+      if (this.isDisabled) return;
       // this.ripple(e);
       if (this.ajax) {
-        this.disabled = true;
+        this.isDisabled = true;
         this.sendRequest();
       }
       if (this.toggle && !this.ajax) this.doToggle();
@@ -119,6 +150,13 @@ export default {
           group: this.group,
         });
       }
+      if (this.link) {
+        if (this.target) {
+          window.open(this.link, this.target);
+        } else {
+          window.location.href = this.link;
+        }
+      }
     },
 
     sendRequest() {
@@ -134,11 +172,11 @@ export default {
           if (this.ajaxSuccess) {
             this.$bus.$emit(this.ajaxSuccess, data);
           } else if (this.toggle) this.doToggle();
-          this.disabled = false;
+          this.isDisabled = false;
         })
         .catch((error) => {
           this.log(error, 1);
-          this.disabled = false;
+          this.isDisabled = false;
         });
     },
 

@@ -1,0 +1,15 @@
+{
+  "name": "Belk Facet Nav",
+  "category": "features",
+  "production": true,
+  "element": "belk-facet-nav",
+  "description": "Used on search and category pages to refine product results.",
+  "tags": ["facet", "filter", "refinement", "nav"],
+  "tracking": [],
+  "requirements": {
+    "Element One": [],
+    "Element Two": [],
+    "a11y": [],
+    "states": []
+  }
+}

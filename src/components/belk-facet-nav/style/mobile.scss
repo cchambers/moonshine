@@ -1,0 +1,216 @@
+/* primary variant */
+$itemHeight: 48px;
+@media screen and (max-width: 767px) {
+  belk-facet-nav {
+    h3 {
+      font-weight: bold;
+      font-size: 18px;
+    }
+    [set="heading"] {
+      display: none;
+    }
+    .custom-range {
+      sh-button { display: none }
+    }
+    .height-scroll {
+      padding-bottom: 60px;
+    }
+    .close-button {
+      position: fixed;
+      display: flex;
+      align-items: center;
+      height: 63px;
+      width: 45px;
+      top: 0;
+      right: 0;
+      color: $lowlight-tertiary;
+      z-index: 2;
+    }
+    .mobile-see-results {
+      margin-top: auto;
+      padding: $micro;
+      text-align: center;
+    }
+    .mobile-base {
+      font-size: 1.6rem;
+      background: $highlight-primary;
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        max-height: calc(100vh - 63px);
+        overflow-y: auto;
+        margin-top: 63px !important;
+        padding-bottom: 63px;
+      }
+      li {
+        display: flex;
+        justify-content: space-between;
+        line-height: 56px;
+        padding: 0 24px;
+        border-bottom: 1px solid $highlight-tertiary;
+        &:after {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 24px;
+          width: 28px;
+          color: $lowlight-tertiary;
+          content: 'navigate_next';
+          @include materialIcons;
+        }
+      }
+    }
+    .mobile-footer {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100px;
+      padding: 0 24px;
+      background: $highlight-primary;
+      background: linear-gradient(0deg, $highlight-primary 70%, rgba(255,255,255,0) 100%);
+    }
+    .acc-body {
+      padding: 16px 24px;
+      max-height: calc(100vh - 63px);
+      overflow-y: auto;
+      font-size: 1.6rem;
+      a {
+        text-decoration: none;
+      }
+    }
+    .facet-back {
+      height: 100%;
+      width: 45px;
+      color: $lowlight-tertiary;
+      border: none;
+      outline: none;
+      background: transparent;
+      &:before {
+        display: flex;
+        content: 'chevron_left';
+        @include materialIcons;
+        font-size: 24px;
+        height: 100%;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+    .filter-clear-mobile,
+    .filter-clear {
+      color: $accent-primary;
+      font-size: 14px;
+      line-height: 18px;
+      padding-left: $micro;
+      margin-left: $rem;
+      outline: none;
+      background: transparent;
+      border: none;
+      border-left: 1px solid $highlight-tertiary;
+    }
+    .belk-facet-nav {
+      display: none;
+      position: fixed;
+      z-index: 11;
+      inset: 0;
+      overflow: hidden;
+      background: $highlight-primary;
+      flex-direction: column;
+      max-height: 100vh;
+      @include no-scroll-bar;
+      &.active {
+        display: flex;
+      }
+      [facet-name] {
+        position: absolute;
+        inset: 0;
+        background: $highlight-primary;
+        transform: translateX(-100%);
+        @include no-scroll-bar;
+        &.active {
+          transform: translateX(0);
+        }
+      }
+    }
+    .filter-header,
+    .facet-acc .acc-head {  
+      height: 63px;
+      background: $highlight-secondary;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      transform: translateX(0) !important;
+    }
+
+    .filter-header {
+      padding: 0 24px;
+      justify-content: flex-start;
+      position: fixed;
+      top: 0;
+      right: 0;
+      left: 0;
+      .ha {
+        font-weight: bold;
+        font-size: 18px;
+      }
+      belk-icon {
+        margin-left: auto;
+      }
+    }
+
+    .filter-stack {
+      display: none;
+    }
+
+    .count {
+      margin-right: auto;
+      font-weight: bold;
+      margin-left: 0.5em;
+    }
+
+    .filter-swatch {
+      ul {
+        justify-content: space-between;
+        li {
+          width: 20%;
+          margin-bottom: $little;
+          label {
+            width: 60px;
+          }
+        }
+      }
+      .swatch {
+        height: 50px !important;
+        width: 50px !important;
+      }
+    }
+
+    .checkbox-list,
+    .radio-list {
+      label {
+        height: $itemHeight;
+        &:after {
+          top: 18px;
+          left: 4px;
+        }
+        &:before {
+          margin-top: 14px;
+        }
+      }
+
+    }
+    .facet-links {
+      a {
+        display: flex !important;
+        align-items: center;
+        height: $itemHeight;
+        color: $lowlight-primary;
+      }
+    }
+
+  }
+}

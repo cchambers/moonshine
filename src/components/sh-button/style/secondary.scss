@@ -1,12 +1,29 @@
 sh-button[variant=secondary] {
+  &[disabled] {
+    button {
+      color: $lowlight-quinary;
+      box-shadow: inset 1px 0px 0 $lowlight-quinary,
+        inset -1px 0px 0 $lowlight-quinary,
+        inset 0px 1px 0 $lowlight-quinary,
+        inset 0px -1px 0 $lowlight-quinary;
+    }
+  }
   button {
     color: $brand-blue;
     box-shadow: inset 1px 0px 0 $brand-blue,
-                inset -1px 0px 0 $brand-blue,
-                inset 0px 1px 0 $brand-blue,
-                inset 0px -1px 0 $brand-blue;
+      inset -1px 0px 0 $brand-blue,
+      inset 0px 1px 0 $brand-blue,
+      inset 0px -1px 0 $brand-blue;
     transition: none;
-
+    padding: 0 3.2em;
+    height: 4.8em;
+    border-radius: 5px;
+    .actual-text span,
+    .active-text,
+    .active-icon {
+      font-weight: 600;
+      text-transform: none;
+    }
     &:hover,
     &.active {
       box-shadow: inset 2px 0px 0 $brand-blue,

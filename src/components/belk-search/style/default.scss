@@ -1,19 +1,13 @@
 belk-search {
   display: flex;
   position: relative;
-  max-width: 60rem;
-  height: 3.2rem;
   width: 100%;
-  align-items: center;
   margin: 0 auto;
-
-  @include md {
-    height: 4rem;
-  }
+  height: 6rem;
 
   .belk-search {
     position: absolute;
-    top: 0;
+    top: $micro;
     left: 0;
     right: 0;
     display: flex;
@@ -24,8 +18,15 @@ belk-search {
     order: 1;
     overflow: hidden;
     border: 2px solid $lowlight-primary;
-    border-radius: 1rem;
+    border-radius: 2.6rem;
     transition: box-shadow 250ms $ease;
+
+    &[invalid]{
+      border-color: $state-error;
+      input {
+        color: $state-error;
+      }
+    }
 
     &.active {
       @include box-shadow(1);
@@ -48,30 +49,32 @@ belk-search {
       display: flex;
       background: none;
       border: none;
-      outline: 0;
-      height: 2.8rem;
-      min-width: 2.8rem;
+      outline: 0 !important;
+      height: 4.4rem;
+      min-width: 4.4rem;
       transition: background 250ms $ease;
       color: $lowlight-primary;
-
-      @include md {
-        height: 3.6rem;
-        min-width: 3.6rem;
-      }
     }
 
     button.clear-search {
-      color: $lowlight-secondary;
+      color: $lowlight-tertiary;
     }
 
     input {
-      padding: 0 1rem;
+      padding: 0 1.6rem;
     }
 
     button {
       display: flex;
       justify-content: center;
       cursor: pointer;
+      &.flex {
+        width: 3.6rem;
+        padding: 0;
+        &:hover {
+          background: $highlight-secondary;
+        }
+      }
       &[disabled] {
         pointer-events: none;
       }
@@ -84,10 +87,11 @@ belk-search {
       width: 100%;
     }
 
-    a {
+    a,
+    .product-link {
       display: flex;
       width: 100%;
-      padding: 1rem;
+      padding: $micro $little;
       transition: background 250ms $ease;
       color: $lowlight-primary;
       text-decoration: none;
@@ -141,20 +145,29 @@ belk-search {
     }
 
     .search-recent {
-      sh-button .sh-button {
-        text-transform: none;
-        span {
-          background: transparent;
-          border: none;
-          border-bottom: 1px solid currentColor;
-          color: $accent-secondary;
-          display: inline-block;
-          font-size: 1.4rem;
-          font-weight: 400;
-          line-height: 1;
-          padding: 0 0 .1rem;
-          transition: none;
-          text-decoration: none;
+      sh-button {
+        margin-right: $little;
+        .sh-button {
+          text-transform: none;
+          padding-right: 0;
+          &:hover {
+            span {
+              border-color: transparent !important;
+            }
+          }
+          span {
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid currentColor;
+            color: $accent-secondary;
+            display: inline-block;
+            font-size: 1.4rem;
+            font-weight: 400;
+            line-height: 1;
+            padding: 0 0 .1rem;
+            transition: none;
+            text-decoration: none;
+          }
         }
       }
     }
@@ -187,18 +200,25 @@ belk-search {
     .search-suggestions {
       display: none;
       flex-direction: column;
+      max-height: 50vh;
+      overflow-y: auto;
+      @include lg {
+        max-height: 100%;
+      }
 
       &.active {
         display: flex;
       }
 
-      @include md {
-        flex-direction: row;
+      .hr {
+        display: block;
       }
-
       > div {
-        width: 100%;
-        flex-shrink: 2;
+        @include lg {
+          width: 50%;
+        }
+        flex-shrink: 0;
+        flex-grow: 0;
       }
 
       .keywords {
@@ -208,19 +228,36 @@ belk-search {
       }
 
       .products {
-        ul {
-          @include md {
-            border-left: 1px solid $highlight-tertiary;
-          }
-        }
-        a.view-more{
-          @include md {
-            border-left: 1px solid $highlight-tertiary;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        @include md {
+          &:before {
+            display: block;
+            content: '';
+            position: absolute;
+            left:  0;
+            top: $little;
+            width: 1px;
+            background: $highlight-tertiary;
+            height: calc(100% - 3.2rem);
           }
         }
 
         li {
           margin-bottom: 0;
+          margin-left: $little;
+          margin-right: $little;
+        }
+      }
+
+
+      @include lg {
+        flex-direction: row;
+        max-height: auto;
+        overflow: hidden;
+        .hr {
+          display: none;
         }
       }
     }
@@ -229,79 +266,25 @@ belk-search {
       background: $highlight-secondary;
     }
 
+    .hr {
+      margin: $micro $little;
+    }
+
     .heading {
       font-weight: bold;
+      font-size: 1.6rem;
       display: flex;
-      padding: 1rem;
+      padding: $micro $little;
       align-items: center;
     }
 
     a.view-more {
-      text-decoration: underline;
+      display: inline;
       color: $accent-primary;
-
+      padding: 0;
       &:hover {
         text-decoration: none;
       }
     }
   }
-
-  //only desktop
-  &:not(#mobile-search){
-
-    button.clear-search {
-      visibility: hidden;
-    }
-    button[aria-label="perform search"] {
-      margin-left: auto;
-    }
-    .belk-search .search-input input {
-      position: absolute;
-      padding-right: 43px;
-      width: 100%;
-      z-index: 1;
-    }
-    @include md {
-      .belk-search .search-input input {
-        width: 90%;
-        position: relative;
-        z-index: unset;
-        padding-right: 1rem;
-      }
-      button.clear-search {
-        visibility: visible;
-      }
-    }
-
-    //very small breakpoint search UI
-    @media (max-width: breakpoint("xs")) {
-      width: 32px;
-      margin: 0;
-      margin-left: auto;
-
-      .belk-search {
-        border: 0;
-
-        .search-input {
-          input {
-            position: absolute;
-            opacity: 0;
-            padding: 0;
-            width: 100%;
-          }
-          button {
-            padding: 0;
-            height: 100%;
-            margin-left: auto;
-
-            belk-icon svg {
-              transform: scale(1.2);
-              margin-top: 2px;
-            }
-          }
-        }
-      }
-    }
-  }
-
 }
