@@ -11,7 +11,7 @@
     <div class="mobile-base">
       <ul ref="basescroll">
         <li
-          v-for="facet in facets"
+          v-for="facet in mobileOnly"
           :key="facet.id"
           @click="showNav"
           :facet-target="facet.name.slugify()"
@@ -19,7 +19,8 @@
           {{ facet.name }}
           <div
             class="count"
-            v-if="selectedFilters[facet.name.slugify()]"
+            v-if="selectedFilters[facet.name.slugify()]
+              && selectedFilters[facet.name.slugify()].length > 0"
           >({{ selectedFilters[facet.name.slugify()].length }})</div>
         </li>
       </ul>
@@ -32,16 +33,17 @@
         @click="clearAllFilters"
       >Clear All</button>
     </div>
-    <div class="filter-stack">
-      <template v-for="(thing, facet) in selectedFilters">
-        <template v-for="filter in thing">
-          <button
-            v-bind:key="filter.index"
-            @click="removeFilter(facet, filter)"
-            :data-facet="facet"
-            :value="filter"
-          >{{ filter }}</button>
-        </template>
+    <div v-for="facet in facets" :key="facet.id" :set="type = facet.type">
+      <template v-if="type == 'active-filters'">
+        <belk-facet-toggle></belk-facet-toggle>
+        <!-- <div class="filter-stack">
+          <template v-for="(option) in facet.options">
+            <a
+              v-bind:key="option.index"
+              :href="option.href"
+            >{{ option.name }}</a>
+          </template>
+        </div> -->
       </template>
     </div>
     <div ref="pickup" class="facet-pickup" facet-name="pickup">
@@ -56,8 +58,7 @@
     </div>
     <div class="facets-actual">
       <div v-for="facet in facets" :key="facet.id" :set="type = facet.type">
-        <template v-if="type == 'active-filters'"></template>
-        <template v-if="type == 'category'">
+        <template v-if="type === 'category'">
           <div :set="facetName = facet.name.slugify()" :facet-name="facetName" class="facet-links">
             <div :class="{ 'active': facet.expanded }" class="facet-acc">
               <div class="acc-head">
@@ -68,25 +69,27 @@
                   :href="facet.href">{{ facet.name }}</a>
                 </h3>
               </div>
-              <ul class="acc-body">
-                <li v-for="thing in facet.children" :key="thing.id">
-                  <a
-                    :href="thing.href"
-                    :title="'Go to category: ' + thing.name"
-                    :data-cgid="thing.cgid"
-                    :data-qty="thing.count"
-                    :class="{ bold: thing.selected }"
-                  >{{ thing.name }}</a>
-                </li>
-              </ul>
+              <div class="acc-body height-scroll">
+                <ul>
+                  <li v-for="thing in facet.children" :key="thing.id">
+                    <a
+                      :href="thing.href"
+                      :title="'Go to category: ' + thing.name"
+                      :data-cgid="thing.cgid"
+                      :data-qty="thing.count"
+                      :class="{ bold: thing.selected }"
+                    >{{ thing.name }}</a>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </template>
-        <template v-if="type == 'heading'">
+        <template v-if="type === 'heading'">
           <div class="facet-heading">{{ facet.name }}</div>
         </template>
-        <template v-if="type == 'filter'">
-          <template v-if="facet.form ==  'swatch'">
+        <template v-if="type === 'filter'">
+          <template v-if="facet.form === 'swatch'">
             <div
               :set="facetName = facet.name.slugify()"
               :facet-name="facetName"
@@ -106,27 +109,32 @@
                     @click="clearFilters"
                   >Clear</div>
                 </div>
-                <ul class="acc-body height-scroll">
-                  <li v-for="color in facet.options" :key="color.id">
-                    <input
-                      type="checkbox"
-                      x-hidden
-                      :id="'facet-swatch-' + color.name"
-                      :value="color.name"
-                      :checked="color.selected"
-                      :href="color.href"
-                      :params="color.params"
-                    />
-                    <label :for="'facet-swatch-' + color.name">
-                      <div class="swatch" :style="getBackground(color)"></div>
-                      <div class="name">{{ color.name }}</div>
-                    </label>
-                  </li>
-                </ul>
+                <div class="acc-body">
+                  <div class="height-scrol">
+                    <ul>
+                      <li v-for="color in facet.options" :key="color.id"
+                        :title="'Refine by: ' + color.name">
+                        <input
+                          type="checkbox"
+                          x-hidden
+                          :id="'facet-swatch-' + color.name"
+                          :value="color.name"
+                          :checked="color.selected"
+                          :href="color.href"
+                          :params="color.params"
+                        />
+                        <label :for="'facet-swatch-' + color.name">
+                          <div class="swatch" :style="getBackground(color)"></div>
+                          <div class="name">{{ color.name }}</div>
+                        </label>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
               </div>
             </div>
           </template>
-          <template v-if="facet.form ==  'checkbox'">
+          <template v-if="facet.form === 'checkbox'">
             <div
               :set="facetName = facet.name.slugify()"
               :facet-name="facetName"
@@ -172,6 +180,7 @@
                           v-for="thing in filteredData[facet.name.slugify()]"
                           :key="thing.id"
                           :set="slug = thing.name.slugify()"
+                          :title="'Refine by: ' + thing.name"
                         >
                           <input
                             x-hidden
@@ -192,6 +201,7 @@
                           v-for="thing in facet.options"
                           :key="thing.id"
                           :set="slug = thing.name.slugify()"
+                          :title="'Refine by: ' + thing.name"
                         >
                           <input
                             x-hidden
@@ -213,7 +223,7 @@
               </div>
             </div>
           </template>
-          <template v-if="facet.form ==  'range'">
+          <template v-if="facet.form === 'range'">
             <div
               :set="facetName = facet.name.slugify()"
               :facet-name="facetName"
@@ -233,73 +243,77 @@
                     @click="clearFilters"
                   >Clear</div>
                 </div>
-                <ul class="acc-body radio-list">
-                  <li
-                    v-for="thing in facet.options"
-                    :key="thing.id"
-                    :set="slug = thing.name.slugify()"
-                  >
-                    <input
-                      :id="'range-' + slug"
-                      x-hidden
-                      type="radio"
-                      name="facet-price"
-                      :value="thing.name"
-                      :checked="thing.selected"
-                      :href="thing.href"
-                      :params="thing.params"
-                      @focus="customChecked = false"
-                    />
-                    <label :for="'range-' + slug">
-                      <div :data-qty="thing.count">{{ thing.name }}</div>
-                    </label>
-                  </li>
-                  <li>
-                    <input
-                      id="range-custom"
-                      x-hidden
-                      type="radio"
-                      name="facet-price"
-                      value="custom"
-                      :checked="customChecked"
-                    />
-                    <label for="range-custom">
-                      <div>Custom Price Range</div>
-                    </label>
-                    <div class="custom-range">
-                      <input type="number"
-                        @keypress="sanitizePrice"
-                        @paste="false"
-                        @focus="customChecked = true"
-                        min="0"
-                        step="1"
-                        id="range-from"
-                        name="range-from"
-                        placeholder="$Min"
-                        ref="rangefrom" />
-                      <div class="flex margin-x-atomic">to</div>
-                      <input type="number"
-                        @keypress="sanitizePrice"
-                        @paste="false"
-                        @focus="customChecked = true"
-                        min="0"
-                        step="1"
-                        id="range-to"
-                        name="range-to"
-                        placeholder="$Max"
-                        ref="rangeto" />
-                      <sh-button
-                        variant="secondary"
-                        size="sm"
-                        @click="doCustomRange"
-                        ref="pricebutton">Go</sh-button>
-                    </div>
-                  </li>
-                </ul>
+                <div class="acc-body height-scroll">
+                  <ul class="radio-list">
+                    <li
+                      v-for="thing in facet.options"
+                      :key="thing.id"
+                      :set="slug = thing.name.slugify()"
+                      :title="'Refine by: ' + thing.name"
+                    >
+                      <input
+                        :id="'range-' + slug"
+                        x-hidden
+                        type="radio"
+                        name="facet-price"
+                        :value="thing.name"
+                        :checked="thing.selected"
+                        :href="thing.href"
+                        :params="thing.params"
+                        @focus="customChecked = false;"
+                      />
+                      <label :for="'range-' + slug">
+                        <div :data-qty="thing.count">{{ thing.name }}</div>
+                      </label>
+                    </li>
+                    <li>
+                      <input
+                        id="range-custom"
+                        x-hidden
+                        type="radio"
+                        name="facet-price"
+                        value="custom"
+                        :params="customParams"
+                        :checked="customChecked"
+                      />
+                      <label for="range-custom">
+                        <div>Custom Price Range</div>
+                      </label>
+                      <div class="custom-range">
+                        <input type="tel"
+                          @beforeinput="sanitizeCustomRange"
+                          @paste="false"
+                          @focus="customChecked = true"
+                          min="0"
+                          id="range-from"
+                          name="range-from"
+                          placeholder="$Min"
+                          v-model.trim.number="fromVal"
+                          ref="rangefrom" />
+                        <div class="flex margin-x-atomic">to</div>
+                        <input type="tel"
+                          @beforeinput="sanitizeCustomRange"
+                          @paste="false"
+                          @focus="customChecked = true"
+                          min="0"
+                          id="range-to"
+                          name="range-to"
+                          placeholder="$Max"
+                          v-model.trim.number="toVal"
+                          ref="rangeto" />
+                        <sh-button
+                          variant="secondary"
+                          size="sm"
+                          @click="handleGoButton"
+                          ref="pricebutton">Go</sh-button>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
           </template>
-          <template v-if="facet.form ==  'grid'">
+          <template v-if="facet.form === 'grid'">
             <div
               :set="facetName = facet.name.slugify()"
               :facet-name="facetName"
@@ -350,6 +364,7 @@
                           v-bind:key="thing.index"
                           :set="slug = thing.name.slugify()"
                           :for="'facet-grid-' + slug"
+                          :title="'Refine by: ' + thing.name"
                         >
                           <input
                             type="checkbox"
@@ -369,6 +384,7 @@
                           v-bind:key="thing.index"
                           :set="slug = thing.name.slugify()"
                           :for="'facet-sizes-' + slug"
+                          :title="'Refine by: ' + thing.name"
                         >
                           <input
                             type="checkbox"
@@ -395,8 +411,7 @@
       <sh-button
         variant="primary"
         full
-        @click="toggleActive"
-        click-event="get-filters"
+        @click="sendFilters(true)"
       >See Results</sh-button>
     </div>
   </nav>
@@ -429,27 +444,49 @@ export default {
       selectedFilterParams: [],
       navActive: false,
       customChecked: false,
+      toVal: '',
+      fromVal: '',
+      customParams: '',
+      failOnce: false,
+      loaded: false,
     };
   },
 
-  // watch: {
-  //   selectedFilters(val) {
-  //     console.log('test', val);
-  //   },
-  // },
+  computed: {
+    mobileOnly() {
+      return this.facets.filter((item) => item.name);
+    },
+  },
+
+  watch: {
+    toVal() {
+      this.updateCustomParam();
+    },
+    fromVal() {
+      this.updateCustomParam();
+    },
+    customChecked(val) {
+      if (val && this.isMobile) {
+        const el = this.$el.querySelector('.custom-range');
+        if (el) el.closest('.height-scroll').scrollTop = 400;
+      }
+    },
+  },
 
   mounted() {
     setTimeout(() => {
       if (window.facetNav) this.processData(window.facetNav);
     });
-    setTimeout(this.updateFilters, 1000);
-    this.customChecked = (window.location.href.indexOf('pmin') > 0);
+    this.loaded = true;
+    setTimeout(() => {
+      this.updateFilters('mounted');
+    }, 1000);
   },
 
   methods: {
     /* eslint-disable */
     events() {
-      this.$on('update-filters', this.updateFilters);
+      this.$on('update-filters', () => { this.updateFilters('event update-filters')});
       this.$bus.$on('get-filters', () => { this.sendFilters(true) });
       this.$bus.$on('show-filters', this.toggleActive);
       this.$bus.$on('clear-filters', this.clearFilters);
@@ -459,16 +496,20 @@ export default {
     },
 
     processData(obj) {
-      const links = [];
       if (obj.nav) {
-        let fn = obj.nav.slice();
-        if (fn[0].type === 'active-filters') this.filterData = fn.shift();
-        this.facets = fn;
+        this.facets = obj.nav.slice();
         for (let x = 0, l = this.facets.length; x < l; x += 1) {
           const facet = this.facets[x];
           if (facet.search) {
             const slug = facet.name.slugify();
             this.searchableData[slug] = facet.options;
+          }
+          if (facet.type === 'active-filters') {
+            if (facet.options) {
+              setTimeout(() => {
+                this.$bus.$emit('active-filters', facet.options)
+              }, 200);
+            }
           }
         }
       }
@@ -493,8 +534,9 @@ export default {
     },
 
     toggleAccord(e) {
-      if (!this.isMobile())
+      if (!this.isMobile()) {
         e.target.closest('.facet-acc').classList.toggle('active');
+      }
     },
 
     doSearch(e) {
@@ -514,62 +556,99 @@ export default {
       }
     },
 
-    doCustomRange(e){
+    handleGoButton(e) {
+      const isValid = this.validateCustomRange();
+      if (!isValid) {
+        e.preventDefault();
+      } else {
+        const baseUrl = this.$el.querySelector('[name=facet-price]').getAttribute('href');
+        this.$bus.$emit('facet-custom', { from: this.fromVal, to: this.toVal, baseUrl: baseUrl });
+      }
+    },
+
+    sanitizeCustomRange() {
+      const char = event.data;
+      const sanity = new RegExp(/^(\d*)(\.)?[0-9]?[0-9]?$/);
+      const value = (char) ? event.target.value + char : event.target.value;
+      const good = value.match(sanity);
+      if (!good) event.preventDefault();
+    },
+
+    validateCustomRange() {
+      let pass = true;
       const from = this.$el.querySelector('#range-from');
       const to = this.$el.querySelector('#range-to');
-      let fail = false;
-      if (from.value.trim() === '') {
-        fail = true;
-        from.style.border = '1px solid red';
-        from.focus();
-      } else {
-        from.style.border = '';
-      }
-      if (to.value.trim() === ''
-        || from.value.trim() === to.value.trim()) {
+      const fromEmpty = (this.fromVal === '');
+      const toEmpty = (this.toVal === '');
+
+      if (toEmpty || this.toVal <= this.fromVal) { // if TO value <= FROM value
         to.style.border = '1px solid red';
-        if (!fail) {
-          to.focus();
-          fail = true;
-        }
+        to.focus();
+        pass = false;
       } else {
         to.style.border = '';
       }
-      if (fail) {
-        e.preventDefault();
+
+      if (fromEmpty && pass) { // if FROM value empty
+        if (!toEmpty) {
+          this.fromVal = 0;
+        } else {
+          pass = false;
+          from.style.border = '1px solid red';
+          from.focus();
+        }
       } else {
-        this.$bus.$emit('facet-custom', { from: from.value, to: to.value });
+        from.style.border = '';
       }
+      return pass;
     },
 
     updateFilters(e) {
+      if (!this.loaded) return;
       const selectedFilters = {};
-      const selectedFilterParams = [];
-      let selectedFilterHref = '';
       const facets = this.$el.querySelectorAll('[facet-name]');
       for (let x = 0, l = facets.length; x < l; x += 1) {
-        let name = facets[x].getAttribute('facet-name');
+        let facet = facets[x];
+        let name = facet.getAttribute('facet-name');
         if (name) {
           const values = this.extractVals(facets[x]);
           if (values.length) selectedFilters[name] = values;
-          const params = this.extractParams(facets[x]);
-          if (params.length) selectedFilterParams.push(...params);
-        }
-        if (e && e.target) {
-          selectedFilterHref = e.target.getAttribute('href');
         }
       }
+      if (e && e.target) {
+        const selectedFilterHref = e.target.getAttribute('href');
+        this.$set(this, 'selectedFilterHref', selectedFilterHref);
+      }
       this.$set(this, 'selectedFilters', selectedFilters);
-      this.$set(this, 'selectedFilterHref', selectedFilterHref);
+      if (!this.isMobile()) {
+        this.sendFilters();
+      } else {
+        this.handleMcMode();
+      }
+    },
+
+    handleMcMode() {
+      const selectedFilterParams = [];
+      const params = this.extractParams();
+      if (params.length) {
+        selectedFilterParams.push(...params);
+      }
       this.$set(this, 'selectedFilterParams', selectedFilterParams);
-      if (!this.isMobile()) this.sendFilters();
     },
 
     sendFilters(update) {
-      if (update) this.updateFilters();
+      if (update) this.updateFilters('sendFilters');
       this.$bus.$emit('facet-filters', this.selectedFilters);
-      if (!this.isMobile()) this.$bus.$emit('facet-link', this.selectedFilterHref);
-      else this.$bus.$emit('facet-params', this.selectedFilterParams);
+      if (!this.isMobile()) {
+        this.$bus.$emit('facet-link', this.selectedFilterHref);
+      } else {
+        // if custom range and it?
+        if (!this.failOnce) {
+          this.failOnce = false;
+          this.toggleActive();
+          this.$bus.$emit('facet-params', this.selectedFilterParams);
+        }
+      }
     },
 
     goBack() {
@@ -579,7 +658,7 @@ export default {
 
     toggleActive() {
       this.navActive = !this.navActive;
-      this.$el.classList.toggle('active');
+      // this.$el.classList.toggle('active');
       const cl = document.documentElement.classList;
       if (this.navActive) {
         cl.add('scroll-block');
@@ -649,12 +728,28 @@ export default {
     //   return vals;
     // },
 
-    extractParams(facet) {
-      const els = facet.querySelectorAll('[x-hidden]:checked');
+    extractParams() {
+      const els = this.$el.querySelectorAll('[x-hidden]:checked');
       const vals = [];
       for (let x = 0, l = els.length; x < l; x += 1) {
-        vals.push(els[x].getAttribute('params'));
+        const el = els[x];
+        const attr = el.getAttribute('params');
+        if (el.value !== 'custom') {
+          if (attr !== '') vals.push(attr);
+        }
       }
+
+      const customRangeEl = this.$el.querySelector('#range-custom:checked');
+      if (customRangeEl) { // if  in custom range...
+        const rangeValid = this.validateCustomRange();
+        if (rangeValid) {
+          this.failOnce = false;
+          vals.push(this.customParams);
+        } else {
+          this.failOnce = true;
+        }
+      }
+
       return vals;
     },
 
@@ -664,12 +759,6 @@ export default {
       } else {
         return 'background: ' + color.rgb;
       }
-    },
-
-    sanitizePrice(event){
-      const block = [45, 43, 187, 189];
-      const toReturn = (block.indexOf(event.keyCode) < 0);
-      if (!toReturn) event.preventDefault();
     },
 
     hasValue(slug) {
@@ -689,6 +778,13 @@ export default {
       }
       this.$forceUpdate();
     },
+
+    updateCustomParam() {
+      const val = (this.fromVal >= 0 && this.toVal >= 0)
+        ? `?pmin=${this.fromVal}&pmax=${this.toVal}`
+        : '';
+      this.customParams = val;
+    }
   },
 };
 </script>

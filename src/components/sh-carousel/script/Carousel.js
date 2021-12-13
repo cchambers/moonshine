@@ -37,6 +37,7 @@ export default {
       type: String,
       default: null,
     },
+    uniqueId: String,
     resolution: {
       // 'Size of carousel',
       type: String,
@@ -91,7 +92,7 @@ export default {
 
   mounted() {
     this.setUUID();
-    this.carouselId = `carousel-${this.uuid}`;
+    this.carouselId = (this.uniqueId) ? this.uniqueId :  `carousel-${this.uuid}`;
     this.getSlides();
     this.ada();
     this.active = this.startAt;

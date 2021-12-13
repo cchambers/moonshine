@@ -1,0 +1,19 @@
+belk-facet-toggle[variant="primary"] {
+  position: sticky;
+  top: 156px;
+  display: block;
+  width: 100%;
+  z-index: 1;
+  @include md {
+    display: none;
+  }
+  .belk-facet-toggle {
+    display: flex;
+    align-content: flex-start;
+    overflow-x: auto;
+    white-space: nowrap;
+    a {
+      flex: none;
+    }
+  }
+}

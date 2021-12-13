@@ -48,9 +48,12 @@ $buttonWidth: $rem;
         transform: translateX(0) translateY(0) translateZ(0) scale(1) rotate(0) !important;
       }
       .drawer-toggle {
-        background: $highlight-primary;
-        color: $lowlight-quinary; 
-        border-color: $lowlight-quinary;
+        border-top: 1px solid $lowlight-primary;
+        box-shadow: 0 -5px 5px -5px $lowlight-primary;
+        background: $highlight-quaternary;
+        .dt-button-text {
+          display: none;
+        }
         .dt-headline {
           font-size: 1.8rem;
           color: $lowlight-primary;
@@ -68,6 +71,7 @@ $buttonWidth: $rem;
       }
       .content {
         transform: translateY(0) translateZ(0);
+        border: none;
       }
     }
 
@@ -100,16 +104,17 @@ $buttonWidth: $rem;
     .drawer-toggle {
       position: absolute;
       top: 0;
-      left: 50%;
-      transform: translateX(-50%) translateY(-100%) translateZ(0);
-      border: 1px solid transparent;
-      border-bottom: none;
-      background: $lowlight-secondary;
-      color: $highlight-primary;
+      left: 0;
+      right: 0;
+      transform: translateX(0) translateY(-100%) translateZ(0);
+      border-top: 1px solid $lowlight-primary;
+      background: $highlight-quaternary;
+      color: $lowlight-primary;
+      box-shadow: 0 -5px 5px -5px $lowlight-primary;
       cursor: pointer;
       padding: 0.5rem $little;
-      border-radius: 0.5rem 0.5rem 0 0;
       display: flex;
+      justify-content: center;
       font-family: 'Roboto', sans-serif;
 
       .dt-headline {
@@ -150,6 +155,8 @@ $buttonWidth: $rem;
   &[scrolling] {
     .offer-container {
       justify-content: flex-start;
+      overflow: auto;
+      scroll-snap-type: x mandatory;
       &::before { content: ''; min-width: $buttonWidth; }
       &::after { content: ''; min-width: $buttonWidth; }
     }
@@ -177,7 +184,6 @@ $buttonWidth: $rem;
 
   .offer-container {
     justify-content: center;
-    padding: $little 0;
   }
 
   .body {
@@ -223,7 +229,12 @@ $buttonWidth: $rem;
   }
 
   .belk-coupon {
-    width: 260px;
+    width: 325px;
+    border-radius: 0.5rem;
+    scroll-snap-align: center;
+    position: relative;
+    flex-shrink: 0;
+    flex-basis: auto;
 
     .coupon-description {
       order: 2;
@@ -231,15 +242,16 @@ $buttonWidth: $rem;
     }
 
     .coupon-wrapper {
-      padding: $little;
+      padding: $micro;
       padding-bottom: 0;
       justify-content: flex-start;
     }
   
     .coupon-buttons {
-      margin-top: 0;
+      margin-top: auto;
       flex-direction: row;
       white-space: pre;
+      order: 2;
       sh-button {
         font-size: 7px;
         margin-top: 0;
@@ -295,6 +307,11 @@ $buttonWidth: $rem;
         left: 0;
       }
     }
+  }
+  .show-all-coupons {
+    display: flex;
+    justify-content: center;
+    padding: 1rem 0 2rem 0; 
   }
 }
 

@@ -6,14 +6,19 @@ $itemHeight: 48px;
       font-weight: bold;
       font-size: 18px;
     }
+    .height-scroll {
+      overflow-y: auto;
+      overflow-x: hidden;
+      max-height: 100vh;
+      padding-bottom: 75vh !important;
+      width: 100%;
+      // @include no-scroll-bar;
+    }
     [set="heading"] {
       display: none;
     }
     .custom-range {
       sh-button { display: none }
-    }
-    .height-scroll {
-      padding-bottom: 60px;
     }
     .close-button {
       position: fixed;
@@ -38,10 +43,10 @@ $itemHeight: 48px;
         list-style: none;
         padding: 0;
         margin: 0;
-        max-height: calc(100vh - 63px);
+        max-height: calc(100vh - 120px);
         overflow-y: auto;
         margin-top: 63px !important;
-        padding-bottom: 63px;
+        padding-bottom: 120px;
       }
       li {
         display: flex;
@@ -76,7 +81,6 @@ $itemHeight: 48px;
     }
     .acc-body {
       padding: 16px 24px;
-      max-height: calc(100vh - 63px);
       overflow-y: auto;
       font-size: 1.6rem;
       a {
@@ -100,6 +104,12 @@ $itemHeight: 48px;
         justify-content: center;
       }
     }
+
+    .filter button {
+      background: transparent !important;
+      border: none !important;
+      color: $lowlight-tertiary !important;
+    }
     .filter-clear-mobile,
     .filter-clear {
       color: $accent-primary;
@@ -122,8 +132,12 @@ $itemHeight: 48px;
       flex-direction: column;
       max-height: 100vh;
       @include no-scroll-bar;
+      top: 0;
+      left: 0;
       &.active {
         display: flex;
+        width: 100%;
+        height: 100%;
       }
       [facet-name] {
         position: absolute;
@@ -131,6 +145,9 @@ $itemHeight: 48px;
         background: $highlight-primary;
         transform: translateX(-100%);
         @include no-scroll-bar;
+        top: 0;
+        height: 100%;
+        width: 100%;
         &.active {
           transform: translateX(0);
         }
@@ -162,7 +179,7 @@ $itemHeight: 48px;
       }
     }
 
-    .filter-stack {
+    belk-facet-toggle {
       display: none;
     }
 

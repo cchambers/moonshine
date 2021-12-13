@@ -4,7 +4,8 @@
     :id="id"
     :class="{ printable: print, 'to-spend': toSpend, 'has-code': hasCode }"
     :variant="variant">
-    <div v-if="badge" class="coupon-type">{{ badge }}</div>
+    <div v-if="badge"
+    :class="badgeColor" class="coupon-type">{{ badge }}</div>
     <div @click="addOrLink" class="coupon-image" v-if="hasImage">
       <img :src="image" />
     </div>
@@ -133,6 +134,7 @@ export default {
     details: String,
     detailsPrint: String,
     headerColor: String,
+    badgeColor: String,
     inDrawer: {
       type: Boolean,
       default: false

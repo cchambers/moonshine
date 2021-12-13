@@ -1,3 +1,21 @@
-- OO class library listing for documentation
-- go through components and update documentation
-- global modal availability/names
+Global:
+  - fix styling issues caused by global button updates from 2021
+  - update code container with new (more user-friendly) design
+  - update local packages that can be updated for 2022
+  - assure dark theme still functions after recent style updates
+  ? begin transition to modern mode
+
+Update Utilities docs:  
+  - complete OO class library documentation and include examples of complex class arrangement
+  - complete grid documentation
+  - demonstrate global modal availability/names
+
+Components:
+  - redesign changelog and requir ements area, update
+  - check documentation for all components:
+    + write if never initializedsss
+    + ensure all events are present and described
+    + ensure all props are present and described
+    + ensure all public functionality is present and described
+    + update demos to show examples of (only) approved style variants
+

@@ -2,7 +2,13 @@
 "name": "Form Input",
 "category": "components",
 "element": "sh-input",
-"description": "Demonstration component.",
-"tags": ["utilities", "demo"],
-"requirements": {}
+"description": "All-in-one input component. Text, passsword, radio, checkbox, range slider, etc.",
+"tags": ["forms", "input", "checkbox", "radio"],
+"requirements": {
+  "Error Container": [
+    "Should display error messages when error is present."
+  ],
+  "Sanitization": [""],
+  "Validation": [""]
+  }
 }

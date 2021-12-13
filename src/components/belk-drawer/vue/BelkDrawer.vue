@@ -20,11 +20,11 @@
         role="button"
         class="drawer-toggle flex align-top"
         :id="ariaID">
-        <div v-if="!active">
+        <div class="dt-button-text" v-if="!active">
           <div class="dt-headline">{{ buttonHeadlineInactive }}</div>
           <div class="dt-subhead">{{ buttonSubheadInactive }}</div>
         </div>
-        <div v-else>
+        <div class="dt-button-text" v-else>
           <div class="dt-headline">{{ buttonHeadlineActive }}</div>
           <div class="dt-subhead">{{ itemCount }}{{ buttonSubheadActive }}</div>
         </div>
@@ -35,17 +35,20 @@
       <div class="body"
         :id="ariaDescID"
         ref="body">
-        <button aria-controls="promo-offers"
+        <!-- <button aria-controls="promo-offers"
           v-if="scrolling" class="arrow previous"
           :disabled="scrollPrevDisabled" v-hammer:tap="previousHandler">
           <belk-icon width="10" name="arrow-left"></belk-icon>
-        </button>
+        </button> -->
         <offer-container variant="promos" unique-id="promo-offers"></offer-container>
-        <button aria-controls="promo-offers"
+        <div class="show-all-coupons">
+          <a class="primarylink" href="/coupons-online-and-in-store">See all offers</a>
+        </div>
+        <!-- <button aria-controls="promo-offers"
           v-if="scrolling" class="arrow next"
           :disabled="scrollNextDisabled" v-hammer:tap="nextHandler">
           <belk-icon width="10" name="arrow-right"></belk-icon>
-        </button>
+        </button> -->
       </div>
       <div class="tab-lock" v-if="active" v-on:focus="focusButton()" tabindex="0"></div>
     </div>
@@ -143,7 +146,7 @@ export default {
     },
 
     items(val) {
-      const width = val.length * 280;
+      const width = val.length * 325;
       const wider = (width > window.innerWidth);
       if (wider) {
         this.scrolling = true;

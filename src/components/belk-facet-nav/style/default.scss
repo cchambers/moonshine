@@ -66,7 +66,6 @@ belk-facet-nav {
     }
     .facets-actual {
       border-bottom: 1px solid $highlight-tertiary;
-      padding-top: 8px;
     }
     .facet-acc {
       border-top: 1px solid $highlight-tertiary;
@@ -121,6 +120,7 @@ belk-facet-nav {
       border-top: 1px solid $highlight-tertiary;
     }
   }
+
   .checkbox-list,
   .radio-list {
     label {
@@ -177,8 +177,8 @@ belk-facet-nav {
         background: $lowlight-primary;
         border-radius: 50%;
         position: absolute;
-        left: 3px;
-        top: 9px;
+        left: 4px;
+        top: 10px;
       }
     }
     input:checked ~ label {
@@ -187,9 +187,6 @@ belk-facet-nav {
       }
     }
   }
-
-  // .belk-facet-nav {
-  // }
 
   button,
   label {
@@ -215,30 +212,6 @@ belk-facet-nav {
     flex-wrap: wrap;
     margin: 0 -$atomic;
     margin-bottom: 11px;
-    button  {
-      font-weight: normal;
-      font-size: 14px;
-      position: static;
-      text-align: left;
-      vertical-align: none;
-      outline: none;
-      border: 1px solid $lowlight-tertiary;
-      border-radius: $atomic;
-      margin: $atomic;
-      padding: 6px 10px 5px 12px;
-      color: $lowlight-primary;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: $highlight-primary;
-      &:after {
-        display: block;
-        content: 'clear';
-        @include materialIcons;
-        margin-left: 11px;
-        color: $lowlight-tertiary;
-      }
-    }
   }
   .filter-swatch {
     ul {
@@ -396,8 +369,17 @@ belk-facet-nav {
       }
     }
   }
-}
 
+  .active-filters {
+    display: block;
+  }
+
+  .belk-facet-toggle {
+    display: flex;
+    align-content: flex-start;
+    flex-wrap: wrap;
+  }
+}
 
 [x-hidden] {
   appearance: none;
@@ -425,6 +407,8 @@ belk-facet-nav {
 }
 
 label[for="range-custom"] {
+  opacity: 0;
+  height: 10px !important;
   &:before,
   &:after {
     opacity: 0 !important;
@@ -440,22 +424,5 @@ label[for="range-custom"] {
     width: 30%;
     padding: 0 $atomic !important;
     margin: 0 0.25em !important;
-  }
-}
-
-
-.IE11 {
-  .belk-facet-nav {
-    *::-ms-clear {
-      display: none;
-    }
-  }
-  .custom-range input {
-    flex-basis: 25px;
-    flex-grow: 2;
-    flex-shrink: 0;
-  }
-  .filter-grid .filter-list label {
-    flex-basis: 25%;
   }
 }
