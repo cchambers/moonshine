@@ -70,7 +70,7 @@ export default {
   props: {
     disableBag: {
       type: Boolean,
-      default: false
+      default: false,
     },
   },
 
@@ -109,7 +109,7 @@ export default {
   methods: {
     events() {
       this.$bus.$on('user-data', this.handleUserData);
-      this.$bus.$on('belk-bag-ready', data => {
+      this.$bus.$on('belk-bag-ready', (data) => {
         const target = data;
         // target.referenceElm.addEventListener('click', this.goToCart);
         if (this.isMobile()) {
@@ -120,8 +120,8 @@ export default {
 
     isMobile() {
       return (
-        window.matchMedia('(max-width: 960px)').matches ||
-        document.querySelector('html').classList.contains('iOS')
+        window.matchMedia('(max-width: 960px)').matches
+        || document.querySelector('html').classList.contains('iOS')
       );
     },
 
@@ -134,10 +134,8 @@ export default {
       if (data.subTotal) this.$set(this, 'subTotal', data.subTotal);
       if (data.cart) {
         this.$set(this, 'items', data.cart.items);
-        if (data.cart.shippingMessage)
-          this.$set(this, 'shippingNote', data.cart.shippingMessage);
-        if (data.cart.tipLineMsg)
-          this.$set(this, 'tipNote', data.cart.tipLineMsg);
+        if (data.cart.shippingMessage) { this.$set(this, 'shippingNote', data.cart.shippingMessage); }
+        if (data.cart.tipLineMsg) { this.$set(this, 'tipNote', data.cart.tipLineMsg); }
         setTimeout(() => {
           this.$bus.$emit('bag-list-update', data.cart.items);
         }, 100);

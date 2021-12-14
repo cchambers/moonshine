@@ -44,16 +44,16 @@ sh-button {
     margin-left: 0;
   }
 
-  &[scale] {
-    &[scale="130"] { font-size: 1.3rem; }
-    &[scale="120"] { font-size: 1.2rem; }
-    &[scale="110"] { font-size: 1.1rem; }
-    &[scale="90"] { font-size: 0.9rem; }
-    &[scale="80"] { font-size: 0.8rem; }
-    &[scale="70"] { font-size: 0.7rem; }
-    &[scale="60"] { font-size: 0.6rem; }
-    &[scale="50"] { font-size: 0.5rem; }
-  }
+  // &[scale] {
+  //   &[scale="130"] { font-size: 1.3rem; }
+  //   &[scale="120"] { font-size: 1.2rem; }
+  //   &[scale="110"] { font-size: 1.1rem; }
+  //   &[scale="90"] { font-size: 0.9rem; }
+  //   &[scale="80"] { font-size: 0.8rem; }
+  //   &[scale="70"] { font-size: 0.7rem; }
+  //   &[scale="60"] { font-size: 0.6rem; }
+  //   &[scale="50"] { font-size: 0.5rem; }
+  // }
 
   &[full] {
     display: flex !important;
@@ -171,51 +171,6 @@ sh-button {
       opacity: 0;
       transform: scale(50);
     }
-  }
-
-  &[round] button {
-    border-radius: 2.5em;
-  }
-
-  &[round="left"] button {
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
-  }
-
-  &[round="right"] button {
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
-  }
-
-  &[round="bottom"] button {
-    border-top-right-radius: 0;
-    border-top-left-radius: 0;
-  }
-
-  &[round="top"] button {
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
-  }
-
-  &[outline] button,
-  &[outline][variant] button {
-    background-color: transparent;
-    border-width: 2px;
-    border-style: solid;
-    border-color: inherit;
-    color: $lowlight-primary;
-    span {
-      font-weight: normal;
-      white-space: nowrap;
-    }
-
-    &:hover {
-      color: $highlight-primary;
-    }
-  }
-
-  &[outline] button:hover {
-    background-color: $highlight-tertiary;
   }
 
   &:not([variant]) {
