@@ -3,7 +3,7 @@
   "category": "features",
   "production": true,
   "element": "belk-swatch",
-  "description": "Demonstration component.",
-  "tags": ["utilities", "demo"],
+  "description": "Shows selectable swatch colors for products.",
+  "tags": ["swatch", "products"],
   "requirements": {}
 }

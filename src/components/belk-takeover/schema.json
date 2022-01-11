@@ -3,7 +3,7 @@
   "category": "features",
   "production": true,
   "element": "belk-takeover",
-  "description": "Demonstration component.",
+  "description": "Marketing component for homepage takeovers.",
   "tags": ["advertising", "marketing"],
   "requirements": {
     "Container": [

@@ -452,13 +452,13 @@ export default {
       this.showPopper = false;
     },
 
-    elementContains(elm, otherElm) {
-      if (typeof elm.contains === 'function') {
-        return elm.contains(otherElm);
-      }
+    // elementContains(elm, otherElm) {
+    //   if (typeof elm.contains === 'function') {
+    //     return elm.contains(otherElm);
+    //   }
 
-      return false;
-    },
+    //   return false;
+    // },
   },
 
   destroyed() {

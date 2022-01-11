@@ -3,7 +3,7 @@
   "category": "components",
   "production": false,
   "element": "sh-form",
-  "description": "Demonstration component.",
-  "tags": ["utilities", "demo"],
+  "description": "Form wrapper component that manages things like data serialization, submission, and error handling.",
+  "tags": ["forms", "errors", "validation", "serialization"],
   "requirements": {}
 }

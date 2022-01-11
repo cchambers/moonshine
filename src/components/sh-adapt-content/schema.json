@@ -3,7 +3,7 @@
   "category": "components",
   "production": false,
   "element": "sh-adapt-content",
-  "description": "Demonstration component.",
-  "tags": ["utilities", "demo"],
+  "description": "Easily create adapatable content at the element level.",
+  "tags": ["respond", "adapt"],
   "requirements": {}
 }

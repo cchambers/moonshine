@@ -5,11 +5,12 @@
       <button ref="button" v-hammer:tap="toggleOpen">{{ activeItem }}</button>
       <ul class="item-container">
         <li v-for="(item, index) in items" v-bind:key="item.key">
-          <div v-if="!item.hidden"
+          <a v-if="!item.hidden"
           v-bind:class="{ 'active': item.active }"
           :data-key="index"
           :href="item.link"
-          v-hammer:tap="clickHandler">{{ item.text }}</div>
+          :target="item.target"
+          v-hammer:tap="clickHandler">{{ item.text }}</a>
         </li>
       </ul>
     </div>
@@ -27,6 +28,7 @@ export default {
     noActiveText: Boolean,
     listVariant: String,
     placeholder: String,
+    target: String,
   },
 
   data() {
@@ -49,6 +51,10 @@ export default {
         this.setActive(data.text);
         this.closeList();
       });
+      document.addEventListener('click', (e) => {
+        const contains = this.elementContains(this.$el, e.target);
+        if ((!contains && e.target !== this.trigger) && this.isOpen) this.closeList('off click');
+      });
     },
 
     process() {
@@ -59,6 +65,7 @@ export default {
         const obj = {
           link: link.getAttribute('href') || false,
           text: link.innerText,
+          target: this.target || false,
           value: link.getAttribute('value') || false,
           active: link.getAttribute('active') || false,
         };

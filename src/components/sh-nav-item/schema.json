@@ -3,7 +3,7 @@
   "category": "features",
   "production": true,
   "element": "sh-nav-item",
-  "description": "Demonstration component.",
-  "tags": ["utilities", "demo"],
+  "description": "Enhanced popper for mega nav.",
+  "tags": ["mega nav", "navigation"],
   "requirements": {}
 }

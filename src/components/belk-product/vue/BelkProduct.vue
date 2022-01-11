@@ -61,12 +61,12 @@ export default {
     qty: Number,
     sale_price_range: {
       type: Array,
-      default: [],
+      default: () => [],
     },
     sale_price: Number,
     price_range: {
       type: Array,
-      default: [],
+      default: () => [],
     },
     thumb_image: {
       type: String,

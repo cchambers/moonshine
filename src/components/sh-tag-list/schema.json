@@ -1,9 +1,9 @@
 {
-  "name": "Tag",
+  "name": "Tag List",
   "category": "components",
   "production": false,
-  "element": "sh-tag",
-  "description": "Demonstration component.",
-  "tags": ["utilities", "demo"],
+  "element": "sh-tag-list",
+  "description": "Incomplete.",
+  "tags": [],
   "requirements": {}
 }

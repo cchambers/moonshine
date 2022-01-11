@@ -3,7 +3,7 @@
   "category": "components",
   "production": false,
   "element": "sh-slider",
-  "description": "Demonstration component.",
-  "tags": ["utilities", "demo"],
+  "description": "Demo; mobile slider.",
+  "tags": [],
   "requirements": {}
 }

@@ -3,7 +3,7 @@
   "category": "utilities",
   "production": false,
   "element": "belk-bus",
-  "description": "Demonstration component.",
-  "tags": ["utilities", "demo"],
+  "description": "Hidden component that emits events; for special case use only... most of these events are already publicly available on the document.",
+  "tags": ["events"],
   "requirements": {}
 }

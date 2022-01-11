@@ -3,7 +3,7 @@
   "category": "components",
   "production": true,
   "element": "sh-view-swapper",
-  "description": "Demonstration component.",
-  "tags": ["utilities", "demo"],
+  "description": "Toggles between different blocks of content.",
+  "tags": ["tabs", "view swap"],
   "requirements": {}
 }

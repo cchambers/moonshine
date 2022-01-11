@@ -3,7 +3,7 @@
   "category": "components",
   "production": false,
   "element": "sh-rating",
-  "description": "Demonstration component.",
-  "tags": ["utilities", "demo"],
+  "description": "Rate and review stars.",
+  "tags": ["stars", "review", "rating"],
   "requirements": {}
 }

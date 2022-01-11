@@ -8,6 +8,7 @@ export default {
   props: {
     comboOptions: {
       type: Array,
+      default: () => [],
     },
     target: {
       type: String,
@@ -55,8 +56,10 @@ export default {
 
   mounted() {
     const self = this;
-    // const opts = self.$refs.options.children;
-    // if (opts.length > 0) self.processHTMLOptions();
+    setTimeout(() => {
+      const opts = this.$refs.options.querySelectorAll('li');
+      if (opts.length > 0) self.processHTMLOptions(opts);
+    }, 1000);
     if (self.native) {
       self.selectId = `sel-${self.uuid}`;
     }
@@ -164,11 +167,9 @@ export default {
       if (this.isActive && toggle) this.toggleActive('select');
     },
 
-    // processHTMLOptions() {
-    //   this.options.forEach((el) => {
-    //      console.log(el);
-    //   });
-    // },
+    processHTMLOptions(opts) {
+      console.log('allo', opts);
+    },
 
     highlightHandler(e) {
       e.preventDefault();
