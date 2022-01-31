@@ -2,6 +2,7 @@
   "name": "Belk Facet Toggle",
   "category": "base",
   "production": true,
+  "hideFromDocs": true,
   "element": "belk-facet-toggle",
   "description": "Creates a list of links for removing filters.",
   "tags": ["facet", "filter"],

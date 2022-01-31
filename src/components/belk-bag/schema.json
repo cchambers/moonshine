@@ -5,6 +5,14 @@
   "element": "belk-bag",
   "description": "Shopping cart component.",
   "tags": ["cart", "header"],
+  "props": [
+    {
+      "attr": "disable-bag",
+      "type": "Boolean",
+      "default": "false",
+      "description": "Disable the bag popper."
+    }
+  ],
   "requirements": {
     "Container": [
       "Should emit events to the bus when changes take place."

@@ -37,9 +37,9 @@
                 <li>
                   <a href="/utilities/colors">Colors</a>
                 </li>
-                <li>
+                <!-- <li>
                   <a href="/tools/shared-modal-list">Shared Modals</a>
-                </li>
+                </li> -->
               </ul>
             </li>
             <li v-for="(item, key) in items" v-bind:key="item.id">
@@ -61,8 +61,7 @@
 
     <ul class="filtered-results">
       <li v-for="item in filteredResults" v-bind:key="item.index">
-        <a :href="'/components/' + item.element"
-          class="pad-little">
+        <a :href="'/components/' + item.element">
           <strong>{{ item.name }}</strong>:
           <span class="item-desc">{{ item.description }}</span>
         </a>
@@ -231,19 +230,24 @@ a {
   max-height: 100%;
   list-style: none;
   padding: 0;
+  li {
+    border: 1px solid $highlight-primary;
+    border-radius: $atomic;
+    margin: $micro;
+  }
   &:empty {
     max-height: 0;
-  };
-  li:nth-child(odd) {
-    background: rgba(255,255,255,0.15);
   }
   a {
     color: $highlight-primary;
     display: block;
-    padding: $little;
-    opacity: 0.9;
+    padding: $micro;
+    opacity: 0.8;
     &:hover {
       opacity: 1;
+      .item-desc {
+        opacity: 1;
+      }
     }
     .item-desc {
       opacity: 0.75;

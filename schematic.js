@@ -34,6 +34,7 @@ Object.entries(schema)
 glob.sync('src/components/**/schema.json')
   .forEach((dir) => {
     const name = dir.split('/')[2];
+    console.log(dir);
     const data = JSON.parse(fs.readFileSync(dir, 'utf8'));
     if (process.env.NODE_ENV === 'production' && !data.production) return;
     schema[name] = data;

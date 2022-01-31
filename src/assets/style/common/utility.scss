@@ -51,6 +51,11 @@
       #{$prop}: #{$inv}#{$meas};
     }
 
+    spacer#{$amt} {
+      display: block;
+      height: #{$meas};
+    }
+
     @each $name, $edge in $edges {
       .#{$mod}-#{$name}#{$amt} {
         @each $act in $edge {

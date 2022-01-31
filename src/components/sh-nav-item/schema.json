@@ -1,6 +1,6 @@
 {
   "name": "Nav Item",
-  "category": "features",
+  "category": "components",
   "production": true,
   "element": "sh-nav-item",
   "description": "Enhanced popper for mega nav.",

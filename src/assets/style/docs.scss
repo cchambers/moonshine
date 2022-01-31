@@ -496,7 +496,7 @@ $containMargin: 6rem;
 
   section {
     display: block;
-    margin-bottom: 6rem;
+    margin-bottom: $mega;
     code {
       font-family: monospace !important;
       font-weight: normal !important;
@@ -505,18 +505,26 @@ $containMargin: 6rem;
       font-size: 2.2rem;
       color: $accent-primary;
       font-weight: 100;
+      ~ h2 {
+        margin-top: $huge;
+      }
     }
 
     > h2,
     > h3 {
       font-family: "Menlo", monospace;
-      margin-bottom: 2.8rem;
+      margin-bottom: $little;
       clear: both;
     }
 
-    h3 code {
-      display: inline-flex;
-      padding: 0 1rem;
+    h3 {
+      ~ h3 {
+        margin-top: $huge;
+      }
+      code {
+        display: inline-flex;
+        padding: 0 1rem;
+      }
     }
 
     .flex-inline {
