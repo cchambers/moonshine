@@ -58,6 +58,15 @@ let delegations = {
           origin: target,
         });
       }
+    }, {
+      target: '[change-event]',
+      handler(e) {
+        let target = e.target;
+        EventBus.$emit(target.getAttribute('change-emit'), {
+          value: target.value,
+          origin: target,
+        }); 
+      }
     }
   ],
   mouseover: [{

@@ -12,6 +12,7 @@ export default {
     closedIcon: String,
     openIcon: String,
     variant: String,
+    checkboxLink: String,
     subcat: {
       type: Boolean,
       default: false,
@@ -138,6 +139,21 @@ export default {
           }
         }
       });
+
+      if (this.checkboxLink) {
+        const linkedEl = document.getElementById(this.checkboxLink);
+        if (linkedEl) {
+          linkedEl.addEventListener('change', () => {
+            if (linkedEl.checked) {
+              this.open();
+            } else {
+              this.close();
+            }
+          });
+        } else {
+          this.log(`checkbox-link element does not exist. id: ${this.uniqueId}`);
+        }
+      }
 
       this.$bus.$on('hashchange', this.hashHandler);
     },
