@@ -5,6 +5,44 @@
   "element": "belk-barcode",
   "description": "Code128 barcode generator.",
   "tags": ["utilities", "product", "coupon", "barcode"],
+  "props": [
+    {
+      "attr": "code",
+      "type": "String",
+      "default": "no code",
+      "description": "Bar code number."
+    },
+    {
+      "attr": "format",
+      "type": "String",
+      "default": "code128",
+      "description": "Bar code format."
+    },
+    {
+      "attr": "height",
+      "type": "Number",
+      "default": "50",
+      "description": "Height of bar code lines."
+    },
+    {
+      "attr": "width",
+      "type": "Number",
+      "default": "4",
+      "description": "Width of barcode lines."
+    },
+    {
+      "attr": "color",
+      "type": "String",
+      "default": "#222",
+      "description": "Color of barcode lines."
+    },
+    {
+      "attr": "align-text",
+      "type": "String",
+      "default": "undefined",
+      "description": "Alignment of barcode number."
+    }
+  ],
   "requirements": {
     "Barcode": [
       "Should have adjustable width/height",

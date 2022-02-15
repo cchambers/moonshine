@@ -2,6 +2,7 @@
   "name": "Belk Flex",
   "category": "features",
   "production": true,
+  "hideFromDocs": true,
   "element": "belk-flex",
   "description": "Pre-configured flexbox container for different UI elements.",
   "tags": ["flex", "interface"],

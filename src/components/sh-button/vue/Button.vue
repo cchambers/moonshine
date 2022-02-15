@@ -55,8 +55,6 @@ export default {
     closeTrigger: Boolean,
     printTrigger: Boolean,
     toggle: String,
-    round: String,
-    outline: Boolean,
     clickEvent: String,
     active: Boolean,
     link: String,

@@ -1,6 +1,6 @@
 {
   "name": "Belk Nav",
-  "category": "components",
+  "category": "features",
   "production": true,
   "element": "belk-nav",
   "description": "Hamburger nav for 2021.",

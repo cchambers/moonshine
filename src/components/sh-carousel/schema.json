@@ -3,7 +3,7 @@
   "category": "components",
   "production": true,
   "element": "sh-carousel",
-  "description": "Demonstration component.",
-  "tags": ["utilities", "demo"],
+  "description": "Multi-use carousel component.",
+  "tags": ["utilities", "gallery", "multi-item"],
   "requirements": {}
 }

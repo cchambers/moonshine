@@ -1,6 +1,6 @@
 {
   "name": "Offer Container",
-  "category": "features",
+  "category": "components",
   "production": true,
   "element": "offer-container",
   "description": "Data-driven flexbox coupon/offer container.",

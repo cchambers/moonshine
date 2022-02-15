@@ -3,7 +3,7 @@
   "category": "components",
   "production": false,
   "element": "sh-tooltip",
-  "description": "Demonstration component.",
-  "tags": ["utilities", "demo"],
+  "description": "Basic tooltip. Hover some content, get some more information.",
+  "tags": ["tooltip"],
   "requirements": {}
 }

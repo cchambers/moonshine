@@ -3,7 +3,7 @@
   "category": "components",
   "production": true,
   "element": "sh-combo",
-  "description": "Demonstration component.",
-  "tags": ["utilities", "demo"],
+  "description": "Multi-mode form select component",
+  "tags": ["form", "select", "multi"],
   "requirements": {}
 }

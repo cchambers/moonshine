@@ -1,9 +1,9 @@
 {
   "name": "Dropnav",
   "category": "components",
-  "production": false,
+  "production": true,
   "element": "sh-dropnav",
-  "description": "Demonstration component.",
-  "tags": ["utilities", "demo"],
+  "description": "Combo- or select-style link list.",
+  "tags": ["links", "list", "combo"],
   "requirements": {}
 }

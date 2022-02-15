@@ -4,7 +4,7 @@
         <div class="control-wrap">
       <div class="control">
         <template v-if="isActive">
-          <sh-button round
+          <sh-button
           variant="primary"
           size="sm"
           v-hammer:tap="copyEditor"
@@ -12,14 +12,14 @@
             <i class="material-icons px20 highlight-primary">file_copy</i>
           </sh-button>
         </template>
-        <sh-button round
+        <sh-button
           variant="primary"
           size="sm"
           v-hammer:tap="toggleFullscreen"
           v-on:keyup.enter="toggleFullscreen">
           <i class="material-icons px20 highlight-primary">fullscreen</i>
         </sh-button>
-        <sh-button round
+        <sh-button
           variant="primary"
           size="sm"
           v-hammer:tap="toggleActive"

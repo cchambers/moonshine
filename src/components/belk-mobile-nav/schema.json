@@ -1,6 +1,6 @@
 {
   "name": "Belk Mobile Nav",
-  "category": "components",
+  "category": "features",
   "production": true,
   "element": "belk-mobile-nav",
   "description": "Mobile navigation.",
