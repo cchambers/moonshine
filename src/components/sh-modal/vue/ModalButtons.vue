@@ -2,10 +2,10 @@
   <div class="sh-modal-buttons" :hidden="this.hidden">
     <div class="tab-lock" v-on:focus="modalFocusLast()" tabindex="0"></div>
     <button @click="closeModals">
-      <belk-icon v-if="closeActive" name="close" width="28">Close Modal</belk-icon>
+      <belk-icon v-if="closeActive" name="close" width="28" height="28">Close Modal</belk-icon>
     </button>
     <button v-if="printActive" print-trigger hidden>
-      <belk-icon name="print" width="28">Print Modal Content</belk-icon>
+      <belk-icon name="print" width="28" height="28">Print Modal Content</belk-icon>
     </button>
     <div class="tab-lock" v-on:focus="modalFocusFirst()" tabindex="0"></div>
   </div>
