@@ -1096,10 +1096,10 @@ ol.lower-alpha {
   display: none !important;
 }
 
-[interaction='mouse'] *:focus {
-  outline: none;
-}
-
+// WOW-31547: the return of the focus outline
+// [interaction='mouse'] *:focus {
+//  outline: none;
+//}
 
 [data-cgid*="clearance"] {
   color: $brand-crimson !important;

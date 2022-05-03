@@ -7,7 +7,7 @@
     <div v-if="badge"
     :class="badgeColor" class="coupon-type">{{ badge }}</div>
     <div @click="addOrLink" class="coupon-image" v-if="hasImage">
-      <img :src="image" />
+      <img aria-hidden="true" :src="image" />
     </div>
     <div class="coupon-wrapper">
       <template v-if="variant=='default'">
