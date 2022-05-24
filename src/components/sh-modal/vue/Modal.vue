@@ -10,7 +10,7 @@
     :aria-labelledby="ariaID"
     :aria-describedby="ariaDescID">
     <div class="content" ref="content" :class="{ 'no-space': noSpace }" :size="size">
-      <div class="tab-lock" v-on:focus="modalButtonsFocus()" tabindex="0"></div>
+      <div class="tab-lock" v-if="active" v-on:focus="modalButtonsFocus()" tabindex="0"></div>
       <div v-if="!hideHeader" class="header">
         <div v-if="header" class="modal-title">
           <h3 :id="ariaHeaderID">
@@ -30,7 +30,7 @@
       <div class="footer">
         <slot name="footer">{{ footer }}</slot>
       </div>
-      <div class="tab-lock" v-on:focus="modalButtonsFocus()" tabindex="0"></div>
+      <div class="tab-lock" v-if="active" v-on:focus="modalButtonsFocus()" tabindex="0"></div>
     </div>
   </div>
 </template>
