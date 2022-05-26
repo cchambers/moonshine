@@ -119,8 +119,6 @@ export default {
       scrolling: false,
       scrollPrevDisabled: true,
       scrollNextDisabled: false,
-      iecheck: false,
-      iecheckran: false,
     };
   },
 
@@ -157,10 +155,6 @@ export default {
         this.$bus.$emit('update-items-promo-offers', { which: 'promo-offers', data: val });
       }, 0);
     },
-  },
-
-  created() {
-    this.iecheck = !(window.ActiveXObject) && 'ActiveXObject' in window;
   },
 
   mounted() {
@@ -404,10 +398,7 @@ export default {
 
     open() {
       const self = this;
-      if (this.iecheck && !this.iecheckran) {
-        this.$bus.$emit('ie11');
-        this.iecheckran = true;
-      }
+
       if (!self.active) {
         self.$bus.$emit('modal-opening', self.uniqueId);
         document.documentElement.classList.add('belk-drawer-open');
