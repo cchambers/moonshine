@@ -13,10 +13,6 @@ import {
 } from 'vue2-hammer';
 Vue.use(VueHammer);
 
-/* Vue Custom Element */
-import vueCustomElement from 'vue-custom-element';
-Vue.use(vueCustomElement);
-
 /* This disables warnings caused by 'undefined vue components' that are actually defined. vce-workaround */
 Vue.config.ignoredElements = [/.*/]
 
