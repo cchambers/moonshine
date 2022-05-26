@@ -1,4 +1,4 @@
-import Vue from 'vue';
-import BelkDrawer from './BelkDrawer.vue';
+// import Vue from 'vue';
+// import BelkDrawer from './BelkDrawer.vue';
 
-Vue.customElement('belk-drawer', BelkDrawer);
+// Vue.customElement('belk-drawer', BelkDrawer);

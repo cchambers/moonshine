@@ -1,4 +1,4 @@
-import Vue from 'vue';
-import TagList from './TagList.vue';
+// import Vue from 'vue';
+// import TagList from './TagList.vue';
 
-Vue.customElement('sh-tag-list', TagList);
+// Vue.customElement('sh-tag-list', TagList);

@@ -1,4 +1,4 @@
-import Vue from 'vue';
-import Carousel from './Carousel.vue';
+// import Vue from 'vue';
+// import Carousel from './Carousel.vue';
 
-Vue.customElement('sh-carousel', Carousel);
+// Vue.customElement('sh-carousel', Carousel);

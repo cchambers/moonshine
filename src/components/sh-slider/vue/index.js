@@ -1,4 +1,4 @@
-import Vue from 'vue';
-import Slider from './Slider.vue';
+// import Vue from 'vue';
+// import Slider from './Slider.vue';
 
-Vue.customElement('sh-slider', Slider);
+// Vue.customElement('sh-slider', Slider);

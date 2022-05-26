@@ -1,4 +1,4 @@
-import Vue from 'vue';
-import BelkPromo from './BelkPromo.vue';
+// import Vue from 'vue';
+// import BelkPromo from './BelkPromo.vue';
 
-Vue.customElement('belk-promo', BelkPromo);
+// Vue.customElement('belk-promo', BelkPromo);

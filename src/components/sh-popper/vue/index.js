@@ -1,4 +1,4 @@
-import Vue from 'vue';
-import Popper from './Popper.vue';
+// import Vue from 'vue';
+// import Popper from './Popper.vue';
 
-Vue.customElement('sh-popper', Popper);
+// Vue.customElement('sh-popper', Popper);

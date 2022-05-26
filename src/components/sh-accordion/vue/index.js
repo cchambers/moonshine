@@ -1,4 +1,4 @@
-import Vue from 'vue';
-import Accordion from './Accordion.vue';
+// import Vue from 'vue';
+// import Accordion from './Accordion.vue';
 
-Vue.customElement('sh-accordion', Accordion);
+// Vue.customElement('sh-accordion', Accordion);

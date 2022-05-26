@@ -1,4 +1,4 @@
-import Vue from 'vue';
-import Input from './Input.vue';
+// import Vue from 'vue';
+// import Input from './Input.vue';
 
-Vue.customElement('sh-input', Input);
+// Vue.customElement('sh-input', Input);

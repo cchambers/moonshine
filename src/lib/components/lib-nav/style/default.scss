@@ -1,254 +1,252 @@
-lib-nav {
-  .lib-nav {
-    display: flex;
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    width: 26rem;
-    transition: all 300ms $ease;
-    transform: translateX(-100%) translateZ(0);
+.lib-nav {
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 26rem;
+  transition: all 300ms $ease;
+  transform: translateX(-100%) translateZ(0);
+  color: $highlight-primary;
+  z-index: 9;
+  -webkit-overflow-scrolling: touch;
+  will-change: scroll-position;
+}
+
+nav {
+  display: flex;
+
+  a {
     color: $highlight-primary;
-    z-index: 9;
-    -webkit-overflow-scrolling: touch;
-    will-change: scroll-position;
   }
 
-  nav {
-    display: flex;
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+}
 
-    a {
-      color: $highlight-primary;
-    }
+.go-back {
+  display: flex;
+  position: sticky;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0 1.5rem;
+  transition: all 100ms linear;
+  cursor: pointer;
+  background: $highlight-tertiary;
+  top: 0;
+  height: 4.5rem;
+  z-index: 1;
+}
 
-    ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
+.primary {
+  width: 26rem;
+  background: $lowlight-secondary;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-content: flex-start;
+  // padding-top: 9rem;
+  @include box-shadow(2);
+  @include scroll-y;
+  @include no-scroll-bar;
+  
+  .category {
+    font-weight: 400;
   }
 
-  .go-back {
-    display: flex;
-    position: sticky;
-    justify-content: flex-start;
-    align-items: center;
-    padding: 0 1.5rem;
-    transition: all 100ms linear;
-    cursor: pointer;
-    background: $highlight-tertiary;
-    top: 0;
-    height: 4.5rem;
-    z-index: 1;
+  >ul {
+    margin: 0;
+    flex-grow: 1;
   }
 
-  .primary {
-    width: 26rem;
-    background: $lowlight-secondary;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-content: flex-start;
-    // padding-top: 9rem;
-    @include box-shadow(2);
-    @include scroll-y;
-    @include no-scroll-bar;
-    
-    .category {
-      font-weight: 400;
-    }
-
-    >ul {
-      margin: 0;
-      flex-grow: 1;
-    }
+  li {
+    margin-top: 0.5rem;
 
     li {
-      margin-top: 0.5rem;
-
-      li {
-        margin: 0;
-      }
-    }
-
-    .header {
-      text-transform: uppercase;
-      padding: 0 1.5rem;
-      margin-top: 1.5rem;
-      font-size: 1.4rem;
-      line-height: 3rem;
-      color: $accent-tertiary;
-
-      +ul {
-        margin: 0;
-      }
-    }
-
-    a {
-      padding: 0 1.5rem;
-      height: 3rem;
-      display: flex;
-      align-items: center;
-      font-size: 1.6rem;
-      transition: all 150ms $ease;
-      position: relative;
-      color: $lowlight-quaternary;
-      text-shadow: 0 0 0 rgba(0, 0, 0, 0.5);
-
-      &:hover {
-        color: $highlight-tertiary;
-        background: rgba(255, 255, 255, 0);
-      }
-
-      &.active {
-        color: $highlight-primary;
-        background: $accent-primary;
-        margin-left: 0.75rem;
-        padding-left: 0.75rem;
-      }
-
-      // &::before {
-      //   display: block;
-      //   content: '';
-      //   position: absolute;
-      //   height: 20rem;
-      //   width: 20rem;
-      //   transform: rotate(45deg) translateY(-50%);
-      //   right: -4rem;
-      //   top: 50%;
-      // }
+      margin: 0;
     }
   }
 
-  #prod-toggle {
-    right: 1.5rem;
-    top: 5rem;
-    position: absolute;
-    z-index: 2;
+  .header {
+    text-transform: uppercase;
+    padding: 0 1.5rem;
+    margin-top: 1.5rem;
+    font-size: 1.4rem;
+    line-height: 3rem;
+    color: $accent-tertiary;
+
+    +ul {
+      margin: 0;
+    }
+  }
+
+  a {
+    padding: 0 1.5rem;
+    height: 3rem;
     display: flex;
     align-items: center;
+    font-size: 1.6rem;
+    transition: all 150ms $ease;
+    position: relative;
     color: $lowlight-quaternary;
-    cursor: pointer;
-    transition: all 200ms $ease;
+    text-shadow: 0 0 0 rgba(0, 0, 0, 0.5);
 
     &:hover {
-      color: $highlight-quaternary;
-    }
-
-    &::before {
-      content: 'all';
-      display: block;
-      font-size: 1rem;
-      margin-right: 1rem;
+      color: $highlight-tertiary;
+      background: rgba(255, 255, 255, 0);
     }
 
     &.active {
-      color: $accent-tertiary;
-
-      &::before {
-        content: 'released';
-      }
+      color: $highlight-primary;
+      background: $accent-primary;
+      margin-left: 0.75rem;
+      padding-left: 0.75rem;
     }
 
-    div {
-      display: flex;
-    }
+    // &::before {
+    //   display: block;
+    //   content: '';
+    //   position: absolute;
+    //   height: 20rem;
+    //   width: 20rem;
+    //   transform: rotate(45deg) translateY(-50%);
+    //   right: -4rem;
+    //   top: 50%;
+    // }
+  }
+}
+
+#prod-toggle {
+  right: 1.5rem;
+  top: 5rem;
+  position: absolute;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  color: $lowlight-quaternary;
+  cursor: pointer;
+  transition: all 200ms $ease;
+
+  &:hover {
+    color: $highlight-quaternary;
   }
 
-  [disabled] {
-    opacity: 0.2;
-    pointer-events: none;
-  }
-
-  #nav-search {
-    background: $docsGradient;
-    position: sticky;
-    top: 0;
-    z-index: 1;
-
-    input {
-      display: block;
-      font-family: "Menlo", monospace;
-      font-size: 1.8rem;
-      width: 100%;
-      height: 4.5rem;
-      background: transparent;
-      color: $highlight-tertiary;
-      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-      border: 0;
-      outline: 0;
-      padding: 0.5rem 1.5rem 0.5rem 8rem;
-
-      &::placeholder {
-        color: rgba(255, 255, 255, 0.5);
-        text-shadow: none;
-      }
-    }
-    @at-root {
-      [interaction="mouse"] lib-nav #nav-search input {
-        padding: 0.5rem 1.5rem 0.5rem 4.5rem;
-      }
-    }
-  }
-
-  .show-nav {
-    position: fixed;
-    top: 1.5rem;
-    left: 1.5rem;
-    transition: all 200ms $ease;
-    background: $docsGradient;
-    background-size: 200% auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 5rem;
-    width: 5rem;
-    border-radius: 50%;
-    z-index: 10;
-    font-size: 3rem;
-    cursor: pointer;
-
-    &:hover {
-      background-position: 50% 0;
-    }
-
-    i {
-      color: rgba(255, 255, 255, 0.5);
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translateX(-50%) translateY(-50%) scale(0.4);
-      opacity: 0;
-      transition: all 300ms $ease;
-
-      &.active {
-        opacity: 1;
-        transform: translateX(-50%) translateY(-50%) rotate(0);
-      }
-    }
-  }
-
-  .tip::after {
-    position: absolute;
-    background: rgba(0, 0, 0, 0.5);
-    color: $accent-tertiary;
-    content: 'Also `~` on your keyboard!';
+  &::before {
+    content: 'all';
     display: block;
-    left: calc(100% + 1.5rem);
-    top: 50%;
-    font-size: 1.6rem;
-    white-space: pre;
-    padding: 0.05rem 0.5rem;
-    transform: translateX(0) translateY(-50%);
-    pointer-events: none;
-    opacity: 0;
-    border-radius: 1rem;
-    border: 1px solid $lowlight-tertiary;
+    font-size: 1rem;
+    margin-right: 1rem;
   }
 
-  .tip:hover::after {
-    opacity: 1;
+  &.active {
+    color: $accent-tertiary;
+
+    &::before {
+      content: 'released';
+    }
   }
+
+  div {
+    display: flex;
+  }
+}
+
+[disabled] {
+  opacity: 0.2;
+  pointer-events: none;
+}
+
+#nav-search {
+  background: $docsGradient;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+
+  input {
+    display: block;
+    font-family: "Menlo", monospace;
+    font-size: 1.8rem;
+    width: 100%;
+    height: 4.5rem;
+    background: transparent;
+    color: $highlight-tertiary;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    border: 0;
+    outline: 0;
+    padding: 0.5rem 1.5rem 0.5rem 8rem;
+
+    &::placeholder {
+      color: rgba(255, 255, 255, 0.5);
+      text-shadow: none;
+    }
+  }
+  @at-root {
+    [interaction="mouse"] lib-nav #nav-search input {
+      padding: 0.5rem 1.5rem 0.5rem 4.5rem;
+    }
+  }
+}
+
+.show-nav {
+  position: fixed;
+  top: 1.5rem;
+  left: 1.5rem;
+  transition: all 200ms $ease;
+  background: $docsGradient;
+  background-size: 200% auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 5rem;
+  width: 5rem;
+  border-radius: 50%;
+  z-index: 10;
+  font-size: 3rem;
+  cursor: pointer;
+
+  &:hover {
+    background-position: 50% 0;
+  }
+
+  i {
+    color: rgba(255, 255, 255, 0.5);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%) scale(0.4);
+    opacity: 0;
+    transition: all 300ms $ease;
+
+    &.active {
+      opacity: 1;
+      transform: translateX(-50%) translateY(-50%) rotate(0);
+    }
+  }
+}
+
+.tip::after {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.5);
+  color: $accent-tertiary;
+  content: 'Also `~` on your keyboard!';
+  display: block;
+  left: calc(100% + 1.5rem);
+  top: 50%;
+  font-size: 1.6rem;
+  white-space: pre;
+  padding: 0.05rem 0.5rem;
+  transform: translateX(0) translateY(-50%);
+  pointer-events: none;
+  opacity: 0;
+  border-radius: 1rem;
+  border: 1px solid $lowlight-tertiary;
+}
+
+.tip:hover::after {
+  opacity: 1;
 }
 
 .nav-shown {

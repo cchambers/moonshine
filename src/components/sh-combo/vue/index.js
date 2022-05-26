@@ -1,4 +1,4 @@
-import Vue from 'vue';
-import Combo from './Combo.vue';
+// import Vue from 'vue';
+// import Combo from './Combo.vue';
 
-Vue.customElement('sh-combo', Combo);
+// Vue.customElement('sh-combo', Combo);

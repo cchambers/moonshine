@@ -1,4 +1,4 @@
-import Vue from 'vue';
-import Tooltip from './Tooltip.vue';
+// import Vue from 'vue';
+// import Tooltip from './Tooltip.vue';
 
-Vue.customElement('sh-tooltip', Tooltip);
+// Vue.customElement('sh-tooltip', Tooltip);

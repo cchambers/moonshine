@@ -1,4 +1,4 @@
-import Vue from 'vue';
-import Dropnav from './Dropnav.vue';
+// import Vue from 'vue';
+// import Dropnav from './Dropnav.vue';
 
-Vue.customElement('sh-dropnav', Dropnav);
+// Vue.customElement('sh-dropnav', Dropnav);

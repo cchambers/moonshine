@@ -1,4 +1,4 @@
-import Vue from 'vue';
-import ViewSwapper from './ViewSwapper.vue';
+// import Vue from 'vue';
+// import ViewSwapper from './ViewSwapper.vue';
 
-Vue.customElement('sh-view-swapper', ViewSwapper);
+// Vue.customElement('sh-view-swapper', ViewSwapper);

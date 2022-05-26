@@ -1,4 +1,4 @@
-import Vue from 'vue';
-import Tabs from './Tabs.vue';
+// import Vue from 'vue';
+// import Tabs from './Tabs.vue';
 
-Vue.customElement('sh-tabs', Tabs);
+// Vue.customElement('sh-tabs', Tabs);

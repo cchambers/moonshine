@@ -1,4 +1,4 @@
-import Vue from 'vue';
-import BelkSearch from './BelkSearch.vue';
+// import Vue from 'vue';
+// import BelkSearch from './BelkSearch.vue';
 
-Vue.customElement('belk-search', BelkSearch);
+// Vue.customElement('belk-search', BelkSearch);

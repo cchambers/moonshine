@@ -1,4 +1,4 @@
-import Vue from 'vue';
-import BelkIcon from './BelkIcon.vue';
+// import Vue from 'vue';
+// import BelkIcon from './BelkIcon.vue';
 
-Vue.customElement('belk-icon', BelkIcon);
+// Vue.customElement('belk-icon', BelkIcon);
