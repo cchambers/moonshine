@@ -1,4 +1,4 @@
-import Vue from 'vue';
-import LibHeader from './LibHeader.vue';
+// import Vue from 'vue';
+// import LibHeader from './LibHeader.vue';
 
-Vue.customElement('lib-header', LibHeader);
+// Vue.customElement('lib-header', LibHeader);

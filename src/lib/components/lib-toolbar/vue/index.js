@@ -1,4 +1,4 @@
-import Vue from 'vue';
-import LibToolbar from './LibToolbar.vue';
+// import Vue from 'vue';
+// import LibToolbar from './LibToolbar.vue';
 
-Vue.customElement('lib-toolbar', LibToolbar);
+// Vue.customElement('lib-toolbar', LibToolbar);

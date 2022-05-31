@@ -1,4 +1,4 @@
-import Vue from 'vue';
-import LibReqs from './LibReqs.vue';
+// import Vue from 'vue';
+// import LibReqs from './LibReqs.vue';
 
-Vue.customElement('lib-reqs', LibReqs);
+// Vue.customElement('lib-reqs', LibReqs);

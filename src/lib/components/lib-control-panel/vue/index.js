@@ -1,4 +1,4 @@
-import Vue from 'vue';
-import ControlPanel from './ControlPanel.vue';
+// import Vue from 'vue';
+// import ControlPanel from './ControlPanel.vue';
 
-Vue.customElement('lib-control-panel', ControlPanel);
+// Vue.customElement('lib-control-panel', ControlPanel);
