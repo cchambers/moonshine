@@ -418,7 +418,7 @@
 </template>
 
 <script>
-import _ from 'lodash';
+import cloneDeep from 'lodash.clonedeep';
 import ComponentPrototype from '../../component-prototype';
 
 export default {
@@ -516,7 +516,7 @@ export default {
       if (obj.config && obj.config.clearHref !== '') {
         this.clearHref = obj.config.clearHref;
       }
-      this.filteredData = _.cloneDeep(this.searchableData);
+      this.filteredData = cloneDeep(this.searchableData);
     },
 
     showNav(e) {
@@ -544,10 +544,10 @@ export default {
       let value = el.value;
       const facet = e.target.closest('[facet-name]').getAttribute('facet-name');
       if (value === '') {
-        this.$set(this.filteredData, facet, _.cloneDeep(this.searchableData[facet]));
+        this.$set(this.filteredData, facet, cloneDeep(this.searchableData[facet]));
       } else {
         value = value.toLowerCase();
-        const filterTest = _.cloneDeep(this.searchableData[facet]);
+        const filterTest = cloneDeep(this.searchableData[facet]);
         const filtered = filterTest.filter(
           item => item.name.toLowerCase().indexOf(value) >= 0,
         );

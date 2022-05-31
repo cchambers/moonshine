@@ -56,9 +56,8 @@ export default {
     this.scrollingEl = document.querySelector(this.scrollWith) || 'viewport';
     this.popperLeft = this.$refs.popperLeft;
     this.popperRight = this.$refs.popperRight;
-    const IE11 = document.getElementsByTagName('html')[0].classList.contains('IE11');
 
-    if (this.sticky && !IE11) {
+    if (this.sticky) {
       // move/stick elements
       this.popperLeft.classList.add('is-sticky', 'popper-left');
       this.popperRight.classList.add('is-sticky', 'popper-right');
