@@ -128,6 +128,12 @@ Two files exist for separation between components in development and components 
 
 To configure automatic deployment to your local ecom repo, open the `.env` file in the root of the project and edit the paths to match your repo installation.
 
+example:
+```
+SHINE_SCRIPT_PATH=/Users/USERNAME/Sites/Belk/cartridges/app_belk_core/cartridge/static/default/js/shine.js
+SHINE_STYLE_PATH=/Users/USERNAME/Sites/Belk/cartridges/app_belk_core/cartridge/static/default/css/shine.css
+```
+
 Now just run `yarn build` and all of your changes will be deployed for testing... 
 
 When you are happy with your tests, submit a PR to the Shine repo. Once merged to master, you will be able to generate code for submittal to the belk repo (we want to make sure everyone's changes are included for publishes to dev!) -- feel free to have your specific changes tested in your sandbox in the meantime though. 
