@@ -132,8 +132,6 @@ export default {
       const self = this;
       const resizeDebounced = self.debounce('carousel-as', self.autoSize, 100);
       window.addEventListener('resize', resizeDebounced, true);
-
-      this.$bus.$on('ie11', this.reflow);
     },
 
     ada() {

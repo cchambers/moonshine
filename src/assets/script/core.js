@@ -20,15 +20,6 @@ const app = {
   setup() {
     const iOSCheck = navigator.userAgent.indexOf('Safari') > -1 && navigator.userAgent.indexOf('Chrome') < 0;
     if (iOSCheck) document.querySelector('html').classList.add('iOS');
-
-    const IE11Check = !(window.ActiveXObject) && 'ActiveXObject' in window;
-    if (IE11Check) {
-      document.querySelector('html').classList.add('IE11');
-      setTimeout(() => {
-        window.sh.emit('ie11');
-      }, 2500);
-    }
-
     const demos = document.querySelectorAll('lib-toolbar');
     for (let x = 0, l = demos.length; x < l; x += 1) {
       const html = demos[x].innerHTML;

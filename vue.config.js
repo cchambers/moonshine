@@ -179,14 +179,8 @@ module.exports = {
     module: {
       rules: [{
         test: /\.js$/,
-        exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-        }
+        exclude: /node_modules/
       }]
-    },
-    devServer: {
-      openPage: openToPage,
     },
     optimization: optimizationSetting,
     plugins: [
