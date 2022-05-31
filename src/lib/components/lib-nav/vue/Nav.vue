@@ -204,8 +204,8 @@ export default {
 }
 </script>
 
-<style lang="scss" src="../style/default.scss" scoped></style>
-<style lang="scss" scoped>
+<style lang="scss" src="../style/default.scss"></style>
+<style lang="scss">
 a {
   .search-highlight {
     color: $accent-primary;

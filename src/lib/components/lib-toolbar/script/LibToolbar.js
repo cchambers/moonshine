@@ -17,7 +17,7 @@ export default {
 
   data() {
     return {
-      active: false,
+      active: true,
       fullscreen: false,
       isActive: false,
       code: '',
