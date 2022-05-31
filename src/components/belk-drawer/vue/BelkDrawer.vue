@@ -12,7 +12,7 @@
     <div class="tab-lock" v-if="active" v-on:focus="focusButton()" tabindex="0"></div>
     <div class="content" ref="content" @mouseover="mouseOverHandler">
       <div tabindex="0"
-        v-hammer:tap="toggle"
+        @click="toggle"
         v-on:keydown.enter="toggle"
         v-on:keydown.space="toggle"
         v-on:keydown.tab="toggleTabHandler"
@@ -37,7 +37,7 @@
         ref="body">
         <!-- <button aria-controls="promo-offers"
           v-if="scrolling" class="arrow previous"
-          :disabled="scrollPrevDisabled" v-hammer:tap="previousHandler">
+          :disabled="scrollPrevDisabled" @click="previousHandler">
           <belk-icon width="10" name="arrow-left"></belk-icon>
         </button> -->
         <offer-container variant="promos" unique-id="promo-offers"></offer-container>
@@ -46,7 +46,7 @@
         </div>
         <!-- <button aria-controls="promo-offers"
           v-if="scrolling" class="arrow next"
-          :disabled="scrollNextDisabled" v-hammer:tap="nextHandler">
+          :disabled="scrollNextDisabled" @click="nextHandler">
           <belk-icon width="10" name="arrow-right"></belk-icon>
         </button> -->
       </div>

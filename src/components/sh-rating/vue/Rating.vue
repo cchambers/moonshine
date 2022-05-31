@@ -10,27 +10,27 @@
       <ul v-if="choose" class="choose" v-on:mouseleave="show = 0">
         <li>
           <button v-on:mouseover="hoverHandler"
-          v-hammer:tap="rateHandler"
+          @click="rateHandler"
           aria-label="rate 1 of 5 stars" value="1"></button>
         </li>
         <li>
           <button v-on:mouseover="hoverHandler"
-          v-hammer:tap="rateHandler"
+          @click="rateHandler"
           aria-label="rate 2 of 5 stars" value="2"></button>
         </li>
         <li>
           <button v-on:mouseover="hoverHandler"
-          v-hammer:tap="rateHandler"
+          @click="rateHandler"
           aria-label="rate 3 of 5 stars" value="3"></button>
         </li>
         <li>
           <button v-on:mouseover="hoverHandler"
-          v-hammer:tap="rateHandler"
+          @click="rateHandler"
           aria-label="rate 4 of 5 stars" value="4"></button>
         </li>
         <li>
           <button v-on:mouseover="hoverHandler"
-          v-hammer:tap="rateHandler"
+          @click="rateHandler"
           aria-label="rate 5 of 5 stars" value="5"></button>
         </li>
       </ul>

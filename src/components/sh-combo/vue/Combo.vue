@@ -7,7 +7,7 @@
     }">
     <div class="combo-actual">
       <button class="combo-trigger" ref="trigger"
-        v-hammer:tap="buttonHandler"
+        @click="buttonHandler"
         v-on:keydown.down="highlightHandler"
         v-on:keydown.up="highlightHandler"
         v-on:keydown.enter="enterHandler">
@@ -19,7 +19,7 @@
       <div class="combo-hidden-options" hidden>
         <slot name="options"></slot>
       </div>
-      <div ref="options" class="combo-options" v-hammer:tap="optionClickHandler">
+      <div ref="options" class="combo-options" @click="optionClickHandler">
         <ul>
           <li v-for="item in options"
           v-bind:key="item.index"

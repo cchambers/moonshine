@@ -1,7 +1,7 @@
 <template>
   <div class="sh-slider"
     :variant="variant"
-    v-hammer:pan="panHandler">
+    @pan="panHandler">
     dist: {{ deltaX }}, {{ deltaY }} <br/>
     pos: {{ clickX }}, {{ clickY }}
   </div>

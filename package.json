@@ -23,8 +23,7 @@
     "jsbarcode": "^3.11.0",
     "lodash.clonedeep": "^4.5.0",
     "masonry-layout": "^4.2.2",
-    "vue": "^2.6.10",
-    "vue2-hammer": "^2.1.2"
+    "vue": "^2.6.10"
   },
   "devDependencies": {
     "@ascendancyy/vue-cli-plugin-stylelint": "^1.1.2",
@@ -49,10 +48,10 @@
     "fullname": "^4.0.1",
     "git-branch": "^2.0.1",
     "glob": "^7.1.4",
-    "node-sass": "^4.13.0",
+    "node-sass": "^7.0.0",
     "pretty": "^2.0.0",
     "prompt": "^1.0.0",
-    "sass-loader": "^7.0.0",
+    "sass-loader": "^13.0.0",
     "style-loader": "^0.23.1",
     "stylelint": "^12.0.0",
     "stylelint-config-standard": "^18.2.0",

@@ -6,7 +6,7 @@
     <div class="pass-input">
       <input v-on:input="handleInput" ref="input" :type="inputType">
     </div>
-    <button v-hammer:tap="toggleVisibility" class="pass-toggle">
+    <button @click="toggleVisibility" class="pass-toggle">
       <i v-if="showChars" class="material-icons">
         visibility
       </i>

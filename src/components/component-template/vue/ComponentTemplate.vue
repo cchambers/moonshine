@@ -2,7 +2,7 @@
   <div class="component-template"
     :variant="variant"
     v-bind:class="{ 'snap-state': snapping }"
-    v-hammer:tap="snap">
+    @click="snap">
     <slot name="test">{{ msg }}</slot>
   </div>
 </template>

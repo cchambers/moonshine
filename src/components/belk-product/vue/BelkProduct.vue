@@ -25,7 +25,7 @@
         </div>
         <div class="rating"><sh-rating :level="reviews"></sh-rating></div>
         <div class="quick-view">
-          <sh-button v-hammer:tap="quickView">Quick View</sh-button>
+          <sh-button @click="quickView">Quick View</sh-button>
         </div>
       </div>
     </a>

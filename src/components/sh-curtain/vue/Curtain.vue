@@ -1,5 +1,5 @@
 <template>
-  <div class="sh-curtain" v-bind:class="{ 'active': active }" v-hammer:tap="hide"></div>
+  <div class="sh-curtain" v-bind:class="{ 'active': active }" @click="hide"></div>
 </template>
 
 <script>

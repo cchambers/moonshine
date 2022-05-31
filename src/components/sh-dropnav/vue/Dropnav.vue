@@ -2,7 +2,7 @@
   <div class="sh-dropnav" v-bind:class="{ 'is-open': isOpen }">
     <div class="wrapper">
       <div hidden><slot></slot></div>
-      <button ref="button" v-hammer:tap="toggleOpen">{{ activeItem }}</button>
+      <button ref="button" @click="toggleOpen">{{ activeItem }}</button>
       <ul class="item-container">
         <li v-for="(item, index) in items" v-bind:key="item.key">
           <a v-if="!item.hidden"
@@ -10,7 +10,7 @@
           :data-key="index"
           :href="item.link"
           :target="item.target"
-          v-hammer:tap="clickHandler">{{ item.text }}</a>
+          @click="clickHandler">{{ item.text }}</a>
         </li>
       </ul>
     </div>

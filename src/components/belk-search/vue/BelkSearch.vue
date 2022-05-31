@@ -31,14 +31,14 @@
         aria-label="clear search field"
         ref="clear"
         v-if="valueLength>0"
-        v-hammer:tap="clearSearch">
+        @click="clearSearch">
         <belk-icon name="close"
           width="24" height="24">Clear Input</belk-icon>
       </button>
       <button class="flex" aria-role="button"
         aria-label="perform search"
         ref="search"
-        v-hammer:tap="doSearch"
+        @click="doSearch"
         :disabled="isEmpty">
         <belk-icon name="search"
           width="18" height="18">Perform Search Action</belk-icon>
@@ -72,7 +72,7 @@
         <div class="flex space-between align-center">
           <div class="heading">Recent Searches</div>
           <div>
-            <sh-button v-hammer:tap="clearRecentSearches">Clear</sh-button>
+            <sh-button @click="clearRecentSearches">Clear</sh-button>
           </div>
         </div>
         <ul>

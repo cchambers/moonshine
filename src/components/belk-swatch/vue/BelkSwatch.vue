@@ -12,7 +12,7 @@
         tabindex="0"
         :aria-selected="item.highlighted"
         :style="{ backgroundImage: `url('${item.img}')`}">
-        <button v-hammer:tap="handleClick" :value="index"></button>
+        <button @click="handleClick" :value="index"></button>
       </li>
     </ul>
   </div>

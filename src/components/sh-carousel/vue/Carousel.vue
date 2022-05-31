@@ -4,8 +4,8 @@
     :variant="variant"
     @mouseenter="mousePause(true, true)"
     @mouseleave="mousePause(false, true)"
-    v-hammer:swipe="swipeHandler"
-    v-hammer:tap="pause"
+    @swipe="swipeHandler"
+    @click="pause"
     aria-roledescription="carousel">
     <div ref="spacer" class="carousel-spacer"></div>
     <div ref="slides" slot="slides" class="slides">
@@ -13,11 +13,11 @@
     </div>
     <div v-if="!hideControls" class="controls">
       <button :aria-controls="carouselId"
-        v-if="!hideArrows" class="arrow next" v-hammer:tap="nextHandler">
+        v-if="!hideArrows" class="arrow next" @click="nextHandler">
         <belk-icon width="20" :name="nextArrow"></belk-icon>
       </button>
       <button :aria-controls="carouselId"
-        v-if="!hideArrows" class="arrow previous" v-hammer:tap="previousHandler">
+        v-if="!hideArrows" class="arrow previous" @click="previousHandler">
         <belk-icon width="20" :name="previousArrow"></belk-icon>
       </button>
       <div class="play">
@@ -25,7 +25,7 @@
           class="button "
           :aria-label="playLabel"
           :disabled="isFocused"
-          v-hammer:tap="play">
+          @click="play">
           {{ mode }}
         </button>
         <ul v-if="!hideDots" ref="dots" class="dots">

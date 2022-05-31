@@ -95,7 +95,7 @@
         data-text="Online Only"
       ></div>
       <div class="coupon-print low-off" v-if="printable">
-        <sh-button variant="belk-link" v-hammer:tap="printCoupon">Print Coupon</sh-button>
+        <sh-button variant="belk-link" @click="printCoupon">Print Coupon</sh-button>
       </div>
     </div>
     <div hidden aria-hidden="true" class="coupon-modal">

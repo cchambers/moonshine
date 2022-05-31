@@ -10,7 +10,7 @@
         <a v-if="!error.hidden"
         :data-key="index"
         :href="error.link"
-        v-hammer:tap="errorClickHandler">{{ error.text }} </a>
+        @click="errorClickHandler">{{ error.text }} </a>
       </li>
       </ul>
     </div>
