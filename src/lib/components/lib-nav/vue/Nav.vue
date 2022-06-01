@@ -71,10 +71,10 @@
 </template>
 
 <script>
-import ComponentPrototype from '../../../../components/component-prototype';
+// import ComponentPrototype from '../../../../components/component-prototype';
 
 export default {
-  mixins: [ComponentPrototype],
+  // mixins: [ComponentPrototype],
 
   name: 'Nav',
 

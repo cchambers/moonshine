@@ -1,9 +1,9 @@
 /* eslint-disable */ 
-const concat = require('concat');
-const fs = require('fs');
-const path = require('path');
-const dotenv = require('dotenv');
-
+import concat from 'concat';
+import fs from 'fs';
+import path from 'path';
+const __dirname = path.dirname('.');
+import dotenv from 'dotenv';
 const envConfig = dotenv.parse(fs.readFileSync('.env'));
 const promise = concat(['./dist/js/chunk-vendors.js', './dist/js/index.js'], './dist/js/shine.js');
 

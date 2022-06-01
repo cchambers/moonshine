@@ -1,8 +1,9 @@
 /* eslint-disable */
 const glob = require('glob');
 const fs = require('fs-extra');
-const chalk = require('chalk');
+// const chalk = import('chalk');
 
+console.log(glob);
 const schema = {};
 let count = 0;
 
@@ -56,4 +57,4 @@ glob.sync('src/components/**/schema.json')
 
 const data = JSON.stringify(sorted);
 fs.writeFileSync('src/components/all.json', data);
-console.log(chalk.black.bgGreen(' SHINE '), `${count} component schemas bundled...`);
+// console.log(chalk.black.bgGreen(' SHINE '), `${count} component schemas bundled...`);

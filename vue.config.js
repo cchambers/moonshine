@@ -8,6 +8,7 @@ const WrapperPlugin = require('wrapper-webpack-plugin');
 const dateFormat = require('dateformat');
 const ejs = require('ejs');
 const ua = require('universal-analytics');
+// const __dirname = path.dirname('.');
 
 const themeLoader = path.resolve('theme-loader.js');
 const user = ua('UA-148739944-1');
@@ -44,8 +45,6 @@ if (branchActual === 'master') {
     minimize: true,
   };
 }
-
-const openToPage = process.env.PAGE || '';
 
 const pages = {
   index: {
@@ -161,7 +160,7 @@ module.exports = {
   css: {
     loaderOptions: {
       sass: {
-        data: `
+        additionalData: `
           @import "@/assets/style/common/_functions.scss";
           @import "@/assets/style/common/_mixins.scss";
           @import "@/assets/style/themes/default/_variables.scss";
@@ -173,7 +172,7 @@ module.exports = {
   configureWebpack: {
     resolve: {
       alias: {
-        vue$: 'vue/dist/vue.esm.js',
+        'vue': '@vue/runtime-dom'
       },
     },
     module: {
@@ -181,6 +180,9 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/
       }]
+    },
+    externals: {
+      vue: "Vue",
     },
     optimization: optimizationSetting,
     plugins: [

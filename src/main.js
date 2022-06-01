@@ -1,17 +1,17 @@
 /* eslint-disable */
-
-require('./assets/script/core.js');
 import Vue from 'vue';
-Vue.config.productionTip = false;
+
+import './assets/script/core.js';
+// Vue.config.productionTip = false;
 
 /*  Base Prototype Additions */
 import './assets/script/prototypes.js';
 
-/* HammerJS (touch support) */
-import {
-  VueHammer
-} from 'vue2-hammer';
-Vue.use(VueHammer);
+// /* HammerJS (touch support) */
+// import {
+//   VueHammer
+// } from 'vue2-hammer';
+// Vue.use(VueHammer);
 
 /* This disables warnings caused by 'undefined vue components' that are actually defined. vce-workaround */
 Vue.config.ignoredElements = [/.*/]
@@ -22,7 +22,7 @@ require('./assets/style/common/utility.scss');
 require('./assets/style/themes/custom-props.scss');
 require('./assets/style/themes/default/belk.scss');
 
-const schema = require('./components/all.json');
+import schema from './components/all.json';
 
 if (process.env.NODE_ENV !== 'production') {
   /* Documentation Library */

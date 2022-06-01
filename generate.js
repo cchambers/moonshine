@@ -1,8 +1,9 @@
-/* eslint-disable */
 
-const fs = require('fs-extra');
+import path from 'path';
+const __dirname = path.dirname('.');
+import fs from 'fs-extra';
 let names;
-let prompt = require('prompt');
+importrompt from 'prompt';
 let schema = {
   properties: {
     name: {
@@ -75,8 +76,6 @@ function replaceNames(dir, names) {
 }
 
 var walkSync = function(dir, filelist) {
-  var fs = fs || require('fs'),
-      files = fs.readdirSync(dir);
   filelist = filelist || [];
   files.forEach(function(file) {
     if (fs.statSync(dir + '/' + file).isDirectory()) {
