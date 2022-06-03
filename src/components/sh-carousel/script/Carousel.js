@@ -239,9 +239,7 @@ export default {
     },
 
     getSlides() {
-      const slides = this.$slots.slides[0];
-      this.list = slides.elm;
-      this.slides = slides.elm.children;
+      this.slides = this.$refs.slides.querySelectorAll('li');
       this.slides.forEach(() => {
         this.dots.push({ active: false });
       });

@@ -32,7 +32,7 @@ function themeLoader(content) {
 
         // concatenate old value with new value:
         // ex: color: $accent-primary; color: var(--accent-primary);
-        newString = `${scss} ${newString}`;
+        // 6/1/2022, remove IE support by killing this line: newString = `${scss} ${newString}`;
 
         // find/replace all occurances
         let regStr = `(?<!-)${scss}`;
