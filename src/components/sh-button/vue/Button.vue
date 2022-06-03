@@ -89,7 +89,6 @@ export default {
   },
 
   created() {
-    console.log('button', this);
     if (this.link) this.ariaRole = 'link';
     if (this.disabled) this.isDisabled = true;
   },
