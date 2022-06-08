@@ -280,10 +280,36 @@ export default {
       if (data.autoOpen) self.open();
     },
 
+    bindConfirmTriggers() {
+      const self = this;
+      const affirmTriggers = '[affirm-trigger]';
+      self.affirmTriggers = self.$el.querySelectorAll(affirmTriggers);
+      for (let y = 0; y < self.affirmTriggers.length; y += 1) {
+        const el = self.affirmTriggers[y];
+        el.addEventListener('click', () => {
+          self.affirmed = true;
+          if (self.confirmationEvents) self.$bus.$emit('modal-affirmed', self.uniqueId);
+        });
+      }
+      // internal rejection triggers
+      const rejectTriggers = '[reject-trigger]';
+      self.rejectTriggers = self.$el.querySelectorAll(rejectTriggers);
+      for (let y = 0; y < self.rejectTriggers.length; y += 1) {
+        const el = self.rejectTriggers[y];
+        el.addEventListener('click', () => {
+          self.affirmed = false;
+          if (self.confirmationEvents) self.$bus.$emit('modal-rejected', self.uniqueId);
+        });
+      }
+    },
+
     open() {
       const self = this;
 
-      if (self.confirmationEvents) self.affirmed = undefined;
+      if (self.confirmationEvents) {
+        self.affirmed = undefined;
+        if (self.affirmTriggers.length === 0) setTimeout(this.bindConfirmTriggers);
+      }
 
       if (self.alwaysReload || (!self.loaded && self.contentUrl)) {
         if (self.alwaysReload || (self.contentUrl !== self.loadedUrl)) self.loadContent();
@@ -391,28 +417,6 @@ export default {
         });
       }
 
-      // internal affirmation triggers
-      const affirmTriggers = '[affirm-trigger]';
-      self.affirmTriggers = self.$el.querySelectorAll(affirmTriggers);
-      for (let y = 0; y < self.affirmTriggers.length; y += 1) {
-        const el = self.affirmTriggers[y];
-        el.addEventListener('click', () => {
-          self.affirmed = true;
-          if (self.confirmationEvents) self.$bus.$emit('modal-affirmed', self.uniqueId);
-        });
-      }
-
-      // internal rejection triggers
-      const rejectTriggers = '[reject-trigger]';
-      self.rejectTriggers = self.$el.querySelectorAll(rejectTriggers);
-      for (let y = 0; y < self.rejectTriggers.length; y += 1) {
-        const el = self.rejectTriggers[y];
-        el.addEventListener('click', () => {
-          self.affirmed = false;
-          if (self.confirmationEvents) self.$bus.$emit('modal-rejected', self.uniqueId);
-        });
-      }
-
       // internal close triggers
       const closeSelector = '[close-trigger]';
       self.closeTriggers = self.$el.querySelectorAll(closeSelector);
@@ -433,7 +437,7 @@ export default {
       self.container = container;
       self.container.addEventListener('click', (e) => {
         if (e.target === self.container) self.$bus.$emit('close-modals');
-        e.stopPropagation();
+        // e.stopPropagation(); // THIS?
       });
       self.mountToContainer();
     },
