@@ -40,10 +40,12 @@
           :disabled="scrollPrevDisabled" v-hammer:tap="previousHandler">
           <belk-icon width="10" name="arrow-left"></belk-icon>
         </button> -->
-        <offer-container variant="promos" unique-id="promo-offers"></offer-container>
-        <div class="show-all-coupons">
-          <a class="primarylink" href="/coupons-online-and-in-store">See all offers</a>
-        </div>
+        <template v-if="active">
+          <offer-container variant="promos" unique-id="promo-offers"></offer-container>
+          <div class="show-all-coupons">
+            <a class="primarylink" href="/coupons-online-and-in-store">See all offers</a>
+          </div>
+        </template>
         <!-- <button aria-controls="promo-offers"
           v-if="scrolling" class="arrow next"
           :disabled="scrollNextDisabled" v-hammer:tap="nextHandler">
