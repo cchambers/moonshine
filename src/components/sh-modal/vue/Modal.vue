@@ -24,7 +24,7 @@
           <slot>{{ content }}</slot>
         </template>
         <div v-if="dynamicHTML" v-html="dynamicHTML"></div>
-        <div ref="ajax"></div>
+        <div class="remote" v-html="ajaxContent" ref="ajax"></div>
 
       </div>
       <div class="footer">
@@ -103,6 +103,7 @@ export default {
       openedCallback: undefined,
       closedCallback: undefined,
       dynamicHTML: undefined,
+      ajaxContent: undefined,
       loadHtml: `<div class="bar"></div>
                 <div class="bar"></div>
                 <div class="bar"></div>
@@ -144,6 +145,11 @@ export default {
   },
 
   methods: {
+    doAjaxContent() {
+      this.manageHeight();
+      this.$bus.$emit('modal-content-loaded', this.uniqueId);
+    },
+
     doPrint() {
       window.print();
     },
@@ -216,13 +222,13 @@ export default {
         if (this.active) self.focusLast();
       });
 
-      self.$bus.$on('close-modals', (e) => {
+      self.$bus.$on('close-modals', () => {
         if (this.active) {
           if (this.confirmationEvents) {
             // if (this.affirmed) {
             //   // self.$bus.$emit('modal-affirmed', self.uniqueId);
             // } else {
-            if (!e) self.$bus.$emit('modal-rejected', self.uniqueId);
+            self.$bus.$emit('modal-rejected', self.uniqueId);
             // }
           }
           this.close(true, 'close-modals event');
@@ -308,7 +314,7 @@ export default {
 
       if (self.confirmationEvents) {
         self.affirmed = undefined;
-        setTimeout(this.bindConfirmTriggers);
+        if (self.affirmTriggers.length === 0) setTimeout(this.bindConfirmTriggers);
       }
 
       if (self.alwaysReload || (!self.loaded && self.contentUrl)) {
@@ -346,13 +352,13 @@ export default {
     close(clearHash = true, from) {
       if (from && window.modalDebug) this.log(`modal close from: ${from}`);
       if (this.active) {
-        if (!self.noEvents) this.$bus.$emit('modal-closing', this.uniqueId);
+        if (!this.noEvents) this.$bus.$emit('modal-closing', this.uniqueId);
         document.documentElement.classList.remove('sh-modal-open');
         this.active = false;
         this.$bus.$emit('modal-closed', this.uniqueId);
         if (this.closedEvent) this.$bus.$emit(this.closedEvent, this.uniqueId);
         if (this.closedCallback) this.closedCallback();
-        if (self.alwaysReload) this.loaded = false;
+        if (this.alwaysReload) this.loaded = false;
       }
       if (clearHash) this.clearHash();
     },
@@ -504,11 +510,8 @@ export default {
             if (!html) {
               self.doError();
             } else {
-              self.$refs.ajax.innerHTML = '';
-              self.$refs.ajax.appendChild(html);
-              self.loadedUrl = self.contentUrl;
-              self.manageHeight();
-              self.$bus.$emit('modal-content-loaded', self.uniqueId);
+              self.ajaxContent = html.outerHTML;
+              self.doAjaxContent();
             }
           } else {
             self.doError();
