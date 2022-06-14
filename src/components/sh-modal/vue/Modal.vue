@@ -216,13 +216,13 @@ export default {
         if (this.active) self.focusLast();
       });
 
-      self.$bus.$on('close-modals', () => {
+      self.$bus.$on('close-modals', (e) => {
         if (this.active) {
           if (this.confirmationEvents) {
             // if (this.affirmed) {
             //   // self.$bus.$emit('modal-affirmed', self.uniqueId);
             // } else {
-            self.$bus.$emit('modal-rejected', self.uniqueId);
+            if (!e) self.$bus.$emit('modal-rejected', self.uniqueId);
             // }
           }
           this.close(true, 'close-modals event');
@@ -308,7 +308,7 @@ export default {
 
       if (self.confirmationEvents) {
         self.affirmed = undefined;
-        if (self.affirmTriggers.length === 0) setTimeout(this.bindConfirmTriggers);
+        setTimeout(this.bindConfirmTriggers);
       }
 
       if (self.alwaysReload || (!self.loaded && self.contentUrl)) {

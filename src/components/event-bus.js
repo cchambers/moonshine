@@ -39,7 +39,7 @@ let delegations = {
       target: '[close-trigger]',
       priority: 1,
       handler() {
-        EventBus.$emit('close-modals');
+        EventBus.$emit('close-modals', true);
       }
     },
     {
