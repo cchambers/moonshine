@@ -314,7 +314,7 @@ export default {
 
       if (self.confirmationEvents) {
         self.affirmed = undefined;
-        if (self.affirmTriggers.length === 0) setTimeout(this.bindConfirmTriggers);
+        setTimeout(this.bindConfirmTriggers);
       }
 
       if (self.alwaysReload || (!self.loaded && self.contentUrl)) {
