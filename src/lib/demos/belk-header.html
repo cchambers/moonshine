@@ -190,7 +190,10 @@
                   <a href="#">Send an eGift Card</a>
                 </li>
                 <li>
-                  <a href="#">Check My Gift Card Balance</a>
+                  <a href="#gift-card-modal">Check My Gift Card Balance</a>
+                </li>
+                <li>
+                  <a href="#test-modal">Test Modal</a>
                 </li>
               </ul>
             </div>
@@ -2040,6 +2043,9 @@
     </sh-carousel>
   </sh-banner>
 </div>
-
+<sh-modal variant="primary"  unique-id="gift-card-modal" header="${Resource.msg('billing.checkgiftcardbalance.pdp','forms',null)}" opened-event="gift-card-balance-once" overlay="lowlight-primary" content-url="https://devtest-ecdn.belkdev.com/check-gift-card-balance/"></sh-modal>
+<sh-modal variant="primary"  unique-id="test-modal" header="TEST HEADER" opened-event="EGH" overlay="lowlight-primary">
+  <div slot="content">TEST</div>
+</sh-modal>
 <div style="padding-top: 400vh;background: linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);"></div>
 </div>
