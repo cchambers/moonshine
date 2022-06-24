@@ -24,7 +24,7 @@
           <slot>{{ content }}</slot>
         </template>
         <div v-if="dynamicHTML" v-html="dynamicHTML"></div>
-        <div class="remote" v-html="ajaxContent" ref="ajax"></div>
+        <div class="remote" ref="ajax"></div>
 
       </div>
       <div class="footer">
@@ -465,7 +465,8 @@ export default {
     },
 
     doError() {
-      this.$refs.body.innerHTML = `<p class="error">There was a problem loading content from <a href='${window.location.host}${this.contentUrl}'>${window.location.host}${this.contentUrl}</a>.</p>`;
+      this.loaded = true;
+      this.$refs.ajax.innerHTML = `<p class="error">There was a problem loading content from <a href='${window.location.host}${this.contentUrl}'>${window.location.host}${this.contentUrl}</a>.</p>`;
     },
 
     ajax(data = null) {
@@ -510,7 +511,8 @@ export default {
             if (!html) {
               self.doError();
             } else {
-              self.ajaxContent = html.outerHTML;
+              // self.ajaxContent = html.outerHTML;
+              self.$refs.ajax.innerHTML = html.outerHTML;
               self.doAjaxContent();
             }
           } else {
