@@ -10,7 +10,9 @@
     :aria-labelledby="ariaID"
     :aria-describedby="ariaDescID">
     <div class="content" ref="content" :class="{ 'no-space': noSpace }" :size="size">
-      <div class="tab-lock" v-if="active" v-on:focus="modalButtonsFocus()" tabindex="0"></div>
+      <div class="tab-lock"
+        :class="{ off: !active }"
+        v-on:focus="modalButtonsFocus()" tabindex="0"></div>
       <div v-if="!hideHeader" class="header">
         <div v-if="header" class="modal-title">
           <h3 :id="ariaHeaderID">
@@ -25,12 +27,13 @@
         </template>
         <div v-if="dynamicHTML" v-html="dynamicHTML"></div>
         <div class="remote" ref="ajax"></div>
-
       </div>
       <div class="footer">
         <slot name="footer">{{ footer }}</slot>
       </div>
-      <div class="tab-lock" v-if="active" v-on:focus="modalButtonsFocus()" tabindex="0"></div>
+      <div class="tab-lock"
+        :class="{ off: !active }"
+        v-on:focus="modalButtonsFocus()" tabindex="0"></div>
     </div>
   </div>
 </template>
@@ -145,7 +148,9 @@ export default {
   },
 
   methods: {
-    doAjaxContent() {
+    doAjaxContent(html) {
+      this.ajaxContent = html;
+      this.$refs.ajax.innerHTML = this.ajaxContent;
       this.manageHeight();
       this.$bus.$emit('modal-content-loaded', this.uniqueId);
     },
@@ -512,8 +517,7 @@ export default {
               self.doError();
             } else {
               // self.ajaxContent = html.outerHTML;
-              self.$refs.ajax.innerHTML = html.outerHTML;
-              self.doAjaxContent();
+              self.doAjaxContent(html.outerHTML);
             }
           } else {
             self.doError();
