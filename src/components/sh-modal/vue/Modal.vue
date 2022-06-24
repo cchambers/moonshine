@@ -517,6 +517,7 @@ export default {
               self.doError();
             } else {
               // self.ajaxContent = html.outerHTML;
+              self.loadedUrl = self.contentUrl;
               self.doAjaxContent(html.outerHTML);
             }
           } else {
