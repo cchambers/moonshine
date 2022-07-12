@@ -48,7 +48,7 @@ export default {
 
   computed: {
     hasAllData() {
-      return (this.baseData && this.brdData);
+      return (this.baseData);
     },
   },
 
@@ -88,7 +88,7 @@ export default {
       self.$bus.$on('get-user-data', self.sendUserData);
       self.$bus.$on('update-fills', self.postUpdate);
       self.$bus.$on('bag-update', self.bagUpdateHandler);
-      this.$bus.$on('scroll-event', self.scrollHandler);
+      // this.$bus.$on('scroll-event', self.scrollHandler);
       this.$bus.$on('do-data', self.blah);
       this.$bus.$on('fetch-user-data', self.getData);
     },
@@ -123,20 +123,13 @@ export default {
 
     getData() {
       const self = this;
-      // let sessionData = self.getItem('belkUserData', true);
-      // if (sessionData && !forceUpdate) {
-      //   self.headerData = self.sessionData;
-      // } else {
       let url;
-      let brdurl;
       if (window.Urls) {
         url = window.Urls.headerData;
-        brdurl = window.Urls.getBRDDetailsForHeader;
       } else {
         let { origin } = window.location;
         if (origin.indexOf('localhost') >= 0) origin = '//dev29-web-belk.demandware.net';
         url = `${origin}/on/demandware.store/Sites-Belk-Site/default/Header-Data?format=ajax`;
-        brdurl = `${origin}/on/demandware.store/Sites-Belk-Site/default/BRD-GetBRDDetailsForHeader?format=ajax`;
         self.recheckUrls();
       }
       const xhr = new XMLHttpRequest();
@@ -157,31 +150,6 @@ export default {
           }
         }
       };
-
-      const savedResponse = (window.sessionAttributes)
-        ? window.SessionAttributes.AVAILABLE_BRDS : false;
-      if (savedResponse) {
-        self.handleBRD(savedResponse);
-      } else {
-        const brdxhr = new XMLHttpRequest();
-        brdxhr.open('GET', brdurl);
-        brdxhr.send(null);
-        brdxhr.onreadystatechange = () => {
-          const DONE = 4;
-          const OK = 200;
-          if (brdxhr.readyState === DONE) {
-            if (brdxhr.status === OK) {
-              let res;
-              try {
-                res = JSON.parse(brdxhr.responseText);
-              } catch (e) {
-                // Oh well, but whatever...
-              }
-              self.handleBRD(res);
-            }
-          }
-        };
-      }
     },
 
     recheckUrls() {
@@ -201,19 +169,12 @@ export default {
       this.$set(this.headerData, 'auth', data.userDetails.authenticated);
       this.$set(this.headerData, 'qty', data.cartQty);
       this.$set(this.headerData, 'subTotal', data.subTotal);
+      this.$set(this.headerData, 'brc', data.userDetails.customerType);
+      if (data.brd) this.$set(this.headerData, 'brd', data.brd.availableBRDValue);
       if (data.storeDetails.storeName) this.$set(this.headerData, 'store', data.storeDetails);
       this.$set(this.headerData, 'cart', data.cart);
       if (data.userDetails.firstName) document.documentElement.classList.add('is-user');
       this.baseData = true;
-    },
-
-    handleBRD(data) {
-      if (data) {
-        this.updateWindow(data);
-        this.$set(this.headerData, 'brc', data.customerType);
-        this.$set(this.headerData, 'brd', data.availableBRDValue);
-        this.brdData = true;
-      }
     },
 
     bagUpdateHandler(data) {
@@ -238,28 +199,28 @@ export default {
       this.actual.setAttribute('bag-state', num);
     },
 
-    scrollHandler(e) {
-      if (this.elementContains(this.$el, e.target)) return;
-      const st = window.pageYOffset || document.documentElement.scrollTop;
-      const scrollingDown = (st > this.lastScrollTop);
-      let state = 0;
+    // scrollHandler(e) {
+    //   if (this.elementContains(this.$el, e.target)) return;
+    //   const st = window.pageYOffset || document.documentElement.scrollTop;
+    //   const scrollingDown = (st > this.lastScrollTop);
+    //   let state = 0;
 
-      if (scrollingDown) { // scrolling down
-        state = (st >= this.primaryTrigger) ? 1 : 0; // distance for primary trigger
-        this.scrollDist += (st - this.lastScrollTop);
-        if (this.scrollDist > this.tertiaryTrigger) state = 2;
-      } else { // scrolling up
-        state = 1;
-        this.scrollDist = 0;
-        if (st < this.primaryTrigger) state = 0;
-      }
-      this.scrollState(state);
-      this.lastScrollTop = st <= 0 ? 0 : st;
+    //   if (scrollingDown) { // scrolling down
+    //     state = (st >= this.primaryTrigger) ? 1 : 0; // distance for primary trigger
+    //     this.scrollDist += (st - this.lastScrollTop);
+    //     if (this.scrollDist > this.tertiaryTrigger) state = 2;
+    //   } else { // scrolling up
+    //     state = 1;
+    //     this.scrollDist = 0;
+    //     if (st < this.primaryTrigger) state = 0;
+    //   }
+    //   this.scrollState(state);
+    //   this.lastScrollTop = st <= 0 ? 0 : st;
 
-      // setTimeout(() => {
-      //   this.updateHeightProp();
-      // }, 150);
-    },
+    //   // setTimeout(() => {
+    //   //   this.updateHeightProp();
+    //   // }, 150);
+    // },
 
     updateHeightProp() {
       setTimeout(() => {
