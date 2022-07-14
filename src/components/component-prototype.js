@@ -159,12 +159,12 @@ const ComponentPrototype = {
     };
   },
 
-  created() {
-    const globalVariantControl = this.getNested(window.utag_data, 'variantControl', this.$options.name);
-    const directVariantControl = this.getNested(window.utag_data, 'variantControl', this.uniqueId);
-    if (globalVariantControl && !directVariantControl) this.variant = globalVariantControl;
-    if (directVariantControl) this.variant = directVariantControl;
-  },
+  // created() {
+  //   const globalVariantControl = this.getNested(window.utag_data, 'variantControl', this.$options.name);
+  //   const directVariantControl = this.getNested(window.utag_data, 'variantControl', this.uniqueId);
+  //   if (globalVariantControl && !directVariantControl) this.variant = globalVariantControl;
+  //   if (directVariantControl) this.variant = directVariantControl;
+  // },
 
   mounted() {
     const self = this;
