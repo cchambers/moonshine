@@ -1,5 +1,5 @@
 <template>
-  <div class="sh-modal-buttons" :hidden="this.hidden">
+  <div class="sh-modal-buttons" :variant="variant" :hidden="this.hidden">
     <div class="tab-lock" v-on:focus="modalFocusLast()" tabindex="0"></div>
     <button @click="closeModals">
       <belk-icon v-if="closeActive" name="close" width="28" height="28">Close Modal</belk-icon>
@@ -57,6 +57,11 @@ export default {
 
       this.$bus.$on('modal-closed', () => {
         if (this.hidden) this.hidden = false;
+      });
+
+      this.$bus.$on('modal-opening', (modal) => {
+        this.variant = modal.variant || 'default';
+        console.log(this.variant);
       });
     },
   },
