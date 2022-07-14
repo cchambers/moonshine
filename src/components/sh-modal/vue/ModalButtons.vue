@@ -61,7 +61,6 @@ export default {
 
       this.$bus.$on('modal-opening', (modal) => {
         this.variant = modal.variant || 'default';
-        console.log(this.variant);
       });
     },
   },
