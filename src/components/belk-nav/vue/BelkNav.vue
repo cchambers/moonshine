@@ -1,7 +1,7 @@
 <template>
   <div class="belk-nav" :class="{ active: active }" @click="checkClose">
     <!-- <div class="spacer back-highlight-primary"></div> -->
-    <div class="contain"
+    <div
       v-on:keydown="keydownHandler">
       <div class="nav-categories">
         <!-- <div class="tab-lock" v-if="active" v-on:focus="focusLast()" tabindex="0"></div> -->
