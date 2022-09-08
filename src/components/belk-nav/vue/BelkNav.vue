@@ -84,6 +84,7 @@ export default {
     },
 
     hide() {
+      this.catsOff();
       if (this.active) this.active = false;
       this.reflow();
     },

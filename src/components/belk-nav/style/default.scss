@@ -58,6 +58,7 @@ belk-nav {
       right: 0;
       bottom: 0;
       opacity: 0;
+      max-height: calc(100vh - var(--header-height));
       pointer-events: none;
       background: $highlight-primary;
       overflow-y: auto;
