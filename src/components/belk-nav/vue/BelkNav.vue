@@ -76,6 +76,11 @@ export default {
         const contains = this.elementContains(this.$el, e.target);
         if ((!contains && e.target !== this.trigger) && this.active) this.hide('off click');
       });
+      document.addEventListener('click', (e) => {
+        if (!this.$el.contains(e.target)) {
+          this.hide();
+        }
+      });
     },
 
     toggle() {
