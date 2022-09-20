@@ -3,7 +3,6 @@
     :variant="variant"
     :class="{
       fullscreen: fullscreen,
-      'r-rail': rail,
       active: active
     }"
     :reveal="reveal"
@@ -68,7 +67,6 @@ export default {
     hideHeader: Boolean,
     hideButtons: Boolean,
     fullscreen: Boolean,
-    rail: Boolean,
     openTriggerEvent: String,
     openedEvent: String,
     noEvents: Boolean,
