@@ -82,10 +82,10 @@ sh-nav-item {
       transition: all 150ms $ease;
       color: $lowlight-primary;
       cursor: pointer;
-      border-radius: 5px;
-      &:hover {
-        background: $highlight-secondary;
-      }
+      // border-radius: 5px; o7
+      // &:hover {
+      //   background: $highlight-secondary;
+      // }
     }
 
     .belk-icon {

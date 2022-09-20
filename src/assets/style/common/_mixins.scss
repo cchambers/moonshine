@@ -120,3 +120,32 @@
     @content;
   }
 }
+
+@mixin beas-border-bottom {
+  position: relative;
+  &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    height: 0.2rem;
+    bottom: 0;
+    left: 0.8rem;
+    right: 0.8rem;
+    background: $lowlight-primary;
+  }
+}
+
+@mixin beas-border-left {
+  position: relative;
+  &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 0.2rem;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+    background: $lowlight-primary;
+  }
+}
