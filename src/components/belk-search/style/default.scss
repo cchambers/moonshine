@@ -17,7 +17,8 @@ belk-search {
     flex-grow: 1;
     order: 1;
     overflow: hidden;
-    border: 1px solid $lowlight-secondary;
+    border: 1px solid $lowlight-tertiary;
+    border-radius: 0.4rem;
     transition: box-shadow 250ms $ease;
 
     &[invalid]{
