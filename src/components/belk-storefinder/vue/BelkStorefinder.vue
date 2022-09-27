@@ -6,7 +6,7 @@
       boundaries-selector="#primary-nav"
       :foreground-selector="this.foreground">
       <div slot="reference" class="nav-link">
-        <belk-icon name="map-pin" width="10" height="15" class="margin-r-atomic"></belk-icon>
+        <belk-icon name="storebag" width="16" height="18" class="margin-r-atomic"></belk-icon>
         <span>{{ storeData.storeName }}</span>
       </div>
       <div slot="content">
@@ -34,7 +34,7 @@
     </sh-nav-item>
     <a v-else class="nav-link"
       :href="storefinderLink">
-      <belk-icon name="map-pin" width="9" class="margin-r-atomic"></belk-icon>
+      <belk-icon name="storebag" width="16" height="18" class="margin-r-atomic"></belk-icon>  
       Find A Store
     </a>
 

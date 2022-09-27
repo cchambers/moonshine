@@ -35,7 +35,7 @@ belk-header {
   top: 0;
   color: $lowlight-primary;
   z-index: 6;
-  border-bottom: 1px solid $highlight-secondary;
+  border-bottom: 1px solid $lowlight-tertiary;
   @include box-shadow(1);
   * {
     box-sizing: border-box;

@@ -224,7 +224,7 @@ export default {
 
     updateHeightProp() {
       setTimeout(() => {
-        if (this.actual) document.documentElement.style.setProperty('--header-height', `${this.actual.clientHeight}px`);
+        if (this.header) document.documentElement.style.setProperty('--header-height', `${this.header.clientHeight}px`);
       }, 10);
     },
 
