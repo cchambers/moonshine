@@ -1,7 +1,7 @@
 <template>
   <div class="belk-nav" :class="{ active: active }" @click="checkClose">
     <!-- <div class="spacer back-highlight-primary"></div> -->
-    <div class="contain"
+    <div
       v-on:keydown="keydownHandler">
       <div class="nav-categories">
         <!-- <div class="tab-lock" v-if="active" v-on:focus="focusLast()" tabindex="0"></div> -->
@@ -76,6 +76,11 @@ export default {
         const contains = this.elementContains(this.$el, e.target);
         if ((!contains && e.target !== this.trigger) && this.active) this.hide('off click');
       });
+      document.addEventListener('click', (e) => {
+        if (!this.$el.contains(e.target)) {
+          this.hide();
+        }
+      });
     },
 
     toggle() {
@@ -84,6 +89,7 @@ export default {
     },
 
     hide() {
+      this.catsOff();
       if (this.active) this.active = false;
       this.reflow();
     },

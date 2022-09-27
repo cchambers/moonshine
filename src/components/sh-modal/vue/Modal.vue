@@ -333,7 +333,7 @@ export default {
       }
 
       if (!self.active) {
-        if (!self.noEvents) self.$bus.$emit('modal-opening', self.uniqueId);
+        if (!self.noEvents) self.$bus.$emit('modal-opening', self);
         if (self.hideButtons) self.$bus.$emit('modal-buttons-hide');
         document.documentElement.classList.add('sh-modal-open');
         self.active = true;
@@ -533,6 +533,7 @@ export default {
 <style lang="scss" src="../style/default.scss"></style>
 <style lang="scss" src="../style/primary.scss"></style>
 <style lang="scss" src="../style/secondary.scss"></style>
+<style lang="scss" src="../style/tertiary.scss"></style>
 <style lang="scss">
   #sh-modals {
     position: fixed;
@@ -592,6 +593,13 @@ export default {
             top: 50%;
             transform: translateY(-50%);
           }
+        }
+      }
+      .sh-modal-buttons[variant="tertiary"] {
+        right: 1.6rem !important;
+        left: auto !important;
+        button {
+          color: $lowlight-primary !important;
         }
       }
     }

@@ -1,0 +1,17 @@
+.sh-modal[variant="tertiary"] {
+  .content {
+    width: 42rem;
+    max-width: 42rem;
+    min-height: 100vh;
+    margin: 0;
+    margin-left: auto;
+  }
+
+  .body {
+    width: 100%;
+    max-width: 32rem;
+    margin: 0 auto;
+    padding: 0;
+    padding-right: 1.6rem;
+  }
+}

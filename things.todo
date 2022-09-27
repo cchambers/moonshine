@@ -1,3 +1,8 @@
+Header: 
+  - click or hover?
+  - no way to close modal
+
+
 Global:
   - fix styling issues caused by global button updates from 2021
   - update code container with new (more user-friendly) design
@@ -18,4 +23,5 @@ Components:
     + ensure all props are present and described
     + ensure all public functionality is present and described
     + update demos to show examples of (only) approved style variants
+
 
