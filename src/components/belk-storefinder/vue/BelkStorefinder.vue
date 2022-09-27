@@ -34,7 +34,7 @@
     </sh-nav-item>
     <a v-else class="nav-link"
       :href="storefinderLink">
-      <belk-icon name="storebag" width="16" height="18" class="margin-r-atomic"></belk-icon>  
+      <belk-icon name="storebag" width="16" height="18" class="margin-r-atomic"></belk-icon>
       Find A Store
     </a>
 
