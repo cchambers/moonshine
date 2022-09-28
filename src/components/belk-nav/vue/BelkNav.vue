@@ -69,7 +69,6 @@ export default {
     events() {
       this.$bus.$on('show-nav', this.toggle);
       if (!this.checkLocal()) window.libs.notify.api.request(['show-nav'], this.toggle, false);
-      
       this.$bus.$on('popper-opening', () => {
         this.hide('popper');
       });
