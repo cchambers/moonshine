@@ -569,10 +569,10 @@ belk-header {
   }
 
   .contain {
-    // max-width: 96rem;
-    // @include xl {
-    //   max-width: 128rem;
-    // }
+    max-width: 96rem;
+    @include xl {
+      max-width: 128rem;
+    }
   }
 
 
