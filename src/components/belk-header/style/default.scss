@@ -109,9 +109,6 @@ belk-header {
     flex-shrink: 0;
     flex-basis: auto;
     padding: 0 $little;
-    @include lg {
-      padding: 0 $big;
-    }
   }
   .iconbar .nav-divider {
     min-height: 6rem;
@@ -201,6 +198,7 @@ belk-header {
 
     .iconbar-context {
       display: none;
+      font-size: 1.4rem;
       white-space: nowrap;
       @include lg {
         display: flex;
