@@ -34,7 +34,6 @@ belk-header {
   top: 0;
   color: $lowlight-primary;
   z-index: 6;
-  border-bottom: 1px solid $highlight-secondary;
   @include box-shadow(1);
   * {
     box-sizing: border-box;
@@ -159,7 +158,7 @@ belk-header {
     }
 
     a.iconbar-action {
-      padding: 0 $micro;
+      padding: 0 $little;
       height: 4.5rem;
       min-width: 4.5rem;
       cursor: pointer;
@@ -200,6 +199,7 @@ belk-header {
       display: none;
       font-size: 1.4rem;
       white-space: nowrap;
+      margin-top: 1px;
       @include lg {
         display: flex;
       }

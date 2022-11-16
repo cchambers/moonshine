@@ -597,6 +597,7 @@ export default {
       }
       .sh-modal-buttons[variant="tertiary"] {
         right: 1.6rem !important;
+        top: 1.6rem !important;
         left: auto !important;
         button {
           color: $lowlight-primary !important;
