@@ -1,5 +1,8 @@
 <template>
-  <div class="belk-nav" :class="{ active: active }" @click="checkClose">
+  <div class="belk-nav" :class="{ active: active }"
+    @click="checkClose"
+    @mouseleave="mouseleaveHandler"
+    @mouseenter="cancelleaveHandler">
     <!-- <div class="spacer back-highlight-primary"></div> -->
     <div
       v-on:keydown="keydownHandler">
@@ -44,11 +47,19 @@ export default {
     }, 20);
   },
 
+  props: {
+    hideDelay: {
+      type: Number,
+      default: 1000,
+    },
+  },
+
   data() {
     return {
       active: false,
       headerEl: false,
       trigger: false,
+      leaveTimer: 0,
       cats: [],
     };
   },
@@ -83,6 +94,14 @@ export default {
       });
     },
 
+    mouseleaveHandler() {
+      this.leaveTimer = setTimeout(this.hide, this.hideDelay);
+    },
+
+    cancelleaveHandler() {
+      clearTimeout(this.leaveTimer);
+    },
+
     toggle() {
       // this.$bus.$emit('show-curtain');
       this.active = !this.active;
@@ -96,6 +115,7 @@ export default {
 
     activate(which, focusContent = false) {
       this.catsOff();
+      this.$bus.$emit('close-poppers');
       const el = this.$el.querySelector(`[category="${which}"]`);
       if (el) {
         el.classList.add('active');
@@ -106,7 +126,9 @@ export default {
         }
       }
       const main = this.$el.querySelector(`[main="${which}"]`);
-      if (main) main.classList.add('active');
+      if (main) {
+        main.classList.add('active');
+      }
     },
 
     catsOff() {
