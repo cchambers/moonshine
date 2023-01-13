@@ -6,7 +6,9 @@
     :aria-describedby="ariaDescID"
     :class="{
       active: active
-    }">
+    }"
+    v-if="isMobile"
+    >
     <div class="overlay" @click="close"></div>
     <div class="container">
       <div class="tab-lock" v-if="active" v-on:focus="focusButton()" tabindex="0"></div>
