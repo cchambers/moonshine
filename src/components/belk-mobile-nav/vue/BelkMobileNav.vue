@@ -7,7 +7,7 @@
     :class="{
       active: active
     }"
-    v-if="isMobile"
+    v-if="isMobile() || mobileSwitch"
     >
     <div class="overlay" @click="close"></div>
     <div class="container">
@@ -60,6 +60,7 @@ export default {
       ariaID: String,
       ariaHeaderID: String,
       ariaDescID: String,
+      mobileSwitch: false,
     };
   },
 
@@ -82,6 +83,9 @@ export default {
     events() {
       this.$bus.$on('show-mobile-nav', this.open);
       if (!this.checkLocal()) window.libs.notify.api.request(['show-mobile-nav'], this.open, false);
+      this.$bus.$on('resize-event', () => {
+        this.mobileSwitch = this.isMobile();
+      });
     },
     open() {
       if (!this.active) {

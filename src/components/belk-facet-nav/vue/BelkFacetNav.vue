@@ -110,7 +110,7 @@
                   >Clear</div>
                 </div>
                 <div class="acc-body">
-                  <div class="height-scrol">
+                  <div class="height-scroll">
                     <ul>
                       <li v-for="color in facet.options" :key="color.id"
                         :title="'Refine by: ' + color.name">
