@@ -94,9 +94,11 @@ function bindAll() {
   });
 
   document.addEventListener('sh-emit', (data) => {
+    let params;
     const detail = data.detail;
+    if (detail.data) params = detail.data;
     const event = detail.eventName;
-    EventBus.$emit(event, detail);
+    EventBus.$emit(event, params);
   });
 }
 
