@@ -316,7 +316,6 @@ export default {
     },
 
     open() {
-      console.log('ok open then');
       const self = this;
 
       if (self.confirmationEvents) {
