@@ -245,8 +245,9 @@ export default {
       });
 
       self.$bus.$on('open-modal', (data) => {
-        if (data.url && data.url !== this.loadedUrl) this.loadedUrl = data.url;
-        if (data.id === this.uniqueId) this.open();
+        const params = data.data;
+        if (params.url && params.url !== this.loadedUrl) this.loadedUrl = params.url;
+        if (params.id === this.uniqueId) this.open();
       });
 
       self.$bus.$on('update-modal', (data) => {
@@ -315,6 +316,7 @@ export default {
     },
 
     open() {
+      console.log('ok open then');
       const self = this;
 
       if (self.confirmationEvents) {

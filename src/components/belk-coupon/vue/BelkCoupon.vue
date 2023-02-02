@@ -141,10 +141,6 @@ export default {
     },
     image: String,
     link: String,
-    noType: {
-      type: Boolean,
-      default: false
-    },
     toSpend: {
       type: Number,
       default: NaN,
