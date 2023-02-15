@@ -693,6 +693,7 @@ export default {
     },
 
     clearAllFilters() {
+      this.toggleActive();
       this.$bus.$emit('facet-link', this.clearHref);
     },
 
