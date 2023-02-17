@@ -39,6 +39,11 @@ belk-header {
     box-sizing: border-box;
   }
 
+  & ~ #wrapper {
+    padding-top: 11rem;
+    padding-top: var(--header-height);
+  }
+
   .iconbar,
   .tertiary {
     a:not(.belk-link) {
@@ -470,18 +475,8 @@ belk-header {
     }
   }
 
-  & ~ #wrapper {
-    padding-top: 11rem;
-    padding-top: var(--header-height);
-  }
-
   // Media Queries
   @include md {
-    & ~ #wrapper {
-      padding-top: 14rem;
-      padding-top: var(--header-height);
-    }
-
     .contain {
       justify-content: space-between;
     }
@@ -557,12 +552,6 @@ belk-header {
         }
       }
     }
-
-    //scroll states for site wrapper
-    & ~ #wrapper {
-      padding-top: 20rem;
-      padding-top: var(--header-height);
-    }
   }
 
   .contain {
@@ -628,6 +617,10 @@ belk-header {
     flex-direction: row;
     font-weight: bold;
   }
+}
+
+html.scroll-block .belk-header ~ #wrapper {
+  padding-top: 11rem;
 }
 
 [filled="true"] {
