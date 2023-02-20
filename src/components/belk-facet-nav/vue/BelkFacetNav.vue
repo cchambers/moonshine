@@ -693,7 +693,7 @@ export default {
     },
 
     clearAllFilters() {
-      this.toggleActive();
+      if (this.isMobile()) this.toggleActive();
       this.$bus.$emit('facet-link', this.clearHref);
     },
 
