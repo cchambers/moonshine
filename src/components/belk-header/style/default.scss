@@ -619,8 +619,10 @@ belk-header {
   }
 }
 
-html.scroll-block .belk-header ~ #wrapper {
-  padding-top: 11rem;
+@media screen and (max-width: 960px) {
+  html.scroll-block .belk-header ~ #wrapper {
+    padding-top: 11rem;
+  }
 }
 
 [filled="true"] {
