@@ -110,21 +110,21 @@ belk-nav {
     .topcat > li > a {
       font-weight: bold;
     }
-    sh-masonry {
-      height: 100%;
-      width: 100%;
-      ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-      }
-      .masonry-grid {
-        padding-left: 2.5rem;
-        line-height: 2.8rem;
-        font-size: 1.4rem;
-        .view-all { display: none; }
-      }
-    }
+    // sh-masonry {
+    //   height: 100%;
+    //   width: 100%;
+    //   ul {
+    //     list-style: none;
+    //     padding: 0;
+    //     margin: 0;
+    //   }
+    //   .masonry-grid {
+    //     padding-left: 2.5rem;
+    //     line-height: 2.8rem;
+    //     font-size: 1.4rem;
+    //     .view-all { display: none; }
+    //   }
+    // }
     .nav-categories {
       flex-grow: 0;
       flex-shrink: 0;

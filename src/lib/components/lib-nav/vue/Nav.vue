@@ -37,6 +37,12 @@
                 <li>
                   <a href="/utilities/colors">Colors</a>
                 </li>
+                <li>
+                  <a href="/utilities/icons">Iconography</a>
+                </li>
+                <li>
+                  <a href="/utilities/event-bus">Event Bus</a>
+                </li>
                 <!-- <li>
                   <a href="/tools/shared-modal-list">Shared Modals</a>
                 </li> -->
