@@ -7,7 +7,7 @@
     :class="{
       active: active
     }"
-    v-if="isMobile() || mobileSwitch"
+    v-if="isTablet() || mobileSwitch"
     >
     <div class="overlay" @click="close"></div>
     <div class="container">
@@ -84,7 +84,7 @@ export default {
       this.$bus.$on('show-mobile-nav', this.open);
       if (!this.checkLocal()) window.libs.notify.api.request(['show-mobile-nav'], this.open, false);
       this.$bus.$on('resize-event', () => {
-        this.mobileSwitch = this.isMobile();
+        this.mobileSwitch = this.isTablet();
       });
     },
     open() {
