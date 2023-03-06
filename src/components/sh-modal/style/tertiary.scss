@@ -1,6 +1,10 @@
 .sh-modal[variant="tertiary"] {
   height: 100vh;
   display: flex;
+  padding-top: $rem;
+  @include md {
+    padding-top: 0;
+  }
   .content {
     width: 100%;
     max-width: 42rem;
