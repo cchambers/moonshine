@@ -1,10 +1,25 @@
 .sh-modal[variant="tertiary"] {
+  height: 100vh;
+  display: flex;
+  padding-top: $rem;
+  @include md {
+    padding-top: 0;
+  }
   .content {
-    width: 42rem;
+    width: 100%;
     max-width: 42rem;
-    min-height: 100vh;
     margin: 0;
-    margin-left: auto;
+    height: auto;
+    margin-top: auto;
+    border-radius: $little 0 0 $little;
+    @include box-shadow(1);
+    @include md {
+      height: 100vh;
+      margin-left: auto;
+      margin-top: 0;
+      border-radius: 0;
+      @include box-shadow(0);
+    }
   }
 
   .body {
@@ -12,5 +27,10 @@
     max-width: 32rem;
     padding: 0;
     padding-right: 1.6rem;
+  }
+
+  transform: translateY(200%);
+  @include lg {
+    transform: translateX(200%);
   }
 }

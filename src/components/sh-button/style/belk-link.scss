@@ -2,11 +2,11 @@ sh-button[variant="belk-link"] {
   button {
     padding: 0;
     min-height: auto;
+    color: currentColor;
     .actual-text {
       font-size: 1em;
-      color: $accent-primary;
-      border-bottom: 1px solid $accent-primary;
-      transition: all 200ms ease;
+      border-bottom: 1px solid currentColor;
+      transition: all 200ms ease; 
     }
     &:active {
       background: transparent !important;
