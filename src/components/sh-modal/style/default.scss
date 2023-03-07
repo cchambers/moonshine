@@ -20,9 +20,9 @@ sh-modal {
   transition-delay: 10ms;
   transform-origin: top center;
 
-  @include md {
-    transform: scale(0.7) rotateX(-60deg) translateY(20%) translateZ(0);
-  }
+  // @include md {
+  //   transform: scale(0.7) rotateX(-60deg) translateY(20%) translateZ(0);
+  // }
   &.active {
     opacity: 1 !important;
     max-height: 10000vh;
@@ -67,18 +67,6 @@ sh-modal {
     margin: 0;
     height: 100vh;
     overflow-y: auto;
-    @include md {
-      height: auto;
-      overflow-y: auto;
-      margin: 16.7rem auto;
-      margin-left: 0;
-      max-width: calc(100% - 5.5rem);
-    }
-    @include lg {
-      margin-right: 1.5rem;
-      margin-left: 0;
-      max-width: 78rem;
-    }
     &.no-space {
       margin-top: 0;
     }

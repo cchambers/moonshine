@@ -33,7 +33,7 @@ sh-tooltip {
       min-width: 16rem;
       max-width: 32rem;
       border-radius: 0.5rem;
-      bottom: 100%;
+      bottom: calc(100% + 0.4rem);
       left: 50%;
       transform: translateY(2rem) translateZ(0) translateX(-50%) rotateX(90deg) scale(0.4);
       transition: all 200ms $decel;
@@ -62,12 +62,22 @@ sh-tooltip {
         border-width: 1rem 1rem 0 1rem;
         border-color: $lowlight-secondary transparent transparent transparent;
       }
+      &::before {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        height: 1rem;
+      }
     }
 
     &:hover {
       .tip {
         opacity: 0.9;
         transform: translateY(0) translateZ(0) translateX(-50%) rotateY(0deg) scale(1);
+        animation-delay: 1s;
       }
     }
   }

@@ -235,6 +235,7 @@ a {
   z-index: 10;
   max-height: 100%;
   list-style: none;
+  margin: 0 !important;
   padding: 0;
   li {
     border: 1px solid $highlight-primary;
