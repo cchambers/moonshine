@@ -76,11 +76,11 @@ sh-modal {
   }
 
   .body {
-    padding: 0 2rem 3rem 2rem;
+    padding: 0 $little $rem $little;
     margin-left: auto;
     margin-right: auto;
     @include md {
-      padding: 2rem;
+      padding: $little;
     }
   }
 
@@ -98,7 +98,7 @@ sh-modal {
     .modal-title {
       background: $highlight-primary;
       width: 100%;
-      padding-top: 2rem;
+      padding-top: $little;
     }
 
     div,
@@ -120,7 +120,7 @@ sh-modal {
   }
 
   .footer {
-    padding: 2rem $rem;
+    padding: $little $rem;
     margin-top: 0;
     &:empty {
       display: none;

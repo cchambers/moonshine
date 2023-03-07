@@ -549,9 +549,6 @@ export default {
     overflow: hidden;
     -webkit-overflow-scrolling: touch;
     transition: opacity 150ms ease;
-    *:focus {
-      outline: 2px solid $accent-tertiary;
-    }
     sh-modal-buttons {
       display: none;
       .sh-modal-buttons {
@@ -596,11 +593,15 @@ export default {
         }
       }
       .sh-modal-buttons[variant="tertiary"] {
-        right: 1.6rem !important;
-        top: 1.6rem !important;
-        left: auto !important;
-        button {
-          color: $lowlight-primary !important;
+        display: none;
+        @include lg {
+          display: block;
+          right: 1.6rem !important;
+          top: 1.6rem !important;
+          left: auto !important;
+          button {
+            color: $lowlight-primary !important;
+          }
         }
       }
     }

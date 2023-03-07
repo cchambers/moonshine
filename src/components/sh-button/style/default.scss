@@ -37,13 +37,6 @@ sh-button {
     }
   }
 
-  &[full] {
-    display: flex !important;
-    width: 100% !important;
-    margin-top: $micro;
-    margin-left: 0;
-  }
-
   // &[scale] {
   //   &[scale="130"] { font-size: 1.3rem; }
   //   &[scale="120"] { font-size: 1.2rem; }
@@ -58,7 +51,6 @@ sh-button {
   &[full] {
     display: flex !important;
     width: 100% !important;
-    margin-top: $micro;
     margin-left: 0;
   }
 

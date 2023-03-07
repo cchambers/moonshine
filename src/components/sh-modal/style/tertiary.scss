@@ -5,13 +5,36 @@
   @include md {
     padding-top: 0;
   }
+  .modal-title {
+    width: 100%;
+    display: flex;
+    padding-bottom: $little;
+    &:after {
+      content: 'x';
+      display: block;
+      font-weight: bold;
+      margin-left: auto;
+      width: 4.5rem;
+      text-align: center;
+    }
+    h3 {
+      display: block;
+      width: 100%;
+      font-weight: normal;
+      font-size: 1.4rem;
+      text-align: center;
+    }
+  }
   .content {
+    display: flex;
+    flex-direction: column;
     width: 100%;
     max-width: 42rem;
     margin: 0;
     height: auto;
+    max-height: calc(100vh - 3.2rem);
     margin-top: auto;
-    border-radius: $little 0 0 $little;
+    border-radius: $little $little 0 0;
     @include box-shadow(1);
     @include md {
       height: 100vh;
@@ -22,11 +45,18 @@
     }
   }
 
+  .footer {
+    margin-top: auto;
+    flex-grow: 0;
+  }
+
   .body {
     width: 100%;
-    max-width: 32rem;
-    padding: 0;
-    padding-right: 1.6rem;
+    padding: $little $rem;
+    overflow-y: auto;
+    p + p {
+      margin-top: $little;
+    }
   }
 
   transform: translateY(200%);
