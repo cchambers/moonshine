@@ -38,6 +38,7 @@
     @include box-shadow(1);
     @include md {
       height: 100vh;
+      max-height: 100vh;
       margin-left: auto;
       margin-top: 0;
       border-radius: 0;
