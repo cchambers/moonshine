@@ -18,6 +18,11 @@
           <h3 :id="ariaHeaderID">
             <slot name="header">{{ header }}</slot>
           </h3>
+          <button
+            close-trigger
+            v-if="isMobile() && variant == 'tertiary'">
+            close
+          </button>
         </div>
       </div>
       <div class="body" :style="{ 'max-width': maxWidth }" ref="body" :id="ariaDescID">
@@ -333,6 +338,7 @@ export default {
       }
 
       if (!self.active) {
+        console.log('MODAL OPENING...', this);
         if (!self.noEvents) self.$bus.$emit('modal-opening', self);
         if (self.hideButtons) self.$bus.$emit('modal-buttons-hide');
         document.documentElement.classList.add('sh-modal-open');
@@ -597,7 +603,7 @@ export default {
         @include lg {
           display: block;
           right: 1.6rem !important;
-          top: 1.6rem !important;
+          top: 0 !important;
           left: auto !important;
           button {
             color: $lowlight-primary !important;

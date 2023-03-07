@@ -9,14 +9,6 @@
     width: 100%;
     display: flex;
     padding-bottom: $little;
-    &:after {
-      content: 'x';
-      display: block;
-      font-weight: bold;
-      margin-left: auto;
-      width: 4.5rem;
-      text-align: center;
-    }
     h3 {
       display: block;
       width: 100%;
@@ -53,7 +45,7 @@
 
   .body {
     width: 100%;
-    padding: $little $rem;
+    padding: 0 $rem;
     overflow-y: auto;
     p + p {
       margin-top: $little;
