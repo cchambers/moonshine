@@ -2,11 +2,10 @@
   <div>
     <!-- <div class="close-curtain" v-hammer:tap="closeNav">
       <i class="material-icons-round nav-icon">close</i>
-    </div> -->
+    </div>
     <div class="close-modal" v-hammer:tap="back">
       <i class="material-icons-round nav-icon">arrow_back</i>
-    </div>
-
+    </div> -->
     <div class="theme-toggle" v-hammer:tap="toggleTheme">
       <i v-if="theme === 'dark'" class="material-icons-round nav-icon">toggle_on</i>
       <i v-else class="material-icons-round nav-icon">toggle_off</i>
