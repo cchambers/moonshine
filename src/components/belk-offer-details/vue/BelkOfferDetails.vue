@@ -1,7 +1,7 @@
 <template>
   <div class="belk-offer-details flex col align-start"
     :variant="variant">
-    <template v-if="content.summary">
+    <div class="summary" v-if="content.summary">
       <h4 v-if="content.summary.callout">
         {{ content.summary.callout }}
       </h4>
@@ -15,9 +15,9 @@
         {{ content.summary.image.alt || content.summary.image.title }}
       </div>
       <p v-if="content.summary.description">{{ content.summary.description }}</p>
-    </template>
+    </div>
 
-    <template v-if="content.gifts">
+    <div class="gifts" v-if="content.gifts">
       <div v-for="item in content.gifts" :key="item">
         <div v-for="image in item.images" :key="image">
           {{ image}}
@@ -25,18 +25,16 @@
         <p>{{ item.name }}</p>
         <p>{{ item.description }}</p>
       </div>
-    </template>
+    </div>
 
-    <template v-if="content.actions">
-      <div class="margin-t-auto">
-        <div v-for="action in content.actions.primary" :key="action">
-          <sh-button :link="action.url" full variant="primary">{{ action.text }}</sh-button>
-        </div>
-        <div v-for="action in content.actions.secondary" :key="action">
-          <sh-button :link="action.url" full variant="belk-link">{{ action.text }}</sh-button>
-        </div>
+    <div v-if="content.actions" class="margin-t-auto">
+      <div v-for="action in content.actions.primary" :key="action">
+        <sh-button :link="action.url" full variant="primary">{{ action.text }}</sh-button>
       </div>
-    </template>
+      <div v-for="action in content.actions.secondary" :key="action">
+        <sh-button :link="action.url" full variant="belk-link">{{ action.text }}</sh-button>
+      </div>
+    </div>
   </div>
 </template>
 
