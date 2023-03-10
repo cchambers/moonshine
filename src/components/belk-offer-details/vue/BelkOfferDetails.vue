@@ -59,7 +59,6 @@ export default {
 
     handleData(data) {
       this.content = { ...data };
-      this.$bus.$emit('open-modal', { id: 'tertiary-modal' });
     },
   },
 
