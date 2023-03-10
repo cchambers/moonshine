@@ -1,0 +1,15 @@
+{
+  "name": "Belk Offer Details",
+  "category": "template",
+  "production": true,
+  "element": "belk-offer-details",
+  "description": "Used to render offer details and CTAs.",
+  "tags": ["template", "special offers"],
+  "tracking": [],
+  "requirements": {
+    "header": [],
+    "body": [],
+    "footer": [],
+    "states": []
+  }
+}

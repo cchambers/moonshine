@@ -1,0 +1,11 @@
+/* default styling */
+
+belk-offer-details {
+  display: inline-flex;
+
+  .belk-offer-details {
+    p {
+      margin-bottom: $little;
+    }
+  }
+}
