@@ -46,15 +46,47 @@ export default {
 
   name: 'BelkOfferDetails',
 
+  props: {
+    uniqueId: String,
+    contentData: {
+      type: Object,
+    },
+    giftId: {
+      type: String,
+    },
+  },
+
   data() {
     return {
       content: {},
     };
   },
 
+  mounted() {
+    if (this.contentData) {
+      const data = JSON.parse(this.contentData);
+      this.handleData(data);
+    }
+    if (this.giftId) this.getData();
+  },
+
   methods: {
     events() {
-      this.$bus.$on('special-offer-data', this.handleData);
+      if (this.uniqueId) {
+        this.$bus.$on(`special-offer-data-${this.uniqueId}`, (data) => {
+          this.handleData(data);
+        });
+      } else {
+        this.$bus.$on('special-offer-data', (data) => {
+          this.handleData(data);
+        });
+      }
+    },
+
+    getData() {
+      fetch(`/on/demandware.store/Sites-Belk-Site/default/Product-ShowSpecialOfferDetails?promoId=${this.giftId}`)
+        .then((response) => response.json())
+        .then(this.handleData);
     },
 
     handleData(data) {
