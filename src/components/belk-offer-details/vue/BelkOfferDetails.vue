@@ -79,9 +79,7 @@ export default {
     }
     if (this.giftId) this.getData();
     setTimeout(() => {
-      console.log('TIMEOUT');
       if (window.pageContext) {
-        console.log('HERE IS THAT', window.pageContext.ns);
         const temp = window.pageContext.ns;
         if (temp === 'product' || temp === 'cart') this.hideActions = true;
       }
