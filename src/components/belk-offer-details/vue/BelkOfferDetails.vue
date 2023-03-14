@@ -22,12 +22,12 @@
 
     <div class="gifts" v-if="content.gifts">
       <div class="item" v-for="item in content.gifts" :key="item.id">
-        <div v-for="image in item.images" :key="image.id">
+        <div class="images" v-for="image in item.images" :key="image.id">
           <div class="image"
             :style="`background-image:url('${image.url}')`"
             :alt="image.alt"></div>
         </div>
-        <p>{{ item.name }}</p>
+        <p class="name">{{ item.name }}</p>
         <div v-html="item.description"></div>
       </div>
     </div>
