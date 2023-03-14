@@ -7,8 +7,8 @@
   "tags": ["template", "special offers"],
   "tracking": [],
   "requirements": {
-    "header": [],
-    "body": [],
+    "summary": ["Display details from data"],
+    "summary image": [],
     "footer": [],
     "states": []
   }

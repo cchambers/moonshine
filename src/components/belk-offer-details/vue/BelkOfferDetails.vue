@@ -11,27 +11,27 @@
       </div>
       <div class="image"
         v-if="content.summary.image"
-        :style="`background-image:url('${content.image}')`">
+        :style="`background-image:url('${content.image.url}')`">
         {{ content.summary.image.alt || content.summary.image.title }}
       </div>
       <p v-if="content.summary.description">{{ content.summary.description }}</p>
     </div>
 
     <div class="gifts" v-if="content.gifts">
-      <div v-for="item in content.gifts" :key="item">
-        <div v-for="image in item.images" :key="image">
-          {{ image}}
+      <div v-for="item in content.gifts" :key="item.id">
+        <div v-for="image in item.images" :key="image.id">
+          <img :src="image.url" :alt="image.alt">
         </div>
         <p>{{ item.name }}</p>
-        <p>{{ item.description }}</p>
+        <div v-html="item.description"></div>
       </div>
     </div>
 
-    <div v-if="content.actions" class="margin-t-auto">
-      <div v-for="action in content.actions.primary" :key="action">
+    <div v-if="content.actions" class="margin-t-auto offer-detail-actions">
+      <div v-for="action in content.actions.primary" :key="action.id">
         <sh-button :link="action.url" full variant="primary">{{ action.text }}</sh-button>
       </div>
-      <div v-for="action in content.actions.secondary" :key="action">
+      <div v-for="action in content.actions.secondary" :key="action.id">
         <sh-button :link="action.url" full variant="belk-link">{{ action.text }}</sh-button>
       </div>
     </div>
@@ -84,12 +84,13 @@ export default {
     },
 
     getData() {
-      fetch(`/on/demandware.store/Sites-Belk-Site/default/Product-ShowSpecialOfferDetails?promoId=${this.giftId}`)
+      fetch(`${window.location.origin}/on/demandware.store/Sites-Belk-Site/default/Product-ShowSpecialOfferDetails?promoId=${this.giftId}`)
         .then((response) => response.json())
         .then(this.handleData);
     },
 
     handleData(data) {
+      console.log(data);
       this.content = { ...data };
     },
   },
