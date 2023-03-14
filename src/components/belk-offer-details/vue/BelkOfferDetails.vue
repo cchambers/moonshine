@@ -21,9 +21,11 @@
     </div>
 
     <div class="gifts" v-if="content.gifts">
-      <div v-for="item in content.gifts" :key="item.id">
+      <div class="item" v-for="item in content.gifts" :key="item.id">
         <div v-for="image in item.images" :key="image.id">
-          <img :src="image.url" :alt="image.alt">
+          <div class="image"
+            :style="`background-image:url('${image.url}')`"
+            :alt="image.alt"></div>
         </div>
         <p>{{ item.name }}</p>
         <div v-html="item.description"></div>
