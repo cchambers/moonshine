@@ -1,0 +1,22 @@
+{
+  "name": "Belk Offer Details",
+  "category": "template",
+  "production": true,
+  "element": "belk-offer-details",
+  "description": "Used to render offer details and CTAs.",
+  "tags": ["template", "special offers"],
+  "tracking": [],
+  "requirements": {
+    "summary": [
+      "Display details from data"
+    ],
+    "images": [
+      "Should scroll horizontally"
+    ],
+    "actions": [
+      "Should hide self on 'product' template",
+      "Should hide self on 'cart' template"
+    ],
+    "states": ["empty", "hydrated"]
+  }
+}

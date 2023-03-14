@@ -18,7 +18,7 @@
         v-on:keydown.tab="toggleTabHandler"
         ref="button"
         role="button"
-        class="drawer-toggle flex align-top"
+        class="drawer-toggle flex align-start"
         :id="ariaID">
         <div class="dt-button-text" v-if="!active">
           <div class="dt-headline">{{ buttonHeadlineInactive }}</div>

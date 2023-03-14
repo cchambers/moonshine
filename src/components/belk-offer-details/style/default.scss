@@ -1,0 +1,17 @@
+/* default styling */
+
+belk-offer-details {
+  display: inline-flex;
+
+  .belk-offer-details {
+    h4 {
+      font-weight: bold;
+    }
+    p {
+      margin-bottom: $little;
+    }
+    > div {
+      width: 100%;
+    }
+  }
+}
