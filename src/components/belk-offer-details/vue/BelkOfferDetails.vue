@@ -6,11 +6,13 @@
         {{ content.summary.callout }}
       </h4>
       <div v-if="content.summary.price"
-        class="price flex">
-        <span v-if="content.summary.price.sales"
-          class="px-18 bold">{{ content.summary.price.sales }}</span>
-        <span v-if="content.summary.price.original"
-          class="px-12 lowlight-secondary deco-strike">{{ content.summary.price.original }}</span>
+        class="price flex start">
+        <div v-if="content.summary.price.sales"
+          class="px-18 bold">{{ content.summary.price.sales }}</div>
+        <div v-if="content.summary.price.original"
+          class="px-12 margin-l-atomic lowlight-secondary deco-strike">
+          {{ content.summary.price.original }}
+        </div>
       </div>
       <div class="image"
         v-if="content.summary.image"
@@ -32,7 +34,9 @@
       </div>
     </div>
 
-    <div v-if="content.actions" class="margin-t-auto offer-detail-actions">
+    <div
+      v-if="content.actions && !hideActions"
+      class="margin-t-auto offer-detail-actions">
       <div v-for="action in content.actions.primary" :key="action.id">
         <sh-button :link="action.url" full variant="primary">{{ action.text }}</sh-button>
       </div>
@@ -64,6 +68,7 @@ export default {
   data() {
     return {
       content: {},
+      hideActions: false,
     };
   },
 
@@ -73,6 +78,11 @@ export default {
       this.handleData(data);
     }
     if (this.giftId) this.getData();
+
+    if (window.pageContext) {
+      const temp = window.pageContext.ns;
+      if (temp === 'product' || temp === 'cart') this.hideActions = true;
+    }
   },
 
   methods: {
