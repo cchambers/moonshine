@@ -5,9 +5,12 @@
       <h4 v-if="content.summary.callout">
         {{ content.summary.callout }}
       </h4>
-      <div class="price flex">
-        <span class="px-18 bold">{{ content.summary.price.sales }}</span>
-        <span class="px-12 lowlight-secondary">{{ content.summary.price.original }}</span>
+      <div v-if="content.summary.price"
+        class="price flex">
+        <span v-if="content.summary.price.sales"
+          class="px-18 bold">{{ content.summary.price.sales }}</span>
+        <span v-if="content.summary.price.original"
+          class="px-12 lowlight-secondary">{{ content.summary.price.original }}</span>
       </div>
       <div class="image"
         v-if="content.summary.image"
@@ -90,7 +93,6 @@ export default {
     },
 
     handleData(data) {
-      console.log(data);
       this.content = { ...data };
     },
   },
@@ -98,3 +100,5 @@ export default {
 };
 </script>
 <style lang="scss" src="../style/default.scss"></style>
+<style lang="scss" src="../style/modal.scss"></style>
+<style lang="scss" src="../style/bag.scss"></style>
