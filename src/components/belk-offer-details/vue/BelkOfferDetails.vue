@@ -10,7 +10,7 @@
         <span v-if="content.summary.price.sales"
           class="px-18 bold">{{ content.summary.price.sales }}</span>
         <span v-if="content.summary.price.original"
-          class="px-12 lowlight-secondary">{{ content.summary.price.original }}</span>
+          class="px-12 lowlight-secondary deco-strike">{{ content.summary.price.original }}</span>
       </div>
       <div class="image"
         v-if="content.summary.image"
