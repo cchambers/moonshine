@@ -7,9 +7,16 @@
   "tags": ["template", "special offers"],
   "tracking": [],
   "requirements": {
-    "summary": ["Display details from data"],
-    "summary image": [],
-    "footer": [],
-    "states": []
+    "summary": [
+      "Display details from data"
+    ],
+    "images": [
+      "Should scroll horizontally"
+    ],
+    "actions": [
+      "Should hide self on 'product' template",
+      "Should hide self on 'cart' template",
+    ],
+    "states": ["empty", "hydrated"]
   }
 }
