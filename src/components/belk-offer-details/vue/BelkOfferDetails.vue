@@ -78,11 +78,14 @@ export default {
       this.handleData(data);
     }
     if (this.giftId) this.getData();
-
-    if (window.pageContext) {
-      const temp = window.pageContext.ns;
-      if (temp === 'product' || temp === 'cart') this.hideActions = true;
-    }
+    setTimeout(() => {
+      console.log('TIMEOUT');
+      if (window.pageContext) {
+        console.log('HERE IS THAT', window.pageContext.ns);
+        const temp = window.pageContext.ns;
+        if (temp === 'product' || temp === 'cart') this.hideActions = true;
+      }
+    }, 200);
   },
 
   methods: {

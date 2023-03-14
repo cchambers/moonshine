@@ -15,7 +15,7 @@
     ],
     "actions": [
       "Should hide self on 'product' template",
-      "Should hide self on 'cart' template",
+      "Should hide self on 'cart' template"
     ],
     "states": ["empty", "hydrated"]
   }
