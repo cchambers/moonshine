@@ -50,10 +50,11 @@
     .#{$mod}#{$amt} {
       #{$prop}: #{$inv}#{$meas};
     }
-
-    spacer#{$amt} {
-      display: block;
-      height: #{$meas};
+    @if $mod!="pull" {
+      spacer#{$amt} {
+        display: block;
+        height: #{$meas};
+      }
     }
 
     @each $name, $edge in $edges {
@@ -74,6 +75,9 @@
 }
 
 @each $name, $mod in $box-model-mods {
+  @if $mod=="pull" {
+    $inv: "-";
+  }
   .#{$name} {
     #{$mod}: #{$rem};
   }
@@ -82,20 +86,18 @@
     @if is-list($actual) {
       .#{$name}-#{$edge} {
         @each $side in $actual {
-          #{$mod}#{$side}: #{$rem};
+          #{$mod}#{$side}: #{$inv}#{$rem};
         }
       }
     }
 
     @else {
       .#{$name}-#{$edge} {
-        #{$mod}#{$actual}: #{$rem};
+        #{$mod}#{$actual}: #{$inv}#{$rem};
       }
     }
   }
 }
-
-// need a PULL
 
 @each $level, $size in $breakpoints {
   @media screen and (min-width: #{$size}) {

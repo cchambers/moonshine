@@ -52,6 +52,9 @@ sh-button {
     display: flex !important;
     width: 100% !important;
     margin-left: 0;
+    + [full] {
+      margin-top: $micro;
+    }
   }
 
   button {
