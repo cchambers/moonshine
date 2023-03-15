@@ -338,7 +338,6 @@ export default {
       }
 
       if (!self.active) {
-        console.log('MODAL OPENING...', this);
         if (!self.noEvents) self.$bus.$emit('modal-opening', self);
         if (self.hideButtons) self.$bus.$emit('modal-buttons-hide');
         document.documentElement.classList.add('sh-modal-open');

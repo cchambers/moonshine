@@ -926,15 +926,15 @@ ol.lower-alpha {
   justify-content: stretch;
 }
 
-[class*=flex].align-top {
+[class*=flex].align-start {
   align-items: flex-start;
 }
 
-[class*=flex].align-bottom {
+[class*=flex].align-end {
   align-items: flex-end;
 }
 
-[class*=flex].align-middle {
+[class*=flex].align-center {
   align-items: center;
 }
 

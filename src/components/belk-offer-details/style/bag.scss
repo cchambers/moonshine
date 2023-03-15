@@ -1,0 +1,16 @@
+/* default styling */
+
+belk-offer-details[variant="bag"] {
+  .belk-offer-details {
+    .image {
+      height: 16rem;
+      width: 16rem;
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center center;
+      + .image {
+        margin-left: $little;
+      }
+    }
+  }
+}
