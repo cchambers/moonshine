@@ -63,13 +63,13 @@
           #{$prop}#{$act}: #{$inv}#{$meas};
         }
       }
-      // @if $mod=="margin" {
-      //   .#{$mod}-#{$name}-auto {
-      //     @each $act in $edge {
-      //       #{$prop}#{$act}: auto;
-      //     }
-      //   }
-      // }
+      @if $mod=="margin" {
+        .#{$mod}-#{$name}-auto {
+          @each $act in $edge {
+            #{$prop}#{$act}: auto;
+          }
+        }
+      }
     }
   }
 }
