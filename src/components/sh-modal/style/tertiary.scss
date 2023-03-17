@@ -2,9 +2,14 @@
   height: 100vh;
   display: flex;
   padding-top: $rem;
+  transform: translateY(200%);
   @include md {
     padding-top: 0;
   }
+  @include lg {
+    transform: translateX(200%);
+  }
+
   .modal-title {
     width: 100%;
     display: flex;
@@ -18,6 +23,7 @@
       text-transform: capitalize;
     }
   }
+
   .content {
     display: flex;
     flex-direction: column;
@@ -52,8 +58,11 @@
     }
   }
 
-  transform: translateY(200%);
-  @include lg {
-    transform: translateX(200%);
+  .tertiary-close {
+    height: $rem;
+    width: $rem;
+    margin-right: $little;
+    background-color: transparent;
   }
+
 }
