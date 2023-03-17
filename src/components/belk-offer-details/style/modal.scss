@@ -3,6 +3,13 @@
 belk-offer-details[variant="modal"] {
   .belk-offer-details {
     min-height: 90vh;
+    .images {
+      display: flex;
+      overflow-x: auto;
+      flex-wrap: nowrap;
+      margin: 0 auto;
+      @include no-scroll-bar;
+    }
     .image {
       height: 20rem;
       width: 16rem;
@@ -12,12 +19,6 @@ belk-offer-details[variant="modal"] {
       + .image {
         margin-left: $little;
       }
-    }
-    .images {
-      display: flex;
-      overflow-x: auto;
-      flex-wrap: nowrap;
-      @include no-scroll-bar;
     }
     .name {
       position: relative;

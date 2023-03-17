@@ -19,9 +19,10 @@
             <slot name="header">{{ header }}</slot>
           </h3>
           <button
+            class="tertiary-close"
             close-trigger
             v-if="isMobile() && variant == 'tertiary'">
-            close
+            <i class="material-icons-round">close</i>
           </button>
         </div>
       </div>
