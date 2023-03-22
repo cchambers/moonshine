@@ -1029,23 +1029,23 @@ ol.lower-alpha {
   transition: background-color 200ms $decel;
 }
 
-[class*=spacer-] {
+[class*="spacer-"] {
   display: block;
 }
 
-[class*=flex].grid {
+[class*="flex"].grid {
   flex-grow: 1;
 }
 
-[class*=flex]-item.single {
+[class*="flex"]-item.single {
   flex-grow: 0;
 }
 
-[class*=flex]-item.double {
+[class*="flex"]-item.double {
   flex-grow: 1;
 }
 
-[class*=flex]-item.triple {
+[class*="flex"]-item.triple {
   flex-grow: 2;
 }
 
