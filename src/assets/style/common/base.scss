@@ -1025,6 +1025,14 @@ ol.lower-alpha {
   order: 9;
 }
 
+[class*="hover-"] {
+  transition: background-color 200ms $decel;
+}
+
+[class*=spacer-] {
+  display: block;
+}
+
 [class*=flex].grid {
   flex-grow: 1;
 }

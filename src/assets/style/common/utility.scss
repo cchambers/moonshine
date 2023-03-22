@@ -37,10 +37,6 @@
   }
 }
 
-[class*="hover-"] {
-  transition: background-color 200ms $decel;
-}
-
 @each $mod, $prop in $box-model-mods {
   @if $mod=="pull" {
     $inv: "-";
@@ -50,6 +46,7 @@
     .#{$mod}#{$amt} {
       #{$prop}: #{$inv}#{$meas};
     }
+    
     @if $mod!="pull" {
       spacer#{$amt} {
         display: block;
@@ -74,30 +71,30 @@
   }
 }
 
-@each $name, $mod in $box-model-mods {
-  @if $mod=="pull" {
-    $inv: "-";
-  }
-  .#{$name} {
-    #{$mod}: #{$rem};
-  }
+// @each $name, $mod in $box-model-mods {
+//   @if $mod=="pull" {
+//     $inv: "-";
+//   }
+//   .#{$name} {
+//     #{$mod}: #{$rem};
+//   }
 
-  @each $edge, $actual in $edges {
-    @if is-list($actual) {
-      .#{$name}-#{$edge} {
-        @each $side in $actual {
-          #{$mod}#{$side}: #{$inv}#{$rem};
-        }
-      }
-    }
+//   @each $edge, $actual in $edges {
+//     @if is-list($actual) {
+//       .#{$name}-#{$edge} {
+//         @each $side in $actual {
+//           #{$mod}#{$side}: #{$inv}#{$rem};
+//         }
+//       }
+//     }
 
-    @else {
-      .#{$name}-#{$edge} {
-        #{$mod}#{$actual}: #{$inv}#{$rem};
-      }
-    }
-  }
-}
+//     @else {
+//       .#{$name}-#{$edge} {
+//         #{$mod}#{$actual}: #{$inv}#{$rem};
+//       }
+//     }
+//   }
+// }
 
 @each $level, $size in $breakpoints {
   @media screen and (min-width: #{$size}) {
