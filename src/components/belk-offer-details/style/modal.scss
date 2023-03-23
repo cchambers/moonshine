@@ -20,19 +20,6 @@ belk-offer-details[variant="modal"] {
         margin-left: $little;
       }
     }
-    .name {
-      position: relative;
-      &:after {
-        content: '';
-        display: block;
-        position: absolute;
-        height: 0.2rem;
-        top: -0.8rem;
-        left: 0.8rem;
-        width: 6.7rem; // wtf really
-        background: $lowlight-tertiary;
-      }
-    }
     .gifts {
       margin-bottom: auto;
     }

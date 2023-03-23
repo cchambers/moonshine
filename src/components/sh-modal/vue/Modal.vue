@@ -366,6 +366,7 @@ export default {
         if (!this.noEvents) this.$bus.$emit('modal-closing', this.uniqueId);
         document.documentElement.classList.remove('sh-modal-open');
         this.active = false;
+        this.$ref.body.scrollTop = 0;
         this.$bus.$emit('modal-closed', this.uniqueId);
         if (this.closedEvent) this.$bus.$emit(this.closedEvent, this.uniqueId);
         if (this.closedCallback) this.closedCallback();
