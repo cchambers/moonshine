@@ -120,7 +120,7 @@ export default {
       if (this.uniqueId) {
         const slug = `open-${this.uniqueId.slugify()}`;
         this.$bus.$on(slug, () => {
-          this.open();
+          this.toggleActive();
           if (this.subcat) {
             const cat = this.$el.closest('ul').closest('sh-accordion');
             if (cat) this.$bus.$emit(`open-${cat.uniqueId.slugify()}`);
