@@ -41,7 +41,7 @@ Shine creates a local component library that can be managed and deployed as temp
 #### Mac Dependencies
   - Open a command line: `CMD+SPACE` will cause the 'Spotlight' input to open. Type "term" and select "Terminal".
   - Install XCode Command Line Tools: type `git --version` in the command line. If you don't have git installed, the command line tools install will kick off.
-  - Install Homebrew: paste this into your command line `/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
+  - Install Homebrew: paste this into your command line `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
   - Once homebrew is installed, you will want to close the current command line and open another.
   - Optional: Install ZSH: `brew install zsh` (helps with automatically switching node versions for multiple projects)
   - Install NVM via command line: `brew install nvm`
