@@ -53,6 +53,7 @@
   .body {
     padding: 0 $little;
     overflow-y: auto;
+    overscroll-behavior: contain;
     p + p {
       margin-top: $little;
     }
