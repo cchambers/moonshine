@@ -247,6 +247,10 @@ html, body {
   flex-direction: row;
 }
 
+[emit] > * {
+  pointer-events: none;
+}
+
 [class*=scol-] {
   flex-grow: 0;
   flex-shrink: 0;
