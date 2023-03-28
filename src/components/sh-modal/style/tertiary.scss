@@ -1,7 +1,7 @@
 .sh-modal[variant="tertiary"] {
   height: 100vh;
   display: flex;
-  padding-top: $rem;
+  // padding-top: $rem;
   transform: translateY(200%);
   @include md {
     padding-top: 0;
