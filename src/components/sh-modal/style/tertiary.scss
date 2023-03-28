@@ -64,6 +64,9 @@
     width: $rem;
     margin-right: $little;
     background-color: transparent;
+    @include md {
+      display: none;
+    }
   }
 
 }
