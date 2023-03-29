@@ -36,7 +36,7 @@
 
     <div
       v-if="content.actions && !hideActions"
-      class="margin-t-auto offer-detail-actions">
+      class="offer-detail-actions margin-t-auto">
       <div v-for="action in content.actions.primary" :key="action.id">
         <sh-button :link="action.url" full variant="primary">{{ action.text }}</sh-button>
       </div>
@@ -44,6 +44,14 @@
         <sh-button :link="action.url" full variant="belk-link">{{ action.text }}</sh-button>
       </div>
     </div>
+    <div
+      v-if="content.message && !hideMessaging"
+      class="offer-detail-messaging margin-t-auto">
+        <div class="back-highlight-secondary lowlight-quinary flex top">
+          <i class="material-icons-round">info</i>
+          <p>{{ content.message }}</p>
+        </div>
+      </div>
   </div>
 </template>
 
@@ -69,6 +77,7 @@ export default {
     return {
       content: {},
       hideActions: false,
+      hideMessaging: false,
     };
   },
 
@@ -82,6 +91,7 @@ export default {
       if (window.pageContext) {
         const temp = window.pageContext.ns;
         if (temp === 'product' || temp === 'cart') this.hideActions = true;
+        if (temp !== 'product' || variant === 'bag') this.hideMessaging = true;
       }
     }, 200);
   },
