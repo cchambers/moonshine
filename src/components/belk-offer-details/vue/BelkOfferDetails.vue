@@ -47,11 +47,11 @@
     <div
       v-if="content.message && !hideMessaging"
       class="offer-detail-messaging margin-t-auto">
-        <div class="back-highlight-secondary lowlight-quinary flex top">
-          <i class="material-icons-round">info</i>
-          <p>{{ content.message }}</p>
-        </div>
+      <div class="back-highlight-secondary lowlight-quinary flex content-top pad-micro">
+        <i class="px-16 material-icons-round">info</i>
+        <p class="px-14 pad-l-atomic">{{ content.message }}</p>
       </div>
+    </div>
   </div>
 </template>
 
@@ -91,7 +91,7 @@ export default {
       if (window.pageContext) {
         const temp = window.pageContext.ns;
         if (temp === 'product' || temp === 'cart') this.hideActions = true;
-        if (temp !== 'product' || variant === 'bag') this.hideMessaging = true;
+        if (temp !== 'product' || this.variant === 'bag') this.hideMessaging = true;
       }
     }, 200);
   },
