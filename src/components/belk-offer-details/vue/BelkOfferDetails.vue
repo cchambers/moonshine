@@ -47,8 +47,8 @@
     <div
       v-if="content.message && !hideMessaging"
       class="offer-detail-messaging margin-t-auto">
-      <div class="back-highlight-secondary lowlight-quinary flex content-top pad-micro">
-        <i class="px-16 material-icons-round">info</i>
+      <div class="px-16 back-highlight-secondary lowlight-quinary flex align-start pad-micro">
+        <i class="material-icons-round">info</i>
         <p class="px-14 pad-l-atomic">{{ content.message }}</p>
       </div>
     </div>
@@ -68,7 +68,7 @@ export default {
     contentData: {
       type: Object,
     },
-    giftId: {
+    promoId: {
       type: String,
     },
   },
@@ -86,7 +86,7 @@ export default {
       const data = JSON.parse(this.contentData);
       this.handleData(data);
     }
-    if (this.giftId) this.getData();
+    if (this.promoId) this.getData();
     setTimeout(() => {
       if (window.pageContext) {
         const temp = window.pageContext.ns;
@@ -110,16 +110,18 @@ export default {
     },
 
     getData() {
-      fetch(`${window.location.origin}/on/demandware.store/Sites-Belk-Site/default/Product-ShowSpecialOfferDetails?promoId=${this.giftId}`)
+      let url = this.checkDev() ? 'https://devweb-ecdn.belkdev.com' : window.location.origin;
+      url += `/on/demandware.store/Sites-Belk-Site/default/Product-ShowSpecialOfferDetails?promoId=${this.promoId}`;
+      fetch(url)
         .then((response) => response.json())
         .then(this.handleData);
     },
 
     handleData(data) {
+      console.log('handlin');
       this.content = { ...data };
     },
   },
-
 };
 </script>
 <style lang="scss" src="../style/default.scss"></style>
