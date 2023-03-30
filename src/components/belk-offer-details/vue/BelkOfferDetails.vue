@@ -119,7 +119,6 @@ export default {
     },
 
     handleData(data) {
-      console.log('handlin');
       this.content = { ...data };
     },
   },
