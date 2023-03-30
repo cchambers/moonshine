@@ -36,7 +36,7 @@
 
     <div
       v-if="content.actions && !hideActions"
-      class="offer-detail-actions margin-t-auto">
+      class="offer-detail-actions margin-t-auto pad-y-little">
       <div v-for="action in content.actions.primary" :key="action.id">
         <sh-button :link="action.url" full variant="primary">{{ action.text }}</sh-button>
       </div>
@@ -46,7 +46,7 @@
     </div>
     <div
       v-if="content.message && !hideMessaging"
-      class="offer-detail-messaging margin-t-auto">
+      class="offer-detail-messaging margin-t-auto pad-y-little">
       <div class="px-16 back-highlight-secondary lowlight-quinary flex align-start pad-micro">
         <i class="material-icons-round">info</i>
         <p class="px-14 pad-l-atomic">{{ content.message }}</p>
