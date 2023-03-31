@@ -1,6 +1,10 @@
 <template>
   <div class="sh-checkbox" :variant="variant">
-    <input hidden :id="inputId" type="checkbox">
+    <input
+      hidden
+      :id="inputId"
+      type="checkbox"
+      :checked="checked">
     <label :for="inputId">
       <div class="toggle"></div>
       <div class="label-text">
@@ -18,6 +22,12 @@ export default {
   mixins: [ComponentPrototype, InputPrototype],
 
   name: 'Checkbox',
+
+  props: {
+    checked: {
+      type: Boolean,
+    },
+  },
 
   created() {
     this.inputId = this.uniqueId || this.makeUUID();
