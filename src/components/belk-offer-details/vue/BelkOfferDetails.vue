@@ -7,10 +7,10 @@
       </h4>
       <div v-if="content.summary.price"
         class="price flex start">
-        <div v-if="content.summary.price.sales"
-          class="px-18 bold">{{ content.summary.price.sales }}</div>
-        <div v-if="content.summary.price.original
+        <div v-if="content.summary.price.sales
           && (content.summary.price.original != content.summary.price.sales)"
+          class="px-18 bold">{{ content.summary.price.sales }}</div>
+        <div v-if="content.summary.price.original"
           class="px-12 margin-l-atomic lowlight-secondary deco-strike">
           {{ content.summary.price.original }}
         </div>
