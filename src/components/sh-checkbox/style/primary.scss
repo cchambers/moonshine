@@ -9,6 +9,7 @@ sh-checkbox[variant="primary"] {
       border-radius: 0.9rem;
       background: $highlight-primary;
       border: 2px solid rgba(0, 0, 0, 0.1);
+      transition: all 100ms $accel;
       &:before {
         display: block;
         content: '';
@@ -21,10 +22,8 @@ sh-checkbox[variant="primary"] {
         background: $highlight-primary;
         border: 1px solid rgba(0, 0, 0, 0.1);
         box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+        transition: all 100ms $accel;
       }
-    }
-    .label-text {
-      margin: 0 $little;
     }
     input:checked {
       ~ label {
