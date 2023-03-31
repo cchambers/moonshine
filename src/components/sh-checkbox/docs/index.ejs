@@ -119,6 +119,16 @@
     <lib-toolbar>
       <sh-checkbox variant="primary" right label="example attribute label"></sh-checkbox>
     </lib-toolbar>
+
+    <h3>Toggle triggered accordion</h3>
+    <lib-toolbar>
+      <sh-checkbox variant="primary" right unique-id="demo-toggle" label="example attribute label"></sh-checkbox>
+      <sh-accordion unique-id="accordion-2" checkbox-link="demo-toggle">
+        <div slot="body">
+          <p>A no-body accordion. </p>
+        </div>
+      </sh-accordion>
+    </lib-toolbar>
   </section>
 
   <section id="changelog">

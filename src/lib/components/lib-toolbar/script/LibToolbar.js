@@ -13,11 +13,12 @@ export default {
   props: {
     baseCode: String,
     demo: String,
+    autoOpen: Boolean,
   },
 
   data() {
     return {
-      active: true,
+      active: false,
       fullscreen: false,
       isActive: false,
       code: '',
@@ -32,6 +33,7 @@ export default {
   created() {
     this.setUUID();
     window.Pretty = Pretty;
+    if (this.autoOpen) this.active = true;
   },
 
   mounted() {
