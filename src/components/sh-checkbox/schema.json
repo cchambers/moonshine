@@ -1,0 +1,15 @@
+{
+  "name": "Checkbox",
+  "category": "form elements",
+  "production": false,
+  "element": "sh-checkbox",
+  "description": "Checkbox form element.",
+  "tags": ["toggle"],
+  "tracking": [],
+  "requirements": {
+    "Element One": [],
+    "Element Two": [],
+    "a11y": [],
+    "states": []
+  }
+}
