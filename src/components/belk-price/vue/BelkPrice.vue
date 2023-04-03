@@ -14,10 +14,11 @@
 </template>
 
 <script>
+import MoneyFormatter from '../../money-formatter';
 import ComponentPrototype from '../../component-prototype';
 
 export default {
-  mixins: [ComponentPrototype],
+  mixins: [ComponentPrototype, MoneyFormatter],
 
   name: 'BelkPrice',
 
@@ -62,13 +63,36 @@ export default {
 
   data() {
     return {
-      snapping: false,
+      priceActual: null,
+      saleRange: null,
+      salePrice: null,
+      priceRange: null,
+      isOnSale: false,
     };
   },
 
   methods: {
     checkOnSale() {
       this.isOnSale = ((this.price > this.sale_price) || (this.price > this.salePrice));
+    },
+    processProps() {
+      if (this.sale_price) {
+        this.salePrice = parseFloat(this.sale_price);
+      }
+
+      if (this.price_range.length > 1) {
+        if (this.price_range[0] !== this.price_range[1]) {
+          this.priceRange = `${this.format(this.price_range[0])} - ${this.format(this.price_range[1])}`;
+        }
+      }
+      if (this.sale_price_range.length > 1) {
+        if (this.sale_price_range[0] !== this.sale_price_range[1]
+          && this.sale_price_range !== this.price_range) {
+          this.saleRange = `${this.format(this.sale_price_range[0])} - ${this.format(this.sale_price_range[1])}`;
+        } else {
+          this.salePrice = this.sale_price;
+        }
+      }
     },
   },
 
