@@ -1,13 +1,23 @@
 <template>
   <div class="lib-colors">
     <ul class="no-pad">
-      <li v-for="(color, index) in colors"
-        v-bind:key="color"
+      <li
+        v-for="(color, index) in colors"
+        :key="color"
         class="flex list"
-        tabindex="0">
-        <div class="back" :class="'back-'+color"></div>
-        <div class="name">{{color}}</div>
-        <div class="text wt-bold" :class="color">
+        tabindex="0"
+      >
+        <div
+          class="back"
+          :class="'back-'+color"
+        />
+        <div class="name">
+          {{ color }}
+        </div>
+        <div
+          class="text wt-bold"
+          :class="color"
+        >
           {{ lyrics[index] }}
         </div>
       </li>
@@ -16,11 +26,11 @@
 </template>
 
 <script>
-import ComponentPrototype from '../../../../components/component-prototype';
+import ComponentPrototype from '../../../../utils/component-prototype';
 
 export default {
-  mixins: [ComponentPrototype],
   name: 'LibColors',
+  mixins: [ComponentPrototype],
   data() {
     return {
       colors: [

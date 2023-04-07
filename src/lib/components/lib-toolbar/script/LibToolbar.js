@@ -4,7 +4,7 @@ import 'brace/mode/html';
 import 'brace/mode/json';
 import 'brace/theme/monokai';
 import Pretty from 'pretty';
-import ComponentPrototype from '../../../../components/component-prototype';
+import ComponentPrototype from '../../../../utils/component-prototype';
 
 export default {
   mixins: [ComponentPrototype],

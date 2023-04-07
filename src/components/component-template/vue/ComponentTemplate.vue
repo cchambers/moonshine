@@ -1,19 +1,23 @@
 <template>
-  <div class="component-template"
+  <div
+    v-hammer:tap="snap"
+    class="component-template"
     :variant="variant"
-    v-bind:class="{ 'snap-state': snapping }"
-    v-hammer:tap="snap">
-    <slot name="test">{{ msg }}</slot>
+    :class="{ 'snap-state': snapping }"
+  >
+    <slot name="test">
+      {{ msg }}
+    </slot>
   </div>
 </template>
 
 <script>
-import ComponentPrototype from '../../component-prototype';
+import ComponentPrototype from '../../../utils/component-prototype';
 
 export default {
-  mixins: [ComponentPrototype],
 
   name: 'ComponentTemplate',
+  mixins: [ComponentPrototype],
 
   props: {
     msg: {

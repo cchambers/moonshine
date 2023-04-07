@@ -1,12 +1,16 @@
 <template>
-  <div class="sh-checkbox" :variant="variant">
+  <div
+    class="sh-checkbox"
+    :variant="variant"
+  >
     <input
-      hidden
       :id="inputId"
+      hidden
       type="checkbox"
-      :checked="checked">
+      :checked="checked"
+    >
     <label :for="inputId">
-      <div class="toggle"></div>
+      <div class="toggle" />
       <div class="label-text">
         <slot name="label">{{ label }}</slot>
       </div>
@@ -15,13 +19,13 @@
 </template>
 
 <script>
-import ComponentPrototype from '../../component-prototype';
-import InputPrototype from '../../input-prototype';
+import ComponentPrototype from '../../../utils/component-prototype';
+import InputPrototype from '../../../utils/input-prototype';
 
 export default {
-  mixins: [ComponentPrototype, InputPrototype],
 
   name: 'Checkbox',
+  mixins: [ComponentPrototype, InputPrototype],
 
   props: {
     checked: {

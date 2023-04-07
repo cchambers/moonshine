@@ -107,8 +107,8 @@
 
 <script>
 /* eslint-disable */
-import ComponentPrototype from "../../component-prototype";
-import UtagBehavior from "../../utag-behavior";
+import ComponentPrototype from "../../../utils/component-prototype";
+import UtagBehavior from "../../../utils/utag-behavior";
 
 export default {
   mixins: [ComponentPrototype, UtagBehavior],

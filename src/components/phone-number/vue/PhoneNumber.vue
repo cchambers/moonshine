@@ -1,26 +1,37 @@
 <template>
-  <div class="phone-number"
-    :variant="variant">
-    <a class="high-off"
+  <div
+    class="phone-number"
+    :variant="variant"
+  >
+    <a
+      class="high-off"
       :href="'tel:' + this.raw"
-      :title="'Place a call to ' + this.raw">{{ phoneNumber }}</a>
+      :title="'Place a call to ' + this.raw"
+    >{{ phoneNumber }}</a>
     <span class="low-off">{{ phoneNumber }}</span>
   </div>
 </template>
 
 <script>
-import ComponentPrototype from '../../component-prototype';
+import ComponentPrototype from '../../../utils/component-prototype';
 
 export default {
-  mixins: [ComponentPrototype],
 
   name: 'PhoneNumber',
+  mixins: [ComponentPrototype],
 
   props: {
     in: {
       type: String,
       default: null,
     },
+  },
+
+  data() {
+    return {
+      formatted: null,
+      raw: null,
+    };
   },
 
   computed: {
@@ -33,13 +44,6 @@ export default {
       }
       return this.raw;
     },
-  },
-
-  data() {
-    return {
-      formatted: null,
-      raw: null,
-    };
   },
 
 };

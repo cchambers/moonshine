@@ -1,20 +1,29 @@
 <template>
-  <div class="sh-popper"
-    v-bind:class="{ 'touch': mobile }"
-    :active="active">
-    <div class="popper-target" ref="target">
-      <slot name="reference"></slot>
+  <div
+    class="sh-popper"
+    :class="{ 'touch': mobile }"
+    :active="active"
+  >
+    <div
+      ref="target"
+      class="popper-target"
+    >
+      <slot name="reference" />
     </div>
     <transition
-    :name="transition"
-    @after-leave="doDestroy">
+      :name="transition"
+      @after-leave="doDestroy"
+    >
       <div
+        v-show="!disabled && showPopper"
+        ref="popper"
         class="popper-actual"
         :fill="fill"
-        ref="popper"
-        v-show="!disabled && showPopper">
+      >
         <div class="popper-content">
-          <slot name="content">{{ content }}</slot>
+          <slot name="content">
+            {{ content }}
+          </slot>
         </div>
       </div>
     </transition>
@@ -23,7 +32,7 @@
 
 <script>
 import { createPopper as CreatePopper } from '@popperjs/core';
-import ComponentPrototype from '../../component-prototype';
+import ComponentPrototype from '../../../utils/component-prototype';
 
 function on(element, event, handler) {
   if (element && event && handler) {
@@ -46,8 +55,8 @@ function off(element, event, handler) {
 }
 
 export default {
-  mixins: [ComponentPrototype],
   name: 'Popper',
+  mixins: [ComponentPrototype],
   props: {
     variant: {
       type: String,
@@ -116,8 +125,14 @@ export default {
       type: Boolean,
       default: false,
     },
-    offsetX: 0,
-    offsetY: 0,
+    offsetX: {
+      type: Number,
+      default: 0,
+    },
+    offsetY: {
+      type: Number,
+      default: 0,
+    },
     uniqueId: {
       type: String,
     },
@@ -201,6 +216,10 @@ export default {
 
   mounted() {
     this.ready();
+  },
+
+  destroyed() {
+    this.destroyPopper();
   },
 
   methods: {
@@ -392,10 +411,6 @@ export default {
 
     //   return false;
     // },
-  },
-
-  destroyed() {
-    this.destroyPopper();
   },
 };
 </script>

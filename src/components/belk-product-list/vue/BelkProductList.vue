@@ -9,8 +9,8 @@
 </template>
 
 <script>
+import ComponentPrototype from '../../../utils/component-prototype';
 import BelkProduct from '../../belk-product/vue/BelkProduct.vue';
-import ComponentPrototype from '../../component-prototype';
 
 export default {
   mixins: [ComponentPrototype],

@@ -1,30 +1,47 @@
 <template>
-  <span :id="id" class="sh-adapt-content"
-    :variant="variant">
-    <div class="content"
-    :class="{ active: this.state == 'def' }"><slot name="default"></slot></div>
-    <div ref="smContent" class="content"
+  <span
+    :id="id"
+    class="sh-adapt-content"
+    :variant="variant"
+  >
+    <div
+      class="content"
+      :class="{ active: this.state == 'def' }"
+    ><slot name="default" /></div>
+    <div
+      ref="smContent"
+      class="content"
       :class="{ active: this.state == 'sm' }"
-      v-html="content.sm"><slot name="sm">{{ sm }}</slot></div>
-    <div ref="mdContent" class="content"
+      v-html="content.sm"
+    ><slot name="sm">{{ sm }}</slot></div>
+    <div
+      ref="mdContent"
+      class="content"
       :class="{ active: this.state == 'md' }"
-      v-html="content.md"><slot name="md">{{ md }}</slot></div>
-    <div ref="lgContent" class="content"
+      v-html="content.md"
+    ><slot name="md">{{ md }}</slot></div>
+    <div
+      ref="lgContent"
+      class="content"
       :class="{ active: this.state == 'lg' }"
-      v-html="content.lg"><slot name="lg">{{ lg }}</slot></div>
-    <div ref="xlContent" class="content"
+      v-html="content.lg"
+    ><slot name="lg">{{ lg }}</slot></div>
+    <div
+      ref="xlContent"
+      class="content"
       :class="{ active: this.state == 'xl' }"
-      v-html="content.xl"><slot name="xl">{{ xl }}</slot></div>
+      v-html="content.xl"
+    ><slot name="xl">{{ xl }}</slot></div>
   </span>
 </template>
 
 <script>
-import ComponentPrototype from '../../component-prototype';
+import ComponentPrototype from '../../../utils/component-prototype';
 
 export default {
-  mixins: [ComponentPrototype],
 
   name: 'AdaptContent',
+  mixins: [ComponentPrototype],
   props: {
     sm: String,
     md: String,
@@ -49,24 +66,6 @@ export default {
     };
   },
 
-  methods: {
-    checkState() {
-      let state = 'def';
-      this.width = (this.elementLevel) ? this.$el.parentElement.offsetWidth : window.innerWidth;
-      const w = this.width;
-      if (w >= 480) state = 'sm';
-      if (w >= 768) state = 'md';
-      if (w >= 960) state = 'lg';
-      if (w >= 1200) state = 'xl';
-      this.state = state;
-      return state;
-    },
-
-    events() {
-      this.$bus.$on('resize-event', this.checkState);
-    },
-  },
-
   mounted() {
     if (this.uniqueId) {
       this.id = this.uniqueId;
@@ -85,6 +84,24 @@ export default {
     if (!this.content.md) this.$set(this.content, 'md', (this.md || this.content.sm));
     if (!this.content.lg) this.$set(this.content, 'lg', (this.lg || this.content.md));
     if (!this.content.xl) this.$set(this.content, 'xl', (this.xl || this.content.lg));
+  },
+
+  methods: {
+    checkState() {
+      let state = 'def';
+      this.width = (this.elementLevel) ? this.$el.parentElement.offsetWidth : window.innerWidth;
+      const w = this.width;
+      if (w >= 480) state = 'sm';
+      if (w >= 768) state = 'md';
+      if (w >= 960) state = 'lg';
+      if (w >= 1200) state = 'xl';
+      this.state = state;
+      return state;
+    },
+
+    events() {
+      this.$bus.$on('resize-event', this.checkState);
+    },
   },
 };
 </script>

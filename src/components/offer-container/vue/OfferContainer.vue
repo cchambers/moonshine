@@ -1,7 +1,11 @@
 <template>
-  <div class="offer-container"
-    :variant="variant">
-    <belk-coupon v-for="item in items" v-bind:key="item.id"
+  <div
+    class="offer-container"
+    :variant="variant"
+  >
+    <belk-coupon
+      v-for="item in items"
+      :key="item.id"
       :in-drawer="item.inDrawer"
       :badge="item.badge"
       :coupon-tag="item.couponTag"
@@ -22,20 +26,24 @@
       :link="item.link"
       :printable="item.printable"
       :spacer-text="item.spacerText"
-      :upc="item.upc"></belk-coupon>
-      <div v-if="items.length == 0" class="offer-container-banner">
-        {{ noOffersText }}
-      </div>
+      :upc="item.upc"
+    />
+    <div
+      v-if="items.length == 0"
+      class="offer-container-banner"
+    >
+      {{ noOffersText }}
+    </div>
   </div>
 </template>
 
 <script>
-import ComponentPrototype from '../../component-prototype';
+import ComponentPrototype from '../../../utils/component-prototype';
 
 export default {
-  mixins: [ComponentPrototype],
 
   name: 'OfferContainer',
+  mixins: [ComponentPrototype],
   props: {
     itemData: String,
     uniqueId: String,
@@ -48,17 +56,17 @@ export default {
     },
   },
 
-  watch: {
-    active(val) {
-      if (val) this.log(val);
-    },
-  },
-
   data() {
     return {
       items: [],
       active: 0,
     };
+  },
+
+  watch: {
+    active(val) {
+      if (val) this.log(val);
+    },
   },
 
   mounted() {

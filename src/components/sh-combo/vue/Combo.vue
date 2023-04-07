@@ -9,51 +9,73 @@
   >
     <div class="combo-actual">
       <button
-        class="combo-trigger"
         ref="trigger"
         v-hammer:tap="buttonHandler"
-        v-on:keydown.down="highlightHandler"
-        v-on:keydown.up="highlightHandler"
-        v-on:keydown.enter="enterHandler"
+        class="combo-trigger"
+        @keydown.down="highlightHandler"
+        @keydown.up="highlightHandler"
+        @keydown.enter="enterHandler"
       >
-        <div class="combo-text">{{ activeText }}</div>
-        <belk-icon name="arrow-down"></belk-icon>
+        <div class="combo-text">
+          {{ activeText }}
+        </div>
+        <belk-icon name="arrow-down" />
       </button>
-      <div class="combo-hidden-options" hidden>
-        <slot name="options"></slot>
+      <div
+        class="combo-hidden-options"
+        hidden
+      >
+        <slot name="options" />
       </div>
-      <div ref="options" class="combo-options" v-hammer:tap="optionClickHandler">
+      <div
+        ref="options"
+        v-hammer:tap="optionClickHandler"
+        class="combo-options"
+      >
         <ul>
           <li
             v-for="item in options"
-            v-bind:key="item.index"
-            v-bind:value="item.value"
-            v-bind:class="{ active: item.active, highlight: item.highlight }"
-          >{{ item.text }}</li>
+            :key="item.index"
+            :value="item.value"
+            :class="{ active: item.active, highlight: item.highlight }"
+          >
+            {{ item.text }}
+          </li>
         </ul>
       </div>
     </div>
-    <div class="combo-select" ref="select">
-      <select v-on:change="selectHandler">
-        <option value="blank_opt" disabled selected>{{ defaultText }}</option>
+    <div
+      ref="select"
+      class="combo-select"
+    >
+      <select @change="selectHandler">
+        <option
+          value="blank_opt"
+          disabled
+          selected
+        >
+          {{ defaultText }}
+        </option>
         <option
           v-for="item in options"
-          v-bind:key="item.index"
-          v-bind:value="item.value"
-          v-bind:selected="item.active"
-        >{{ item.text }}</option>
+          :key="item.index"
+          :value="item.value"
+          :selected="item.active"
+        >
+          {{ item.text }}
+        </option>
       </select>
     </div>
   </div>
 </template>
 
 <script>
-import ComponentPrototype from '../../component-prototype';
+import ComponentPrototype from '../../../utils/component-prototype';
 
 export default {
-  mixins: [ComponentPrototype],
 
   name: 'Combo',
+  mixins: [ComponentPrototype],
 
   props: {
     comboOptions: {

@@ -1,31 +1,43 @@
 <template>
-  <form class="sh-form"
-    :variant="variant">
+  <form
+    class="sh-form"
+    :variant="variant"
+  >
     <div>
-      <slot></slot>
+      <slot />
     </div>
-    <div ref="errors" class="errors">
+    <div
+      ref="errors"
+      class="errors"
+    >
       <ul v-if="errors.length > 0 && combineErrors">
-        <li v-for="(error, index) in errors" v-bind:key="error.key">
-        <a v-if="!error.hidden"
-        :data-key="index"
-        :href="error.link"
-        v-hammer:tap="errorClickHandler">{{ error.text }} </a>
-      </li>
+        <li
+          v-for="(error, index) in errors"
+          :key="error.key"
+        >
+          <a
+            v-if="!error.hidden"
+            v-hammer:tap="errorClickHandler"
+            :data-key="index"
+            :href="error.link"
+          >{{ error.text }} </a>
+        </li>
       </ul>
     </div>
   </form>
 </template>
 
 <script>
-import ComponentPrototype from '../../component-prototype';
+import ComponentPrototype from '../../../utils/component-prototype';
 
 export default {
-  mixins: [ComponentPrototype],
   name: 'Form',
+  mixins: [ComponentPrototype],
 
   props: {
-    combineErrors: false,
+    combineErrors: {
+      type: Boolean,
+    },
   },
 
   data() {

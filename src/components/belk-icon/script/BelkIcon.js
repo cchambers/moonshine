@@ -1,4 +1,4 @@
-import ComponentPrototype from '../../component-prototype';
+import ComponentPrototype from '../../../utils/component-prototype';
 
 export default {
   mixins: [ComponentPrototype],
@@ -12,7 +12,7 @@ export default {
 
     width: {
       type: Number,
-      default: 45,
+      default: null,
     },
 
     name: {

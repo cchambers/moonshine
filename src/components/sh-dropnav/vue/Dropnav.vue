@@ -1,16 +1,31 @@
 <template>
-  <div class="sh-dropnav" v-bind:class="{ 'is-open': isOpen }">
+  <div
+    class="sh-dropnav"
+    :class="{ 'is-open': isOpen }"
+  >
     <div class="wrapper">
-      <div hidden><slot></slot></div>
-      <button ref="button" v-hammer:tap="toggleOpen">{{ activeItem }}</button>
+      <div hidden>
+        <slot />
+      </div>
+      <button
+        ref="button"
+        v-hammer:tap="toggleOpen"
+      >
+        {{ activeItem }}
+      </button>
       <ul class="item-container">
-        <li v-for="(item, index) in items" v-bind:key="item.key">
-          <a v-if="!item.hidden"
-          v-bind:class="{ 'active': item.active }"
-          :data-key="index"
-          :href="item.link"
-          :target="item.target"
-          v-hammer:tap="clickHandler">{{ item.text }}</a>
+        <li
+          v-for="(item, index) in items"
+          :key="item.key"
+        >
+          <a
+            v-if="!item.hidden"
+            v-hammer:tap="clickHandler"
+            :class="{ 'active': item.active }"
+            :data-key="index"
+            :href="item.link"
+            :target="item.target"
+          >{{ item.text }}</a>
         </li>
       </ul>
     </div>
@@ -18,12 +33,12 @@
 </template>
 
 <script>
-import ComponentPrototype from '../../component-prototype';
+import ComponentPrototype from '../../../utils/component-prototype';
 
 export default {
-  mixins: [ComponentPrototype],
 
   name: 'Dropnav',
+  mixins: [ComponentPrototype],
   props: {
     noActiveText: Boolean,
     listVariant: String,

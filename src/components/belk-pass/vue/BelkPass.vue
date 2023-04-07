@@ -18,8 +18,8 @@
 </template>
 
 <script>
-import ComponentPrototype from '../../component-prototype';
-import InputPrototype from '../../input-prototype';
+import ComponentPrototype from '../../../utils/component-prototype';
+import InputPrototype from '../../../utils/input-prototype';
 
 export default {
   mixins: [ComponentPrototype, InputPrototype],

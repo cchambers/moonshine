@@ -1,35 +1,60 @@
 <template>
-  <div class="sh-nav-item"
-    v-bind:class="{ 'touch': mobile }"
-    :active="active">
-    <div class="popper-target" :class="{ active: showPopper }" ref="target">
-      <slot name="reference"></slot>
+  <div
+    class="sh-nav-item"
+    :class="{ 'touch': mobile }"
+    :active="active"
+  >
+    <div
+      ref="target"
+      class="popper-target"
+      :class="{ active: showPopper }"
+    >
+      <slot name="reference" />
     </div>
     <transition
-    :name="transition"
-    @after-leave="doDestroy">
+      :name="transition"
+      @after-leave="doDestroy"
+    >
       <div
+        v-show="!disabled && showPopper"
+        ref="popper"
         class="popper-actual"
         :fill="fill"
-        ref="popper"
-        v-show="!disabled && showPopper">
-        <div ref="focus" class="popper-content">
-          <div v-if="isClosable" class="popper-close">
+      >
+        <div
+          ref="focus"
+          class="popper-content"
+        >
+          <div
+            v-if="isClosable"
+            class="popper-close"
+          >
             <button close-trigger>
-              <belk-icon name="close" width="28">Close Modal</belk-icon>
+              <belk-icon
+                name="close"
+                width="28"
+              >
+                Close Modal
+              </belk-icon>
             </button>
           </div>
-          <slot name="content">{{ content }}</slot>
+          <slot name="content">
+            {{ content }}
+          </slot>
         </div>
-        <div class="popper-arrow" v-if="hasPointer" data-popper-arrow></div>
+        <div
+          v-if="hasPointer"
+          class="popper-arrow"
+          data-popper-arrow
+        />
       </div>
     </transition>
-</div>
+  </div>
 </template>
 
 <script>
 import { createPopper as CreatePopper } from '@popperjs/core';
-import ComponentPrototype from '../../component-prototype';
+import ComponentPrototype from '../../../utils/component-prototype';
 
 function on(element, event, handler) {
   if (element && event && handler) {
@@ -52,8 +77,8 @@ function off(element, event, handler) {
 }
 
 export default {
-  mixins: [ComponentPrototype],
   name: 'NavItem',
+  mixins: [ComponentPrototype],
   props: {
     variant: {
       type: String,
@@ -226,6 +251,10 @@ export default {
 
     this.initPopper();
     this.show = true;
+  },
+
+  destroyed() {
+    this.destroyPopper();
   },
 
   methods: {
@@ -459,10 +488,6 @@ export default {
 
     //   return false;
     // },
-  },
-
-  destroyed() {
-    this.destroyPopper();
   },
 };
 </script>

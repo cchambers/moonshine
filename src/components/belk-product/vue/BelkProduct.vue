@@ -1,10 +1,18 @@
 <template>
-  <div class="belk-product"
+  <div
+    class="belk-product"
     :variant="variant"
-    v-bind:class=" { 'is-on-sale': onSale || discountType } ">
-    <a class="product-link" :href="fixedUrl" :data-pid="pid">
-      <div class="image"
-        :style="{ backgroundImage: 'url('+thumb_image+')' }"></div>
+    :class=" { 'is-on-sale': onSale || discountType } "
+  >
+    <a
+      class="product-link"
+      :href="fixedUrl"
+      :data-pid="pid"
+    >
+      <div
+        class="image"
+        :style="{ backgroundImage: 'url('+thumb_image+')' }"
+      />
       <div class="data">
         <div class="name">
           <div class="brand">{{ brand }}</div>
@@ -15,15 +23,23 @@
         </div>
         <div v-if="qty">Qty: {{ qty }}</div>
         <div class="price">
-          <span v-if="onSale || discountType" class="sale"
-          :discount="discountType"
-          v-bind:class="{ 'is-range': saleRange }">{{ saleValue }} </span>
-          <span class="original"
-          :discount="discountType"
-          v-bind:class="{ 'is-range': priceRange }">{{ originalValue }} </span>
-          <span v-if="coupon" class="coupon">after coupon</span>
+          <span
+            v-if="onSale || discountType"
+            class="sale"
+            :discount="discountType"
+            :class="{ 'is-range': saleRange }"
+          >{{ saleValue }} </span>
+          <span
+            class="original"
+            :discount="discountType"
+            :class="{ 'is-range': priceRange }"
+          >{{ originalValue }} </span>
+          <span
+            v-if="coupon"
+            class="coupon"
+          >after coupon</span>
         </div>
-        <div class="rating"><sh-rating :level="reviews"></sh-rating></div>
+        <div class="rating"><sh-rating :level="reviews" /></div>
         <div class="quick-view">
           <sh-button v-hammer:tap="quickView">Quick View</sh-button>
         </div>
@@ -33,13 +49,13 @@
 </template>
 
 <script>
-import MoneyFormatter from '../../money-formatter';
-import ComponentPrototype from '../../component-prototype';
+import MoneyFormatter from '../../../utils/money-formatter';
+import ComponentPrototype from '../../../utils/component-prototype';
 
 export default {
-  mixins: [ComponentPrototype, MoneyFormatter],
 
   name: 'BelkProduct',
+  mixins: [ComponentPrototype, MoneyFormatter],
 
   props: {
     title: {
@@ -59,16 +75,16 @@ export default {
       type: String,
     },
     qty: Number,
-    sale_price_range: {
+    salePriceRange: {
       type: Array,
       default: () => [],
     },
-    sale_price: Number,
-    price_range: {
+    salePrice: Number,
+    priceRange: {
       type: Array,
       default: () => [],
     },
-    thumb_image: {
+    thumbImage: {
       type: String,
     },
     size: {
@@ -116,6 +132,18 @@ export default {
     },
   },
 
+  // updated() {
+  //   setTimeout(() => {
+  //     this.checkOnSale('upd');
+  //   });
+  // },
+
+  watch: {
+    url(val) {
+      this.fixedUrl = val;
+    },
+  },
+
   created() {
     if (this.variant === 'bag') {
       if (this.url) this.fixedUrl = this.url;
@@ -128,18 +156,6 @@ export default {
     setTimeout(() => {
       this.checkOnSale('mtd');
     });
-  },
-
-  // updated() {
-  //   setTimeout(() => {
-  //     this.checkOnSale('upd');
-  //   });
-  // },
-
-  watch: {
-    url(val) {
-      this.fixedUrl = val;
-    },
   },
 
   methods: {

@@ -7,7 +7,7 @@
 <script>
 /* eslint-disable no-bitwise */
 import JsBarcode from 'jsbarcode';
-import ComponentPrototype from '../../component-prototype';
+import ComponentPrototype from '../../../utils/component-prototype';
 
 export default {
   mixins: [ComponentPrototype],

@@ -1,7 +1,7 @@
 import { createPopper as CreatePopper } from '@popperjs/core';
 // import preventOverflow from '@popperjs/core/lib/modifiers/preventOverflow';
 // import flip from '@popperjs/core/lib/modifiers/flip';
-import ComponentPrototype from '../../component-prototype';
+import ComponentPrototype from '../../../utils/component-prototype';
 
 export default {
   mixins: [ComponentPrototype],

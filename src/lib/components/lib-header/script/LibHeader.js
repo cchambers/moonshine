@@ -1,4 +1,4 @@
-import ComponentPrototype from '../../../../components/component-prototype';
+import ComponentPrototype from '../../../../utils/component-prototype';
 
 export default {
   mixins: [ComponentPrototype],

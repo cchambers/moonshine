@@ -1,14 +1,18 @@
 <template>
-  <div class="sh-curtain" v-bind:class="{ 'active': active }" v-hammer:tap="hide"></div>
+  <div
+    v-hammer:tap="hide"
+    class="sh-curtain"
+    :class="{ 'active': active }"
+  />
 </template>
 
 <script>
-import ComponentPrototype from '../../component-prototype';
+import ComponentPrototype from '../../../utils/component-prototype';
 
 export default {
-  mixins: [ComponentPrototype],
 
   name: 'Curtain',
+  mixins: [ComponentPrototype],
 
   data() {
     return {

@@ -1,69 +1,117 @@
 <template>
-  <div class="belk-drawer" role="dialog"
+  <div
+    :id="uniqueId"
+    class="belk-drawer"
+    role="dialog"
     :class="{ active: active }"
     :reveal="reveal"
     :drawer="drawer"
-    :id="uniqueId"
     :offscreen="!isReady"
     :attract="attractMode"
     :scrolling="scrolling"
     :aria-labelledby="ariaID"
-    :aria-describedby="ariaDescID">
-    <div class="tab-lock" v-if="active" v-on:focus="focusButton()" tabindex="0"></div>
-    <div class="content" ref="content" @mouseover="mouseOverHandler">
-      <div :tabindex="tabindex"
-        v-hammer:tap="toggle"
-        v-on:keydown.enter="toggle"
-        v-on:keydown.space="toggle"
-        v-on:keydown.tab="toggleTabHandler"
+    :aria-describedby="ariaDescID"
+  >
+    <div
+      v-if="active"
+      class="tab-lock"
+      tabindex="0"
+      @focus="focusButton()"
+    />
+    <div
+      ref="content"
+      class="content"
+      @mouseover="mouseOverHandler"
+    >
+      <div
         ref="button"
+        v-hammer:tap="toggle"
+        :id="ariaID"
+        :tabindex="tabindex"
         role="button"
         class="drawer-toggle flex align-start"
-        :id="ariaID">
-        <div class="dt-button-text" v-if="!active">
-          <div class="dt-headline">{{ buttonHeadlineInactive }}</div>
-          <div class="dt-subhead">{{ buttonSubheadInactive }}</div>
+        @keydown.enter="toggle"
+        @keydown.space="toggle"
+        @keydown.tab="toggleTabHandler"
+      >
+        <div
+          v-if="!active"
+          class="dt-button-text"
+        >
+          <div class="dt-headline">
+            {{ buttonHeadlineInactive }}
+          </div>
+          <div class="dt-subhead">
+            {{ buttonSubheadInactive }}
+          </div>
         </div>
-        <div class="dt-button-text" v-else>
-          <div class="dt-headline">{{ buttonHeadlineActive }}</div>
-          <div class="dt-subhead">{{ itemCount }}{{ buttonSubheadActive }}</div>
+        <div
+          v-else
+          class="dt-button-text"
+        >
+          <div class="dt-headline">
+            {{ buttonHeadlineActive }}
+          </div>
+          <div class="dt-subhead">
+            {{ itemCount }}{{ buttonSubheadActive }}
+          </div>
         </div>
         <div class="dt-icon">
-          <belk-icon name="arrow-up" width="16" height="20"></belk-icon>
+          <belk-icon
+            name="arrow-up"
+            width="16"
+            height="20"
+          />
         </div>
       </div>
-      <div class="body"
+      <div
         :id="ariaDescID"
-        ref="body">
+        ref="body"
+        class="body"
+      >
         <!-- <button aria-controls="promo-offers"
           v-if="scrolling" class="arrow previous"
           :disabled="scrollPrevDisabled" v-hammer:tap="previousHandler">
           <belk-icon width="10" name="arrow-left"></belk-icon>
         </button> -->
-          <offer-container :class="{ off: !active }"
-            variant="promos" unique-id="promo-offers"></offer-container>
-          <div :class="{ off: !active }" class="show-all-coupons">
-            <a class="primarylink" href="/coupons-online-and-in-store">See all offers</a>
-          </div>
+        <offer-container
+          :class="{ off: !active }"
+          variant="promos"
+          unique-id="promo-offers"
+        />
+        <div
+          :class="{ off: !active }"
+          class="show-all-coupons"
+        >
+          <a
+            class="primarylink"
+            href="/coupons-online-and-in-store"
+          >See all offers</a>
+        </div>
         <!-- <button aria-controls="promo-offers"
           v-if="scrolling" class="arrow next"
           :disabled="scrollNextDisabled" v-hammer:tap="nextHandler">
           <belk-icon width="10" name="arrow-right"></belk-icon>
         </button> -->
       </div>
-      <div class="tab-lock" v-if="active" v-on:focus="focusButton()" tabindex="0"></div>
+      <div
+        v-if="active"
+        class="tab-lock"
+        tabindex="0"
+        @focus="focusButton()"
+      />
     </div>
   </div>
 </template>
 
 <script>
 /* eslint-disable no-restricted-globals */
-import ComponentPrototype from '../../component-prototype';
+import ComponentPrototype from '../../../utils/component-prototype';
 
 export default {
-  mixins: [ComponentPrototype],
 
   name: 'BelkDrawer',
+  mixins: [ComponentPrototype],
 
   props: {
     uniqueId: {
