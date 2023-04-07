@@ -1,24 +1,53 @@
 <template>
-  <div class="sh-modal-buttons" :variant="variant" :hidden="this.hidden">
-    <div class="tab-lock" v-on:focus="modalFocusLast()" tabindex="0"></div>
+  <div
+    class="sh-modal-buttons"
+    :variant="variant"
+    :hidden="this.hidden"
+  >
+    <div
+      class="tab-lock"
+      tabindex="0"
+      @focus="modalFocusLast()"
+    />
     <button @click="closeModals">
-      <belk-icon v-if="closeActive" name="close" width="28" height="28">Close Modal</belk-icon>
+      <belk-icon
+        v-if="closeActive"
+        name="close"
+        width="28"
+        height="28"
+      >
+        Close Modal
+      </belk-icon>
     </button>
-    <button v-if="printActive" print-trigger hidden>
-      <belk-icon name="print" width="28" height="28">Print Modal Content</belk-icon>
+    <button
+      v-if="printActive"
+      print-trigger
+      hidden
+    >
+      <belk-icon
+        name="print"
+        width="28"
+        height="28"
+      >
+        Print Modal Content
+      </belk-icon>
     </button>
-    <div class="tab-lock" v-on:focus="modalFocusFirst()" tabindex="0"></div>
+    <div
+      class="tab-lock"
+      tabindex="0"
+      @focus="modalFocusFirst()"
+    />
   </div>
 </template>
 
 <script>
 /* eslint-disable no-restricted-globals */
-import ComponentPrototype from '../../component-prototype';
+import ComponentPrototype from '../../../utils/component-prototype';
 
 export default {
-  mixins: [ComponentPrototype],
 
   name: 'ModalButtons',
+  mixins: [ComponentPrototype],
 
   data() {
     return {

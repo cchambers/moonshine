@@ -1,24 +1,34 @@
 <template>
   <div class="sh-input">
-    <div hidden ref="default-value"><slot></slot></div>
-    <label :for="inputId"><slot name="label">{{ label }}</slot></label>
-    <input type="text"
+    <div
+      ref="default-value"
+      hidden
+    >
+      <slot />
+    </div>
+    <label :for="inputId">
+      <slot name="label">{{ label }}</slot>
+    </label>
+    <input
       :id="inputId"
       v-model="value"
-      v-on:keyup="keyupHandler"
-      class="actual" />
+      type="text"
+      class="actual"
+      @keyup="keyupHandler"
+    >
   </div>
+  <!-- <div v-if="error"></div> -->
 </template>
 
 <script>
-import ComponentPrototype from '../../component-prototype';
-import InputPrototype from '../../input-prototype';
-import ValidationBehavior from '../../validation-behavior';
+import ComponentPrototype from '../../../utils/component-prototype';
+import InputPrototype from '../../../utils/input-prototype';
+import ValidationBehavior from '../../../utils/validation-behavior';
 
 export default {
-  mixins: [ComponentPrototype, InputPrototype, ValidationBehavior],
 
   name: 'Input',
+  mixins: [ComponentPrototype, InputPrototype, ValidationBehavior],
 
   props: {
     label: String,

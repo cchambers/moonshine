@@ -1,14 +1,14 @@
 <template>
-  <div class="belk-bus"></div>
+  <div class="belk-bus" />
 </template>
 
 <script>
-import ComponentPrototype from '../../component-prototype';
+import ComponentPrototype from '../../../utils/component-prototype';
 
 export default {
-  mixins: [ComponentPrototype],
 
   name: 'BelkBus',
+  mixins: [ComponentPrototype],
 
   methods: {
     on(trigger, callback) {

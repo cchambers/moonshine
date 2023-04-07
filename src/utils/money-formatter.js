@@ -1,4 +1,4 @@
-const UtagBehavior = {
+const MoneyFormatter = {
   methods: {
     format(money) {
       const formatter = new Intl.NumberFormat('en-US', {
@@ -11,4 +11,4 @@ const UtagBehavior = {
   },
 };
 
-export default UtagBehavior;
+export default MoneyFormatter;

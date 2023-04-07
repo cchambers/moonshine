@@ -1,44 +1,75 @@
 <template>
-  <button ref="button" :class="{ active: isActive }"
+  <button
+    ref="button"
+    :class="{ active: isActive }"
     :type="type"
-    v-on:keyup.enter="tapHandler"
+    :id="uniqueId"
     :close-trigger="closeTrigger"
     :print-trigger="printTrigger"
     :value="value"
     :name="name"
-    :id="uniqueId"
     :form="form"
     :formaction="formaction"
     :formmethod="formmethod"
     :formtarget="formtarget"
+    @keyup.enter="tapHandler"
     :disabled="isDisabled"
-    v-bind:role="ariaRole"
-    v-bind:aria-selected="isActive"
-    v-bind:aria-controls="ariaControls"
-    class="sh-button">
-    <div v-if="beforeIcon" class="button-icon before">
-      <belk-icon :name="beforeIcon" height="18" width="18"></belk-icon>
+    :role="ariaRole"
+    :aria-selected="isActive"
+    :aria-controls="ariaControls"
+    class="sh-button"
+  >
+    <div
+      v-if="beforeIcon"
+      class="button-icon before"
+    >
+      <belk-icon
+        :name="beforeIcon"
+        height="18"
+        width="18"
+      />
     </div>
-    <slot name="before-text"></slot>
-    <div class="active-icon"
-      v-if="activeIcon"><belk-icon width="20" height="20"
-      :name="activeIcon"></belk-icon></div>
-    <div class="actual-text"><slot></slot></div>
-    <div class="active-text" v-if="isActive"><span>{{activeText}}</span></div>
-    <slot name="after-text"></slot>
-    <div v-if="icon" class="button-icon after">
-      <belk-icon :name="icon" height="13" width="13"></belk-icon>
+    <slot name="before-text" />
+    <div
+      v-if="activeIcon"
+      class="active-icon"
+    >
+      <belk-icon
+        width="20"
+        height="20"
+        :name="activeIcon"
+      />
+    </div>
+    <div class="actual-text">
+      <slot />
+    </div>
+    <div
+      v-if="isActive"
+      class="active-text"
+    >
+      <span>{{ activeText }}</span>
+    </div>
+    <slot name="after-text" />
+    <div
+      v-if="icon"
+      class="button-icon after"
+    >
+      <belk-icon
+        :name="icon"
+        height="13"
+        width="13"
+      />
     </div>
   </button>
 </template>
 
 <script>
-import ComponentPrototype from '../../component-prototype';
+import ComponentPrototype from '../../../utils/component-prototype';
 
 export default {
-  mixins: [ComponentPrototype],
 
   name: 'Button',
+  mixins: [ComponentPrototype],
 
   props: {
     ajax: String,
@@ -205,6 +236,7 @@ export default {
 
 };
 </script>
+
 <style lang="scss" src="../style/default.scss"></style>
 <style lang="scss" src="../style/primary.scss"></style>
 <style lang="scss" src="../style/secondary.scss"></style>

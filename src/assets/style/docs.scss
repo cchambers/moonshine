@@ -609,7 +609,7 @@ $containMargin: 6rem;
         &::after {
           display: inline-block;
           color: $accent-quaternary;
-          font-family: "Material Icons";
+          font-family: "Material Symbols Rounded";
           content: "[";
         }
 
@@ -636,7 +636,7 @@ $containMargin: 6rem;
         &::after {
           display: inline-block;
           color: $accent-secondary;
-          font-family: "Material Icons";
+          font-family: "Material Symbols Rounded";
           content: "()";
         }
 
@@ -656,7 +656,7 @@ $containMargin: 6rem;
         &::after {
           display: inline-block;
           color: $accent-secondary;
-          font-family: "Material Icons";
+          font-family: "Material Symbols Rounded";
           content: '"';
         }
 
@@ -681,7 +681,7 @@ $containMargin: 6rem;
         &::before,
         &::after {
           color: $accent-secondary;
-          font-family: "Material Icons";
+          font-family: "Material Symbols Rounded";
           content: '"';
         }
 

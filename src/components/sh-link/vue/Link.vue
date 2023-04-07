@@ -1,19 +1,21 @@
 <template>
-  <a class="sh-link"
+  <a
+    class="sh-link"
     :href="href"
     :target="target"
-    :variant="variant">
-    <slot></slot>
+    :variant="variant"
+  >
+    <slot />
   </a>
 </template>
 
 <script>
-import ComponentPrototype from '../../component-prototype';
+import ComponentPrototype from '../../../utils/component-prototype';
 
 export default {
-  mixins: [ComponentPrototype],
 
   name: 'Link',
+  mixins: [ComponentPrototype],
 
   props: {
     href: {

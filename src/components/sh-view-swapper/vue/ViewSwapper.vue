@@ -1,18 +1,20 @@
 <template>
-  <div class="sh-view-swapper"
+  <div
+    class="sh-view-swapper"
     :variant="variant"
-    role="tablist">
-    <slot></slot>
+    role="tablist"
+  >
+    <slot />
   </div>
 </template>
 
 <script>
-import ComponentPrototype from '../../component-prototype';
+import ComponentPrototype from '../../../utils/component-prototype';
 
 export default {
-  mixins: [ComponentPrototype],
 
   name: 'ViewSwapper',
+  mixins: [ComponentPrototype],
 
   props: {
     active: {
@@ -26,6 +28,14 @@ export default {
     },
   },
 
+  data() {
+    return {
+      activeView: undefined,
+      views: [],
+      labelledBy: String,
+    };
+  },
+
   watch: {
     active(which) {
       // do ADA stuff for "which"
@@ -37,14 +47,6 @@ export default {
         this.ADA();
       }
     },
-  },
-
-  data() {
-    return {
-      activeView: undefined,
-      views: [],
-      labelledBy: String,
-    };
   },
 
   mounted() {

@@ -4,8 +4,8 @@
 </template>
 
 <script>
-import ComponentPrototype from '../../component-prototype';
-import MoneyFormatter from '../../money-formatter';
+import ComponentPrototype from '../../../utils/component-prototype';
+import MoneyFormatter from '../../../utils/money-formatter';
 
 export default {
   mixins: [ComponentPrototype, MoneyFormatter],

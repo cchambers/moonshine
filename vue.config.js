@@ -154,25 +154,15 @@ if (process.env.NODE_ENV !== 'production') {
     });
 }
 
+const vueSrc = "src";
+
 module.exports = {
   runtimeCompiler: false,
   filenameHashing: false,
-
-  css: {
-    loaderOptions: {
-      sass: {
-        data: `
-          @import "@/assets/style/common/_functions.scss";
-          @import "@/assets/style/common/_mixins.scss";
-          @import "@/assets/style/themes/default/_variables.scss";
-        `,
-      },
-    },
-  },
-
   configureWebpack: {
     resolve: {
       alias: {
+        '@': path.resolve(__dirname, vueSrc),
         vue$: 'vue/dist/vue.esm.js',
       },
     },
@@ -190,6 +180,18 @@ module.exports = {
         },
       }),
     ],
+  },
+
+  css: {
+    loaderOptions: {
+      sass: {
+        data: `
+          @import "@/assets/style/common/_functions.scss";
+          @import "@/assets/style/common/_mixins.scss";
+          @import "@/assets/style/themes/default/_variables.scss";
+        `,
+      },
+    },
   },
 
   chainWebpack: (config) => {

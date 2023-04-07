@@ -1,57 +1,97 @@
 <template>
-  <div class="sh-modal" role="dialog"
+  <div
+    :id="uniqueId"
+    class="sh-modal"
+    role="dialog"
     :variant="variant"
     :class="{
       fullscreen: fullscreen,
       active: active
     }"
     :reveal="reveal"
-    :id="uniqueId"
     :aria-labelledby="ariaID"
-    :aria-describedby="ariaDescID">
-    <div class="content" ref="content" :class="{ 'no-space': noSpace }" :size="size">
-      <div class="tab-lock"
+    :aria-describedby="ariaDescID"
+  >
+    <div
+      ref="content"
+      class="content"
+      :class="{ 'no-space': noSpace }"
+      :size="size"
+    >
+      <div
+        class="tab-lock"
         :class="{ off: !active }"
-        v-on:focus="modalButtonsFocus()" tabindex="0"></div>
-      <div v-if="!hideHeader" class="header">
-        <div v-if="header" class="modal-title">
+        tabindex="0"
+        @focus="modalButtonsFocus()"
+      />
+      <div
+        v-if="!hideHeader"
+        class="header"
+      >
+        <div
+          v-if="header"
+          class="modal-title"
+        >
           <h3 :id="ariaHeaderID">
-            <slot name="header">{{ header }}</slot>
+            <slot name="header">
+              {{ header }}
+            </slot>
           </h3>
           <button
+            v-if="variant == 'tertiary'"
             class="tertiary-close"
             close-trigger
-            v-if="isMobile() && variant == 'tertiary'">
+          >
             <i class="material-icons-round">close</i>
           </button>
         </div>
       </div>
-      <div class="body" :style="{ 'max-width': maxWidth }" ref="body" :id="ariaDescID">
-        <div v-if="contentUrl && !loaded" class="loading-anim" v-html="loadHtml"></div>
+      <div
+        :id="ariaDescID"
+        ref="body"
+        class="body"
+        :style="{ 'max-width': maxWidth }"
+      >
+        <div
+          v-if="contentUrl && !loaded"
+          class="loading-anim"
+          v-html="loadHtml"
+        />
         <template v-if="!dynamicHTML">
           <slot>{{ content }}</slot>
         </template>
-        <div v-if="dynamicHTML" v-html="dynamicHTML"></div>
-        <div class="remote" ref="ajax"></div>
+        <div
+          v-if="dynamicHTML"
+          v-html="dynamicHTML"
+        />
+        <div
+          ref="ajax"
+          class="remote"
+        />
       </div>
       <div class="footer">
-        <slot name="footer">{{ footer }}</slot>
+        <slot name="footer">
+          {{ footer }}
+        </slot>
       </div>
-      <div class="tab-lock"
+      <div
+        class="tab-lock"
         :class="{ off: !active }"
-        v-on:focus="modalButtonsFocus()" tabindex="0"></div>
+        tabindex="0"
+        @focus="modalButtonsFocus()"
+      />
     </div>
   </div>
 </template>
 
 <script>
 /* eslint-disable no-restricted-globals */
-import ComponentPrototype from '../../component-prototype';
+import ComponentPrototype from '../../../utils/component-prototype';
 
 export default {
-  mixins: [ComponentPrototype],
 
   name: 'Modal',
+  mixins: [ComponentPrototype],
 
   props: {
     uniqueId: {
@@ -601,7 +641,7 @@ export default {
       }
       .sh-modal-buttons[variant="tertiary"] {
         display: none;
-        @include lg {
+        @include md {
           display: block;
           right: 1.6rem !important;
           top: 0 !important;

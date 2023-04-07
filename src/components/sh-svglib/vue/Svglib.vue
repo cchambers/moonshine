@@ -2,7 +2,12 @@
   <div class="sh-svglib">
     <svg>
       <defs>
-        <g v-for="(data, name) in activeIcons" v-html="data.svg" v-bind:key="name" :id="name"></g>
+        <g
+          v-for="(data, name) in activeIcons"
+          :id="name"
+          :key="name"
+          v-html="data.svg"
+        />
       </defs>
     </svg>
   </div>
@@ -10,7 +15,7 @@
 
 <script>
 /* eslint-disable */
-import ComponentPrototype from '../../component-prototype';
+import ComponentPrototype from '../../../utils/component-prototype';
 
 const iconJSON = {
   "close": {

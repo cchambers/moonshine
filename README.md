@@ -154,8 +154,8 @@ This will give us a way to make suggestions to the offshore team... "Use *this c
 
 Any contributions you make are **greatly appreciated**.
 
-1. Create your Feature Branch (`git checkout -b feature/amazing-feature`)
-2. Commit your Changes (`git commit -m 'Add some Amazing Feature`)
+1. Create your Feature Branch from `shine/devtest` (`git checkout -b feature/amazing-feature`)
+2. Commit your Changes (`git commit -m 'Feature Name: added some amazing feature`)
 3. Push to the Branch (`git push origin feature/amazing-feature`)
-4. Open a Pull Request
+4. Open a Pull Request to `devtest`
 

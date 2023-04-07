@@ -4,9 +4,18 @@
       v-if="hasData"
       has-arrow
       boundaries-selector="#primary-nav"
-      :foreground-selector="this.foreground">
-      <div slot="reference" class="nav-link">
-        <belk-icon name="storebag" width="16" height="18" class="margin-r-atomic"></belk-icon>
+      :foreground-selector="this.foreground"
+    >
+      <div
+        slot="reference"
+        class="nav-link"
+      >
+        <belk-icon
+          name="storebag"
+          width="16"
+          height="18"
+          class="margin-r-atomic"
+        />
         <span>{{ storeData.storeName }}</span>
       </div>
       <div slot="content">
@@ -22,32 +31,45 @@
               <span>{{ storeData.stateCode }}</span>,
               <span>{{ zip }}</span>
             </div>
-            <phone-number class="bold" :in="storeData.phoneNumber"></phone-number>
+            <phone-number
+              class="bold"
+              :in="storeData.phoneNumber"
+            />
           </li>
           <li>
-            <a class="belk-link accent-primary" :href="storefinderLink">
+            <a
+              class="belk-link accent-primary"
+              :href="storefinderLink"
+            >
               Find Other Stores
             </a>
           </li>
         </ul>
       </div>
     </sh-nav-item>
-    <a v-else class="nav-link"
-      :href="storefinderLink">
-      <belk-icon name="storebag" width="16" height="18" class="margin-r-atomic"></belk-icon>
+    <a
+      v-else
+      class="nav-link"
+      :href="storefinderLink"
+    >
+      <belk-icon
+        name="storebag"
+        width="16"
+        height="18"
+        class="margin-r-atomic"
+      />
       Find A Store
     </a>
-
   </div>
 </template>
 
 <script>
-import ComponentPrototype from '../../component-prototype';
+import ComponentPrototype from '../../../utils/component-prototype';
 
 export default {
-  mixins: [ComponentPrototype],
 
   name: 'BelkStorefinder',
+  mixins: [ComponentPrototype],
 
   props: {
     storefinderLink: {
@@ -60,6 +82,14 @@ export default {
     },
   },
 
+  data() {
+    return {
+      hasData: false,
+      storeData: {},
+      zip: null,
+    };
+  },
+
   watch: {
     storeData(val) {
       if (val.postalCode) {
@@ -67,14 +97,6 @@ export default {
         this.$set(this, 'zip', zip);
       }
     },
-  },
-
-  data() {
-    return {
-      hasData: false,
-      storeData: {},
-      zip: null,
-    };
   },
 
   methods: {

@@ -1,5 +1,5 @@
-import ComponentPrototype from '../../component-prototype';
 import Combo from '../../sh-combo/vue/Combo.vue';
+import ComponentPrototype from '../../../utils/component-prototype';
 
 export default {
   mixins: [ComponentPrototype],

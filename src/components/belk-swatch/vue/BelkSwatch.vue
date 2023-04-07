@@ -1,30 +1,42 @@
 <template>
-  <div class="belk-swatch"
-    :variant="variant">
-    <div class="swatch-name"><strong>{{ prefix }}:</strong> {{ selectedName }}</div>
-    <div hidden><slot></slot></div>
+  <div
+    class="belk-swatch"
+    :variant="variant"
+  >
+    <div class="swatch-name">
+      <strong>{{ prefix }}:</strong> {{ selectedName }}
+    </div>
+    <div hidden>
+      <slot />
+    </div>
     <ul class="swatch-list">
-      <li v-for="(item, index) in items" v-bind:key="item.id"
-        class="belk-swatch-actual"
-        v-bind:class="{ highlight: item.active }"
-        role="option"
+      <li
+        v-for="(item, index) in items"
         :id="item.id"
+        :key="item.id"
+        class="belk-swatch-actual"
+        :class="{ highlight: item.active }"
+        role="option"
         tabindex="0"
         :aria-selected="item.highlighted"
-        :style="{ backgroundImage: `url('${item.img}')`}">
-        <button v-hammer:tap="handleClick" :value="index"></button>
+        :style="{ backgroundImage: `url('${item.img}')`}"
+      >
+        <button
+          v-hammer:tap="handleClick"
+          :value="index"
+        />
       </li>
     </ul>
   </div>
 </template>
 
 <script>
-import ComponentPrototype from '../../component-prototype';
+import ComponentPrototype from '../../../utils/component-prototype';
 
 export default {
-  mixins: [ComponentPrototype],
 
   name: 'BelkSwatch',
+  mixins: [ComponentPrototype],
 
   props: {
 

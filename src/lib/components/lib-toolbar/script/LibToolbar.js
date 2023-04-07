@@ -4,7 +4,7 @@ import 'brace/mode/html';
 import 'brace/mode/json';
 import 'brace/theme/monokai';
 import Pretty from 'pretty';
-import ComponentPrototype from '../../../../components/component-prototype';
+import ComponentPrototype from '../../../../utils/component-prototype';
 
 export default {
   mixins: [ComponentPrototype],
@@ -13,11 +13,12 @@ export default {
   props: {
     baseCode: String,
     demo: String,
+    autoOpen: Boolean,
   },
 
   data() {
     return {
-      active: true,
+      active: false,
       fullscreen: false,
       isActive: false,
       code: '',
@@ -32,6 +33,7 @@ export default {
   created() {
     this.setUUID();
     window.Pretty = Pretty;
+    if (this.autoOpen) this.active = true;
   },
 
   mounted() {

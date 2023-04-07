@@ -131,8 +131,8 @@
 <style lang="scss" src="../style/variant-desktop.scss"></style>
 
 <script>
+import ComponentPrototype from '../../../utils/component-prototype';
 import BelkProductList from '../../belk-product-list/vue/BelkProductList.vue';
-import ComponentPrototype from '../../component-prototype';
 
 export default {
   mixins: [ComponentPrototype],

@@ -1,20 +1,28 @@
 <template>
   <div class="belk-promo">
-    <div v-if="data.brd > 0" class="rewards-dollars">
-      You have ${{data.brd}} Belk Reward Dollars<span class="line-combinator"
-      aria-hidden="true">&nbsp;+&nbsp;</span>
+    <div
+      v-if="data.brd > 0"
+      class="rewards-dollars"
+    >
+      You have ${{ data.brd }} Belk Reward Dollars<span
+        class="line-combinator"
+        aria-hidden="true"
+      >&nbsp;+&nbsp;</span>
     </div>
-    <div class="free-shipping" v-html="shipping"></div>
+    <div
+      class="free-shipping"
+      v-html="shipping"
+    />
   </div>
 </template>
 
 <script>
-import ComponentPrototype from '../../component-prototype';
+import ComponentPrototype from '../../../utils/component-prototype';
 
 export default {
-  mixins: [ComponentPrototype],
 
   name: 'BelkPromo',
+  mixins: [ComponentPrototype],
 
   props: {
     freeShipping: {

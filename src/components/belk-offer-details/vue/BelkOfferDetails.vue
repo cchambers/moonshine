@@ -9,7 +9,8 @@
         class="price flex start">
         <div v-if="content.summary.price.sales"
           class="px-18 bold">{{ content.summary.price.sales }}</div>
-        <div v-if="content.summary.price.original"
+        <div v-if="content.summary.price.original
+          && (content.summary.price.original != content.summary.price.sales)"
           class="px-12 margin-l-atomic lowlight-secondary deco-strike">
           {{ content.summary.price.original }}
         </div>
@@ -36,7 +37,7 @@
 
     <div
       v-if="content.actions && !hideActions"
-      class="margin-t-auto offer-detail-actions">
+      class="offer-detail-actions margin-t-auto pad-y-little">
       <div v-for="action in content.actions.primary" :key="action.id">
         <sh-button :link="action.url" full variant="primary">{{ action.text }}</sh-button>
       </div>
@@ -44,11 +45,19 @@
         <sh-button :link="action.url" full variant="belk-link">{{ action.text }}</sh-button>
       </div>
     </div>
+    <div
+      v-if="content.message && !hideMessaging"
+      class="offer-detail-messaging margin-t-auto pad-y-little">
+      <div class="px-16 back-highlight-secondary lowlight-quinary flex align-start pad-micro">
+        <i class="material-icons-round">info</i>
+        <p class="px-14 pad-l-atomic">{{ content.message }}</p>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import ComponentPrototype from '../../component-prototype';
+import ComponentPrototype from '../../../utils/component-prototype';
 
 export default {
   mixins: [ComponentPrototype],
@@ -60,7 +69,7 @@ export default {
     contentData: {
       type: Object,
     },
-    giftId: {
+    promoId: {
       type: String,
     },
   },
@@ -69,6 +78,7 @@ export default {
     return {
       content: {},
       hideActions: false,
+      hideMessaging: false,
     };
   },
 
@@ -77,11 +87,12 @@ export default {
       const data = JSON.parse(this.contentData);
       this.handleData(data);
     }
-    if (this.giftId) this.getData();
+    if (this.promoId) this.getData();
     setTimeout(() => {
       if (window.pageContext) {
         const temp = window.pageContext.ns;
         if (temp === 'product' || temp === 'cart') this.hideActions = true;
+        if (temp !== 'product' || this.variant === 'bag') this.hideMessaging = true;
       }
     }, 200);
   },
@@ -100,7 +111,9 @@ export default {
     },
 
     getData() {
-      fetch(`${window.location.origin}/on/demandware.store/Sites-Belk-Site/default/Product-ShowSpecialOfferDetails?promoId=${this.giftId}`)
+      let url = this.checkDev() ? 'https://devweb-ecdn.belkdev.com' : window.location.origin;
+      url += `/on/demandware.store/Sites-Belk-Site/default/Product-ShowSpecialOfferDetails?promoId=${this.promoId}`;
+      fetch(url)
         .then((response) => response.json())
         .then(this.handleData);
     },
@@ -109,7 +122,6 @@ export default {
       this.content = { ...data };
     },
   },
-
 };
 </script>
 <style lang="scss" src="../style/default.scss"></style>

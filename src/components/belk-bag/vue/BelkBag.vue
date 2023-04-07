@@ -59,9 +59,9 @@
 </template>
 
 <script>
-import ComponentPrototype from '../../component-prototype';
+import ComponentPrototype from '../../../utils/component-prototype';
 import BelkProduct from '../../belk-product/vue/BelkProduct.vue';
-import MoneyFormatter from '../../money-formatter';
+import MoneyFormatter from '../../../utils/money-formatter';
 
 export default {
   mixins: [ComponentPrototype, MoneyFormatter],
