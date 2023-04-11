@@ -2,13 +2,32 @@
   <div class="belk-product"
     :variant="variant"
     v-bind:class=" { 'is-on-sale': onSale || discountType } ">
-    <a class="product-link" :href="fixedUrl" :data-pid="pid">
-      <div class="image"
+      <div v-if="['default', 'bag'].includes(this.variant)"
+        class="image"
         :style="{ backgroundImage: 'url('+thumb_image+')' }"></div>
+        <div v-if="content.images"
+          class="images">
+          <ul>
+            <li v-for="src in content.images" :key="src">
+              <div class="image"
+                :style="`background-image:url('${src}');`"></div>
+            </li>
+          </ul>
+        </div>
       <div class="data">
-        <div class="name">
-          <div class="brand">{{ brand }}</div>
-          <div class="title">{{ title }}</div>
+        <a v-if="['default', 'bag'].includes(this.variant)"
+          class="product-link"
+          :href="content.url"
+          :data-pid="pid">
+          <div class="name">
+            <div class="brand">{{ content.brand }}</div>
+            <div class="title">{{ content.title }}</div>
+          </div>
+        </a>
+        <div v-if="['add'].includes(this.variant)"
+          class="name">
+          <div class="brand"><a href="#" class="lowlight-tertiary">{{ content.brand }}</a></div>
+          <div class="title">{{ content.title }}</div>
         </div>
         <div v-if="qty">
           <span>{{ size }}</span><span v-if="color">,&nbsp;</span><span>{{ color }}</span>
@@ -23,12 +42,49 @@
           v-bind:class="{ 'is-range': priceRange }">{{ originalValue }} </span>
           <span v-if="coupon" class="coupon">after coupon</span>
         </div>
-        <div class="rating"><sh-rating :level="reviews"></sh-rating></div>
-        <div class="quick-view">
+        <div class="rating" v-if="rating">
+          <sh-rating :level="rating"></sh-rating>
+        </div>
+        <div class="extra-1"></div>
+        <div class="extra-2"></div>
+        <div class="extra-3"></div>
+        <div class="extra-4"></div>
+        <!-- <div class="quick-view">
           <sh-button v-hammer:tap="quickView">Quick View</sh-button>
+        </div> -->
+        <div v-if="['add'].includes(this.variant)"
+          class="add-form">
+          <div>SWATCHES</div>
+          <div>SIZE</div>
+          <div>QTY</div>
+          <div>SPECIAL OFFER?</div>
+          <sh-accordion variant="secondary"
+            unique-id="product-add-protection">
+            <div slot="header">
+              Protection
+            </div>
+            <div slot="body">
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Consectetur laborum aspernatur, tempore omnis, est ad animi.</p>
+            </div>
+          </sh-accordion>
+          <sh-accordion variant="secondary"
+            unique-id="product-add-install">
+            <div slot="header">
+              Installation
+            </div>
+            <div slot="body">
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Consectetur laborum aspernatur, tempore omnis, est ad animi.</p>
+            </div>
+          </sh-accordion>
+          <div>SHIPPING</div>
+          <div>SUBSCRIPTION FREQ</div>
         </div>
       </div>
-    </a>
+
+    <template v-if="variant != 'add'">
+    </template>
   </div>
 </template>
 
@@ -42,6 +98,9 @@ export default {
   name: 'BelkProduct',
 
   props: {
+    uniqueId: {
+      type: String,
+    },
     title: {
       type: String,
     },
@@ -87,12 +146,30 @@ export default {
       salePrice: null,
       priceRange: null,
       coupon: false,
-      fixedUrl: String,
       isOnSale: false,
+      __placeholder__: null,
+      content: {
+        title: this.title,
+        brand: this.brand,
+        url: this.url,
+        reviews: this.reviews,
+      },
     };
   },
 
   computed: {
+    rating() {
+      let r;
+      const { reviews } = this.content;
+      if (typeof reviews === 'object') {
+        [r] = reviews;
+      }
+      r = parseFloat(r);
+      r = r.toFixed(1);
+      r = parseFloat(r);
+      return r;
+    },
+
     originalValue() {
       const val = this.priceRange || this.format(this.price);
       return val;
@@ -118,8 +195,8 @@ export default {
 
   created() {
     if (this.variant === 'bag') {
-      if (this.url) this.fixedUrl = this.url;
-      if (this.price === 0) this.fixedUrl = '#';
+      if (this.url) this.content.url = this.url;
+      if (this.price === 0) this.content.url = '#';
     }
   },
 
@@ -138,7 +215,7 @@ export default {
 
   watch: {
     url(val) {
-      this.fixedUrl = val;
+      this.content.url = val;
     },
   },
 
@@ -146,6 +223,7 @@ export default {
     events() {
       this.$bus.$on('clear-suggestions', this.clearSuggestions);
       this.$bus.$on('search-suggestions-loaded', this.processProps);
+      if (this.uniqueId) this.$bus.$on(`update-product-${this.uniqueId}`, this.updateContent);
     },
 
     checkOnSale() {
@@ -159,8 +237,8 @@ export default {
         salePrice: null,
         priceRange: null,
         coupon: false,
-        fixedUrl: String,
         isOnSale: false,
+        content: {},
       });
     },
 
@@ -176,9 +254,9 @@ export default {
         || (whref.indexOf('sandbox') >= 0);
       if (dev && this.url) {
         const newUrl = this.url.replace('https://www.belk.com', window.location.origin);
-        this.$set(this, 'fixedUrl', newUrl);
+        this.$set(this.content, 'url', newUrl);
       } else {
-        this.$set(this, 'fixedUrl', this.url);
+        this.$set(this.content, 'url', this.url);
       }
     },
 
@@ -202,11 +280,16 @@ export default {
         }
       }
     },
+
+    updateContent(data) {
+      this.content = { ...data };
+    },
   },
 };
 </script>
 <style lang="scss" src="../style/default.scss"></style>
 <style lang="scss" src="../style/bag.scss"></style>
+<style lang="scss" src="../style/add.scss"></style>
 
 <!--
 {

@@ -53,6 +53,11 @@ sh-rating {
     top: 0;
     bottom: 0;
     font-family: "Material Symbols Rounded";
+    font-variation-settings:
+      'FILL' 1,
+      'wght' 400,
+      'GRAD' 0,
+      'opsz' 48;
     content: attr(icon) attr(icon) attr(icon) attr(icon) attr(icon);
     color: $accent-tertiary;
     z-index: 0;

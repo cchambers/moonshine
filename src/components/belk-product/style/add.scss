@@ -1,0 +1,75 @@
+.belk-product[variant="add"] {
+  display: flex;
+  flex-direction: column;
+  color: $lowlight-primary;
+  @include lg {
+    flex-direction: row;
+  }
+  .images {
+    @include lg {
+      @include scroll-y;
+      @include no-scroll-bar;
+      max-height: 80dvh;
+    }
+    border: 2px solid $accent-primary;
+    ul {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-wrap: wrap;
+      li {
+        display: block;
+        width: 45%;
+        flex-grow: 1;
+        flex-shrink: 0.5;
+        margin-left: $micro;
+        margin-bottom: $little;
+        div.image {
+          background-size: cover;
+          background-position: center center;
+          height: 20rem;
+        }
+      }
+      li:nth-child(1) {
+        width: 100%;
+        flex-shrink: 0;
+        min-width: 32rem;
+        .image {
+          height: 60rem;
+        }
+      }
+    }
+  }
+  .data {
+    display: flex;
+    flex-direction: column;
+    > div {
+      margin-bottom: $micro;
+    }
+    @include lg {
+      padding-left: $little;
+    }
+  }
+  .brand {
+    font-size: 1.4rem;
+  }
+  .name {
+    order: 1;
+    font-size: 1.8rem;
+  }
+  .rating {
+    order: 2;
+  }
+  .price {
+    order: 4;
+  }
+  .add-form {
+    order: 5;
+    > div {
+      margin: $little 0;
+    }
+  }
+  [class*="extra-"] {
+    order: 10;
+  }
+}
