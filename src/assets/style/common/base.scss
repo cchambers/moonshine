@@ -53,11 +53,22 @@ html {
   }
 }
 
-
 .scroll-block {
   > * {
     overflow: hidden !important;
   }
+}
+
+.scroll-y {
+  @include scroll-y;
+}
+
+.scroll-x {
+  @include scroll-x;
+}
+
+.hide-scrollbar {
+  @include no-scroll-bar;
 }
 
 html, body {
