@@ -1,0 +1,84 @@
+/* default styling */
+
+belk-pdp-info {
+  width: 100%;
+
+  .belk-pdp-info {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    .tabs-desktop-header {
+      display: none;
+      flex-direction: row;
+      border-bottom: var(--highlight-tertiary) 1px solid;
+      @include custom-scroll-bar;
+
+      .tab-item {
+        min-width: 150px;
+        border-bottom: transparent 3px solid;
+        text-align: center;
+        cursor: pointer;
+
+        &.active {
+          border-bottom: var(--lowlight-primary) 3px solid;
+        }
+      }
+
+      @include md {
+        display: flex;
+      }
+    }
+
+  .belk-pdp-info-section {
+    border-top: var(--highlight-quinary) 1px solid;
+    width: 100%;
+
+    @include md {
+      border-top: none;
+    }
+
+    .tab-header {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+
+      @include md {
+        display: none;
+      }
+
+      span {
+        line-height: 28px;
+      }
+
+      belk-icon {
+        transition: transform .2s;
+
+        &.opened {
+          transform: rotate(180deg);
+        }
+      }
+    }
+
+    .tab-content {
+      padding: 12px 16px 20px 16px;
+    }
+
+    @include md {
+      .tab-content {
+        padding: 8px 0px;
+      }
+    }
+  }
+
+  &:last-child {
+    border-bottom: var(--highlight-quinary) 1px solid;
+
+    @include md {
+      border-bottom: none;
+    }
+  }
+  }
+}
