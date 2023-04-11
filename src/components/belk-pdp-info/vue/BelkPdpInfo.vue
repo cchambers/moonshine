@@ -52,6 +52,7 @@ export default {
   created() {
     this.sections = [];
     this.lastActiveSectionIndex = 0;
+    this.debouncedResizeHandler = this.debounce('resize-event-handler', this.handleResizeEvent, 100);
 
     if (this.productId) {
       this.getSectionsData();
@@ -72,11 +73,13 @@ export default {
 
   methods: {
     events() {
-      this.$bus.$on('resize-event', () => {
-        if (!this.isMobile()) {
-          this.toggleSection(this.lastActiveSectionIndex);
-        }
-      });
+      this.$bus.$on('resize-event', this.debouncedResizeHandler);
+    },
+
+    handleResizeEvent() {
+      if (!this.isMobile()) {
+        this.toggleSection(this.lastActiveSectionIndex);
+      }
     },
 
     toggleSection(sectionIndex) {
