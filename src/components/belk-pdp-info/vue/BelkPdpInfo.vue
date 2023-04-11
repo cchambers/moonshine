@@ -23,6 +23,7 @@
     >
       <div
         class="tab-header pad-x-little pad-y-little"
+        :class="'section-header-' + item.id"
         @click="toggleSection(index)"
       >
         <span class="font-primary text wt-700 lowlight-primary px-15">
@@ -94,6 +95,14 @@ export default {
         }
 
         this.loadSectionContent(sectionIndex);
+        setTimeout(() => {
+          if (this.isMobile()) {
+            const target = this.$el.querySelector(`.section-header-${this.sections[sectionIndex].id}`);
+            if (target) {
+              target.scrollIntoView(true);
+            }
+          }
+        }, 100);
       } else if (this.isMobile()) {
         this.sections.splice(sectionIndex, 1, {
           ...this.sections[sectionIndex],

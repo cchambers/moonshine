@@ -44,6 +44,8 @@ belk-pdp-info {
       justify-content: space-between;
       align-items: center;
       cursor: pointer;
+      scroll-margin-top: 120px;
+      scroll-snap-margin-top: 120px;
 
       @include md {
         display: none;
