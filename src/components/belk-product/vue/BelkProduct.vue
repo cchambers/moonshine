@@ -64,7 +64,7 @@
         <div v-if="['add'].includes(this.variant)"
           class="add-form">
           <div>SWATCHES
-            <belk-swatch></belk-swatch>
+            <!-- <belk-swatch></belk-swatch> -->
           </div>
           <div class="product-size ">
             SIZE:
