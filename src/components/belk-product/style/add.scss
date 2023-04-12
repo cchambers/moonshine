@@ -71,10 +71,28 @@
   .add-form {
     order: 5;
     > div {
-      margin: $little 0;
+      margin-bottom: $rem;
     }
+  }
+  .add-label {
+    color: $lowlight-tertiary;
+    font-size: 1.4rem;
+    margin-bottom: $little;
   }
   [class*="extra-"] {
     order: 10;
+  }
+  .radio-select {
+    label {
+      padding: 0.8rem;
+      border: 1px solid grey;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-right: 0.8rem;
+    }
+    input:checked + label {
+      border-color: $lowlight-primary;
+      border-width: 2px;
+    }
   }
 }

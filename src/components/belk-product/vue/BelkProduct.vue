@@ -67,11 +67,12 @@
         </div> -->
         <div v-if="['add'].includes(this.variant)"
           class="add-form">
-          <div>SWATCHES
+          <div>
+            [swatches (belk-swatch)]
             <!-- <belk-swatch></belk-swatch> -->
           </div>
           <div class="product-size ">
-            SIZE:
+            <div class="add-label">Size:</div>
             <div class="flex start pad-y-micro radio-select">
               <div class="radio">
                 <input id="size1"
@@ -92,13 +93,14 @@
               </div>
             </div>
           </div>
-          <div class="product-qty">QTY:
+          <div class="product-qty">
+            <div class="add-label">Quantity:</div>
             <div>
-            <button @click="itemQty -= 1">
+            <button :disabled="itemQty == 1" @click="(itemQty > 1) ? itemQty -= 1 : ''">
               <i class="material-icons-round">remove</i>
             </button>
-            <input type="number" min="0" step="1" max="99" v-model="itemQty">
-            <button @click="itemQty += 1">
+            <input type="number" length="3" min="0" step="1" max="99" v-model="itemQty">
+            <button :disabled="itemQty >= itemMax" @click="itemQty += 1">
               <i class="material-icons-round">add</i>
             </button>
             </div>
@@ -202,6 +204,7 @@ export default {
         reviews: this.reviews,
       },
       itemQty: 1,
+      itemMax: 6,
     };
   },
 
