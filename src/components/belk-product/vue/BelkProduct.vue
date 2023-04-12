@@ -7,7 +7,7 @@
         <ul>
           <li v-for="src in content.images" :key="src">
             <div class="image"
-              :style="`background-image:url('${src}');`"></div>
+              :style="{ backgroundImage: `url(${src})` }"></div>
           </li>
         </ul>
       </div>
@@ -22,7 +22,7 @@
             :href="content.url"
             :data-pid="pid">
             <div class="image"
-            :style="{ backgroundImage: 'url('+thumb_image+')' }"></div>
+            :style="{ backgroundImage: `url(${thumb_image})` }"></div>
             <div class="data">
               <div class="name">
                 <div class="brand">{{ content.brand }}</div>
