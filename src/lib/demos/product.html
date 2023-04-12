@@ -1,5 +1,19 @@
 <sh-svglib></sh-svglib>
 
+<div class="row margin-y">
+  <div class="scol-1-4 pad-r-little text-right">
+  Choose a demo product:
+  </div>
+  <div class="scol-1-2">
+    <sh-combo unique-id="product-demo">
+        <ul slot="options">
+          <li value="0" selected>Example One (PFG Long Sleeve)</li>
+          <li value="1">Big Blue Bus</li>
+        </ul>
+      </sh-combo>
+  </div>
+</div>
+
 <belk-product unique-id="demo" variant="add"></belk-product>
 
 <script>
@@ -18,9 +32,34 @@
       "images": ["https://placehold.co/400x800","https://placehold.co/300x600","https://placehold.co/400x500","https://placehold.co/300x300"],
       "thumb_image": "https://belk.scene7.com/is/image/Belk?layer=0&src=1801546_1396561_A_100_T10L00&layer=comp&&color_id=100284626987"
     },
+  },
+  {
+    name: "something else",
+    product: {
+      "title": "Big Blue Bus",
+      "url": "https://www.belk.com/p/columbia-pfg-long-sleeve-button-down-bahama-shirt/18015461396561.html?_br_psugg_q=shirts",
+      "price": 200.99,
+      "pid": "8015461396561",
+      "reviews": ["3.5"],
+      "brand": "Columbia",
+      "sale_price_range": [200.99, 200.99],
+      "sale_price": 199.99,
+      "price_range": [199.99, 199.99],
+      "images": ["https://placehold.co/200x200","https://placehold.co/100x600","https://placehold.co/400x500"],
+      "thumb_image": "https://belk.scene7.com/is/image/Belk?layer=0&src=1801546_1396561_A_100_T10L00&layer=comp&&color_id=100284626987"
+    },
   }]
 
   setTimeout(() => {
     sh.emit('update-product-demo', data[0].product);
   }, 1000);
+
+  document.addEventListener('combo-value-changed', (e) => {
+    const info = e.detail;
+    const which = parseInt(info.data.value);
+    console.log(which, data[which]);
+    sh.emit('update-product-demo', data[which].product);
+  })
+
+
 </script>

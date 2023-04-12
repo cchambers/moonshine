@@ -73,6 +73,7 @@ export default {
       type: String,
       default: 'Select',
     },
+    uniqueId: String,
   },
 
   data() {
@@ -220,7 +221,7 @@ export default {
           this.activeIndex = index;
         }
       });
-      this.$bus.$emit('combo-value-changed', { origin: this, data: obj });
+      this.$bus.$emit('combo-value-changed', { origin: this.uniqueId, data: obj });
       this.activeText = obj.text;
       if (this.isActive && toggle) this.toggleActive('select');
     },
@@ -233,6 +234,7 @@ export default {
           text: actual.innerText,
           value: actual.getAttribute('value'),
         };
+        if (actual.hasAttribute('selected')) obj.active = true;
         data.push(obj);
       }
       this.options = [...data];

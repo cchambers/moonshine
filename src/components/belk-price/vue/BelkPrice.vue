@@ -1,7 +1,7 @@
 <template>
   <div class="belk-price"
     :variant="variant"
-    v-bind:class=" { 'is-on-sale': onSale || discountType } ">
+    v-bind:class=" { 'is-on-sale': onSale || discount_type } ">
     <div class="price">
       <span v-if="onSale || discount_type" class="sale"
       :discount="discount_type"
