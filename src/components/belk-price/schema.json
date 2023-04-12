@@ -1,7 +1,7 @@
 {
   "name": "Belk Price",
   "category": "base",
-  "production": false,
+  "production": true,
   "element": "belk-price",
   "description": "Demonstration component.",
   "tags": ["utilities", "demo"],

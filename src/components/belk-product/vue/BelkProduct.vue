@@ -28,15 +28,14 @@
                 <div class="brand">{{ content.brand }}</div>
                 <div class="title">{{ content.title }}</div>
               </div>
-              <div class="price">
-                <span v-if="onSale || discountType" class="sale"
-                :discount="discountType"
-                v-bind:class="{ 'is-range': saleRange }">{{ saleValue }} </span>
-                <span class="original"
-                :discount="discountType"
-                v-bind:class="{ 'is-range': priceRange }">{{ originalValue }} </span>
-                <span v-if="coupon" class="coupon">after coupon</span>
-              </div>
+
+        <belk-price
+          :price="content.price"
+          :price_range="content.price_range"
+          :sale_price="content.sale_price"
+          :sale_price_range="content.sale_price_range"
+          :discount_type="content.discountType"
+          :coupon="content.coupon"></belk-price>
             </div>
           </a>
         </template>
@@ -44,16 +43,13 @@
           <span>{{ size }}</span><span v-if="color">,&nbsp;</span><span>{{ color }}</span>
         </div>
         <div v-if="qty">Qty: {{ qty }}</div>
-        <div v-if="['add'].includes(this.variant)"
-          class="price">
-          <span v-if="onSale || discountType" class="sale"
-          :discount="discountType"
-          v-bind:class="{ 'is-range': saleRange }">{{ saleValue }} </span>
-          <span class="original"
-          :discount="discountType"
-          v-bind:class="{ 'is-range': priceRange }">{{ originalValue }} </span>
-          <span v-if="coupon" class="coupon">after coupon</span>
-        </div>
+        <belk-price v-if="['add'].includes(this.variant)"
+          :price="content.price"
+          :price_range="content.price_range"
+          :sale_price="content.sale_price"
+          :sale_price_range="content.sale_price_range"
+          :discount_type="content.discountType"
+          :coupon="content.coupon"></belk-price>
         <div class="rating" v-if="rating">
           <sh-rating :level="rating"></sh-rating>
         </div>
@@ -80,6 +76,7 @@
                 Consectetur laborum aspernatur, tempore omnis, est ad animi.</p>
             </div>
           </sh-accordion>
+          <spacer-little></spacer-little>
           <sh-accordion variant="secondary"
             unique-id="product-add-install">
             <div slot="header">

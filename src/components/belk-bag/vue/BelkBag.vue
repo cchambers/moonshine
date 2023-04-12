@@ -60,8 +60,8 @@
 
 <script>
 import ComponentPrototype from '../../component-prototype';
-import BelkProduct from '../../belk-product/vue/BelkProduct.vue';
 import MoneyFormatter from '../../money-formatter';
+import BelkProduct from '../../belk-product/vue/BelkProduct.vue';
 
 export default {
   mixins: [ComponentPrototype, MoneyFormatter],

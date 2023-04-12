@@ -1,12 +1,13 @@
 <template>
   <div class="belk-price"
-    :variant="variant">
+    :variant="variant"
+    v-bind:class=" { 'is-on-sale': onSale || discountType } ">
     <div class="price">
-      <span v-if="onSale || discountType" class="sale"
-      :discount="discountType"
+      <span v-if="onSale || discount_type" class="sale"
+      :discount="discount_type"
       v-bind:class="{ 'is-range': saleRange }">{{ saleValue }} </span>
       <span class="original"
-      :discount="discountType"
+      :discount="discount_type"
       v-bind:class="{ 'is-range': priceRange }">{{ originalValue }} </span>
       <span v-if="coupon" class="coupon">after coupon</span>
     </div>
@@ -23,6 +24,7 @@ export default {
   name: 'BelkPrice',
 
   props: {
+    data: null,
     price: {
       type: Number,
     },
@@ -35,6 +37,8 @@ export default {
       type: Array,
       default: () => [],
     },
+    discount_type: String,
+    coupon: String,
   },
 
   computed: {
@@ -63,12 +67,18 @@ export default {
 
   data() {
     return {
+      content: null,
       priceActual: null,
       saleRange: null,
       salePrice: null,
       priceRange: null,
       isOnSale: false,
     };
+  },
+
+  mounted() {
+    if (this.data) this.content = { ...this.data };
+    setTimeout(this.processProps, 50);
   },
 
   methods: {
