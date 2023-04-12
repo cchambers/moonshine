@@ -2,38 +2,50 @@
   <div class="belk-product"
     :variant="variant"
     v-bind:class=" { 'is-on-sale': onSale || discountType } ">
-      <div v-if="['default', 'bag'].includes(this.variant)"
-        class="image"
-        :style="{ backgroundImage: 'url('+thumb_image+')' }"></div>
-        <div v-if="content.images"
-          class="images">
-          <ul>
-            <li v-for="src in content.images" :key="src">
-              <div class="image"
-                :style="`background-image:url('${src}');`"></div>
-            </li>
-          </ul>
-        </div>
-      <div class="data">
-        <a v-if="['default', 'bag'].includes(this.variant)"
-          class="product-link"
-          :href="content.url"
-          :data-pid="pid">
-          <div class="name">
-            <div class="brand">{{ content.brand }}</div>
-            <div class="title">{{ content.title }}</div>
-          </div>
-        </a>
-        <div v-if="['add'].includes(this.variant)"
+      <div v-if="content.images"
+        class="images">
+        <ul>
+          <li v-for="src in content.images" :key="src">
+            <div class="image"
+              :style="`background-image:url('${src}');`"></div>
+          </li>
+        </ul>
+      </div>
+      <div class="product-data">
+        <template v-if="['add'].includes(this.variant)"
           class="name">
           <div class="brand"><a href="#" class="lowlight-tertiary">{{ content.brand }}</a></div>
           <div class="title">{{ content.title }}</div>
-        </div>
+        </template>
+        <template v-if="['default', 'bag'].includes(this.variant)">
+          <a class="product-link"
+            :href="content.url"
+            :data-pid="pid">
+            <div class="image"
+            :style="{ backgroundImage: 'url('+thumb_image+')' }"></div>
+            <div class="data">
+              <div class="name">
+                <div class="brand">{{ content.brand }}</div>
+                <div class="title">{{ content.title }}</div>
+              </div>
+              <div class="price">
+                <span v-if="onSale || discountType" class="sale"
+                :discount="discountType"
+                v-bind:class="{ 'is-range': saleRange }">{{ saleValue }} </span>
+                <span class="original"
+                :discount="discountType"
+                v-bind:class="{ 'is-range': priceRange }">{{ originalValue }} </span>
+                <span v-if="coupon" class="coupon">after coupon</span>
+              </div>
+            </div>
+          </a>
+        </template>
         <div v-if="qty">
           <span>{{ size }}</span><span v-if="color">,&nbsp;</span><span>{{ color }}</span>
         </div>
         <div v-if="qty">Qty: {{ qty }}</div>
-        <div class="price">
+        <div v-if="['add'].includes(this.variant)"
+          class="price">
           <span v-if="onSale || discountType" class="sale"
           :discount="discountType"
           v-bind:class="{ 'is-range': saleRange }">{{ saleValue }} </span>
@@ -279,6 +291,7 @@ export default {
           this.salePrice = this.sale_price;
         }
       }
+      this.content = { ...this.$props };
     },
 
     updateContent(data) {
