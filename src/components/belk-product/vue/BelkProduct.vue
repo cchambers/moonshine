@@ -4,7 +4,8 @@
     v-bind:class=" { 'is-on-sale': onSale || discountType } ">
       <div v-if="content.images"
         ref="images"
-        class="images">
+        class="images"
+        :class="{ loading: loading }">
         <ul>
           <li v-for="src in content.images" :key="src">
             <div class="image"
@@ -34,9 +35,9 @@
 
         <belk-price
           :price="content.price"
-          :price_range="content.price_range"
+          :price_range="[content.price_range]"
           :sale_price="content.sale_price"
-          :sale_price_range="content.sale_price_range"
+          :sale_price_range="[content.sale_price_range]"
           :discount_type="content.discountType"
           :coupon="content.coupon"></belk-price>
             </div>
@@ -49,9 +50,9 @@
         <div class="product-price">
         <belk-price v-if="['add'].includes(this.variant)"
           :price="content.price"
-          :price_range="content.price_range"
+          :price_range="[content.price_range]"
           :sale_price="content.sale_price"
-          :sale_price_range="content.sale_price_range"
+          :sale_price_range="[content.sale_price_range]"
           :discount_type="content.discountType"
           :coupon="content.coupon"></belk-price>
         </div>
@@ -67,9 +68,9 @@
         </div> -->
         <div v-if="['add'].includes(this.variant)"
           class="add-form">
-          <div>
-            [swatches (belk-swatch)]
-            <!-- <belk-swatch></belk-swatch> -->
+          <div v-if="content.colors">
+            <!-- <belk-swatch :data='content.colors'></belk-swatch> -->
+            <component :is="belkSwatch" :items="content.colors"></component>
           </div>
           <div class="product-size ">
             <div class="add-label">Size:</div>
@@ -81,7 +82,7 @@
                   name="product-size"
                   value="S"
                   checked>
-                <label for="size1">S</label>
+                <label tabindex="0" for="size1">S</label>
               </div>
               <div>
                 <input id="size2"
@@ -89,23 +90,24 @@
                   hidden
                   name="product-size"
                   value="M">
-                <label for="size2">M</label>
+                <label tabindex="0" for="size2">M</label>
               </div>
             </div>
           </div>
           <div class="product-qty">
             <div class="add-label">Quantity:</div>
-            <div>
+            <div class="flex start">
             <button :disabled="itemQty == 1" @click="(itemQty > 1) ? itemQty -= 1 : ''">
               <i class="material-icons-round">remove</i>
             </button>
-            <input type="number" length="3" min="0" step="1" max="99" v-model="itemQty">
+            <div class="qty-display">{{ itemQty }}</div>
+            <!-- <input type="number" length="3" min="0" step="1" max="99" v-model="itemQty"> -->
             <button :disabled="itemQty >= itemMax" @click="itemQty += 1">
               <i class="material-icons-round">add</i>
             </button>
             </div>
           </div>
-          <div>SPECIAL OFFER?</div>
+          <div>[ SPECIAL OFFERS ]</div>
           <sh-accordion variant="secondary"
             unique-id="product-add-protection">
             <div slot="header">
@@ -127,8 +129,20 @@
                 Consectetur laborum aspernatur, tempore omnis, est ad animi.</p>
             </div>
           </sh-accordion>
-          <div>SHIPPING</div>
-          <div>SUBSCRIPTION FREQ</div>
+          <div>
+            <div>Subscribe:</div>
+            <sh-checkbox variant="primary"
+              unique-id="freq"
+              toggle-event="open-shipping-freq"
+              label="Toggle shipping accordion"></sh-checkbox>
+              <sh-accordion unique-id="shipping-freq">
+                <div slot="body">
+                  <div class="pad-little margin-t-micro back-highlight-secondary">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                  </div>
+                </div>
+              </sh-accordion>
+          </div>
         </div>
       </div>
 
@@ -140,6 +154,7 @@
 <script>
 import MoneyFormatter from '../../money-formatter';
 import ComponentPrototype from '../../component-prototype';
+import BelkSwatch from '../../belk-swatch/vue/BelkSwatch.vue';
 
 export default {
   mixins: [ComponentPrototype, MoneyFormatter],
@@ -196,6 +211,7 @@ export default {
       priceRange: null,
       coupon: false,
       isOnSale: false,
+      loading: false,
       __placeholder__: null,
       content: {
         title: this.title,
@@ -205,6 +221,7 @@ export default {
       },
       itemQty: 1,
       itemMax: 6,
+      belkSwatch: BelkSwatch,
     };
   },
 
@@ -255,6 +272,10 @@ export default {
     this.processProps();
     setTimeout(() => {
       this.checkOnSale('mtd');
+    });
+
+    window.addEventListener('popstate', (event) => {
+      console.log('POP', event);
     });
   },
 
@@ -334,8 +355,20 @@ export default {
     },
 
     updateContent(data) {
+      this.loading = true;
       this.content = { ...data };
+      this.$bus.$emit('product-content-update');
       this.reset();
+      // let lol = data.url.split('.com');
+      // lol = `http://localhost:8080/demo/product${lol[1]}`;
+      // if ('pushState' in window.history) {
+      //   // if (!this.noState) {
+      //   window.history.pushState({ test: 'ok' }, document.title, lol);
+      //   // } else {
+      //   //   window.history.replaceState({ test: 'ok' }, document.title, lol);
+      //   // }
+      // }
+      this.loading = false;
     },
 
     reset() {

@@ -11,7 +11,7 @@
         :id="item.id"
         tabindex="0"
         :aria-selected="item.highlighted"
-        :style="{ backgroundImage: `url('${item.img}')`}">
+        :style="{ backgroundImage: `url('${item.src}')`}">
         <button v-hammer:tap="handleClick" :value="index"></button>
       </li>
     </ul>
@@ -27,7 +27,9 @@ export default {
   name: 'BelkSwatch',
 
   props: {
-
+    data: {
+      type: Object,
+    },
   },
 
   data() {
@@ -36,12 +38,16 @@ export default {
       prefix: 'Color',
       selectedName: 'none',
       items: [],
+      colors: [],
     };
   },
 
   mounted() {
-    this.defaultContent = this.$slots.default[0].elm;
-    this.process(this.defaultContent);
+    console.log(this.items);
+  },
+
+  updated() {
+    console.log(this.items);
   },
 
   methods: {
@@ -50,6 +56,7 @@ export default {
       if (el.children) {
         el.children.forEach((child) => {
           data.push(this.makeData(child));
+          console.log(child);
         });
         this.items = data;
       }
@@ -73,6 +80,7 @@ export default {
       const { target } = e;
       const { value } = target;
       this.activate(value);
+      this.$bus.$emit('swatch-selected', value);
     },
 
     activate(id) {

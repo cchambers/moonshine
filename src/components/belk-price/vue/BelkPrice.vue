@@ -1,14 +1,21 @@
 <template>
-  <div class="belk-price"
+  <div
+    class="belk-price"
     :variant="variant"
-    v-bind:class=" { 'is-on-sale': onSale || discount_type } ">
+    v-bind:class=" { 'is-on-sale': onSale || discount_type } "
+  >
     <div class="price">
-      <span v-if="onSale || discount_type" class="sale"
-      :discount="discount_type"
-      v-bind:class="{ 'is-range': saleRange }">{{ saleValue }} </span>
-      <span class="original"
-      :discount="discount_type"
-      v-bind:class="{ 'is-range': priceRange }">{{ originalValue }} </span>
+      <span
+        v-if="onSale || discount_type"
+        class="sale"
+        :discount="discount_type"
+        v-bind:class="{ 'is-range': saleRange }"
+      >{{ saleValue }}</span>
+      <span
+        class="original"
+        :discount="discount_type"
+        v-bind:class="{ 'is-range': priceRange }"
+      >{{ originalValue }}</span>
       <span v-if="coupon" class="coupon">after coupon</span>
     </div>
   </div>
@@ -48,7 +55,8 @@ export default {
     },
 
     saleValue() {
-      if (!this.salePrice && this.variant === 'bag') { // fixes weird bag/search data thing
+      if (!this.salePrice && this.variant === 'bag') {
+        // fixes weird bag/search data thing
         if (this.sale_price) this.salePrice = this.sale_price;
       }
       const val = this.saleRange || this.format(this.salePrice);
@@ -78,34 +86,46 @@ export default {
 
   mounted() {
     if (this.data) this.content = { ...this.data };
-    setTimeout(this.processProps, 50);
+    setTimeout(this.processProps, 200);
   },
 
   methods: {
+    events() {
+      this.$bus.$on('product-content-update', this.processProps);
+      this.$bus.$on('trigger-thing', this.processProps);
+    },
     checkOnSale() {
-      this.isOnSale = ((this.price > this.sale_price) || (this.price > this.salePrice));
+      this.isOnSale = (this.price > this.sale_price)
+        || (this.price > this.salePrice);
     },
     processProps() {
-      if (this.sale_price) {
-        this.salePrice = parseFloat(this.sale_price);
-      }
+      setTimeout(() => {
+        if (this.sale_price) {
+          this.salePrice = parseFloat(this.sale_price);
+        }
 
-      if (this.price_range.length > 1) {
-        if (this.price_range[0] !== this.price_range[1]) {
-          this.priceRange = `${this.format(this.price_range[0])} - ${this.format(this.price_range[1])}`;
+        if (this.price_range.length > 1) {
+          if (this.price_range[0] !== this.price_range[1]) {
+            this.priceRange = `${this.format(
+              this.price_range[0],
+            )} - ${this.format(this.price_range[1])}`;
+          }
         }
-      }
-      if (this.sale_price_range.length > 1) {
-        if (this.sale_price_range[0] !== this.sale_price_range[1]
-          && this.sale_price_range !== this.price_range) {
-          this.saleRange = `${this.format(this.sale_price_range[0])} - ${this.format(this.sale_price_range[1])}`;
-        } else {
-          this.salePrice = this.sale_price;
+        if (this.sale_price_range.length > 1) {
+          if (
+            this.sale_price_range[0] !== this.sale_price_range[1]
+            && this.sale_price_range !== this.price_range
+          ) {
+            this.saleRange = `${this.format(
+              this.sale_price_range[0],
+            )} - ${this.format(this.sale_price_range[1])}`;
+          } else {
+            this.salePrice = this.sale_price;
+          }
         }
-      }
+      }, 5);
     },
   },
-
 };
 </script>
 <style lang="scss" src="../style/default.scss"></style>

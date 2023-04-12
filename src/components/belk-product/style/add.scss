@@ -63,36 +63,80 @@
   }
   .product-price {
     order: 4;
-    .price {
-      font-size: 2.4rem;
-      font-weight: bold;
+  }
+  .product-qty {
+    button {
+      background: transparent;
+      border: 1px solid $lowlight-tertiary;
+      height: $rem;
+      width: $rem;
+      cursor: pointer;
+      font-size: 1.2rem;
+      border-radius: 0.5rem 0 0 0.5rem;
+      &:nth-child(3) {
+        border-radius:0 0.5rem 0.5rem 0;
+      }
+      &[disabled] {
+        background: $highlight-secondary;
+        color: $lowlight-tertiary;
+      }
     }
+    .qty-display {
+      border-top: 1px solid $lowlight-tertiary;
+      border-bottom: 1px solid $lowlight-tertiary;
+      height: $rem;
+      width: $rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    };
   }
   .add-form {
     order: 5;
     > div {
-      margin-bottom: $rem;
+      margin: $rem 0;
     }
   }
   .add-label {
     color: $lowlight-tertiary;
     font-size: 1.4rem;
-    margin-bottom: $little;
+    margin-bottom: $micro;
   }
   [class*="extra-"] {
     order: 10;
   }
   .radio-select {
     label {
-      padding: 0.8rem;
-      border: 1px solid grey;
+      padding: $micro $little;
+      border: 1px solid $lowlight-tertiary;
       border-radius: 5px;
       cursor: pointer;
-      margin-right: 0.8rem;
+      margin-right: $micro;
+      font-size: 1.2rem;
     }
     input:checked + label {
       border-color: $lowlight-primary;
       border-width: 2px;
     }
+  }
+  .price {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    flex-direction: row-reverse;
+    .sale {
+      font-size: 2rem;
+    }
+    .sale + .original {
+      font-size: 1.2rem;
+      padding-right: $micro;
+    }
+    .original {
+      font-size: 2rem;
+    }
+  }
+  sh-rating {
+    z-index: -1;
+    position: relative;
   }
 }

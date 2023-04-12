@@ -4,6 +4,7 @@
   String.prototype.slugify = function (separator = "-") {
     return this
       .toString()
+      .replace('-', ' ')
       // .normalize('NFD')                   // add polyfill for this if it's needed later
       .replace(/[\u0300-\u036f]/g, '')   // remove all previously split accents
       .toLowerCase()
