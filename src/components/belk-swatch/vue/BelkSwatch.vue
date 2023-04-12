@@ -47,10 +47,12 @@ export default {
   methods: {
     process(el) {
       const data = [];
-      el.children.forEach((child) => {
-        data.push(this.makeData(child));
-      });
-      this.items = data;
+      if (el.children) {
+        el.children.forEach((child) => {
+          data.push(this.makeData(child));
+        });
+        this.items = data;
+      }
     },
 
     makeData(el) {

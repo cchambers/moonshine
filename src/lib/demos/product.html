@@ -9,6 +9,7 @@
         <ul slot="options">
           <li value="0" selected>Example One (PFG Long Sleeve)</li>
           <li value="1">Big Blue Bus</li>
+          <li value="2">Giant Whistle</li>
         </ul>
       </sh-combo>
   </div>
@@ -40,12 +41,28 @@
       "url": "https://www.belk.com/p/columbia-pfg-long-sleeve-button-down-bahama-shirt/18015461396561.html?_br_psugg_q=shirts",
       "price": 200.99,
       "pid": "8015461396561",
-      "reviews": ["3.5"],
+      "reviews": ["2"],
       "brand": "Columbia",
       "sale_price_range": [200.99, 200.99],
       "sale_price": 199.99,
       "price_range": [199.99, 199.99],
       "images": ["https://placehold.co/200x200","https://placehold.co/100x600","https://placehold.co/400x500"],
+      "thumb_image": "https://belk.scene7.com/is/image/Belk?layer=0&src=1801546_1396561_A_100_T10L00&layer=comp&&color_id=100284626987"
+    },
+  },
+  {
+    name: "Giant Whistle",
+    product: {
+      "title": "Giant Whistle",
+      "url": "https://www.belk.com/p/columbia-pfg-long-sleeve-button-down-bahama-shirt/18015461396561.html?_br_psugg_q=shirts",
+      "price": 2.99,
+      "pid": "8015461396561",
+      "reviews": ["5"],
+      "brand": "Columbia",
+      "sale_price_range": [2.99, 2.99],
+      "sale_price": 1.00,
+      "price_range": [1.00, 1.00],
+      "images": ["https://placehold.co/400x440"],
       "thumb_image": "https://belk.scene7.com/is/image/Belk?layer=0&src=1801546_1396561_A_100_T10L00&layer=comp&&color_id=100284626987"
     },
   }]
@@ -63,3 +80,18 @@
 
 
 </script>
+
+
+<style>
+.radio-select label {
+  padding: 0.8rem;
+  border: 1px solid grey;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 0.8rem;
+}
+
+.radio-select input:checked + label {
+  border-color: red;
+}
+</style>

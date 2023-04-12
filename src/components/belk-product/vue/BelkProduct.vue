@@ -3,6 +3,7 @@
     :variant="variant"
     v-bind:class=" { 'is-on-sale': onSale || discountType } ">
       <div v-if="content.images"
+        ref="images"
         class="images">
         <ul>
           <li v-for="src in content.images" :key="src">
@@ -62,9 +63,42 @@
         </div> -->
         <div v-if="['add'].includes(this.variant)"
           class="add-form">
-          <div>SWATCHES</div>
-          <div>SIZE</div>
-          <div>QTY</div>
+          <div>SWATCHES
+            <belk-swatch></belk-swatch>
+          </div>
+          <div class="product-size ">
+            SIZE:
+            <div class="flex start pad-y-micro radio-select">
+              <div class="radio">
+                <input id="size1"
+                  type="radio"
+                  hidden
+                  name="product-size"
+                  value="S"
+                  checked>
+                <label for="size1">S</label>
+              </div>
+              <div>
+                <input id="size2"
+                  type="radio"
+                  hidden
+                  name="product-size"
+                  value="M">
+                <label for="size2">M</label>
+              </div>
+            </div>
+          </div>
+          <div class="product-qty">QTY:
+            <div>
+            <button @click="itemQty -= 1">
+              <i class="material-icons-round">remove</i>
+            </button>
+            <input type="number" min="0" step="1" max="99" v-model="itemQty">
+            <button @click="itemQty += 1">
+              <i class="material-icons-round">add</i>
+            </button>
+            </div>
+          </div>
           <div>SPECIAL OFFER?</div>
           <sh-accordion variant="secondary"
             unique-id="product-add-protection">
@@ -163,6 +197,7 @@ export default {
         url: this.url,
         reviews: this.reviews,
       },
+      itemQty: 1,
     };
   },
 
@@ -293,6 +328,14 @@ export default {
 
     updateContent(data) {
       this.content = { ...data };
+      this.reset();
+    },
+
+    reset() {
+      // scroll everything to original positions,
+      const images = this.$el.querySelector('.images');
+      if (images) images.scrollTop = 0;
+      this.itemQty = 1;
     },
   },
 };

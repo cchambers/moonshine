@@ -4,7 +4,7 @@
   "production": true,
   "element": "belk-price",
   "description": "Demonstration component.",
-  "tags": ["utilities", "demo"],
+  "tags": ["product", "pricing"],
   "tracking": [],
   "requirements": {
     "original price": [],
