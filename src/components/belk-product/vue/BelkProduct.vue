@@ -14,12 +14,14 @@
       </div>
       <div class="product-data">
         <template v-if="['add'].includes(this.variant)"
-          class="name">
-          <div class="brand"><a href="#" class="lowlight-tertiary">{{ content.brand }}</a></div>
-          <div class="title">{{ content.title }}</div>
+          class="product-name">
+          <div class="product-brand">
+            <a href="#" class="lowlight-tertiary">{{ content.brand }}</a>
+          </div>
+          <div class="product-title">{{ content.title }}</div>
         </template>
         <template v-if="['default', 'bag'].includes(this.variant)">
-          <a class="product-link"
+          <a class="link"
             :href="content.url"
             :data-pid="pid">
             <div class="image"
@@ -44,6 +46,7 @@
           <span>{{ size }}</span><span v-if="color">,&nbsp;</span><span>{{ color }}</span>
         </div>
         <div v-if="qty">Qty: {{ qty }}</div>
+        <div class="product-price">
         <belk-price v-if="['add'].includes(this.variant)"
           :price="content.price"
           :price_range="content.price_range"
@@ -51,6 +54,7 @@
           :sale_price_range="content.sale_price_range"
           :discount_type="content.discountType"
           :coupon="content.coupon"></belk-price>
+        </div>
         <div class="rating" v-if="rating">
           <sh-rating :level="rating"></sh-rating>
         </div>

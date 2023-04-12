@@ -31,7 +31,7 @@
         }
       }
       li:nth-child(1) {
-        width: 100%;
+        width: calc(100% - 0.8rem);
         flex-shrink: 0;
         min-width: 32rem;
         .image {
@@ -50,18 +50,23 @@
       padding-left: $little;
     }
   }
-  .brand {
+  .product-brand {
     font-size: 1.4rem;
   }
-  .name {
-    order: 1;
+  .product-title {
+    order: 0;
     font-size: 1.8rem;
+    font-weight: bold;
   }
-  .rating {
+  .product-rating {
     order: 2;
   }
-  .price {
+  .product-price {
     order: 4;
+    .price {
+      font-size: 2.4rem;
+      font-weight: bold;
+    }
   }
   .add-form {
     order: 5;
