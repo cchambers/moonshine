@@ -1,0 +1,15 @@
+{
+  "name": "Belk Price",
+  "category": "base",
+  "production": false,
+  "element": "belk-price",
+  "description": "Demonstration component.",
+  "tags": ["utilities", "demo"],
+  "tracking": [],
+  "requirements": {
+    "Element One": [],
+    "Element Two": [],
+    "a11y": [],
+    "states": []
+  }
+}
