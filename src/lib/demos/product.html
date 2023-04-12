@@ -3,7 +3,9 @@
 <belk-product unique-id="demo" variant="add"></belk-product>
 
 <script>
-  const data = {
+  const data = [{
+    name: "default",
+    product: {
       "title": "PFG Long Sleeve Button Down Bahama Shirt",
       "url": "https://www.belk.com/p/columbia-pfg-long-sleeve-button-down-bahama-shirt/18015461396561.html?_br_psugg_q=shirts",
       "price": 44.99,
@@ -15,9 +17,10 @@
       "price_range": [44.99, 44.99],
       "images": ["https://placehold.co/400x800","https://placehold.co/300x600","https://placehold.co/400x500","https://placehold.co/300x300"],
       "thumb_image": "https://belk.scene7.com/is/image/Belk?layer=0&src=1801546_1396561_A_100_T10L00&layer=comp&&color_id=100284626987"
-    }
+    },
+  }]
 
   setTimeout(() => {
-    sh.emit('update-product-demo', data);
+    sh.emit('update-product-demo', data[0].product);
   }, 1000);
 </script>

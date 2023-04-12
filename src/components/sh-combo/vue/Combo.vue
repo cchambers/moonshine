@@ -19,7 +19,7 @@
         <div class="combo-text">{{ activeText }}</div>
         <belk-icon name="arrow-down"></belk-icon>
       </button>
-      <div class="combo-hidden-options" hidden>
+      <div ref="htmlopts" class="combo-hidden-options" hidden>
         <slot name="options"></slot>
       </div>
       <div ref="options" class="combo-options" v-hammer:tap="optionClickHandler">
@@ -106,10 +106,10 @@ export default {
 
   mounted() {
     const self = this;
-    // setTimeout(() => {
-    //   const opts = this.$refs.options.querySelectorAll('li');
-    //   if (opts.length > 0) self.processHTMLOptions(opts);
-    // }, 1000);
+    setTimeout(() => {
+      const opts = this.$refs.htmlopts.querySelectorAll('li');
+      if (opts.length > 0) self.processHTMLOptions(opts);
+    }, 1000);
     if (self.native) {
       self.selectId = `sel-${self.uuid}`;
     }
@@ -199,7 +199,7 @@ export default {
       }
     },
 
-    select(el, event = true, toggle = true) {
+    select(el, toggle = true) {
       let which = el;
       if (typeof which === 'number') {
         which = this.$refs.options.querySelectorAll('li')[which];
@@ -220,14 +220,23 @@ export default {
           this.activeIndex = index;
         }
       });
-      if (event) this.$bus.$emit('value-changed', obj);
+      this.$bus.$emit('combo-value-changed', { origin: this, data: obj });
       this.activeText = obj.text;
       if (this.isActive && toggle) this.toggleActive('select');
     },
 
-    // processHTMLOptions(opts) {
-    //   // console.log('allo', opts);
-    // },
+    processHTMLOptions(opts) {
+      const data = [];
+      for (let x = 0, l = opts.length; x < l; x += 1) {
+        const actual = opts[x];
+        const obj = {
+          text: actual.innerText,
+          value: actual.getAttribute('value'),
+        };
+        data.push(obj);
+      }
+      this.options = [...data];
+    },
 
     highlightHandler(e) {
       e.preventDefault();

@@ -7,9 +7,9 @@
   "tags": ["utilities", "demo"],
   "tracking": [],
   "requirements": {
-    "Element One": [],
-    "Element Two": [],
-    "a11y": [],
-    "states": []
+    "original price": [],
+    "sale price": [],
+    "coupon note": [],
+    "states": [ "has-coupon", "is-on-sale" ]
   }
 }
