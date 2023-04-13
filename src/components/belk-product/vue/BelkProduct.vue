@@ -48,7 +48,7 @@
           <span>{{ size }}</span><span v-if="color">,&nbsp;</span><span>{{ color }}</span>
         </div>
         <div v-if="qty">Qty: {{ qty }}</div>
-        <div class="product-price b-t margin-t-micro pad-t-micro">
+        <div class="product-price">
         <belk-price
           vce-cloak
           v-if="['add'].includes(this.variant)"
