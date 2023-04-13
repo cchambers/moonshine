@@ -1,6 +1,6 @@
 {
   "name": "Belk Badge",
-  "category": "feature",
+  "category": "features",
   "production": true,
   "element": "belk-badge",
   "description": "Badging component for showing different promotional states of items.",
