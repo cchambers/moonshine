@@ -142,13 +142,18 @@
               unique-id="freq"
               toggle-event="open-shipping-freq"
               label="Toggle shipping accordion"></sh-checkbox>
-              <sh-accordion unique-id="shipping-freq" @click="activateFrequency">
+              <sh-accordion
+                unique-id="shipping-freq"
+                variant="none"
+                @click="activateFrequency">
                 <div slot="body">
                   <div ref="frequency"
                     class="frequency-scroll">
                     <div
                       v-for="(item, index) in content.frequency"
                       :key="item.value"
+                      tabindex="0"
+                      role="option"
                       class="frequency-select"
                       :class="{ active: index == 0 }">
                       <!-- <input type="radio"
@@ -296,10 +301,9 @@ export default {
     setTimeout(() => {
       this.checkOnSale('mtd');
     });
-
-    window.addEventListener('popstate', (event) => {
-      console.log('POP', event);
-    });
+    // window.addEventListener('popstate', (event) => {
+    //   console.log('POP', event);
+    // });
   },
 
   // updated() {

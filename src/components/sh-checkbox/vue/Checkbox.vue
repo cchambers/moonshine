@@ -7,7 +7,10 @@
       ref="input"
       @change="handleChange"
       :checked="isChecked">
-    <label :for="inputId">
+    <label :for="inputId"
+        tabindex="0"
+        v-on:keyup.enter="toggle"
+        v-on:keyup.space="toggle">
       <div class="toggle"></div>
       <div class="label-text">
         <slot name="label">{{ label }}</slot>
@@ -46,7 +49,8 @@ export default {
 
   methods: {
     toggle() {
-      this.isChecked = !!this.isChecked;
+      this.isChecked = !this.isChecked;
+      this.handleChange();
     },
     handleChange() {
       this.$bus.$emit('checkbox-changed', {
