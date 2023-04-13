@@ -7,7 +7,7 @@
       </h4>
       <div v-if="content.summary.price"
         class="price flex start">
-        <div v-if="content.summary.price.sales"
+        <div v-if="content.summary.price.sales || content.summary.price.original"
           class="px-18 bold">{{ content.summary.price.sales
           || content.summary.price.original }}</div>
         <div v-if="content.summary.price.sales && content.summary.price.original
