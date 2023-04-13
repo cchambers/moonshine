@@ -1,0 +1,188 @@
+<%- htmlWebpackPlugin.options.docsHead %>
+
+<title><%= htmlWebpackPlugin.options.title %></title>
+
+<div class="documentation contain">
+  <h1>Belk Badge</h1>
+  <section id="usage">
+    <h2>Usage</h2>
+    <pre>
+      <code class="language-html">
+          &lt;belk-badge icon-name="material_icon"&gt;Badge Text&lt;/belk-badge&gt;
+      </code>
+    </pre>
+
+  </section>
+
+  <section id="reference" class="baseline30">
+    <h2>Reference</h2>
+    <h3 id="attributes">Attributes</h3>
+
+    <table class="attributes">
+      <thead>
+        <tr>
+          <th>Attribute</th>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>hidden</td>
+          <td>Boolean</td>
+          <td>Hide from view.</td>
+        </tr>
+        <tr>
+          <td>which</td>
+          <td>String</td>
+          <td>Use a preconfigured icon/color/text setting.</td>
+        </tr>
+        <tr>
+          <td>icon-name</td>
+          <td>String</td>
+          <td>Material Symbol code for custom icon</td>
+        </tr>
+        <tr>
+          <td>icon-color</td>
+          <td>String</td>
+          <td>Color name, for ex: lowlight-tertiary, accent-primary, brand-yellow</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3 id="slots">Slots</h3>
+
+    <table class="slots">
+      <thead>
+        <tr>
+          <th>Slot</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>default</td>
+          <td>
+            Text content of badge.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+ <!--
+    <h3 id="methods">Public Methods</h3>
+
+        <table class="methods">
+      <thead>
+        <tr>
+          <th>Function</th>
+          <th>Params</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>snap</td>
+          <td>
+            <ul>
+              <li>
+                none
+              </li>
+            </ul>
+          </td>
+          <td>
+            Perform snap animation and halve text.
+          </td>
+        </tr>
+      </tbody>
+    </table> 
+
+    <h3 id="events">Events</h3>
+
+    <table class="events">
+      <thead>
+        <tr>
+          <th>Event</th>
+          <th>Payload Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>event-name</td>
+          <td>
+            Type
+          </td>
+          <td>
+            Fires when something happens.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+-->
+  <section id="examples">
+    <h2>Examples</h2>
+    <h3>Default</h3>
+    <lib-toolbar>
+      <belk-badge variant="primary"
+        icon-name="sunny"
+        icon-color="brand-yellow">
+        Hot! Like the Sun!
+      </belk-badge>
+      <spacer></spacer>
+      <belk-badge variant="primary" which="superbuy">
+        Super Buy
+      </belk-badge>
+      <spacer></spacer>
+      <belk-badge variant="primary"
+        which="superbuy"></belk-badge>
+      <spacer></spacer>
+      <belk-badge variant="primary"
+        which="new"></belk-badge>
+      <spacer></spacer>
+      <belk-badge variant="primary"
+        which="toprated"></belk-badge>
+      <spacer></spacer>
+      <belk-badge variant="primary"
+        which="pickuponly"></belk-badge>
+      <spacer></spacer>
+      <belk-badge variant="primary"
+        which="collection"></belk-badge>
+      <spacer></spacer>
+      <belk-badge variant="primary"
+        which="doorbuster"></belk-badge>
+      <spacer></spacer>
+      <belk-badge variant="primary"
+        which="specialoffer"></belk-badge>
+      <spacer></spacer>
+      <belk-badge variant="primary"
+        which="onlineexclusive"></belk-badge>
+      <spacer></spacer>
+      <belk-badge variant="primary"
+        which="dailydeals"></belk-badge>
+      <spacer></spacer>
+      <belk-badge variant="primary"
+        which="bestseller"></belk-badge>
+      <spacer></spacer>
+    </lib-toolbar>
+  </section>
+
+  <section id="changelog">
+    <h2>Changelog</h2>
+    <dl>
+      <dt>0.1.0</dt>
+      <dd>Belk Badge is under development.</dd>
+      <dt>1.0.0</dt>
+      <dd>Belk Badge is ready for use.</dd>
+    </dl>
+  </section>
+
+  <!-- Uncomment this section when you have written requirements in the schema.json!
+    <section id="requirements">
+    <h2>Requirements</h2>
+    <lib-reqs></lib-reqs>
+  </section> -->
+</div>
+
+<%- htmlWebpackPlugin.options.docsFoot %>
