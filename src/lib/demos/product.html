@@ -5,7 +5,7 @@
     Choose a demo product:
   </div>
   <div class="scol-1-4 pad-r">
-    <sh-combo unique-id="product-demo">
+    <sh-combo vce-cloak unique-id="product-demo">
       <ul slot="options">
         <li value="0" selected>Example One (PFG Long Sleeve)</li>
         <li value="1">Big Blue Bus</li>
@@ -83,6 +83,20 @@
         "images": ["https://placehold.co/200x200", "https://placehold.co/100x600", "https://placehold.co/400x500"],
         "thumb_image": "https://belk.scene7.com/is/image/Belk?layer=0&src=1801546_1396561_A_100_T10L00&layer=comp&&color_id=100284626987",
         "sizes": ["L"],
+        "frequency": [
+          { 
+            name: "60 Days",
+            value: 60,
+          },
+          { 
+            name: "30 Days",
+            value: 30,
+          },
+          { 
+            name: "15 Days",
+            value: 15,
+          }
+        ]
       },
     },
     {

@@ -101,6 +101,32 @@
       align-items: center;
     };
   }
+  .product-frequency {
+    .frequency-select {
+      margin-right: $micro;
+      padding: $micro;
+      position: relative;
+      box-shadow: inset 1px 0px 0 $lowlight-tertiary,
+        inset -1px 0px 0 $lowlight-tertiary,
+        inset 0px 1px 0 $lowlight-tertiary,
+        inset 0px -1px 0 $lowlight-tertiary;
+      &.active {
+        background: $highlight-secondary;
+        box-shadow: inset 2px 0px 0 $lowlight-quaternary,
+          inset -2px 0px 0 $lowlight-quaternary,
+          inset 0px 2px 0 $lowlight-quaternary,
+          inset 0px -2px 0 $lowlight-quaternary;
+      }
+      > div {
+        padding-right: $rem;
+      }
+      input {
+        position: absolute;
+        top: $micro;
+        right: $micro
+      }
+    }
+  }
   .add-form {
     order: 5;
     > div {

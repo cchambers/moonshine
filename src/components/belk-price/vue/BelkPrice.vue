@@ -55,7 +55,7 @@ export default {
   computed: {
     originalValue() {
       const val = this.priceRange || this.format(this.price);
-      return val;
+      return val || 0;
     },
 
     saleValue() {
@@ -64,7 +64,7 @@ export default {
         if (this.sale_price) this.salePrice = this.sale_price;
       }
       const val = this.saleRange || this.format(this.salePrice);
-      return val;
+      return val || 0;
     },
 
     percentOff() {

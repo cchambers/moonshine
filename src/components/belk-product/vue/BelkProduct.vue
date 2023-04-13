@@ -134,7 +134,9 @@
             </div>
           </sh-accordion>
           <spacer-little class="b-t margin-t-little"></spacer-little>
-          <div>
+          <div
+            v-if="content.frequency"
+            class="product-frequency">
             <div>Subscribe:</div>
             <sh-checkbox variant="primary"
               unique-id="freq"
@@ -142,8 +144,19 @@
               label="Toggle shipping accordion"></sh-checkbox>
               <sh-accordion unique-id="shipping-freq">
                 <div slot="body">
-                  <div class="pad-little margin-t-micro back-highlight-secondary">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                  <div class="pad-little margin-t-micro" ref="frequency">
+                    <div
+                      v-for="(item, index) in content.frequency"
+                      :key="item.value"
+                      class="frequency-select"
+                      :class="{ active: index == 1 }">
+                      <input type="radio"
+                        name="frequency"
+                        :value="item.value"
+                        @click="activateFrequency">
+                      <div class="bold">{{ item.name }}</div>
+                      <div v-if="index == 1" class="lowlight-tertiary">(Recommended)</div>
+                    </div>
                   </div>
                 </div>
               </sh-accordion>
@@ -374,6 +387,16 @@ export default {
       //   // }
       // }
       this.loading = false;
+    },
+
+    activateFrequency(e) {
+      const { target } = e;
+      const parent = target.closest('.frequency-select');
+      const active = this.$refs.querySelector('.frequency-select.active');
+      if (active && active !== parent) {
+        active.removeClass('active');
+        parent.addClass('active');
+      }
     },
 
     reset() {
