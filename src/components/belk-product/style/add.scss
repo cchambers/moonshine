@@ -107,16 +107,31 @@
       padding: $micro;
       position: relative;
       border-radius: $atomic;
+      cursor: pointer;
       box-shadow: inset 1px 0px 0 $lowlight-tertiary,
         inset -1px 0px 0 $lowlight-tertiary,
         inset 0px 1px 0 $lowlight-tertiary,
         inset 0px -1px 0 $lowlight-tertiary;
+      > * {
+        pointer-events: none;
+      }
+      &:after {
+        position: absolute;
+        top: 0.8rem;
+        right: 0.8rem;
+        display: block;
+        font-family: 'Material Symbols Rounded';
+        content: 'radio_button_unchecked';
+      }
       &.active {
         background: $highlight-secondary;
         box-shadow: inset 2px 0px 0 $lowlight-quaternary,
           inset -2px 0px 0 $lowlight-quaternary,
           inset 0px 2px 0 $lowlight-quaternary,
           inset 0px -2px 0 $lowlight-quaternary;
+        &:after {
+          content: 'radio_button_checked';
+        }
       }
       > div {
         padding-right: $rem;

@@ -91,7 +91,7 @@
 }
 
 @mixin low {
-  @media screen and (min-width: breakpoint("xs")) and (max-width: breakpoint("md")) {
+  @media screen and (max-width: breakpoint("md")) {
     @content;
   }
 }

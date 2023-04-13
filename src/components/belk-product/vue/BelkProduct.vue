@@ -142,7 +142,7 @@
               unique-id="freq"
               toggle-event="open-shipping-freq"
               label="Toggle shipping accordion"></sh-checkbox>
-              <sh-accordion unique-id="shipping-freq" @change="activateFrequency">
+              <sh-accordion unique-id="shipping-freq" @click="activateFrequency">
                 <div slot="body">
                   <div ref="frequency"
                     class="frequency-scroll">
@@ -151,9 +151,9 @@
                       :key="item.value"
                       class="frequency-select"
                       :class="{ active: index == 0 }">
-                      <input type="radio"
+                      <!-- <input type="radio"
                         name="frequency"
-                        :value="item.value">
+                        :value="item.value"> -->
                       <div class="bold">{{ item.name }}</div>
                       <div v-if="index == 0" class="lowlight-tertiary">(Recommended)</div>
                     </div>
@@ -173,6 +173,7 @@
 import MoneyFormatter from '../../money-formatter';
 import ComponentPrototype from '../../component-prototype';
 import BelkSwatch from '../../belk-swatch/vue/BelkSwatch.vue';
+import ShAccordion from '../../sh-accordion/vue/Accordion.vue';
 
 export default {
   mixins: [ComponentPrototype, MoneyFormatter],
@@ -238,8 +239,8 @@ export default {
         reviews: this.reviews,
       },
       itemQty: 1,
-      itemMax: 6,
       belkSwatch: BelkSwatch,
+      shAccordion: ShAccordion,
     };
   },
 
@@ -254,6 +255,10 @@ export default {
       r = r.toFixed(1);
       r = parseFloat(r);
       return r;
+    },
+
+    itemMax() {
+      return this.content.qty || 5;
     },
 
     originalValue() {
@@ -315,10 +320,10 @@ export default {
       this.$bus.$on('search-suggestions-loaded', this.processProps);
       if (this.uniqueId) {
         this.$bus.$on(`update-product-${this.uniqueId}`, this.updateContent);
-        this.$bus.$on('open-shipping-freq', () => {
-          const input = this.$el.querySelector('#shipping-freq .active input');
-          input.checked = true;
-        });
+        // this.$bus.$on('open-shipping-freq', () => {
+        //   const input = this.$el.querySelector('#shipping-freq .active input');
+        //   input.checked = true;
+        // });
       }
     },
 
@@ -402,13 +407,13 @@ export default {
 
     activateFrequency(e) {
       const target = e.srcElement;
-      const parent = target.closest('.frequency-select');
+      if (!target.classList.contains('frequency-select')) return;
       const active = this.$el.querySelector('.frequency-select.active');
-      console.log(active);
-      if (active && active !== parent) {
+      if (active && active !== target) {
         active.classList.remove('active');
-        parent.classList.add('active');
       }
+      target.classList.add('active');
+      // target.querySelector('input').checked = true;
     },
 
     reset() {
