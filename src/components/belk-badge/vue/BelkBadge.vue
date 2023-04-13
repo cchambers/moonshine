@@ -37,7 +37,6 @@ export default {
       content: {
         text: '',
       },
-      filled: this.fill,
       color: 'lowlight-primary',
       types: {
         superbuy: {
