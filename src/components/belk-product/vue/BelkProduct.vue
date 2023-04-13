@@ -32,34 +32,31 @@
                 <div class="brand">{{ content.brand }}</div>
                 <div class="title">{{ content.title }}</div>
               </div>
-
-        <belk-price
-          vce-cloak
-          :price="content.price"
-          :price_range="[content.price_range]"
-          :sale_price="content.sale_price"
-          :sale_price_range="[content.sale_price_range]"
-          :discount_type="content.discountType"
-          :coupon="content.coupon"></belk-price>
+              <component :is="belkPrice"
+                :price="content.price"
+                :price_range="[content.price_range]"
+                :sale_price="content.sale_price"
+                :sale_price_range="[content.sale_price_range]"
+                :discount_type="content.discountType"
+                :coupon="content.coupon"></component>
+              <div v-if="qty">
+                <span>{{ size }}</span><span v-if="color">,&nbsp;</span><span>{{ color }}</span>
+              </div>
+              <div v-if="qty">Qty: {{ qty }}</div>
             </div>
           </a>
         </template>
-        <div v-if="qty">
-          <span>{{ size }}</span><span v-if="color">,&nbsp;</span><span>{{ color }}</span>
-        </div>
-        <div v-if="qty">Qty: {{ qty }}</div>
-        <div class="product-price">
-        <belk-price
-          vce-cloak
-          v-if="['add'].includes(this.variant)"
-          show-percent
-          :price="content.price"
-          :price_range="[content.price_range]"
-          :sale_price="content.sale_price"
-          :sale_price_range="[content.sale_price_range]"
-          :discount_type="content.discountType"
-          :coupon="content.coupon"></belk-price>
-        </div>
+        <div v-if="['add'].includes(this.variant)"
+          class="product-price">
+          <component :is="belkPrice"
+            show-percent
+            :price="content.price"
+            :price_range="[content.price_range]"
+            :sale_price="content.sale_price"
+            :sale_price_range="[content.sale_price_range]"
+            :discount_type="content.discountType"
+            :coupon="content.coupon"></component>
+          </div>
         <div class="rating" v-if="rating">
           <sh-rating vce-cloak :level="rating"></sh-rating>
         </div>
@@ -183,6 +180,7 @@
 import MoneyFormatter from '../../money-formatter';
 import ComponentPrototype from '../../component-prototype';
 import BelkSwatch from '../../belk-swatch/vue/BelkSwatch.vue';
+import BelkPrice from '../../belk-price/vue/BelkPrice.vue';
 import ShAccordion from '../../sh-accordion/vue/Accordion.vue';
 
 export default {
@@ -250,6 +248,7 @@ export default {
       },
       itemQty: 1,
       belkSwatch: BelkSwatch,
+      belkPrice: BelkPrice,
       shAccordion: ShAccordion,
     };
   },
@@ -386,6 +385,7 @@ export default {
           this.priceRange = `${this.format(this.price_range[0])} - ${this.format(this.price_range[1])}`;
         }
       }
+
       if (this.sale_price_range.length > 1) {
         if (this.sale_price_range[0] !== this.sale_price_range[1]
           && this.sale_price_range !== this.price_range) {

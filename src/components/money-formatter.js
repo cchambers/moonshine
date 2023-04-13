@@ -1,6 +1,10 @@
-const UtagBehavior = {
+const MoneyFormatter = {
   methods: {
     format(money) {
+      if (!money) {
+        console.log(`Formatter error, value: ${money}`);
+        return money;
+      }
       const formatter = new Intl.NumberFormat('en-US', {
         style: 'currency',
         currency: 'USD',
@@ -11,4 +15,4 @@ const UtagBehavior = {
   },
 };
 
-export default UtagBehavior;
+export default MoneyFormatter;

@@ -565,3 +565,80 @@
 </sh-modal>
 <div style="padding-top: 400vh;background: linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);"></div>
 </div>
+
+
+
+<script>
+const data = {
+"storeDetails": {
+   "storeId": "452",
+   "storeName": "Charlotte NC - Southpark",
+   "address1": "4400 Sharon Road",
+   "address2": "",
+   "city": "Charlotte",
+   "countryCode": "US",
+   "stateCode": "NC",
+   "postalCode": "28211-3525",
+   "phoneNumber": "7043644251",
+   "storeHours": "10AM - 8PM"
+},
+"cartQty": 12,
+"cart": {
+   "subTotal": 324,
+   "surchargeTotal": "USD 0.00",
+   "couponSavingsTotal": "USD 0.00",
+   "allSavings": "USD 36.00",
+   "shippingMessage": "Congrats! You’ve earned FREE Shipping.",
+   "items": [
+     {
+       "thumb_image": "https://belk.scene7.com/is/image/Belk?layer=0&src=5900054_A0106700_A_000_T10L00&layer=comp&$DWP_THUMB_PDP_DESKTOP$",
+       "title": "Advanced Ceramide Capsules, 90 pcs",
+       "pid": "0438581877207",
+       "category": null,
+       "name": "Advanced Ceramide Capsules, 90 pcs",
+       "brand": "Elizabeth Arden",
+       "qty": 1,
+       "code": "0085805197841",
+       "url": "/p/elizabeth-arden-advanced-ceramide-capsules-90-pcs/0438581877207.html",
+       "discountType": null,
+       "color": "No Color",
+       "size": "90 capsules",
+       "sale_price": 114,
+       "price": 114
+     },
+     {
+       "thumb_image": "https://belk.scene7.com/is/image/Belk?layer=0&src=5900053_V68K_A_961&$DWP_THUMB_PDP_DESKTOP$",
+       "title": "Clinique Pop Plush™ Creamy Lip Gloss",
+       "pid": "0438717496784",
+       "category": null,
+       "name": "Clinique Pop Plush™ Creamy Lip Gloss",
+       "brand": "Clinique",
+       "qty": 6,
+       "code": "0192333148389",
+       "url": "/p/clinique-clinique-pop-plush-creamy-lip-gloss/0438717496784.html",
+       "discountType": "Sale",
+       "color": "10VELOUR POP",
+       "size": "One Size",
+       "sale_price": 15,
+       "price": 21
+     },
+   ]
+},
+"subTotal": 324,
+"userDetails": {
+   "authenticated": false,
+   "softLoggedIn": false,
+   "firstName": "",
+   "lastName": "",
+   "customerType": null,
+   "hasBelkPaymentType": null,
+   "isFreeShippingQualified": false
+},
+"couponCodes": "TODAYONLY|LOOKINGFINE"
+}
+
+setTimeout(() => {
+  sh.emit('do-data', { data: data });
+},1000);
+
+</script>

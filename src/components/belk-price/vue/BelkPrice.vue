@@ -35,14 +35,12 @@ export default {
 
   props: {
     data: null,
-    price: {
-      type: Number,
-    },
+    price: [String, Number],
     sale_price_range: {
       type: Array,
       default: () => [],
     },
-    sale_price: Number,
+    sale_price: [String, Number],
     price_range: {
       type: Array,
       default: () => [],
@@ -59,8 +57,7 @@ export default {
     },
 
     saleValue() {
-      if (!this.salePrice && this.variant === 'bag') {
-        // fixes weird bag/search data thing
+      if (!this.salePrice) {
         if (this.sale_price) this.salePrice = this.sale_price;
       }
       const val = this.saleRange || this.format(this.salePrice);
@@ -97,7 +94,10 @@ export default {
   },
 
   mounted() {
-    if (this.data) this.content = { ...this.data };
+    if (this.data) {
+      this.content = { ...this.data };
+      console.log('Loading price data');
+    }
     setTimeout(this.processProps, 200);
   },
 
@@ -112,6 +112,7 @@ export default {
     },
     processProps() {
       setTimeout(() => {
+        // if data has "sale_price"
         if (this.sale_price) {
           this.salePrice = parseFloat(this.sale_price);
         }
