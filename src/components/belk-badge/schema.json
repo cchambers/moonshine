@@ -1,0 +1,15 @@
+{
+  "name": "Belk Badge",
+  "category": "base",
+  "production": true,
+  "element": "belk-badge",
+  "description": "Demonstration component.",
+  "tags": ["utilities", "demo"],
+  "tracking": [],
+  "requirements": {
+    "Element One": [],
+    "Element Two": [],
+    "a11y": [],
+    "states": []
+  }
+}
