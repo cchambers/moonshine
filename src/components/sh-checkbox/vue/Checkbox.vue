@@ -33,6 +33,7 @@ export default {
     checked: {
       type: Boolean,
     },
+    align: String,
     toggleEvent: String,
   },
 

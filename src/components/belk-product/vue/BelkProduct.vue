@@ -137,11 +137,16 @@
           <div
             v-if="content.frequency"
             class="product-frequency">
-            <div>Subscribe:</div>
             <sh-checkbox variant="primary"
               unique-id="freq"
+              align="right"
               toggle-event="open-shipping-freq"
-              label="Toggle shipping accordion"></sh-checkbox>
+              label="Auto-Replenish"></sh-checkbox>
+              <div class="px-12 lowlight-tertiary pad-t-little">
+                Choose your frequency to opt-in to Auto-Replenish
+                and save 15% on your upcoming shipment, and 20% off
+                your 3rd shipment. <a href="#">Learn more.</a>
+              </div>
               <sh-accordion
                 unique-id="shipping-freq"
                 variant="none"
@@ -159,8 +164,8 @@
                       <!-- <input type="radio"
                         name="frequency"
                         :value="item.value"> -->
-                      <div class="bold">{{ item.name }}</div>
-                      <div v-if="index == 0" class="lowlight-tertiary">(Recommended)</div>
+                      <div class="bold px-14">{{ item.name }}</div>
+                      <div v-if="index == 0" class="lowlight-tertiary px-13">(Recommended)</div>
                     </div>
                   </div>
                 </div>

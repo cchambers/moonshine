@@ -9,6 +9,7 @@ sh-checkbox {
       display: flex;
       align-items: center;
       cursor: pointer;
+      color: $lowlight-primary;
     }
 
     .label-text {
@@ -33,7 +34,7 @@ sh-checkbox {
     opacity: 0.75;
     pointer-events: none;
   }
-  &[right] {
+  &[align="right"] {
     label {
       flex-direction: row-reverse;
     }

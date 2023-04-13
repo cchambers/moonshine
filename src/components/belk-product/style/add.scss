@@ -144,10 +144,12 @@
     }
     .frequency-scroll {
       padding: $little 0;
-      margin-top: $micro;
       display: flex;
       @include scroll-x;
     }
+  }
+  .swatch-name .actual {
+    color: $lowlight-primary;
   }
   .add-form {
     order: 5;
@@ -191,15 +193,17 @@
     align-items: flex-end;
     .sale {
       font-size: 2rem;
-      order: 2;
+      order: 1;
+      font-weight: bold;
     }
     .sale + .original {
       font-size: 1.5rem;
-      padding-right: $micro;
+      margin-left: $micro;
+      color: $lowlight-primary
     }
     .original {
       font-size: 2rem;
-      order: 1;
+      order: 2;
     }
     .percentage {
       order: 3;

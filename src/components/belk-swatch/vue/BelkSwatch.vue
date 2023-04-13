@@ -1,7 +1,9 @@
 <template>
   <div class="belk-swatch"
     :variant="variant">
-    <div class="swatch-name"><strong>{{ prefix }}:</strong> {{ selectedName }}</div>
+    <div class="swatch-name add-label">
+      {{ prefix }}: <span class="actual">{{ selectedName }}</span>
+    </div>
     <div hidden><slot></slot></div>
     <ul class="swatch-list">
       <li v-for="(item, index) in items" v-bind:key="item.id"
