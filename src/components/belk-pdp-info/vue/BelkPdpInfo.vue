@@ -1,5 +1,5 @@
 <template>
-  <div class="belk-pdp-info" :variant="variant">
+  <div class="belk-pdp-info flex col align-start" :variant="variant">
     <div class="tabs-desktop-header">
       <div
         v-for="(item, index) in sections"
@@ -22,7 +22,7 @@
       :key='item.id'
     >
       <div
-        class="tab-header pad-x-little pad-y-little"
+        class="tab-header flex pad-x-little pad-y-little"
         :class="'section-header-' + item.id"
         @click="toggleSection(index)"
       >
