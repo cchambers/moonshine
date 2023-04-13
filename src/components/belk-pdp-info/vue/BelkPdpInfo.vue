@@ -1,5 +1,5 @@
 <template>
-  <div class="belk-pdp-info">
+  <div class="belk-pdp-info" :variant="variant">
     <div class="tabs-desktop-header">
       <div
         v-for="(item, index) in sections"
@@ -63,6 +63,10 @@ export default {
   props: {
     productId: {
       type: String,
+    },
+    variant: {
+      type: String,
+      default: 'primary',
     },
   },
 
