@@ -106,6 +106,7 @@
       margin-right: $micro;
       padding: $micro;
       position: relative;
+      border-radius: $atomic;
       box-shadow: inset 1px 0px 0 $lowlight-tertiary,
         inset -1px 0px 0 $lowlight-tertiary,
         inset 0px 1px 0 $lowlight-tertiary,
@@ -125,6 +126,12 @@
         top: $micro;
         right: $micro
       }
+    }
+    .frequency-scroll {
+      padding: $little 0;
+      margin-top: $micro;
+      display: flex;
+      @include scroll-x;
     }
   }
   .add-form {

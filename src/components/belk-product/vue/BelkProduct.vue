@@ -142,20 +142,20 @@
               unique-id="freq"
               toggle-event="open-shipping-freq"
               label="Toggle shipping accordion"></sh-checkbox>
-              <sh-accordion unique-id="shipping-freq">
+              <sh-accordion unique-id="shipping-freq" @change="activateFrequency">
                 <div slot="body">
-                  <div class="pad-little margin-t-micro" ref="frequency">
+                  <div ref="frequency"
+                    class="frequency-scroll">
                     <div
                       v-for="(item, index) in content.frequency"
                       :key="item.value"
                       class="frequency-select"
-                      :class="{ active: index == 1 }">
+                      :class="{ active: index == 0 }">
                       <input type="radio"
                         name="frequency"
-                        :value="item.value"
-                        @click="activateFrequency">
+                        :value="item.value">
                       <div class="bold">{{ item.name }}</div>
-                      <div v-if="index == 1" class="lowlight-tertiary">(Recommended)</div>
+                      <div v-if="index == 0" class="lowlight-tertiary">(Recommended)</div>
                     </div>
                   </div>
                 </div>
@@ -313,7 +313,18 @@ export default {
     events() {
       this.$bus.$on('clear-suggestions', this.clearSuggestions);
       this.$bus.$on('search-suggestions-loaded', this.processProps);
-      if (this.uniqueId) this.$bus.$on(`update-product-${this.uniqueId}`, this.updateContent);
+      if (this.uniqueId) {
+        this.$bus.$on(`update-product-${this.uniqueId}`, this.updateContent);
+        this.$bus.$on('open-shipping-freq', () => {
+          const input = this.$el.querySelector('#shipping-freq .active input');
+          input.checked = true;
+        });
+      }
+    },
+
+    checkChecked(val) {
+      const ok = (val === 0) ? 'checked' : false;
+      return ok;
     },
 
     checkOnSale() {
@@ -390,12 +401,13 @@ export default {
     },
 
     activateFrequency(e) {
-      const { target } = e;
+      const target = e.srcElement;
       const parent = target.closest('.frequency-select');
-      const active = this.$refs.querySelector('.frequency-select.active');
+      const active = this.$el.querySelector('.frequency-select.active');
+      console.log(active);
       if (active && active !== parent) {
-        active.removeClass('active');
-        parent.addClass('active');
+        active.classList.remove('active');
+        parent.classList.add('active');
       }
     },
 
