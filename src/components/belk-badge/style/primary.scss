@@ -3,7 +3,7 @@
 belk-badge[variant="primary"] {
   .belk-badge {
     padding: $atomic $micro;
-    @include box-shadow(3);
+    @include box-shadow(2);
     background: $highlight-secondary;
     border-radius: $atomic;
     .text {
