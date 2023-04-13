@@ -34,6 +34,7 @@
               </div>
 
         <belk-price
+          vce-cloak
           :price="content.price"
           :price_range="[content.price_range]"
           :sale_price="content.sale_price"
@@ -47,8 +48,11 @@
           <span>{{ size }}</span><span v-if="color">,&nbsp;</span><span>{{ color }}</span>
         </div>
         <div v-if="qty">Qty: {{ qty }}</div>
-        <div class="product-price">
-        <belk-price v-if="['add'].includes(this.variant)"
+        <div class="product-price b-t margin-t-micro pad-t-micro">
+        <belk-price
+          vce-cloak
+          v-if="['add'].includes(this.variant)"
+          show-percent
           :price="content.price"
           :price_range="[content.price_range]"
           :sale_price="content.sale_price"
@@ -57,7 +61,7 @@
           :coupon="content.coupon"></belk-price>
         </div>
         <div class="rating" v-if="rating">
-          <sh-rating :level="rating"></sh-rating>
+          <sh-rating vce-cloak :level="rating"></sh-rating>
         </div>
         <div class="extra-1"></div>
         <div class="extra-2"></div>
@@ -72,25 +76,17 @@
             <!-- <belk-swatch :data='content.colors'></belk-swatch> -->
             <component :is="belkSwatch" :items="content.colors"></component>
           </div>
-          <div class="product-size ">
+          <div v-if="content.sizes" class="product-size">
             <div class="add-label">Size:</div>
-            <div class="flex start pad-y-micro radio-select">
-              <div class="radio">
-                <input id="size1"
+            <div class="flex start wrap radio-select">
+              <div v-for="(size, index) in content.sizes" :key="size" class="radio">
+                <input :id="`size-${size.slugify()}`"
                   type="radio"
                   hidden
                   name="product-size"
-                  value="S"
-                  checked>
-                <label tabindex="0" for="size1">S</label>
-              </div>
-              <div>
-                <input id="size2"
-                  type="radio"
-                  hidden
-                  name="product-size"
-                  value="M">
-                <label tabindex="0" for="size2">M</label>
+                  :value="size"
+                  :checked="(index === 0)">
+                <label tabindex="0" :for="`size-${size.slugify()}`">{{ size }}</label>
               </div>
             </div>
           </div>
@@ -109,8 +105,12 @@
           </div>
           <div>[ SPECIAL OFFERS ]</div>
           <sh-accordion variant="secondary"
+            open-icon="expand_more"
+            close-icon="expand_less"
+            icon-color="lowlight-tertiary"
+            icon-size="px-32"
             unique-id="product-add-protection">
-            <div slot="header">
+            <div class="bold" slot="header">
               Protection
             </div>
             <div slot="body">
@@ -118,10 +118,14 @@
                 Consectetur laborum aspernatur, tempore omnis, est ad animi.</p>
             </div>
           </sh-accordion>
-          <spacer-little></spacer-little>
+          <spacer-little class="b-t margin-t-little"></spacer-little>
           <sh-accordion variant="secondary"
+            open-icon="expand_more"
+            close-icon="expand_less"
+            icon-color="lowlight-tertiary"
+            icon-size="px-32"
             unique-id="product-add-install">
-            <div slot="header">
+            <div class="bold" slot="header">
               Installation
             </div>
             <div slot="body">
@@ -129,6 +133,7 @@
                 Consectetur laborum aspernatur, tempore omnis, est ad animi.</p>
             </div>
           </sh-accordion>
+          <spacer-little class="b-t margin-t-little"></spacer-little>
           <div>
             <div>Subscribe:</div>
             <sh-checkbox variant="primary"

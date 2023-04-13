@@ -17,6 +17,9 @@
         v-bind:class="{ 'is-range': priceRange }"
       >{{ originalValue }}</span>
       <span v-if="coupon" class="coupon">after coupon</span>
+      <span v-if="showPercent && onSale" class="percentage">
+        ({{ percentOff }}% off)
+      </span>
     </div>
   </div>
 </template>
@@ -46,6 +49,7 @@ export default {
     },
     discount_type: String,
     coupon: String,
+    showPercent: Boolean,
   },
 
   computed: {
@@ -61,6 +65,14 @@ export default {
       }
       const val = this.saleRange || this.format(this.salePrice);
       return val;
+    },
+
+    percentOff() {
+      const sale = this.salePrice;
+      const original = this.price;
+      let percent = 1 - (sale / original);
+      percent = Math.round(percent * 100);
+      return percent;
     },
 
     onSale() {
