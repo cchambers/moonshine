@@ -73,7 +73,7 @@ export default {
           text: 'Doorbuster',
         },
         specialoffer: {
-          icon: 'deployed-code',
+          icon: 'deployed_code',
           color: 'brand-blue',
           text: 'Special Offer',
         },
@@ -88,7 +88,7 @@ export default {
           text: 'Daily Deals',
         },
         bestseller: {
-          icon: 'shopping-bag',
+          icon: 'shopping_bag',
           color: 'brand-pink',
           text: 'Best Seller',
         },
