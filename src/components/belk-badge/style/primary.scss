@@ -1,0 +1,18 @@
+/* primary variant */
+
+belk-badge[variant="primary"] {
+  .belk-badge {
+    padding: $atomic $micro;
+    @include box-shadow(3);
+    background: $highlight-secondary;
+    border-radius: $atomic;
+    .text {
+      color: $lowlight-primary;
+      font-size: 1.3rem;
+      font-family: proxima-nova, sans-serif;
+    }
+    .icon {
+      margin-right: $atomic;
+    }
+  }
+}

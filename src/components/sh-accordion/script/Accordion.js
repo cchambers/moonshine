@@ -9,8 +9,10 @@ export default {
   props: {
     group: String,
     uniqueId: String,
-    closedIcon: String,
+    closeIcon: String,
     openIcon: String,
+    iconSize: String,
+    iconColor: String,
     variant: String,
     checkboxLink: String,
     subcat: {
@@ -66,12 +68,12 @@ export default {
           icon = 'remove';
           break;
       }
+      if (this.closeIcon) icon = this.closeIcon;
       return icon;
     },
 
     addIcon() {
       let icon;
-      if (this.closedIcon) return this.closedIcon;
       switch (this.variant) {
         case 'tertiary':
           icon = 'more_vert';
@@ -80,6 +82,7 @@ export default {
           icon = 'add';
           break;
       }
+      if (this.openIcon) icon = this.openIcon;
       return icon;
     },
 

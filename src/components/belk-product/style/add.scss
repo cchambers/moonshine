@@ -1,0 +1,219 @@
+.belk-product[variant="add"] {
+  display: flex;
+  flex-direction: column;
+  color: $lowlight-primary;
+  @include lg {
+    flex-direction: row;
+  }
+  .images {
+    @include lg {
+      @include scroll-y;
+      @include no-scroll-bar;
+      max-height: 80dvh;
+    }
+    min-width: 40rem;
+    ul {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-wrap: wrap;
+      li {
+        display: block;
+        width: 45%;
+        flex-grow: 1;
+        flex-shrink: 0.5;
+        margin-left: $micro;
+        margin-bottom: $micro;
+        div.image {
+          background-size: cover;
+          background-position: center center;
+          height: 20rem;
+        }
+      }
+      li:nth-child(1) {
+        width: calc(100% - 0.8rem);
+        flex-shrink: 0;
+        min-width: 32rem;
+        .image {
+          height: 60rem;
+        }
+      }
+    }
+  }
+  .product-data {
+    display: flex;
+    flex-direction: column;
+    > div {
+      margin-bottom: $micro;
+    }
+    @include lg {
+      padding-left: $little;
+    }
+  }
+  .product-brand {
+    font-size: 1.4rem;
+  }
+  .product-title {
+    order: 0;
+    font-size: 1.8rem;
+    font-weight: bold;
+  }
+  .product-rating {
+    order: 2;
+  }
+  .product-price {
+    order: 4;
+  }
+  .product-size {
+    label {
+      display: flex;
+      margin-bottom: $micro; 
+    }
+  }
+  .product-qty {
+    button {
+      background: transparent;
+      border: 1px solid $lowlight-tertiary;
+      height: $rem;
+      width: $rem;
+      cursor: pointer;
+      font-size: 1.2rem;
+      border-radius: 0.5rem 0 0 0.5rem;
+      transition: all 100ms $ease;
+      &:hover {
+        background: $highlight-secondary;
+      }
+      &:nth-child(3) {
+        border-radius:0 0.5rem 0.5rem 0;
+      }
+      &[disabled] {
+        background: $highlight-secondary;
+        color: $lowlight-tertiary;
+      }
+    }
+    .qty-display {
+      border-top: 1px solid $lowlight-tertiary;
+      border-bottom: 1px solid $lowlight-tertiary;
+      height: $rem;
+      width: $rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    };
+  }
+  .product-frequency {
+    .frequency-select {
+      margin-right: $micro;
+      padding: $micro;
+      position: relative;
+      border-radius: $atomic;
+      cursor: pointer;
+      box-shadow: inset 1px 0px 0 $lowlight-tertiary,
+        inset -1px 0px 0 $lowlight-tertiary,
+        inset 0px 1px 0 $lowlight-tertiary,
+        inset 0px -1px 0 $lowlight-tertiary;
+      > * {
+        pointer-events: none;
+      }
+      &:after {
+        position: absolute;
+        top: 0.8rem;
+        right: 0.8rem;
+        display: block;
+        font-family: 'Material Symbols Rounded';
+        content: 'radio_button_unchecked';
+      }
+      &.active {
+        background: $highlight-secondary;
+        box-shadow: inset 2px 0px 0 $lowlight-quaternary,
+          inset -2px 0px 0 $lowlight-quaternary,
+          inset 0px 2px 0 $lowlight-quaternary,
+          inset 0px -2px 0 $lowlight-quaternary;
+        &:after {
+          content: 'radio_button_checked';
+        }
+      }
+      > div {
+        padding-right: $rem;
+      }
+      input {
+        position: absolute;
+        top: $micro;
+        right: $micro
+      }
+    }
+    .frequency-scroll {
+      padding: $little 0;
+      display: flex;
+      @include scroll-x;
+    }
+  }
+  .swatch-name .actual {
+    color: $lowlight-primary;
+  }
+  .add-form {
+    order: 5;
+    > div {
+      margin: $little 0;
+    }
+  }
+  .add-label {
+    color: $lowlight-tertiary;
+    font-size: 1.4rem;
+    margin-bottom: $micro;
+  }
+  [class*="extra-"] {
+    order: 10;
+  }
+  .radio-select {
+    label {
+      display: flex;
+      padding: $micro $little;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-right: $micro;
+      font-size: 1.2rem;
+      box-shadow: inset 1px 0px 0 $lowlight-tertiary,
+        inset -1px 0px 0 $lowlight-tertiary,
+        inset 0px 1px 0 $lowlight-tertiary,
+        inset 0px -1px 0 $lowlight-tertiary;
+      transition: all 100ms $ease;
+    }
+    input:checked + label {
+      background: $highlight-secondary;
+      box-shadow: inset 2px 0px 0 $lowlight-quaternary,
+        inset -2px 0px 0 $lowlight-quaternary,
+        inset 0px 2px 0 $lowlight-quaternary,
+        inset 0px -2px 0 $lowlight-quaternary;
+    }
+  }
+  .price {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+    .sale {
+      font-size: 2rem;
+      order: 1;
+      font-weight: bold;
+    }
+    .sale + .original {
+      font-size: 1.5rem;
+      margin-left: $micro;
+      color: $lowlight-primary
+    }
+    .original {
+      font-size: 2rem;
+      order: 2;
+    }
+    .percentage {
+      order: 3;
+      color: $lowlight-tertiary;
+      margin-left: 0.8rem;
+      font-size: 1.5rem;
+    }
+  }
+  sh-rating {
+    z-index: -1;
+    position: relative;
+  }
+}

@@ -9,7 +9,10 @@
       :aria-controls="ariaControlsId"
       @click="toggleActive">
       <slot name="header"></slot>
-      <i v-if="variant" class="material-icons-round">{{ iconHandler }}</i>
+      <i v-if="variant"
+        :class="`material-icons-round ${iconColor} ${iconSize}`">
+        {{ iconHandler }}
+      </i>
     </button>
     <div :aria-expanded="ariaExpanded" :aria-labelled-by="headerId" role="region">
       <div :id="ariaControlsId" class="accordion-collapse">

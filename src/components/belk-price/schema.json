@@ -1,0 +1,15 @@
+{
+  "name": "Belk Price",
+  "category": "base",
+  "production": true,
+  "element": "belk-price",
+  "description": "Demonstration component.",
+  "tags": ["product", "pricing"],
+  "tracking": [],
+  "requirements": {
+    "original price": [],
+    "sale price": [],
+    "coupon note": [],
+    "states": [ "has-coupon", "is-on-sale" ]
+  }
+}

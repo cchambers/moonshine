@@ -1,7 +1,9 @@
 <template>
   <div class="belk-swatch"
     :variant="variant">
-    <div class="swatch-name"><strong>{{ prefix }}:</strong> {{ selectedName }}</div>
+    <div class="swatch-name add-label">
+      {{ prefix }}: <span class="actual">{{ selectedName }}</span>
+    </div>
     <div hidden><slot></slot></div>
     <ul class="swatch-list">
       <li v-for="(item, index) in items" v-bind:key="item.id"
@@ -11,7 +13,7 @@
         :id="item.id"
         tabindex="0"
         :aria-selected="item.highlighted"
-        :style="{ backgroundImage: `url('${item.img}')`}">
+        :style="{ backgroundImage: `url('${item.src}')`}">
         <button v-hammer:tap="handleClick" :value="index"></button>
       </li>
     </ul>
@@ -27,7 +29,9 @@ export default {
   name: 'BelkSwatch',
 
   props: {
-
+    data: {
+      type: Object,
+    },
   },
 
   data() {
@@ -36,21 +40,26 @@ export default {
       prefix: 'Color',
       selectedName: 'none',
       items: [],
+      colors: [],
     };
   },
-
-  mounted() {
-    this.defaultContent = this.$slots.default[0].elm;
-    this.process(this.defaultContent);
-  },
+  // mounted() {
+  //   console.log(this.items);
+  // },
+  // updated() {
+  //   console.log(this.items);
+  // },
 
   methods: {
     process(el) {
       const data = [];
-      el.children.forEach((child) => {
-        data.push(this.makeData(child));
-      });
-      this.items = data;
+      if (el.children) {
+        el.children.forEach((child) => {
+          data.push(this.makeData(child));
+          // console.log(child);
+        });
+        this.items = data;
+      }
     },
 
     makeData(el) {
@@ -71,6 +80,7 @@ export default {
       const { target } = e;
       const { value } = target;
       this.activate(value);
+      this.$bus.$emit('swatch-selected', value);
     },
 
     activate(id) {
