@@ -43,14 +43,12 @@ export default {
       colors: [],
     };
   },
-
-  mounted() {
-    console.log(this.items);
-  },
-
-  updated() {
-    console.log(this.items);
-  },
+  // mounted() {
+  //   console.log(this.items);
+  // },
+  // updated() {
+  //   console.log(this.items);
+  // },
 
   methods: {
     process(el) {
@@ -58,7 +56,7 @@ export default {
       if (el.children) {
         el.children.forEach((child) => {
           data.push(this.makeData(child));
-          console.log(child);
+          // console.log(child);
         });
         this.items = data;
       }

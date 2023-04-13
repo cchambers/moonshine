@@ -51,7 +51,7 @@ export default {
         },
         toprated: {
           icon: 'star',
-          color: 'yellow',
+          color: 'brand-yellow',
           filled: true,
           text: 'Top Rated',
         },
@@ -89,6 +89,7 @@ export default {
         bestseller: {
           icon: 'shopping_bag',
           color: 'brand-pink',
+          filled: true,
           text: 'Best Seller',
         },
       },
@@ -109,6 +110,7 @@ export default {
     } else {
       if (this.iconName) this.content.icon = this.iconName;
       if (this.iconColor) this.content.color = this.iconColor;
+      if (this.fill) this.content.filled = true;
     }
   },
 };
