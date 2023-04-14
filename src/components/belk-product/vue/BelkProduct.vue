@@ -170,9 +170,6 @@
           </div>
         </div>
       </div>
-
-    <template v-if="variant != 'add'">
-    </template>
   </div>
 </template>
 
