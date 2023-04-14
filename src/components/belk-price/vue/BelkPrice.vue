@@ -3,6 +3,7 @@
     class="belk-price"
     :variant="variant"
     v-bind:class=" { 'is-on-sale': onSale || discount_type } "
+    v-if="ready"
   >
     <div class="price">
       <span
@@ -35,14 +36,12 @@ export default {
 
   props: {
     data: null,
-    price: {
-      type: Number,
-    },
+    price: [String, Number],
     sale_price_range: {
       type: Array,
       default: () => [],
     },
-    sale_price: Number,
+    sale_price: [String, Number],
     price_range: {
       type: Array,
       default: () => [],
@@ -50,21 +49,21 @@ export default {
     discount_type: String,
     coupon: String,
     showPercent: Boolean,
+    blink: false,
   },
 
   computed: {
     originalValue() {
-      const val = this.priceRange || this.format(this.price);
-      return val || 0;
+      const val = this.priceRange || this.format(this.price, 'originalValue');
+      return val;
     },
 
     saleValue() {
-      if (!this.salePrice && this.variant === 'bag') {
-        // fixes weird bag/search data thing
-        if (this.sale_price) this.salePrice = this.sale_price;
+      if (!this.salePrice) {
+        if (this.sale_price) this.$set(this, 'salePrice', this.sale_price);
       }
-      const val = this.saleRange || this.format(this.salePrice);
-      return val || 0;
+      const val = this.saleRange || this.format(this.salePrice, 'saleValue');
+      return val;
     },
 
     percentOff() {
@@ -88,23 +87,27 @@ export default {
   data() {
     return {
       content: null,
-      priceActual: null,
       saleRange: null,
       salePrice: null,
       priceRange: null,
       isOnSale: false,
+      ready: false,
     };
   },
 
   mounted() {
-    if (this.data) this.content = { ...this.data };
-    setTimeout(this.processProps, 200);
+    if (this.data) {
+      this.content = { ...this.data };
+    }
+    this.ready = true;
+    this.processProps();
   },
 
   methods: {
     events() {
       this.$bus.$on('product-content-update', this.processProps);
       this.$bus.$on('trigger-thing', this.processProps);
+      this.$bus.$on('search-suggestions-loaded', this.processProps);
     },
     checkOnSale() {
       this.isOnSale = (this.price > this.sale_price)

@@ -307,7 +307,6 @@ export default {
           this.$bus.$emit('created', this);
           this.$nextTick(this.updatePopper);
         };
-
         this.popperJS = new CreatePopper(
           this.referenceElm,
           this.popper,
