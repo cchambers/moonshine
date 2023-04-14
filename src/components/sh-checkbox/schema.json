@@ -1,7 +1,7 @@
 {
   "name": "Checkbox",
   "category": "form elements",
-  "production": false,
+  "production": true,
   "element": "sh-checkbox",
   "description": "Checkbox form element.",
   "tags": ["toggle"],
