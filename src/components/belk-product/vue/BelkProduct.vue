@@ -97,6 +97,7 @@
           <div class="flex start">
             <button :disabled="itemQty == 1"
               @mousedown="startDecrement"
+              @mouseleave="stopInterval"
               @mouseup="stopInterval"
               @keypress.space.prevent="decrement">
               <i class="material-icons-round">remove</i>
@@ -105,6 +106,7 @@
             <!-- <input type="number" length="3" min="0" step="1" max="99" v-model="itemQty"> -->
             <button :disabled="itemQty >= itemMax"
                 @mousedown="startIncrement"
+                @mouseleave="stopInterval"
                 @mouseup="stopInterval"
                 @keypress.space.prevent="increment">
               <i class="material-icons-round">add</i>
@@ -339,9 +341,10 @@ export default {
     url(val) {
       this.content.url = val;
     },
-    // itemQty(newVal) {
-    //   this.$bus.$emit('product-quantity-update', newVal);
-    // },
+
+    itemQty(newVal) {
+      this.$bus.$emit('product-quantity-update', newVal);
+    },
   },
 
   methods: {
@@ -481,7 +484,6 @@ export default {
       setTimeout(() => {
         clearInterval(this.interval);
       });
-      this.$bus.$emit('product-quantity-update', this.itemQty);
     },
 
     reset() {
