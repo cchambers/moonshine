@@ -107,7 +107,10 @@ $containMargin: 6rem;
 /* grid */
 .docs .contain {
   max-width: 128rem;
-  margin: 0 $containMargin;
+  margin: 0 $rem;
+  @include lg {
+    margin: 0 $containMargin;
+  }
 }
 
 .row {

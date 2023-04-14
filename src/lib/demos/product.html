@@ -5,25 +5,28 @@
 
 <sh-svglib></sh-svglib>
 
-<div class="srow margin-y">
-  <div class="scol-3-4 pad-r-little text-right">
-    Choose a demo product:
-  </div>
-  <div class="scol-1-4 pad-r">
-    <sh-combo vce-cloak variant="primary" unique-id="product-demo">
-      <ul slot="options" hidden>
-        <li value="0" selected>PFG Long Sleeve</li>
-        <li value="1">Big Blue Bus</li>
-        <li value="2">Giant Whistle</li>
-        <li value="3">Fishing Shirt</li>
-        <li value="4">Kim Rogers Shirt</li>
-      </ul>
-    </sh-combo>
+<div class="docs">
+  <div class="contain">
+    <div class="srow margin-y">
+      <div class="scol-3-4 pad-r-little text-right">
+        Choose a demo product:
+      </div>
+      <div class="scol-1-4 pad-r">
+        <sh-combo vce-cloak variant="primary" unique-id="product-demo">
+          <ul slot="options" hidden>
+            <li value="0" selected>PFG Long Sleeve</li>
+            <li value="1">Big Blue Bus</li>
+            <li value="2">Giant Whistle</li>
+            <li value="3">Fishing Shirt</li>
+            <li value="4">Kim Rogers Shirt</li>
+          </ul>
+        </sh-combo>
+      </div>
+    </div>
+
+    <belk-product vce-cloak unique-id="demo" variant="add"></belk-product>
   </div>
 </div>
-
-<belk-product vce-cloak unique-id="demo" variant="add"></belk-product>
-
 <script>
   const data = [{
       name: "default",

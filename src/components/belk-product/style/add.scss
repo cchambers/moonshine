@@ -6,6 +6,7 @@
     flex-direction: row;
   }
   .images {
+    padding-bottom: $rem;
     @include lg {
       @include scroll-y;
       @include no-scroll-bar;
@@ -13,20 +14,22 @@
       position: sticky;
       top: 0;
       overscroll-behavior: contain;
+      min-width: 40rem;
     }
-    min-width: 40rem;
     ul {
       list-style: none;
       padding: 0;
       display: flex;
       flex-wrap: wrap;
+      margin-right: -$atomic;
       li {
         display: block;
         width: 45%;
         flex-grow: 1;
         flex-shrink: 0.5;
-        margin-left: $micro;
-        margin-bottom: $micro;
+        // margin: $atomic $micro;
+        padding-right: $micro;
+        padding-bottom: $micro;
         div.image {
           background-size: cover;
           background-position: center center;
@@ -34,7 +37,7 @@
         }
       }
       li:nth-child(1) {
-        width: calc(100% - 0.8rem);
+        width: calc(100% - 1.6rem);
         flex-shrink: 0;
         min-width: 32rem;
         .image {
