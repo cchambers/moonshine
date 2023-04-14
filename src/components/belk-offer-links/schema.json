@@ -1,0 +1,15 @@
+{
+  "name": "Belk Offer Links",
+  "category": "templates",
+  "production": true,
+  "element": "belk-offer-links",
+  "description": "Pull and show special offer modal links from product id",
+  "tags": ["offers", "pids"],
+  "tracking": [],
+  "requirements": {
+    "Element One": [],
+    "Element Two": [],
+    "a11y": [],
+    "states": []
+  }
+}
