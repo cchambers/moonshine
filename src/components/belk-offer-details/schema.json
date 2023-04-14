@@ -17,6 +17,10 @@
       "Should hide self on 'product' template",
       "Should hide self on 'cart' template"
     ],
+    "messaging": [
+      "Should hide self when not on PDP",
+      "Should hide self when in bag variant"
+    ],
     "states": ["empty", "hydrated"]
   }
 }

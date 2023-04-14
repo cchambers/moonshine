@@ -21,7 +21,7 @@
           <button
             class="tertiary-close"
             close-trigger
-            v-if="isMobile() && variant == 'tertiary'">
+            v-if="variant == 'tertiary'">
             <i class="material-icons-round">close</i>
           </button>
         </div>
@@ -601,7 +601,7 @@ export default {
       }
       .sh-modal-buttons[variant="tertiary"] {
         display: none;
-        @include lg {
+        @include md {
           display: block;
           right: 1.6rem !important;
           top: 0 !important;

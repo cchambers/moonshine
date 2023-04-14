@@ -1,0 +1,45 @@
+/* default styling */
+
+sh-checkbox {
+  display: flex;
+  .sh-checkbox {
+    display: flex;
+
+    label {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      color: $lowlight-primary;
+    }
+
+    .label-text {
+      user-select: none;
+      margin: 0 $little;
+    }
+
+    .toggle {
+      height: 1em;
+      width: 1em;
+    }
+
+    input:checked {
+      ~ label {
+        .toggle {
+          background-color: $state-success;
+        }
+      }
+    }
+  }
+  &[disabled] {
+    opacity: 0.75;
+    pointer-events: none;
+  }
+  &[align="right"] {
+    label {
+      flex-direction: row-reverse;
+    }
+    .label-text {
+      margin-left: 0;
+    }
+  }
+}

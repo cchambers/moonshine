@@ -2,12 +2,14 @@ const InputPrototype = {
   props: {
     uniqueId: String,
     name: String,
+    label: String,
   },
 
   data() {
     return {
       inputId: String,
       value: '',
+      error: false,
     };
   },
 

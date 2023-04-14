@@ -1,0 +1,41 @@
+/* primary variant */
+
+sh-checkbox[variant="primary"] {
+  .sh-checkbox {  
+    .toggle {
+      position: relative;
+      width: 3.2rem;
+      height: 1.8rem;
+      border-radius: 0.9rem;
+      background: $highlight-primary;
+      border: 2px solid rgba(0, 0, 0, 0.1);
+      transition: all 100ms $accel;
+      &:before {
+        display: block;
+        content: '';
+        position: absolute;
+        top: -1px;
+        left: -1px;
+        height: 1.6rem;
+        width: 1.6rem;
+        border-radius: 0.7rem;
+        background: $highlight-primary;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+        transition: all 100ms $accel;
+      }
+    }
+    input:checked {
+      ~ label {
+        .toggle {
+          border-color: $accent-primary;
+          background-color: $accent-primary;
+          &:before {
+            transform: translateX(14px);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+          }
+        }
+      }
+    }
+  }
+}

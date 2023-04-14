@@ -1,0 +1,15 @@
+.belk-price {
+  &.is-on-sale {
+    .original {
+      text-decoration: line-through;
+      font-weight: normal;
+      color: $lowlight-quinary;
+    }
+  }
+  .sale {
+    color: #c00;
+  }
+  .sale + .original {
+    margin-left: $atomic;
+  }
+}

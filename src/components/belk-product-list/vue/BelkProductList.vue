@@ -32,9 +32,7 @@ export default {
   watch: {
     products() {
       this.$bus.$emit('clear-suggestions');
-      setTimeout(() => {
-        this.$bus.$emit('search-suggestions-loaded');
-      });
+      this.$bus.$emit('search-suggestions-loaded');
     },
   },
 
@@ -48,12 +46,12 @@ export default {
     },
 
     handleUpdate(data) {
-      this.$set(this, 'products', data);
+      this.products = [...data];
     },
   },
 
   created() {
-    if (this.productsArray) this.$set(this, 'products', this.productsArray);
+    if (this.productsArray) this.products = [...this.productsArray];
   },
 
   components: {

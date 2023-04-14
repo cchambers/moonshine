@@ -9,16 +9,40 @@
   \_______/  \_______|\_______/ \__|\__|\_______|\_______/ \_______/
 / */
 
-@import url(https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Round);
-.material-icons-round { font-family: 'Material Icons Round' !important; font-feature-settings: 'liga' }
-.material-icons { font-family: 'Material Icons' !important; font-feature-settings: 'liga' }
+// @import url(https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Round);
+@font-face {
+  font-family: 'Material Symbols Rounded';
+  font-style: normal;
+  font-weight: 100 700;
+  src: url(https://fonts.gstatic.com/s/materialsymbolsrounded/v103/sykg-zNym6YjUruM-QrEh7-nyTnjDwKNJ_190FjzaqkNCeE.woff2) format('woff2');
+}
 
-i.material-icons,
-i.material-icons-round {
+@font-face {
+  font-family: 'Material Symbols Outlined';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/materialsymbolsoutlined/v100/kJF1BvYX7BgnkSrUwT8OhrdQw4oELdPIeeII9v6oDMzByHX9rA6RzaxHMPdY43zj-jCxv3fzvRNU22ZXGJpEpjC_1n-q_4MrImHCIJIZrDCvHOejbd5zrDAt.woff2) format('woff2');
+}
+  
+.material-icons-round { font-family: 'Material Symbols Rounded' !important; }
+.material-icons { font-family: 'Material Symbols Outlined' !important; }
+
+.material-icons,
+.material-icons-round {
+  font-style: normal;
   display: inline-flex;
   vertical-align: middle;
-  line-height: 1em;
+  font-weight: normal;
+  font-style: normal;
   font-size: inherit;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
 }
 
 html {
@@ -29,11 +53,22 @@ html {
   }
 }
 
-
 .scroll-block {
   > * {
     overflow: hidden !important;
   }
+}
+
+.scroll-y {
+  @include scroll-y;
+}
+
+.scroll-x {
+  @include scroll-x;
+}
+
+.hide-scrollbar {
+  @include no-scroll-bar;
 }
 
 html, body {
@@ -285,8 +320,8 @@ html, body {
     width: 100%;
     margin-left: 0;
     margin-right: 0;
-    padding-left: 0;
-    padding-right: 0;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
   }
 
 

@@ -1,0 +1,13 @@
+{
+  "name": "Belk Badge",
+  "category": "features",
+  "production": true,
+  "element": "belk-badge",
+  "description": "Badging component for showing different promotional states of items.",
+  "tags": ["product", "detail", "badge"],
+  "tracking": [],
+  "requirements": {
+    "iconName": ["change based on predefined data or dynamic attribute value"],
+    "iconColor": ["change based on predefined data or dynamic attribute value"]
+  }
+}

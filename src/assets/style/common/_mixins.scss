@@ -1,5 +1,5 @@
 @mixin materialIcons() {
-  font-family: 'Material Icons Round' !important;
+  font-family: 'Material Symbols Rounded' !important;
   font-feature-settings: 'liga';
 }
 
@@ -91,7 +91,7 @@
 }
 
 @mixin low {
-  @media screen and (min-width: breakpoint("xs")) and (max-width: breakpoint("md")) {
+  @media screen and (max-width: breakpoint("md")) {
     @content;
   }
 }

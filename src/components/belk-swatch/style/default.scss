@@ -1,58 +1,55 @@
 /* default styling */
 
-belk-swatch {
+.belk-swatch {
   display: block;
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -1rem;
+  }
 
-  .belk-swatch {
-    ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      display: flex;
-      flex-wrap: wrap;
-      margin-left: -1rem;
-    }
+  .belk-swatch-actual {
+    border-radius: 50%;
+    height: 4.5rem;
+    width: 4.5rem;
+    background-size: cover;
+    margin-left: 1rem;
+    overflow: hidden;
+    border: 2px solid white;
+    position: relative;
 
-    .belk-swatch-actual {
-      border-radius: 50%;
-      height: 4.5rem;
-      width: 4.5rem;
-      background-size: cover;
-      margin-left: 1rem;
-      overflow: hidden;
-      border: 2px solid white;
-      position: relative;
-
-      &::before {
-        display: block;
-        content: '';
-        position: absolute;
-        border-radius: 50%;
-        top: -2px;
-        left: -2px;
-        right: -2px;
-        bottom: -2px;
-        border: 4px solid #ddd;
-      }
-
-      &:hover,
-      &.active {
-        border: 2px solid $lowlight-primary;
-      }
-    }
-
-    button {
+    &::before {
       display: block;
-      height: 100%;
-      width: 100%;
-      border: 0;
-      border: none;
-      background: transparent;
-      cursor: pointer;
+      content: '';
+      position: absolute;
+      border-radius: 50%;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      border: 4px solid #ddd;
     }
 
-    .highlight {
-      border: 2px solid black;
+    &:hover,
+    &.active {
+      border: 2px solid $lowlight-primary;
     }
+  }
+
+  button {
+    display: block;
+    height: 100%;
+    width: 100%;
+    border: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+  }
+
+  .highlight {
+    border: 2px solid black;
   }
 }

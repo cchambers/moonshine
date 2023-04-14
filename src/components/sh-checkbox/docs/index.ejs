@@ -1,0 +1,115 @@
+<%- htmlWebpackPlugin.options.docsHead %>
+
+<title><%= htmlWebpackPlugin.options.title %></title>
+
+<div class="documentation contain">
+  <h1>Checkbox</h1>
+  <section id="usage">
+    <h2>Usage</h2>
+    <pre>
+      <code class="language-html">
+          &lt;sh-checkbox&gt;&lt;/sh-checkbox&gt;
+      </code>
+    </pre>
+
+  </section>
+
+  <section id="reference" class="baseline30">
+    <h2>Reference</h2>
+    <h3 id="attributes">Attributes</h3>
+
+    <table class="attributes">
+      <thead>
+        <tr>
+          <th>Attribute</th>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>hidden</td>
+          <td>Boolean</td>
+          <td>Hide from view.</td>
+        </tr>
+        <tr>
+          <td>checked</td>
+          <td>Boolean</td>
+          <td>Toggle the internal checkbox to "checked" at render.</td>
+        </tr>
+        <tr>
+          <td>right</td>
+          <td>Boolean</td>
+          <td>Move the toggle interaction to the ride side of the label.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3 id="events">Events</h3>
+    <table class="events">
+      <thead>
+        <tr>
+          <th>Event</th>
+          <th>Payload Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>value-changed</td>
+          <td>
+            Type
+          </td>
+          <td>
+            Fires when the checkbox is toggled. Part of the input-prototype.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="examples">
+    <h2>Examples</h2>
+    <h3>Default</h3>
+    <lib-toolbar auto-open>
+      <sh-checkbox label="example attribute label"></sh-checkbox>
+      <sh-checkbox label="toggled on load" checked></sh-checkbox>
+    </lib-toolbar>
+    <h3>Primary Variant</h3>
+    <lib-toolbar>
+      <sh-checkbox variant="primary" label="example attribute label"></sh-checkbox>
+    </lib-toolbar>
+    <h3>Primary Variant + <code>[right]</code></h3>
+    <lib-toolbar>
+      <sh-checkbox variant="primary" right label="example attribute label"></sh-checkbox>
+    </lib-toolbar>
+
+    <h3>Toggle triggered accordion</h3>
+    <lib-toolbar>
+      <sh-checkbox variant="primary" right unique-id="demo-toggle" label="example attribute label"></sh-checkbox>
+      <sh-accordion unique-id="accordion-2" checkbox-link="demo-toggle">
+        <div slot="body">
+          <p>A no-body accordion. </p>
+        </div>
+      </sh-accordion>
+    </lib-toolbar>
+  </section>
+
+  <section id="changelog">
+    <h2>Changelog</h2>
+    <dl>
+      <dt>0.1.0</dt>
+      <dd>Checkbox is under development.</dd>
+      <!-- <dt>1.0.0</dt>
+      <dd>Toggle is ready for use.</dd>-->
+    </dl>
+  </section>
+
+  <!-- Uncomment this section when you have written requirements in the schema.json!
+    <section id="requirements">
+    <h2>Requirements</h2>
+    <lib-reqs></lib-reqs>
+  </section> -->
+</div>
+
+<%- htmlWebpackPlugin.options.docsFoot %>

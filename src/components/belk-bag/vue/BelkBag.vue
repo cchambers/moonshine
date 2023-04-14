@@ -32,8 +32,8 @@
               </div>
               <div class="hr margin-y-micro"></div>
               <ul class="bag-list belk-product-list" variant="tertiary">
-                <li v-for="product in items" v-bind:key="product.index">
-                  <component :is="belkProduct" variant="bag" v-bind="product"></component>
+                <li v-for="(product, index) in items" v-bind:key="index">
+                  <belk-product v-bind="product" variant="bag"></belk-product>
                 </li>
               </ul>
               <div v-if="tipNote" v-html="tipNote" class="margin-little px-14 b-y"></div>
@@ -60,8 +60,8 @@
 
 <script>
 import ComponentPrototype from '../../component-prototype';
-import BelkProduct from '../../belk-product/vue/BelkProduct.vue';
 import MoneyFormatter from '../../money-formatter';
+import BelkProduct from '../../belk-product/vue/BelkProduct.vue';
 
 export default {
   mixins: [ComponentPrototype, MoneyFormatter],
@@ -81,7 +81,7 @@ export default {
       if (total === 0) {
         total = 'Bag';
       } else {
-        total = this.format(total);
+        total = this.format(total, 'subTotal');
       }
       this.totalPrice = total;
     },

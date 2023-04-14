@@ -1,7 +1,8 @@
 .sh-modal[variant="tertiary"] {
   height: 100vh;
+  height: 100dvh;
   display: flex;
-  padding-top: $rem;
+  // padding-top: $rem;
   transform: translateY(200%);
   @include md {
     padding-top: 0;
@@ -31,12 +32,15 @@
     margin: 0;
     height: auto;
     max-height: calc(100vh - 3.2rem);
+    max-height: calc(100dvh - 3.2rem);
     margin-top: auto;
     border-radius: $little $little 0 0;
     @include box-shadow(1);
     @include md {
       height: 100vh;
+      height: 100dvh;
       max-height: 100vh;
+      max-height: 100dvh;
       max-width: 42rem;
       margin-top: 0;
       margin-left: auto;
@@ -64,6 +68,9 @@
     width: $rem;
     margin-right: $little;
     background-color: transparent;
+    @include md {
+      display: none;
+    }
   }
 
 }

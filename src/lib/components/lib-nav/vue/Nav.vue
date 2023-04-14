@@ -52,7 +52,8 @@
               <div class="header" :cat="key">{{key}}</div>
               <ul>
                 <li v-for="(component, element) in item"
-                :hidden="shouldHide(component.production)" v-bind:key="component.id">
+                :hidden="component.hideFromDocs
+                  || shouldHide(component.production)" v-bind:key="component.id">
                   <a :href="'/components/' + element">{{ component.name }}</a>
                 </li>
               </ul>

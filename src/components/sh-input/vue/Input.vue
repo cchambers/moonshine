@@ -1,13 +1,14 @@
 <template>
   <div class="sh-input">
-    <div hidden ref="default-value"><slot></slot></div>
-    <label :for="inputId"><slot name="label">{{ label }}</slot></label>
-    <input type="text"
-      :id="inputId"
-      v-model="value"
-      v-on:keyup="keyupHandler"
-      class="actual" />
+    <div hidden ref="default-value">
+      <slot></slot>
+    </div>
+    <label :for="uniqueId">
+      <slot name="label">{{ label }}</slot>
+    </label>
+    <input :type="type" :id="uniqueId" v-model="value" v-on:keyup="keyupHandler" class="actual" />
   </div>
+  <!-- <div v-if="error"></div> -->
 </template>
 
 <script>
@@ -23,6 +24,11 @@ export default {
   props: {
     label: String,
     defaultValue: String,
+    uniqueId: String,
+    type: {
+      type: String,
+      default: 'text',
+    },
   },
 
   methods: {

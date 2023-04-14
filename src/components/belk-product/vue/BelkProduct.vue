@@ -2,39 +2,186 @@
   <div class="belk-product"
     :variant="variant"
     v-bind:class=" { 'is-on-sale': onSale || discountType } ">
-    <a class="product-link" :href="fixedUrl" :data-pid="pid">
-      <div class="image"
-        :style="{ backgroundImage: 'url('+thumb_image+')' }"></div>
-      <div class="data">
-        <div class="name">
-          <div class="brand">{{ brand }}</div>
-          <div class="title">{{ title }}</div>
+      <div v-if="content.images"
+        ref="images"
+        class="images"
+        :class="{ loading: loading }">
+        <ul>
+          <li v-for="src in content.images" :key="src">
+            <div class="image"
+              :style="{ backgroundImage: `url(${src})` }"></div>
+          </li>
+        </ul>
+      </div>
+      <div class="product-data">
+        <template v-if="['add'].includes(this.variant)"
+          class="product-name">
+          <div class="product-brand">
+            <a href="#" class="lowlight-tertiary">{{ content.brand }}</a>
+          </div>
+          <div class="product-title">{{ content.title }}</div>
+        </template>
+        <template v-if="['default', 'bag'].includes(this.variant)">
+          <a class="link"
+            :href="content.url"
+            :data-pid="pid">
+            <div class="image"
+            :style="{ backgroundImage: `url(${thumb_image})` }"></div>
+            <div class="data">
+              <div class="name">
+                <div class="brand">{{ content.brand }}</div>
+                <div class="title">{{ content.title }}</div>
+              </div>
+              <div v-if="qty">
+                <span>{{ size }}</span><span v-if="color">,&nbsp;</span><span>{{ color }}</span>
+              </div>
+              <div v-if="qty">Qty: {{ qty }}</div>
+              <component :is="belkPrice"
+                :price="content.price"
+                :price_range="[content.price_range]"
+                :sale_price="content.sale_price"
+                :sale_price_range="[content.sale_price_range]"
+                :discount_type="content.discountType"
+                :coupon="content.coupon"></component>
+            </div>
+          </a>
+        </template>
+        <div v-if="['add'].includes(this.variant)"
+          class="product-price">
+          <component :is="belkPrice"
+            show-percent
+            :price="content.price"
+            :price_range="[content.price_range]"
+            :sale_price="content.sale_price"
+            :sale_price_range="[content.sale_price_range]"
+            :discount_type="content.discountType"
+            :coupon="content.coupon"></component>
+          </div>
+        <div class="rating" v-if="rating">
+          <sh-rating vce-cloak :level="rating"></sh-rating>
         </div>
-        <div v-if="qty">
-          <span>{{ size }}</span><span v-if="color">,&nbsp;</span><span>{{ color }}</span>
-        </div>
-        <div v-if="qty">Qty: {{ qty }}</div>
-        <div class="price">
-          <span v-if="onSale || discountType" class="sale"
-          :discount="discountType"
-          v-bind:class="{ 'is-range': saleRange }">{{ saleValue }} </span>
-          <span class="original"
-          :discount="discountType"
-          v-bind:class="{ 'is-range': priceRange }">{{ originalValue }} </span>
-          <span v-if="coupon" class="coupon">after coupon</span>
-        </div>
-        <div class="rating"><sh-rating :level="reviews"></sh-rating></div>
-        <div class="quick-view">
+        <div class="extra-1"></div>
+        <div class="extra-2"></div>
+        <div class="extra-3"></div>
+        <div class="extra-4"></div>
+        <!-- <div class="quick-view">
           <sh-button v-hammer:tap="quickView">Quick View</sh-button>
+        </div> -->
+        <div v-if="['add'].includes(this.variant)"
+          class="add-form">
+          <div v-if="content.colors">
+            <!-- <belk-swatch :data='content.colors'></belk-swatch> -->
+            <component :is="belkSwatch" :items="content.colors"></component>
+          </div>
+          <div v-if="content.sizes" class="product-size">
+            <div class="add-label">Size:</div>
+            <div class="flex start wrap radio-select">
+              <div v-for="(size, index) in content.sizes" :key="size" class="radio">
+                <input :id="`size-${size.slugify()}`"
+                  type="radio"
+                  hidden
+                  name="product-size"
+                  :value="size"
+                  :checked="(index === 0)">
+                <label tabindex="0" :for="`size-${size.slugify()}`">{{ size }}</label>
+              </div>
+            </div>
+          </div>
+          <div class="product-qty">
+            <div class="add-label">Quantity:</div>
+            <div class="flex start">
+            <button :disabled="itemQty == 1" @click="(itemQty > 1) ? itemQty -= 1 : ''">
+              <i class="material-icons-round">remove</i>
+            </button>
+            <div class="qty-display">{{ itemQty }}</div>
+            <!-- <input type="number" length="3" min="0" step="1" max="99" v-model="itemQty"> -->
+            <button :disabled="itemQty >= itemMax" @click="itemQty += 1">
+              <i class="material-icons-round">add</i>
+            </button>
+            </div>
+          </div>
+          <div>[ SPECIAL OFFERS ]</div>
+          <sh-accordion variant="secondary"
+            open-icon="expand_more"
+            close-icon="expand_less"
+            icon-color="lowlight-tertiary"
+            icon-size="px-32"
+            unique-id="product-add-protection">
+            <div class="bold" slot="header">
+              Protection
+            </div>
+            <div slot="body">
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Consectetur laborum aspernatur, tempore omnis, est ad animi.</p>
+            </div>
+          </sh-accordion>
+          <spacer-little class="b-t margin-t-little"></spacer-little>
+          <sh-accordion variant="secondary"
+            open-icon="expand_more"
+            close-icon="expand_less"
+            icon-color="lowlight-tertiary"
+            icon-size="px-32"
+            unique-id="product-add-install">
+            <div class="bold" slot="header">
+              Installation
+            </div>
+            <div slot="body">
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Consectetur laborum aspernatur, tempore omnis, est ad animi.</p>
+            </div>
+          </sh-accordion>
+          <spacer-little class="b-t margin-t-little"></spacer-little>
+          <div
+            v-if="content.frequency"
+            class="product-frequency">
+            <sh-checkbox variant="primary"
+              unique-id="freq"
+              align="right"
+              toggle-event="open-shipping-freq"
+              label="Auto-Replenish"></sh-checkbox>
+              <div class="px-12 lowlight-tertiary pad-t-little">
+                Choose your frequency to opt-in to Auto-Replenish
+                and save 15% on your upcoming shipment, and 20% off
+                your 3rd shipment. <a href="#">Learn more.</a>
+              </div>
+              <sh-accordion
+                unique-id="shipping-freq"
+                variant="none"
+                @click="activateFrequency">
+                <div slot="body">
+                  <div ref="frequency"
+                    class="frequency-scroll">
+                    <div
+                      v-for="(item, index) in content.frequency"
+                      :key="item.value"
+                      tabindex="0"
+                      role="option"
+                      class="frequency-select"
+                      :class="{ active: index == 0 }">
+                      <!-- <input type="radio"
+                        name="frequency"
+                        :value="item.value"> -->
+                      <div class="bold px-14">{{ item.name }}</div>
+                      <div v-if="index == 0" class="lowlight-tertiary px-13">(Recommended)</div>
+                    </div>
+                  </div>
+                </div>
+              </sh-accordion>
+          </div>
         </div>
       </div>
-    </a>
+
+    <template v-if="variant != 'add'">
+    </template>
   </div>
 </template>
 
 <script>
 import MoneyFormatter from '../../money-formatter';
 import ComponentPrototype from '../../component-prototype';
+import BelkSwatch from '../../belk-swatch/vue/BelkSwatch.vue';
+import BelkPrice from '../../belk-price/vue/BelkPrice.vue';
+import ShAccordion from '../../sh-accordion/vue/Accordion.vue';
 
 export default {
   mixins: [ComponentPrototype, MoneyFormatter],
@@ -42,6 +189,9 @@ export default {
   name: 'BelkProduct',
 
   props: {
+    uniqueId: {
+      type: String,
+    },
     title: {
       type: String,
     },
@@ -87,14 +237,41 @@ export default {
       salePrice: null,
       priceRange: null,
       coupon: false,
-      fixedUrl: String,
       isOnSale: false,
+      loading: false,
+      __placeholder__: null,
+      content: {
+        title: this.title,
+        brand: this.brand,
+        url: this.url,
+        reviews: this.reviews,
+      },
+      itemQty: 1,
+      belkSwatch: BelkSwatch,
+      belkPrice: BelkPrice,
+      shAccordion: ShAccordion,
     };
   },
 
   computed: {
+    rating() {
+      let r;
+      const { reviews } = this.content;
+      if (typeof reviews === 'object') {
+        [r] = reviews;
+      }
+      r = parseFloat(r);
+      r = r.toFixed(1);
+      r = parseFloat(r);
+      return r;
+    },
+
+    itemMax() {
+      return this.content.qty || 5;
+    },
+
     originalValue() {
-      const val = this.priceRange || this.format(this.price);
+      const val = this.priceRange || this.format(this.price, 'originalValue BelkProduct');
       return val;
     },
 
@@ -102,7 +279,7 @@ export default {
       if (!this.salePrice && this.variant === 'bag') { // fixes weird bag/search data thing
         if (this.sale_price) this.salePrice = this.sale_price;
       }
-      const val = this.saleRange || this.format(this.salePrice);
+      const val = this.saleRange || this.format(this.salePrice, 'saleValue BelkProduct');
       return val;
     },
 
@@ -118,8 +295,8 @@ export default {
 
   created() {
     if (this.variant === 'bag') {
-      if (this.url) this.fixedUrl = this.url;
-      if (this.price === 0) this.fixedUrl = '#';
+      if (this.url) this.content.url = this.url;
+      if (this.price === 0) this.content.url = '#';
     }
   },
 
@@ -128,6 +305,9 @@ export default {
     setTimeout(() => {
       this.checkOnSale('mtd');
     });
+    // window.addEventListener('popstate', (event) => {
+    //   console.log('POP', event);
+    // });
   },
 
   // updated() {
@@ -138,7 +318,7 @@ export default {
 
   watch: {
     url(val) {
-      this.fixedUrl = val;
+      this.content.url = val;
     },
   },
 
@@ -146,6 +326,14 @@ export default {
     events() {
       this.$bus.$on('clear-suggestions', this.clearSuggestions);
       this.$bus.$on('search-suggestions-loaded', this.processProps);
+      if (this.uniqueId) {
+        this.$bus.$on(`update-product-${this.uniqueId}`, this.updateContent);
+      }
+    },
+
+    checkChecked(val) {
+      const ok = (val === 0) ? 'checked' : false;
+      return ok;
     },
 
     checkOnSale() {
@@ -159,8 +347,8 @@ export default {
         salePrice: null,
         priceRange: null,
         coupon: false,
-        fixedUrl: String,
         isOnSale: false,
+        content: {},
       });
     },
 
@@ -176,9 +364,9 @@ export default {
         || (whref.indexOf('sandbox') >= 0);
       if (dev && this.url) {
         const newUrl = this.url.replace('https://www.belk.com', window.location.origin);
-        this.$set(this, 'fixedUrl', newUrl);
+        this.$set(this.content, 'url', newUrl);
       } else {
-        this.$set(this, 'fixedUrl', this.url);
+        this.$set(this.content, 'url', this.url);
       }
     },
 
@@ -193,6 +381,7 @@ export default {
           this.priceRange = `${this.format(this.price_range[0])} - ${this.format(this.price_range[1])}`;
         }
       }
+
       if (this.sale_price_range.length > 1) {
         if (this.sale_price_range[0] !== this.sale_price_range[1]
           && this.sale_price_range !== this.price_range) {
@@ -201,12 +390,49 @@ export default {
           this.salePrice = this.sale_price;
         }
       }
+      this.content = { ...this.$props };
+    },
+
+    updateContent(data) {
+      this.loading = true;
+      this.content = { ...data };
+      this.$bus.$emit('product-content-update');
+      this.reset();
+      // let lol = data.url.split('.com');
+      // lol = `http://localhost:8080/demo/product${lol[1]}`;
+      // if ('pushState' in window.history) {
+      //   // if (!this.noState) {
+      //   window.history.pushState({ test: 'ok' }, document.title, lol);
+      //   // } else {
+      //   //   window.history.replaceState({ test: 'ok' }, document.title, lol);
+      //   // }
+      // }
+      this.loading = false;
+    },
+
+    activateFrequency(e) {
+      const target = e.srcElement;
+      if (!target.classList.contains('frequency-select')) return;
+      const active = this.$el.querySelector('.frequency-select.active');
+      if (active && active !== target) {
+        active.classList.remove('active');
+      }
+      target.classList.add('active');
+      // target.querySelector('input').checked = true;
+    },
+
+    reset() {
+      // scroll everything to original positions,
+      const images = this.$el.querySelector('.images');
+      if (images) images.scrollTop = 0;
+      this.itemQty = 1;
     },
   },
 };
 </script>
 <style lang="scss" src="../style/default.scss"></style>
 <style lang="scss" src="../style/bag.scss"></style>
+<style lang="scss" src="../style/add.scss"></style>
 
 <!--
 {
