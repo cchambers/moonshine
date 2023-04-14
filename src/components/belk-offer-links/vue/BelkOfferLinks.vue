@@ -50,8 +50,8 @@ export default {
     handleData(data) {
       const product = data.cached.skus[this.pid];
       if (product) {
-        const promotions = product.promotions;
-        if (promotions) this.content = [ ...data ];
+        const { promotions } = product;
+        if (promotions) this.content = [...data];
       }
     },
   },
