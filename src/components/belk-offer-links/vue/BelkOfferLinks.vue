@@ -1,15 +1,15 @@
 <template>
   <div class="belk-offer-links"
-    :variant="variant" v-if="content.length">
-    <div v-for="item in content" :key="item.upc">
-    <sh-button
-      variant="belk-link"
-      scale="80"
-      class="lowlight-primary"
-      click-event="show-special-offer-modal"
-      :value="item.promoId">
-      {{ item.message }}
-    </sh-button>
+    :variant="variant">
+    <div v-for="item in items" :key="item.upc">
+      <sh-button
+        variant="belk-link"
+        scale="80"
+        class="lowlight-primary"
+        click-event="show-special-offer-modal"
+        :value="item.promoId">
+        {{ item.message }}
+      </sh-button>
     </div>
   </div>
 </template>
@@ -26,16 +26,29 @@ export default {
     pid: {
       type: String,
     },
+    data: {
+      type: Array,
+    },
+  },
+
+  watch: {
+    data(newVal) {
+      this.update(newVal);
+    },
   },
 
   data() {
     return {
-      content: [],
+      items: [],
     };
   },
 
   created() {
     if (this.pid) this.getData();
+  },
+
+  mounted() {
+    if (this.data) this.items = this.data;
   },
 
   methods: {
@@ -47,11 +60,16 @@ export default {
         .then(this.handleData);
     },
 
+    update(data) {
+      this.items = [];
+      this.items = data;
+    },
+
     handleData(data) {
       const product = data.cached.skus[this.pid];
       if (product) {
         const { promotions } = product;
-        if (promotions) this.content = [...data];
+        if (promotions) this.items = [...data];
       }
     },
   },

@@ -71,7 +71,7 @@
         class="add-form">
         <div v-if="content.colors">
           <!-- <belk-swatch :data='content.colors'></belk-swatch> -->
-          <component :is="belkSwatch" :items="content.colors"></component>
+          <component :is="belkSwatch" :data="content.colors"></component>
         </div>
         <div v-if="content.sizes" class="product-size">
           <div class="add-label">Size:</div>
@@ -90,17 +90,25 @@
         <div class="product-qty">
           <div class="add-label">Quantity:</div>
           <div class="flex start">
-          <button :disabled="itemQty == 1" @click="(itemQty > 1) ? itemQty -= 1 : ''">
-            <i class="material-icons-round">remove</i>
-          </button>
-          <div class="qty-display">{{ itemQty }}</div>
-          <!-- <input type="number" length="3" min="0" step="1" max="99" v-model="itemQty"> -->
-          <button :disabled="itemQty >= itemMax" @click="itemQty += 1">
-            <i class="material-icons-round">add</i>
-          </button>
+            <button :disabled="itemQty == 1" @click="(itemQty > 1) ? itemQty -= 1 : ''">
+              <i class="material-icons-round">remove</i>
+            </button>
+            <div class="qty-display">{{ itemQty }}</div>
+            <!-- <input type="number" length="3" min="0" step="1" max="99" v-model="itemQty"> -->
+            <button :disabled="itemQty >= itemMax" @click="itemQty += 1">
+              <i class="material-icons-round">add</i>
+            </button>
+            <!-- <div v-if="qtyError" class="state-error">Nah.</div> -->
           </div>
         </div>
-        <div>[ SPECIAL OFFERS ]</div>
+        <div v-if="content.promotions && !loading"
+          class="product-promotions">
+          <component :is="belkOfferLinks"
+            unique-id="product-detail-promotions"
+            :data="content.promotions"
+            :key="content.pid">
+          </component>
+        </div>
         <sh-accordion variant="secondary"
           open-icon="expand_more"
           close-icon="expand_less"
@@ -178,6 +186,7 @@ import MoneyFormatter from '../../money-formatter';
 import ComponentPrototype from '../../component-prototype';
 import BelkSwatch from '../../belk-swatch/vue/BelkSwatch.vue';
 import BelkPrice from '../../belk-price/vue/BelkPrice.vue';
+import BelkOfferLinks from '../../belk-offer-links/vue/BelkOfferLinks.vue';
 import ShAccordion from '../../sh-accordion/vue/Accordion.vue';
 
 export default {
@@ -246,6 +255,7 @@ export default {
       itemQty: 1,
       belkSwatch: BelkSwatch,
       belkPrice: BelkPrice,
+      belkOfferLinks: BelkOfferLinks,
       shAccordion: ShAccordion,
     };
   },
@@ -264,7 +274,7 @@ export default {
     },
 
     itemMax() {
-      return this.content.qty || 5;
+      return this.content.qty || 24;
     },
 
     originalValue() {
@@ -404,7 +414,7 @@ export default {
       //   //   window.history.replaceState({ test: 'ok' }, document.title, lol);
       //   // }
       // }
-      this.loading = false;
+      setTimeout(() => { this.loading = false; });
     },
 
     activateFrequency(e) {
