@@ -339,6 +339,9 @@ export default {
     url(val) {
       this.content.url = val;
     },
+    // itemQty(newVal) {
+    //   this.$bus.$emit('product-quantity-update', newVal);
+    // },
   },
 
   methods: {
@@ -454,18 +457,31 @@ export default {
 
     startIncrement() {
       this.increment();
-      this.interval = setInterval(this.increment, 200);
+      this.interval = setInterval(() => {
+        if (this.itemQty >= this.itemMax) {
+          this.stopInterval();
+        } else {
+          this.increment();
+        }
+      }, 200);
     },
 
     startDecrement() {
       this.decrement();
-      this.interval = setInterval(this.decrement, 200);
+      this.interval = setInterval(() => {
+        if (this.itemQty <= 1) {
+          this.stopInterval();
+        } else {
+          this.decrement();
+        }
+      }, 200);
     },
 
     stopInterval() {
       setTimeout(() => {
         clearInterval(this.interval);
       });
+      this.$bus.$emit('product-quantity-update', this.itemQty);
     },
 
     reset() {
