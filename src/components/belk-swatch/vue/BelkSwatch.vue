@@ -11,7 +11,6 @@
         v-bind:class="{ highlight: item.active }"
         role="option"
         :id="item.id"
-        tabindex="0"
         :aria-selected="item.highlighted"
         :style="{ backgroundImage: `url('${item.src}')`}">
         <button v-hammer:tap="handleClick" :value="index"></button>

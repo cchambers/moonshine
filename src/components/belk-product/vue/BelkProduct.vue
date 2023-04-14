@@ -83,19 +83,30 @@
                 name="product-size"
                 :value="size"
                 :checked="(index === 0)">
-              <label tabindex="0" :for="`size-${size.slugify()}`">{{ size }}</label>
+              <label
+                tabindex="0"
+                @keypress.space.prevent="activateSize"
+                :for="`size-${size.slugify()}`">
+                {{ size }}
+              </label>
             </div>
           </div>
         </div>
         <div class="product-qty">
           <div class="add-label">Quantity:</div>
           <div class="flex start">
-            <button :disabled="itemQty == 1" @click="(itemQty > 1) ? itemQty -= 1 : ''">
+            <button :disabled="itemQty == 1"
+              @mousedown="startDecrement"
+              @mouseup="stopInterval"
+              @keypress.space.prevent="decrement">
               <i class="material-icons-round">remove</i>
             </button>
             <div class="qty-display">{{ itemQty }}</div>
             <!-- <input type="number" length="3" min="0" step="1" max="99" v-model="itemQty"> -->
-            <button :disabled="itemQty >= itemMax" @click="itemQty += 1">
+            <button :disabled="itemQty >= itemMax"
+                @mousedown="startIncrement"
+                @mouseup="stopInterval"
+                @keypress.space.prevent="increment">
               <i class="material-icons-round">add</i>
             </button>
             <!-- <div v-if="qtyError" class="state-error">Nah.</div> -->
@@ -257,6 +268,7 @@ export default {
       belkPrice: BelkPrice,
       belkOfferLinks: BelkOfferLinks,
       shAccordion: ShAccordion,
+      interval: 1,
     };
   },
 
@@ -426,6 +438,34 @@ export default {
       }
       target.classList.add('active');
       // target.querySelector('input').checked = true;
+    },
+
+    activateSize(e) {
+      e.srcElement.previousElementSibling.checked = true;
+    },
+
+    increment() {
+      if (this.itemQty < this.itemMax) this.itemQty += 1;
+    },
+
+    decrement() {
+      if (this.itemQty > 1) this.itemQty -= 1;
+    },
+
+    startIncrement() {
+      this.increment();
+      this.interval = setInterval(this.increment, 200);
+    },
+
+    startDecrement() {
+      this.decrement();
+      this.interval = setInterval(this.decrement, 200);
+    },
+
+    stopInterval() {
+      setTimeout(() => {
+        clearInterval(this.interval);
+      });
     },
 
     reset() {
