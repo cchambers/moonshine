@@ -1,6 +1,7 @@
 const MoneyFormatter = {
   methods: {
     format(money, debug = '') {
+      if (money === 0) return '';
       if (!money) {
         this.log(`Formatter error, value: ${money} ${debug}`);
         return money;
