@@ -166,6 +166,7 @@
             your 3rd shipment. <a href="#">Learn more.</a>
           </div>
           <sh-accordion
+            v-if="!loading"
             unique-id="shipping-freq"
             variant="none"
             @click="activateFrequency">
@@ -491,6 +492,7 @@ export default {
       const images = this.$el.querySelector('.images');
       if (images) images.scrollTop = 0;
       this.itemQty = 1;
+      this.$bus.$emit('reset-checkbox-freq');
     },
   },
 };
