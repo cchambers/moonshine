@@ -145,7 +145,6 @@ export default {
           this.$bus.$emit('bag-list-update', data.cart.items);
         }, 100);
       }
-      console.log('BAG', this.hasData);
       if (this.hasData) {
         this.hasData = false;
         setTimeout(() => {
