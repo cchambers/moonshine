@@ -11,7 +11,6 @@
         v-bind:class="{ highlight: item.active }"
         role="option"
         :id="item.id"
-        tabindex="0"
         :aria-selected="item.highlighted"
         :style="{ backgroundImage: `url('${item.src}')`}">
         <button v-hammer:tap="handleClick" :value="index"></button>
@@ -30,7 +29,7 @@ export default {
 
   props: {
     data: {
-      type: Object,
+      type: Array,
     },
   },
 
@@ -50,31 +49,35 @@ export default {
   //   console.log(this.items);
   // },
 
-  methods: {
-    process(el) {
-      const data = [];
-      if (el.children) {
-        el.children.forEach((child) => {
-          data.push(this.makeData(child));
-          // console.log(child);
-        });
-        this.items = data;
-      }
-    },
+  created() {
+    if (this.data) this.items = this.data;
+  },
 
-    makeData(el) {
-      const data = {};
-      const child = el.children[0];
-      const image = child.children[0];
-      data.name = child.getAttribute('title');
-      data.colorValue = el.getAttribute('data-colorvalue');
-      data.product = child.getAttribute('data-product');
-      data.link = child.getAttribute('href');
-      data.img = image.src;
-      data.active = false;
-      data.thumb = JSON.parse(image.getAttribute('data-thumb'));
-      return data;
-    },
+  methods: {
+    // process(el) {
+    //   const data = [];
+    //   if (el.children) {
+    //     el.children.forEach((child) => {
+    //       data.push(this.makeData(child));
+    //       // console.log(child);
+    //     });
+    //     this.items = data;
+    //   }
+    // },
+
+    // makeData(el) {
+    //   const data = {};
+    //   const child = el.children[0];
+    //   const image = child.children[0];
+    //   data.name = child.getAttribute('title');
+    //   data.colorValue = el.getAttribute('data-colorvalue');
+    //   data.product = child.getAttribute('data-product');
+    //   data.link = child.getAttribute('href');
+    //   data.img = image.src;
+    //   data.active = false;
+    //   data.thumb = JSON.parse(image.getAttribute('data-thumb'));
+    //   return data;
+    // },
 
     handleClick(e) {
       const { target } = e;

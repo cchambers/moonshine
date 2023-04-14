@@ -9,7 +9,10 @@
     @include lg {
       @include scroll-y;
       @include no-scroll-bar;
-      max-height: 80dvh;
+      max-height: 90dvh;
+      position: sticky;
+      top: 0;
+      overscroll-behavior: contain;
     }
     min-width: 40rem;
     ul {
@@ -100,6 +103,9 @@
       justify-content: center;
       align-items: center;
     };
+  }
+  .product-promotions {
+    padding: $little 0;
   }
   .product-frequency {
     .frequency-select {

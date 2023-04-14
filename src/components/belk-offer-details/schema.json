@@ -1,6 +1,6 @@
 {
   "name": "Belk Offer Details",
-  "category": "template",
+  "category": "templates",
   "production": true,
   "element": "belk-offer-details",
   "description": "Used to render offer details and CTAs.",

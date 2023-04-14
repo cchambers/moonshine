@@ -1,3 +1,8 @@
+<head>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Data-Driven Belk Product Demo</title>
+</head>
+
 <sh-svglib></sh-svglib>
 
 <div class="srow margin-y">
@@ -5,9 +10,9 @@
     Choose a demo product:
   </div>
   <div class="scol-1-4 pad-r">
-    <sh-combo vce-cloak unique-id="product-demo">
+    <sh-combo vce-cloak variant="primary" unique-id="product-demo">
       <ul slot="options" hidden>
-        <li value="0" selected>Example One (PFG Long Sleeve)</li>
+        <li value="0" selected>PFG Long Sleeve</li>
         <li value="1">Big Blue Bus</li>
         <li value="2">Giant Whistle</li>
         <li value="3">Fishing Shirt</li>
@@ -32,37 +37,70 @@
         "sale_price_range": [42.00, 42.00],
         "sale_price": 42.00,
         "price_range": [44.99, 44.99],
-        "images": ["https://placehold.co/400x800", "https://placehold.co/300x600", "https://placehold.co/400x500", "https://placehold.co/300x300"],
+        "images": ["https://placehold.co/400x800", "https://placehold.co/300x600", "https://placehold.co/400x500", "https://placehold.co/300x300", "https://placehold.co/700x300", "https://placehold.co/100x1000", "https://placehold.co/300x1000"],
         "thumb_image": "https://belk.scene7.com/is/image/Belk?layer=0&src=1801546_1396561_A_100_T10L00&layer=comp&&color_id=100284626987",
         "sizes": ["S", "M", "L"],
+        "promotions": [
+          {
+            "type": "PYG",
+            "promoId": "wk32_pyg_origins_090822_091822",
+            "message": "Free Full-Size Serum with $85 Origins Purchase.",
+            "isPreOrderPromo": false,
+            "bonusProductId": "5900055PMCY90",
+          }
+        ],
+        "frequency": [
+          { 
+            name: "60 Days",
+            value: 60,
+          },
+          { 
+            name: "30 Days",
+            value: 30,
+          },
+          { 
+            name: "15 Days",
+            value: 15,
+          }
+        ],
         "colors": [{
+          name: "Turtle",
           colorvalue: "332334735429",
           src: "https://belk.scene7.com/is/image/Belk?layer=0&src=3201550_3553827_A_332_T10L00&layer=comp",
         }, {
+          name: "Cow",
           colorvalue: "770334735429",
           src: "https://belk.scene7.com/is/image/Belk?layer=0&src=3201550_3553827_A_770_T10L00&layer=comp",
         }, {
+          name: "Fish",
           colorvalue: "421334735429",
           src: "https://belk.scene7.com/is/image/Belk?layer=0&src=3201550_3553827_A_421_T10L00&layer=comp",
         }, {
+          name: "Horse",
           colorvalue: "813334735429",
           src: "https://belk.scene7.com/is/image/Belk?layer=0&src=3201550_3553827_A_813_T10L00&layer=comp",
         }, {
+          name: "Penguin",
           colorvalue: "425334735429",
           src: "https://belk.scene7.com/is/image/Belk?layer=0&src=3201550_3553827_A_425_T10L00&layer=comp",
         }, {
+          name: "Bat",
           colorvalue: "340334735429",
           src: "https://belk.scene7.com/is/image/Belk?layer=0&src=3201550_3553827_A_340_T10L00&layer=comp",
         }, {
+          name: "Ostrich",
           colorvalue: "433334735429",
           src: "https://belk.scene7.com/is/image/Belk?layer=0&src=3201550_3553827_A_433_T10L00&layer=comp",
         }, {
+          name: "Squirrel",
           colorvalue: "645334735429",
           src: "https://belk.scene7.com/is/image/Belk?layer=0&src=3201550_3553827_A_645_T10L00&layer=comp",
         }, {
+          name: "Kitty Cat",
           colorvalue: "811334735429",
           src: "https://belk.scene7.com/is/image/Belk?layer=0&src=3201550_3553827_A_811_T10L00&layer=comp",
         }, {
+          name: "Animal",
           colorvalue: "499334735429",
           src: "https://belk.scene7.com/is/image/Belk?layer=0&src=3201550_3553827_A_499_T10L00&layer=comp",
         }]
@@ -84,6 +122,22 @@
         "images": ["https://placehold.co/200x200", "https://placehold.co/100x600", "https://placehold.co/400x500"],
         "thumb_image": "https://belk.scene7.com/is/image/Belk?layer=0&src=1801546_1396561_A_100_T10L00&layer=comp&&color_id=100284626987",
         "sizes": ["L"],
+        "promotions": [
+          {
+            "type": "PYG",
+            "promoId": "wk32_pyg_origins_090822_091822",
+            "message": "Two Full Size Swinging Doors w/ Operating Handle 💦",
+            "isPreOrderPromo": false,
+            "bonusProductId": "5900055PMCY90",
+          },
+          {
+            "type": "PYG",
+            "promoId": "wk32_pyg_origins_090822_091822",
+            "message": "Brown Leather Seats included with every purchase",
+            "isPreOrderPromo": false,
+            "bonusProductId": "5900055PMCY90",
+          }
+        ],
         "frequency": [
           { 
             name: "60 Days",

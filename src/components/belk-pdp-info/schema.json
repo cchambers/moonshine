@@ -1,0 +1,12 @@
+{
+  "name": "Belk Pdp Info",
+  "category": "Features",
+  "production": true,
+  "element": "belk-pdp-info",
+  "description": "Product info tabs.",
+  "tags": [
+    "product info"
+  ],
+  "tracking": [],
+  "requirements": {}
+}

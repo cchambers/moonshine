@@ -1,0 +1,75 @@
+/* primary variant */
+
+.belk-pdp-info[variant="primary"] {
+  width: 100%;
+
+  .tabs-desktop-header {
+    display: none;
+    flex-direction: row;
+    border-bottom: var(--highlight-tertiary) 0.1rem solid;
+    width: 100%;
+    @include custom-scroll-bar;
+
+    .tab-item {
+      min-width: 15rem;
+      border-bottom: transparent 0.3rem solid;
+      text-align: center;
+      cursor: pointer;
+
+      &.active {
+        border-bottom: var(--lowlight-primary) 0.3rem solid;
+      }
+    }
+
+    @include md {
+      display: flex;
+    }
+  }
+
+  .belk-pdp-info-section {
+    border-top: var(--highlight-quinary) 1px solid;
+    width: 100%;
+
+    @include md {
+      border-top: none;
+    }
+
+    .tab-header {
+      cursor: pointer;
+      scroll-margin-top: 12rem;
+      scroll-snap-margin-top: 12rem;
+
+      @include md {
+        display: none;
+      }
+
+      span {
+        line-height: 2.8rem;
+      }
+
+      belk-icon {
+        transition: transform .2s;
+
+        &.opened {
+          transform: rotate(180deg);
+        }
+      }
+    }
+
+    .tab-content {
+      padding: 1.2rem 1.6rem 2.0rem 1.6rem;
+
+      @include md {
+        padding: 0.8rem 0rem;
+      }
+    }
+  }
+
+  &:last-child {
+    border-bottom: var(--highlight-quinary) 0.1rem solid;
+
+    @include md {
+      border-bottom: none;
+    }
+  }
+}
