@@ -9,4 +9,7 @@
   .sale {
     color: #c00;
   }
+  .sale + .original {
+    margin-left: $atomic;
+  }
 }

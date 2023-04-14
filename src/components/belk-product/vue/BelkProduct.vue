@@ -32,6 +32,10 @@
                 <div class="brand">{{ content.brand }}</div>
                 <div class="title">{{ content.title }}</div>
               </div>
+              <div v-if="qty">
+                <span>{{ size }}</span><span v-if="color">,&nbsp;</span><span>{{ color }}</span>
+              </div>
+              <div v-if="qty">Qty: {{ qty }}</div>
               <component :is="belkPrice"
                 :price="content.price"
                 :price_range="[content.price_range]"
@@ -39,10 +43,6 @@
                 :sale_price_range="[content.sale_price_range]"
                 :discount_type="content.discountType"
                 :coupon="content.coupon"></component>
-              <div v-if="qty">
-                <span>{{ size }}</span><span v-if="color">,&nbsp;</span><span>{{ color }}</span>
-              </div>
-              <div v-if="qty">Qty: {{ qty }}</div>
             </div>
           </a>
         </template>
@@ -271,7 +271,7 @@ export default {
     },
 
     originalValue() {
-      const val = this.priceRange || this.format(this.price);
+      const val = this.priceRange || this.format(this.price, 'originalValue BelkProduct');
       return val;
     },
 
@@ -279,7 +279,7 @@ export default {
       if (!this.salePrice && this.variant === 'bag') { // fixes weird bag/search data thing
         if (this.sale_price) this.salePrice = this.sale_price;
       }
-      const val = this.saleRange || this.format(this.salePrice);
+      const val = this.saleRange || this.format(this.salePrice, 'saleValue BelkProduct');
       return val;
     },
 

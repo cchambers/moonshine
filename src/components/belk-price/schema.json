@@ -1,9 +1,9 @@
 {
   "name": "Belk Price",
-  "category": "base",
+  "category": "features",
   "production": true,
   "element": "belk-price",
-  "description": "Demonstration component.",
+  "description": "Handles business pricing rules based on supplied data.",
   "tags": ["product", "pricing"],
   "tracking": [],
   "requirements": {

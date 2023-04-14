@@ -1,8 +1,8 @@
 const MoneyFormatter = {
   methods: {
-    format(money) {
+    format(money, debug = '') {
       if (!money) {
-        console.log(`Formatter error, value: ${money}`);
+        this.log(`Formatter error, value: ${money} ${debug}`);
         return money;
       }
       const formatter = new Intl.NumberFormat('en-US', {

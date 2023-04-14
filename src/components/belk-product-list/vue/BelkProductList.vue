@@ -32,9 +32,7 @@ export default {
   watch: {
     products() {
       this.$bus.$emit('clear-suggestions');
-      setTimeout(() => {
-        this.$bus.$emit('search-suggestions-loaded');
-      });
+      this.$bus.$emit('search-suggestions-loaded');
     },
   },
 

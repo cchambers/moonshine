@@ -3,6 +3,7 @@
     class="belk-price"
     :variant="variant"
     v-bind:class=" { 'is-on-sale': onSale || discount_type } "
+    v-if="ready"
   >
     <div class="price">
       <span
@@ -48,20 +49,21 @@ export default {
     discount_type: String,
     coupon: String,
     showPercent: Boolean,
+    blink: false,
   },
 
   computed: {
     originalValue() {
-      const val = this.priceRange || this.format(this.price);
-      return val || 0;
+      const val = this.priceRange || this.format(this.price, 'originalValue');
+      return val;
     },
 
     saleValue() {
       if (!this.salePrice) {
-        if (this.sale_price) this.salePrice = this.sale_price;
+        if (this.sale_price) this.$set(this, 'salePrice', this.sale_price);
       }
-      const val = this.saleRange || this.format(this.salePrice);
-      return val || 0;
+      const val = this.saleRange || this.format(this.salePrice, 'saleValue');
+      return val;
     },
 
     percentOff() {
@@ -85,19 +87,19 @@ export default {
   data() {
     return {
       content: null,
-      priceActual: null,
       saleRange: null,
       salePrice: null,
       priceRange: null,
       isOnSale: false,
+      ready: false,
     };
   },
 
   mounted() {
     if (this.data) {
       this.content = { ...this.data };
-      console.log('Loading price data', this.content);
     }
+    this.ready = true;
     this.processProps();
   },
 
