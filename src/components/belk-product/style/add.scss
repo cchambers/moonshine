@@ -48,6 +48,8 @@
   }
   .product-data {
     display: flex;
+    width: 50%;
+    flex-grow: 0;
     flex-direction: column;
     > div {
       margin-bottom: $micro;

@@ -182,7 +182,7 @@
                   <!-- <input type="radio"
                     name="frequency"
                     :value="item.value"> -->
-                  <div class="bold px-14">{{ item.name }}</div>
+                  <div class="bold px-14 ws-nowrap">{{ item.name }}</div>
                   <div v-if="index == 0" class="lowlight-tertiary px-13">(Recommended)</div>
                 </div>
               </div>
