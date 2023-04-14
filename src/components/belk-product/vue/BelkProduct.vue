@@ -328,10 +328,6 @@ export default {
       this.$bus.$on('search-suggestions-loaded', this.processProps);
       if (this.uniqueId) {
         this.$bus.$on(`update-product-${this.uniqueId}`, this.updateContent);
-        // this.$bus.$on('open-shipping-freq', () => {
-        //   const input = this.$el.querySelector('#shipping-freq .active input');
-        //   input.checked = true;
-        // });
       }
     },
 

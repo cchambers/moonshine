@@ -48,12 +48,12 @@ export default {
     },
 
     handleUpdate(data) {
-      this.$set(this, 'products', data);
+      this.products = [...data];
     },
   },
 
   created() {
-    if (this.productsArray) this.$set(this, 'products', this.productsArray);
+    if (this.productsArray) this.products = [...this.productsArray];
   },
 
   components: {

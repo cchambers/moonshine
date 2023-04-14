@@ -96,15 +96,16 @@ export default {
   mounted() {
     if (this.data) {
       this.content = { ...this.data };
-      console.log('Loading price data');
+      console.log('Loading price data', this.content);
     }
-    setTimeout(this.processProps, 200);
+    this.processProps();
   },
 
   methods: {
     events() {
       this.$bus.$on('product-content-update', this.processProps);
       this.$bus.$on('trigger-thing', this.processProps);
+      this.$bus.$on('search-suggestions-loaded', this.processProps);
     },
     checkOnSale() {
       this.isOnSale = (this.price > this.sale_price)
@@ -112,7 +113,6 @@ export default {
     },
     processProps() {
       setTimeout(() => {
-        // if data has "sale_price"
         if (this.sale_price) {
           this.salePrice = parseFloat(this.sale_price);
         }
