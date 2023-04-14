@@ -35,12 +35,12 @@
     </div>
     <div class="combo-select" ref="select">
       <select v-on:change="selectHandler">
-        <option value="blank_opt" disabled selected>{{ defaultText }}</option>
+        <option value="blank_opt" disabled>{{ defaultText }}</option>
         <option
           v-for="item in options"
-          v-bind:key="item.index"
-          v-bind:value="item.value"
-          v-bind:selected="item.active"
+          :key="item.index"
+          :value="item.value"
+          :selected="item.active"
         >{{ item.text }}</option>
       </select>
     </div>
@@ -234,7 +234,10 @@ export default {
           text: actual.innerText,
           value: actual.getAttribute('value'),
         };
-        if (actual.hasAttribute('selected')) obj.active = true;
+        if (actual.hasAttribute('selected')) {
+          obj.active = true;
+          this.activeText = obj.text;
+        }
         data.push(obj);
       }
       this.options = [...data];
