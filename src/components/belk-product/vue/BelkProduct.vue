@@ -153,7 +153,7 @@
         </sh-accordion>
         <spacer-little class="b-t margin-t-little"></spacer-little>
         <div
-          v-if="content.frequency"
+          v-if="content.frequency && !loading"
           class="product-frequency">
           <sh-checkbox variant="primary"
             unique-id="freq"
@@ -491,6 +491,7 @@ export default {
       const images = this.$el.querySelector('.images');
       if (images) images.scrollTop = 0;
       this.itemQty = 1;
+      this.$bus.$emit('reset-checkbox-freq');
     },
   },
 };
