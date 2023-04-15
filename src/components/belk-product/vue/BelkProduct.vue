@@ -153,7 +153,7 @@
         </sh-accordion>
         <spacer-little class="b-t margin-t-little"></spacer-little>
         <div
-          v-if="content.frequency"
+          v-if="content.frequency && !loading"
           class="product-frequency">
           <sh-checkbox variant="primary"
             unique-id="freq"
@@ -166,7 +166,6 @@
             your 3rd shipment. <a href="#">Learn more.</a>
           </div>
           <sh-accordion
-            v-if="!loading"
             unique-id="shipping-freq"
             variant="none"
             @click="activateFrequency">

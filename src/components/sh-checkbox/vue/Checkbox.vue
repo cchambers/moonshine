@@ -47,37 +47,37 @@ export default {
   created() {
     this.inputId = this.uniqueId || this.makeUUID();
     if (this.checked) this.isChecked = true;
+    this.$bus.$on(`reset-checkbox-${this.uniqueId}`, this.toggleOff);
+    this.$bus.$on(`toggle-checkbox-${this.uniqueId}`, this.toggle);
+  },
+  // destroyed() {
+  //   this.$bus.$off(`reset-checkbox-${this.uniqueId}`, this.toggleOff);
+  //   this.$bus.$off(`toggle-checkbox-${this.uniqueId}`, this.toggleOn);
+  // },
+
+  watch: {
+    isChecked(newVal) {
+      console.log('IT CHANGED');
+      this.$refs.input.checked = newVal;
+      this.$refs.input.dispatchEvent(new Event('change'));
+    },
   },
 
   methods: {
-    events() {
-      console.log('x', this.uniqueId);
-      this.$bus.$on(`reset-checkbox-${this.uniqueId}`, () => {
-        console.log('trying');
-        this.toggleOff();
-      }, 1000);
-      this.$bus.$on(`toggle-checkbox-${this.uniqueId}`, this.toggleOn);
-    },
     toggle() {
       this.isChecked = !this.isChecked;
-      this.handleChange();
     },
     toggleOff() {
       this.isChecked = false;
-      this.handleChange();
     },
     toggleOn() {
       this.isChecked = true;
-      this.handleChange();
     },
-    handleChange(event = true) {
-      this.$refs.input.checked = this.isChecked;
-      if (event) {
-        this.$bus.$emit('checkbox-changed', {
-          id: this.uniqueId,
-          checked: this.isChecked,
-        });
-      }
+    handleChange() {
+      this.$bus.$emit('checkbox-changed', {
+        id: this.uniqueId,
+        checked: this.isChecked,
+      });
       if (this.toggleEvent) this.$bus.$emit(this.toggleEvent);
       if (this.toggleOnEvent && this.isChecked) this.$bus.$emit(this.toggleOnEvent);
       if (this.toggleOffEvent && !this.isChecked) this.$bus.$emit(this.toggleOffEvent);
