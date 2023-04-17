@@ -1,7 +1,6 @@
 <template>
   <div class="belk-offer-links"
     :variant="variant">
-    <div class="tab-title">Offers Available:</div>
     <div v-for="item in items" :key="item.upc">
       <div class="callout-message" v-if="item.type.toUpperCase() === 'BOGO'">
         {{item.message}}{{' '}}
