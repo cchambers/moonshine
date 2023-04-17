@@ -117,9 +117,16 @@ export default {
 
     loadSectionContent(sectionIndex) {
       if (!this.sections[sectionIndex].content) {
-        fetch(`${window.location.origin}/on/demandware.store/Sites-Belk-Site/default/Product-GetProductAttributes?pid=${this.productId}&tabtype=${this.sections[sectionIndex].id}`)
-          .then((response) => response.text())
-          .then((html) => this.handleSectionContent(html, sectionIndex));
+        if (this.sections[sectionIndex].id === 'OffersAndRebates') {
+          this.handleSectionContent(`
+          <div class="tab-title">Offers Available:</div>
+          <belk-offer-links pid="${this.productId}"></belk-offer-links>
+        `, sectionIndex);
+        } else {
+          fetch(`${window.location.origin}/on/demandware.store/Sites-Belk-Site/default/Product-GetProductAttributes?pid=${this.productId}&tabtype=${this.sections[sectionIndex].id}`)
+            .then((response) => response.text())
+            .then((html) => this.handleSectionContent(html, sectionIndex));
+        }
       }
     },
 
