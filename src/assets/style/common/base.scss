@@ -276,14 +276,14 @@ html, body {
 //   }
 // }
 
+[emit] > * {
+  pointer-events: none;
+}
+
 /* Grid */
 .srow {
   display: flex !important;
   flex-direction: row;
-}
-
-[emit] > * {
-  pointer-events: none;
 }
 
 [class*=scol-] {

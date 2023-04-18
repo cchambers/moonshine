@@ -72,6 +72,10 @@
         <div v-if="content.colors">
           <!-- <belk-swatch :data='content.colors'></belk-swatch> -->
           <component :is="belkSwatch" :data="content.colors"></component>
+          <sh-button
+            variant="tertiary"
+            scale="50"
+            @click="launchColorModal">view all colors</sh-button>
         </div>
         <div v-if="content.sizes" class="product-size">
           <div class="add-label">Size:</div>
@@ -90,6 +94,10 @@
                 {{ size }}
               </label>
             </div>
+            <sh-button
+              variant="tertiary"
+              scale="50"
+              @click="launchSizeModal">view all sizes</sh-button>
           </div>
         </div>
         <div class="product-qty">
@@ -492,6 +500,14 @@ export default {
       if (images) images.scrollTop = 0;
       this.itemQty = 1;
       this.$bus.$emit('reset-checkbox-freq');
+    },
+
+    launchSizeModal() {
+      this.$bus.$emit('show-size-modal');
+    },
+
+    launchColorModal() {
+      this.$bus.$emit('show-color-modal');
     },
   },
 };

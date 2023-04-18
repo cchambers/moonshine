@@ -25,6 +25,26 @@
     </div>
 
     <belk-product vce-cloak unique-id="demo" variant="add"></belk-product>
+    <sh-modal unique-id="pdp-size" variant="tertiary" header="size" open-trigger-event="show-size-modal">
+      <div>
+        <belk-modal-options unique-id="size"></belk-modal-options>
+      </div>
+      <div slot="footer">
+        <sh-button variant="primary" full>
+          Select Size
+        </sh-button>
+      </div>
+    </sh-modal>
+    <sh-modal unique-id="pdp-color" variant="tertiary" header="color" open-trigger-event="show-color-modal">
+      <div>
+        <belk-modal-options unique-id="color"></belk-modal-options>
+      </div>
+      <div slot="footer">
+        <sh-button variant="primary" full>
+          Select Color
+        </sh-button>
+      </div>
+    </sh-modal>
   </div>
 </div>
 <script>
