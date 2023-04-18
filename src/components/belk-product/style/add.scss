@@ -48,12 +48,15 @@
   }
   .product-data {
     display: flex;
+    width: 100%;
+    flex-grow: 0;
     flex-direction: column;
-    > div {
-      margin-bottom: $micro;
-    }
     @include lg {
       padding-left: $little;
+      width: 50%;
+    }
+    > div {
+      margin-bottom: $micro;
     }
   }
   .product-brand {

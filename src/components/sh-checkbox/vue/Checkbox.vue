@@ -5,8 +5,7 @@
       :id="inputId"
       type="checkbox"
       ref="input"
-      @change="handleChange"
-      :checked="isChecked">
+      @change="handleChange">
     <label :for="inputId"
         tabindex="0"
         v-on:keyup.enter="toggle"
@@ -35,6 +34,8 @@ export default {
     },
     align: String,
     toggleEvent: String,
+    toggleOnEvent: String,
+    toggleOffEvent: String,
   },
 
   data() {
@@ -46,12 +47,31 @@ export default {
   created() {
     this.inputId = this.uniqueId || this.makeUUID();
     if (this.checked) this.isChecked = true;
+    this.$bus.$on(`reset-checkbox-${this.uniqueId}`, this.toggleOff);
+    this.$bus.$on(`toggle-checkbox-${this.uniqueId}`, this.toggle);
+  },
+  // destroyed() {
+  //   this.$bus.$off(`reset-checkbox-${this.uniqueId}`, this.toggleOff);
+  //   this.$bus.$off(`toggle-checkbox-${this.uniqueId}`, this.toggleOn);
+  // },
+
+  watch: {
+    isChecked(newVal) {
+      console.log('IT CHANGED');
+      this.$refs.input.checked = newVal;
+      this.$refs.input.dispatchEvent(new Event('change'));
+    },
   },
 
   methods: {
     toggle() {
       this.isChecked = !this.isChecked;
-      this.handleChange();
+    },
+    toggleOff() {
+      this.isChecked = false;
+    },
+    toggleOn() {
+      this.isChecked = true;
     },
     handleChange() {
       this.$bus.$emit('checkbox-changed', {
@@ -59,6 +79,8 @@ export default {
         checked: this.isChecked,
       });
       if (this.toggleEvent) this.$bus.$emit(this.toggleEvent);
+      if (this.toggleOnEvent && this.isChecked) this.$bus.$emit(this.toggleOnEvent);
+      if (this.toggleOffEvent && !this.isChecked) this.$bus.$emit(this.toggleOffEvent);
     },
   },
 };

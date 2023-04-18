@@ -1,6 +1,6 @@
 {
   "name": "Form",
-  "category": "components",
+  "category": "form elements",
   "production": false,
   "element": "sh-form",
   "description": "Form wrapper component that manages things like data serialization, submission, and error handling.",

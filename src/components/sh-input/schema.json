@@ -1,7 +1,8 @@
 {
 "name": "Form Input",
-"category": "components",
+"category": "form-elements",
 "element": "sh-input",
+"production": false,
 "description": "All-in-one input component. Text, passsword, radio, checkbox, range slider, etc.",
 "tags": ["forms", "input", "checkbox", "radio"],
 "requirements": {

@@ -2,11 +2,20 @@
   <div class="belk-offer-links"
     :variant="variant">
     <div v-for="item in items" :key="item.upc">
+      <div class="callout-message" v-if="item.type.toUpperCase() === 'BOGO'">
+        {{item.message}}{{' '}}
+        <a
+          :href="item.offerLink || ''"
+          :class="item.offerLink ? 'shopthis-tab' : 'offers-tab'"
+        >{{item.offerLink ? 'Shop This Offer': 'View Details'}}</a>
+      </div>
       <sh-button
+        v-else
         variant="belk-link"
         scale="80"
         class="lowlight-primary"
         click-event="show-special-offer-modal"
+        :[`data-${item.eventName}`]="item.finalPromoId"
         :value="item.promoId">
         {{ item.message }}
       </sh-button>
@@ -16,6 +25,25 @@
 
 <script>
 import ComponentPrototype from '../../component-prototype';
+
+function getEventData(item) {
+  switch (item.type.toUpperCase()) {
+    case 'GWP':
+    case 'GSS':
+    case 'PWP':
+      return {
+        eventName: 'prddetailbonusitemid',
+        finalPromoId: item.bonusProductId,
+      };
+    case 'PYG':
+      return {
+        eventName: 'pygpromoid',
+        finalPromoId: item.promoId,
+      };
+    default:
+      return {};
+  }
+}
 
 export default {
   mixins: [ComponentPrototype],
@@ -67,9 +95,17 @@ export default {
 
     handleData(data) {
       const product = data.cached.skus[this.pid];
+
       if (product) {
         const { promotions } = product;
-        if (promotions) this.items = [...data];
+
+        if (promotions) {
+          this.items = promotions.map((item) => ({
+            ...item,
+            ...getEventData(item),
+          }));
+          this.$forceUpdate();
+        }
       }
     },
   },

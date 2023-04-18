@@ -153,7 +153,7 @@
         </sh-accordion>
         <spacer-little class="b-t margin-t-little"></spacer-little>
         <div
-          v-if="content.frequency"
+          v-if="content.frequency && !loading"
           class="product-frequency">
           <sh-checkbox variant="primary"
             unique-id="freq"
@@ -182,7 +182,7 @@
                   <!-- <input type="radio"
                     name="frequency"
                     :value="item.value"> -->
-                  <div class="bold px-14">{{ item.name }}</div>
+                  <div class="bold px-14 ws-nowrap">{{ item.name }}</div>
                   <div v-if="index == 0" class="lowlight-tertiary px-13">(Recommended)</div>
                 </div>
               </div>
@@ -491,6 +491,7 @@ export default {
       const images = this.$el.querySelector('.images');
       if (images) images.scrollTop = 0;
       this.itemQty = 1;
+      this.$bus.$emit('reset-checkbox-freq');
     },
   },
 };
