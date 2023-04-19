@@ -81,9 +81,7 @@ export default {
 
   methods: {
     getData() {
-      let url = this.checkDev() ? 'https://devweb-ecdn.belkdev.com' : window.location.origin;
-      url += `/on/demandware.store/Sites-Belk-Site/default/Product-VariationProductJSON?pid=${this.pid}&calculateVariation=false`;
-      fetch(url)
+      fetch(`${window.location.origin}/on/demandware.store/Sites-Belk-Site/default/Product-VariationProductJSON?pid=${this.pid}&calculateVariation=false`)
         .then((response) => response.json())
         .then(this.handleData);
     },
