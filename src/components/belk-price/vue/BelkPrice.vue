@@ -18,7 +18,14 @@
         v-bind:class="{ 'is-range': priceRange }"
       >{{ originalValue }}</span>
       <span v-if="coupon" class="coupon">after coupon</span>
+<<<<<<< HEAD
       <span v-if="showPercent && onSale" class="percentage">({{ percentOff }}% off)</span>
+=======
+      <span
+        v-if="showPercent && onSale"
+        class="percentage"
+        >({{ percentOff }}% off)</span>
+>>>>>>> 5cce5c70405c5b2104c29faceb3af8e237c7637c
     </div>
   </div>
 </template>
@@ -33,6 +40,7 @@ export default {
   name: 'BelkPrice',
 
   props: {
+    uniqueId: String,
     data: null,
     price: [String, Number],
     sale_price_range: {
@@ -84,13 +92,25 @@ export default {
 
   data() {
     return {
-      content: null,
+      content: {},
       saleRange: null,
       salePrice: null,
       priceRange: null,
       isOnSale: false,
       ready: false,
     };
+  },
+
+  watch: {
+    sale_price(newVal) {
+      this.processProps(newVal);
+    },
+    sale_price_range(newVal) {
+      this.processProps(newVal);
+    },
+    price_range(newVal) {
+      this.processProps(newVal);
+    },
   },
 
   mounted() {
@@ -108,13 +128,8 @@ export default {
       this.$bus.$on('search-suggestions-loaded', this.processProps);
       if (this.uniqueId) {
         this.$bus.$on(`trigger-update-${this.uniqueId}`, this.processProps);
-        this.$bus.$on(`update-data-${this.uniqueId}`, this.handleData);
+        // this.$bus.$on(`update-${this.uniqueId}`, this.handleData);
       }
-    },
-
-    checkOnSale() {
-      this.isOnSale = (this.price > this.sale_price)
-        || (this.price > this.salePrice);
     },
 
     processProps() {
