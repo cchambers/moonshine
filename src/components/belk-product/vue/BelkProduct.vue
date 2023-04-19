@@ -69,30 +69,34 @@
       </div> -->
       <div v-if="['add'].includes(this.variant)"
         class="add-form">
-        <div v-if="content.colors">
+        <div v-if="content.colors"
+          class="product-colors">
           <!-- <belk-swatch :data='content.colors'></belk-swatch> -->
           <component :is="belkSwatch" :data="content.colors"></component>
           <sh-button
             variant="belk-link"
+            class="lowlight-tertiary margin-l-auto"
             scale="50"
             @click="launchColorModal">view all colors</sh-button>
         </div>
-        <div v-if="content.sizes" class="product-size">
+        <div v-if="content.sizes"
+          class="product-size">
           <div class="add-label">Size:</div>
-            <ul class="flex start scroll-x pad-b-little">
-              <li v-for="(size, index) in content.sizes"
-              :key="size"
-              @click="activateSize(index)"
-              @keypress.space.prevent="activateSize(index)"
-              :class="{ active: size == activeSize }">
-                {{ size }}
-              </li>
-            </ul>
+          <ul class="flex start scroll-x pad-b-little hide-scrollbar">
+            <li v-for="(size, index) in content.sizes"
+            :key="size"
+            @click="activateSize(index)"
+            @keypress.space.prevent="activateSize(index)"
+            :class="{ active: size == activeSize }">
+              {{ size }}
+            </li>
+          </ul>
+          <sh-button
+            variant="belk-link"
+            class="lowlight-tertiary margin-l-auto"
+            scale="50"
+            @click="launchSizeModal">view all sizes</sh-button>
           </div>
-            <sh-button
-              variant="belk-link"
-              scale="50"
-              @click="launchSizeModal">view all sizes</sh-button>
         </div>
         <div class="product-qty">
           <div class="add-label">Quantity:</div>
@@ -124,36 +128,38 @@
             :key="content.pid">
           </component>
         </div>
-        <sh-accordion variant="secondary"
-          open-icon="expand_more"
-          close-icon="expand_less"
-          icon-color="lowlight-tertiary"
-          icon-size="px-32"
-          unique-id="product-add-protection">
-          <div class="bold" slot="header">
-            Protection
-          </div>
-          <div slot="body">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Consectetur laborum aspernatur, tempore omnis, est ad animi.</p>
-          </div>
-        </sh-accordion>
-        <spacer-little class="b-t margin-t-little"></spacer-little>
-        <sh-accordion variant="secondary"
-          open-icon="expand_more"
-          close-icon="expand_less"
-          icon-color="lowlight-tertiary"
-          icon-size="px-32"
-          unique-id="product-add-install">
-          <div class="bold" slot="header">
-            Installation
-          </div>
-          <div slot="body">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Consectetur laborum aspernatur, tempore omnis, est ad animi.</p>
-          </div>
-        </sh-accordion>
-        <spacer-little class="b-t margin-t-little"></spacer-little>
+        <div v-if="content.conns">
+          <sh-accordion variant="secondary"
+            open-icon="expand_more"
+            close-icon="expand_less"
+            icon-color="lowlight-tertiary"
+            icon-size="px-32"
+            unique-id="product-add-protection">
+            <div class="bold" slot="header">
+              Protection
+            </div>
+            <div slot="body">
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Consectetur laborum aspernatur, tempore omnis, est ad animi.</p>
+            </div>
+          </sh-accordion>
+          <spacer-little class="b-t margin-t-little"></spacer-little>
+          <sh-accordion variant="secondary"
+            open-icon="expand_more"
+            close-icon="expand_less"
+            icon-color="lowlight-tertiary"
+            icon-size="px-32"
+            unique-id="product-add-install">
+            <div class="bold" slot="header">
+              Installation
+            </div>
+            <div slot="body">
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Consectetur laborum aspernatur, tempore omnis, est ad animi.</p>
+            </div>
+          </sh-accordion>
+          <spacer-little class="b-t margin-t-little"></spacer-little>
+        </div>
         <div
           v-if="content.frequency && !loading"
           class="product-frequency">

@@ -21,6 +21,8 @@
     border: 2px solid $highlight-primary;
     position: relative;
     transition: all 100ms linear;
+    flex-shrink: 0;
+    flex-grow: 0;
 
     &::before {
       display: block;

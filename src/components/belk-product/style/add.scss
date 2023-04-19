@@ -74,7 +74,18 @@
   .product-price {
     order: 3;
   }
+  .product-colors {
+    display: flex;
+    flex-direction: column;
+    .swatch-list {
+      flex-wrap: nowrap;
+      @include scroll-x;
+      @include no-scroll-bar;
+    }
+  }
   .product-size {
+    display: flex;
+    flex-direction: column;
     ul {
       list-style: none;
       padding: 0;
