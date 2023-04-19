@@ -59,12 +59,13 @@
         </div>
       <div class="rating" v-if="rating">
         <sh-rating vce-cloak :level="rating"></sh-rating>
+        <a class="accent-primary  " href="#">Write a Review</a>
       </div>
       <div class="extra-1"></div>
       <div class="extra-2"></div>
       <div class="extra-3"></div>
       <div class="extra-4"></div>
-      <!-- <div class="quick-view">
+      <!-- <div class="quick-views">
         <sh-button v-hammer:tap="quickView">Quick View</sh-button>
       </div> -->
       <div v-if="['add'].includes(this.variant)"
@@ -368,6 +369,33 @@ export default {
       if (this.uniqueId) {
         this.$bus.$on(`update-product-${this.uniqueId}`, this.updateContent);
       }
+      if (['add'].includes(this.variant)) {
+        // this.$bus.$on('modal-affirmed', this.handleModalAffirmed);
+        // this.$bus.$on('modal-selected-pdp-color', this.handleColorUpdate);
+        // this.$bus.$on('modal-selected-size-color', this.handleSizeUpdate);
+        this.$bus.$on('modal-options-updated', this.handleOptionsUpdate);
+      }
+    },
+
+    handleOptionsUpdate(data) {
+      console.log(data);
+    },
+
+    handleModalAffirmed(e) {
+      if (e === 'pdp-color') {
+        this.$bus.$emit('get-selected-pdp-color');
+      }
+      if (e === 'pdp-size') {
+        this.$bus.$emit('get-selected-pdp-size');
+      }
+    },
+
+    handleColorUpdate(e) {
+      // update content.activeColor
+    },
+
+    handleSizeUpdate(e) {
+      // update content.activeSize
     },
 
     checkChecked(val) {
@@ -461,7 +489,6 @@ export default {
     },
 
     activateSize(e) {
-      console.log(e);
       this.activeSize = this.content.sizes[e];
     },
 

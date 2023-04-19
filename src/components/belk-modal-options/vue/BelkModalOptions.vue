@@ -50,6 +50,8 @@ export default {
       if (this.uniqueId) {
         const en = `modal-options-${this.uniqueId}`;
         this.$bus.$on(en, this.handleData);
+        const get = `get-selected-${this.uniqueId}`;
+        this.$bus.$on(en, this.emitSelected);
       }
     },
 
@@ -63,6 +65,10 @@ export default {
         which: this.uniqueId,
         selected: this.activeItem,
       });
+    },
+
+    emitSelected(){ 
+      this.$bus.$emit(`modal-selected-${this.uniqueId}`, this.activeItem);
     },
   },
 
