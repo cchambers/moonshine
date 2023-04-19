@@ -12,11 +12,8 @@ belk-modal-options {
     }
     li {
       padding: $micro;
-      border: 1px solid red;
       margin-bottom: $little;
-      &.active {
-        border-color: $accent-primary;
-      }
+      @include option-selectable;
     }
   }
 }

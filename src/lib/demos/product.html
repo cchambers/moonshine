@@ -25,22 +25,40 @@
     </div>
 
     <belk-product vce-cloak unique-id="demo" variant="add"></belk-product>
-    <sh-modal unique-id="pdp-size" variant="tertiary" header="size" open-trigger-event="show-size-modal">
+    <sh-modal
+      unique-id="pdp-size"
+      variant="tertiary"
+      confirmation-events
+      header="size"
+      open-trigger-event="show-size-modal">
       <div>
         <belk-modal-options unique-id="size"></belk-modal-options>
       </div>
       <div slot="footer">
-        <sh-button variant="primary" full>
+        <sh-button
+          variant="primary"
+          full
+          affirm-trigger
+          close-trigger>
           Select Size
         </sh-button>
       </div>
     </sh-modal>
-    <sh-modal unique-id="pdp-color" variant="tertiary" header="color" open-trigger-event="show-color-modal">
+    <sh-modal
+      unique-id="pdp-color"
+      variant="tertiary"
+      confirmation-events
+      header="color"
+      open-trigger-event="show-color-modal">
       <div>
         <belk-modal-options unique-id="color"></belk-modal-options>
       </div>
       <div slot="footer">
-        <sh-button variant="primary" full>
+        <sh-button
+          variant="primary"
+          full
+          affirm-trigger
+          close-trigger>
           Select Color
         </sh-button>
       </div>
@@ -48,7 +66,8 @@
   </div>
 </div>
 <script>
-  const data = [{
+  const data = [
+    {
       name: "default",
       product: {
         "title": "PFG Long Sleeve Button Down Bahama Shirt",
@@ -269,6 +288,10 @@
     const info = e.detail;
     const which = parseInt(info.data.value);
     sh.emit('update-product-demo', data[which].product);
+  })
+
+  document.addEventListener('modal-affirmed', (e) => {
+    console.log(e);
   })
 
 </script>

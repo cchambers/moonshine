@@ -73,32 +73,26 @@
           <!-- <belk-swatch :data='content.colors'></belk-swatch> -->
           <component :is="belkSwatch" :data="content.colors"></component>
           <sh-button
-            variant="tertiary"
+            variant="belk-link"
             scale="50"
             @click="launchColorModal">view all colors</sh-button>
         </div>
         <div v-if="content.sizes" class="product-size">
           <div class="add-label">Size:</div>
-          <div class="flex start wrap radio-select">
-            <div v-for="(size, index) in content.sizes" :key="size" class="radio">
-              <input :id="`size-${size.slugify()}`"
-                type="radio"
-                hidden
-                name="product-size"
-                :value="size"
-                :checked="(index === 0)">
-              <label
-                tabindex="0"
-                @keypress.space.prevent="activateSize"
-                :for="`size-${size.slugify()}`">
+            <ul class="flex start scroll-x pad-b-little">
+              <li v-for="(size, index) in content.sizes"
+              :key="size"
+              @click="activateSize(index)"
+              @keypress.space.prevent="activateSize(index)"
+              :class="{ active: size == activeSize }">
                 {{ size }}
-              </label>
-            </div>
+              </li>
+            </ul>
+          </div>
             <sh-button
-              variant="tertiary"
+              variant="belk-link"
               scale="50"
               @click="launchSizeModal">view all sizes</sh-button>
-          </div>
         </div>
         <div class="product-qty">
           <div class="add-label">Quantity:</div>
@@ -274,6 +268,8 @@ export default {
         reviews: this.reviews,
       },
       itemQty: 1,
+      activeSize: null,
+      activeColor: 1,
       belkSwatch: BelkSwatch,
       belkPrice: BelkPrice,
       belkOfferLinks: BelkOfferLinks,
@@ -455,7 +451,8 @@ export default {
     },
 
     activateSize(e) {
-      e.srcElement.previousElementSibling.checked = true;
+      console.log(e);
+      this.activeSize = this.content.sizes[e];
     },
 
     increment() {
@@ -503,10 +500,12 @@ export default {
     },
 
     launchSizeModal() {
+      this.$bus.$emit('modal-options-size', this.content.sizes);
       this.$bus.$emit('show-size-modal');
     },
 
     launchColorModal() {
+      this.$bus.$emit('modal-options-color', this.content.colors);
       this.$bus.$emit('show-color-modal');
     },
   },

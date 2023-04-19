@@ -47,11 +47,11 @@
     cursor: pointer;
     &:hover,
     &.active {
-      border: 2px solid $lowlight-primary;
+      border: 2px solid $lowlight-quaternary;
     }
   }
 
   .highlight {
-    border: 2px solid black;
+    border: 2px solid $lowlight-quaternary;
   }
 }

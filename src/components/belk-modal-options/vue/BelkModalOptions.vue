@@ -4,7 +4,7 @@
     <ul ref="list">
       <li
         v-for="(item, index) in items"
-        :key="item"
+        :key="index"
         tabindex="0"
         :class="{ active: item === activeItem }"
         @keypress.space.prevent="activate(index)"
@@ -31,9 +31,16 @@ export default {
 
   data() {
     return {
-      items: ['one', 'two', 'three'],
+      items: [],
       activeItem: null,
     };
+  },
+
+  destroyed() {
+    if (this.uniqueId) {
+      const en = `modal-options-${this.uniqueId}`;
+      this.$bus.$off(en, this.handleData);
+    }
   },
 
   methods: {
@@ -45,11 +52,16 @@ export default {
     },
 
     handleData(e) {
-      console.log(e);
+      console.log(`modal-options-${this.uniqueId}`, e, this.$el);
+      this.items = [...e];
     },
 
     activate(index) {
       this.activeItem = this.items[index];
+      this.$bus.$emit('modal-options-updated', {
+        which: this.uniqueId,
+        selected: this.activeItem,
+      });
     },
   },
 
