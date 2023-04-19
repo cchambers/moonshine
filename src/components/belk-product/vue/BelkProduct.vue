@@ -72,7 +72,7 @@
       <!-- <div class="quick-views">
         <sh-button v-hammer:tap="quickView">Quick View</sh-button>
       </div> -->
-      <div v-if="['add'].includes(this.variant)"
+      <div v-if="['add'].includes(this.variant) && !loading"
         class="add-form">
         <div v-if="content.colors"
           class="product-colors relative">
@@ -88,7 +88,7 @@
         <div v-if="content.sizes"
           class="product-size relative">
           <div class="add-label">Size:</div>
-          <ul class="flex start pad-b-little fader"
+          <ul class="flex start pad-b-little"
             role="listbox">
             <li v-for="(size, index) in content.sizes"
             :key="size"

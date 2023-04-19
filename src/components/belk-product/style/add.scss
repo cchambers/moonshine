@@ -253,7 +253,7 @@
       opacity: 1;
       transition: all 150ms $accel;
     }
-    @for $i from 1 through 100 {
+    @for $i from 1 through 50 {
       $ms: (10 * $i);
       > *:nth-child(#{$i}) {
         transition-delay: #{$ms}ms;

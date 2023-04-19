@@ -5,7 +5,7 @@
       {{ prefix }}: <span class="actual">{{ selectedName }}</span>
     </div>
     <div hidden><slot></slot></div>
-    <ul class="swatch-list fader"
+    <ul class="swatch-list"
       role="listbox">
       <li v-for="(item, index) in items" v-bind:key="item.id"
         class="belk-swatch-actual"
