@@ -88,7 +88,6 @@ export default {
 
   data() {
     return {
-      content: {},
       saleRange: null,
       salePrice: null,
       priceRange: null,
@@ -129,7 +128,6 @@ export default {
     },
 
     processProps() {
-      this.ready = false;
       setTimeout(() => {
         if (this.sale_price) {
           this.salePrice = parseFloat(this.sale_price);
@@ -154,7 +152,6 @@ export default {
             this.salePrice = this.sale_price;
           }
         }
-        this.ready = true;
       }, 5);
     },
   },

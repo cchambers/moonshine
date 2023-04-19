@@ -13,7 +13,7 @@
         </li>
       </ul>
     </div>
-    <div class="product-data fader">
+    <div class="product-data">
       <template v-if="['add'].includes(this.variant)"
         class="product-name">
         <div class="product-brand">
@@ -53,7 +53,7 @@
           class="accent-primary flex-inline pad-l-micro margin-r-auto px-15"
           href="#">Write a Review</a>
       </div>
-      <div v-if="['add'].includes(this.variant)"
+      <div
         class="product-price">
         <component :is="belkPrice"
           show-percent
@@ -75,17 +75,18 @@
       <div v-if="['add'].includes(this.variant)"
         class="add-form">
         <div v-if="content.colors"
-          class="product-colors">
+          class="product-colors relative">
           <!-- <belk-swatch :data='content.colors'></belk-swatch> -->
           <component :is="belkSwatch" :data="content.colors"></component>
           <sh-button
-            variant="tertiary"
-            class="lowlight-tertiary margin-l-auto"
+            variant="belk-link"
+            class="lowlight-tertiary margin-l-auto absolute"
+            style="top: 0; right: 0;"
             scale="50"
-            @click="launchColorModal">view all {{ content.colors.length }} colors</sh-button>
+            @click="launchColorModal">View {{ content.colors.length }} colors</sh-button>
         </div>
         <div v-if="content.sizes"
-          class="product-size">
+          class="product-size relative">
           <div class="add-label">Size:</div>
           <ul class="flex start pad-b-little fader"
             role="listbox">
@@ -101,10 +102,11 @@
             </li>
           </ul>
           <sh-button
-            variant="tertiary"
-            class="lowlight-tertiary margin-l-auto"
+            variant="belk-link"
+            class="lowlight-tertiary margin-l-auto absolute"
+            style="top: 0; right: 0;"
             scale="50"
-            @click="launchSizeModal">view all {{ content.sizes.length }} sizes</sh-button>
+            @click="launchSizeModal">View {{ content.sizes.length }} sizes</sh-button>
         </div>
         <div class="product-qty">
           <div class="add-label">Quantity:</div>
