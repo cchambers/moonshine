@@ -69,27 +69,37 @@
       </div> -->
       <div v-if="['add'].includes(this.variant)"
         class="add-form">
-        <div v-if="content.colors">
+        <div v-if="content.colors"
+          class="product-colors">
           <!-- <belk-swatch :data='content.colors'></belk-swatch> -->
           <component :is="belkSwatch" :data="content.colors"></component>
+          <sh-button
+            variant="belk-link"
+            class="lowlight-tertiary margin-l-auto"
+            scale="50"
+            @click="launchColorModal">view all colors</sh-button>
         </div>
-        <div v-if="content.sizes" class="product-size">
+        <div v-if="content.sizes"
+          class="product-size">
           <div class="add-label">Size:</div>
-          <div class="flex start wrap radio-select">
-            <div v-for="(size, index) in content.sizes" :key="size" class="radio">
-              <input :id="`size-${size.slugify()}`"
-                type="radio"
-                hidden
-                name="product-size"
-                :value="size"
-                :checked="(index === 0)">
-              <label
-                tabindex="0"
-                @keypress.space.prevent="activateSize"
-                :for="`size-${size.slugify()}`">
-                {{ size }}
-              </label>
-            </div>
+          <ul class="flex start scroll-x pad-b-little hide-scrollbar"
+            role="listbox">
+            <li v-for="(size, index) in content.sizes"
+            :key="size"
+            @click="activateSize(index)"
+            @keypress.space.prevent="activateSize(index)"
+            tabindex="0"
+            role="option"
+            :aria-selected="size == activeSize"
+            :class="{ active: size == activeSize }">
+              {{ size }}
+            </li>
+          </ul>
+          <sh-button
+            variant="belk-link"
+            class="lowlight-tertiary margin-l-auto"
+            scale="50"
+            @click="launchSizeModal">view all sizes</sh-button>
           </div>
         </div>
         <div class="product-qty">
@@ -122,36 +132,38 @@
             :key="content.pid">
           </component>
         </div>
-        <sh-accordion variant="secondary"
-          open-icon="expand_more"
-          close-icon="expand_less"
-          icon-color="lowlight-tertiary"
-          icon-size="px-32"
-          unique-id="product-add-protection">
-          <div class="bold" slot="header">
-            Protection
-          </div>
-          <div slot="body">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Consectetur laborum aspernatur, tempore omnis, est ad animi.</p>
-          </div>
-        </sh-accordion>
-        <spacer-little class="b-t margin-t-little"></spacer-little>
-        <sh-accordion variant="secondary"
-          open-icon="expand_more"
-          close-icon="expand_less"
-          icon-color="lowlight-tertiary"
-          icon-size="px-32"
-          unique-id="product-add-install">
-          <div class="bold" slot="header">
-            Installation
-          </div>
-          <div slot="body">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Consectetur laborum aspernatur, tempore omnis, est ad animi.</p>
-          </div>
-        </sh-accordion>
-        <spacer-little class="b-t margin-t-little"></spacer-little>
+        <div v-if="content.conns">
+          <sh-accordion variant="secondary"
+            open-icon="expand_more"
+            close-icon="expand_less"
+            icon-color="lowlight-tertiary"
+            icon-size="px-32"
+            unique-id="product-add-protection">
+            <div class="bold" slot="header">
+              Protection
+            </div>
+            <div slot="body">
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Consectetur laborum aspernatur, tempore omnis, est ad animi.</p>
+            </div>
+          </sh-accordion>
+          <spacer-little class="b-t margin-t-little"></spacer-little>
+          <sh-accordion variant="secondary"
+            open-icon="expand_more"
+            close-icon="expand_less"
+            icon-color="lowlight-tertiary"
+            icon-size="px-32"
+            unique-id="product-add-install">
+            <div class="bold" slot="header">
+              Installation
+            </div>
+            <div slot="body">
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Consectetur laborum aspernatur, tempore omnis, est ad animi.</p>
+            </div>
+          </sh-accordion>
+          <spacer-little class="b-t margin-t-little"></spacer-little>
+        </div>
         <div
           v-if="content.frequency && !loading"
           class="product-frequency">
@@ -266,6 +278,8 @@ export default {
         reviews: this.reviews,
       },
       itemQty: 1,
+      activeSize: null,
+      activeColor: 1,
       belkSwatch: BelkSwatch,
       belkPrice: BelkPrice,
       belkOfferLinks: BelkOfferLinks,
@@ -447,7 +461,8 @@ export default {
     },
 
     activateSize(e) {
-      e.srcElement.previousElementSibling.checked = true;
+      console.log(e);
+      this.activeSize = this.content.sizes[e];
     },
 
     increment() {
@@ -492,6 +507,16 @@ export default {
       if (images) images.scrollTop = 0;
       this.itemQty = 1;
       this.$bus.$emit('reset-checkbox-freq');
+    },
+
+    launchSizeModal() {
+      this.$bus.$emit('modal-options-size', this.content.sizes);
+      this.$bus.$emit('show-size-modal');
+    },
+
+    launchColorModal() {
+      this.$bus.$emit('modal-options-color', this.content.colors);
+      this.$bus.$emit('show-color-modal');
     },
   },
 };

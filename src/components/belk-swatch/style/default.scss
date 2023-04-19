@@ -21,6 +21,8 @@
     border: 2px solid $highlight-primary;
     position: relative;
     transition: all 100ms linear;
+    flex-shrink: 0;
+    flex-grow: 0;
 
     &::before {
       display: block;
@@ -47,11 +49,11 @@
     cursor: pointer;
     &:hover,
     &.active {
-      border: 2px solid $lowlight-primary;
+      border: 2px solid $lowlight-quaternary;
     }
   }
 
   .highlight {
-    border: 2px solid black;
+    border: 2px solid $lowlight-quaternary;
   }
 }

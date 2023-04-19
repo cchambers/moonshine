@@ -57,6 +57,7 @@
     }
     > div {
       margin-bottom: $micro;
+      order: 0;
     }
   }
   .product-brand {
@@ -71,12 +72,30 @@
     order: 2;
   }
   .product-price {
-    order: 4;
+    order: 3;
+  }
+  .product-colors {
+    display: flex;
+    flex-direction: column;
+    .swatch-list {
+      flex-wrap: nowrap;
+      @include scroll-x;
+      @include no-scroll-bar;
+    }
   }
   .product-size {
-    label {
+    display: flex;
+    flex-direction: column;
+    ul {
+      list-style: none;
+      padding: 0;
+      width: 100%;
+    }
+    li {
       display: flex;
-      margin-bottom: $micro; 
+      margin-right: $micro;
+      white-space: nowrap;
+      @include option-selectable;
     }
   }
   .product-qty {
@@ -120,10 +139,7 @@
       position: relative;
       border-radius: $atomic;
       cursor: pointer;
-      box-shadow: inset 1px 0px 0 $lowlight-tertiary,
-        inset -1px 0px 0 $lowlight-tertiary,
-        inset 0px 1px 0 $lowlight-tertiary,
-        inset 0px -1px 0 $lowlight-tertiary;
+      @include option-selectable;
       > * {
         pointer-events: none;
       }
@@ -136,11 +152,7 @@
         content: 'radio_button_unchecked';
       }
       &.active {
-        background: $highlight-secondary;
-        box-shadow: inset 2px 0px 0 $lowlight-quaternary,
-          inset -2px 0px 0 $lowlight-quaternary,
-          inset 0px 2px 0 $lowlight-quaternary,
-          inset 0px -2px 0 $lowlight-quaternary;
+        @include option-selected;
         &:after {
           content: 'radio_button_checked';
         }
@@ -176,29 +188,31 @@
   }
   [class*="extra-"] {
     order: 10;
-  }
-  .radio-select {
-    label {
-      display: flex;
-      padding: $micro $little;
-      border-radius: 5px;
-      cursor: pointer;
-      margin-right: $micro;
-      font-size: 1.2rem;
-      box-shadow: inset 1px 0px 0 $lowlight-tertiary,
-        inset -1px 0px 0 $lowlight-tertiary,
-        inset 0px 1px 0 $lowlight-tertiary,
-        inset 0px -1px 0 $lowlight-tertiary;
-      transition: all 100ms $ease;
-    }
-    input:checked + label {
-      background: $highlight-secondary;
-      box-shadow: inset 2px 0px 0 $lowlight-quaternary,
-        inset -2px 0px 0 $lowlight-quaternary,
-        inset 0px 2px 0 $lowlight-quaternary,
-        inset 0px -2px 0 $lowlight-quaternary;
+    &:empty {
+      display: none;
     }
   }
+  // .radio-select {
+  //   label {
+  //     display: flex;
+  //     border-radius: 5px;
+  //     cursor: pointer;
+  //     margin-right: $micro;
+  //     font-size: 1.2rem;
+  //     box-shadow: inset 1px 0px 0 $lowlight-tertiary,
+  //       inset -1px 0px 0 $lowlight-tertiary,
+  //       inset 0px 1px 0 $lowlight-tertiary,
+  //       inset 0px -1px 0 $lowlight-tertiary;
+  //     transition: all 100ms $ease;
+  //   }
+  //   input:checked + label {
+  //     background: $highlight-secondary;
+  //     box-shadow: inset 2px 0px 0 $lowlight-quaternary,
+  //       inset -2px 0px 0 $lowlight-quaternary,
+  //       inset 0px 2px 0 $lowlight-quaternary,
+  //       inset 0px -2px 0 $lowlight-quaternary;
+  //   }
+  // }
   .product-price {
     display: flex;
     justify-content: flex-start;
