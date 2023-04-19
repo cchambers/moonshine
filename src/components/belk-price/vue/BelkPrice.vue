@@ -18,14 +18,10 @@
         v-bind:class="{ 'is-range': priceRange }"
       >{{ originalValue }}</span>
       <span v-if="coupon" class="coupon">after coupon</span>
-<<<<<<< HEAD
-      <span v-if="showPercent && onSale" class="percentage">({{ percentOff }}% off)</span>
-=======
       <span
         v-if="showPercent && onSale"
         class="percentage"
         >({{ percentOff }}% off)</span>
->>>>>>> 5cce5c70405c5b2104c29faceb3af8e237c7637c
     </div>
   </div>
 </template>
