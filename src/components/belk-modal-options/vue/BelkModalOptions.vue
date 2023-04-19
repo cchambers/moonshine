@@ -1,12 +1,14 @@
 <template>
   <div class="belk-modal-options"
     :variant="variant">
-    <ul ref="list">
+    <ul ref="list" role="listbox">
       <li
         v-for="(item, index) in items"
         :key="index"
         tabindex="0"
         :class="{ active: item === activeItem }"
+        :aria-selected="item === activeItem"
+        role="option"
         @keypress.space.prevent="activate(index)"
         @click="activate(index)">
         {{ item }}
@@ -52,7 +54,6 @@ export default {
     },
 
     handleData(e) {
-      console.log(`modal-options-${this.uniqueId}`, e, this.$el);
       this.items = [...e];
     },
 

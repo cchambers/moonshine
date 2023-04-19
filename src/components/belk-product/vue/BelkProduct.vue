@@ -82,11 +82,15 @@
         <div v-if="content.sizes"
           class="product-size">
           <div class="add-label">Size:</div>
-          <ul class="flex start scroll-x pad-b-little hide-scrollbar">
+          <ul class="flex start scroll-x pad-b-little hide-scrollbar"
+            role="listbox">
             <li v-for="(size, index) in content.sizes"
             :key="size"
             @click="activateSize(index)"
             @keypress.space.prevent="activateSize(index)"
+            tabindex="0"
+            role="option"
+            :aria-selected="size == activeSize"
             :class="{ active: size == activeSize }">
               {{ size }}
             </li>
