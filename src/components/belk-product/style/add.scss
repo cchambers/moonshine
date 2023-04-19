@@ -77,11 +77,11 @@
   .product-colors {
     display: flex;
     flex-direction: column;
-    .swatch-list {
-      flex-wrap: nowrap;
-      @include scroll-x;
-      @include no-scroll-bar;
-    }
+    // .swatch-list {
+    //   flex-wrap: nowrap;
+    //   @include scroll-x;
+    //   @include no-scroll-bar;
+    // }
   }
   .product-size {
     display: flex;
@@ -90,12 +90,20 @@
       list-style: none;
       padding: 0;
       width: 100%;
+      flex-wrap: wrap;
     }
     li {
       display: flex;
       margin-right: $micro;
-      white-space: nowrap;
+      margin-bottom: $micro;
+      flex-basis: 3.2rem;
+      flex-grow: 0;
+      flex-shrink: 0;
+      justify-content: center;
       @include option-selectable;
+    }
+    li:last-child {
+      margin-right: auto;
     }
   }
   .product-qty {

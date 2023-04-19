@@ -1,0 +1,25 @@
+.belk-price[variant="add"] {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  .sale {
+    font-size: 2rem;
+    order: 1;
+    font-weight: bold;
+  }
+  .sale + .original {
+    font-size: 1.5rem;
+    margin-left: $micro;
+    color: $lowlight-primary
+  }
+  .original {
+    font-size: 2rem;
+    order: 2;
+  }
+  .percentage {
+    order: 3;
+    color: $lowlight-tertiary;
+    margin-left: 0.8rem;
+    font-size: 1.5rem;
+  }
+}

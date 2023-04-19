@@ -97,6 +97,7 @@ export default {
 
   mounted() {
     if (this.data) {
+      this.ready = false;
       this.content = { ...this.data };
     }
     this.ready = true;
@@ -106,14 +107,20 @@ export default {
   methods: {
     events() {
       this.$bus.$on('product-content-update', this.processProps);
-      this.$bus.$on('trigger-thing', this.processProps);
       this.$bus.$on('search-suggestions-loaded', this.processProps);
+      if (this.uniqueId) {
+        this.$bus.$on(`trigger-update-${this.uniqueId}`, this.processProps);
+        this.$bus.$on(`update-data-${this.uniqueId}`, this.handleData);
+      }
     },
+
     checkOnSale() {
       this.isOnSale = (this.price > this.sale_price)
         || (this.price > this.salePrice);
     },
+
     processProps() {
+      this.ready = false;
       setTimeout(() => {
         if (this.sale_price) {
           this.salePrice = parseFloat(this.sale_price);
@@ -138,6 +145,7 @@ export default {
             this.salePrice = this.sale_price;
           }
         }
+        this.ready = true;
       }, 5);
     },
   },
@@ -145,3 +153,4 @@ export default {
 </script>
 <style lang="scss" src="../style/default.scss"></style>
 <style lang="scss" src="../style/primary.scss"></style>
+<style lang="scss" src="../style/add.scss"></style>

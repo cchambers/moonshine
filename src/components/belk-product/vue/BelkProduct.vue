@@ -50,6 +50,7 @@
         class="product-price">
         <component :is="belkPrice"
           show-percent
+          variant="add"
           :price="content.price"
           :price_range="[content.price_range]"
           :sale_price="content.sale_price"
@@ -57,9 +58,11 @@
           :discount_type="content.discountType"
           :coupon="content.coupon"></component>
         </div>
-      <div class="rating" v-if="rating">
-        <sh-rating vce-cloak :level="rating"></sh-rating>
-        <a class="accent-primary  " href="#">Write a Review</a>
+      <div class="product-rating flex" v-if="rating">
+        <sh-rating vce-cloak :level="rating" count="16"></sh-rating>
+        <a
+          class="accent-primary flex-inline pad-l-micro margin-r-auto px-15"
+          href="#">Write a Review</a>
       </div>
       <div class="extra-1"></div>
       <div class="extra-2"></div>
@@ -75,15 +78,15 @@
           <!-- <belk-swatch :data='content.colors'></belk-swatch> -->
           <component :is="belkSwatch" :data="content.colors"></component>
           <sh-button
-            variant="belk-link"
+            variant="tertiary"
             class="lowlight-tertiary margin-l-auto"
             scale="50"
-            @click="launchColorModal">view all colors</sh-button>
+            @click="launchColorModal">view all {{ content.colors.length }} colors</sh-button>
         </div>
         <div v-if="content.sizes"
           class="product-size">
           <div class="add-label">Size:</div>
-          <ul class="flex start scroll-x pad-b-little hide-scrollbar"
+          <ul class="flex start pad-b-little"
             role="listbox">
             <li v-for="(size, index) in content.sizes"
             :key="size"
@@ -97,10 +100,10 @@
             </li>
           </ul>
           <sh-button
-            variant="belk-link"
+            variant="tertiary"
             class="lowlight-tertiary margin-l-auto"
             scale="50"
-            @click="launchSizeModal">view all sizes</sh-button>
+            @click="launchSizeModal">view all {{ content.sizes.length }} sizes</sh-button>
           </div>
         </div>
         <div class="product-qty">
@@ -388,14 +391,6 @@ export default {
       if (e === 'pdp-size') {
         this.$bus.$emit('get-selected-pdp-size');
       }
-    },
-
-    handleColorUpdate(e) {
-      // update content.activeColor
-    },
-
-    handleSizeUpdate(e) {
-      // update content.activeSize
     },
 
     checkChecked(val) {

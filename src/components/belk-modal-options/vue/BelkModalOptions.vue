@@ -45,13 +45,19 @@ export default {
     }
   },
 
+  watch: {
+    activeItem() {
+      this.emitSelected();
+    },
+  },
+
   methods: {
     events() {
       if (this.uniqueId) {
         const en = `modal-options-${this.uniqueId}`;
         this.$bus.$on(en, this.handleData);
         const get = `get-selected-${this.uniqueId}`;
-        this.$bus.$on(en, this.emitSelected);
+        this.$bus.$on(get, this.emitSelected);
       }
     },
 
@@ -67,7 +73,7 @@ export default {
       });
     },
 
-    emitSelected(){ 
+    emitSelected() {
       this.$bus.$emit(`modal-selected-${this.uniqueId}`, this.activeItem);
     },
   },
