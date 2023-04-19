@@ -1,19 +1,19 @@
 <template>
   <div class="belk-product"
     :variant="variant"
-    v-bind:class=" { 'is-on-sale': onSale || discountType } ">
+    v-bind:class=" { 'is-on-sale': onSale || discountType, loading: loading } ">
     <div v-if="content.images"
       ref="images"
       class="images"
       :class="{ loading: loading }">
-      <ul>
+      <ul class="fader">
         <li v-for="src in content.images" :key="src">
           <div class="image"
             :style="{ backgroundImage: `url(${src})` }"></div>
         </li>
       </ul>
     </div>
-    <div class="product-data">
+    <div class="product-data fader">
       <template v-if="['add'].includes(this.variant)"
         class="product-name">
         <div class="product-brand">
@@ -26,26 +26,33 @@
           :href="content.url"
           :data-pid="pid">
           <div class="image"
-          :style="{ backgroundImage: `url(${thumb_image})` }"></div>
-          <div class="data">
-            <div class="name">
-              <div class="brand">{{ content.brand }}</div>
-              <div class="title">{{ content.title }}</div>
-            </div>
-            <div v-if="qty">
-              <span>{{ size }}</span><span v-if="color">,&nbsp;</span><span>{{ color }}</span>
-            </div>
-            <div v-if="qty">Qty: {{ qty }}</div>
-            <component :is="belkPrice"
-              :price="content.price"
-              :price_range="[content.price_range]"
-              :sale_price="content.sale_price"
-              :sale_price_range="[content.sale_price_range]"
-              :discount_type="content.discountType"
-              :coupon="content.coupon"></component>
+            :style="{ backgroundImage: `url(${thumb_image})` }"></div>
+            <div class="data">
+              <div class="name">
+                <div class="brand">{{ content.brand }}</div>
+                <div class="title">{{ content.title }}</div>
+              </div>
+              <div v-if="qty">
+                <span>{{ size }}</span><span v-if="color">,&nbsp;</span><span>{{ color }}</span>
+              </div>
+              <div v-if="qty">Qty: {{ qty }}</div>
+              <component :is="belkPrice"
+                :price="content.price"
+                :price_range="[content.price_range]"
+                :sale_price="content.sale_price"
+                :sale_price_range="[content.sale_price_range]"
+                :discount_type="content.discountType"
+                :coupon="content.coupon"></component>
           </div>
         </a>
       </template>
+      <div v-if="rating"
+        class="product-rating flex">
+        <sh-rating vce-cloak :level="rating" count="16"></sh-rating>
+        <a v-if="['add'].includes(this.variant)"
+          class="accent-primary flex-inline pad-l-micro margin-r-auto px-15"
+          href="#">Write a Review</a>
+      </div>
       <div v-if="['add'].includes(this.variant)"
         class="product-price">
         <component :is="belkPrice"
@@ -57,12 +64,6 @@
           :sale_price_range="[content.sale_price_range]"
           :discount_type="content.discountType"
           :coupon="content.coupon"></component>
-        </div>
-      <div class="product-rating flex" v-if="rating">
-        <sh-rating vce-cloak :level="rating" count="16"></sh-rating>
-        <a
-          class="accent-primary flex-inline pad-l-micro margin-r-auto px-15"
-          href="#">Write a Review</a>
       </div>
       <div class="extra-1"></div>
       <div class="extra-2"></div>
@@ -86,7 +87,7 @@
         <div v-if="content.sizes"
           class="product-size">
           <div class="add-label">Size:</div>
-          <ul class="flex start pad-b-little"
+          <ul class="flex start pad-b-little fader"
             role="listbox">
             <li v-for="(size, index) in content.sizes"
             :key="size"
@@ -104,7 +105,6 @@
             class="lowlight-tertiary margin-l-auto"
             scale="50"
             @click="launchSizeModal">view all {{ content.sizes.length }} sizes</sh-button>
-          </div>
         </div>
         <div class="product-qty">
           <div class="add-label">Quantity:</div>
@@ -381,7 +381,7 @@ export default {
     },
 
     handleOptionsUpdate(data) {
-      console.log(data);
+      this.log(data);
     },
 
     handleModalAffirmed(e) {
