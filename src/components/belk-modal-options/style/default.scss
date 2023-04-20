@@ -1,0 +1,19 @@
+/* default styling */
+
+belk-modal-options {
+  display: block;
+
+  .belk-modal-options {
+    display: flex;
+    flex-direction: column;
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    li {
+      padding: $micro;
+      margin-bottom: $little;
+      @include option-selectable;
+    }
+  }
+}

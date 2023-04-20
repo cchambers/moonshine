@@ -1,12 +1,12 @@
 <template>
   <div class="belk-product"
     :variant="variant"
-    v-bind:class=" { 'is-on-sale': onSale || discountType } ">
+    v-bind:class=" { 'is-on-sale': onSale || discountType, loading: loading } ">
     <div v-if="content.images"
       ref="images"
       class="images"
       :class="{ loading: loading }">
-      <ul>
+      <ul class="fader">
         <li v-for="src in content.images" :key="src">
           <div class="image"
             :style="{ backgroundImage: `url(${src})` }"></div>
@@ -26,71 +26,87 @@
           :href="content.url"
           :data-pid="pid">
           <div class="image"
-          :style="{ backgroundImage: `url(${thumb_image})` }"></div>
-          <div class="data">
-            <div class="name">
-              <div class="brand">{{ content.brand }}</div>
-              <div class="title">{{ content.title }}</div>
-            </div>
-            <div v-if="qty">
-              <span>{{ size }}</span><span v-if="color">,&nbsp;</span><span>{{ color }}</span>
-            </div>
-            <div v-if="qty">Qty: {{ qty }}</div>
-            <component :is="belkPrice"
-              :price="content.price"
-              :price_range="[content.price_range]"
-              :sale_price="content.sale_price"
-              :sale_price_range="[content.sale_price_range]"
-              :discount_type="content.discountType"
-              :coupon="content.coupon"></component>
+            :style="{ backgroundImage: `url(${thumb_image})` }"></div>
+            <div class="data">
+              <div class="name">
+                <div class="brand">{{ content.brand }}</div>
+                <div class="title">{{ content.title }}</div>
+              </div>
+              <div v-if="qty">
+                <span>{{ size }}</span><span v-if="color">,&nbsp;</span><span>{{ color }}</span>
+              </div>
+              <div v-if="qty">Qty: {{ qty }}</div>
+              <component :is="belkPrice"
+                :price="content.price"
+                :price_range="[content.price_range]"
+                :sale_price="content.sale_price"
+                :sale_price_range="[content.sale_price_range]"
+                :discount_type="content.discountType"
+                :coupon="content.coupon"></component>
           </div>
         </a>
       </template>
-      <div v-if="['add'].includes(this.variant)"
+      <div v-if="rating"
+        class="product-rating flex">
+        <sh-rating vce-cloak :level="rating" count="16"></sh-rating>
+        <a v-if="['add'].includes(this.variant)"
+          class="accent-primary flex-inline pad-l-micro margin-r-auto px-15"
+          href="#">Write a Review</a>
+      </div>
+      <div
         class="product-price">
         <component :is="belkPrice"
           show-percent
+          variant="add"
           :price="content.price"
           :price_range="[content.price_range]"
           :sale_price="content.sale_price"
           :sale_price_range="[content.sale_price_range]"
           :discount_type="content.discountType"
           :coupon="content.coupon"></component>
-        </div>
-      <div class="rating" v-if="rating">
-        <sh-rating vce-cloak :level="rating"></sh-rating>
       </div>
       <div class="extra-1"></div>
       <div class="extra-2"></div>
       <div class="extra-3"></div>
       <div class="extra-4"></div>
-      <!-- <div class="quick-view">
+      <!-- <div class="quick-views">
         <sh-button v-hammer:tap="quickView">Quick View</sh-button>
       </div> -->
-      <div v-if="['add'].includes(this.variant)"
+      <div v-if="['add'].includes(this.variant) && !loading"
         class="add-form">
-        <div v-if="content.colors">
+        <div v-if="content.colors"
+          class="product-colors relative">
           <!-- <belk-swatch :data='content.colors'></belk-swatch> -->
           <component :is="belkSwatch" :data="content.colors"></component>
+          <sh-button
+            variant="belk-link"
+            class="lowlight-tertiary margin-l-auto absolute"
+            style="top: 0; right: 0;"
+            scale="50"
+            @click="launchColorModal">View {{ content.colors.length }} colors</sh-button>
         </div>
-        <div v-if="content.sizes" class="product-size">
+        <div v-if="content.sizes"
+          class="product-size relative">
           <div class="add-label">Size:</div>
-          <div class="flex start wrap radio-select">
-            <div v-for="(size, index) in content.sizes" :key="size" class="radio">
-              <input :id="`size-${size.slugify()}`"
-                type="radio"
-                hidden
-                name="product-size"
-                :value="size"
-                :checked="(index === 0)">
-              <label
-                tabindex="0"
-                @keypress.space.prevent="activateSize"
-                :for="`size-${size.slugify()}`">
-                {{ size }}
-              </label>
-            </div>
-          </div>
+          <ul class="flex start pad-b-little"
+            role="listbox">
+            <li v-for="(size, index) in content.sizes"
+            :key="size"
+            @click="activateSize(index)"
+            @keypress.space.prevent="activateSize(index)"
+            tabindex="0"
+            role="option"
+            :aria-selected="size == activeSize"
+            :class="{ active: size == activeSize }">
+              {{ size }}
+            </li>
+          </ul>
+          <sh-button
+            variant="belk-link"
+            class="lowlight-tertiary margin-l-auto absolute"
+            style="top: 0; right: 0;"
+            scale="50"
+            @click="launchSizeModal">View {{ content.sizes.length }} sizes</sh-button>
         </div>
         <div class="product-qty">
           <div class="add-label">Quantity:</div>
@@ -122,36 +138,38 @@
             :key="content.pid">
           </component>
         </div>
-        <sh-accordion variant="secondary"
-          open-icon="expand_more"
-          close-icon="expand_less"
-          icon-color="lowlight-tertiary"
-          icon-size="px-32"
-          unique-id="product-add-protection">
-          <div class="bold" slot="header">
-            Protection
-          </div>
-          <div slot="body">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Consectetur laborum aspernatur, tempore omnis, est ad animi.</p>
-          </div>
-        </sh-accordion>
-        <spacer-little class="b-t margin-t-little"></spacer-little>
-        <sh-accordion variant="secondary"
-          open-icon="expand_more"
-          close-icon="expand_less"
-          icon-color="lowlight-tertiary"
-          icon-size="px-32"
-          unique-id="product-add-install">
-          <div class="bold" slot="header">
-            Installation
-          </div>
-          <div slot="body">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Consectetur laborum aspernatur, tempore omnis, est ad animi.</p>
-          </div>
-        </sh-accordion>
-        <spacer-little class="b-t margin-t-little"></spacer-little>
+        <div v-if="content.conns">
+          <sh-accordion variant="secondary"
+            open-icon="expand_more"
+            close-icon="expand_less"
+            icon-color="lowlight-tertiary"
+            icon-size="px-32"
+            unique-id="product-add-protection">
+            <div class="bold" slot="header">
+              Protection
+            </div>
+            <div slot="body">
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Consectetur laborum aspernatur, tempore omnis, est ad animi.</p>
+            </div>
+          </sh-accordion>
+          <spacer-little class="b-t margin-t-little"></spacer-little>
+          <sh-accordion variant="secondary"
+            open-icon="expand_more"
+            close-icon="expand_less"
+            icon-color="lowlight-tertiary"
+            icon-size="px-32"
+            unique-id="product-add-install">
+            <div class="bold" slot="header">
+              Installation
+            </div>
+            <div slot="body">
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Consectetur laborum aspernatur, tempore omnis, est ad animi.</p>
+            </div>
+          </sh-accordion>
+          <spacer-little class="b-t margin-t-little"></spacer-little>
+        </div>
         <div
           v-if="content.frequency && !loading"
           class="product-frequency">
@@ -266,6 +284,8 @@ export default {
         reviews: this.reviews,
       },
       itemQty: 1,
+      activeSize: null,
+      activeColor: 1,
       belkSwatch: BelkSwatch,
       belkPrice: BelkPrice,
       belkOfferLinks: BelkOfferLinks,
@@ -353,6 +373,25 @@ export default {
       this.$bus.$on('search-suggestions-loaded', this.processProps);
       if (this.uniqueId) {
         this.$bus.$on(`update-product-${this.uniqueId}`, this.updateContent);
+      }
+      if (['add'].includes(this.variant)) {
+        // this.$bus.$on('modal-affirmed', this.handleModalAffirmed);
+        // this.$bus.$on('modal-selected-pdp-color', this.handleColorUpdate);
+        // this.$bus.$on('modal-selected-size-color', this.handleSizeUpdate);
+        this.$bus.$on('modal-options-updated', this.handleOptionsUpdate);
+      }
+    },
+
+    handleOptionsUpdate(data) {
+      this.log(data);
+    },
+
+    handleModalAffirmed(e) {
+      if (e === 'pdp-color') {
+        this.$bus.$emit('get-selected-pdp-color');
+      }
+      if (e === 'pdp-size') {
+        this.$bus.$emit('get-selected-pdp-size');
       }
     },
 
@@ -447,7 +486,7 @@ export default {
     },
 
     activateSize(e) {
-      e.srcElement.previousElementSibling.checked = true;
+      this.activeSize = this.content.sizes[e];
     },
 
     increment() {
@@ -492,6 +531,16 @@ export default {
       if (images) images.scrollTop = 0;
       this.itemQty = 1;
       this.$bus.$emit('reset-checkbox-freq');
+    },
+
+    launchSizeModal() {
+      this.$bus.$emit('modal-options-size', this.content.sizes);
+      this.$bus.$emit('show-size-modal');
+    },
+
+    launchColorModal() {
+      this.$bus.$emit('modal-options-color', this.content.colors);
+      this.$bus.$emit('show-color-modal');
     },
   },
 };

@@ -147,7 +147,6 @@ export default {
         event: false,
       });
     }
-
     if (self.openTriggerEvent) self.$bus.$on(self.openTriggerEvent, self.open);
     if (self.closeTriggerEvent) self.$bus.$on(self.closeTriggerEvent, self.close);
     if (self.startOpen) self.open();

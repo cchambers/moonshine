@@ -18,9 +18,10 @@
         v-bind:class="{ 'is-range': priceRange }"
       >{{ originalValue }}</span>
       <span v-if="coupon" class="coupon">after coupon</span>
-      <span v-if="showPercent && onSale" class="percentage">
-        ({{ percentOff }}% off)
-      </span>
+      <span
+        v-if="showPercent && onSale"
+        class="percentage"
+        >({{ percentOff }}% off)</span>
     </div>
   </div>
 </template>
@@ -35,6 +36,7 @@ export default {
   name: 'BelkPrice',
 
   props: {
+    uniqueId: String,
     data: null,
     price: [String, Number],
     sale_price_range: {
@@ -86,7 +88,6 @@ export default {
 
   data() {
     return {
-      content: null,
       saleRange: null,
       salePrice: null,
       priceRange: null,
@@ -95,8 +96,21 @@ export default {
     };
   },
 
+  watch: {
+    sale_price(newVal) {
+      this.processProps(newVal);
+    },
+    sale_price_range(newVal) {
+      this.processProps(newVal);
+    },
+    price_range(newVal) {
+      this.processProps(newVal);
+    },
+  },
+
   mounted() {
     if (this.data) {
+      this.ready = false;
       this.content = { ...this.data };
     }
     this.ready = true;
@@ -106,13 +120,13 @@ export default {
   methods: {
     events() {
       this.$bus.$on('product-content-update', this.processProps);
-      this.$bus.$on('trigger-thing', this.processProps);
       this.$bus.$on('search-suggestions-loaded', this.processProps);
+      if (this.uniqueId) {
+        this.$bus.$on(`trigger-update-${this.uniqueId}`, this.processProps);
+        // this.$bus.$on(`update-${this.uniqueId}`, this.handleData);
+      }
     },
-    checkOnSale() {
-      this.isOnSale = (this.price > this.sale_price)
-        || (this.price > this.salePrice);
-    },
+
     processProps() {
       setTimeout(() => {
         if (this.sale_price) {
@@ -145,3 +159,4 @@ export default {
 </script>
 <style lang="scss" src="../style/default.scss"></style>
 <style lang="scss" src="../style/primary.scss"></style>
+<style lang="scss" src="../style/add.scss"></style>

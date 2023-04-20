@@ -3,12 +3,12 @@
 <title><%= htmlWebpackPlugin.options.title %></title>
 
 <div class="documentation contain">
-  <h1>Belk Price</h1>
+  <h1>Belk Modal Options</h1>
   <section id="usage">
     <h2>Usage</h2>
     <pre>
       <code class="language-html">
-          &lt;belk-price&gt;new component&lt;/belk-price&gt;
+          &lt;belk-modal-options&gt;new component&lt;/belk-modal-options&gt;
       </code>
     </pre>
 
@@ -28,33 +28,9 @@
       </thead>
       <tbody>
         <tr>
-          <td>price</td>
-          <td>Number</td>
-          <td>original price value</td>
-        </tr>
-        <tr>
-          <td>sale_price</td>
-          <td>Number</td>
-          <td>sale price value</td>
-        </tr>
-          <td>price_range</td>
-          <td>Array</td>
-          <td>original price value as an array</td>
-        </tr>
-        <tr>
-          <td>sale_price</td>
-          <td>Array</td>
-          <td>sale price value as an array</td>
-        </tr>
-        <tr>
-          <td>show-percent</td>
+          <td>hidden</td>
           <td>Boolean</td>
-          <td>Show the "(% off)" section</td>
-        </tr>
-        <tr>
-          <td>coupon</td>
-          <td>Boolean</td>
-          <td>Show the "after coupon" section</td>
+          <td>Hide from view.</td>
         </tr>
       </tbody>
     </table>
@@ -133,34 +109,27 @@
     <h2>Examples</h2>
     <h3>Default</h3>
     <lib-toolbar>
-      <belk-price variant="add" unique-id="demo" price="60" sale_price="30" show-percent></belk-price>
+      <belk-modal-options>
+        TEXT THAT IS EVEN AND STILL EXISTS
+      </belk-modal-options>
     </lib-toolbar>
-    <h3>Update with Event</h3>
-      <belk-price id="demo-target" variant="add" unique-id="demo-event-target"></belk-price>
-      <sh-button
-        variant="primary"
-        toggle="once"
-        active-text="Added"
-        active-icon="check"
-        click-event="demo-coupon-add">Add Coupon</sh-button>
-        <script>
-          const target = document.getElementById('demo-target');
-          console.log(target);
-          document.addEventListener('demo-coupon-add', () => {
-            target.price = 20;
-            target.sale_price = 10;
-            target.coupon = 'GETSCHWIFTY';
-          });
-        </script>
   </section>
 
   <section id="changelog">
     <h2>Changelog</h2>
     <dl>
       <dt>0.1.0</dt>
-      <dd>Belk Price is under development.</dd>
+      <dd>Belk Modal Options is under development.</dd>
       <dt>1.0.0</dt>
-      <dd>Belk Price is ready for use.</dd>
+      <dd>Belk Modal Options is ready for use.</dd>
+      <dt>1.0.1</dt>
+      <dd><strong>PATCH</strong> version when you make backwards-compatible bug fixes.</dd>
+      <dt>1.1.0</dt>
+      <dd><strong>MINOR</strong> version when you add functionality in a backwards-compatible manner.</dd>
+      <dt>2.0.0</dt>
+      <dd><strong>MAJOR</strong> version when you make incompatible API changes.</dd>
+      <dd>Example of another change from the same update.</dd>
+      <dd>And another.</dd>
     </dl>
   </section>
 

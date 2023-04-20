@@ -57,26 +57,49 @@
     }
     > div {
       margin-bottom: $micro;
+      order: 0;
     }
   }
   .product-brand {
-    font-size: 1.4rem;
+    font-size: 1.3rem;
   }
   .product-title {
     order: 0;
-    font-size: 1.8rem;
-    font-weight: bold;
+    font-size: 1.7rem;
   }
   .product-rating {
     order: 2;
   }
-  .product-price {
-    order: 4;
+  .product-colors {
+    display: flex;
+    flex-direction: column;
+    // .swatch-list {
+    //   flex-wrap: nowrap;
+    //   @include scroll-x;
+    //   @include no-scroll-bar;
+    // }
   }
   .product-size {
-    label {
+    display: flex;
+    flex-direction: column;
+    ul {
+      list-style: none;
+      padding: 0;
+      width: 100%;
+      flex-wrap: wrap;
+    }
+    li {
       display: flex;
-      margin-bottom: $micro; 
+      margin-right: $micro;
+      margin-bottom: $micro;
+      flex-basis: 3.2rem;
+      flex-grow: 0;
+      flex-shrink: 0;
+      justify-content: center;
+      @include option-selectable;
+    }
+    li:last-child {
+      margin-right: auto;
     }
   }
   .product-qty {
@@ -120,10 +143,7 @@
       position: relative;
       border-radius: $atomic;
       cursor: pointer;
-      box-shadow: inset 1px 0px 0 $lowlight-tertiary,
-        inset -1px 0px 0 $lowlight-tertiary,
-        inset 0px 1px 0 $lowlight-tertiary,
-        inset 0px -1px 0 $lowlight-tertiary;
+      @include option-selectable;
       > * {
         pointer-events: none;
       }
@@ -136,11 +156,7 @@
         content: 'radio_button_unchecked';
       }
       &.active {
-        background: $highlight-secondary;
-        box-shadow: inset 2px 0px 0 $lowlight-quaternary,
-          inset -2px 0px 0 $lowlight-quaternary,
-          inset 0px 2px 0 $lowlight-quaternary,
-          inset 0px -2px 0 $lowlight-quaternary;
+        @include option-selected;
         &:after {
           content: 'radio_button_checked';
         }
@@ -176,33 +192,37 @@
   }
   [class*="extra-"] {
     order: 10;
-  }
-  .radio-select {
-    label {
-      display: flex;
-      padding: $micro $little;
-      border-radius: 5px;
-      cursor: pointer;
-      margin-right: $micro;
-      font-size: 1.2rem;
-      box-shadow: inset 1px 0px 0 $lowlight-tertiary,
-        inset -1px 0px 0 $lowlight-tertiary,
-        inset 0px 1px 0 $lowlight-tertiary,
-        inset 0px -1px 0 $lowlight-tertiary;
-      transition: all 100ms $ease;
-    }
-    input:checked + label {
-      background: $highlight-secondary;
-      box-shadow: inset 2px 0px 0 $lowlight-quaternary,
-        inset -2px 0px 0 $lowlight-quaternary,
-        inset 0px 2px 0 $lowlight-quaternary,
-        inset 0px -2px 0 $lowlight-quaternary;
+    &:empty {
+      display: none;
     }
   }
+  // .radio-select {
+  //   label {
+  //     display: flex;
+  //     border-radius: 5px;
+  //     cursor: pointer;
+  //     margin-right: $micro;
+  //     font-size: 1.2rem;
+  //     box-shadow: inset 1px 0px 0 $lowlight-tertiary,
+  //       inset -1px 0px 0 $lowlight-tertiary,
+  //       inset 0px 1px 0 $lowlight-tertiary,
+  //       inset 0px -1px 0 $lowlight-tertiary;
+  //     transition: all 100ms $ease;
+  //   }
+  //   input:checked + label {
+  //     background: $highlight-secondary;
+  //     box-shadow: inset 2px 0px 0 $lowlight-quaternary,
+  //       inset -2px 0px 0 $lowlight-quaternary,
+  //       inset 0px 2px 0 $lowlight-quaternary,
+  //       inset 0px -2px 0 $lowlight-quaternary;
+  //   }
+  // }
   .product-price {
     display: flex;
     justify-content: flex-start;
-    align-items: flex-end;
+    align-items: flex-start;
+    flex-direction: column;
+    order: 3;
     .sale {
       font-size: 2rem;
       order: 1;
@@ -227,5 +247,27 @@
   sh-rating {
     z-index: -1;
     position: relative;
+  }
+  .fader {
+    > * {
+      opacity: 1;
+      transition: all 150ms $accel;
+    }
+    @for $i from 1 through 50 {
+      $ms: (10 * $i);
+      > *:nth-child(#{$i}) {
+        transition-delay: #{$ms}ms;
+      }
+    }
+    
+  }
+  &.loading {
+    .fader {
+      > * {
+        border: 1px solid red;
+        opacity: 0;
+        transition-delay: 0;
+      }
+    }
   }
 }

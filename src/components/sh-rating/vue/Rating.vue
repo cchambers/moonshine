@@ -35,7 +35,7 @@
         </li>
       </ul>
     </span>
-    <span v-if="ratecount > 0" class="sh-rating-count">( {{ ratecount }} )</span>
+    <span v-if="ratecount > 0" class="sh-rating-count px-14">({{ ratecount }})</span>
   </span>
 </template>
 

@@ -1,6 +1,6 @@
 {
   "name": "Svglib",
-  "category": "components",
+  "category": "utilities",
   "production": true,
   "element": "sh-svglib",
   "description": "Scalable Vector Graphic library.",
