@@ -64,7 +64,7 @@
           :sale_price_range="[content.sale_price_range]"
           :discount_type="content.discountType"
           :coupon="content.coupon"></component>
-      </div>x
+      </div>
       <!-- <div class="quick-views">
         <sh-button v-hammer:tap="quickView">Quick View</sh-button>
       </div> -->
