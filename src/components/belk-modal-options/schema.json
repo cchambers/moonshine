@@ -1,6 +1,6 @@
 {
   "name": "Belk Modal Options",
-  "category": "base",
+  "category": "templates",
   "production": true,
   "element": "belk-modal-options",
   "description": "List data in a selectable way.",

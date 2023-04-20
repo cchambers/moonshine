@@ -1,6 +1,6 @@
 {
   "name": "Adapt Content",
-  "category": "components",
+  "category": "utilities",
   "production": false,
   "element": "sh-adapt-content",
   "description": "Easily create adapatable content at the element level.",

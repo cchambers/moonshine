@@ -1,6 +1,6 @@
 {
   "name": "Belk Facet Toggle",
-  "category": "base",
+  "category": "components",
   "production": true,
   "hideFromDocs": true,
   "element": "belk-facet-toggle",
