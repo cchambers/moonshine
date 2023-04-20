@@ -64,11 +64,7 @@
           :sale_price_range="[content.sale_price_range]"
           :discount_type="content.discountType"
           :coupon="content.coupon"></component>
-      </div>
-      <div class="extra-1"></div>
-      <div class="extra-2"></div>
-      <div class="extra-3"></div>
-      <div class="extra-4"></div>
+      </div>x
       <!-- <div class="quick-views">
         <sh-button v-hammer:tap="quickView">Quick View</sh-button>
       </div> -->
@@ -108,7 +104,7 @@
             scale="50"
             @click="launchSizeModal">View {{ content.sizes.length }} sizes</sh-button>
         </div>
-        <div class="product-qty">
+        <div v-if="['add'].includes(this.variant)" class="product-qty">
           <div class="add-label">Quantity:</div>
           <div class="flex start">
             <button :disabled="itemQty == 1"
