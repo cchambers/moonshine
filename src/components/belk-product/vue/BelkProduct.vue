@@ -53,7 +53,7 @@
           class="accent-primary flex-inline pad-l-micro margin-r-auto px-15"
           href="#">Write a Review</a>
       </div>
-      <div
+      <div v-if="['add'].includes(this.variant)"
         class="product-price">
         <component :is="belkPrice"
           show-percent
