@@ -51,7 +51,7 @@
       class="offer-detail-messaging margin-t-auto pad-y-little">
       <div class="px-16 back-highlight-secondary lowlight-quinary flex align-start pad-micro">
         <i class="material-icons-round">info</i>
-        <p class="px-14 pad-l-atomic">{{ content.message }}</p>
+        <p class="px-14 pad-l-atomic" v-html="replaceBreaks(content.message)"></p>
       </div>
     </div>
   </div>
@@ -121,6 +121,11 @@ export default {
 
     handleData(data) {
       this.content = { ...data };
+    },
+
+    replaceBreaks(str) {
+      const fixed = str.replaceAll('\n', '<spacer-micro />');
+      return fixed;
     },
   },
 };

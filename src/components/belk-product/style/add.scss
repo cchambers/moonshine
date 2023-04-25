@@ -251,7 +251,7 @@
   .fader {
     > * {
       opacity: 1;
-      transition: all 150ms $accel;
+      transition: inherit, opacity 150ms $accel;
     }
     @for $i from 1 through 50 {
       $ms: (10 * $i);
@@ -264,7 +264,6 @@
   &.loading {
     .fader {
       > * {
-        border: 1px solid red;
         opacity: 0;
         transition-delay: 0;
       }
