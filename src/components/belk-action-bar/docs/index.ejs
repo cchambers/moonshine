@@ -111,6 +111,7 @@
     <lib-toolbar>
       <belk-action-bar></belk-action-bar>
       <sh-button variant="tertiary" click-event="demo-view-one">VIEW ONE</sh-button>
+      <sh-button variant="tertiary" click-event="demo-view-one.2">VIEW UPDATE</sh-button>
       <sh-button variant="tertiary" click-event="demo-view-two">VIEW TWO</sh-button>
       <sh-button variant="tertiary" click-event="demo-view-three">VIEW THREE</sh-button>
     </lib-toolbar>
@@ -118,8 +119,22 @@
       document.addEventListener('demo-view-one', () => {
         const obj = {
           state: 'view1',
-          data: {
-            text: 'View One Text'
+          content: {
+            text: 'View One Text',
+            price: 50,
+          }
+        }
+        sh.emit('action-bar-view', obj);
+      });
+
+      document.addEventListener('demo-view-one.2', () => {
+        const obj = {
+          state: 'view1',
+          content: {
+            text: 'Updated text for view one, incl price',
+            price: 60,
+            sale_price: 20,
+            showPercent: true,
           }
         }
         sh.emit('action-bar-view', obj);

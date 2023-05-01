@@ -1,29 +1,35 @@
 <template>
   <div class="belk-action-bar"
     :variant="variant">
-    <div v-if="state === 'view1'"
+    <div v-if="state === 'view1' && !loading"
       class="flex">
       <div>
         {{ content[state].text }}
       </div>
-      <div>PRICE</div>
+      <div><component
+        :is="belkPrice"
+        :price="pull('price')"
+        :sale_price="pull('sale_price')"
+        :show-percent="pull('showPercent')"></component></div>
       <div>
-        <sh-button variant="primary">Add to Bag</sh-button>
+        <sh-button variant="primary" click-event="add-to-bag">Add to Bag</sh-button>
       </div>
     </div>
-    <div v-if="state === 'view2'"
+    <div v-if="state === 'view2' && !loading"
       class="flex">
-        {{ content[state].text }}
+        {{ pull('text') }}
     </div>
-    <div v-if="state === 'view3'"
+    <div v-if="state === 'view3' && !loading"
       class="flex">
-        {{ content[state].text }}
+        {{ pull('text') }}
     </div>
   </div>
 </template>
 
 <script>
 import ComponentPrototype from '../../component-prototype';
+import BelkProduct from '../../belk-product/vue/BelkProduct.vue';
+import BelkPrice from '../../belk-price/vue/BelkPrice.vue';
 
 export default {
   mixins: [ComponentPrototype],
@@ -35,6 +41,7 @@ export default {
       content: {
         view1: {
           text: 'View One Data',
+          price: 100,
         },
         view2: {
           text: 'View Two Data',
@@ -44,6 +51,9 @@ export default {
         },
       },
       state: 'view1',
+      belkProduct: BelkProduct,
+      belkPrice: BelkPrice,
+      loading: false,
     };
   },
 
@@ -52,6 +62,12 @@ export default {
       // handle common data events
       // change state
       this.$bus.$on('action-bar-view', this.changeState);
+    },
+
+    pull(val) {
+      let ret;
+      if (this.content[this.state]) ret = this.content[this.state][val] || '';
+      return ret;
     },
 
     changeState(data) {
