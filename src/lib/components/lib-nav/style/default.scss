@@ -64,7 +64,7 @@ lib-nav {
     }
 
     li {
-      margin-top: 0.5rem;
+      // margin-top: 0.5rem;
 
       li {
         margin: 0;
@@ -74,10 +74,14 @@ lib-nav {
     .header {
       text-transform: uppercase;
       padding: 0 1.5rem;
-      margin-top: 1.5rem;
       font-size: 1.4rem;
       line-height: 3rem;
+      font-weight: bold;
       color: $accent-tertiary;
+      background: $lowlight-quinary;
+      display: inline-flex;
+      border-radius: 0 $little $little 0;
+      margin-top: 1.5rem;
 
       +ul {
         margin: 0;

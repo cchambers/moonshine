@@ -1,0 +1,13 @@
+{
+  "name": "Belk Action Bar",
+  "category": "features",
+  "production": true,
+  "element": "belk-action-bar",
+  "description": "Footer CTA component built to transition between internal templates.",
+  "tags": ["cta", "add to bag", "sticky footer"],
+  "tracking": [],
+  "requirements": {
+    "a11y": ["refocus the content area when the view is changed"],
+    "states": []
+  }
+}

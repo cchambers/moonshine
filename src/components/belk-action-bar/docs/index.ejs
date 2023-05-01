@@ -3,12 +3,12 @@
 <title><%= htmlWebpackPlugin.options.title %></title>
 
 <div class="documentation contain">
-  <h1>Component Template</h1>
+  <h1>Belk Action Bar</h1>
   <section id="usage">
     <h2>Usage</h2>
     <pre>
       <code class="language-html">
-          &lt;component-template&gt;new component&lt;/component-template&gt;
+          &lt;belk-action-bar&gt;new component&lt;/belk-action-bar&gt;
       </code>
     </pre>
 
@@ -109,17 +109,51 @@
     <h2>Examples</h2>
     <h3>Default</h3>
     <lib-toolbar>
-      <component-template variant="primary">DEMONSTRATION CONTENT</component-template>
+      <belk-action-bar></belk-action-bar>
+      <sh-button variant="tertiary" click-event="demo-view-one">VIEW ONE</sh-button>
+      <sh-button variant="tertiary" click-event="demo-view-two">VIEW TWO</sh-button>
+      <sh-button variant="tertiary" click-event="demo-view-three">VIEW THREE</sh-button>
     </lib-toolbar>
+    <script>
+      document.addEventListener('demo-view-one', () => {
+        const obj = {
+          state: 'view1',
+          data: {
+            text: 'View One Text'
+          }
+        }
+        sh.emit('action-bar-view', obj);
+      });
+
+      document.addEventListener('demo-view-two', () => {
+        const obj = {
+          state: 'view2',
+          data: {
+            text: 'Some other text'
+          }
+        }
+        sh.emit('action-bar-view', obj);
+      });
+
+      document.addEventListener('demo-view-three', () => {
+        const obj = {
+          state: 'view3',
+          data: {
+            text: 'View Three Text'
+          }
+        }
+        sh.emit('action-bar-view', obj);
+      });
+    </script>
   </section>
 
   <section id="changelog">
     <h2>Changelog</h2>
     <dl>
       <dt>0.1.0</dt>
-      <dd>Component Template is under development.</dd>
+      <dd>Belk Action Bar is under development.</dd>
       <dt>1.0.0</dt>
-      <dd>Component Template is ready for use.</dd>
+      <dd>Belk Action Bar is ready for use.</dd>
       <dt>1.0.1</dt>
       <dd><strong>PATCH</strong> version when you make backwards-compatible bug fixes.</dd>
       <dt>1.1.0</dt>

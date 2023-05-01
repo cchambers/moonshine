@@ -1,0 +1,7 @@
+/* primary variant */
+
+belk-action-bar[variant="primary"] {
+  .belk-action-bar {
+    @include box-shadow(3);
+  }
+}
