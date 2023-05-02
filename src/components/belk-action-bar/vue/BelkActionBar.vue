@@ -50,7 +50,7 @@ export default {
           text: 'View Three Data',
         },
       },
-      state: 'view1',
+      state: 'view1', // we change these names to be more descriptive of the view
       belkProduct: BelkProduct,
       belkPrice: BelkPrice,
       loading: false,
@@ -65,9 +65,9 @@ export default {
     },
 
     pull(val) {
-      let ret;
-      if (this.content[this.state]) ret = this.content[this.state][val] || '';
-      return ret;
+      let data;
+      if (this.content[this.state]) data = this.content[this.state][val] || '';
+      return data;
     },
 
     changeState(data) {
@@ -77,6 +77,7 @@ export default {
         if (data.content) this.content[data.state] = { ...data.content };
         this.$nextTick(() => {
           this.loading = false;
+          this.$bus.$emit('action-bar-updated');
         });
       }
     },
