@@ -1,10 +1,15 @@
 <template>
   <div class="belk-action-bar"
     :variant="variant">
+
     <div v-if="state === 'view1' && !loading"
       class="flex">
       <div>
-        {{ content[state].text }}
+        <!-- <component
+        :is="belkProduct"
+        v-bind="content.view1"
+        ></component> -->
+        [BELK PRODUCT]
       </div>
       <div><component
         :is="belkPrice"
@@ -15,13 +20,15 @@
         <sh-button variant="primary" click-event="add-to-bag">Add to Bag</sh-button>
       </div>
     </div>
+
     <div v-if="state === 'view2' && !loading"
       class="flex">
         {{ pull('text') }}
     </div>
+
     <div v-if="state === 'view3' && !loading"
       class="flex">
-        {{ pull('text') }}
+        AND ANOTHER ONE: {{ pull('text') }}
     </div>
   </div>
 </template>

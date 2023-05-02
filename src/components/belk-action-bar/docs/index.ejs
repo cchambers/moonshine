@@ -93,7 +93,7 @@
       </thead>
       <tbody>
         <tr>
-          <td>event-name</td>
+          <td>action-bar-updated</td>
           <td>
             Type
           </td>
@@ -108,14 +108,14 @@
   <section id="examples">
     <h2>Examples</h2>
     <h3>Default</h3>
-    <lib-toolbar>
+    <!-- <lib-toolbar> -->
       <belk-action-bar></belk-action-bar>
       <spacer-mega></spacer-mega>
       <sh-button variant="tertiary" click-event="demo-view-one">VIEW ONE</sh-button>
       <sh-button variant="tertiary" click-event="demo-view-one.2">VIEW UPDATE</sh-button>
       <sh-button variant="tertiary" click-event="demo-view-two">VIEW TWO</sh-button>
       <sh-button variant="tertiary" click-event="demo-view-three">VIEW THREE</sh-button>
-    </lib-toolbar>
+    <!-- </lib-toolbar> -->
     <script>
       document.addEventListener('demo-view-one', () => {
         const obj = {
@@ -132,6 +132,8 @@
         const obj = {
           state: 'view1',
           content: {
+            title: 'Product Name',
+            images: ['https://placehold.co/200x200'],
             text: 'Updated text for view one, incl price',
             price: 60,
             sale_price: 20,
@@ -168,7 +170,7 @@
     <dl>
       <dt>0.1.0</dt>
       <dd>Belk Action Bar is under development.</dd>
-      <dt>1.0.0</dt>
+      <!-- <dt>1.0.0</dt>
       <dd>Belk Action Bar is ready for use.</dd>
       <dt>1.0.1</dt>
       <dd><strong>PATCH</strong> version when you make backwards-compatible bug fixes.</dd>
@@ -177,7 +179,7 @@
       <dt>2.0.0</dt>
       <dd><strong>MAJOR</strong> version when you make incompatible API changes.</dd>
       <dd>Example of another change from the same update.</dd>
-      <dd>And another.</dd>
+      <dd>And another.</dd> -->
     </dl>
   </section>
 
