@@ -10,11 +10,12 @@
   .sale + .original {
     font-size: 1.5rem;
     margin-left: $micro;
-    color: $lowlight-primary
   }
   .original {
     font-size: 2rem;
     order: 2;
+    color: $lowlight-primary;
+    font-weight: bold;
   }
   .percentage {
     order: 3;
