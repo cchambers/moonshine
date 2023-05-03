@@ -19,7 +19,7 @@
       >{{ originalValue }}</span>
       <span v-if="coupon" class="coupon">after coupon</span>
       <span
-        v-if="showPercent && onSale"
+        v-if="showPercent && onSale && percentOff"
         class="percentage"
         >({{ percentOff }}% off)</span>
     </div>
@@ -73,6 +73,7 @@ export default {
       const original = this.price;
       let percent = 1 - (sale / original);
       percent = Math.round(percent * 100);
+      if (percent < 1) percent = false;
       return percent;
     },
 
