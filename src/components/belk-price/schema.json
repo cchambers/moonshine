@@ -10,6 +10,7 @@
     "original price": [],
     "sale price": [],
     "coupon note": [],
-    "states": [ "has-coupon", "is-on-sale" ]
+    "states": [ "has-coupon", "is-on-sale" ],
+    "percent off": ["should appear when on sale", "should appear when percentage is >= 1"]
   }
 }

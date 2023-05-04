@@ -2,7 +2,7 @@
   <div
     class="belk-price"
     :variant="variant"
-    v-bind:class=" { 'is-on-sale': onSale || discount_type } "
+    v-bind:class="{ 'is-on-sale': onSale || discount_type }"
     v-if="ready"
   >
     <div class="price">
@@ -11,17 +11,18 @@
         class="sale"
         :discount="discount_type"
         v-bind:class="{ 'is-range': saleRange }"
-      >{{ saleValue }}</span>
+        >{{ saleValue }}</span
+      >
       <span
         class="original"
         :discount="discount_type"
         v-bind:class="{ 'is-range': priceRange }"
-      >{{ originalValue }}</span>
+        >{{ originalValue }}</span
+      >
       <span v-if="coupon" class="coupon">after coupon</span>
-      <span
-        v-if="showPercent && onSale && percentOff"
-        class="percentage"
-        >({{ percentOff }}% off)</span>
+      <span v-if="showPercent && onSale && percentOff" class="percentage"
+        >(-{{ percentOff }}% off)</span
+      >
     </div>
   </div>
 </template>
@@ -71,7 +72,7 @@ export default {
     percentOff() {
       const sale = this.salePrice;
       const original = this.price;
-      let percent = 1 - (sale / original);
+      let percent = 1 - sale / original;
       percent = Math.round(percent * 100);
       if (percent < 1) percent = false;
       return percent;
@@ -143,8 +144,8 @@ export default {
         }
         if (this.sale_price_range.length > 1) {
           if (
-            this.sale_price_range[0] !== this.sale_price_range[1]
-            && this.sale_price_range !== this.price_range
+            this.sale_price_range[0] !== this.sale_price_range[1] &&
+            this.sale_price_range !== this.price_range
           ) {
             this.saleRange = `${this.format(
               this.sale_price_range[0],

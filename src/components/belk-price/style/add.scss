@@ -10,6 +10,8 @@
   .sale + .original {
     font-size: 1.5rem;
     margin-left: $micro;
+    font-weight: normal;
+    color: $lowlight-tertiary;
   }
   .original {
     font-size: 2rem;
